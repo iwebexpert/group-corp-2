@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lesson4</title>
 </head>
+
 <body>
     <script>
-        console.log('s');
+        "use strict"
+        // 1
+
+        let question = +prompt('Введите температуру в градусах по Цельсию', 0);
+        let result = (9 / 5 * question + 32);
+        alert(`${result} градусов по Фаренгейту`);
+        // 2
+
+        let name = "Гена";
+        let admin;
+        admin = name;
+
+        alert(admin);
+
+        // 3
+
+        /*
+        1000 + "108"  равно строке "1000108". JS приводит число в строку и происходит конкатенация строк.
+        */
+
+       // 4 
+
+       /*
+       Оба по сути выполняют скрипты асинхроннно, только async не сохраняет относительную последовательность скриптов, когда defer сохраняет.
+        */
     </script>
 </body>
+
 </html>

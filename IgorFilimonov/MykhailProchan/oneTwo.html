@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>Lesson 4</title>
     <script>
-        function calculate() {
+        function one() {
             alert('Это ' + ((9 / 5) * Number(document.getElementById('inp').value) + 32) + ' по Фаренгейту');
         }
 
-        function onl() {
+        function two() {
             let name = "Василий", admin;
             admin = name;
             document.getElementById('adm').textContent = admin;
@@ -18,9 +18,9 @@
     </script>
 </head>
 
-<body onload="onl()">
+<body onload="two()">
     <input type="number" id="inp" placeholder="Температура по Цельсию" required>
-    <button type="submit" onclick="calculate()" id="classA">Конвертировать</button>
+    <button type="submit" onclick="one()" id="classA">Конвертировать</button>
     <p id="adm"></p>
 </body>
 

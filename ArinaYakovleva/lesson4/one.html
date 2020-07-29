@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4</title>
+    <script>
+        //1.
+        let celsiusTemp = prompt('Enter the temperature in degree Celsius:');
+        let fahrenheitTemp = (9 / 5) * Number(celsiusTemp) + 32;
+        alert(`Here the temperature in Fahrenheit: ${fahrenheitTemp}`);
+
+        //2.
+        let admin, name;
+        name = 'Василий';
+        admin = name;
+        alert(admin);
+
+        //3.
+        /*
+        Выражение 1000 + '108' будет равно 1000108, так как второй аргумент представлен в качестве строки.
+        В случае, если один из аргументов представлен в качестве строки, второй также приводится к этому
+        типу и происходит конкатенация строк.
+        */
+
+        //4. 
+        /*
+        В обычном режиме(без использования async/defer) скрипт приостанавливает парсинг HTML,
+        тем самым останавливая отрисовку веб-страницы.
+        Атрибут async указывает браузеру выполнять скрипт асинхронно. То есть когда парсер достигает тега script,
+        скрипт начнет выполняться параллельно с разбором документа.
+        Атрибут defer говорит браузеру о том, что скрипт должен быть выполнен после того, как HTML документ
+        будет полностью разобран.
+        */
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

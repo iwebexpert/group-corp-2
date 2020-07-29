@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript">
+    alert('Первое задание');
+    let Tc = +prompt('Введите температуру по Цельсию', '0');
+    let Tf = (9/5)*Tc+32;
+    alert(`По Фаренгейту: ${Tf}`);
+
+    alert('Второе задание');
+    let admin, name;
+    name = 'Василий';
+    admin = name;
+    alert(`Admin: ${admin}`);
+
+    console.log(1000+"108");
+  </script>
+  <title>Document</title>
+</head>
+<body>
+  <p>
+    Чему будет равно JS-выражение 1000 + "108"?
+  </p>
+  <p>Ответ: 1000108</p>
+  <br>
+  <p>
+    Самостоятельно разобраться с атрибутами тега script (async и defer)
+  </p>
+  <ul>
+    <li>Атрибут async разрешает браузеру загружать js-файлы параллельно и выполнять сразу после загрузки, не дожидаясь обработки остальной части страницы.</li>
+    <li>Атрибут defer позволяет браузеру начать загрузку js-файлов параллельно, не останавливая дальнейшую обработку страницы. Их выполнение происходит после полного разбора объектной модели документа, при этом браузер гарантирует последовательность на основе порядка подключения файлов.</li>
+  </ul>
+
+</body>
+</html>

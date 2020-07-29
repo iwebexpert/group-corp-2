@@ -1,6 +1,6 @@
 //first task
 document.getElementById("convert_button").addEventListener("click", function() {
-  alert((9/5) * document.getElementById("input_temperature").value + 32);
+  alert((9 / 5) * document.getElementById("input_temperature").value + 32);
 });
 
 //second task
@@ -12,7 +12,7 @@ document.getElementById("result_button").addEventListener("click", function() {
 });
 
 //1000 + "108";
-//У нас второй операнд сдесь строка, 
+//У нас второй операнд здесь строка, 
 //значит и первый будет преобразован в строку
 //выведет 1000108
 

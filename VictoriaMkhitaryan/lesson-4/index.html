@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ДЗ1</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script>
+    function task1() {
+      const celsiuses = parseInt(prompt('Задайте температуру в градусах по Цельсию:', 451));
+      const fahrenheit = (9/5)*celsiuses + 32;
+
+      alert(fahrenheit);
+    }
+
+    function task2() {
+      let admin;
+      let name;
+
+      name = "Василий";
+      admin = name;
+
+      alert(admin);
+    }
+
+    function task3() {
+    alert("Нет смысла пытаться представить строку как число (строка чаще всего содержит символы отличные от цифр), но можно преобразовать число в строку => браузер преобразует число в строку. Ответ: 1000108.");
+    }
+  </script>
+  <style>
+    .content {
+      display: flex;
+      justify-content: center;
+      margin-top: 40vh;
+    }
+
+    .btn-center {
+      margin: 0 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <button type="button" class="btn btn-outline-danger btn-lg" onClick="task1()">Задание 1</button>
+    <button type="button" class="btn btn-outline-warning btn-lg btn-center" onClick="task2()">Задание 2</button>
+    <button type="button" class="btn btn-outline-success btn-lg" onClick="task3()">Задание 3</button>
+  </div>
+</body>
+</html>

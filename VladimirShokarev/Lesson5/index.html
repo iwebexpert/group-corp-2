@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script type="text/javascript">
+  //////////////////// 1 задание ///////////////////////////
+
+    // var a = 1, b = 1, c, d;
+    // c = ++a; console.log(c);           // 2 потому что префиксная запись. a = 2; c = 2;
+    // d = b++; console.log(d);           // 1 переменная сначала используется в выражении, а потом увеличивается на 1. d = 1; b = 1; b после исполнения строчки станет 2;
+    // c = (2+ ++a); console.log(c);      // 5 c = (2+3) = 5; c = 5; a = 3
+    // d = (2+ b++); console.log(d);      // 4 d = (2+2) = 4; d = 4; b после исполнения строчки станет 3
+    // console.log(a);                    // 3
+    // console.log(b);
+
+    //////////////////// 2 задание ///////////////////////////
+
+    // var a = 2;
+    // var x = 1 + (a *= 2); //=5; a = a * 2 = 4;
+    // console.log(x);
+
+    //////////////////// 3 задание ///////////////////////////
+
+    // let a = +prompt('Введите первоее число', '10');
+    // let b = +prompt('Введите первоее число', '5');
+    //
+    // if(a >= 0 && b >= 0) console.log(a - b);
+    // else if(a < 0 && b < 0) console.log(a * b);
+    // else console.log(a + b);
+
+    //////////////////// 4 задание ///////////////////////////
+
+    // Присвоить переменной а значение в промежутке [0..15]. С помощью оператора switch организовать вывод чисел от a до 15. ? т.е. просто без break?
+
+    // let a = Math.floor(Math.random() * (15 + 1));
+    // console.log(a);
+    //
+    // switch (a) {
+    //   case a = 0:
+    //     console.log('0');
+    //   case a = 1:
+    //     console.log('1');
+    //   case a = 2:
+    //     console.log('2');
+    //   case a = 3:
+    //     console.log('3');
+    //   case a = 4:
+    //     console.log('4');
+    //   case a = 5:
+    //     console.log('5');
+    //   case a = 6:
+    //     console.log('6');
+    //   case a = 7:
+    //     console.log('7');
+    //   case a = 8:
+    //     console.log('8');
+    //   case a = 9:
+    //     console.log('9');
+    //   case a = 10:
+    //     console.log('10');
+    //   case a = 11:
+    //     console.log('11');
+    //   case a = 12:
+    //     console.log('12');
+    //   case a = 13:
+    //     console.log('13');
+    //   case a = 14:
+    //     console.log('14');
+    //   case a = 15:
+    //     console.log('15');
+    // }
+
+    //////////////////// 5 задание ///////////////////////////
+
+    // let a = +prompt('Введите первоее число', '10');
+    // let b = +prompt('Введите первоее число', '5');
+    //
+    // /*Обычные*/
+    //
+    // function addition(x, y){return x + y;}
+    // function subtraction(x, y){return x - y;}
+    // function multiplication(x, y){return x * y;}
+    // function division(x, y){return x / y;}
+    //
+    // console.log(addition(a, b), subtraction(a, b), multiplication(a, b), division(a, b));
+    //
+    // /* Стрелочные */
+    //
+    // let addition1 = (x, y) => x + y;
+    // let subtraction1 = (x, y) => x - y;
+    // let multiplication1 = (x, y) => x * y;
+    // let division1 = (x, y) => x / y;
+    //
+    // console.log(addition1(a, b), subtraction1(a, b), multiplication1(a, b), division1(a, b));
+
+    //////////////////// 6 задание ///////////////////////////
+
+    // let a = +prompt('Введите первоее число', '10');
+    // let b = +prompt('Введите первоее число', '5');
+    // let c = prompt('Введите действие (+, -, *, /)', '+');
+    //
+    // let addition1 = (x, y) => x + y;
+    // let subtraction1 = (x, y) => x - y;
+    // let multiplication1 = (x, y) => x * y;
+    // let division1 = (x, y) => x / y;
+    //
+    // function mathOperation(arg1, arg2, operation){
+    //   switch (operation.toLowerCase()) {
+    //     case '+':
+    //     case 'сложить':
+    //     case 'сложение':
+    //       return addition1(a, b);
+    //     case '-':
+    //     case 'вычесть':
+    //     case 'вычитание':
+    //       return subtraction1(a, b);
+    //     case '*':
+    //     case 'умножить':
+    //     case 'умножение':
+    //       return multiplication1(a, b);
+    //     case '/':
+    //     case 'деление':
+    //     case 'разделить':
+    //     case 'поделить':
+    //       return division1(a, b);
+    //
+    //     default:
+    //       console.log('Я не понял, какая-то ошибка :(');
+    //       return null;
+    //   }
+    // }
+    //
+    // console.log(mathOperation(a, b, c));
+
+    //////////////////// 7 задание ///////////////////////////
+
+    // console.log(null == 0);
+    // console.log(null === 0);
+    // console.log(null > 0);
+    // console.log(null < 0);
+    // console.log(null >= 0); // это наверное баг, как и null == undefined
+    // console.log(null <= 0); // остальные результпты понятны из нижних выводов, разный тип
+    //
+    // console.log(null == undefined);
+    //
+    // console.log(typeof(null));
+    // console.log(typeof(0));
+    //
+    // console.log(null);
+    // console.log(0);
+
+    //////////////////// 8 задание ///////////////////////////
+
+    // let a = +prompt('Введите первоее число', '5');
+    // let b = +prompt('Введите первоее число', '3');
+    //
+    // function power(val, pow){
+    //   if(pow < 0){
+    //     if(pow == 0) return 1;
+    //     return 1/val * power(val, pow+1); // без округления, есть погрешность
+    //   }
+    //   if(pow == 0) return 1;
+    //   return val * power(val, pow-1);
+    // };
+    //
+    //  console.log(power(a, b));
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

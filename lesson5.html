@@ -159,6 +159,26 @@
 			console.log(mathOperation(arg1, arg2, operation))
 		}
 
+		{ // Задание 7
+
+			console.log(null > 0);  //  false - т.к операторы сравнения приводят операнды к числу, и null становится 0;
+			console.log(null == 0); //  false - исключение для нестрогого равенства. null == undefined и не равны ничему больше.
+			console.log(null >= 0); //  true - null приводится к числу, становится равным 0, равенство выполняется.
+		}
+
+		{ // Задание 8
+
+			let val = +prompt("Введите число", "1");
+			let pow = +prompt("В какую степень будем возводить?", "2");
+
+			function power(val, pow) {
+				return (pow != 1) ? val * power(val, pow - 1) : val;
+			}
+
+			console.log(power(val, pow));
+
+		}
+
 
 
 	</script>

@@ -47,6 +47,7 @@
       }
 
       //4
+
       function getRandomInRange(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
@@ -89,6 +90,7 @@
       console.log(a); // для проверки
 
       //5
+
       function sum(a, b) {
         return a + b;
       }
@@ -106,10 +108,11 @@
       }
       console.log(sum(2, 2));
       console.log(minus(2, 2));
-      console.log(multiplication(2, 4));
+      console.log(multiply(2, 4));
       console.log(division(6, 2));
 
       //6
+
       function mathOperation(arg1, arg2, operation) {
         arg1 = +prompt("Введите число");
         arg2 = +prompt("Введите число");
@@ -122,19 +125,20 @@
             console.log(minus(arg1, arg2));
             break;
           case "multiply":
-            console.log(multiplication(arg1, arg2));
+            console.log(multiply(arg1, arg2));
             break;
           case "division":
             console.log(division(arg1, arg2));
             break;
           default:
-            console.log("Такой операции не существует");
+            console.log("Error");
             break;
         }
       }
       mathOperation();
 
       //7
+
       alert(null > 0); // (1) false
       alert(null == 0); // (2) false
       alert(null >= 0); // (3) true
@@ -143,6 +147,7 @@
       // Но будет спрведлива запись null == undefiend
 
       //8
+
       function power(val, pow) {
         return pow != 0 ? val * power(val, pow - 1) : 1;
       }

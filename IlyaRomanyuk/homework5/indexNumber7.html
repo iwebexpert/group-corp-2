@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        /*7* Сравнить null и 0. Объяснить результат.*/
+        null > 0; // false. Воспользовавшись алгоритмом сравнения стандарта ECMA на 4 и 5 шагах происходит преобразование двух сторон к типу Number. Тип null преобразуется в +0, а 0 так и остается 0. +0 равен 0.
+
+        null < 0; // false. Аналогично null > 0
+
+        null == 0 // false. Здесь по алгоритму мы переходим сразу к последнему шагу потому, что все предыдущие шаги не для нашего случая. Последний шаг "Вернуть false".
+
+        null >= 0 // true. Из спецификации ECMA "Если null < 0 принимает значение false, то null >= 0 принимает значение true"
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

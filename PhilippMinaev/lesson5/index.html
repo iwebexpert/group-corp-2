@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      //1
+
+      var a = 1,
+        b = 1,
+        c,
+        d;
+      c = ++a;
+      alert(c); // 2 --- префиксная форма записи сначала прибавляет единицу, а потом присваевает значение переменной
+      d = b++;
+      alert(d); // 1 --- постфиксная делает это наоборот
+      c = 2 + ++a;
+      alert(c); // 5
+      d = 2 + b++;
+      alert(d); // 4
+      alert(a); // 3
+      alert(b); // 3 --- в результате значения с и d будут отличаться, а значения a и b - нет
+
+      //2
+
+      var a = 2;
+      var x = 1 + (a *= 2); // 5
+      // приоритеты оператов (выше знчение - выше приоритет):
+      // () - 20
+      // + - 13
+      // *= , = - 3
+
+      //3
+
+      let a = 10;
+      let b = -10;
+      if (a >= 0 && b >= 0) {
+        console.log(a - b);
+      } else if (a < 0 && b < 0) {
+        console / log(a * b);
+      } else {
+        console.log(a + b);
+      }
+
+      //4
+      function getRandomInRange(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      let a = getRandomInRange(0, 15);
+      switch (a) {
+        case 0:
+          console.log(0);
+        case 1:
+          console.log(1);
+        case 2:
+          console.log(2);
+        case 3:
+          console.log(3);
+        case 4:
+          console.log(4);
+        case 5:
+          console.log(5);
+        case 6:
+          console.log(6);
+        case 7:
+          console.log(7);
+        case 8:
+          console.log(8);
+        case 9:
+          console.log(9);
+        case 10:
+          console.log(10);
+        case 11:
+          console.log(11);
+        case 12:
+          console.log(12);
+        case 13:
+          console.log(13);
+        case 14:
+          console.log(14);
+        case 15:
+          console.log(15);
+          break;
+      }
+      console.log(a); // для проверки
+
+      //5
+      function sum(a, b) {
+        return a + b;
+      }
+
+      function minus(a, b) {
+        return a - b;
+      }
+
+      function multiply(a, b) {
+        return a * b;
+      }
+
+      function division(a, b) {
+        return a / b;
+      }
+      console.log(sum(2, 2));
+      console.log(minus(2, 2));
+      console.log(multiplication(2, 4));
+      console.log(division(6, 2));
+
+      //6
+      function mathOperation(arg1, arg2, operation) {
+        arg1 = +prompt("Введите число");
+        arg2 = +prompt("Введите число");
+        operation = prompt("Выберите операцию");
+        switch (operation) {
+          case "sum":
+            console.log(sum(arg1, arg2));
+            break;
+          case "minus":
+            console.log(minus(arg1, arg2));
+            break;
+          case "multiply":
+            console.log(multiplication(arg1, arg2));
+            break;
+          case "division":
+            console.log(division(arg1, arg2));
+            break;
+          default:
+            console.log("Такой операции не существует");
+            break;
+        }
+      }
+      mathOperation();
+
+      //7
+      alert(null > 0); // (1) false
+      alert(null == 0); // (2) false
+      alert(null >= 0); // (3) true
+      // При сравнении null приравнивается к 0, что справедливо для (1) и (3).
+      // При нестрогом равенстве null не приравниваетск ни к чему, что справедливо для (2)
+      // Но будет спрведлива запись null == undefiend
+
+      //8
+      function power(val, pow) {
+        return pow != 0 ? val * power(val, pow - 1) : 1;
+      }
+    </script>
+  </body>
+</html>

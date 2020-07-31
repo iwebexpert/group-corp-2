@@ -122,7 +122,7 @@
 		function multiplication(arg1, arg2){
 			return (arg1 * arg2);
 		}
-        //Деление
+		//Деление
 		function division(arg1, arg2){
 			return (arg1 / arg2);
 		}
@@ -138,19 +138,19 @@
 
 		//Задача №6
 		alert('Задание_6');
-		 function mathOperation(arg1, arg2, operation){
-		 	switch(operation){
-		 		case 'sum':
-			 		return sum(arg1, arg2);
-			 	case 'sub':
-			 		return subtraction(arg1, arg2);
-			 	case 'multi':
-			 		return multiplication(arg1, arg2);
-			 	case 'div':
-			 		return division(arg1, arg2);
-		 	}
-		 }
-		 //Вызов функции
+		function mathOperation(arg1, arg2, operation){
+			switch(operation){
+				case 'sum':
+		 		return sum(arg1, arg2);
+		 	case 'sub':
+		 		return subtraction(arg1, arg2);
+		 	case 'multi':
+		 		return multiplication(arg1, arg2);
+		 	case 'div':
+		 		return division(arg1, arg2);
+			}
+		}
+		//Вызов функции
 		alert(`Задание 6, сложение ${arg_1} + ${arg_2} = ${mathOperation(arg_1, arg_2, 'sum')}`);
 		alert(`Задание 6, вычитание ${arg_1} - ${arg_2} = ${mathOperation(arg_1, arg_2, 'sub')}`);
 		alert(`Задание 6, умножение ${arg_1} * ${arg_2} = ${mathOperation(arg_1, arg_2, 'multi')}`);
@@ -173,22 +173,22 @@
 		alert('Задание_8');
 		//возведение в степень
 
-		 function power(val, pow){
-		 	if (pow > 1) {
-		 		return val * power(val, pow - 1);
-		 	} else if (pow === 1){
-		 		return val;
-		 	} else if (pow === 0){
-		 		return 1;
-		 	} else {
-		 		//-1 - ошибка
-		 		return -1;
-		 	}
+		function power(val, pow){
+			if (pow > 1) {
+				return val * power(val, pow - 1);
+			} else if (pow === 1){
+				return val;
+			} else if (pow === 0){
+				return 1;
+			} else {
+				//-1 - ошибка
+				return -1;
+			}
 
-		 }
-		 let power_val = 3;
-		 let power_pow = 3;
-		 //Вызов функции
+		}
+		let power_val = 3;
+		let power_pow = 3;
+		//Вызов функции
 	 	alert(`8 задание// ${power_val} в ${power_pow} степени = ${power(power_val,power_pow)}`);
 	 	alert(`8 задание// ${-power_val} в 1 степени = ${power(-power_val,1)}`);
 	 	alert(`8 задание// ${-power_val} в 0 степени = ${power(-power_val,0)}`);

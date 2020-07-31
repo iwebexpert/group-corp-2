@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson-5</title>
+    <script>
+      ///////////Задание 1///////////
+      // var a = 1,
+      //   b = 1,
+      //   c,
+      //   d;
+      // c = ++a;
+      // alert(c); // 2 тк префиксная форма возвращает новое значение
+      // d = b++;
+      // alert(d); // 1 тк постфиксная форма возвращает старое значение
+      // c = 2 + ++a;
+      // alert(c); // 5 из-за префиксной формы получается выражение 2+3, в итоге 5
+      // d = 2 + b++;
+      // alert(d); // 4 из-за постфиксной формы получается выражение 2+2, в итоге 4
+      // alert(a); // 3 тк инкремирование было 2 раза (а+1+1)
+      // alert(b); // 3 тк инкремирование так же было 2 раза (b+1+1)
+
+      ///////////Задание 2///////////
+      // var a = 2;
+      // var x = 1 + (a *= 2); // x будет равен 5, тк выражение (a *= 2) = (a = a * 2)
+
+      ///////////Задание 3///////////
+      console.log("Задание 3.");
+      let a = 2,
+        b = -6;
+      if (a > 0 && b > 0) {
+        //Если переменные  положительные
+        console.log("Выполнилось вычитание: " + (a - b));
+      } else if (a < 0 && b < 0) {
+        //Если переменные отрицательные
+        console.log("Выполнилось умножение: " + a * b);
+      } else if (a * b > 0 || a * b < 0) {
+        //Если переменные разного знака
+        console.log("Выполнилось сложение: " + (a + b));
+      } else {
+        console.log("Введите положительные или отрицательные числа");
+      }
+
+      ///////////Задание 4///////////
+      console.log("Задание 4.");
+      a = +prompt("Задание 4. Введите число от 0 до 15", "");
+      switch (a) {
+        case 0:
+          console.log(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 1:
+          console.log(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 2:
+          console.log(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 3:
+          console.log(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 4:
+          console.log(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 5:
+          console.log(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 6:
+          console.log(6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 7:
+          console.log(7, 8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 8:
+          console.log(8, 9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 9:
+          console.log(9, 10, 11, 12, 13, 14, 15);
+          break;
+        case 10:
+          console.log(10, 11, 12, 13, 14, 15);
+          break;
+        case 11:
+          console.log(11, 12, 13, 14, 15);
+          break;
+        case 12:
+          console.log(12, 13, 14, 15);
+          break;
+        case 13:
+          console.log(13, 14, 15);
+          break;
+        case 14:
+          console.log(14, 15);
+          break;
+        case 15:
+          console.log(15);
+          break;
+        default:
+          console.log("Вы ввели неправильное число");
+      }
+
+      ///////////Задание 5///////////
+      console.log("Задание 5.");
+      a = 10;
+      b = 2;
+
+      function sum(x, y) {
+        return x + y;
+      }
+
+      function difference(x, y) {
+        return x - y;
+      }
+
+      function multiplication(x, y) {
+        return x * y;
+      }
+
+      function division(x, y) {
+        return x / y;
+      }
+      console.log(
+        sum(a, b),
+        difference(a, b),
+        multiplication(a, b),
+        division(a, b)
+      );
+      ///////////Задание 6///////////
+      console.log("Задание 6.");
+      function mathOperation(
+        arg1 = 15,
+        arg2 = 3,
+        operation = prompt(
+          "Задание 6. Введите арифметическую оперцию +, -, *, /",
+          ""
+        )
+      ) {
+        switch (operation) {
+          case "+":
+            return sum(arg1, arg2);
+            break;
+          case "-":
+            return difference(arg1, arg2);
+            break;
+          case "/":
+            return multiplication(arg1, arg2);
+            break;
+          case "*":
+            return division(arg1, arg2);
+            break;
+          default:
+            return "Вы ввели не арифметический знак";
+        }
+      }
+      console.log(mathOperation());
+
+      ///////////Задание 7///////////
+      console.log("Задание 7.");
+      console.log(null == 0); //выдаст false, тк null это null, а 0 это number. в нестрогом сравнении null не равно ничему, кроме undefined.
+      console.log(null === 0); //в строгом сравнении null не равен ничему.
+
+      //////////Задание 8///////////
+      console.log("Задание 8.");
+      let val = 5;
+      let pow = 3;
+      function power(val, pow) {
+        if (pow === 0) {
+          return 1;
+        } else if (pow < 0) {
+          return "Введите число больше 0";
+        } else {
+          return val * power(val, pow - 1);
+        }
+      }
+      console.log(power(val, pow));
+    </script>
+  </head>
+  <body></body>
+</html>

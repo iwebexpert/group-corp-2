@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script>
+
+		//Task 1
+        var a = 1, b = 1, c, d;
+        c = ++a; alert(c);           // 2, так как префиксная форма возвращет новое значение
+        d = b++; alert(d);           // 1, так как постфиксная форма возвращает старое значение
+        c = (2+ ++a); alert(c);      // 5, 2 + (2 (старое значение) + 1 (вернет новое значение))
+        d = (2+ b++); alert(d);      // 4, 2 + 2 (вернет старое значение, которое равно двум)
+        alert(a);                    // 3, так как увеличивали на 1 два раза
+        alert(b);					// 3,так как увеличивали на 1 два раза
+
+		//Task 2
+        var a = 2;
+        var x = 1 + (a *= 2); // a *= 2 -> a = a * 2 = 4; 4 + 1 = 5. Ответ: x = 5;
+
+		//Task 3
+		let a = 0,
+			b = 3;
+
+		if (a >= 0 && b >= 0){
+		    console.log (a - b);
+		} else if (a < 0 && b < 0){
+		    console.log(a * b);
+		} else{
+		    console.log(a + b);
+		}
+
+		//Task 4
+		let a = Math.round(Math.random() * 15);
+
+        let result = '';
+		switch (a) {
+            case 0: result += ' ';
+			case 1: result += '1 ';
+            case 2: result += '2 ';
+            case 3: result += '3 ';
+            case 4: result += '4 ';
+            case 5: result += '5 ';
+            case 6: result += '6 ';
+            case 7: result += '7 ';
+            case 8: result += '8 ';
+            case 9: result += '9 ';
+            case 10: result += '10 ';
+            case 11: result += '11 ';
+            case 12: result += '12 ';
+            case 13: result += '13 ';
+            case 14: result += '14 ';
+            case 15: {
+                result += '15 ';
+                alert(result);
+            }
+        }
+
+        //Task 5
+		function sum(a = 0, b = 0){
+		    return a + b;
+		}
+
+		function multiply(a = 0, b = 0) {
+			return a * b;
+        }
+        
+        function division(a = 0, b = 0) {
+			return a / b;
+        }
+        
+        function subtraction(a = 0, b = 0) {
+			return a - b;
+        }
+
+        //Task 6
+        function mathOperation(arg1, arg2, operation){
+		    switch (operation) {
+				case '+': {
+				    return sum(arg1, arg2);
+				}
+                case '-': {
+                    return subtraction(arg1, arg2);
+                }
+                case '*': {
+                    return multiply(arg1, arg2);
+                }
+                case '/': {
+                    return division(arg1, arg2);
+                }
+                default: {
+                    console.log('Неверная операция. Введите +, -, / или *');
+				}
+            }
+		}
+		//console.log(mathOperation(2, 3, '-'));
+
+		//Task 7
+		console.log(null == 0);// false, так как при нестрогом сравнеии null и undefined ни к чему не приводятся
+		console.log(null === 0);//false, ну тут все просто, так как сначала идет сравнение по типам. Тип null не равен типу Number
+
+		//Task 8
+        function power(val, pow){
+            if (pow === 1){
+                return val
+			} else{
+                return (val * power(val, pow - 1))
+			}
+		}
+		console.log(power(2, 10))
+	</script>
+</head>
+<body>
+
+</body>
+</html>

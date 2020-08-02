@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lesson5</title>
+</head>
+<body>
+
+	<script>
+		"use strict"
+		//---------------------------------------1--------------------------------------------//
+		//Почему код дает именно такие результаты?
+		var a = 1, b = 1, c, d;
+		c = ++a; alert(c);           // 2 ---(1)--- увеличили переменную на 1
+		d = b++; alert(d);           // 1 ---(2)--- прибавили единицу, но в вывод попало предыдущее значения
+		c = (2+ ++a); alert(c);      // 5 ---(3)--- к старому значению (с == 2) прибавили 1 (++a) получили 3, и 2 сложили с 3
+		d = (2+ b++); alert(d);      // 4 ---(4)--- (b == 1) увеличили на 1 и сложили с 2
+		alert(a);                    // 3 -------- результат берется из (1) и (3) примера
+		alert(b);                    // 3 -------- а этот из (2) и (4)
+		//---------------------------------------2--------------------------------------------//
+		//Чему будет равен x?
+		var a = 2;
+		var x = 1 + (a *= 2); // x === 5
+		//---------------------------------------3--------------------------------------------//
+		/** Объявить две целочисленные переменные — a и b и задать им произвольные начальные значения. Затем написать скрипт, который работает по следующему принципу:
+			--- если a и b положительные, вывести их разность;
+			--- если а и b отрицательные, вывести их произведение;
+			--- если а и b разных знаков, вывести их сумму;
+		Ноль можно считать положительным числом. **/
+		let a = 10;
+		let b = 5;
+
+		if(a > 0 && b > 0 || a === 0 || b === 0) {
+			console.log(a - b);
+		} else if (a < 0 && b < 0) {
+			console.log(a * b);
+		} else if(a > 0 && b < 0 || a < 0 && b > 0) {
+			console.log(a + b);
+		}
+		//---------------------------------------4--------------------------------------------//
+		/**Присвоить переменной а значение в промежутке [0..15]. С помощью оператора switch организовать вывод чисел от a до 15.**/
+		let a = 10;
+
+		switch(a) {
+			case 0	:
+				getNumFromVariable(a);
+				break;
+			case 1:
+				getNumFromVariable(a);
+				break;
+			case 2:
+				getNumFromVariable(a);
+				break;
+			case 3:
+				getNumFromVariable(a);
+				break;
+			case 4:
+				getNumFromVariable(a);
+				break;
+			case 5:
+				getNumFromVariable(a);
+				break;
+			case 6:
+				getNumFromVariable(a);
+				break;
+			case 7:
+				getNumFromVariable(a);
+				break;
+			case 8:
+				getNumFromVariable(a);
+				break;
+			case 9:
+				getNumFromVariable(a);
+				break;
+			case 10:
+				getNumFromVariable(a);
+				break;
+			case 11:
+				getNumFromVariable(a);
+				break;
+			case 12:
+				getNumFromVariable(a);
+				break;
+			case 13:
+				getNumFromVariable(a);
+				break;
+			case 14:
+				getNumFromVariable(a);
+				break;
+			case 15:
+				getNumFromVariable(a);
+				break;
+			default:
+				console.log('Число должно входить в диапазон [0...15]');
+				break;
+		}
+
+		function getNumFromVariable(){
+			for(let i = a; i <= 15; i++) {
+				console.log(+i)
+			}
+		}
+		//---------------------------------------5--------------------------------------------//
+		/**Реализовать четыре основные арифметические операции в виде функций с двумя параметрами. Обязательно использовать оператор return.**/
+		let a = 7;
+		let b = 20;
+
+		//---Изначально предпалагалось это решение, но потом я увидел 6 задание---
+		// function mathBase(){
+		// 	return function summation(){
+		// 		console.log(a + b);
+		// 		return function subtracting() {
+		// 			console.log(a - b);
+		// 			return function multiplier() {
+		// 				console.log(a * b);
+		// 				return function dividing() {
+		// 					return console.log(a / b);
+		// 				}();
+		// 			}();
+		// 		}();
+		// 	}();
+		// }
+		// mathBase(a, b);
+
+		let mathBase = {
+			summation:   function() {return console.log(a + b)},
+			subtracting: function() {return console.log(a - b)},
+			multiplier:  function() {return console.log(a * b)},
+			dividing:    function() {return console.log(a / b)},
+		};
+
+		mathBase.summation();
+		mathBase.subtracting();
+		mathBase.multiplier();
+		mathBase.dividing();
+		// ---------------------------------------6--------------------------------------------//
+		// *Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1, arg2 — значения аргументов, operation — строка с названием операции. В зависимости от переданного значения выполнить одну из арифметических операций (использовать функции из пункта 5) и вернуть полученное значение (применить switch).*
+		let userQuestion = prompt('Напишите словом, то что вы хотите сделать с числом ( + "summation", - "subtracting", * "multiplier", / "dividing" )', '' );
+
+		function mathOperation(arg1, arg2, operation) {
+			arg1 = a;
+			arg2 = b;
+			operation = userQuestion;
+			switch(operation) {
+				case 'summation':
+					mathBase.summation();
+					break;
+				case 'subtracting':
+					mathBase.subtracting();
+					break;
+				case 'multiplier':
+					mathBase.multiplier();
+					break;
+				case 'dividing':
+					mathBase.dividing();
+					break;
+				default:
+					console.log('Операция не выбрана')
+					break;
+			}
+		}
+		mathOperation()
+		//---------------------------------------7--------------------------------------------//
+		/**Сравнить null и 0. Объяснить результат**/
+		null === '0'//false
+		null == '0' //false
+		null === 0  //false
+		null == 0   //false
+		null > 0  //false
+		null < 0    //false
+		null >= 0   //true
+		null <= 0  //true
+		null != 0   //true
+		null >= '0' //true
+		null <= '0' //true
+		/**В примерах где результат выражения true дело в абстрактном алгоритме сравнения для операторов >=, <=, !=
+		Оператор >= на очень высоком уровне работает так:
+		Если null < 0 принимает значение false, то null >= 0 принимает значение true
+		Вот этот алгоритм ------- http://interglacial.com/javascript_spec/a-11.html#a-11.8.5
+		**/
+		//---------------------------------------8--------------------------------------------//
+		/**С помощью рекурсии организовать функцию возведения числа в степень. Формат: function power(val, pow), где val — заданное число, pow –— степень.**/
+		let val = 2;
+		let pow = 10;
+
+		function power(val, pow) {
+				return pow ? val * power(val, pow - 1) : 1;
+		}
+		console.log(power(val, pow));
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home Work 5</title>
+	<script>
+		'use strict';
+
+		{//Задание 1
+
+			var a = 1, b = 1, c, d;
+			c = ++a; console.log(c);           // 2 - префиксная форма сразу увеличивает аргумент, поэтому в переменную c приходит а = 2;
+			d = b++; console.log(d);           // 1 - постфиксная форма увеличивает аргумент после выполнения выражение, поэтому в переменную c приходит b = 1, а после выполнения выражения b = 2;
+			c = (2 + ++a); console.log(c);      // 5 - префиксная форма сразу увеличивает аргумент, поэтому в данном случае a = 3;
+			d = (2 + b++); console.log(d);      // 4 - постфиксная форма после выполнения выражения в строке 13 увеличила b на шаг, поэтому в данном случае b = 2, и после выполнения выражения b = 3;
+			console.log(a);                    // 3 - в ходе выполнения кода на строке 14 a сразу увеличилось на 1 и больше не изменялось, поэтому a попрежнему равно 3;
+			console.log(b);                    // 3 - после выполнения кода на строке 15 b увеличилось на шаг, и поэтому стало равным 3;
+		}
+
+		{//Задание 2
+
+			var a = 3;
+			var x = 1 + (a *= 2);
+			console.log(`x равен ${x}`); // x = 5, так как из-за приоритета сначала выполнится операция в скобках. (a *= 2) то же, что и (a = a * 2), соответственно, выражение в скобках равняется 4, и далее прибавляется 1;
+		}
+
+		{//Задание 3
+
+			let a = parseInt(prompt('Введите число(положительное или отрицательное)', '1'));
+			let b = parseInt(prompt('Введите число того же знака, что и первое', '2'));
+			let result;
+
+			if (a < 0 && b >= 0 || a >= 0 && b < 0) {
+				result = a + b;
+			} else if (a < 0 && b < 0) {
+				result = a * b;
+			} else result = a - b;
+
+			console.log(result)
+		}
+
+		{//Задание 4
+
+			let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+			switch (a = +prompt('Введите число от 0 до 15', 'a')) {
+				case 0:
+					console.log(arr.slice(a, 16));
+					break;
+				case 1:
+					console.log(arr.slice(a, 16));
+					break;
+				case 2:
+					console.log(arr.slice(a, 16));
+					break;
+				case 3:
+					console.log(arr.slice(a, 16));
+					break;
+				case 4:
+					console.log(arr.slice(a, 16));
+					break;
+				case 5:
+					console.log(arr.slice(a, 16));
+					break;
+				case 6:
+					console.log(arr.slice(a, 16));
+					break;
+				case 7:
+					console.log(arr.slice(a, 16));
+					break;
+				case 8:
+					console.log(arr.slice(a, 16));
+					break;
+				case 9:
+					console.log(arr.slice(a, 16));
+					break;
+				case 10:
+					console.log(arr.slice(a, 16));
+					break;
+				case 11:
+					console.log(arr.slice(a, 16));
+					break;
+				case 12:
+					console.log(arr.slice(a, 16));
+					break;
+				case 13:
+					console.log(arr.slice(a, 16));
+					break;
+				case 14:
+					console.log(arr.slice(a, 15));
+					break;
+				case 15:
+					console.log(arr[15]);
+					break;
+				default: console.log('Введено неправильное число')
+
+			}
+		}
+
+		{//Задание 5
+
+			let a = 8;
+			let b = 4;
+
+			function sum(a, b) {
+				return a + b;
+			}
+
+			function diff(a, b) {
+				return a - b;
+			}
+
+			function mult(a, b) {
+				return a * b;
+			}
+
+			function split(a, b) {
+				return a / b;
+			}
+
+			console.log(sum(a, b));
+			console.log(diff(a, b));
+			console.log(mult(a, b));
+			console.log(split(a, b));
+
+			//Задание 6
+
+			let arg1 = +prompt('Введите любое число', '1');
+			let arg2 = +prompt('Введите любое число', '2');
+			let operation = (prompt('Введите название операции (cложение, вычитание, умножение, деление', '')).toLowerCase();
+			let result;
+
+
+			function mathOperation(arg1, arg2, operation) {
+				switch (operation) {
+					case 'сложение':
+					case '+':
+						result = sum(arg1, arg2)
+						break;
+					case 'вычитание':
+					case '-':
+						result = diff(arg1, arg2)
+						break;
+					case 'умножение':
+					case '*':
+						result = mult(arg1, arg2)
+						break;
+					case 'деление':
+					case '/':
+						result = split(arg1, arg2)
+						break;
+					default: console.log('Вы ввели неподдерживаемую операцию')
+				}
+				return result;
+			}
+
+			console.log(mathOperation(arg1, arg2, operation))
+		}
+
+		{ // Задание 7
+
+			console.log(null > 0);  //  false - т.к операторы сравнения приводят операнды к числу, и null становится 0;
+			console.log(null == 0); //  false - исключение для нестрогого равенства. null == undefined и не равны ничему больше.
+			console.log(null >= 0); //  true - null приводится к числу, становится равным 0, равенство выполняется.
+		}
+
+		{ // Задание 8
+
+			let val = +prompt("Введите число", "1");
+			let pow = +prompt("В какую степень будем возводить?", "2");
+
+			function power(val, pow) {
+				return (pow != 1) ? val * power(val, pow - 1) : val;
+			}
+
+			console.log(power(val, pow));
+
+		}
+
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

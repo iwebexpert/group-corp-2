@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function sum(a, b) {
+            return a+b;
+        }
+        function dif(a, b) {
+            return a-b;
+        }
+        function comp(a, b) {
+            return a*b;
+        }
+        function div(a, b) {
+            return a/b;
+        }
+        function mathOperation(arg1, arg2, operation) {
+            /*
+            или просто создать объект
+            const operators = {
+                sum,
+                dif,
+                comp,
+                div,
+            };
+            и вызывать operators[operation]();
+            */
+            let result;
+            switch (operation) {
+                case 'sum':
+                    result = sum(arg1, arg2);
+                    break;
+                case 'dif':
+                    result = dif(arg1, arg2);
+                    break;
+                case 'comp':
+                    result = comp(arg1, arg2);
+                    break;
+                case 'div':
+                    result = div(arg1, arg2);
+                    break;
+                default: result = null;
+            }
+            return result;
+        }
+        function expect(arg) {
+            return {
+                toBe: (ans) => ans===arg,
+            }
+        }
+        function test() {
+            let tester;
+            console.log(`sum (2,1) = ${tester = sum(2,1)}. Это ${expect(tester).toBe(3)}`);
+            console.log(`dif (2,1) = ${tester = dif(2,1)}. Это ${expect(tester).toBe(1)}`);
+            console.log(`comp (2,1) = ${tester = comp(2,1)}. Это ${expect(tester).toBe(2)}`);
+            console.log(`div (2,1) = ${tester = div(2,1)}. Это ${expect(tester).toBe(2)}`);
+            console.log(`mathOperation (2,1,'sum') = ${tester = mathOperation (2,1,'sum')}. Это ${expect(tester).toBe(3)}`);
+            console.log(`mathOperation (2,1,'dif') = ${tester = mathOperation (2,1,'dif')}. Это ${expect(tester).toBe(1)}`);
+            console.log(`mathOperation (2,1, 'comp') = ${tester = mathOperation (2,1, 'comp')}. Это ${expect(tester).toBe(2)}`);
+            console.log(`mathOperation (2,1,'div') = ${tester = mathOperation (2,1,'div')}. Это ${expect(tester).toBe(2)}`);
+        }
+        test();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

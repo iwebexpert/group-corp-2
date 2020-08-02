@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5</title>
+    <script>
+        //1
+        var a = 1, b = 1, c, d;
+        c = ++a; alert(c);           /* 2  с помощью префиксного инкремента число 
+                                     уеличивается на 1 и возвращается число после увеличения */
+
+        d = b++; alert(d);           /*1 так как используется постфиксная форма, 
+                                      она возвращет число до увеличения, а b было равно 1
+                                    */
+
+        c = (2 + ++a); alert(c);      /* 5 'a' было равно 2, значение сохранилось, затем к двойке прибавляем 1 
+                                        ,с помощью префиксного инкремента значение увеличивается до 3 , и 3 + 2 = 5
+                                        */
+
+        d = (2 + b++); alert(d);      // 4 постфикс порядок инкремента выше, поэтому увеличиться на 1 и сложится с 2 
+        alert(a);                    // 3 'a' два раза изменился, первый раз до двух, второй до трех  
+        alert(b);                   //3 'b' также два раза изменялся, постфиксы не влияет так как были до
+
+
+        //2
+        var a = 2;
+        var x = 1 + (a *= 2);
+        //сначала выполняется действие в скобках, так как у него приоритет, затем сложится с 1 и получится 5
+
+        //3
+        let a = 7;
+        let b = 3;
+
+        if (a >= 0 && b >= 0) {
+            console.log(a - b);
+        } else if (a < 0 && b < 0) {
+            console.log(a * b);
+        } else if (a * b < 0) {
+            console.log(a + b);
+        }
+
+        //4
+        let a = 3;
+        switch (a) {
+            case 0:
+                console.log(a);
+            case 1:
+                console.log(1);
+            case 2:
+                console.log(2);
+            case 3:
+                console.log(3);
+            case 4:
+                console.log(4);
+            case 5:
+                console.log(5);
+            case 6:
+                console.log(6);
+            case 7:
+                console.log(7);
+            case 8:
+                console.log(8);
+            case 9:
+                console.log(9);
+            case 10:
+                console.log(10);
+            case 11:
+                console.log(11);
+            case 12:
+                console.log(12);
+            case 13:
+                console.log(13);
+            case 14:
+                console.log(14);
+            case 15:
+                console.log(15);
+        }
+
+        //5
+        const sum = (a, b) => {
+            return a + b;
+        }
+
+        const subtr = (a, b) => {
+            return a - b;
+        }
+
+        const mult = (a, b) => {
+            return a * b;
+        }
+
+        const div = (a, b) => {
+            return a / b;
+        }
+
+        console.log(sum(3, 4));
+        console.log(subtr(9, 8));
+        console.log(mult(12, 2));
+        console.log(div(144, 12));
+
+        //6
+        function mathOperation(arg1, arg2, operation) {
+            switch (operation) {
+                case '+':
+                    return sum(arg1, arg2);
+                case '-':
+                    return subtr(arg1, arg2);
+                case '*':
+                    return mult(arg1, arg2);
+                case '/':
+                    return div(arg1, arg2);
+            }
+        }
+        console.log(mathOperation(1, 2, '+'));
+        console.log(mathOperation(20, 10, '-'));
+        console.log(mathOperation(2, 2, '*'));
+        console.log(mathOperation(8, 4, '/'));
+
+        //7
+        console.log(null > 0); // false
+        console.log(null == 0); // false
+        console.log(null >= 0); // true
+        /*Причина странного результата в том, что сравнения преобразают null в число 0,
+        поэтому первое неверно, а последнее верно.
+        Что касается ==, в этом случае значение ни к чему не приводится и поэтому дает false.
+        */
+
+        //8
+        function power(val, pow) {
+            if (pow === 1) {
+                return val;
+            } else if (pow === 0) {
+                return 1;
+            }
+            return val * power(val, pow - 1);
+        }
+
+        console.log(power(2, 2));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

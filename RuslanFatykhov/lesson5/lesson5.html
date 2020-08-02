@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5 Homework</title>
+    <script>
+        //ЗАДАНИЕ №1
+
+        let a = 1,
+            b = 1,
+            c, d;
+
+        c = ++a;
+        alert(c); // 2
+        //Значение на единицу больше, так как префиксный инкремент возвращает сначала новое значение.
+
+        d = b++;
+        alert(d); //1
+        //Значение не изменилось, так как постфиксный инкремент возвращает сначала старое значение (до увеличение на единицу).
+
+        c = (2 + ++a);
+        alert(c); //5
+        //Значение переменной a равно 2, префиксный инкремент снова увеличит значение переменной на единицу и сложит с двойкой.
+
+        d = (2 + b++);
+        alert(d); //4
+        //Значение переменной a равно 2 (исходя и второго примера), постфиксный инкремент сначала вернет старое значение, равное двум и сложит его с двойкой.
+
+        alert(a); //3
+        //Во третьем примере переменная а приняла значение равное трём (после префиксного инкемента).
+        alert(b); //3
+        //В четвертом примере перемнная b приняла значение равное трём (после постфиксного инкемента).
+
+
+        //ЗАДАНИЕ №2
+
+        let p = 2;
+        let z = 1 + (p *= 2);
+
+        //p будет равен 5, так как в скобках произошло умножение 2*2, а после прибавилась единица
+
+        //ЗАДАНИЕ №3
+
+        let x = +prompt("Введите произвольное число");
+        let y = +prompt("Введите произвольное число");
+
+        if (x >= 0 && y >= 0) {
+            console.log(x - y);
+        } else if (x < 0 && y < 0) {
+            console.log(x * y);
+        } else {
+            console.log(x + y);
+        }
+
+        //ЗАДАНИЕ №4
+
+        let num = +prompt("Введите любое число от 0 до 15: ", "4");
+        switch (num) {
+            case 0:
+                console.log('0');
+            case 1:
+                console.log('1');
+            case 2:
+                console.log('2');
+            case 3:
+                console.log('3');
+            case 4:
+                console.log('4');
+            case 5:
+                console.log('5');
+            case 6:
+                console.log('6');
+            case 7:
+                console.log('7');
+            case 8:
+                console.log('8');
+            case 9:
+                console.log('9');
+            case 10:
+                console.log('10');
+            case 11:
+                console.log('11');
+            case 12:
+                console.log('12');
+            case 13:
+                console.log('13');
+            case 14:
+                console.log('14');
+            case 15:
+                console.log('15');
+                break;
+            default:
+                console.log("Неверное число!");
+                break;
+        }
+
+        //ЗАДАНИЕ №5
+
+        //сложение
+        function addition(a, b) {
+            return a + b;
+        }
+        //вычитание
+        function subtraction(a, b) {
+            return a - b;
+        }
+        //умножение
+        function multiplication(a, b) {
+            return a * b;
+        }
+        //деление
+        function division(a, b) {
+            return a / b;
+        }
+
+        //ЗАДАНИЕ №6
+
+        function mathOperation(arg1, arg2, operation) {
+            let arg1 = +prompt("Введите первое число: ", "8");
+            let arg2 = +prompt("Введите второе число: ", "4");
+            let operation = prompt("Ввведите математическую операцию +, -, * или /", "-");
+            switch (operation) {
+                case "+":
+                    console.log(arg1 + arg2);
+                    break;
+                case "*":
+                    console.log(arg1 * arg2);
+                    break;
+                case "-":
+                    console.log(arg1 - arg2);
+                    break;
+                case "/":
+                    console.log(arg1 / arg2);
+                    break;
+                default:
+                    console.log("Вы неверно ввели операцию!");
+            }
+        }
+        mathOperation();
+
+        /*
+
+        ЗАДАНИЕ №7
+
+        - Значение null представляет отсутствие какого-либо объектного значения. Это специальное значение, которое представляет собой «ничего», «пусто» или «значение неизвестно».
+        - Разные типы данных. null является отдельным типом данных, ноль же является числовым типом данных
+        - При null == 0, null < 0 или null > 0 консоль показывает false.
+        - Но null >= 0 или null <= 0 будет true.
+
+        */
+
+        //ЗАДАНИЕ №8
+
+        function power(val, pow) {
+            if (pow === 1) {
+                return val;
+            } else if (pow === 0) {
+                return 1;
+            } else
+                return val * power(val, pow - 1);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

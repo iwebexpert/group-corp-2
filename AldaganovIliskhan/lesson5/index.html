@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lesson5</title>
+</head>
+
+<body>
+    <script>
+        // 1
+
+        var a = 1, b = 1, c, d;
+        c = ++a; console.log(c); // 2, потому что при префиксном инкременте сначала добавляется 1, а потом выводится 
+        d = b++; console.log(d); // 1, потому что при постфиксном инкременте сначала выводится значение, а потом добавляется 1
+        c = (2 + ++a); console.log(c); // 5, потому что а уже равен 3 после инкрементов
+        d = (2 + b++); console.log(d); // 4, тут тоже самое, что и на 15 строке, но выводится 4 из-за постофиксного инкремента
+        console.log(a); // 3 , потому что инкрементов было 3 
+        console.log(b); // 3 , потому что инкрементов было 3 
+
+        // 2 
+        var a = 2;
+        var x = 1 + (a *= 2);
+        console.log(x); // 5; 1 + (2 * 2);
+
+        // 3 
+
+        var a = 3, b = 2;
+        if (a >= 0 && b >= 0) {
+            console.log(a - b);
+        } else if (a < 0 && b < 0) {
+            console.log(a * b);
+        } else {
+            console.log(a + b);
+        }
+
+        // 4 
+
+        var a = 5, end = 15;
+        switch (a) {
+            case 5:
+                for (let i = a; i <= end; i++) {
+                    console.log(i);
+                }
+        }
+
+        // 5 
+
+        // сложение
+        const sum = (a, b) => {
+            return a + b;
+        }
+        // умножение
+        const multiply = (a, b) => {
+            return a * b;
+        }
+        // деление
+        const divide = (a, b) => {
+            return a / b;
+        }
+        // вычитание
+        const substract = (a, b) => {
+            return a - b;
+        }
+        console.log(sum(5, 2));
+        console.log(multiply(5, 2));
+        console.log(divide(5, 2));
+        console.log(substract(5, 2));
+
+        // 6 
+
+        const mathOperatuin = (arg1,arg2,opertaion) => {
+            switch(opertaion) {
+                case  'sum':
+                return arg1 + arg2;
+                case  'substract':
+                return arg1 - arg2;
+                case  'multiply':
+                return arg1 * arg2;
+                case  'divide':
+                return arg1 / arg2;
+                default:
+                return 'Не указан тип вычисления'
+            }
+        }
+        console.log(mathOperatuin(6,2,'sum')); // сложение
+        console.log(mathOperatuin(6,2,'substract')); // вычитание
+        console.log(mathOperatuin(6,2,'multiply')); // умножение
+        console.log(mathOperatuin(6,2,'divide')); // деление
+    </script>
+</body>
+
+</html>

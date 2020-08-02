@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale =1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <script>
+		// Реализовать функцию с тремя параметрами:
+        //     function mathOperation(arg1, arg2, operation), где arg1, arg2 — значения аргументов, operation —
+        // строка с названием операции. В зависимости от переданного значения выполнить одну из арифметических операций
+        // (использовать функции из пункта 3) и вернуть полученное значение (применить switch).
+		// Сложение
+		function addition(a, b) {
+			return a + b;
+		}
+		// Вычитание
+		function subtraction(a, b) {
+			return a - b;
+		}
+		// Умножение
+		function multiplication(a, b) {
+			return a * b;
+		}
+		// Деление
+		function division(a, b) {
+			return a / b;
+		}
+
+		function mathOperation(arg1, arg2, operation){
+			switch (operation) {
+				case 'addition':
+					console.log(addition(arg1, arg2));
+                    break;
+                case 'subtraction':
+					console.log(subtraction(arg1, arg2));
+					break;
+				case 'multiplication':
+					console.log(multiplication(arg1, arg2));
+					break;
+				case 'division':
+					console.log(division(arg1, arg2));
+					break;
+                default:
+                	console.error('Something is wrong!');
+			}
+        }
+        mathOperation(5, 6, 'subtraction');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

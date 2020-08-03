@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5</title>
+    <style>
+        .buttons {
+            width: 200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 5px;
+        }
+    </style>
+    <script>
+        //----------------3 ex.------------------
+        function three() {
+            let a = Math.floor(Math.random() * 100 - 50);
+            let b = Math.floor(Math.random() * 100 - 50);
+            document.getElementById('output3').textContent = 'Упражнение 3: ';
+            if (a >= 0 && b >= 0) {
+                document.getElementById('output3').textContent += a + '-' + b + '=' + (a - b);
+            } else if (a < 0 && b < 0) {
+                document.getElementById('output3').textContent += a + '*' + b + '=' + (a * b);
+            } else {
+                document.getElementById('output3').textContent += a + '+' + b + '=' + (a + b);
+            }
+        }
+
+        //----------------4 ex.------------------
+        function four() {
+            let a = Math.floor(Math.random() * 15);
+            let output = document.getElementById('output4');
+            output.textContent = 'Упражнение 4: ';
+
+            switch (a) {
+                case 0:
+                    output.textContent += ' ' + a++;
+                case 1:
+                    output.textContent += ' ' + a++;
+                case 2:
+                    output.textContent += ' ' + a++;
+                case 3:
+                    output.textContent += ' ' + a++;
+                case 4:
+                    output.textContent += ' ' + a++;
+                case 5:
+                    output.textContent += ' ' + a++;
+                case 6:
+                    output.textContent += ' ' + a++;
+                case 7:
+                    output.textContent += ' ' + a++;
+                case 8:
+                    output.textContent += ' ' + a++;
+                case 9:
+                    output.textContent += ' ' + a++;
+                case 10:
+                    output.textContent += ' ' + a++;
+                case 11:
+                    output.textContent += ' ' + a++;
+                case 12:
+                    output.textContent += ' ' + a++;
+                case 13:
+                    output.textContent += ' ' + a++;
+                case 14:
+                    output.textContent += ' ' + a++;
+                case 15:
+                    output.textContent += ' ' + a++;
+                    break;
+            }
+        }
+
+        //----------------5 ex.------------------
+        function fivePlus(a, b) {
+            return a + b;
+        }
+
+        function fiveMinus(a, b) {
+            return a - b;
+        }
+
+        function fiveMultiply(a, b) {
+            return a * b;
+        }
+
+        function fiveDivide(a, b) {
+            return a / b;
+        }
+
+        function five(operation) {
+            let a = +document.getElementById('a5').value;
+            let b = +document.getElementById('b5').value;
+            let output = document.getElementById('output5');
+            output.textContent = '= ';
+
+            switch (operation) {
+                case '+':
+                    output.textContent += fivePlus(a, b);
+                    break;
+                case '-':
+                    output.textContent += fiveMinus(a, b);
+                    break;
+                case '*':
+                    output.textContent += fiveMultiply(a, b)
+                    break;
+                case '/':
+                    output.textContent += fiveDivide(a, b)
+                    break;
+            }
+        }
+
+        //----------------6 ex.------------------
+        function six(arg1, arg2, operation) {
+            let output = document.getElementById('output6');
+            output.textContent = '= ';
+
+            switch (operation) {
+                case '+':
+                    output.textContent += arg1 + arg2;
+                    break;
+                case '-':
+                    output.textContent += arg1 - arg2;
+                    break;
+                case '*':
+                    output.textContent += arg1 * arg2;
+                    break;
+                case '/':
+                    output.textContent += arg1 / arg2;
+                    break;
+            }
+        }
+
+        function sixPre() {
+            let input = document.getElementById('a6').value,
+                operation;
+            if (input.match(/[-+]?[\d]*(\.[\d]*)?[+\-*\/][\d]*(\.[\d]*)?/)[0] == input) {
+                if (input[0].match(/[+-]/)) {
+                    operation = input.match(/[+\-*\/]/g)[1];
+                } else {
+                    operation = input.match(/[+\-*\/]/g);
+                }
+                six(+input.split(operation)[0], +input.split(operation)[1], operation[0])
+            } else {
+                document.getElementById('output6').textContent = 'Неверный ввод';
+            }
+        }
+
+        //----------------8 ex.------------------
+        function eightPositive(val, pow) {
+            if (i == 1) {
+                return a;
+            } else {
+                return a * eightPositive(a, i - 1);
+            }
+        }
+
+        function eightNegative(val, pow) {
+            if (i == 1) {
+                return a;
+            } else {
+                return 1 / (a * eightNegative(a, i - 1));
+            }
+        }
+
+        function eightPre() {
+            let a = +document.getElementById('a8').value,
+                i = +document.getElementById('i8').value,
+                output = document.getElementById('output8');
+            output.textContent = '= ';
+
+            if (i == 0) {
+                output.textContent += 1;
+            } else if (i > 0) {
+                output.textContent += eightPositive(a, i);
+            } else {
+                i = -i;
+                output.textContent += eightNegative(a, i);
+            }
+        }
+    </script>
+</head>
+
+<body onload="three(); four();">
+    <p>Упражнение 1: Постфиксный инкремент увеличивает после выполнения действия, префиксный - до</p>
+    <hr>
+    <p>Упражнение 2: x = 5</p>
+    <p id="output3"></p>
+    <p id="output4"></p>
+    <hr>
+    <p>Упражнение 5:</p>
+    <div>
+        <input type="number" id="a5" placeholder="a">
+        <input type="number" id="b5" placeholder="b">
+        <p id="output5">= </p>
+        <div class="buttons">
+            <button onClick="five('+');">+</button>
+            <button onClick="five('-');">-</button>
+            <button onClick="five('*');">*</button>
+            <button onClick="five('/');">/</button>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <p>Упражнение 6:</p>
+        <input type="text" id="a6" placeholder="a[+|-|*|/]b">
+        <p id="output6">= </p>
+        <button onClick="sixPre();">Посчитать</button>
+    </div>
+    <hr>
+    <p>Упражнение 7: null==0 || null&gt;0 || null&lt;0 -&gt; false ; null&gt;=0 || null&lt;=0 -&gt; true.<br>
+        У &gt;= (и &lt;=) алгоритм следующий: Если null&lt;0 (или, для &lt;= – 0&lt;;null) принимает
+        значение false, то null==0 принимает значение true.<br>
+        Источник: <a href="https://es5.javascript.ru/x11.html#x11.8.3">https://es5.javascript.ru/x11.html#x11.8.3</a>
+    </p>
+    <hr>
+    <p>Упражнение 8: </p>
+    <div>
+        <input type="number" id="a8" placeholder="число">
+        <input type="number" id="i8" placeholder="степень">
+        <p id="output8">= </p>
+        <button onClick="eightPre()">Посчитать</button>
+    </div>
+</body>
+
+</html>

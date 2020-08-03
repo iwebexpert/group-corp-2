@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webshop</title>
+    <script>
+        const shopList = [
+            ['keyboard', 1000, 'RUB', 2],
+            ['mouse', 500, 'RUB', 1],
+            ['cover', 300, 'RUB', 5]
+        ];
+
+        const countBacketPrice = (shopList) => {
+            let sum = 0;
+            shopList.forEach(item => {
+                sum += item[1] * item[3];
+            })
+
+            return sum;
+        };
+
+        console.log(countBacketPrice(shopList));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

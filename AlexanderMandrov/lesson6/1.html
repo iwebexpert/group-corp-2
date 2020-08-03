@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <script>
+        const checkNum = (num, step) => {
+            let flg = true;
+            while (num <= step ** .5) {
+                if (step % num !== 0) {
+                    num++;
+                } else {
+                    flg = false;
+                    break;
+                }
+            }
+            return flg;
+        }
+
+        let step = 2;
+        while (step < 100) {
+            if (checkNum(2, step)) console.log(step);
+            step++;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

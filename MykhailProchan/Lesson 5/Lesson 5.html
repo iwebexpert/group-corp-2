@@ -128,8 +128,6 @@
                 case '/':
                     output.textContent += arg1 / arg2;
                     break;
-                default:
-                    output.textContent = 'Неверный ввод.';
             }
         }
 
@@ -137,12 +135,12 @@
             let input = document.getElementById('a6').value,
                 operation;
             if (input.match(/[-+]?[\d]*(\.[\d]*)?[+\-*\/][\d]*(\.[\d]*)?/)[0] == input) {
-                if (input.match(/[+-]/)[1]) {
-                    operation = input.match(/[+-]/)[1];
+                if (input[0].match(/[+-]/)) {
+                    operation = input.match(/[+\-*\/]/g)[1];
                 } else {
-                    operation = input[input.search(/[+\-*\/]+/)];
+                    operation = input.match(/[+\-*\/]/g);
                 }
-                six(+input.split(operation)[0], +input.split(operation)[1], operation)
+                six(+input.split(operation)[0], +input.split(operation)[1], operation[0])
             } else {
                 document.getElementById('output6').textContent = 'Неверный ввод';
             }

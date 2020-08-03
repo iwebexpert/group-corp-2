@@ -43,7 +43,7 @@
         else if(a < 0 && b < 0) {
             console.log(a * b)
         }
-        else if(a > 0 && b < 0 || a < 0 && b > 0){
+        else if(a * b < 0){
             console.log(a + b)
         }
 
@@ -139,16 +139,12 @@
             switch(fn){
                 case '+':
                     return fn1(a + b);
-                    break;
                 case '-':
                     return fn2(a - b);
-                    break;
                 case '/':
                     return fn3(a / b);
-                    break;
                 case '*':
                     return fn4(a * b);
-                    break;
             }
         }
 

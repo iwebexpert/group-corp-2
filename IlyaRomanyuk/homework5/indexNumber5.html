@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        /*5 Реализовать четыре основные арифметические операции в виде функций с двумя параметрами. Обязательно использовать оператор return.*/
+
+        sum = (firtsNumber, secondNumber) => firtsNumber + secondNumber;
+        diff = (firtsNumber, secondNumber) => firtsNumber - secondNumber;
+        mul = (firtsNumber, secondNumber) => firtsNumber * secondNumber;
+        div = (firtsNumber, secondNumber) => {
+            if (secondNumber == 0) {
+                return "На ноль делить нельзя";
+            } else {
+                return firtsNumber / secondNumber;
+            }
+        }
+
+        console.log(sum(10, 2));
+        console.log(diff(10, 2));
+        console.log(mul(10, 2));
+        console.log(div(10, 2));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale =1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>homework5</title>
+    <script>
+		// Объявить две целочисленные переменные — a и b и задать им произвольные начальные значения.
+        let a = Math.round(Math.random() * 200 - 100);
+        let b = Math.round(Math.random() * 200 - 100);
+		console.log(a, b);
+		// Затем написать скрипт, который работает по следующему принципу:
+		// 	если a и b положительные, вывести их разность;
+        if (a >= 0 && b >= 0) {
+			console.log('a и b положительные, a - b = ', a - b);
+		} else if (a < 0 && b < 0) {
+			// если а и b отрицательные, вывести их произведение;
+			console.log('a и b отрицательные, a * b = ', a * b);
+		} else if (a >= 0 && b < 0 || a < 0 && b >= 0) {
+			// если а и b разных знаков, вывести их сумму;
+        	console.log('a и b разных знаков, a + b = ', a + b);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

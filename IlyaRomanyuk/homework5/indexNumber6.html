@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        /*Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1, arg2 — значения аргументов, operation — строка с названием операции.
+        В зависимости от переданного значения выполнить одну из арифметических операций (использовать функции из пункта 5) и вернуть полученное значение (применить switch).*/
+
+        sum = (firtsNumber, secondNumber) => firtsNumber + secondNumber;
+        diff = (firtsNumber, secondNumber) => firtsNumber - secondNumber;
+        mul = (firtsNumber, secondNumber) => firtsNumber * secondNumber;
+        div = (firtsNumber, secondNumber) => {
+            if (secondNumber == 0) {
+                return "На ноль делить нельзя";
+            } else {
+                return firtsNumber / secondNumber;
+            }
+        }
+
+        function mathOperation(arg1, arg2, operation) {
+            switch (operation) {
+                case 'сложение':
+                    return sum(arg1, arg2);
+                case 'вычетание':
+                    return diff(arg1, arg2);
+                case 'умножение':
+                    return mul(arg1, arg2);
+                case 'деление':
+                    return div(arg1, arg2);
+            }
+        }
+
+        console.log(mathOperation(10, 2, 'деление'));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

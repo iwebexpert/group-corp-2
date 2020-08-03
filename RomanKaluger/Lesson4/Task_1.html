@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    "use strict";
+    let iWantMore = true;
+    const converter = (tempC) => ((9 / 5) * tempC + 32);
+
+    while (iWantMore) {
+        const inputTempC = parseFloat(prompt('Введите температуру по Цельсию', '20'));
+        if (isFinite(inputTempC)) {
+            alert(`По Фаренгейту ${converter(inputTempC)}`);
+        } else {
+            alert('Введите число по-человечески или около того');
+        }
+        iWantMore = confirm('Хочу еще?')
+    }
+</script>
+<body>
+
+</body>
+</html>

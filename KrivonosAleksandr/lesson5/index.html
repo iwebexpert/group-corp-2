@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4</title>
+    <script>
+        'use strict';   //браузер работает в строгом режиме
+
+        //***************FIRST TASK***************
+        var a = 1, b = 1, c, d;
+        c = ++a; alert(c);           // 2, т.к. инкремент представлен в ПРЕфиксной форме
+        d = b++; alert(d);           // 1, т.к. инкремент представлен в ПОСТфиксной форме
+        c = (2+ ++a); alert(c);      // 5, т.к. в скобках получается 2+3 из-за ПРЕфиксной формы
+        d = (2+ b++); alert(d);      // 4, т.к. в скобках получается 2+2 из-за ПОСТфиксной формы
+        //инкрементирование и для "а", и для "b" произошло дважды (1+1+1)
+        alert(a);                    // 3 
+        alert(b);                    // 3
+
+        //***************SECOND TASK***************
+        console.log("SECOND TASK");
+
+        var a = 2;
+        var x = 1 + (a *= 2);   
+        console.log(x);         //x будет равен 5, так как "(a *= 2)"" можно записать в виде "а = а * 2"
+
+        //***************THIRD TASK***************
+        console.log("THIRD TASK");
+        function calc(a, b){
+            let c;
+            if(a > 0 && b > 0){         //положительные числа
+                c = a - b
+                return console.log("Разность \"a\" и \"b\" " + c);
+            }
+            else if(a < 0 && b < 0){    //отрицательные числа
+                c = a * b
+                return console.log("Произведение \"a\" и \"b\" " + c);
+            }
+            else if(a * b < 0){         //числа разных знаков
+
+                c = a + b
+                return console.log("Сумма \"a\" и \"b\" " + c);
+            }
+            else if(a == 0 || b == 0){    //если переданы нули
+                return console.log("Передайте в функцию не нолики)");
+            }
+        }
+
+        a = 1;
+        b = 5;
+        calc(a, b);
+
+        a = -12;
+        b = -24;
+        calc(a, b);
+
+        a = -5;
+        b = 23;
+        calc(a, b);
+
+        a = 0;
+        b = 0;
+        calc(a, b);
+
+        //***************FOURTH TASK***************
+        console.log("FOURTH TASK");
+
+        a = 6;
+        switch(a){
+            case 0:
+                console.log(0);
+            case 1:
+                console.log(1);
+            case 2:
+                console.log(2);
+            case 3:
+                console.log(3);
+            case 4:
+                console.log(4);
+            case 5:
+                console.log(5);
+            case 6:
+                console.log(6);
+            case 7:
+                console.log(7);
+            case 8:
+                console.log(8);
+            case 9:
+                console.log(9);
+            case 10:
+                console.log(10);
+            case 11:
+                console.log(11);
+            case 12:
+                console.log(12);
+            case 13:
+                console.log(13);
+            case 14:
+                console.log(14);
+            case 15:
+                console.log(15);
+                break;
+            default:
+                console.log("Передайте число в диапазоне [0..15]");
+        }
+
+        //***************FIFTH TASK***************
+        console.log("FIFTH TASK");
+
+        function summa(a, b){
+            return a + b;
+        }
+
+        function difference(a, b){
+            return a - b;
+        }
+
+        function multiply(a, b){
+            return a * b;
+        }
+
+        function divider(a, b) {
+            return a / b;
+        }
+
+        console.log("Результат сложения: " + summa(3, 4));
+        console.log("Результат вычитания: " + difference(9, 3));
+        console.log("Результат умножения: " + multiply(5, 5));
+        console.log("Результат деления: " + divider(93, 3));
+
+        //***************SIX TASK***************
+        console.log("SIXTH TASK");
+
+        function calc(a, b, operator){
+            switch(operator){
+                case "Сумма":
+                    console.log("Результат сложения: " + summa(a, b));
+                    return summa(a, b);
+                    break;
+                case "Вычитание":
+                    console.log("Результат вычитания: " + difference(a, b));
+                    return difference(a, b);
+                    break;
+                case "Умножение":
+                    console.log("Результат умножения: " + multiply(a, b));
+                    return multiply(a, b);
+                    break;
+                case "Деление":
+                    console.log("Результат деления: " + divider(a, b));
+                    return divider(a, b);
+                    break;
+            }
+        }
+
+        calc(3, 5, "Сумма");
+        calc(32, 5, "Вычитание");
+        calc(3, 5, "Умножение");
+        calc(50, 5, "Деление");
+
+        //***************SEVENTH TASK***************
+        console.log("SEVENTH TASK");
+
+        console.log(null == 0);     //false
+        console.log(null === 0);    //false
+        /*Значения null и undefined равны друг другу, но не чему бы то ни было еще. Это жесткое правило прописано в спецификации языка. При явном преобразовании в число (то есть вызванном пользователем) null принимает значение 0, а undefined — NaN.*/
+
+        //***************EIGHTH TASK***************
+        console.log("EIGHTH TASK");
+
+        function power(num, pow) {
+            if(pow == 1){
+                return num;
+            }else{
+                return num * power(num, pow - 1);
+            }
+        }
+
+        let step = power(2, 3);
+        console.log(step);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -36,12 +36,8 @@
 
       function countBasketPrice(items) {
         let amount = 0;
-        let count = 0;
         for (let i = 0; i < basket.length; i++) {
-          for (let j = 0; j < basket[i].length; j++) {
-            count = basket[i][1] * basket[i][3];
-          }
-          amount += count;
+          amount += basket[i][1] * basket[i][3];
         }
         return amount;
       }

@@ -136,7 +136,7 @@
         function sixPre() {
             let input = document.getElementById('a6').value,
                 operation;
-            if (input.match(/[-+]?[\d]*\.?[\d]+[+\-*\/][\d]*\.?[\d]*/)[0] == input) {
+            if (input.match(/[-+]?[\d]*(\.[\d]*)?+[+\-*\/][\d]*\.?[\d]*/)[0] == input) {
                 if (input.match(/[+-]/)[1]) {
                     operation = input.match(/[+-]/)[1];
                 } else {

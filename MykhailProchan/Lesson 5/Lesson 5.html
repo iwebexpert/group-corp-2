@@ -140,7 +140,7 @@
                 if (input.match(/[+-]/)[1]) {
                     operation = input.match(/[+-]/)[1];
                 } else {
-                    operation = input[input.search(/[+|-|*|\/]+/)];
+                    operation = input[input.search(/[+\-*\/]+/)];
                 }
                 six(+input.split(operation)[0], +input.split(operation)[1], operation)
             } else {

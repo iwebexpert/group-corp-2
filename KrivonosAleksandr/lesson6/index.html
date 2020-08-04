@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6</title>
+    <script>
+        'use strict';   //браузер работает в строгом режиме
+
+        //***************FIRST TASK***************
+        console.log("FIRST TASK");
+        let i = 2;                  //переменная, отвечающая за простые числа
+        let j = 2;                  //делитель в диапазоне от 2 до i
+        let count = 0;              //счетчик делителей
+
+        while(i <= 100 && j <= i){
+
+            if(i % j === 0){                //если делится без остатка, то увеличиваем счетчик делителей
+                count++
+            }
+
+            if(j === i || count >= 2){      //если конец поиска всех делителей ИЛИ кол-во делителей >= 2
+                if(j === i && count < 2){   //если конец поиска всех делителей И кол-во делителей < 2
+                    console.log(i);
+                }
+                i++;                        //инкрементируем потенциальное простое число
+                j = 2;                      //устанавливаем начальное значение делителя
+                count = 0;                  //обнуляем счетчик делителей
+            }
+            else{
+                j++;                        //инкрементируем значение делителя
+            }
+        }
+
+        //***************SECOND TASK***************
+        console.log("SECOND TASK");
+
+        function countBasketPrice(basket) {
+            let sum = 0;                                            //сумма
+            for( let product in basket ){
+                sum += basket[product].price * basket[product].num;
+            }
+            console.log("Сумма товаров в корзине: " + sum);
+        }
+
+        //массив объектов
+        let basket = [
+            {
+                name: 'Куртка',
+                price: 7000,
+                num: 3
+            },
+            {
+                name: 'Шапка',
+                price: 1000,
+                num: 5
+            },
+            {
+                name: 'Кроссовки',
+                price: 7990,
+                num: 2
+            },
+            {
+                name: 'Футболка',
+                price: 2000,
+                num: 4
+            },
+            {
+                name: 'Штаны',
+                price: 1500,
+                num: 3
+            }
+        ];
+
+        countBasketPrice(basket);
+
+        //***************THIRD TASK***************
+        console.log("THIRD TASK\n");
+        for( let c = 0; c <= 9; console.log(c++)){
+
+        }
+
+        //***************FOURTH TASK***************
+        console.log("FOURTH TASK");
+        for(let c = 0; c <= 20; c++){
+            for(let d = 0; d < c; d++){
+                console.log("x");
+                if(d == c - 1){
+                    break;
+                }
+            }
+            console.log("\n\n");              //вывод управляющего символа нужен для корректного отображения пирамиды (иначе весь вывод схлопывался в одну строку)
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

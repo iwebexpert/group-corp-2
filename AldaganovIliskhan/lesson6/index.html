@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lesson6</title>
+</head>
+
+<body>
+    <script>
+        // 1
+        let simpleNum = 2;
+        let simpleArr = [];
+
+        while (simpleNum <= 100) {
+            let result = 2;
+            let divider = 2;
+            while (simpleNum % divider !== 0) {
+                divider++;
+                result++;
+            }
+            if (result == simpleNum) {
+                simpleArr.push(result);
+            }
+            simpleNum++;
+        }
+        console.log(simpleArr);
+
+        // 2 
+
+        const shop = [
+            {
+                name: 'Keybord',
+                price: 1000,
+                currency: 'RUB',
+                count: 2
+            },
+            {
+                name: 'Mouse',
+                price: 500,
+                currency: 'RUB',
+                count: 1
+            },
+            {
+                name: 'Monitor',
+                price: 2500,
+                currency: 'RUB',
+                count: 3
+            },
+        ];
+        const countBasketPrice = (shop) => {
+            let amount = 0;
+            shop.map(item => {
+                amount += item.price * item.count;
+            })
+            return amount;
+        }
+        console.log(countBasketPrice(shop));
+
+        //3
+
+        for (let i = 0; i <= 9; i++, console.log(i - 1));
+
+        // 4
+        for (let i = 0; i <= 20; i++) {
+            let str = 'x'.repeat(i);
+            console.log(str)
+        } 
+    </script>
+</body>
+
+</html>

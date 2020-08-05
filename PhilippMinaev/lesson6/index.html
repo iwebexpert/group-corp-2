@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+  </head>
+  <body>
+    <script>
+      //1
+      let i = 1;
+      let n = 100;
+
+      function isPrime(num) {
+        if (num < 2 || num % 2 === 0) return false;
+        for (let i = 3, sqrt = Math.sqrt(num); i <= sqrt; i += 2) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+
+      while (i <= n) {
+        if (isPrime(i)) {
+          console.log(i);
+        }
+        i++;
+      }
+
+      //2, 3(a,b)
+      let shopBasketItems = [
+        ["Intel Core i5-9600K", 12854, "руб", 1],
+        ["Nvidia GTX 1660S (Super)", 15161, "руб", 2],
+        ["Corsair Vengeance LPX DDR4 3200 C16 2x8GB", 3626, "руб", 2],
+      ];
+
+      function countBasketPrice(items) {
+        let totalPrice = 0;
+        for (let item of items) {
+          totalPrice += item[1] * item[3];
+        }
+        return totalPrice;
+      }
+      console.log(
+        `Полная стоимость: ${countBasketPrice(shopBasketItems)} руб.`
+      );
+
+      //4
+      for (let i = 0; i < 9; i++, console.log(i)) {}
+
+      //5
+      let xLine = "";
+      for (let i = 0; i < 20; i++) {
+        xLine += "x";
+        console.log(xLine);
+      }
+    </script>
+  </body>
+</html>

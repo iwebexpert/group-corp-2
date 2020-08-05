@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 6-2 </title>
+</head>
+
+<body>
+  <script>
+    "use strict";
+    const shop = [
+      ['Keyboard', 1000, 'RUB', 2],
+      ['Mouse', 500, 'RUB', 1],
+      ['Touchpad', 1500, 'RUB', 1],
+      ['processor', 5000, 'RUB', 3],
+    ];
+
+    function countBacketPrice(items) {
+      let amount = 0;
+      let i = 0;
+      while (i <= shop.length) {
+        amount += (shop[i][1] * shop[i][3]);
+        i++
+      }
+      return amount;
+    }
+
+    // Или цикл For
+    function countBacketPrice1(items) {
+      let amount1 = 0;
+      for (let j = 0; j < shop.length; j++) {
+        amount1 += (shop[j][1] * shop[j][3]);
+        console.log(amount1); //Почему не выводит данные в консоль?
+      }
+      return amount1;
+    }
+  </script>
+</body>
+
+</html>

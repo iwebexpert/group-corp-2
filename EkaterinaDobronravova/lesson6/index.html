@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 6</title>
+  <script>
+
+	// Task 1
+	// С помощью цикла while вывести все простые числа в промежутке от 0 до 100
+
+      let i = 2;
+      while (i < 100) {
+        let n = 0;
+        let j = 1;
+        while (j < 100) {
+          if (i % j === 0) {
+            n++;
+          }
+          j++;
+        }
+        if (n === 2) console.log(i);
+        n = 0;
+        i++;
+      }
+
+
+	// Task 2 and 3
+	// Предположим, есть сущность корзины. Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров. Товары в корзине хранятся в массиве. Задачи:
+	// Организовать такой массив для хранения товаров в корзине;
+	// Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
+
+	const shop = [
+		{
+			name: 'Keyboard',
+			price: 1000,
+			currency: 'RUB',
+			count: 2,
+		},
+		{
+			name: 'Mouse',
+			price: 500,
+			currency: 'RUB',
+			count: 1,
+		}
+	];
+
+	function countBasketPrice(items){
+		let amout = 0;
+		for (let i = 0; i < shop.length; i++){
+			amout = amout + shop[i].price * shop[i].count;
+		}
+		return amout;
+	}
+      console.log("Итоговая сумма: ", countBasketPrice());
+
+
+	// Task 4
+	// Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла.
+
+	for (var count = 1; count <= 10; console.log(count++)) { }
+	
+
+	// Task 5
+	// Нарисовать пирамиду с 20 рядами с помощью console.log, как показано на рисунке:
+
+	var str = 'x'
+	console.log(str);
+	for(var x = 0; x < 20; x++){
+		console.log(str += 'xx')
+	}
+
+  </script>
+</head>
+<body>
+</body>
+</html>

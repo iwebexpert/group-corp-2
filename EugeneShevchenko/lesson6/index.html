@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lesson6</title>
+</head>
+<body>
+
+	<script>
+		'use strict'
+		//---------------------------------------1--------------------------------------------//
+		//С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
+		//2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+		let usrQuestion = prompt('Укажите до какого числа вывести простые числа', 100);
+		while (isNaN(Number(usrQuestion)))
+			usrQuestion = prompt('Вы ввели не число!');
+		if (usrQuestion != null && usrQuestion != 0){
+			let simpleNumbers = [2, 3];
+			if (usrQuestion > 3){
+				numsMaker:
+				for (let number = simpleNumbers[1] + 2; number <= usrQuestion; number += 2){
+					for (let i = 1; Math.sqrt(number) >= simpleNumbers[i]; ++i){
+						if (number % simpleNumbers[i] == 0) continue numsMaker;
+					}
+					simpleNumbers[simpleNumbers.length] = number;
+				}
+				console.log(`Простые числа:\n${simpleNumbers}`);
+			}else if (usrQuestion < 2){
+				console.log('Вы ввели некорректное число!')
+			}else{
+				let out = String(simpleNumbers[0]);
+				if (usrQuestion == 3){
+					out += ',' + simpleNumbers[1];
+				}
+				console.log(`Простые числа:\n${out}`);
+			}
+		}
+		//---------------------------------------2--------------------------------------------//
+		/**С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины. Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.
+		Товары в корзине хранятся в массиве. Задачи:
+				--- Организовать такой массив для хранения товаров в корзине;
+				--- Организовать функцию countBasketPrice, которая будет считать стоимость корзины.**/
+		//Решение 1 --- через многомерные массивы
+		// const goods = [
+		// ['монитор','LG', 15000, 'RUB', 3 ],
+		// ['видеокарта','nvidia', 80000, 'RUB', 1 ],
+		// ['процессор','intel', 90000, 'RUB', 1 ],
+		// ['подставка','xiomi', 1500, 'RUB', 3 ],
+		// ];
+
+		// function countBasketPrice() {
+		// 	let total = 0;
+		// 	for(let elems of goods) {
+		// 		total += elems[2] * elems[4]
+		// 		console.log(`В корзине товаров на сумму: ${total} руб.`)
+		// 	}
+		// }
+		// countBasketPrice();
+		//Из недостатков такого решения, неудобство хранить и читать данные
+		//Решение 2 --- через объект
+		let goods = {
+			1: {
+				item: 'монитор',
+				maker: 'LG',
+				price: 15000,
+				currency: 'RUB',
+				lot: 3,
+			},
+			2: {
+				item: 'видеокарта',
+				maker: 'nvidia',
+				price: 80000,
+				currency: 'RUB',
+				lot: 1,
+			},
+			3: {
+				item: 'процессор',
+				maker: 'intel',
+				price: 90000,
+				currency: 'RUB',
+				lot: 1,
+			},
+			4: {
+				item: 'подставка',
+				maker: 'xiomi',
+				price: 1500,
+				currency: 'RUB',
+				lot: 3,
+			},
+		}
+		let totalBasket = 0;
+
+		function countBasketPrice() {
+			for(let products in goods) {
+				totalBasket += goods[products].price * goods[products].lot;
+			}
+			return totalBasket;
+		}
+
+		countBasketPrice();
+		console.log(`В корзине товаров на сумму: ${totalBasket} руб.`)
+		//---------------------------------------3--------------------------------------------//
+		/**Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла.
+		Выглядеть это должно так: for(...){// здесь пусто}**/
+		for(let i = 0; i <= 9; console.log(i++)){};
+		//---------------------------------------4--------------------------------------------//
+		/** Нарисовать пирамиду с 20 рядами с помощью console.log, как показано на рисунке:
+			x
+			xx
+			xxx
+			xxxx
+			xxxxx
+			**/
+			for(let j = 0, elem = ''; j < 20; j++, elem += 'x') { console.log(elem); }
+
+		</script>
+
+	</body>
+	</html>

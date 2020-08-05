@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+    <script>
+        // ADD_OR_RESET - ДОБАВИТЬ или перезаписать товар при его наличии
+        // MERGE - скорректировать кол-во и цену товара (прибавляет указанное знаечение к этим параметрам)
+        const basketModes = {
+            ADD_OR_RESET: 'ADD_OR_RESET',
+            MERGE: 'MERGE',
+        };
+        const basket = [];
+        function addItem(name, price, amount, mode) {
+            try {
+                if (!(typeof name === 'string'
+                    && typeof price === 'number'
+                    && typeof amount === 'number'
+                    && mode in basketModes)){
+                    console.log('некорректные данные');
+                    return;
+                }
+                const found = basket.find(val => val.name === name);
+                switch (mode) {
+                    case basketModes.ADD_OR_RESET: {
+                        if (found) {
+                            found.price = price;
+                            found.amount = amount;
+                        } else {
+                            basket.push({name, price, amount});
+                        }
+                        break;
+                    }
+                    case basketModes.MERGE: {
+                        if (found) {
+                            found.price += price;
+                            found.amount += amount;
+                        } else if (price>0 && amount>0) {
+                            addItem(name, price, amount, basketModes.ADD_OR_RESET);
+                        }
+                        break;
+                    }
+                    default: console.log('Видимо, все плохо');
+                }
+            }
+            catch (e) {
+                console.log('Ошибка при добавлении');
+            }
+            finally {
+                return basket;
+            }
+        }
+
+        const countBasketPrice = () =>{
+            try {
+                return basket.reduce((acc,val)=>acc+val.price,0);
+            }
+            catch (e) {
+                console.log('Ошибка в countBasketPrice');
+                return null;
+            }
+        };
+
+        const PseudoJest = {
+            expect: (arg) =>{
+                return {
+                    toBe: (testVal) => testVal===arg,
+                    toEqual: (testVal) => _.isEqual(testVal, arg),
+                }
+            },
+            test: function (){
+                const testObjs = [
+                    ['q', 1200, 3, basketModes.ADD_OR_RESET],
+                    ['q', 200, -1, basketModes.MERGE],
+                    ['q', 1500, 2, basketModes.ADD_OR_RESET],
+                    ['d', 1200, 3, 'jdfjieienfe'],
+                    ['d', 1200, 3, basketModes.MERGE],
+                    ['d', 'lfekfef', 'efrgg', basketModes.ADD_OR_RESET],
+                ];
+                console.log('Тестируем addItem');
+                console.log(`test1: ${ this.expect(addItem(...testObjs[0])).toEqual([{name: 'q', price: 1200, amount: 3}])}`);
+                console.log(`test2: ${ this.expect(addItem(...testObjs[1])).toEqual([{name: 'q', price: 1400, amount: 2}])}`);
+                console.log(`test3: ${ this.expect(addItem(...testObjs[2])).toEqual([{name: 'q', price: 1500, amount: 2}])}`);
+                console.log(`test4: ${ this.expect(addItem(...testObjs[3])).toEqual([{name: 'q', price: 1500, amount: 2}])}`);
+                console.log(`test5: ${ this.expect(addItem(...testObjs[4])).toEqual([{name: 'q', price: 1500, amount: 2}, {name: 'd', price: 1200, amount: 3}])}`);
+                console.log(`test6: ${ this.expect(addItem(...testObjs[5])).toEqual([{name: 'q', price: 1500, amount: 2}, {name: 'd', price: 1200, amount: 3}])}`);
+                console.log('Тестируем countBasketPrice');
+                console.log(`test1: ${ this.expect(countBasketPrice()).toBe(2700)}`);
+
+            }
+        };
+        PseudoJest.test();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

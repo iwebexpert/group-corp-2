@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <script>
+        let counter=2;
+        while (counter<=100) {
+            if (isSimple(counter)) {
+                console.log(counter);
+            }
+            counter++;
+        }
+        function isSimple(candidate) {
+            for (let i=2; i<candidate; i++) {
+                if (candidate % i === 0){
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+<body>
+
+</body>
+</html>

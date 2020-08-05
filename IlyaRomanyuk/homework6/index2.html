@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        let basket = [
+            { id: '1', title: "шорты", quantity: "2", currency: 'RUB', price: "1200" },
+            { id: '2', title: "майка", quantity: "3", currency: 'RUB', price: "800" },
+            { id: '3', title: "кроссовки", quantity: "1", currency: 'RUB', price: "3500" }
+        ]
+
+        const countBasketPrice = (basket) => {
+            let totalPrice = 0;
+            for (let i = 0; i < basket.length; i++) {
+                totalPrice += basket[i].price * basket[i].quantity;
+            }
+
+            let result = `Total price: ${totalPrice} ${basket[0].currency}`
+            return result;
+        }
+
+        console.log(countBasketPrice(basket));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

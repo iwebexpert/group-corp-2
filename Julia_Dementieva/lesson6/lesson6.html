@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson6</title>
+	<script>
+		//Задание №1
+
+		let n = 100; //число, до которого нужно вывести простые числа
+		const primeNumbers = new Array(n+1).fill(true); //заполняем 
+		//массив булевым значением - true
+		let prime = 2;//первое простое число
+		let m = 0;
+		//Алгорит - Решето Эратосфена
+		//выполняется от 4 до sqrt(n)
+		//Описание алгоритма: берем простое число prime и вычеркиваем(элементу с индексом массива primeNumbers присваиваем false) числа кратные ему. В конце невычеркнутые числа(индексы массива primeNumbers, элементы которых равны true) явлются простыми.
+		while (prime * prime <= n){
+			if (primeNumbers[prime]){ 
+				m = prime*prime;
+				while(m <= n){
+					primeNumbers[m] = false;
+					m += prime; //вычеркиваем числа с шагом = prime
+				}
+			}
+			prime++;
+		}
+		for (let j = 2; j < primeNumbers.length; j++)
+		{
+			primeNumbers[j] && console.log(j); //если primeNumbers[j] = true, то выводим
+
+		} 
+
+		
+
+
+		//Задание №2-3
+		console.log('Задание №2-3');
+		const productArray = [
+			{ 
+				name: 'Table',
+			  	price: 10000,
+			  	quantity: 1,
+			},
+			{
+				name: 'Armchair',
+			  	price: 4570,
+			  	quantity: 3,
+			},
+			{
+				name: 'Picture "Summer"',
+			  	price: 1390,
+			  	quantity: 1,
+			},
+			{
+				name: 'Picture "Winter"',
+			  	price: 1600,
+			  	quantity: 1,
+			}
+		]
+
+		function countBasketPrice(basket){
+			let sum = 0;
+			for (let i = 0; i < basket.length; i++){
+				sum += basket[i].price * basket[i].quantity;
+			}
+			return sum;
+		}
+
+		console.log(`Общая стоимость корзины: ${countBasketPrice(productArray)}`);
+
+		//Задание №4
+		//вывести от 0 до 9(не вкл)
+		console.log('Задание №4');
+		for(let j = 0; j < 9; console.log(j), j++) {}
+
+		//Задание №5
+		console.log('Задание №5');
+		let x = '';
+		for(let j = 0; j < 20; j++, x += 'x',console.log(x)){}
+
+	</script>
+</head>
+
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hw6</title>
+    <script>
+
+        //1.
+        let i = 2;
+        while(i < 100) {
+            let num = 2;
+            let j = 2;
+            while(i%j) {
+                j++;
+                num++;
+            }
+            if (num === i) {
+                console.log(num);
+            }
+            i++;
+        }
+
+        //2-3. Объединил их, вроде по другому никак там.
+
+        //a. Организовать такой массив для хранения товаров в корзине;
+        const products = [
+            ["Клавиатура", 2000, "руб", 3],
+            ["Мышь", 1000, "руб", 2],
+            ["Монитор", 10000, "руб", 1],
+        ];
+        let res = 0;
+        //b. Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
+        function countBasketPrice(array) {
+            for (let i = 0; i < array.length; i++) {
+                res += array[i][1] * array[i][3];
+            }
+            return res;
+        }
+        console.log("Итого в корзине товаров на сумму: " + countBasketPrice(products) + " " + products[0][2]);
+
+        //4.
+
+        for (let i = 0; i < 10; console.log(i++)) {}
+
+        //5.
+        let show = "";
+        for (let i = 0; i < 20; i++) {
+            show += "x";
+            console.log(show);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

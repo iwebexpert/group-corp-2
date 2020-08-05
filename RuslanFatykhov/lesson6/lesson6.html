@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6 Homework</title>
+    <script>
+        //ЗАДАНИЕ №1
+        let x = 0;
+        while (x < 100) {
+            let y = 2;
+            while (y <= x) {
+                if (x == y) {
+                    console.log(x);
+                }
+                if (x % y == 0) {
+                    break;
+                }
+                y++;
+            }
+            x++;
+        }
+
+        //ЗАДАНИЕ №2 и ЗАДАНИЕ №3
+
+        const basket = [{
+                product: 'apple',
+                currency: 'ruble',
+                price: 127,
+                amount: 8,
+            },
+            {
+                product: 'orange',
+                currency: 'ruble',
+                price: 98,
+                amount: 12,
+            },
+            {
+                product: 'pineapple',
+                currency: 'ruble',
+                price: 277,
+                amount: 4,
+            },
+            {
+                product: 'banana',
+                currency: 'ruble',
+                price: 41,
+                amount: 6,
+            },
+            {
+                product: 'pear',
+                currency: 'ruble',
+                price: 64,
+                amount: 3,
+            },
+        ];
+
+        //Автоматический подсчет всех товаров в корзине, учитывая их количество.
+        const countBasketPrice = () => basket.map((el) => el.price * el.amount).reduce((a, b) => a + b, 0);
+
+        countBasketPrice();
+
+
+        //ЗАДАНИЕ №4
+
+        for (let i = 0; i < 10; console.log(i++)) {
+            //пустое тело цикла
+        }
+
+        //ЗАДАНИЕ №5
+        //Вариант 1
+        for (let i = 1; i <= 5; i++) {
+            console.log('*'.repeat(i));
+        }
+
+        //Вариант 2
+        let string = '';
+        for (let j = 1; j <= 5; j++) {
+            string += '*';
+            console.log(string);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

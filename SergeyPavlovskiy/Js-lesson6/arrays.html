@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <script>
+        const array = [
+            10, 5, 15
+        ];
+
+        console.log(array);
+        console.log('Элемент с номером (индексом) 2', array[2]);
+        console.log('Всего элементов', array.length);
+
+        //array = null; //Из-за const будет error
+
+        array[3] = 'Anna';
+        console.log(array);
+
+        array.push('Olga');
+        const array2 = array.concat(['Ivan']);
+        console.log(array, array2);
+
+        for(let i = 0; i < array2.length; i++){
+            console.log('Элемент с номером', i, 'содержит значение', array2[i]);
+        }
+
+        //Многомерный массив
+        const array3 = [
+            [1, 2, 3, 4], //0
+            ['Olga', 'Anna', 'Elli', 'Ivan'], //1
+            [true, true, false, false], //2
+            [1, '1@2.localdomain'], //3
+        ];
+
+        console.log(array3[1][2], array3[3][1], array3[5]);
+
+        for(let i = 0; i < array3.length; i++)
+        {
+            console.log('Массив', array3[i]);
+            for(let j = 0; j < array3[i].length; j++){
+                console.log(array3[i][j]);
+            }
+        }
+
+        let a = 9;
+        console.log(a%3); //2
+        console.log(a%3 === 0); //false - не делится без остатка
+
+        //Варианты
+        const shop = [
+            ['Keyboard', 1000, 'RUB', 2],
+            ['Mouse', 500, 'RUB', 1],
+        ];
+
+        function countBacketPrice(items){
+            let amount = 0;
+            //TODO - счет стоимости корзины
+            return amount;
+        }
+
+        //Через объекты
+        const shop2 = [
+            {
+                name: 'Keyboard',
+                price: 1000,
+                currency: 'RUB',
+                count: 2,
+            },
+            {
+                name: 'Mouse',
+                price: 500,
+                currency: 'RUB',
+                count: 1,
+            },
+        ];
+        console.log(shop2[0].name, shop2[0].price, shop2[0].currency);
+        console.log(shop2[1].name, shop2[1].price, shop2[1].currency);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -9,7 +9,6 @@
 
 <body>
   <script>
-
     function plus(arg1, arg2) {
       return arg1 + arg2;
     }
@@ -27,29 +26,27 @@
     }
 
     let result = minus(6, 2);
-    alert(result);
+    console.log(result);
 
     function mathOperation(arg1, arg2, operation) {
-      mathOperation = promt('Ваберете операцию')
       switch (operation) {
-        case 'Сложение':
-          plus
-          break;
-        case 'Вычитание':
-          minus
-          break;
-        case 'Деление':
-          del
-          break;
-        case 'Умножение':
-          mult
-          break;
-
-        default: null;
-          break;
+        case 'plus':
+          return arg1 + arg2;
+        case 'minus':
+          return arg1 - arg2;
+        case 'del':
+          return arg1 / arg2;
+        case 'multiply':
+          return arg1 * arg2;
+        default:
+          return 'Не указан тип операции'
       }
     }
 
+    console.log(mathOperation(5, 10, 'plus'))
+    console.log(mathOperation(5, 10, 'minus'))
+    console.log(mathOperation(5, 10, 'del'))
+    console.log(mathOperation(5, 10, 'multiply'))
   </script>
 </body>
 

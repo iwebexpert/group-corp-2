@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework_lesson_6.2vs6.3</title>
+    <script>
+    let shop = [["water" , 50], ["chocolate", 90], ["icecream", 120]];  
+    a = countBasketPrice(shop);
+    console.log("Стоимость всех товаров в корзине : " + a + " рублей.");
+
+    //Функция по подсчету
+    function countBasketPrice(items)
+    {
+    let sum = 0;
+    for(let i = 0; i < items.length; i++)
+    {
+        sum = sum + items[i][1];
+    }
+    return sum;
+    }
+    </script>
+</head>
+<body>
+</body>
+</html>

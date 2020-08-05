@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home work 6</title>
+	<script>
+		'use strict'
+
+		{ // Задание 1
+
+			let n = 100;
+
+			nextNumber:
+			for (let i = 2; i <= n; i++) {
+				for (let j = 2; j < i; j++) {
+					if (i % j === 0) continue nextNumber;
+				}
+				console.log(i);
+			}
+		}
+
+		{ // Задание 2, 3 ( через многомерный массив )
+
+			const basket = [
+				['t-short', 700, 'Rub', 2],
+				['shoes', 5000, 'Rub', 1],
+				['dress', 3500, 'Rub', 1],
+				['socks', 350, 'Rub', 7],
+			];
+
+			let totalCount = 0;
+
+			function countBasketPrice(arr) {
+
+				for (let i = 0; i < arr.length; i++) {
+					totalCount += arr[i][1] * arr[i][3];
+				}
+
+				return totalCount;
+			}
+			countBasketPrice(basket);
+
+			console.log(`Общая сумма: ${totalCount} ${basket[0][2]}`)
+		}
+
+		{ // Задание 2,3 ( через массив объектов )
+
+			const basket = [
+				{
+					name: 't-short',
+					price: 700,
+					currency: 'Rub',
+					count: 2,
+				},
+				{
+					name: 'shoes',
+					price: 5000,
+					currency: 'Rub',
+					count: 1,
+				},
+				{
+					name: 'dress',
+					price: 3500,
+					currency: 'Rub',
+					count: 1,
+				},
+				{
+					name: 'socks',
+					price: 350,
+					currency: 'Rub',
+					count: 7,
+				},
+			];
+
+			let totalCount = 0;
+
+			function countBasketPrice(arr) {
+
+				for (let i = 0; i < arr.length; i++) {
+					totalCount += arr[i].price * arr[i].count;
+				}
+				return totalCount;
+			}
+
+			countBasketPrice(basket)
+			console.log(`Общая сумма: ${totalCount} ${basket[0].currency}`)
+		}
+
+		{ // Задание 4
+
+			for (let i = 0; i < 10; console.log(i++)) { };
+
+		}
+
+		{ // Задание 5
+
+			let string = '';
+			for (let i = 1; i <= 20; i++) {
+				console.log(string += 'x');
+			}
+
+		}
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

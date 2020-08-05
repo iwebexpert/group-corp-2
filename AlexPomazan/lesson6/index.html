@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lesson6</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      ///////Задание 1///////
+      console.log("Задание 1.");
+      let i = 2;
+      while (i < 100) {
+        let count = 0;
+        let j = 1;
+        while (j < 100) {
+          if (i % j === 0) {
+            count++;
+          }
+          j++;
+        }
+        if (count === 2) console.log(i);
+        count = 0;
+        i++;
+      }
+
+      ///////Задания 2 и 3///////
+      console.log("Задания 2 и 3.");
+
+      //Если использовать массив массивов
+      // const basket = [
+      //   ["Видеокарта", 22000, "RUB", 1],
+      //   ["Процессор", 15000, "RUB", 1],
+      //   ["SSD", 4500, "RUB", 2],
+      //   ["Куллер", 450, "RUB", 4],
+      // ];
+
+      const basketItems = [
+        {
+          name: "Видеокарта",
+          price: "22000",
+          currency: "RUB",
+          quantity: 1,
+        },
+        {
+          name: "Процессор",
+          price: "15000",
+          currency: "RUB",
+          quantity: 1,
+        },
+        {
+          name: "SSD",
+          price: "4500",
+          currency: "RUB",
+          quantity: 2,
+        },
+        {
+          name: "Куллер",
+          price: "450",
+          currency: "RUB",
+          quantity: 4,
+        },
+      ];
+      function countBasketPrice(items) {
+        let amount = 0;
+        for (let i = 0; i < basketItems.length; i++) {
+          amount += basketItems[i].price * basketItems[i].quantity;
+        }
+        return amount;
+      }
+      console.log(
+        "Итого к оплате: ",
+        countBasketPrice(),
+        basketItems[0].currency
+      );
+
+      ///////Задание 4///////
+      console.log("Задание 4.");
+      for (let i = 0; i < 10; console.log(i++)) {}
+
+      ///////Задание 5///////
+      console.log("Задание 5.");
+      let str = "";
+      for (let i = 0; i < 20; i++) {
+        str += "x";
+        console.log(str);
+        console.log("\n");
+      }
+    </script>
+  </body>
+</html>

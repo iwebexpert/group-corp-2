@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson6</title>
+
+    <script>
+
+        /* 1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100.*/
+
+        for (let i = 0; i <= 100; i++) {
+            let tmp = 0
+            for (let j = 0; j <= i; j++) {
+                if(i % j === 0) {
+                    tmp++
+                }
+            }
+            if(i > 1 && tmp <= 2) {
+                console.log(i)
+            }
+        }
+
+    </script>
+
+    <script>
+
+        /* 2. С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины.
+        Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.
+        Товары в корзине хранятся в массиве. Задачи:
+            a. Организовать такой массив для хранения товаров в корзине;
+            b. Организовать функцию countBasketPrice, которая будет считать стоимость корзины.*/
+
+        let cart = [
+            {
+                name: "Bread",
+                price: 2,
+                currency: 'USD',
+                count: 3
+            },
+            {
+                name: "Milk",
+                price: 5,
+                currency: 'USD',
+                count: 1
+            },
+            {
+                name: "Meat",
+                price: 30,
+                currency: 'USD',
+                count: 1
+            },
+            {
+                name: "Chocolate",
+                price: 3,
+                currency: 'USD',
+                count: 2
+            },
+        ]
+
+        function cartPrice (cart) {
+            let sum = 0
+            for(let i = 0; i < cart.length; i++) {
+                sum += cart[i].price * cart[i].count
+            }
+            return sum
+        }
+
+        console.log(cartPrice (cart))
+
+    </script>
+
+    <script>
+
+        /* 3. * Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть должно так:
+            for(…){// здесь пусто} */
+
+        for (let i = 0; i <= 9; console.log(i++)) {}
+
+    </script>
+
+    <script>
+
+        /* 4. * Нарисовать пирамиду из 20 рядов с помощью console.log, как показано на рисунке*/
+
+        let a = 1
+
+        while (a <= 20) {
+            let str = ""
+            for(let i = 0; i < a; i++) {
+                str += "x"
+            }
+            console.log(str)
+            a++
+        }
+
+    </script>
+
+</head>
+<body>
+</body>
+</html>

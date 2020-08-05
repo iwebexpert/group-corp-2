@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale =1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <script>
+		// С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
+        let count = 0;
+        const arr = [];
+		while(count <= 100) {
+			if(isPrime(count) && count > 1) {
+				arr.push(count);
+			}
+			count++;
+		}
+		// Определяем функцию которая проверяет простое ли число или нет
+		function isPrime(number) {
+			for (let i = 2; i <= number/2; i++) {
+				if (number % i === 0) {
+					return false;
+				}
+			}
+			return true;
+		}
+		console.log(arr);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

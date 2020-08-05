@@ -27,21 +27,53 @@
 
       ///////Задания 2 и 3///////
       console.log("Задания 2 и 3.");
-      const basket = [
-        ["Видеокарта", 22000, "RUB", 1],
-        ["Процессор", 15000, "RUB", 1],
-        ["SSD", 4500, "RUB", 2],
-        ["Куллер", 450, "RUB", 4],
-      ];
 
+      //Если использовать массив массивов
+      // const basket = [
+      //   ["Видеокарта", 22000, "RUB", 1],
+      //   ["Процессор", 15000, "RUB", 1],
+      //   ["SSD", 4500, "RUB", 2],
+      //   ["Куллер", 450, "RUB", 4],
+      // ];
+
+      const basketItems = [
+        {
+          name: "Видеокарта",
+          price: "22000",
+          currency: "RUB",
+          quantity: 1,
+        },
+        {
+          name: "Процессор",
+          price: "15000",
+          currency: "RUB",
+          quantity: 1,
+        },
+        {
+          name: "SSD",
+          price: "4500",
+          currency: "RUB",
+          quantity: 2,
+        },
+        {
+          name: "Куллер",
+          price: "450",
+          currency: "RUB",
+          quantity: 4,
+        },
+      ];
       function countBasketPrice(items) {
         let amount = 0;
-        for (let i = 0; i < basket.length; i++) {
-          amount += basket[i][1] * basket[i][3];
+        for (let i = 0; i < basketItems.length; i++) {
+          amount += basketItems[i].price * basketItems[i].quantity;
         }
         return amount;
       }
-      console.log("Итого к оплате: ", countBasketPrice(), basket[0][2]);
+      console.log(
+        "Итого к оплате: ",
+        countBasketPrice(),
+        basketItems[0].currency
+      );
 
       ///////Задание 4///////
       console.log("Задание 4.");

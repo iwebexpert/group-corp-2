@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6</title>
+    <script>
+        //1
+        function getPrimeNumbers(range) {
+            let x = 0;
+            let primeNumbers = [];
+            let prime = false;
+            while (x <= (range - 1)) {
+                ++x;
+                let div = 1;
+                while (div <= (x - 1)) {
+                    prime = true;
+                    ++div;
+                    let divRes = x / div;
+                    if (divRes === Math.floor(divRes)) {
+                        if ((div === 1) || div === x) {
+                            prime = true;
+                        } else {
+                            prime = false;
+                            break;
+                        }
+                    }
+                }
+                if (prime) {
+                    primeNumbers.push(x);
+                }
+            }
+            primeNumbers.forEach((item) => console.log(item));
+        }
+
+        getPrimeNumbers(100);
+
+        //2 - 3
+
+        const products = [
+            { item: 'Laptop', currency: 'RUB', price: 50000 },
+            { item: 'Phone', currency: 'RUB', price: 30000 },
+            { item: 'Headphones', currency: 'RUB', price: 10000 },
+            { item: 'Monitor', currency: 'RUB', price: 25000 },
+        ];
+
+        function countBasketPrice(items) {
+            let pricesArr = [];
+
+            items.forEach((item) => pricesArr.push(item.price));
+            let amount = pricesArr.reduce((a, b) => a + b);
+
+            return amount;
+        }
+
+        console.log(countBasketPrice(products));
+
+        //4
+        for (let i = 0; i <= 9; i++, console.log(i)) { }
+
+        //5
+        for (let i = 1; i <= 20; i++) {
+            console.log('x'.repeat(i));
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

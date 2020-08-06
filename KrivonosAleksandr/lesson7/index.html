@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6</title>
+    <script>
+        'use strict';   //браузер работает в строгом режиме
+
+        //***************FIRST TASK***************
+        console.log("FIRST TASK");
+
+        class Digits{
+            
+            constructor(){
+                this.units;     //единицы
+                this.hundreds;  //сотни
+                this.dozens;    //десятки
+            }
+
+            parseToDigits(num){
+                console.log("Вы передали: " + num)
+                if(num === 0){
+                    this.units = 0;
+                    this.dozens = 0;
+                    this.hundreds = 0;
+
+                    return this;
+                }
+                if((parseInt(num)) && (num >= 0 && num <= 999)){
+                
+                    this.units = parseInt(num % 10);
+                    this.dozens = parseInt(num % 100 / 10);
+                    this.hundreds = parseInt(num % 1000 / 100);
+
+                    return this;
+                }else{
+                    return (console.log("Передайте в функцию число в диапазоне от 0 до 999!"));
+                }
+            }
+
+            showRes(){
+                if(this.units !== undefined){
+                    console.log("Сотни: " + this.hundreds + " десятки: " + this.dozens + " единицы: " + this.units);
+                }
+            }
+        }
+
+        //*****TESTS*****
+
+        // let res1 = new Digits();
+        // res1.parseToDigits("GJJVjhjs");
+        // res1.showRes();
+
+        // let res2 = new Digits();
+        // res2.parseToDigits("427");
+        // res2.showRes();
+
+        let res3 = new Digits();
+        res3.parseToDigits(32);
+        res3.showRes();
+
+        // let res4 = new Digits();
+        // res4.parseToDigits(-12);
+        // res4.showRes();
+
+        // let res5 = new Digits();
+        // res5.parseToDigits(999);
+        // res5.showRes();
+
+        // let res6 = new Digits();
+        // res6.parseToDigits(2999);
+        // res6.showRes();
+
+        // let res7 = new Digits();
+        // res7.parseToDigits(0);
+        // res7.showRes();
+
+        // let res8 = new Digits();
+        // res8.parseToDigits();
+        // res8.showRes();
+
+        //***************SECOND AND THIRD TASK***************
+        console.log("SECOND AND THIRD TASK");
+
+        class Basket{
+            constructor(){
+                this.basketItems = [];                                              //инициализация массива товаров
+            }
+
+            //добавление товара в корзину
+            addToBasket(product){
+                this.basketItems.push(product);
+                console.log(`В корзину дабавлено ${product.name} в количестве ${product.num}`);
+            }
+
+            //удаление товара из корзины
+            deleteFromBasket(productName, num){
+                for(let i = 0; i < this.basketItems.length; i++){                   //проходимся по всему массиву товаров
+                    if(this.basketItems[i].name == productName){                    //если название товара совпадает с нпереданным названием
+                        this.basketItems[i].num -= num;                             //уменьшаем количество товаров в корзине
+                        if(this.basketItems[i].num <= 0){                           //если кол-во товаров в корзине <= 0 
+                            this.basketItems.splice(i, 1);                          //удаляем товар из массива
+                            console.log(`Из корзины удален товар ${productName}`);
+                            break;
+                        }
+                        console.log(`Из корзины удалено товар ${productName} в количестве ${num}`);
+                        break;
+                    }
+                }
+            }
+
+            //подсчет стоимости всех товаров в корзине
+            countBasketPrice() {
+                let sum = 0;                                                        //сумма
+                for( let product in this.basketItems ){
+                    sum += this.basketItems[product].price * this.basketItems[product].num;
+                }
+                console.log("Сумма товаров в корзине: " + sum);
+            }
+        }
+
+        class Product{
+            constructor(name = null, price = 0, num = 0){
+                this.name = name;
+                this.price = price;
+                this.num = num;
+            }
+
+            //функционал для карточки товаров при покупке "в один клик"
+            addNum(num){
+                this.num += num;
+            }
+
+            removeNum(num){
+                if(this.num < num){
+                    this.num = 1;
+                }else{
+                    this.num -= num;
+                }
+            }
+        }
+
+        let jackets = new Product("Куртка", 7000, 3);
+        let hats = new Product("Шапка", 1000, 5);
+        let shoes = new Product("Кроссовки", 7990, 2);
+        let tShirt = new Product("Футболка", 2000, 4);
+        let pants = new Product("Штаны", 1500, 3);
+
+        let basket = new Basket();
+
+        basket.addToBasket(jackets);
+        basket.addToBasket(hats);
+        basket.addToBasket(shoes);
+        basket.addToBasket(tShirt);
+        basket.addToBasket(pants);
+
+        basket.countBasketPrice();
+
+        basket.deleteFromBasket("Куртка", 2);
+
+        basket.countBasketPrice();
+
+        basket.deleteFromBasket("Футболка", 29);
+
+        basket.countBasketPrice();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

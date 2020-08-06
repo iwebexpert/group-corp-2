@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hw7</title>
+    <script>
+        //1.
+        //let input = parseInt(prompt('Выберите число от 0 до 999'));
+        input = 78;
+        let num = {
+            units: 0,
+            tens: 0,
+            hundreds: 0,
+        };
+
+        if (input <= 999 && input >= 0) {
+            num.units = Math.floor(input % 10);
+            num.tens = Math.floor(input / 10 % 10);
+            num.hundreds = Math.floor(input / 100 % 10);
+            console.log(num);
+        } else console.log('Вы ввели некорректное число');
+
+        //2-3.
+        class Product {
+            constructor(name, price, currency, quantity) {
+                this.name = name;
+                this.price = price;
+                this.currency = currency;
+                this.quantity = quantity;
+            }
+        }
+
+        class Cart {
+            constructor() {
+                this.products = [];
+            }
+            addToCart(product){
+                this.products.push(product);
+                console.log('В корзину добавили ' + product.name + ' в количестве: ' + product.quantity);
+            }
+            countCartPrice() {
+                let res = 0;
+                for(let i in this.products ){
+                    res += this.products[i].price * this.products[i].quantity;
+                }
+                console.log("Итого товаров в корзине на сумму: " + res);
+            }
+        }
+
+        let keyboard = new Product("Клавиатура", 2000, "руб", 3);
+        let mouse = new Product("Мышь", 1000, "руб", 2);
+        let monitor = new Product("Монитор", 10000, "руб", 1);
+        let cart = new Cart();
+        cart.addToCart(keyboard);
+        cart.addToCart(mouse);
+        cart.addToCart(monitor);
+        cart.countCartPrice();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

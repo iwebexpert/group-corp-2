@@ -76,8 +76,9 @@ class Bucket {
     }
     addProduct(product, count){
         if (product && product instanceof Product && count > 0){
-            product.count = count;
-            this.products.push(product);
+            let newProduct = {...product};
+            newProduct.count = count;
+            this.products.push(newProduct);
             return this;
         }else{
             console.log('Неправильный продукт или неверно указано количество');
@@ -85,14 +86,17 @@ class Bucket {
     }
 
     sumBucket(){
+        this.sum = 0;
         this.products.forEach(item => {
             this.sum += item.price * item.count;
         })
         console.log(`${this.user} набрал товаров на сумму: ${this.sum} рублей`);
     }
 }
-
+let lenaBucket = new Bucket('Elena');
 let alexBucket = new Bucket('Alexandr');
 alexBucket.addProduct(apple, 5).sumBucket();
+lenaBucket.addProduct(apple, 3).sumBucket();
+alexBucket.sumBucket()
 
 

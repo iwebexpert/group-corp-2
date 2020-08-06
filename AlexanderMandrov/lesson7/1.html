@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <script>
+        const numToObj = (num) => {
+            let resObj = {
+                unit: 0,
+                dozen: 0,
+                hundreds: 0,
+            };
+
+            if (num >= 0 && num <= 999) {
+                resObj.hundreds = Math.floor(num / 100);
+                num -= 100 * resObj.hundreds;
+
+                resObj.dozen = Math.floor(num / 10);
+                num -= 10 * resObj.dozen;
+
+                resObj.unit = num;
+            } else {
+                resObj = null;
+                console.log('число превышает 999');
+            }
+
+            return resObj;
+        }
+        console.log(numToObj(245));
+        console.log(numToObj(1000));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

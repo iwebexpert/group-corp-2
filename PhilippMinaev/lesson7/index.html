@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson7</title>
+  </head>
+  <body>
+    <script>
+      //1
+      function translate(number) {
+        let translatedNumber = {};
+        if (number > 999) {
+          console.log("Number is bigger than 999");
+        } else if (number < 0) {
+          console.log("Number is lower than 0");
+        } else {
+          translatedNumber.units = number % 10;
+          translatedNumber.tens = ((number % 100) - (number % 10)) / 10;
+          translatedNumber.hundreds = (number - (number % 100)) / 100;
+        }
+        return translatedNumber;
+      }
+      //TEST
+      let example = 245;
+      console.log(translate(example));
+
+      //2,3
+      class Item {
+        constructor(id, name, price, currency) {
+          this.id = id;
+          this.name = name;
+          this.price = price;
+          this.currency = currency;
+        }
+
+        itemInfo() {
+          console.log(
+            `Product name: ${this.name}, \n Price: ${this.price}, \n Currency: ${this.currency}, \n Vendor code: ${this.id}`
+          );
+        }
+
+        changePrice(newPrice, newCurrency) {
+          if (newPrice < 0 || newCurrency != ("rub" || "usd")) {
+            console.log("Error: check price or currency");
+          } else {
+            this.price = newPrice;
+            this.currency = newCurrency;
+          }
+        }
+      }
+
+      class ShoppingBucket {
+        constructor(user) {
+          this.user = user;
+          this.items = [];
+          this.total = 0;
+        }
+
+        addItem(item, count) {
+          if (count > 0 && item instanceof Item && Number.isInteger(count)) {
+            if (!this.items.includes(item)) this.items.push(item);
+            item.count ? (item.count += count) : (item.count = count);
+            this.total += item.price * count;
+          } else {
+            console.log("Error: check item and count");
+          }
+        }
+
+        deleteItem(item, count) {
+          if (
+            count <= item.count &&
+            count > 0 &&
+            item instanceof Item &&
+            this.items.includes(item) &&
+            Number.isInteger(count)
+          ) {
+            item.count -= count;
+            if (item.count == 0) {
+              this.items.splice(this.items.indexOf(item), 1);
+            }
+            this.total -= item.price * count;
+          } else {
+            console.log("Error: check item and count");
+          }
+        }
+
+        bucketInfo() {
+          console.log("Items:");
+          for (let item of this.items) {
+            console.log(`${item.name} --- ${item.count}`);
+          }
+          console.log(`Total price: ${this.total}`);
+        }
+      }
+      let cpu = new Item(1, "Intel Core i5-9600K", 12854, "rub");
+      let graphicCard = new Item(2, "Nvidia GTX 1660S (Super)", 15161, "rub");
+      let ram = new Item(
+        3,
+        "Corsair Vengeance LPX DDR4 3200 C16 2x8GB",
+        3626,
+        "rub"
+      );
+      let myBucket = new ShoppingBucket("Philipp");
+
+      //TESTS
+      cpu.itemInfo();
+      graphicCard.itemInfo();
+      ram.itemInfo();
+      cpu.changePrice(1000, "rub");
+      cpu.itemInfo();
+      cpu.changePrice(-23, "rub");
+      cpu.itemInfo();
+      cpu.changePrice(23, "blabla23");
+      cpu.itemInfo();
+      myBucket.addItem(cpu, 1);
+      myBucket.bucketInfo();
+      myBucket.addItem(cpu, 1.2);
+      myBucket.bucketInfo();
+      myBucket.addItem(cpu, 1);
+      myBucket.bucketInfo();
+      myBucket.addItem(ram, 1);
+      myBucket.bucketInfo();
+      myBucket.deleteItem(ram, 4);
+      myBucket.deleteItem(ram, 1);
+      myBucket.bucketInfo();
+    </script>
+  </body>
+</html>

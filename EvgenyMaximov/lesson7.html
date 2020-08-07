@@ -113,17 +113,19 @@
 					}
 				}
 
-				addCount(step) {
-					this.count += step;
+				increaseCount() {
+					this.count++;
 				}
 
 
-				deleteCount(step) {
+				decreaseCount() {
+					while (this.count > 0) {
+						this.count--;
+					}
+				}
 
-					if (step && this.count >= step) {
-						this.count -= step;
-					} else this.count = 0;
-
+				deletePurchase() {
+					this.count = 0;
 				}
 
 				priceToDollar() {
@@ -139,6 +141,7 @@
 
 
 			let shoes = new Product('Shoes', 5000, 'Rub', 1);
+
 
 			shoes.getInfo();
 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homewors 7</title>
+    <script>
+        //1
+
+        function numberToObject(num) {
+            if (num <= 999 && num >= 0) {
+                let obj = {
+                    units: num % 10,
+                    dozens: Math.floor((num - ((Math.floor(num / 100)) * 100)) / 10),
+                    hundreds: Math.floor(num / 100),
+                }
+
+                console.log(obj);
+            } else {
+                console.log('Введено число не в том диапазоне');
+                console.log(null);
+            }
+        }
+
+        numberToObject(229);
+
+        //2
+        /*
+        В этом задании создан класс "Корзина", которые получает в качестве аргументов товары в качестве массива,
+        валюту в качестве строки, цены также в качестеве массива.
+        Индексы товаров и цен должны соответствовать.
+        Например ['Laptop', Phone] [50000, 60000], в данном случае ноутбук стоит 50000руб., а телефон 60000руб.
+        Были созданы геттеры получения эл-в, добавления новых, изменения существующих и метод, который рассчитывает
+        всю корзиную
+        */
+        class Basket {
+            constructor(items, currency, prices) {
+                this.items = [...items]
+                this.currency = currency;
+                this.prices = [...prices];
+
+            }
+
+            getAllItems() {
+                this.items.map((item) => console.log(item));
+            }
+
+            getItem(index) {
+                console.log(this.items[index]);
+            }
+
+            getItemPrice(index) {
+                console.log(`${this.prices[index]} ${this.currency}`);
+            }
+
+            getCurrency() {
+                console.log(this.currency);
+            }
+
+            addItem(value, price) {
+                this.items.push(value);
+                this.prices.push(price);
+                console.log(`Now total amount is ${this.getTotalAmount()} ${this.currency}`);
+            }
+
+            removeItem(index) {
+                this.items.splice(index, 1);
+                this.prices.splice(index, 1);
+                console.log(`Now total amount is ${this.getTotalAmount()} ${this.currency}`);
+            }
+            changeItem(index, value) {
+                this.items[index] = value;
+            }
+
+            changePrice(index, price) {
+                this.prices[index] = price;
+                console.log(`Now total amount is ${this.getTotalAmount()} ${this.currency}`);
+            }
+
+            countBasketPrice() {
+                console.log(`Total amount is ${this.getTotalAmount()} ${this.currency}`);
+            }
+
+            getTotalAmount() {
+                return this.prices.reduce((a, b) => a + b);
+            }
+
+
+
+        }
+
+        const products = new Basket(['Laptop', 'Monitor', 'Phone'], 'RUB', [50000, 25000, 30000]);
+
+        products.countBasketPrice();
+        products.getItem(0);
+        products.changeItem(1, 'Headphones');
+        products.getItem(1);
+
+        //3
+        /*В этом задании я создала класс "продукт" и методы, которые позовляют задавать тип товара,
+        модель, цену, валюту, количество. Также, есть геттеры, которые позволяют получить выше упомянутые аргументы,
+        некоторые из них пересчитывают сумму сразу же.
+        */
+
+        class Product {
+            constructor(name, model, price, currency, quantity) {
+                this.name = name;
+                this.model = model;
+                this.price = price;
+                this.currency = currency;
+                this.quantity = quantity;
+            }
+
+            getItem() {
+                console.log(this.name);
+            }
+
+            getPrice() {
+                console.log(`${this.name} costs ${this.price} ${this.currency}`);
+            }
+
+            getAllItemsPrice() {
+                console.log(`${this.quantity} items cost ${this.price * this.quantity} ${this.currency}`);
+            }
+
+            getModel() {
+                console.log(`Model of ${this.name} is ${this.model}`);
+            }
+
+            setItem(value) {
+                this.name = value;
+            }
+
+            setModel(model) {
+                this.model = model;
+            }
+
+            setPrice(price) {
+                this.price = price;
+                console.log(`Now ${this.name} costs ${this.price} ${this.currency}`);
+            }
+
+            setQuantity(quantity) {
+                this.quantity = quantity;
+                console.log(`Now total amount of this item is ${this.price * this.quantity}`);
+            }
+
+        }
+
+        const laptop = new Product('Laptop', 'Acer', 50000, 'RUB', 2);
+        laptop.getItem();
+        laptop.getPrice();
+        laptop.getAllItemsPrice();
+        laptop.setItem('Phone');
+        laptop.getItem();
+        laptop.setModel('iPhone');
+        laptop.getModel();
+        laptop.setPrice(60000);
+        laptop.getAllItemsPrice();
+        laptop.setQuantity(3);
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

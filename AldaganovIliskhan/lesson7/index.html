@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 1
+
+        const fromNumToObj = (num) => {
+          let numArr = num.toString().split('');
+           let obj = {
+               'Единицы' : +numArr[2],
+               'Десятки' : +numArr[1],
+               'Сотни' : +numArr[0]
+           }
+           if(num > 999 || typeof num !== 'number' || num < 0) {
+               return {};
+           }
+         return obj;    
+        }
+        console.log(fromNumToObj(245));
+
+        //2 
+
+        // тут два решения
+
+        // const shop = [
+        //     {
+        //         name: 'Keybord',
+        //         price: 1000,
+        //         currency: 'RUB',
+        //         count: 1,
+        //     },
+        //     {
+        //         name: 'Mouse',
+        //         price: 500,
+        //         currency: 'RUB',
+        //         count: 1
+        //     },
+        //     {
+        //         name: 'Monitor',
+        //         price: 2500,
+        //         currency: 'RUB',
+        //         count: 3
+        //     },
+            
+        // ];
+        // class Basket {
+        //     constructor(shop) {
+        //         this.shop = shop;
+        //     }
+        //     totalcount() {
+        //         return shop.reduce((amount,item) =>  amount += item.price * item.count,0)
+        //     }
+        // }
+        // let basket = new Basket(shop);
+        // console.log(basket.totalcount())
+
+        class Shop {
+            constructor(name,price,currency,count) {
+                this.name = name;
+                this.price = price;
+                this.currency = currency;
+                this.count = count;
+            }
+        }
+        let keyboard = new Shop('Keyboard',1000,'RUB',1);
+        let mouse = new Shop('Mouse',500,'RUB',1);
+        let monitor = new Shop('Monitor',2500,'RUB',3);
+        
+        class Basket {
+            constructor(...items) {
+                this.items = items;
+            }
+            countBasketPrice () {
+                return this.items.reduce((amount,item) => amount += item.price * item.count,0)
+            }
+        }
+        let basket = new Basket(keyboard,mouse,monitor);
+        console.log(basket.countBasketPrice());
+    </script>
+</body>
+</html>

@@ -1,18 +1,20 @@
-let n = +prompt('Введите число от 0 до 999');
 
-let number = {
-    units: 0,
-    tens: 0,
-    hundreds: 0,
-};
+function numObj() {
+    let n = +prompt('Введите число от 0 до 999');
+    let number = {};
 
-if (n <= 999 && n >= 0) {
-    number.units = Math.floor(n % 10);
-    number.tens = Math.floor(n / 10 % 10);
-    number.hundreds = Math.floor(n / 100 % 10);
-    console.log(number);
+    if (n <= 999 && n >= 0) {
+        number.units = Math.floor(n % 10);
+        number.tens = Math.floor(n / 10 % 10);
+        number.hundreds = Math.floor(n / 100 % 10);
+        console.log(number);
+    }
+    else {
+        console.log('Вы вышли из диапазона, введите другое число');
+        return (number);
+    }
 }
-else console.log('Вы вышли из диапазона, введите другое число');
+numObj();
 
 // 2
 

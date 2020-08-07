@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 7</title>
+	<script>
+		'use strict';
+
+		{// Задание 1
+
+			let value = prompt('Введите число от 0 до 999', '0').split('');
+
+
+			class TranslateToObject {
+				constructor(value) {
+					this.units = +(value[2]);
+					this.dozens = +(value[1]);
+					this.hundreds = +(value[0]);
+				}
+				show() {
+					return (+(value.join('')) >= 0 && +(value.join('')) <= 999) ? this : {};
+				}
+			}
+
+			let obj = new TranslateToObject(value);
+			console.log(obj.show())
+		}
+
+		{// Задание 2
+
+
+			class Product {
+				constructor(name, price, currency, count) {
+					this._name = name;
+					this.price = price;
+					this.currency = currency;
+					this.count = count;
+				}
+
+				get info() {
+					console.log(`Name: ${this._name}, Price: ${this.price} ${this.currency}, Count: ${this.count}`)
+				};
+			};
+
+			let tshort = new Product('T-short', 700, 'Rub', 2);
+			let shoes = new Product('Shoes', 5000, 'Rub', 1);
+			let dress = new Product('Dress', 3500, 'Rub', 1);
+			let socks = new Product('Socks', 350, 'Rub', 7);
+
+			class Basket {
+				constructor(user) {
+					this.user = user;
+					this.purchases = [];
+					this.total = 0;
+				}
+
+				addPurchase(item, count) {
+
+					if (item && item instanceof Product && count > 0) {
+						this.purchases.push(item);
+						return this;
+					} else {
+						console.log('Нет в наличии')
+					}
+				}
+
+				getSum() {
+					let totalPrice = 0;
+					this.purchases.forEach(p => {
+						this.total += p.price * p.count;
+						return totalPrice = `${this.total} ${p.currency}`;
+						/*Сначала не объявлял новую переменную, но тогда при добавлении множества товаров выводились промежуточные суммы,поэтому решил сделать так,
+						чтоб выводилась только финальная сумма. Возможно, это можно было сделать как то проще, еще подумаю.*/
+					})
+					console.log(`Total price: ${totalPrice}`)
+				}
+			}
+
+			let newBasket = new Basket('Evgeny')
+			newBasket.addPurchase(tshort, 2);
+			newBasket.addPurchase(shoes, 1);
+			newBasket.addPurchase(dress, 1);
+			newBasket.addPurchase(socks, 7);
+			newBasket.getSum();
+		}
+
+		{// Задание 3
+
+			class Product {
+				constructor(name, price, currency, count) {
+					this._name = name;
+					this.price = price;
+					this.currency = currency;
+					this.count = count;
+				};
+
+				getInfo() {
+					console.log(`Name: ${this._name}, Price: ${this.price} ${this.currency}, Count: ${this.count}`)
+				};
+
+				setName(value) {
+
+					if (value && value.length > 2 && value.length <= 15) {
+						this._name = value;
+					}
+				};
+
+				calcDiscount(percent) {
+					if (this.price) {
+						this.price *= 1 - percent / 100;
+					}
+				}
+
+				increaseCount() {
+					this.count++;
+				}
+
+
+				decreaseCount() {
+					while (this.count > 0) {
+						this.count--;
+					}
+				}
+
+				deletePurchase() {
+					this.count = 0;
+				}
+
+				priceToDollar() {
+					this.price = (Math.round((this.price / 73.4) * 100)) / 100;
+					this.currency = 'Dollars'
+				}
+
+				priceToEuro() {
+					this.price = (Math.round((this.price / 86.5) * 100)) / 100;
+					this.currency = 'Euro'
+				}
+			}
+
+
+			let shoes = new Product('Shoes', 5000, 'Rub', 1);
+
+
+			shoes.getInfo();
+
+
+		}
+
+	</script>
+</head>
+
+<body>
+</body>
+
+</html>

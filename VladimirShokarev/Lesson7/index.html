@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 7</title>
+
+  <script type="text/javascript">
+
+    ///////////////////// 1 ///////////////////////////////
+
+    /*Первый вариант*/
+
+    // let num = +prompt('Введите число', '123');
+    //
+    // class NumObj{
+    //   constructor(first, second, third){
+    //     this.units = first;
+    //     this.decades = second;
+    //     this.hundreds = third;
+    //   }
+    // }
+    //
+    // console.log(numFunc(num));
+    //
+    // function numFunc(num){
+    //   if((num > -1000) && (num < 1000)){
+    //     if(num < 0) num *= (-1);
+    //
+    //     let first = num % 10;
+    //     num =  parseInt(num/10);
+    //     let second = num % 10;
+    //     num =  parseInt(num/10);
+    //     let third = num % 10;
+    //     console.log(first, second, third);
+    //
+    //     let numObj = new NumObj(first, second, third);
+    //     return numObj;
+    //   } return {};
+    // }
+
+    /*Второй вариант (только для +)*/
+
+    // let num = prompt('Введите число', '123');
+    //
+    // class NumObj{
+    //   constructor(num){
+    //     this.units = num.charAt(2);
+    //     this.decades = num.charAt(1);
+    //     this.hundreds = num.charAt(0);
+    //   }
+    //
+    //   show(){
+    //     return (+num >= 0 && +num <= 999) ? this : {};
+    //   }
+    // }
+    //
+    // let numObj = new NumObj(num);
+		// console.log(numObj.show())
+
+    ///////////////////// 2 ///////////////////////////////
+
+    // class Products{
+    //   constructor(name, amount, price, currency){
+    //     this.name = name;
+    //     this.amount = amount;
+    //     this.price = price;
+    //     this.currency = currency;
+    //   }
+    //
+    //   summ(){
+    //     return this.amount * this.price;
+    //   }
+    // }
+    //
+    // const bread = new Products('Bread', 2, 50, 'RUB');
+    // const milk = new Products('Milk', 1, 100, 'RUB');
+    // const apple = new Products('Apple', 10, 10, 'RUB');
+    // const water = new Products('Water', 3, 70, 'RUB');
+    //
+    // console.log(water.summ());
+    //
+    // class Basket {
+    //   constructor(name, ...products) {
+    //     this.name = name;
+    //     this.products = products;
+    //   }
+    //
+    //   sumFunc(){
+    //     let sum = 0;
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       sum += this.products[i].amount * this.products[i].price;
+    //     }
+    //     return sum;
+    //   }
+    // }
+    //
+    // const myBasket = new Basket('Vladimir', bread, milk, apple, water);
+    //
+    // console.log(myBasket.sumFunc());
+
+    ///////////////////// 3 ///////////////////////////////
+
+    // class Products{
+    //   constructor(name, amount, price, currency){
+    //     this.name = name;
+    //     this.amount = amount;
+    //     this.price = price;
+    //     this.currency = currency;
+    //   }
+    //
+    //   getInfo(){
+    //     return `Название: ${this.name}, стоимость: ${this.price} ${this.currency}`
+    //   }
+    // }
+    //
+    // const bread = new Products('Bread', 0, 50, 'RUB');
+    // const milk = new Products('Milk', 0, 100, 'RUB');
+    // const apple = new Products('Apple', 0, 10, 'RUB');
+    // const water = new Products('Water', 0, 70, 'RUB');
+    //
+    // class Basket {
+    //   constructor(name) {
+    //     this.name = name;
+    //     this.products = [];
+    //   }
+    //
+    //   /*Выводим все продукты*/
+    //   getInfo(){
+    //     let str = ``;
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       str += `Название: ${this.products[i][0].name}, Стоимость: ${this.products[i][0].price}, Количество: ${this.products[i][1]} ${this.products[i][0].currency} \n`;
+    //     }
+    //     return str;
+    //   }
+    //
+    //   /*Добавляем продукт, если он уже был, то перезаписываем*/
+    //   addProducts(product, amount){
+    //     this.products.push([product, amount]);
+    //     console.log(`Добавлено в корзину`);
+    //     if(this.products.length > 1){
+    //       for (let i = 0; i < this.products.length-1; i++){
+    //         if(this.products[i][0].name == product.name){
+    //           this.products.splice(i, 1);
+    //         }
+    //       }
+    //     }
+    //   }
+    //
+    //   /*Удаляем продукт*/
+    //   deleteProducts(product){
+    //     for (let i = 0; i < this.products.length; i++){
+    //       if(this.products[i][0].name == product.name){
+    //         this.products.splice(i, 1);
+    //         console.log(`Удалено из корзины`);
+    //       }
+    //     }
+    //   }
+    //
+    //   /*Суммируем продукты*/
+    //   sumFunc(){
+    //     let sum = 0;
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       sum += this.products[i][0].price * this.products[i][1];
+    //     }
+    //     return sum;
+    //   }
+    //
+    //   sumFuncRub(){
+    //     let sum = 0;
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       sum += this.products[i][0].price * this.products[i][1];
+    //     }
+    //     return sum + " RUB";
+    //   }
+    //
+    //   sumFuncEur(){
+    //     let sum = 0;
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       sum += this.products[i][0].price * this.products[i][1];
+    //     }
+    //     return (sum/87.17).toFixed(2) + " EUR";
+    //   }
+    //
+    //   sumFuncUsd(){
+    //     let sum = 0;
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       sum += this.products[i][0].price * this.products[i][1];
+    //     }
+    //     return (sum/73.43).toFixed(2) + " USD";
+    //   }
+    // }
+    //
+    // const myBasket = new Basket('Vladimir');
+    //
+    // myBasket.addProducts(apple, 2); //Добавляем продукт
+    // myBasket.addProducts(milk, 3);
+    // myBasket.addProducts(water, 6);
+    // myBasket.addProducts(water, 6);
+    // myBasket.deleteProducts(apple); //Удаляем продукт
+    // myBasket.addProducts(apple, 5);
+    // myBasket.deleteProducts(water);
+    // myBasket.addProducts(bread, 3);
+    // myBasket.addProducts(water, 2);
+    // myBasket.addProducts(water, 3);
+    // console.log(myBasket.getInfo()); //Информация о том, что находится в корзине
+    // console.log(myBasket.sumFuncRub()); //Сумма в рублях
+    // console.log(myBasket.sumFuncEur()); //Сумма в евро
+    // console.log(myBasket.sumFuncUsd()); //Сумма в долларах
+
+  </script>
+
+</head>
+<body>
+
+</body>
+</html>

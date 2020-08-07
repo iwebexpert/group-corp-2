@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7 Homework</title>
+    <script>
+        // ЗАДАНИЕ №1
+        const toObject = () => {
+
+            let number = prompt('Введите любое число от 0 до 999');
+            if (number >= 0 && number < 1000) {
+                let obj = {
+                    units: '',
+                    tens: '',
+                    hundreds: '',
+                };
+
+                obj.units = Math.floor(number % 10);
+                obj.tens = Math.floor((number % 100) / 10);
+                obj.hundreds = Math.floor((number % 1000) / 100);
+
+                console.log(obj);
+            } else if (number >= 1000) {
+                console.log({})
+            } else {
+                console.log("Введите число больше нуля!")
+            }
+
+        };
+
+        toObject();
+
+
+
+        //ЗАДАНИЕ №2 и ЗАДАНИЕ №3
+
+        class Item {
+            constructor(product, currency, price) {
+                this.product = product;
+                this.currency = currency;
+                this.price = price;
+            }
+        }
+
+        class Basket {
+            constructor(items) {
+                this.items = [];
+            }
+            addItem(item, amount) {
+                item.amount = amount;
+                this.items.push(item);
+                console.log(`В корзине ${item.amount} ${item.product}`);
+            }
+            removeItem(product, amount) {
+                this.items.map(prod => {
+                    if (prod.product == product) {
+                        prod.amount -= amount;
+                        console.log(`Вы убрали ${amount} ${product} из корзины.`);
+                    }
+                    if (prod.amount <= 0) {
+                        this.items = this.items.filter(i => i !== prod);
+                    }
+                })
+            }
+
+            totalPrice() {
+                return this.items.map((el) => el.price * el.amount).reduce((a, b) => a + b, 0);;
+            }
+        }
+
+        let apple = new Item('apple', 'ruble', 127);
+        let orange = new Item('orange', 'ruble', 98);
+        let pineapple = new Item('pineapple', 'ruble', 277);
+        let banana = new Item('banana', 'ruble', 41);
+        let pear = new Item('pear', 'ruble', 64);
+        let apricot = new Item('apricot', 'ruble', 77);
+
+        let myBasket = new Basket();
+
+
+
+        myBasket.addItem(apple, 5);
+        myBasket.addItem(pineapple, 2);
+
+        console.log(myBasket);
+        console.log(myBasket.totalPrice());
+
+        myBasket.removeItem('apple', 3);
+        myBasket.removeItem('pineapple', 2);
+
+        myBasket.addItem(apricot, 1);
+
+        console.log(myBasket);
+        console.log(myBasket.totalPrice());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

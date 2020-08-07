@@ -16,8 +16,8 @@ function numObj() {
 }
 numObj();
 
-// 2
-
+// 2.1 примитивный и топорный вариант
+/*
 const apples = {
     price: 100,
     quantity: 2,
@@ -46,5 +46,31 @@ let sum = 0;
 sum = sum + apples.price * apples.quantity + onion.price * onion.quantity + potatoes.price *
     potatoes.quantity + salad.price * salad.quantity + carrot.price * carrot.quantity +
     pasta.price * pasta.quantity;
-console.log(sum);
+console.log(sum); */
 
+// 2.2 менее топорное решение вижу таким
+
+let arr = [];
+const reducer = (a, b) => a + b;
+class Basket {
+    constructor(product, price, quantity) {
+        this.product = product;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    countSum() {
+        let sum = this.price * this.quantity;
+        arr.push(sum);
+        return arr;
+    }
+}
+
+function sumTotal(arr) {
+    return arr.reduce(reducer);
+}
+let potato = new Basket('potato', 100, 1);
+let tomato = new Basket('tomato', 100, 2);
+let apple = new Basket('apple', 130, 2);
+
+console.log(sumTotal(potato.countSum(), tomato.countSum(), apple.countSum()));

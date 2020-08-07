@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson7</title>
+	<script>
+		'use strict'
+		// Задание №1
+		console.log('Задание 1');
+		//ES6
+		class DescNumper{
+			constructor(hundreds, decades, units){
+				this._hundreds = hundreds;
+				this._decades = decades;
+				this._units = units;
+			}
+
+			get hundreds() {
+				return this._hundreds;
+			}
+
+			get decades() {
+				return this._decades;
+			}
+
+			get units() {
+				return this._units;
+			}
+
+			showQuality(){
+				console.log(`Сотни: ${this._hundreds} Десятки: ${this._decades} Единицы: ${this._units}`);
+			}
+
+			showNumber(){
+				console.log(`Число: ${this._hundreds}${this._decades}${this._units}`);
+			}
+		}
+		
+		function numberFunction(number){
+			
+			if (number === null) {
+				console.log('Число не введено');
+				return null;
+			} else if (number<1000 && number>=0) {
+				return new DescNumper( Math.floor(number / 100 % 10), Math.floor(number / 10 % 10), number % 10);
+			} else {
+				console.log('Введенное число не входит в диапазон от 0 до 999');
+				return null;
+			}
+		}
+
+		let desc_numper = numberFunction(345);
+		if (desc_numper) {
+			desc_numper.showQuality();
+			// Проверка - вывод числа
+			desc_numper.showNumber();
+		}
+
+
+		// Задание №2
+		console.log('Задание 2');
+		//ES6
+		class Product {
+			constructor(name, price, quantity){
+				this.setName(name);
+				this.setPrice(price);
+				this.setQuantity(quantity);
+			}
+
+			get name() {
+				return this._name;
+			}
+			get price() {
+				return this._price;
+			}
+			get quantity() {
+				return this._quantity;
+			}
+
+			setName(name) {
+				this._name = name;
+			}
+			setPrice(price) {
+				this._price = price;
+			}
+			setQuantity(quantity) {
+				this._quantity = quantity;
+			}
+
+			showProduct(){
+				console.log(`Название ${this._name} Цена ${this._price}руб. Количество ${this._quantity}`);
+			}
+			
+		}
+
+		class Basket{
+			constructor(productsList){
+				this.setProductsList(productsList);
+			}
+
+			get productsList() {
+				return this.productsList;
+			}
+
+			setProductsList(productsList){
+				this._productsList = productsList;
+			}
+
+			countBasketPrice(){
+				let sum = 0;
+				for (let i = 0; i < this._productsList.length; i++){
+					sum += this._productsList[i].price * this._productsList[i].quantity;
+				}
+				return sum;
+			}
+
+			showProducts(){
+				for (let i = 0; i < this._productsList.length; i++){
+					this._productsList[i].showProduct();
+				}
+			}
+			show_sum(){
+				console.log(`Общая сумма: ${this.countBasketPrice()}`);
+			}
+		}
+
+		// Экземпляр класса Basket
+		let basket1 = new Basket ([
+				new Product('Table', 10000, 1),
+				new Product('Armchair', 4570, 3),
+				new Product('Picture "Summer"', 1390, 1),
+				new Product('Picture "Winter"', 1600, 1)
+			]);
+
+		// Вызов функции - содержимое корзины
+		basket1.showProducts();
+
+		// Вызов функции - вывод стоимости корзины
+		basket1.show_sum();
+
+		// Задание №3
+		//добавила в название классов New, т.к. классы Product, Basket реализованы во втором задании
+		class ProductNew {
+			constructor(name, price, quantity, discount = 0, description = '', availability = true){
+				this.setName(name);
+				this.setPrice(price);
+				this.setQuantity(quantity);
+				this.setDiscount(discount);
+				this.setDescription(description);
+				this.setAvailability(availability);
+			}
+
+			get name() {
+				return this._name;
+			}
+			get price() {
+				return this._price;
+			}
+			get quantity() {
+				return this._quantity;
+			}
+			get discount() {
+				return this._discount;
+			}
+			get description() {
+				return this._description;
+			}
+			get availability() {
+				return this._availability;
+			}
+
+			//В дальнейшем прописать условия ввода значений
+			setName(name) {
+				this._name = name;
+			}
+			setPrice(price) {
+				this._price = price;
+			}
+			setQuantity(quantity) {
+				this._quantity = quantity;
+			}
+			setDiscount(discount) {
+				this._discount = discount;
+			}
+			setDescription(description) {
+				this._description = description;
+			}
+			setAvailability(availability) {
+				this._availability = availability;
+			}
+
+			showProduct(){
+				console.log(`Название ${this._name} Цена ${this._price}руб. Количество ${this._quantity}`);
+			}
+			showForCatalog(){
+				//Метод который будет выводить полную информацию о продукте в Каталоге
+			}
+
+			
+		}
+
+		class BasketNew{
+			constructor(productsList){
+				this.setProductsList(productsList);
+			}
+
+			get productsList() {
+				return this._productsList;
+			}
+			setProductsList(productsList) {
+				this._productsList = productsList;
+			}
+
+			countBasketPrice(){
+				//добавить расчет с учетом скидки
+				let sum = 0;
+				for (let i = 0; i < this._productsList.length; i++){
+					sum += this._productsList[i].price * this._productsList[i].quantity;
+				}
+				return sum;
+			}
+			permitBuy(){
+				//Если хотя бы одного продукта из корзины нет в наличии, значит кнопка "купить" будет не доступна
+			}
+			push(){
+				// Проверка на то, что в массив класса BasketNew добавляют экземпляр класса ProductNew, иначе выдает ошибку
+			}
+			// Выводит список товаров в корзине
+			showProducts(){
+				for (let i = 0; i < this._productsList.length; i++){
+					this._productsList[i].showProduct();
+				}
+			}
+			show_sum(){
+				console.log(`Общая сумма: ${this.countBasketPrice()}`);
+			}
+		}
+		
+	</script>
+</head>
+
+<body>
+	
+</body>
+</html>

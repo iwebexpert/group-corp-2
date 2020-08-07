@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        class Product {
+            constructor(title = 'moto', brand = "Yamaha", price = 150000, year = 2009, quantity = 2) {
+                this.title = title;
+                this.brand = brand;
+                this.price = price;
+                this.year = year;
+                this.quantity = quantity;
+            }
+
+            getInfoAboutProduct() {
+                let resultStr = `You want buy ${this.title}, brand: ${this.brand}, price: ${this.price}, year: ${this.year}`;
+                return resultStr;
+            }
+
+            getTitle() {
+                let resultStr = `title: ${this.title}`;
+                return resultStr;
+            }
+
+            getBrand() {
+                let resultStr = `brand: ${this.brand}`;
+                return resultStr;
+            }
+
+            getPrice() {
+                let resultStr = `price: ${this.price}`;
+                return resultStr;
+            }
+
+            getYear() {
+                let resultStr = `year: ${this.year}`;
+                return resultStr;
+            }
+
+            addProductFromCart() {
+                let newQuantity = this.quantity++;
+                let resultStr = `quantuty: ${this.quantity}`;
+                return resultStr;
+            }
+
+            removeProductFromCart() {
+                let newQuantity = this.quantity--;
+                let resultStr = `quantuty: ${this.quantity}`;
+                return resultStr;
+            }
+        }
+
+        const product = new Product("car", "Audi", 2000000, 2018, 2);
+        console.log(product.getInfoAboutProduct());
+        console.log(product.getTitle());
+        console.log(product.getBrand());
+        console.log(product.getPrice());
+        console.log(product.getYear());
+        console.log(product.addProductFromCart());
+        console.log(product.removeProductFromCart());
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

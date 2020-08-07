@@ -11,10 +11,10 @@
         /*Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1, arg2 — значения аргументов, operation — строка с названием операции.
         В зависимости от переданного значения выполнить одну из арифметических операций (использовать функции из пункта 5) и вернуть полученное значение (применить switch).*/
 
-        sum = (firtsNumber, secondNumber) => firtsNumber + secondNumber;
-        diff = (firtsNumber, secondNumber) => firtsNumber - secondNumber;
-        mul = (firtsNumber, secondNumber) => firtsNumber * secondNumber;
-        div = (firtsNumber, secondNumber) => {
+        const sum = (firtsNumber, secondNumber) => firtsNumber + secondNumber;
+        const diff = (firtsNumber, secondNumber) => firtsNumber - secondNumber;
+        const mul = (firtsNumber, secondNumber) => firtsNumber * secondNumber;
+        const div = (firtsNumber, secondNumber) => {
             if (secondNumber == 0) {
                 return "На ноль делить нельзя";
             } else {

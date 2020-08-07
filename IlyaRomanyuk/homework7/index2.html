@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        /*1 С помощью обычного объекта*/
+        const catalog = {
+            result: '',
+            totalPrice: 0,
+            basket: [
+                { id: '1', title: "шорты", quantity: "2", currency: 'RUB', price: "1200" },
+                { id: '2', title: "майка", quantity: "3", currency: 'RUB', price: "800" },
+                { id: '3', title: "кроссовки", quantity: "1", currency: 'RUB', price: "3500" }
+            ],
+
+            countBasketPrice() {
+                for (let i = 0; i < this.basket.length; i++) {
+                    this.totalPrice += this.basket[i].price * this.basket[i].quantity;
+                }
+
+                this.result = `Total price: ${this.totalPrice} ${this.basket[0].currency}`
+                return this.result;
+            }
+        }
+
+        console.log(catalog.countBasketPrice());
+        console.log('------------------------------------------------------');
+        /*2 С помощью класса*/
+        class Backet {
+            constructor(items) {
+                this.result = '';
+                this.totalPrice = 0;
+                this.basket = items;
+            }
+
+            countBasketPrice() {
+                for (let i = 0; i < this.basket.length; i++) {
+                    this.totalPrice += this.basket[i].price * this.basket[i].quantity;
+                }
+
+                this.result = `Total price: ${this.totalPrice} ${this.basket[0].currency}`
+                return this.result;
+            }
+        }
+
+        let basket = [
+            { id: '1', title: "шорты", quantity: "2", currency: 'RUB', price: "1200" },
+            { id: '2', title: "майка", quantity: "3", currency: 'RUB', price: "800" },
+            { id: '3', title: "кроссовки", quantity: "1", currency: 'RUB', price: "3500" }
+        ]
+
+        let basketItem = new Backet(basket);
+        console.log(basketItem.countBasketPrice());
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

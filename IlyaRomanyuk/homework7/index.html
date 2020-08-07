@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        /*1. В лоб так сказать*/
+
+        /*const parseNumberToObject = (number) => {
+            let numberStr = String(number);
+            if (numberStr.length > 3) {
+                console.log("Число превышает 3 знака");
+                return {};
+            } else if (numberStr.length == 3) {
+                let objResult = {
+                    units: numberStr[2],
+                    dozens: numberStr[1],
+                    hundreds: numberStr[0]
+                }
+                return objResult
+            } else if (numberStr.length == 2) {
+                let objResult = {
+                    units: numberStr[1],
+                    dozens: numberStr[0],
+                    hundreds: "0"
+                }
+                return objResult
+            } else if (numberStr.length == 1) {
+                let objResult = {
+                    units: numberStr[0],
+                    dozens: "0",
+                    hundreds: "0"
+                }
+                return objResult
+            }
+        }
+
+        console.log(parseNumberToObject())*/
+
+        /*2. Попытка оптимизировать путем деления на 10*/
+
+        /* const helper = (dot) => {
+             if (!dot) return dot;
+ 
+             dot = dot / 10;
+             arr = String(dot).split(".");
+             return arr;
+         }
+ 
+ 
+         const parseNumberToObject = (number) => {
+             let objResult = {
+                 units: '',
+                 dozens: '',
+                 hundreds: ''
+             }
+             let numberStr = String(number);
+             if (numberStr.length > 3) {
+                 console.log("Число превышает 3 знака");
+                 return {};
+             } else {
+                 let arr = helper(number);
+                 objResult.units = !arr ? 0 : arr[arr.length - 1];
+                 arr = helper(+arr[0]);
+                 objResult.dozens = !arr ? 0 : arr[arr.length - 1];
+                 arr = helper(+arr[0]);
+                 objResult.hundreds = !arr ? 0 : arr[arr.length - 1];
+                 return objResult;
+             }
+         }
+ 
+         console.log(parseNumberToObject(0));*/
+
+        /*3. На мой взгляд очень даже гибкое решение. Достаточно поменять длину числа.*/
+        const parseNumberToObject = (number) => {
+            if (typeof number == 'string') return 'Введите число от 0 до 999';
+            let numberStr = String(number);
+            if (numberStr.length > 3) {
+                console.log("Введите число от 0 до 999");
+                return {};
+            }
+            numberStr = numberStr.split('');
+            let limit = 3 - numberStr.length;
+            for (let i = 0; i < limit; i++) {
+                numberStr.unshift('0');
+            }
+            let [hunders, dozens, units] = numberStr;
+            return { units, dozens, hunders, };
+        }
+
+        console.log(parseNumberToObject(3));
+
+        /*4. Так же решил посмотреть решение в интернете. Тоже довольно интересное решение.*/
+
+        /*var max = 999;
+        var digit = {
+            number: prompt('Введите число от 0 до 999'),
+            units: 0,
+            tens: 0,
+            hundreds: 0,
+        };
+        if (digit.number <= 9) {
+            digit.units = digit.number;
+        } else if (digit.number <= 999) {
+            digit.units = Math.floor(digit.number % 10);
+            digit.tens = Math.floor(digit.number / 10 % 10);
+            digit.hundreds = Math.floor(digit.number / 100 % 10);
+        } else {
+            digit.number = 0;
+            console.log('Вы ввели число за диапазоном 0 - 999');
+        }
+        console.log(digit);*/
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

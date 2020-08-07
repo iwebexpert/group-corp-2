@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    function convertNumberToObj(num) {
+        if (num < 0 || num>999 || typeof num !== 'number') {
+            console.log('Некорректные данные');
+            return {};
+        }
+        const asString = String(num);
+        return {
+            hundreds: asString.charAt(asString.length-3),
+            dozens: asString.charAt(asString.length-2),
+            units: asString.charAt(asString.length-1),
+        }
+    }
+
+    let tester = convertNumberToObj(254);
+    console.log(`Число 254, сотни:${tester.hundreds} ,десятки:${tester.dozens} ,единицы:${tester.units}`);
+    tester = convertNumberToObj(54);
+    console.log(`Число 54, сотни:${tester.hundreds} ,десятки:${tester.dozens} ,единицы:${tester.units}`);
+    tester = convertNumberToObj(999999);
+    console.log(`Число 54, сотни:${tester.hundreds} ,десятки:${tester.dozens} ,единицы:${tester.units}`);
+</script>
+<body>
+
+</body>
+</html>

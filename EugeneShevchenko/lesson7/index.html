@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lesson7</title>
+</head>
+<body>
+    
+    <script>
+        'use strict'
+        //---------------------------------------1--------------------------------------------//
+        /**Написать функцию, преобразующую число в объект. Передавая на вход число от 0 до 999,
+         * надо получить на выходе объект, в котором в соответствующих свойствах описаны единицы, десятки и сотни.
+         * Например, для числа 245 надо получить следующий объект: {‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2}.
+         * Если число превышает 999, необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект. **/
+
+         let usrNum = prompt('Введите число от 0 до 999', '213');
+
+         while (!isNumeric(usrNum)) {
+            alert('Ошибка');
+            usrNum = prompt('Введите число подходящее под диапазон [0...999]')
+         }
+
+         let objNum = {
+            units: this.units,
+            decades: this.decades,
+            hundreds: this.hundreds,
+         }
+
+         function isNumeric(usrNum) {
+            return !isNaN(parseFloat(usrNum) && isFinite(usrNum));
+         }
+
+         function numParser() {
+            if (usrNum >= 0 && usrNum <= 999) {
+                let roundHundreds = String(Math.round(usrNum/100)*100);
+                    objNum.hundreds = roundHundreds[0];
+
+                let shortDecades = +usrNum.slice(1);
+                let roundDecades = String(Math.floor(shortDecades/10)*10);
+                    objNum.decades = roundDecades[0];
+            
+                objNum.units = String(usrNum[2]);
+            } else if(usrNum > 999){
+                console.log('Вы ввели число > 999');
+                objNum = {};
+            } else if(usrNum < 0) {
+                console.log('Вы ввели отрицательное значение')
+            }
+         }
+
+         numParser(usrNum);
+         console.log(objNum);
+        //---------------------------------------2--------------------------------------------//
+        /**Продолжить работу с интернет-магазином:
+            В прошлом домашнем задании вы реализовали корзину на базе массивов. Какими объектами можно заменить их элементы?
+            Реализуйте такие объекты.Перенести функционал подсчета корзины на объектно-ориентированную базу.**/
+
+        class Goods {
+
+            constructor(options) {
+                this.item = options.item;
+                this.maker = options.maker;
+                this.price = options.price;
+                this.currency = options.currency;
+                this.lot = options.lot;
+            }
+
+            countProductPrice(par) {
+                return par = this.price * this.lot;
+            }
+
+        }
+
+        const monitor = new Goods({
+                item: 'монитор',
+                maker: 'LG',
+                price: 15000,
+                currency: 'RUB',
+                lot: 3,
+        })
+        const graphics = new Goods({
+                item: 'видеокарта',
+                maker: 'nvidia',
+                price: 80000,
+                currency: 'RUB',
+                lot: 1,
+        })
+        const cpu = new Goods({
+                item: 'процессор',
+                maker: 'intel',
+                price: 90000,
+                currency: 'RUB',
+                lot: 1,
+        })
+        const stand = new Goods({
+                item: 'подставка',
+                maker: 'xiomi',
+                price: 1500,
+                currency: 'RUB',
+                lot: 3,
+        })
+        console.log(monitor.countProductPrice() + graphics.countProductPrice() + cpu.countProductPrice() + stand.countProductPrice());
+        //---------------------------------------3--------------------------------------------//
+        /**Подумать над глобальными сущностями.
+             * К примеру, сущность «Продукт» в интернет-магазине актуальна не только для корзины, но и для каталога.
+             * Стремиться нужно к тому, чтобы объект «Продукт» имел единую структуру для различных модулей сайта,
+             * но в разных местах давал возможность вызывать разные методы.**/
+        /**Думаю что создавать методы в классе, которые будут попадать в прототип будущего объекта скажем прямо удобная фича,
+        и примерно такого подхода я бы придерживался для продуктов**/
+
+    </script>
+</body>
+</html>

@@ -32,41 +32,10 @@ console.log(convert(-10));
 
 // Задание №2, 3
 
-// const basket = [];
-
 class Card {
     constructor(user) {
         this.user = user;
         this.totalAmount = [];
-
-    }
-}
-
-let allBasket = new Card('Pavel');
-
-let basket = allBasket.totalAmount;
-
-
-class Product {
-
-    constructor(title, price, currency, category) {
-        this.title = title;
-        this.price = price;
-        this.currency = currency;
-        this.category = category;
-
-    }
-
-
-    productInfo() {
-        return `Имя товара: ${this.title}, Цена: ${this.price} ${this.currency}, Категория: ${this.category}`
-    }
-
-    addToCard() {
-        let items = +prompt(`Сколько товаров добавить в корзину?`, 1);
-        this.count = items;
-
-        basket.push({ 'title': this.title, 'price': this.price, 'count': this.count })
 
     }
 
@@ -93,6 +62,35 @@ class Product {
         }
         return basketPrice;
     }
+
+}
+
+class Product extends Card {
+
+    constructor(title, price, currency, category) {
+        super();
+        this.title = title;
+        this.price = price;
+        this.currency = currency;
+        this.category = category;
+
+    }
+
+
+    productInfo() {
+        return `Имя товара: ${this.title}, Цена: ${this.price} ${this.currency}, Категория: ${this.category}`
+    }
+
+    addToCard() {
+        let items = +prompt(`Сколько товаров добавить в корзину?`, 1);
+        this.count = items;
+
+        basket.push({ 'title': this.title, 'price': this.price, 'count': this.count })
+
+    }
+
+
+
 
 }
 
@@ -125,6 +123,10 @@ class Movies extends Product {
 
 }
 
+let allBasket = new Card('Pavel');
+
+let basket = allBasket.totalAmount;
+
 const book = new Books('War and Peace', 1000, 'RUB', 'Book', 'L. Tolstoy', 1225);
 const book2 = new Books('The Idiot', 600, 'RUB', 'Book', 'F. Dostoevsky', 667);
 const movie = new Movies('Fight Club', 800, 'RUB', 'Movie', 'David Fincher', ['Edward Norton', 'Brad Pitt', 'Helena Bonham Carter'], 1999);
@@ -139,10 +141,8 @@ console.log(book.addToCard());
 movie.addToCard();
 book2.addToCard();
 
-
 book.deleteFromCard();
 book2.deleteFromCard();
-
 console.log(basket);
 
 console.log(book.totalCard());

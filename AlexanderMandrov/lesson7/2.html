@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webshop</title>
+    <script>
+        class Basket {
+            constructor(items, prices, currency, quantities) {
+                this.items = [...items];
+                this.prices = [...prices];
+                this.currency = currency;
+                this.quantities = [...quantities];
+            }
+            countBasketPrice() {
+                let sum = 0;
+                this.prices.forEach((price, i) => {
+                    sum += price * this.quantities[i];
+                });
+                return sum;
+            }
+            getAmount() {
+                console.log(`Total amount is ${this.countBasketPrice()} ${this.currency}`);
+                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            }
+            getItemsList() {
+                console.log(`Current basket --> ${this.items}`);
+                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            }
+            getItem(i) {
+                console.log(`Position ${i} --> ${this.items[i]}`);
+                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            }
+            getItemPrice(i) {
+                console.log(`Price of ${this.items[i]} --> ${this.prices[i]}`);
+                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            }
+            getCurrency() {
+                console.log(`The currency is ${this.currency}`);
+                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            }
+            pushItem(item) {
+                this.items.push(item.name);
+                this.prices.push(item.price);
+                this.quantities.push(item.quantity);
+
+                console.log(`Current basket --> ${this.items}`);
+                console.log(`Total amount after adding is ${this.countBasketPrice()} ${this.currency}`);
+                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            }
+            deleteItem(i) {
+                this.items.splice(i, 1);
+                this.prices.splice(i, 1);
+                this.quantities.splice(i, 1);
+
+                console.log(`Current basket --> ${this.items}`);
+                console.log(`Total amount after removing is ${this.countBasketPrice()} ${this.currency}`);
+                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            }
+        }
+
+        const products = new Basket(['keyboard', 'mouse', 'cover'], [1000, 500, 300], 'RUB', [2, 1, 5]);
+        products.getAmount();
+        products.getItemsList();
+        products.getItem(1);
+        products.getItemPrice(1);
+        products.getCurrency();
+        products.pushItem({
+            name: 'phone',
+            price: 30000,
+            currency: 'RUB',
+            quantity: 1
+        })
+        products.deleteItem(1);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

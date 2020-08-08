@@ -60,22 +60,59 @@ console.log(sumTotalAmong(newBuy.totalPrice(),newBuy1.totalPrice(),newBuy2.total
 
 //Задание 3
 // Надо было конечно сначала это сделать, прежде чем браться за второе задание, ну да ладно(
+// Сначала я создаю один общий класс Товар, потом уже создаю другие классы, которые более относимы к определенным категориям - продукты, товары для дома и т.д. Освоил для себя наследование
 
 
 class Product {
-    constructor(type){
-        this.type = type;
+    constructor (name, price, count,currency){
+        this.name = name;
+        this.price = price;
+        this.count = count;
+        this.currency = currency;
+    }
+    totalPrice(){
+        return this.price * this.count;
+    }
+    setItems(count) {
+        this.count = count;
+    }
+    setPrice(price) {
+        this.price = price;
+        console.log(`Now ${this.name} costs ${this.price} ${this.currency}`);
     }
 }
 
-class ProductName extends Product {
-        constructor (name, price, count, currency){
-            this.name = name;
-            this.price = price;
-            this.count = count;
-            this.currency = currency;
-        }
+class Grocery extends Product {
+    constructor(type, ...args){
+        super(...args);  
+        this.type = "grocery"; 
+    }
 }
 
-let test = new Product("fruits");
+class Books extends Product {
+    constructor(type, ...args){
+        super(...args);  
+        this.type = "books"; 
+    }
+}
+
+class Сonfectionery extends Product {
+    constructor(type, ...args){
+        super(...args);  
+        this.type = "confectionery"; 
+    }
+}
+
+class HouseholdProducts extends Product {
+    constructor(type, ...args){
+        super(...args);  
+        this.type = "household products"; 
+    }
+}
+
+
+
+
+
+let test = new Grocery("fruits",'apples', 100, 3, "RUB");
 console.log(test);

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 7</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      ///////Задание 1///////
+      console.log("Задание 1.");
+
+      let givenNum = +prompt("Введите число от 0 до 999", 245);
+      let obj = {};
+      function numToObj(num) {
+        if (num >= 0 && num <= 999) {
+          obj = {
+            units: parseInt(num % 10),
+            tens: parseInt((num % 100) / 10),
+            hundreds: parseInt((num % 1000) / 100),
+          };
+          return obj;
+        } else if (num > 999) {
+          console.log("Вы ввели число больше 999.");
+          return obj;
+        } else if (num < 0) {
+          console.log("Вы ввели число меньше 0.");
+          return obj;
+        }
+        return "Введите число от 0 до 999.";
+      }
+      console.log(numToObj(givenNum));
+
+      ///////Задание 2-3///////
+      console.log("Задание 2-3.");
+
+      class Product {
+        constructor(name, price, currency, quantity) {
+          this.name = name;
+          this.price = price;
+          this.currency = currency;
+          this.quantity = quantity;
+        }
+        productInfo() {
+          console.log(
+            `Информация о товаре "${this.name}": \n Название товара: ${this.name}, Цена: ${this.price}, Валюта: ${this.currency}`
+          );
+        }
+      }
+      let graphicsCard = new Product("Видеокарта", 22000, "RUB", 1);
+      let cpu = new Product("Процессор", 15000, "RUB", 1);
+      let ssd = new Product("SSD", 4500, "RUB", 2);
+      let cooler = new Product("Кулер", 450, "RUB", 4);
+
+      class BasketOfGoods {
+        constructor() {
+          this.items = [];
+        }
+        addToBasket(product) {
+          this.items.push(product);
+          console.log(
+            `Вы добавили в корзину "${product.name}" в количестве ${product.quantity}.`
+          );
+        }
+        countBasketPrice() {
+          let amout = 0;
+          for (let product in this.items) {
+            amout += this.items[product].price * this.items[product].quantity;
+          }
+          console.log("Итого к оплате: " + amout);
+        }
+      }
+      let basket = new BasketOfGoods();
+
+      graphicsCard.productInfo();
+      cpu.productInfo();
+      ssd.productInfo();
+      cooler.productInfo();
+      basket.addToBasket(graphicsCard);
+      basket.addToBasket(cpu);
+      basket.addToBasket(ssd);
+      basket.addToBasket(cooler);
+      basket.countBasketPrice();
+    </script>
+  </body>
+</html>

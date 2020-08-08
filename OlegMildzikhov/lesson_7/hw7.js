@@ -75,44 +75,50 @@ class Product {
     }
     setItems(count) {
         this.count = count;
+        return (`Вы изменили количество ${this.name} на ${this.count} единиц-(ы)`);
     }
     setPrice(price) {
         this.price = price;
-        console.log(`Now ${this.name} costs ${this.price} ${this.currency}`);
+        return (`Вы изменили стоимость товара ${this.name} на ${this.price} рублей`);
+    }
+    setName(name) {
+        this.name = name;
+        return (`Вы изменили название товара  на ${this.name}`);
     }
 }
 
 class Grocery extends Product {
     constructor(type, ...args){
         super(...args);  
-        this.type = "grocery"; 
+        this.type = type; 
     }
 }
 
 class Books extends Product {
     constructor(type, ...args){
         super(...args);  
-        this.type = "books"; 
+        this.type = type; 
     }
 }
 
 class Сonfectionery extends Product {
     constructor(type, ...args){
         super(...args);  
-        this.type = "confectionery"; 
+        this.type = type; 
     }
 }
 
 class HouseholdProducts extends Product {
     constructor(type, ...args){
         super(...args);  
-        this.type = "household products"; 
+        this.type = type; 
     }
 }
 
+let test = new Grocery('fruits','apples', 100, 3, 'RUB');
+let test1 = new Books('sci-fi','someText', 1000, 1, 'RUB');
 
 
-
-
-let test = new Grocery("fruits",'apples', 100, 3, "RUB");
-console.log(test);
+console.log(test1);
+console.log(test1.setItems(4));
+console.log(test1);

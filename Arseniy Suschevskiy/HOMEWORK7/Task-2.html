@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale =1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <script>
+		// Продолжить работу с интернет-магазином:
+		// В прошлом домашнем задании вы реализовали корзину на базе массивов. Какими объектами можно заменить их элементы?
+		// 	Реализуйте такие объекты.
+        const basketItems = [
+            {
+            	name: 'item-1',
+            	price: 1200,
+            },
+			{
+				name: 'item-2',
+				price: 1300,
+			},
+			{
+				name: 'item-3',
+				price: 1400,
+			},
+			{
+				name: 'item-4',
+				price: 1500,
+			},
+		];
+		// 	Перенести функционал подсчета корзины на объектно-ориентированную базу.
+        class Basket {
+        	constructor(basketItems) {
+        		this.basketItems = basketItems;
+        		this.finalPrice = this.countBasketPrice();
+			}
+            countBasketPrice() {
+                let sum = 0;
+				for (let i = 0; i < this.basketItems.length; i++) {
+					sum += this.basketItems[i].price;
+				}
+				return sum;
+			}
+        }
+        const one = new Basket(basketItems);
+		console.log(one);
+		console.log(one.finalPrice);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

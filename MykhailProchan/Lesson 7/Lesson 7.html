@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7</title>
+    <script defer>
+        function rand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        const cart = {//корзина ведь будет всего 1 и с момента загрузки сайта
+            //а товары всё равно уже готовыми объектами с сервера получим
+            items: [],
+            total: () => {
+                return cart.items.reduce(((a, c) => a + c.price * c.amount), 0);
+            },
+            //тут ещё будет метод для подсчета подсумм, когда до евентов доберёмся
+        }
+
+        class Product {
+            constructor(id, price) {
+                this.id = id;
+                this.price = price;
+            }
+        }
+
+        function one() {
+            let keys = ['единицы', 'десятки', 'сотни'],
+                num = prompt('Упражнение 1: Введите целое число от 0 до 999'),
+                obj = {};
+            while (!(num.match(/^\d+$/) && num.length < 4)) {
+                console.log(obj);
+                num = prompt('Неверный ввод. Введите целое число от 0 до 999');
+            }
+            num.split('').reverse().forEach((e, i) => obj[keys[i]] = +e)
+            console.log(obj);
+        }
+
+        function two() {
+            for (let i = 0; i < 6; i++) {
+                cart.items[i] = new Product(rand(0, 1000), rand(50, 300));
+                cart.items[i].amount = rand(1, 6);
+            }
+            console.log(cart);
+            console.log('Сумма: ' + cart.total());
+        }
+
+        console.log('упражнение 1:');
+        one();
+        console.log('упражнение 2:');
+        two();
+
+    </script>
+</head>
+
+<body>
+    всё в консоли
+</body>
+
+</html>

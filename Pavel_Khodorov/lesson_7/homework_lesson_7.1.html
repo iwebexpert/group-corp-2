@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework_lesson_7</title>
+    <script>
+        let max = 999;
+        let digit = {
+          number: Math.round(Math.random() * max), /*запрос у пользователя +prompt('Введите число от 0 до 999'),*/
+          units: 0,
+          tens: 0,
+          hundreds: 0,
+        };
+        if (digit.number <= 9){
+          digit.units = digit.number;
+        } else if (digit.number <= 999){
+          digit.units = Math.floor(digit.number % 10);
+          digit.tens = Math.floor(digit.number / 10 % 10);
+          digit.hundreds = Math.floor(digit.number / 100 % 10);
+        }else {
+            digit.number = 0;
+            console.log('Введено  число за пределом 0 - 999');
+        }
+        console.log(digit);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

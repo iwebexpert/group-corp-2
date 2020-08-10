@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    'use strict'
+    // 1 Задание
+
+    let number;
+    function separator() {
+      let max = 1234;
+      let number = {
+        value: Math.round(Math.random() * max),
+      };
+      if (number.value <= 9) {
+        number.value = number.units;
+      } else if (number.value <= 999) {
+        number.units = Math.floor(number.value % 10);
+        number.dozens = Math.floor(number.value / 10 % 10);
+        number.hundreds = Math.floor(number.value / 100 % 10);
+        console.log(number);
+      } else {
+        number.value = 0;
+        console.log('Постой, это какая то ошибка! Число больше 999');
+      };
+    };
+    console.log(separator());
+
+
+
+  </script>
+</body>
+
+</html>

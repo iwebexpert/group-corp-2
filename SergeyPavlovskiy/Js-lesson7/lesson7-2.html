@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 7 - 2</title>
+</head>
+
+<body>
+  <script>
+    'use strict';
+    class Shop {
+      constructor(item, cost, currency, quantity) {
+        this.item = item;
+        this.cost = cost;
+        this.currency = currency;
+        this.quantity = quantity;
+      };
+
+      calculaitingCost(value) {
+        return value = this.cost * this.quantity;
+      };
+    };
+
+    let keyboard = new Shop('Клавиатура', 1000, 'руб', 1);
+    let mouse = new Shop('Мыш', 500, 'руб', 3);
+    let touchpad = new Shop('Тач пад', 1500, 'руб', 1);
+    let processor = new Shop('Процессор', 5000, 'руб', 1);
+
+  console.log('Общая стоимость');
+  console.log(keyboard.calculaitingCost() + mouse.calculaitingCost() + touchpad.calculaitingCost() + processor.calculaitingCost());
+  </script>
+</body>
+
+</html>

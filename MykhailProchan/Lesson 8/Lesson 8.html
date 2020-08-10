@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lesson 8</title>
+	<link rel="stylesheet" href="style.css">
+
+	<script src="one.js"></script>
+	<script src="twoThree.js"></script>
+</head>
+
+<body onload="one(); three(); clearCart()">
+	<div class="container">
+		<div>
+			<h4>Упражнение 1:</h4>
+			<div id="chessboard"></div>
+		</div>
+		<div>
+			<h4>Упражнение 2+3:</h4>
+			<p>Каталог:</p>
+			<div id="catalog"></div>
+			<p>Корзина:</p>
+			<div id="cart"></div>
+			<p id="total"></p><button onclick="clearCart();">Очистить корзину</button>
+		</div>
+	</div>
+</body>
+
+</html>

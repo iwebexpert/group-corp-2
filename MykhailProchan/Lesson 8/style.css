@@ -1,0 +1,63 @@
+		:not(head) {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			justify-items: center;
+		}
+
+		#chessboard {
+			display: grid;
+			grid-template-columns: 20px repeat(8, 1fr) 20px;
+			grid-template-rows: 20px repeat(8, 1fr) 20px;
+			align-items: center;
+			width: 440px;
+			height: 440px;
+			background-color: rgb(189, 189, 189);
+			text-align: center;
+		}
+
+		.tile {
+			height: 100%;
+		}
+
+		.white-col {
+			background-color: #fff;
+		}
+
+		.black-col {
+			background-color: #000;
+		}
+
+		#catalog,
+		#cart {
+			margin-bottom: 50px;
+		}
+
+		.catalog-entry,
+		.catalog-top-row {
+			display: grid;
+			grid-template-columns: 50px 200px 50px;
+		}
+
+		.catalog-entry>div,
+		.catalog-top-row>div {
+			border: 1px solid #ababab;
+		}
+
+		.catalog-entry {
+			cursor: pointer;
+		}
+
+		.cart-entry {
+			display: grid;
+			grid-template-columns: 200px 50px 50px;
+		}
+
+		.cart-entry>div {
+			border: 1px solid #ababab;
+		}

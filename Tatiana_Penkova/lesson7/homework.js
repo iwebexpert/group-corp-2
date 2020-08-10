@@ -2,14 +2,17 @@
 
 function convert(number) {
     if (!Number(number) && number != 0) {
-        return console.log(`Вы ввели не число`, {})
+        console.log(`Вы ввели не число`, {});
+        return;
     }
     if (String(number).length > 3) {
-        return console.log(`Введите число от 0 до 999`, {})
+        console.log(`Введите число от 0 до 999`, {});
+        return;
     }
 
     if (Number(number) < 0) {
-        return console.log(`Введите положительное число`, {})
+        console.log(`Введите положительное число`, {});
+        return;
     }
 
     const numberArr = Array.from(String(number));
@@ -20,7 +23,7 @@ function convert(number) {
         'сотни': numberArr[numberArr.length - 3]
     }
 
-    return arr
+    return arr;
 }
 
 console.log(convert(0));
@@ -47,7 +50,7 @@ class Card {
                 basket[i].count -= item;
                 if (basket[i].count <= 0) {
                     basket.splice(i, 1);
-                    return console.log(`Товар ${this.title} удален`)
+                    console.log(`Товар ${this.title} удален`);
                 }
 
             }
@@ -78,14 +81,14 @@ class Product extends Card {
 
 
     productInfo() {
-        return `Имя товара: ${this.title}, Цена: ${this.price} ${this.currency}, Категория: ${this.category}`
+        return `Имя товара: ${this.title}, Цена: ${this.price} ${this.currency}, Категория: ${this.category}`;
     }
 
     addToCard() {
         let items = +prompt(`Сколько товаров добавить в корзину?`, 1);
         this.count = items;
 
-        basket.push({ 'title': this.title, 'price': this.price, 'count': this.count })
+        basket.push({ 'title': this.title, 'price': this.price, 'count': this.count });
 
     }
 
@@ -103,7 +106,7 @@ class Books extends Product {
     }
 
     aboutBook() {
-        return `Автор: ${this.author}, Количество страниц: ${this.numberOfPages}`
+        return `Автор: ${this.author}, Количество страниц: ${this.numberOfPages}`;
     }
 
 
@@ -118,7 +121,7 @@ class Movies extends Product {
     }
 
     aboutMovie() {
-        return `Режисер: ${this.director}, год выпуска: ${this.year}, в главных ролях: ${this.starring}`
+        return `Режисер: ${this.director}, год выпуска: ${this.year}, в главных ролях: ${this.starring}`;
     }
 
 }
@@ -150,4 +153,3 @@ console.log(book.totalCard());
 
 console.log(book.aboutBook());
 console.log(movie.aboutMovie());
-

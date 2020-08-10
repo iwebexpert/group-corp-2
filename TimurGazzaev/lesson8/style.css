@@ -25,15 +25,54 @@
 }
 
 .shop {
-    border: 1px black solid;
+    border: 0.5px black solid;
     width: 640px;
-    height: 640px;
+    box-sizing: border-box;
 }
 
 .products {
-    border: 1px black solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .item {
-    border: 1px black solid;
+    border: 0.5px black solid;
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.item h2 {
+    color: darkgreen;
+}
+
+.item b {
+    color: crimson;
+}
+
+.cart {
+    background-color: aquamarine;
+    margin: 20px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.cartInfo {
+    width: 220px;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.sum {
+    font-size: 22px;
+    margin-top: 20px;
+    color: red;
 }

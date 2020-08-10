@@ -34,11 +34,16 @@ class Cart {
             }
         }
     }
+    getInfo() {
+        let str = ''
+        this.products.forEach(item => str += `${item.name}: ${item.price} ${item.currency} - ${item.count} pieces \n`)
+        return str
+    }
     getSum() {
         let sum = 0
         this.products.forEach(item =>
             sum += item.price * item.count)
-        return sum
+        return sum + ' ' + this.products[0].currency
     }
 }
 
@@ -53,22 +58,78 @@ cart1.addProduct(bread, 5)
 cart1.addProduct(meat, 1)
 
 console.log(cart1.getSum())
+console.log(cart1.getInfo())
 
 
 let cart = document.querySelector('.cart')
 let products = document.querySelector('.products')
 
-let breadBlock = document.createElement('div')
-bread.className = 'item bread'
+function cartAppend (cartData) {
+    let cartInfo = document.createElement('div')
+    cartInfo.className = 'cartInfo'
+    cartInfo.textContent = cartData.getInfo()
+    cart.appendChild(cartInfo)
 
-products.appendChild(breadBlock)
+    let sum = document.createElement('h2')
+    sum.className = 'sum'
+    sum.textContent = 'Sum : ' + cartData.getSum()
+    cart.appendChild(sum)
+}
 
-let milkBlock = document.createElement('div')
-milk.className = 'item'
+function cartRemove () {
+    let cartInfo = document.querySelector('.cartInfo')
+    let sum = document.querySelector('.sum')
+    cartInfo.remove()
+    sum.remove()
+}
 
-let meatBlock = document.createElement('div')
-meat.className = 'item'
+function productAppend (productName) {
+    let product = document.createElement('div')
+    product.className = `item ${productName.name.toLowerCase()}`
 
-let chocolateBlock = document.createElement('div')
-chocolate.className = 'item'
+    let productTitle = document.createElement('h2')
+    productTitle.textContent = productName.name
+    product.appendChild(productTitle)
 
+    let productPrice = document.createElement('b')
+    productPrice.textContent = productName.price + ' ' + productName.currency
+    product.appendChild(productPrice)
+
+    products.appendChild(product)
+}
+
+productAppend(bread)
+productAppend(milk)
+productAppend(meat)
+productAppend(chocolate)
+
+cartAppend(cart1)
+
+let breadArea = document.querySelector(`.bread`)
+let milkArea = document.querySelector(`.milk`)
+let meatArea = document.querySelector(`.meat`)
+let chocolateArea = document.querySelector(`.chocolate`)
+
+breadArea.onclick = function () {
+    cart1.addProduct(bread, 1)
+    cartRemove()
+    cartAppend(cart1)
+}
+
+milkArea.onclick = function () {
+    cart1.addProduct(milk, 1)
+    cartRemove()
+    cartAppend(cart1)
+}
+
+meatArea.onclick = function () {
+    cart1.addProduct(meat, 1)
+    cartRemove()
+    cartAppend(cart1)
+}
+
+chocolateArea.onclick = function () {
+    cart1.addProduct(chocolate, 1)
+    cartRemove()
+    cartAppend(cart1)
+}

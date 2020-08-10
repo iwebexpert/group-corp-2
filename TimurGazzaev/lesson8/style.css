@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chess {
+    border: 1px black solid;
+    border-spacing: 0;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    background-color: #000;
+}
+
+.white {
+    background-color: #fff;
+}
+
+.shop {
+    border: 1px black solid;
+    width: 640px;
+    height: 640px;
+}
+
+.products {
+    border: 1px black solid;
+}
+
+.item {
+    border: 1px black solid;
+}

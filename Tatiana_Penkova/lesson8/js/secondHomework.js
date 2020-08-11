@@ -22,6 +22,7 @@ basketContainer.appendChild(errorName);
 
 const itemCount = document.createElement("input");
 itemCount.setAttribute("type", "number");
+itemCount.setAttribute("value", "1");
 itemCount.setAttribute("placeholder", "Укажите количество товара");
 itemCount.setAttribute("min", "1");
 itemCount.setAttribute("max", "100");
@@ -87,7 +88,7 @@ addBtn.addEventListener("click", (e) => {
 
     }
 
-    let mySelectedItem = getValue(itemCount);
+    getValue(itemCount);
     let cardSelected = cardItems.find(item => item.name == itemName.value);
     cardSelected.count = itemCount.value;
 
@@ -133,9 +134,8 @@ function getBasketMarkup(name, count) {
     const basketPopover = document.createElement("div");
     basketPopover.classList.add("items");
 
-
     let newProd = new Product(name);
-    let mySelectedItem = getValue(itemCount);
+    getValue(itemCount);
     let cardSelected = cardItems.find(item => item.name == itemName.value);
     newProd.price = cardSelected.price;
     basketArr.push(newProd);
@@ -153,12 +153,6 @@ function getBasketMarkup(name, count) {
     basketText.classList.add("basket-text");
     basketPopover.appendChild(basketText);
 
-    let topItem = document.querySelector(".top-item");
-
-    if (topItem == null) {
-        basketText.style.display = "none";
-    }
-
     const queryCount = document.querySelector(".items");
     if (queryCount != null) {
         queryCount.remove();
@@ -170,16 +164,11 @@ function getBasketMarkup(name, count) {
 function showBasket() {
     const topItem = document.createElement("div");
     topItem.classList.add("top-item");
-    let mySelectedItem = getValue(itemCount);
+    getValue(itemCount);
     let cardSelected = cardItems.find(item => item.name == itemName.value);
 
-    let basketText = document.querySelector(".basket-text");
     topItem.textContent = `Имя товара: ${cardSelected.name}, количество товара: ${cardSelected.count}, цена товара: ${cardSelected.price}`;
     catalog.appendChild(topItem);
-    if (basketText == null) {
-        topItem.textContent = "";
-    }
-    console.log(cardSelected.count);
 
 }
 

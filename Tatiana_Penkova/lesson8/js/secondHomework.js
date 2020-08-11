@@ -1,7 +1,6 @@
 const container = document.querySelector(".container");
 const catalog = document.getElementById("catalog");
-console.log(catalog);
-console.log(container);
+const cardItems = [];
 
 const emptyBasket = document.createElement("span");
 emptyBasket.textContent = `Корзина пуста`;
@@ -12,9 +11,8 @@ const basketContainer = document.createElement("div");
 basketContainer.classList.add("basket");
 container.appendChild(basketContainer);
 
-const itemName = document.createElement("input");
-itemName.setAttribute("type", "text");
-itemName.setAttribute("placeholder", "Введите название товара");
+const itemName = document.createElement("select");
+
 itemName.classList.add("item-name");
 basketContainer.appendChild(itemName);
 
@@ -33,16 +31,6 @@ basketContainer.appendChild(itemCount);
 const errorCount = document.createElement("div");
 errorCount.classList.add("error-count");
 basketContainer.appendChild(errorCount);
-
-const itemPrice = document.createElement("input");
-itemPrice.setAttribute("type", "text");
-itemPrice.setAttribute("placeholder", "Введите цену товара");
-itemPrice.classList.add("item-price");
-basketContainer.appendChild(itemPrice);
-
-const errorPrice = document.createElement("div");
-errorPrice.classList.add("error-price");
-basketContainer.appendChild(errorPrice);
 
 const addBtn = document.createElement("button");
 addBtn.setAttribute("type", "submit");
@@ -63,6 +51,25 @@ class Basket {
     }
 }
 
+class Product extends Basket {
+    constructor(name, price) {
+        super();
+        this.name = name;
+        this.price = price;
+        this.count = itemCount.value;
+    }
+}
+
+cardItems.push(new Product("Носки", 200));
+cardItems.push(new Product("Полотенце", 400));
+cardItems.push(new Product("Трусы", 300));
+for (let i = 0; i < cardItems.length; i++) {
+    const cardOptoin = document.createElement("option");
+    cardOptoin.classList.add("cardOption__item");
+    cardOptoin.textContent = `${cardItems[i].name}`;
+    itemName.appendChild(cardOptoin);
+}
+
 const basketArray = new Basket();
 const basketArr = basketArray.rest;
 
@@ -77,33 +84,40 @@ addBtn.addEventListener("click", (e) => {
         errorCount.textContent = "Выберите количество товара";
     } else {
         errorCount.textContent = "";
+
     }
-    if (itemPrice.value === "") {
-        errorPrice.textContent = "Введите сумму товара";
-    } else {
-        errorPrice.textContent = "";
-    }
+
+    let mySelectedItem = getValue(itemCount);
+    let cardSelected = cardItems.find(item => item.name == itemName.value);
+    cardSelected.count = itemCount.value;
 
     hideBlockEmptyBasket();
 
-    const newItem = getBasketMarkup(itemName.value, itemCount.value, itemPrice.value);
+    const newItem = getBasketMarkup(itemName.value, itemCount.value);
     basketContainer.appendChild(newItem);
+
 });
+
+function getValue() {
+    let selectValue = itemCount.value;
+    console.log(selectValue);
+    return selectValue;
+}
 
 clearBtn.addEventListener("click", (e) => {
     e.preventDefault();
     showBlockEmptyBasket();
     itemName.value = "";
     itemCount.value = "";
-    itemPrice.value = "";
 
     const totalBasket = document.querySelector(".items");
-    totalBasket.remove();
 
     const topToDelete = document.querySelectorAll(".top-item");
     for (let i = 0; i < topToDelete.length; i++) {
         topToDelete[i].remove();
     }
+    let basketTextToDelete = document.querySelector(".basket-text");
+    basketTextToDelete.textContent = "";
 
 });
 
@@ -115,20 +129,17 @@ function showBlockEmptyBasket() {
     emptyBasket.style.display = 'block';
 }
 
-function getBasketMarkup(name, count, price) {
+function getBasketMarkup(name, count) {
     const basketPopover = document.createElement("div");
     basketPopover.classList.add("items");
 
-    class Product extends Basket {
-        constructor(name, count, price) {
-            super();
-            this.name = name;
-            this.count = count;
-            this.price = price;
-        }
-    }
-    let newProd = new Product(name, count, price);
+
+    let newProd = new Product(name);
+    let mySelectedItem = getValue(itemCount);
+    let cardSelected = cardItems.find(item => item.name == itemName.value);
+    newProd.price = cardSelected.price;
     basketArr.push(newProd);
+    console.log(basketArr);
 
     let totalCount = 0;
     let totalPrice = 0;
@@ -139,22 +150,24 @@ function getBasketMarkup(name, count, price) {
 
     const basketText = document.createElement("div");
     basketText.textContent = `В корзине ${totalCount} товаров на сумму ${totalPrice} рублей`;
+    basketText.classList.add("basket-text");
     basketPopover.appendChild(basketText);
 
     const queryCount = document.querySelector(".items");
     if (queryCount != null) {
         queryCount.remove();
     }
-    console.log(queryCount);
     showBasket();
-
     return basketPopover;
 }
 
 function showBasket() {
     const topItem = document.createElement("div");
     topItem.classList.add("top-item");
-    topItem.textContent = `Имя товара: ${basketArr[basketArr.length - 1].name}, количество товара: ${basketArr[basketArr.length - 1].count}, цена товара: ${basketArr[basketArr.length - 1].price}`
+    let mySelectedItem = getValue(itemCount);
+    let cardSelected = cardItems.find(item => item.name == itemName.value);
+
+    topItem.textContent = `Имя товара: ${cardSelected.name}, количество товара: ${cardSelected.count}, цена товара: ${cardSelected.price}`;
     catalog.appendChild(topItem);
 }
 

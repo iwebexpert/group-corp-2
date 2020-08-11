@@ -45,10 +45,7 @@ class InitializatorDOM {
                 });
                 rootBasketArea.append(this.createBasketTotalInfo(basket));
             } else {
-                const emptyLabel = document.createElement('div');
-                emptyLabel.classList.add('emptyBasketLabel');
-                emptyLabel.innerHTML = 'Корзина пуста';
-                rootBasketArea.append(emptyLabel);
+                this.createEmptyBasketLabel(rootBasketArea);
             }
             rootCatalogArea.innerHTML = '';
             catalog.productList.forEach(prItem => {
@@ -56,8 +53,7 @@ class InitializatorDOM {
             });
 
         });
-
-
+        
         catalog.productList.forEach(prItem => {
             rootCatalogArea.append(this.createCatalogCard(prItem, basket, 'CATALOG'));
         });
@@ -113,10 +109,14 @@ class InitializatorDOM {
                     productCard.remove();
                     basket.removeItem(productGroupItem.product);
                 }
-
                 const totalInfoPanel = document.querySelector(`.totalInfoPanel`);
-                totalInfoPanel.remove();
-                rootBasketArea.append(this.createBasketTotalInfo(basket));
+                if (basket.items.length === 0) {
+                    this.createEmptyBasketLabel(rootBasketArea);
+                    totalInfoPanel.remove();
+                } else {
+                    totalInfoPanel.remove();
+                    rootBasketArea.append(this.createBasketTotalInfo(basket));
+                }
             }
         };
 
@@ -157,7 +157,12 @@ class InitializatorDOM {
 
         return productCard;
     }
-
+    createEmptyBasketLabel(rootBasketArea){
+        const emptyLabel = document.createElement('div');
+        emptyLabel.classList.add('emptyBasketLabel');
+        emptyLabel.innerHTML = 'Корзина пуста';
+        rootBasketArea.append(emptyLabel);
+    }
     createBasketTotalInfo(basket) {
         const totalInfoPanel = document.createElement('div');
         totalInfoPanel.classList.add('totalInfoPanel');

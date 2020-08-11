@@ -14,48 +14,25 @@ class Basket {
         });
         return sum;
     }
-    // getAmount() {
-    //     console.log(`Total amount is ${this.countBasketPrice()} ${this.currency}`);
-    //     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    // }
-    // getItemsList() {
-    //     console.log(`Current basket --> ${this.items}`);
-    //     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    // }
+
     getItem(i) {
-        // console.log(`Position ${i} --> ${this.items[i]}`);
-        // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
         return this.items[i];
     }
     getItemQuantity(i){
         return this.quantities[i];
     }
     getItemPrice(i) {
-        // console.log(`Price of ${this.items[i]} --> ${this.prices[i]}`);
-        // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
         return this.prices[i];
     }
-    // getCurrency() {
-    //     console.log(`The currency is ${this.currency}`);
-    //     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    // }
     pushItem(item) {
         this.items.push(item.name);
         this.prices.push(item.price);
         this.quantities.push(item.quantity);
-
-        // console.log(`Current basket --> ${this.items}`);
-        // console.log(`Total amount after adding is ${this.countBasketPrice()} ${this.currency}`);
-        // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     }
     deleteItem(i) {
         this.items.splice(i, 1);
         this.prices.splice(i, 1);
         this.quantities.splice(i, 1);
-
-        // console.log(`Current basket --> ${this.items}`);
-        // console.log(`Total amount after removing is ${this.countBasketPrice()} ${this.currency}`);
-        // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     }
 }
 
@@ -127,19 +104,3 @@ shopList.addEventListener('click', (event) => {
         renderBasket(products);
     }
 });
-
-// const products = new Basket(['keyboard', 'mouse', 'cover'], [1000, 500, 300], 'RUB', [2, 1, 5]);
-// products.getAmount();
-// products.getItemsList();
-// products.getItem(1);
-// products.getItemPrice(1);
-// products.getCurrency();
-// products.pushItem({
-//     name: 'phone',
-//     price: 30000,
-//     currency: 'RUB',
-//     quantity: 1
-// })
-// // products.deleteItem(1);
-
-// console.log(products);

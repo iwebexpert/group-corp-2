@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+
+  <script type="text/javascript">
+    window.onload = function (){
+
+      /////////////////// 1 /////////////////////////
+
+      let divMain = document.createElement("div");
+      divMain.classList.add("yach");
+      document.body.appendChild(divMain);
+
+      let blocks = [];
+
+      for (let i = 0; i < 9; i++) {
+        blocks[i] = [];
+        blocks[i] = document.createElement("div");
+        blocks[i].classList.add("yachIn");
+        divMain.appendChild(blocks[i]);
+
+          for (let j = 0; j < 9; j++) {
+            if((j%2 == 0 && j != 0 && i%2 == 0 && i!=0)||(j%2 != 0 && j != 0 && i%2 != 0 && i!=0) ){
+              blocks[i][j] = document.createElement("div");
+              blocks[i][j].classList.add("yach2");
+              blocks[i].appendChild(blocks[i][j]);
+            } else{
+              blocks[i][j] = document.createElement("div");
+              blocks[i][j].classList.add("yach1");
+              blocks[i].appendChild(blocks[i][j]);
+            }
+            if(j == 0){
+              blocks[i][j].textContent = String.fromCharCode(64+i);
+            }
+            if(i == 0){
+              blocks[i][j].textContent = j;
+            }
+            if(i == 0 && j == 0){
+              blocks[i][j].textContent = '';
+            }
+          }
+      }
+
+    /////////////////// 2 /////////////////////////
+    /*Думаю, что можно было скоратить создание функций, инпутов и кнопок, но пока не придумал как*/
+
+      class Products{
+        constructor(name, amount, price, currency){
+          this.name = name;
+          this.amount = amount;
+          this.price = price;
+          this.currency = currency;
+        }
+
+        getInfo(){
+          return `Название: ${this.name}, стоимость: ${this.price} ${this.currency}`
+        }
+      }
+
+      const bread = new Products('Bread', 0, 50, 'RUB');
+      const milk = new Products('Milk', 0, 100, 'RUB');
+      const apple = new Products('Apple', 0, 10, 'RUB');
+      const water = new Products('Water', 0, 70, 'RUB');
+
+      class Basket {
+        constructor(name) {
+          this.name = name;
+          this.products = [];
+        }
+
+        /*Выводим все продукты*/
+        getInfo(){
+          let str = ``;
+          for (let i = 0; i < this.products.length; i++) {
+            str += `Название: ${this.products[i][0].name}, Стоимость: ${this.products[i][0].price} ${this.products[i][0].currency}, Количество: ${this.products[i][1]} <br />`;
+          }
+           return str;
+        }
+
+        /*Добавляем продукт, если он уже был, то перезаписываем*/
+        addProducts(product, amount){
+          this.products.push([product, amount]);
+          console.log(`Добавлено в корзину`);
+          if(this.products.length > 1){
+            for (let i = 0; i < this.products.length-1; i++){
+              if(this.products[i][0].name == product.name){
+                this.products.splice(i, 1);
+              }
+            }
+          }
+        }
+
+        /*Удаляем продукт*/
+        deleteProducts(product){
+          for (let i = 0; i < this.products.length; i++){
+            if(this.products[i][0].name == product.name){
+              this.products.splice(i, 1);
+              console.log(`Удалено из корзины`);
+            }
+          }
+        }
+
+        /*Суммируем продукты*/
+        sumFunc(){
+          let sum = 0;
+          for (let i = 0; i < this.products.length; i++) {
+            sum += this.products[i][0].price * this.products[i][1];
+          }
+          return sum;
+        }
+
+        sumFuncRub(){
+          let sum = 0;
+          for (let i = 0; i < this.products.length; i++) {
+            sum += this.products[i][0].price * this.products[i][1];
+          }
+          return sum + " RUB";
+        }
+
+        sumFuncEur(){
+          let sum = 0;
+          for (let i = 0; i < this.products.length; i++) {
+            sum += this.products[i][0].price * this.products[i][1];
+          }
+          return (sum/87.17).toFixed(2) + " EUR";
+        }
+
+        sumFuncUsd(){
+          let sum = 0;
+          for (let i = 0; i < this.products.length; i++) {
+            sum += this.products[i][0].price * this.products[i][1];
+          }
+          return (sum/73.43).toFixed(2) + " USD";
+        }
+      }
+
+      const myBasket = new Basket('Vladimir');
+
+      /*Создание импутов и кнопок*/
+      let catalog = document.getElementById('catalog');
+      let p = document.createElement("p");
+      catalog.appendChild(p);
+      p.innerHTML = 'Яблоки: ';
+      let divInput = document.createElement("input");
+      divInput.classList.add("valueCount");
+      p.appendChild(divInput);
+      let addAppleBtr = document.createElement("button");
+      addAppleBtr.id = "addAppleBtr";
+      let textInBtn = document.createTextNode('Добавить');
+      p.appendChild(addAppleBtr);
+      addAppleBtr.appendChild(textInBtn);
+      let removeAppleBtr = document.createElement("button");
+      removeAppleBtr.id = "removeAppleBtr";
+      textInBtn = document.createTextNode('Удалить');
+      p.appendChild(removeAppleBtr);
+      removeAppleBtr.appendChild(textInBtn);
+
+      p = document.createElement("p");
+      catalog.appendChild(p);
+      p.innerHTML = 'Хлеб: ';
+      divInput = document.createElement("input");
+      divInput.classList.add("valueCount");
+      p.appendChild(divInput);
+      let addBreadBtr = document.createElement("button");
+      addBreadBtr.id = "addBreadBtr";
+      textInBtn = document.createTextNode('Добавить');
+      p.appendChild(addBreadBtr);
+      addBreadBtr.appendChild(textInBtn);
+      let removeBreadBtr = document.createElement("button");
+      removeBreadBtr.id = "removeBreadBtr";
+      textInBtn = document.createTextNode('Удалить');
+      p.appendChild(removeBreadBtr);
+      removeBreadBtr.appendChild(textInBtn);
+
+      p = document.createElement("p");
+      catalog.appendChild(p);
+      p.innerHTML = 'Молоко: ';
+      divInput = document.createElement("input");
+      divInput.classList.add("valueCount");
+      p.appendChild(divInput);
+      let addMilkBtr = document.createElement("button");
+      addMilkBtr.id = "addMilkBtr";
+      textInBtn = document.createTextNode('Добавить');
+      p.appendChild(addMilkBtr);
+      addMilkBtr.appendChild(textInBtn);
+      let removeMilkBtr = document.createElement("button");
+      removeMilkBtr.id = "removeMilkBtr";
+      textInBtn = document.createTextNode('Удалить');
+      p.appendChild(removeMilkBtr);
+      removeMilkBtr.appendChild(textInBtn);
+
+      p = document.createElement("p");
+      catalog.appendChild(p);
+      p.innerHTML = 'Вода: ';
+      divInput = document.createElement("input");
+      divInput.classList.add("valueCount");
+      p.appendChild(divInput);
+      let addWaterBtr = document.createElement("button");
+      addWaterBtr.id = "addWaterBtr";
+      textInBtn = document.createTextNode('Добавить');
+      p.appendChild(addWaterBtr);
+      addWaterBtr.appendChild(textInBtn);
+      let removeWaterBtr = document.createElement("button");
+      removeWaterBtr.id = "removeWaterBtr";
+      textInBtn = document.createTextNode('Удалить');
+      p.appendChild(removeWaterBtr);
+      removeWaterBtr.appendChild(textInBtn);
+
+      let info = document.createElement("div");
+      info.id = "info";
+      catalog.appendChild(info);
+
+      info.innerHTML = 'Пустая корзина';
+
+      /*Функции для кнопок*/
+      addAppleBtr.onclick = function(){
+        let valueCount = document.getElementsByClassName('valueCount')[0].value;
+        myBasket.addProducts(apple, valueCount);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+      removeAppleBtr.onclick = function(){
+        myBasket.deleteProducts(apple);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+
+      addMilkBtr.onclick = function(){
+        let valueCount = document.getElementsByClassName('valueCount')[2].value;
+        myBasket.addProducts(milk, valueCount);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+      removeMilkBtr.onclick = function(){
+        myBasket.deleteProducts(milk);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+
+      addBreadBtr.onclick = function(){
+        let valueCount = document.getElementsByClassName('valueCount')[1].value;
+        myBasket.addProducts(bread, valueCount);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+      removeBreadBtr.onclick = function(){
+        myBasket.deleteProducts(bread);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+
+      addWaterBtr.onclick = function(){
+        let valueCount = document.getElementsByClassName('valueCount')[3].value;
+        myBasket.addProducts(water, valueCount);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+      removeWaterBtr.onclick = function(){
+        myBasket.deleteProducts(water);
+        info.innerHTML = `${myBasket.getInfo()} <br /> Сумма: ${myBasket.sumFuncRub()}`;
+      }
+
+    }
+
+  </script>
+
+</head>
+<body>
+
+  <div id="catalog"> </div>
+
+</body>
+</html>

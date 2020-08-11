@@ -153,6 +153,12 @@ function getBasketMarkup(name, count) {
     basketText.classList.add("basket-text");
     basketPopover.appendChild(basketText);
 
+    let topItem = document.querySelector(".top-item");
+
+    if (topItem == null) {
+        basketText.style.display = "none";
+    }
+
     const queryCount = document.querySelector(".items");
     if (queryCount != null) {
         queryCount.remove();
@@ -167,8 +173,14 @@ function showBasket() {
     let mySelectedItem = getValue(itemCount);
     let cardSelected = cardItems.find(item => item.name == itemName.value);
 
+    let basketText = document.querySelector(".basket-text");
     topItem.textContent = `Имя товара: ${cardSelected.name}, количество товара: ${cardSelected.count}, цена товара: ${cardSelected.price}`;
     catalog.appendChild(topItem);
+    if (basketText == null) {
+        topItem.textContent = "";
+    }
+    console.log(cardSelected.count);
+
 }
 
 

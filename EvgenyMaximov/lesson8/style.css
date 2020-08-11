@@ -1,0 +1,49 @@
+.board__nums {
+  display: flex;
+}
+
+.container {
+  max-width: 640px;
+  min-height: 100%;
+  margin: 50px 300px;
+  border: 10px solid gray;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.block {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: white;
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  height: 640px;
+  margin: 50px -300px 0 50px;
+  text-align: center;
+}
+
+.numbers span {
+  font-size: 25px;
+  padding: 27px 0;
+}
+
+.letters {
+  margin: 20px 0 0 100px;
+  margin-bottom: -30px;
+}
+
+.letters span {
+  font-size: 25px;
+  padding: 0 32px;
+}

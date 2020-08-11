@@ -1,0 +1,40 @@
+.board {
+    position: relative;
+    height: 80vmin;
+    width: 80vmin;
+    display: grid;
+    grid: 1fr repeat(8, 2fr) 1fr / 1fr repeat(8, 2fr) 1fr;
+    border: 10px solid brown;
+    margin: auto;
+}
+.woodenBackground {
+    background-image: url("img/wood-texture-080.jpg");
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+}
+.cellZone{
+    grid-area: 2 / 2 / 10 / 10;
+    border: 7px solid brown;
+    z-index: 1;
+}
+.tag {
+    color: brown;
+    font-size: 3vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.whiteCell {
+    background-color: #cccccc;
+    width: 100%;
+    height: 100%;
+}
+.blackCell {
+    background-color: brown;
+    width: 100%;
+    height: 100%;
+}

@@ -6,6 +6,9 @@ const cart = {
 	subtotal: (id) => {
 		let item = cart.items.find(f => f.id === id);
 		return item.price * item.amount;
+	},
+	itemsSum: () => {
+		return cart.items.reduce(((a, c) => a + c.amount), 0);
 	}
 }
 
@@ -38,7 +41,7 @@ function two(e) {
 			}
 		})
 	}
-	document.getElementById("total").innerText = "Сумма: " + cart.total() + " руб.";
+	document.getElementById("total").innerText = "В корзине " + cart.itemsSum() + " товаров на сумму: " + cart.total() + " руб.";
 }
 
 function clearCart() {

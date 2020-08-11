@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a59aba01d6.js" crossorigin="anonymous"></script>
+    <title>Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .container {
+            max-width: 1230px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        .shop__list {
+            padding-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .shop__item {
+            width: 250px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px #333;
+        }
+        .shop__img {
+            margin: 25px 0 25px 25px;
+        }
+        .shop__content {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .shop__description {
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+        }
+        .shop__input {
+            margin: 10px 0;
+            width: 50%;
+            padding: 5px 20px;
+            text-align: center;
+
+        }
+        .shop__btn {
+            padding: 5px 20px;
+            border-radius: 2px;
+            border: 0;
+        }
+        .shop__btn:hover {
+            background-color: green;
+            outline: 0;
+            cursor: pointer;
+        }
+        .btn-delete:hover {
+            background-color:red;
+        }
+
+        .basket {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .list {
+            padding-top: 5px;
+            list-style-type: none;
+        }
+        .item {
+            display: flex;
+            justify-content: center;
+        }
+        .item__name {
+            width: 20%;
+        }
+        .item__price {
+            width: 20%;
+        }
+        .item__quantity {
+            width: 5%;
+        }
+        .item--inner {
+            padding: 10px 20px;
+            border: 1px solid black;
+            border-radius: 2px;
+            margin-bottom: 5px;
+            margin-right: 5px;
+        }
+        .item--inner:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="shop__list">
+            <div class="shop__item" data-counter="0">
+                <img src="https://placehold.it/200" alt="photo" class="shop__img">
+                <hr>
+                <div class="shop__content">
+                    <div class="shop__description" data-counter="0">keyboard</div>
+                    <div class="shop__price" data-counter="0">1000 RUB</div>
+                    <input type="text" class="shop__input" value="1" data-counter="0"><br>
+                    <div class="btns">
+                        <button type="button" class="shop__btn">Buy</button>
+                        <button type="button" class="shop__btn btn-delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="shop__item" data-counter="1">
+                <img src="https://placehold.it/200" alt="photo" class="shop__img">
+                <hr>
+                <div class="shop__content">
+                    <div class="shop__description" data-counter="1">mouse</div>
+                    <div class="shop__price" data-counter="1">500 RUB</div>
+                    <input type="text" class="shop__input" value="1" data-counter="1"><br>
+                    <div class="btns">
+                        <button type="button" class="shop__btn">Buy</button>
+                        <button type="button" class="shop__btn btn-delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="shop__item" data-counter="2">
+                <img src="https://placehold.it/200" alt="photo" class="shop__img">
+                <hr>
+                <div class="shop__content">
+                    <div class="shop__description" data-counter="2">cover</div>
+                    <div class="shop__price" data-counter="2">300 RUB</div>
+                    <input type="text" class="shop__input" value="1" data-counter="2"><br>
+                    <div class="btns">
+                        <button type="button" class="shop__btn">Buy</button>
+                        <button type="button" class="shop__btn btn-delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="shop__item" data-counter="3">
+                <img src="https://placehold.it/200" alt="photo" class="shop__img">
+                <hr>
+                <div class="shop__content">
+                    <div class="shop__description" data-counter="3">phone</div>
+                    <div class="shop__price" data-counter="3">30000 RUB</div>
+                    <input type="text" class="shop__input" value="1" data-counter="3"><br>
+                    <div class="btns">
+                        <button type="button" class="shop__btn">Buy</button>
+                        <button type="button" class="shop__btn btn-delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="basket">
+            <i class="fas fa-shopping-basket"> Basket</i>
+            <ul class="list"></ul>
+            <div class="total__price">Basket is clear</div>
+        </div>
+    </div>
+    <script src="shop.js"></script>
+</body>
+</html>

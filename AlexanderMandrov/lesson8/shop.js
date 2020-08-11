@@ -1,5 +1,3 @@
-const basket = document.querySelector('.basket');
-
 class Basket {
     constructor(items, prices, currency, quantities) {
         this.items = [...items];

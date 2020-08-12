@@ -3,8 +3,8 @@ function boardGenerator() {
   chessContainer.setAttribute("class", "container");
   let sqr;
 
-  for (i = 1; i < 9; i++) {
-    for (j = 1; j < 9; j++) {
+  for (let i = 1; i < 9; i++) {
+    for (let j = 1; j < 9; j++) {
       sqr = document.createElement("div");
       sqr.setAttribute("class", "block");
 
@@ -30,7 +30,7 @@ function numsAndLetters() {
   let letter;
   let num;
 
-  for (i = 1; i < 9; i++) {
+  for (let i = 1; i < 9; i++) {
     num = document.createElement("span");
     num.textContent = `${i}`;
 

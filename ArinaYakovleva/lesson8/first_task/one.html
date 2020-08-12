@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Homework 8</title>
+    <script>
+        window.onload = function () {
+            const table = document.createElement('table'),
+                letters = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', ''],
+                blackCells1 = ['8', '', '', '', '', '', '', '', '', '8'],
+                whiteCells1 = ['1', '', '', '', '', '', '', '', '', '1'],
+                blackCells2 = ['7', '', '', '', '', '', '', '', '', '7'],
+                whiteCells2 = ['2', '', '', '', '', '', '', '', '', '2'];
+            for (let i = 0, a = 9; i < 10, a >= 0; i++, a--) {
+                let tableRow = table.insertRow(i);
+                for (let j = 0; j < 10; j++) {
+                    let tableCell = tableRow.insertCell(j);
+                    switch (i) {
+                        case 0:
+                            tableCell.innerText = letters[j];
+                            break;
+                        case 1:
+                            tableCell.innerHTML = blackCells1[j];
+                            break;
+                        case 2:
+                            tableCell.innerHTML = blackCells2[j];
+                            break;
+                        case 7:
+                            tableCell.innerHTML = whiteCells2[j];
+                            break;
+                        case 8:
+                            tableCell.innerHTML = whiteCells1[j];
+                            break;
+                        case 9:
+                            tableCell.innerText = letters[j];
+                            break;
+                        default:
+                            if (j === 0 || j === 9) {
+                                tableCell.innerHTML = a;
+                            }
+                            break;
+                    }
+                }
+            }
+            document.body.appendChild(table);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

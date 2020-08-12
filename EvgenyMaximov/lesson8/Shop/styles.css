@@ -1,0 +1,30 @@
+.container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.purchase {
+  padding: 20px;
+  margin: 5px 0;
+  font-size: 22px;
+  border: 1px solid #000;
+}
+
+.price {
+  padding-right: 5px;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.addBtn {
+  margin-top: 20px;
+}
+
+.totalMassage {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}

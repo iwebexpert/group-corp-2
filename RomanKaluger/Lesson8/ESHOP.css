@@ -1,0 +1,274 @@
+:root {
+    --brand-color: #d57056;
+    --bg-light: rgb(242, 176, 165);
+    --bg-light-opas: rgba(242, 176, 165, 0.6);
+    --bg-middle: #b33a3a;
+    --bg-dark: #751a2c;
+    --dark: #261421;
+}
+html{
+    font-size: 13px;
+}
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+.container{
+    background-image: url("img/c75ac45a8a634aeba75abcde2cbc6dba.jpg");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+.tabPanel{
+    width: 50vw;
+    height: 15vh;
+    background-color: var(--bg-middle);
+    border-color: var(--bg-dark);
+    border-style: solid;
+    border-radius: 0 0 30px 30px;
+    border-width: 0 10px 10px;
+    margin: auto auto 6vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    user-select: none;
+}
+.rootArea{
+    position: relative;
+    margin: auto;
+    height: 70vh;
+    width: 80vw;
+    background-color: var(--bg-light-opas);
+    border: 10px solid var(--bg-dark);
+    border-radius:30px;
+    display: grid;
+    grid: repeat(1, 1fr) / repeat(3, 1fr);
+    padding: 20px 20px 7vh 20px;
+    box-sizing: border-box;
+    transform: scale(1) rotate(0deg);
+    transition-duration: 1s;
+    transition-delay: 1s;
+    transform-origin: center;
+}
+.closeClass{
+    transform: scale(0.1) rotate(360deg);
+    transform-origin: center;
+    transition-duration: 1s;
+    transition-delay: 0s;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: fixed;
+    left: 50vw;
+    top: 10vh;
+}
+
+.tagArea{
+    width: 30%;
+    height: 80%;
+    font-size: 2.2rem;
+    color: var(--dark);
+    background-color: var(--bg-light-opas);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition-duration: 0.5s;
+}
+.selectedArea{
+    background: linear-gradient(to top, var(--bg-dark) 10%, var(--bg-middle) 20%, var(--bg-light));
+    transition-duration: 0.5s;
+    border: 5px solid var(--bg-dark);
+    transform: scale(1.1);
+}
+.tabToggleButton{
+    font-size: 1.7rem;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 20%;
+    height: 60%;
+    border: 5px solid var(--bg-dark);
+    background-color: var(--bg-light);
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.disableBtn{
+    opacity: 0.5;
+    transition-duration: 0.5s;
+    pointer-events: none;
+}
+.tabToggleButton:hover{
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+}
+
+.tabToggleButtonLeft{
+    border-radius: 50% 10% 10% 50%;
+    background: linear-gradient(to right, var(--bg-dark) 30%, var(--bg-middle) 60%, var(--bg-light));
+    transition-duration: 0.5s;
+}
+.tabToggleButtonRight{
+    border-radius: 10% 50% 50% 10%;
+    background: linear-gradient(to left, var(--bg-dark) 30%, var(--bg-middle) 60%, var(--bg-light));
+    transition-duration: 0.5s;
+}
+.productCard{
+    width: 90%;
+    height: 90%;
+    justify-self: center;
+    align-self: center;
+    border-radius: 30px;
+    background-color: var(--brand-color);
+    border: 5px solid var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.productCard>img{
+    max-width: 80%;
+    max-height: 50%;
+    border-radius: 30px;
+    border: 3px solid var(--bg-light);
+}
+.productCard>img:hover{
+    transform: scale(1.03);
+    border: 3px solid var(--bg-dark);
+    transition-duration: 0.5s;
+}
+.productName{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--bg-dark);
+    margin-bottom: 3%;
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--dark);
+}
+.productDescription{
+    font-size: 1.2rem;
+    color: var(--bg-light-opas);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24%;
+    border-bottom: 1px solid var(--bg-dark);
+    background: linear-gradient(to top, var(--bg-middle) 30%, var(--brand-color));
+    margin-bottom: 3%;
+    margin-top: 3%;
+    border-radius: 30px;
+    width: 95%;
+}
+.productCatalogTotal{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+    border-top: 1px solid var(--bg-dark);
+    box-sizing: border-box;
+    user-select: none;
+}
+.productPrice{
+    font-size: 1.5rem;
+    color: var(--bg-middle);
+    text-align: center;
+    width: 20%;
+    justify-self: flex-end;
+    flex-grow: 1;
+}
+.productCountMinus,.productCountPlus{
+    font-size: 1.5rem;
+    color: var(--dark);
+    background-color: var(--bg-light);
+    border-radius: 30px;
+    width: 12%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.productCountMinus:hover,.productCountPlus:hover,.toBasketBtn:hover{
+    background: linear-gradient(to top, var(--bg-dark) 30%, var(--bg-middle) 60%, var(--bg-light));
+}
+.productCountMinus:active,.productCountPlus:active,.toBasketBtn:active{
+    border: 2px solid var(--dark);
+    transform: scale(0.85);
+    transform-origin: center;
+}
+.productCount{
+    width: 11%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+.toBasketBtn{
+    font-size: 1.2rem;
+    color: var(--dark);
+    background-color: var(--bg-light);
+    border-radius: 30px;
+    width: 50%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    flex-grow: 2;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.emptyBasketLabel {
+    font-size: 4vw;
+    color: var(--bg-middle);
+    width: 60%;
+    text-align: center;
+    grid-area: 1 / 1 / 2 / 4;
+    margin: auto;
+}
+.totalInfoPanel{
+    width: 100%;
+    height: 7vh;
+    position: absolute;
+    left: 0;
+    top: calc(100% - 7vh);
+    color: var(--dark);
+    background-color: var(--brand-color);
+    font-size: 2.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 25px 25px;
+    border-top: 2px solid var(--bg-dark);
+}
+@media screen and (max-width: 768px) {
+    html{
+        font-size: 10px;
+    }
+    body{
+        overflow-y: visible;
+    }
+    .rootArea {
+        grid: repeat(1, 1fr) / repeat(1, 1fr);
+        height: auto;
+        min-height: 70vh;
+    }
+    .container{
+        height: auto;
+        padding-bottom: 15vh;
+    }
+}
+

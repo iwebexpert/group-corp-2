@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.basketInfo {
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.totalInfo {
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+#itemCard {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 50px auto;
+
+}
+
+.addFruit {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #3498db;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.removeFruit {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #db5b34;
+    border: 2px solid #e70505;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+
+}
+
+.title {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    border: 2px solid #3498db;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px 10px;
+    text-align: center;
+
+}
+
+.input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.img {
+    display: block;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    padding: 10px 10px;
+}

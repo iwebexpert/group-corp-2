@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8 Task 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-spacing: 0;
+            margin: 100px auto;
+        }
+
+        tr:not(:last-child) td:not(:first-child) {
+            border: 1px solid black;
+        }
+
+        .black {
+            width: 50px;
+            height: 50px;
+            background: black;
+        }
+
+        .white {
+            width: 50px;
+            height: 50px;
+            background: white;
+        }
+
+        .letter {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let table = document.createElement("table");
+        let letters = "abcdefgh";
+        for (let i = 0; i < 9; i++) {
+            let tr = document.createElement('tr');
+            for (let j = 0; j < 9; j++) {
+                let
+                    td = document.createElement('td');
+                if (j === 0) {
+                    td.textContent = 8 - i || '';
+                    tr.appendChild(td);
+                    continue;
+                }
+                if (i === 8) {
+                    for (let p = 0; p < letters.length; p++) {
+                        td.textContent = letters.charAt(j - 1);
+                    }
+                    td.classList.add('letter');
+                    tr.appendChild(td);
+                    continue;
+                }
+                if (i % 2 === j % 2) {
+                    td.className = "white";
+                } else {
+                    td.className = "black";
+                }
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+        document.body.appendChild(table);
+    </script>
+</body>
+
+</html>

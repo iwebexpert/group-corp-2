@@ -1,0 +1,29 @@
+.yach1{
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 5em;
+}
+
+.yach2{
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  background-color: black;
+}
+
+.yachIn{
+  display: flex;
+}
+
+.yach{
+  border: 1px solid black;
+  width: 918px;
+}
+
+#info{
+  width: 500px;
+  height: 150px;
+  border: 1px solid black;
+}

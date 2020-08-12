@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 8</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      window.onload = function () {
+        ///////// TASK 1 /////////
+        function getChessBoard() {
+          const chess = document.getElementById("chess");
+          const letters = document.getElementById("letters");
+          const numbers = document.getElementById("numbers");
+          const massLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+          const massNumbers = ["1", "2", "3", "4", "5", "6", "7", "8"];
+          const mass = [];
+          for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+              const blackCell = document.createElement("div");
+              const whiteCell = document.createElement("div");
+              blackCell.className = "black-cell";
+              whiteCell.className = "white-cell";
+              if ((i + j) % 2 == 0) {
+                mass.push(whiteCell);
+              } else mass.push(blackCell);
+            }
+          }
+          for (let i = 0; i < massLetters.length; i++) {
+            const letter = document.createElement("div");
+            letter.className = "letter";
+            letter.textContent = massLetters[i];
+            letters.append(letter);
+          }
+          for (let i = 0; i < massNumbers.length; i++) {
+            const number = document.createElement("div");
+            number.className = "number";
+            number.textContent = massNumbers[i];
+            numbers.append(number);
+          }
+          return mass;
+        }
+        chess.append(...getChessBoard());
+
+        ///////// TASK 2-3 /////////
+        const basketOfProduct = document.getElementById("basket");
+        const catalogOfProduct = document.getElementById("catalog");
+        const headingCatalog = document.createElement("h3");
+        headingCatalog.textContent = "Каталог:";
+        catalogOfProduct.append(headingCatalog);
+        const headingBasket = document.createElement("h3");
+        headingBasket.textContent = "Корзина товаров:";
+        basketOfProduct.append(headingBasket);
+
+        class Product {
+          constructor(name, price, currency, quantity) {
+            this.name = name;
+            this.price = price;
+            this.currency = currency;
+            this.quantity = quantity;
+          }
+          productInfo() {
+            const infoProduct = document.createElement("p");
+            infoProduct.className = "product";
+            infoProduct.textContent = `Информация о товаре "${this.name}": Название товара: ${this.name}, Цена: ${this.price}, Валюта: ${this.currency}`;
+            catalogOfProduct.append(infoProduct);
+          }
+        }
+
+        let graphicsCard = new Product("Видеокарта", 22000, "RUB", 1);
+        let cpu = new Product("Процессор", 15000, "RUB", 1);
+        let ssd = new Product("SSD", 4500, "RUB", 2);
+        let cooler = new Product("Кулер", 450, "RUB", 4);
+
+        class BasketOfGoods {
+          constructor() {
+            this.items = [];
+          }
+
+          addToBasket(product) {
+            this.items.push(product);
+          }
+
+          countBasketPrice() {
+            let amout = 0;
+            for (let product in this.items) {
+              amout += this.items[product].price * this.items[product].quantity;
+            }
+            return amout;
+          }
+
+          basketInfo() {
+            const infoBasketMessage = document.createElement("p");
+            infoBasketMessage.className = "basket-info";
+            let infoBasket;
+            let numberOfGoods = 0;
+            if (this.items.length == 0) {
+              infoBasket = "Корзина пуста.";
+            } else {
+              for (let product in this.items) {
+                let quantity = this.items[product].quantity;
+                numberOfGoods += quantity;
+              }
+              infoBasket =
+                "В корзине " +
+                numberOfGoods +
+                " товаров на сумму " +
+                this.countBasketPrice() +
+                " рублей.";
+            }
+            infoBasketMessage.textContent = infoBasket;
+            basketOfProduct.append(infoBasketMessage);
+          }
+        }
+
+        let basket = new BasketOfGoods();
+
+        graphicsCard.productInfo();
+        cpu.productInfo();
+        ssd.productInfo();
+        cooler.productInfo();
+
+        basket.addToBasket(cooler);
+        basket.addToBasket(ssd);
+        basket.basketInfo();
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Задание №1</h1>
+    <div id="container">
+      <div id="numbers"></div>
+      <div>
+        <div id="chess"></div>
+        <div id="letters"></div>
+      </div>
+    </div>
+    <h1>Задание №2</h1>
+    <div id="catalog"></div>
+    <div id="basket"></div>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+.Chess_block {
+    border: 1px solid black;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 500px;
+}
+
+.black_block {
+    background-color: #333333;
+    width: 50px;
+    height: 50px;
+}
+
+.white_block {
+    background-color: #f2e8c9;
+    width: 50px;
+    height: 50px;
+}
+
+.empt_block_top {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empt_block_down {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empt_block {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.str_block_left {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.str_block_right {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

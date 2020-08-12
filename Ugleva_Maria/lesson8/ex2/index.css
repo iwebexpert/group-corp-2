@@ -1,0 +1,13 @@
+input {
+    margin-top: 10px;
+}
+label {
+    padding-right: 10px;
+}
+.itemBasket {
+    border: 1px solid darkmagenta;
+    margin: 10px 0;
+}
+.error {
+    color: red;
+}

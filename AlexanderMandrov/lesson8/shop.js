@@ -34,8 +34,77 @@ class Basket {
     }
 }
 
-const shopList = document.querySelector('.shop__list');
+let shopList = document.querySelector('.shop__list');
 let products = new Basket([], [], 'RUB', []);
+var counter = 0;
+
+const renderShopItem = (name, price, currency) => {
+    const shopItem = document.createElement('div');
+    shopItem.classList.add('shop__item');
+    shopItem.dataset['counter'] = counter;
+    
+    const dataShopItem = `
+    <img src="https://placehold.it/200" alt="photo" class="shop__img">
+    <hr>
+    `;
+
+    shopItem.insertAdjacentHTML('afterbegin', dataShopItem);
+
+    const shopContent = document.createElement('div');
+    shopContent.classList.add('shop__content');
+    shopContent.dataset['counter'] = counter;
+
+    const dataShopContent = `
+    <div class="shop__description" data-counter="${counter}">${name}</div>
+    <div class="shop__price" data-counter="${counter}">${price} ${currency}</div>
+    <input type="text" class="shop__input" value="1" data-counter="${counter++}"><br>
+    `;
+
+    shopContent.insertAdjacentHTML('afterbegin', dataShopContent);
+
+    const btns = document.createElement('div');
+    btns.classList.add('btns');
+
+    const dataBtns = `
+    <button type="button" class="shop__btn">Buy</button>
+    <button type="button" class="shop__btn btn-delete">Delete</button>
+    `;
+
+    btns.insertAdjacentHTML('afterbegin', dataBtns);
+
+    shopContent.insertAdjacentElement('beforeend', btns);
+
+    shopItem.insertAdjacentElement('beforeend', shopContent);
+    
+    shopList.insertAdjacentElement('beforeend', shopItem);
+};
+
+const shopArr = [
+    {
+        name: 'keyboard',
+        price: '1000',
+        currency: 'RUB'
+    },
+    {
+        name: 'mouse',
+        price: '500',
+        currency: 'RUB'
+    },
+    {
+        name: 'cover',
+        price: '300',
+        currency: 'RUB'
+    },
+    {
+        name: 'phone',
+        price: '30000',
+        currency: 'RUB'
+    }
+];
+
+shopArr.forEach(item => {
+    renderShopItem(item.name, item.price, item.currency);
+});
 
 const renderBasket = (products) => {
     let ulList = document.querySelector('.list');

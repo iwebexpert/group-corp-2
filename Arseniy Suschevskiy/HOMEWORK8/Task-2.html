@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale =1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        #app{
+            display: flex;
+        }
+        .products-list{
+            width: 1000px;
+        }
+        .basket{
+            width: 200px;
+        }
+        .product{
+            margin-left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        const app = document.querySelector('#app');
+        const productsList = document.createElement('div');
+        productsList.classList.add('products-list');
+
+        const basket = document.createElement('div');
+		basket.classList.add('basket');
+
+		const basketTitle = document.createElement('h2');
+		basketTitle.textContent = 'Корзина';
+		basket.appendChild(basketTitle);
+
+		app.appendChild(productsList);
+        app.appendChild(basket);
+
+        let basketArray = [];
+		class Product {
+			constructor(name, price) {
+				this.name = name;
+				this.price = price;
+				this.createProduct();
+			}
+            createProduct() {
+				const product = document.createElement('div');
+				product.classList.add('product');
+				product.innerHTML = `<p>${this.name} <span>${this.price} RUB</span></p>`;
+
+				const productBtn = document.createElement('button');
+				productBtn.textContent = 'Buy';
+                productBtn.addEventListener('click', () => {
+                	basketArray.push(this.price);
+                });
+				product.appendChild(productBtn);
+				productsList.appendChild(product);
+            }
+		}
+		class Basket {
+			constructor(...basketItems) {
+				this.basketItems = basketItems;
+			}
+			countBasketPrice() {
+				let sum = 0;
+				for (let i = 0; i < this.basketItems.length; i++) {
+					sum += this.basketItems[i].price;
+				}
+				this.finalPrice = sum;
+				let priceSum = document.createElement('p');
+				if (!this.basketItems.length) {
+					priceSum.textContent = 'В корзине пусто';
+					basket.appendChild(priceSum);
+				}
+				else {
+					priceSum.textContent = `В корзине ${this.basketItems.length} товара на сумму ${sum}`;
+					basket.appendChild(priceSum);
+				}
+
+			}
+		}
+		let apple = new Product('apples', 35);
+		let banana = new Product('bananas', 64);
+		let lemon = new Product('lemon', 87);
+		let cherry = new Product('cherry', 125);
+        let makeBasket = new Basket(apple, banana, lemon, cherry);
+        makeBasket.countBasketPrice();
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale =1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        .board{
+            width: 600px;
+            height: 600px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 35px;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+        .white-box{
+            width: 75px;
+            height: 75px;
+            position: relative;
+            background: antiquewhite;
+        }
+
+        .black-box{
+            width: 75px;
+            height: 75px;
+            background: black;
+            position: relative;
+        }
+        .number {
+            position: absolute;
+            left: -25%;
+            top: 50%;
+            margin: 0;
+            transform: translateY(-50%);
+        }
+        .word {
+            position: absolute;
+            left: 50%;
+            bottom: -35%;
+            margin: 0;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+<script>
+	// Создать функцию, генерирующую шахматную доску. Можно использовать любые html-теги.
+    // Доска должна быть верно разлинована на черные и белые ячейки.
+    // Строки должны нумероваться числами от 1 до 8, столбцы — латинскими буквами A, B, C, D, E, F, G, H.
+    function createBoard() {
+        const board = document.createElement('div');
+        board.classList.add('board');
+        document.body.appendChild(board);
+		let switchColor = false;
+		let words = ['A','B','C','D','E','F','G','H'];
+		let numbers = 8;
+		let count = 0;
+        for (let i = 0; i < 8; i++){
+			switchColor = !switchColor;
+            for (let j = 0; j < 8; j++){
+            	if (switchColor) {
+            		// Создаем белую клетку
+                    const whiteBox = document.createElement('div');
+                    whiteBox.classList.add('white-box');
+                    board.appendChild(whiteBox);
+					switchColor = false;
+					// если клетка первая в строке или последняя в столбце, добавляем нужный класс и символ
+					if (j === 0){
+						const number = document.createElement('div');
+						number.classList.add('number');
+						number.innerHTML = numbers;
+						whiteBox.appendChild(number);
+						numbers -= 1;
+                    }
+					if (i === 7) {
+						const word = document.createElement('div');
+						word.classList.add('word');
+						word.innerHTML = words[count];
+						whiteBox.appendChild(word);
+						count++;
+                    }
+            	} else {
+					// Создаем черную клетку
+					const blackBox = document.createElement('div');
+					blackBox.classList.add('black-box');
+					board.appendChild(blackBox);
+					switchColor = true;
+					// если клетка первая в строке или последняя в столбце, добавляем нужный класс и символ
+					if (j === 0){
+						const number = document.createElement('div');
+						number.classList.add('number');
+						number.innerHTML = numbers;
+						blackBox.appendChild(number);
+						numbers -= 1;
+					}
+					if (i === 7) {
+						const word = document.createElement('div');
+						word.classList.add('word');
+						word.innerHTML = words[count];
+						blackBox.appendChild(word);
+						count++;
+					}
+                }
+
+            }
+        }
+	}
+	createBoard();
+</script>
+</body>
+</html>

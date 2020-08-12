@@ -62,7 +62,7 @@ class Basket {
         busketBlock.appendChild(busketList);
         //busketList.appendChild(deleteBtn);
     }
-    /*
+    /* Пока что не смог реализовать удаление из корзины
     deleteFromBasket(itemname) {
         for (let i = 0; i < this.itemsInBasket.length; i++) {
             if (this.itemsInBasket[i].name == itemname) {

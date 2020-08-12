@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework_lesson_8</title>
+    <script>
+        function chessboard() {
+    let newTable = document.createElement( 'table' ),
+        lets = [ '','A','B','C','D','E','F','G','H','' ],
+        blackFigs1 = [ '8','♜','♞','♝','♛','♚','♝','♞','♜','8' ],
+        whiteFigs1 = [ '1','♖','♘','♗','♕','♔','♝','♗','♖','1' ],
+        blackFigs2 = [ '7','♟','♟','♟','♟','♟','♟','♟','♟','7' ],
+        whiteFigs2 = [ '2','♙','♙','♙','♙','♙','♙','♙','♙','2' ];
+    for ( let i = 0, a = 9; i < 10, a >= 0; i++, a-- ) {
+        let newTr = newTable.insertRow(i);
+        for ( let j = 0; j < 10; j++ ) {
+            let newTd = newTr.insertCell( j );
+                        switch (i) {
+                case 0:
+                    newTd.innerText = lets[ j ];
+                    break;
+                case 1:
+                    newTd.innerHTML = blackFigs1[ j ];
+                    break;
+                case 2:
+                    newTd.innerHTML = blackFigs2[ j ];
+                    break;
+                case 7:
+                    newTd.innerHTML = whiteFigs2[ j ];
+                    break;
+                case 8:
+                    newTd.innerHTML = whiteFigs1[ j ];
+                    break;
+                case 9:
+                    newTd.innerText = lets[ j ];
+                    break;
+                default:
+                    if ( j === 0 || j === 9 ) {
+                        newTd.innerHTML = a;
+                    }
+                    break;
+            }
+        }
+    }
+    document.body.appendChild( newTable );
+};
+chessboard();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

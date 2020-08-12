@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/chess.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let board = document.createElement("div");
+        board.classList.add("board");
+        document.body.appendChild(board);
+
+        for (let i = 0; i <= 8; i++) {
+            let cells = [];
+            cells[i] = document.createElement("div");
+            cells[i].classList.add("board__inner");
+            board.appendChild(cells[i]);
+            for (let j = 0; j <= 8; j++) {
+                if ((j % 2 == 0 && j != 0 && i % 2 == 0 && i != 0) || j % 2 != 0 && i % 2 != 0 && i != 0) {
+                    cells[i][j] = document.createElement("div");
+                    cells[i][j].classList.add("whitecell");
+                    cells[i].appendChild(cells[i][j]);
+                } else {
+                    cells[i][j] = document.createElement("div");
+                    cells[i][j].classList.add("browncell");
+                    cells[i].appendChild(cells[i][j]);
+                }
+                if (j == 0) {
+                    cells[i][j].textContent = 8 - (i - 1);
+                }
+                if (i == 0) {
+                    cells[i][j].textContent = String.fromCharCode(64 + j);
+                }
+                if (i == 0 && j == 0) {
+                    cells[i][j].textContent = '';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

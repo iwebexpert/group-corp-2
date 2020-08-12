@@ -1,0 +1,82 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fefff2;
+    color: #7c7cf2;
+    font-weight: bold;
+}
+
+.container{
+    margin: 10px auto;
+}
+
+.products{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.product-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid blue;
+    border-radius: 6px;
+    padding-left: 10px 10px;
+    box-sizing: border-box;
+}
+
+.image-card{
+    max-width: 100px;
+    min-height: 100px;
+}
+
+
+.quantity-input{
+    margin: 5px;
+    border: 1px solid blue;
+    border-radius: 6px;   
+}
+
+.buy{
+    background-color: rgba(250, 242, 200, 1);
+    border: 1px solid blue;
+    border-radius: 6px;
+    margin-bottom: 3px;
+}
+.delete{
+    background-color: #fca2b7;
+    border: 1px solid blue;
+    border-radius: 6px;
+}
+.buy:hover{
+    background-color: rgba(250, 242, 200, 0.6);
+}
+
+.basket{
+    margin: 60px auto;
+}
+
+.basket-header{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.basket-list{
+    list-style-type: none;
+    
+}
+
+.total_amount{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.basket-item{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid blue;
+    border-radius: 6px;
+    padding: 10px;
+}

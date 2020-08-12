@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+width: 512px;
+height: 512px;
+margin: 60px auto;
+display: flex;
+flex-wrap: wrap;
+}
+
+#clicker {
+    text-align: center;
+    display: block;
+    
+}
+
+.fields {
+    width: 60px;
+    height: 60px;
+    margin: 1px 2px;
+}
+
+.white {
+    background-color: rgb(236, 230, 171);
+}
+
+.black {
+    background-color: rgb(65, 31, 31);
+}
+
+.top {
+    position: absolute;
+    margin-top: -23px;
+    margin-left: 27px;
+}
+
+.bottom {
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 27px;
+}
+
+.left {
+    position: absolute;
+    font-size: 20px;
+    width: 21px;
+    line-height: 63px;
+    margin-left: -20px;
+}
+
+.right {
+    position: absolute;
+    font-size: 20px;
+    width: 21px;
+    line-height: 63px;
+    margin-top: -448px;
+    margin-left: 68px;
+}

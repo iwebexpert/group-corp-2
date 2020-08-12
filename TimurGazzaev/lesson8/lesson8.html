@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>Lesson8</title>
+
+    <script>
+
+        /*Создать функцию, генерирующую шахматную доску. Можно использовать любые html-теги. Доска должна быть верно разлинована на
+        черные и белые ячейки. Строки должны нумероваться числами от 1 до 8, столбцы — латинскими буквами A, B, C, D, E, F, G, H.*/
+
+        window.onload = function () {
+
+            let table = document.createElement('table')
+            table.className = 'chess'
+            let container = document.querySelector('.container')
+
+            for (let i = 1; i < 9; i++) {
+                let tr = document.createElement('tr')
+                for (let j = 1; j < 9; j++) {
+                    let td = document.createElement('td')
+                    if (i%2 === j%2) {
+                        td.className = 'cell white'
+                    } else {
+                        td.className = 'cell'
+                    }
+                    tr.appendChild(td)
+                }
+                table.appendChild(tr)
+            }
+            container.appendChild(table)
+        }
+
+    </script>
+
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="shop">
+            <div class="cart">
+
+            </div>
+            <div class="products">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

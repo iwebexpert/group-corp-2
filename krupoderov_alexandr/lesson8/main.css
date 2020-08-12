@@ -1,0 +1,106 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.mark{
+    width: 10px;
+    height: 10px;
+}
+
+.white-square{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: #efe15e;
+}
+
+.black-square{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: black;
+}
+
+.desk{
+    width: 300px;
+    height: 300px;
+}
+
+#chess{
+    margin: 200px auto 0 auto;
+    width: 300px;
+    display: flex;
+}
+
+.row{
+    position: relative;
+}
+
+.left{
+    position: absolute;
+    color: black;
+    right: 40px;
+    top: 4px;
+}
+
+.top{
+    position: absolute;
+    color: black;
+    top: -25px;
+    right: 8px;
+}
+
+.right{
+    position: absolute;
+    color: black;
+    top: 4px;
+    left: 40px;
+}
+
+.bottom{
+    position: absolute;
+    color: black;
+    bottom: -25px;
+    left: 8px;
+}
+
+.labels{
+    padding-right: 20px;
+    color: white;
+    position: relative;
+}
+
+.labels::before{
+    color: red;
+    position: absolute;
+}
+
+/*Task 2, 3*/
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 250px;
+    height: 350px;
+    border: 1px solid black;
+}
+
+#catalog{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.bucket{
+    text-align: center;
+    width: 100%;
+    height: 50px;
+}

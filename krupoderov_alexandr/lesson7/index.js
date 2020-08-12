@@ -97,6 +97,6 @@ let lenaBucket = new Bucket('Elena');
 let alexBucket = new Bucket('Alexandr');
 alexBucket.addProduct(apple, 5).sumBucket();
 lenaBucket.addProduct(apple, 3).sumBucket();
-alexBucket.sumBucket()
+alexBucket.sumBucket();
 
 

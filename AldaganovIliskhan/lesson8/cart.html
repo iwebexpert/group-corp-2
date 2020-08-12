@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let main = document.createElement('main');
+        main.classList.add('main');
+        document.body.appendChild(main);
+        let cart = document.createElement('div');
+        cart.classList.add('cart');
+        main.appendChild(cart);
+
+        let cartTitle = document.createElement('h2');
+        cartTitle.classList.add('cart__title');
+        cartTitle.textContent = 'Корзина';
+        cart.appendChild(cartTitle);
+        class Product {
+            constructor(name, price, currency, count) {
+                this.name = name;
+                this.price = price;
+                this.currency = currency;
+                this.count = count;
+            }
+            productInfo() {
+                let singleProduct = document.createElement("p");
+                singleProduct.className = "product";
+                singleProduct.textContent = `Информация о товаре -  Название : ${this.name}, Цена : ${this.price} ${this.currency}, Количество : ${this.count}`
+                main.appendChild(singleProduct);
+            }
+        }
+
+        class Cart {
+            constructor(...items) {
+                this.items = items;
+            }
+            countCartPrice() {
+                let sum = this.items.reduce((amount, item) => amount += item.price * item.count, 0);
+                let priceSum = document.createElement('p');
+                console.log(this.items)
+                if (!this.items.length) {
+                    priceSum.textContent = 'В корзине пусто';
+                    cart.appendChild(priceSum);
+
+                }
+                else {
+                    priceSum.textContent = `В корзине ${this.items.length} товара на сумму ${sum}`;
+                    cart.appendChild(priceSum);
+                }
+
+            }
+        }
+        let keyboard = new Product('Keyboard',1000,'RUB',1);
+        let mouse = new Product('Mouse',500,'RUB',1);
+        let monitor = new Product('Monitor',2500,'RUB',3);
+        let products = new Cart(keyboard,mouse,monitor);
+        products.countCartPrice();
+    </script>
+</body>
+
+</html>

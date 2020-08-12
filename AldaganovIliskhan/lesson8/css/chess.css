@@ -1,0 +1,17 @@
+.board__inner {
+    display: flex;
+}
+.whitecell {
+  height: 50px;
+  width: 50px;
+  background-color: brown;
+  border: 1px solid black;
+}
+
+.browncell {
+  height: 50px;
+  width: 50px;
+  font-size: 2.5em;
+  border: 1px solid black;
+  text-align: center;
+}

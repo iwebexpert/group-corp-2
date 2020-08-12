@@ -12,9 +12,11 @@ let amount3 = document.querySelector('#goods__item_amount3');
 let busketBlock = document.querySelector('.Busket');
 let goods = document.querySelector('.goods');
 
+//Некоторые нужные переменные
 var price = 0;
 var allamount = 0;
 
+//Создам элементы корзины
 let busketword = document.createElement('h3');
 busketword.classList.add('busket_word');
 busketword.innerHTML = "Корзина";
@@ -60,6 +62,7 @@ class Basket {
         busketBlock.appendChild(busketList);
         //busketList.appendChild(deleteBtn);
     }
+    /*
     deleteFromBasket(itemname) {
         for (let i = 0; i < this.itemsInBasket.length; i++) {
             if (this.itemsInBasket[i].name == itemname) {
@@ -69,7 +72,7 @@ class Basket {
             }
         }
         console.log('Товара не найдено в корзине')
-    }
+    }*/
     totalPrice() {
         price = 0;
         for (let i = 0; i < this.itemsInBasket.length; i++) {
@@ -77,20 +80,11 @@ class Basket {
         }
         totalPriceBasket.innerHTML = `В корзине ${allamount} товар(а/ов) на сумму ${price} рублей`;
     }
-    basketInfo() {
-        let array = [];
-        let j = 0;
-        for (let i = 0; i < this.itemsInBasket.length; i++) {
-            ++j;
-            array.push(this.itemsInBasket[i].name, this.itemsInBasket[i].cost, this.itemsInBasket[i].amount);
-        }
-        console.log(`В корзине найдено ${j} товар(а/ов)`);
-        console.log(array);
-    }
 }
 
 let mainBasket = new Basket();
 
+//Описываю нажатия на кнопки
 document.getElementById('goods__item_add1').onclick = function () {
     let chair = new Items('Стул', 3599, +amount1.value);
     goods.after(busketword);

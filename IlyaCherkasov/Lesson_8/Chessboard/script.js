@@ -22,10 +22,10 @@ function Create() {
                 }
             } else if (j == 1) {
                 main.appendChild(document.createElement('div')).classList.add('str_block_left');
-                document.querySelectorAll('.str_block_left')[i - 2].innerHTML = str[i - 2]
+                document.querySelectorAll('.str_block_left')[i - 2].innerHTML = str[i - 2];
             } else if (j == 10) {
                 main.appendChild(document.createElement('div')).classList.add('str_block_right');
-                document.querySelectorAll('.str_block_right')[i - 2].innerHTML = str[i - 2]
+                document.querySelectorAll('.str_block_right')[i - 2].innerHTML = str[i - 2];
             } else {
                 if (check) {
                     main.appendChild(document.createElement('div')).classList.add('white_block');

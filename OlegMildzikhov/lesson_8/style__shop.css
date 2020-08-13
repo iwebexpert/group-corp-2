@@ -1,0 +1,12 @@
+.products__wrapper{
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    margin: 0 auto;
+    margin-top: 150px;;
+    
+}
+.item__count_wrapper{
+    display: flex;
+    
+}

@@ -1,0 +1,47 @@
+.container {
+  width: 80vh;
+  margin: 0 auto;
+  border: 2px solid #00000033;
+  padding: 20px;
+}
+
+.markings {
+  display: flex;
+  justify-content: space-around;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.markings-side {
+  line-height: 100px;
+}
+
+.center {
+  display: flex;
+}
+
+.marking {
+  font-size: 25px;
+}
+
+.cells {
+  border: 2px solid black;
+  display: flex;
+  margin: 20px;
+  flex-wrap: wrap;
+  height: 800px;
+  width: 800px;
+}
+
+.cell {
+  height: 100px;
+  width: 100px;
+}
+
+.white {
+  background-color: white;
+}
+
+.black {
+  background-color: black;
+}

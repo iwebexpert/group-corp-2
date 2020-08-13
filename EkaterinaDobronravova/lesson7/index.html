@@ -37,23 +37,26 @@
                 this.count = count;
                 this.currency = currency;
             }
+            getAllPrice(){
+                return this.price * this.count;
+            }
+        }
+
+        class Basket{
+            constructor(...items) {
+                this.items = items;
+            }
+            getBasketPrice () {
+                return this.items.reduce((amount, item) => amount += item.getAllPrice(), 0);
+            }
         }
 
         let keyboard = new Shop('Keyboard', 1000, 2, 'RUB');
         let mouse = new Shop('Mouse', 500, 1, 'RUB');
         let gamepad = new Shop('Gamepad', 1500, 1, 'RUB');
         
-        class Basket {
-            constructor(...items) {
-                this.items = items;
-            }
-            countBasketPrice () {
-                return this.items.reduce((amount, item) => amount += item.price * item.count, 0);
-            }
-        }
-
         let basket = new Basket(keyboard, mouse, gamepad);
-        console.log(basket.countBasketPrice());
+        console.log(`Общая стоимость: ${basket.getBasketPrice()}`);
 
   </script>
 </head>

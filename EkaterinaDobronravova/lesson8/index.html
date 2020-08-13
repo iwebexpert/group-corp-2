@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 8</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <script>
+  	"use strict";
+
+	// Task 1
+	// Создать функцию, генерирующую шахматную доску. Можно использовать любые html-теги. Доска должна быть верно разлинована на черные и белые ячейки. Строки должны нумероваться числами от 1 до 8, столбцы — латинскими буквами A, B, C, D, E, F, G, H.
+
+    function chessboard() {
+        let table = document.createElement('table'),
+            lets = ['','A','B','C','D','E','F','G','H',''],
+            blackFigs1 = ['8','','','','','','','','','8'],
+            whiteFigs1 = ['1','','','','','','','','','1'],
+            blackFigs2 = ['7','','','','','','','','','7'],
+            whiteFigs2 = ['2','','','','','','','','','2'];
+
+        for (let i = 0, a = 9; i < 10, a >= 0; i++, a--) {
+            let tr = table.insertRow(i);
+            for (let j = 0; j < 10; j++) {
+                let td = tr.insertCell(j);
+                    switch (i) {
+                    case 0:
+                        td.innerText = lets[j];
+                        break;
+                    case 1:
+                        td.innerHTML = blackFigs1[j];
+                        break;
+                    case 2:
+                        td.innerHTML = blackFigs2[j];
+                        break;
+                    case 7:
+                        td.innerHTML = whiteFigs2[j];
+                        break;
+                    case 8:
+                        td.innerHTML = whiteFigs1[j];
+                        break;
+                    case 9:
+                        td.innerText = lets[j];
+                        break;
+                    default:
+                        if (j === 0 || j === 9) {
+                            td.innerHTML = a;
+                        }
+                    break;
+                }
+            }
+        }
+        document.body.appendChild(table);
+    };
+    chessboard();
+
+</script>
+
+</head>
+<body>
+</body>
+</html>

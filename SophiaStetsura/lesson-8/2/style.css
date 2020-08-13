@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+img {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+.clear {
+    background: red;
+}
+.clear:hover {
+    background: darkred;
+}
+.buy {
+    background: chartreuse;
+}
+.buy:hover {
+    background: green;
+}
+.prod__header {
+    font-size: 30px;
+}
+.prod__price {
+    font-size: 20px;
+}

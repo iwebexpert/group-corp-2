@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+
+}
+
+.item-image {
+    margin-top: 20px;
+   
+    /* display: none; */
+    
+} 
+
+.img-item {
+    height: 300px;
+    margin-left: 40%;
+    
+}
+
+.item-name, .item-count, .item-price {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+[class^="error"]{
+    color: red;
+    margin-top: 10px;
+}
+.items {
+    margin-top: 10px;
+}
+.send {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.send, .clear {
+    padding: 5px 10px 10px;
+    border-radius: 10px;
+}

@@ -12,15 +12,27 @@ class Basket {
         });
         return sum;
     }
-
     getItem(i) {
         return this.items[i];
     }
+    getItems() {
+        return this.items;
+    }
     getItemQuantity(i){
-        return this.quantities[i];
+        return +this.quantities[i];
     }
     getItemPrice(i) {
         return this.prices[i];
+    }
+    getItemIndex(name) {
+        let j = 0;
+        [...this.getItems()].forEach((item, i) => {
+            if (item === name) j = i;
+        });
+        return j;
+    }
+    editItemQuantity(name, quantity) {
+        this.quantities[this.getItemIndex(name)] = quantity;
     }
     pushItem(item) {
         this.items.push(item.name);
@@ -109,7 +121,7 @@ shopArr.forEach(item => {
 const renderBasket = (products) => {
     let ulList = document.querySelector('.list');
     const liItems = document.querySelectorAll('.item');
-    liItems.forEach(item => item.remove())
+    liItems.forEach(item => item.remove());
     let totalPrice = document.querySelector('.total__price');
 
     totalPrice.textContent = 'Basket is clear';
@@ -124,17 +136,21 @@ const renderBasket = (products) => {
         itemName.insertAdjacentHTML('afterbegin', products.getItem(i));
 
         const itemQuantity = document.createElement('div');
+        itemQuantity.dataset.name = products.getItem(i);
         itemQuantity.classList.add('item--inner');
         itemQuantity.classList.add('item__quantity');
-        itemQuantity.insertAdjacentHTML('afterbegin', products.getItemQuantity(i));
+        itemQuantity.insertAdjacentHTML('beforeend', ` ${parseInt(products.getItemQuantity(i))} `);
 
         const itemPrice = document.createElement('div');
+        itemPrice.dataset.name = products.getItem(i);
         itemPrice.classList.add('item--inner');
         itemPrice.classList.add('item__price');
         itemPrice.insertAdjacentHTML('afterbegin', `${products.getItemPrice(i) * products.getItemQuantity(i)} ${products.currency}`);
 
         liItem.insertAdjacentElement('beforeend', itemName);
+        liItem.insertAdjacentHTML('beforeend', `<i class="far fa-minus-square" data-name=${products.getItem(i)}></i>`);
         liItem.insertAdjacentElement('beforeend', itemQuantity);
+        liItem.insertAdjacentHTML('beforeend', `<i class="far fa-plus-square" data-name=${products.getItem(i)}></i>`);
         liItem.insertAdjacentElement('beforeend', itemPrice);
 
         ulList.insertAdjacentElement('beforeend', liItem);
@@ -142,6 +158,59 @@ const renderBasket = (products) => {
     };
 
 };
+
+const isUnique = (obj) => {
+    let flg = true;
+    [...products.getItems()].forEach(item => {
+        if (item === obj.name) {
+            flg = false;
+        };
+    });
+    return flg;
+};
+
+const addQuantity = (quantity, name) => {
+    const quantityElement = document.querySelectorAll('.item__quantity');
+    quantityElement.forEach(elem => {
+        if (elem.dataset.name === name) {
+            const newQuantity = +elem.textContent + +quantity;
+            elem.textContent = newQuantity;
+            products.editItemQuantity(name, newQuantity);
+        };
+    });
+};
+
+const editPriceAndTotal = (products, name) => {
+    const itemPrices = document.querySelectorAll('.item__price'),
+        totalPrice = document.querySelector('.total__price');
+    const j = products.getItemIndex(name);
+    itemPrices.forEach(item => {
+        if (item.dataset.name === name) {
+            item.textContent = `${products.getItemPrice(j) * products.getItemQuantity(j)} ${products.currency}`;
+        };
+    });
+    totalPrice.textContent = `Total amount is ${products.countBasketPrice()} ${products.currency}`;
+};
+
+const getBtns = () => {
+    let plusBtns = document.querySelectorAll('.fa-plus-square'),
+        minusBtns = document.querySelectorAll('.fa-minus-square');
+    plusBtns.forEach(btn => {
+        btn.addEventListener('click', event => {
+            const target = event.target;
+            addQuantity(1, target.dataset.name);
+            editPriceAndTotal(products, target.dataset.name);
+        });
+    });
+
+    minusBtns.forEach(btn => {
+        btn.addEventListener('click', event => {
+            const target = event.target;
+            addQuantity(-1, target.dataset.name);
+            editPriceAndTotal(products, target.dataset.name);
+        });
+    });
+}
 
 shopList.addEventListener('click', (event) => {
     const target = event.target;
@@ -157,19 +226,24 @@ shopList.addEventListener('click', (event) => {
             price: parseInt(itemPrice),
             currency: 'RUB',
             quantity: itemQuantity
-        }
-
-        products.pushItem(tempObj);
+        };
+        
+        if (isUnique(tempObj)) {
+            products.pushItem(tempObj);
+        } else {
+            addQuantity(itemQuantity, itemName);
+        };
         renderBasket(products);
-    }
+        getBtns();
+    };
     if (target.classList.contains('btn-delete')) {
         products.items.forEach((item, i) => {
             if (item == itemName) {
                 products.deleteItem(i);
-            }
+            };
         });
         renderBasket(products);
-    }
+    };
 });
 
 const shopImages = document.querySelectorAll('.shop__img'),
@@ -188,7 +262,7 @@ shopImages.forEach(img => {
         modalName.textContent = itemName;
         modalPrice.textContent = itemPrice;
         modal.style.display = 'block';
-    })
+    });
 });
 
 document.addEventListener('click', e => {

@@ -132,3 +132,19 @@
     margin-top: 2px;
     font-weight: 700;
 }
+
+.fa-plus-square,
+.fa-minus-square {
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.fa-plus-square {
+    color: olivedrab;
+}
+
+.fa-minus-square {
+    color: orangered;
+}

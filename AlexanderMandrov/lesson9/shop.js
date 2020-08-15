@@ -174,8 +174,10 @@ const addQuantity = (quantity, name) => {
     quantityElement.forEach(elem => {
         if (elem.dataset.name === name) {
             const newQuantity = +elem.textContent + +quantity;
-            elem.textContent = newQuantity;
-            products.editItemQuantity(name, newQuantity);
+            if (newQuantity >= 1) {
+                elem.textContent = newQuantity;
+                products.editItemQuantity(name, newQuantity);
+            }
         };
     });
 };

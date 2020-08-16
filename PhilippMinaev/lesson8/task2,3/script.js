@@ -147,8 +147,47 @@ function createBucket(somebucket) {
       }
       coast.innerHTML = item.price * item.count;
       bucketItemCount.innerHTML = item.count;
-      total.remove();
       createTotal();
+    };
+
+    var imgFull = document.createElement("IMG");
+    imgFull.setAttribute("src", `img/${item.id}.jpg`);
+    imgFull.setAttribute("alt", `${item.name}`);
+    bucketItem.appendChild(imgFull);
+    imgFull.classList.add(`myImg`);
+    imgFull.id = `img${item.id}`;
+    imgFull.style.width = "50px";
+
+    // Get the modal
+    var modal = document.createElement("div");
+    modal.classList.add("modal");
+    modal.id = "myModal";
+    bucketItem.appendChild(modal);
+
+    var span = document.createElement("span");
+    span.classList.add("close");
+    span.innerHTML = "×";
+    modal.appendChild(span);
+
+    var img = document.createElement("IMG");
+    img.setAttribute("src", `img/${item.id}.jpg`);
+    img.setAttribute("alt", `${item.name}`);
+    modal.appendChild(img);
+
+    var captionText = document.createElement("div");
+    captionText.classList.add("caption");
+    modal.appendChild(captionText);
+
+    var modalImg = document.getElementById(`img${item.id}`);
+    imgFull.onclick = function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    };
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
     };
   }
   createTotal();

@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+}
+h3 {
+  text-align: center;
+}
+.product {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btn-primary {
+  margin: 20px;
+  width: 150px;
+}

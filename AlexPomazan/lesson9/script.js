@@ -65,16 +65,12 @@ class Product {
     productCard.style.margin = "20px";
     const productItem = document.createElement("div");
     productItem.className = `product product-${this.id}`;
-    productItem.style.display = "flex";
-    productItem.style.alignItems = "center";
     productCard.appendChild(productItem);
     const infoProduct = document.createElement("div");
     infoProduct.className = "product-info";
     let imgProduct = document.createElement("img");
     imgProduct.src = this.images[0];
     imgProduct.width = 150;
-    imgProduct.setAttribute("data-target", "#exampleModal-1");
-    imgProduct.setAttribute("data-togle", "modal");
     imgProduct.style.margin = "20px";
     imgProduct.className = "product-img";
     productItem.append(modalImg);

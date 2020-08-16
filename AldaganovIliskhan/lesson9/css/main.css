@@ -1,0 +1,18 @@
+.main {
+    max-width: 1000px;
+    margin:0 auto;
+}
+.catalog__blocks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.catalog__block {
+    max-width: 250px;
+    min-height: 385px;
+}
+.catalog__block img {
+    max-width: 100%;
+    min-height: 250px;
+}

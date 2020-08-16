@@ -1,0 +1,81 @@
+.container {
+	display: flex;
+}
+
+#shop_cards {
+	width: 60%;
+}
+
+.card {
+	position: relative;
+	border: 2px solid black;
+	padding: 20px;
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 30px;
+}
+
+.card_picture {
+	width: 300px;
+	height: 160px;
+}
+
+.card_info {
+	margin-right: 100px;
+	margin-left: 20px;
+}
+
+.card_count::before {
+	content: "Остаток на складе: ";
+}
+
+.card_price::before {
+	content: "Цена: ";
+}
+
+.card_button {
+	box-shadow: 0 0 5px 1px black;
+	border-radius: 4px;
+	font-size: 20px;
+	border: none;
+	height: 160px;
+	width: 160px;
+	position: absolute;
+	right: 20px;
+}
+
+.card_button:hover {
+	box-shadow: 0 0 5px 2px DodgerBlue;
+	cursor: pointer;
+	color: white;
+	background-color: DodgerBlue;
+}
+
+#bin {
+	overflow: auto;
+	max-height: 95.5vh;
+	width: 40%;
+	margin-left: 20px;
+	border: 2px solid black;
+	padding: 12px;
+}
+
+#bin_sum {
+	text-align: center;
+	vertical-align: center;
+	font-size: 30px;
+	width: 160px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 10px;
+	border: 2px solid lightgreen;
+	background-color: rgba(144, 238, 144, 0.6)
+}
+
+.bin_header {
+	text-align: center;
+}
+
+.bin_card_count::before {
+	content: "Количество: "
+}

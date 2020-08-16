@@ -93,10 +93,10 @@ class Catalog {
   }
 }
 
-let mac = new Product('MacBook Pro', 120000, '₽', 'img/macbookpro.jpeg');
-let ipad = new Product('Ipad Pro', 69000, '₽', 'img/ipadpro.png');
-let watch = new Product('Apple Watch', 33000, '₽', 'img/applewatch.jpeg');
-let iphone = new Product('Iphone 11', 60000, '₽', 'img/iphone.png');
+let mac = new Product('MacBook Pro', 120000, '₽', ['img/macbookpro.jpeg']);
+let ipad = new Product('Ipad Pro', 69000, '₽', ['img/ipadpro.png']);
+let watch = new Product('Apple Watch', 33000, '₽', ['img/applewatch.jpeg']);
+let iphone = new Product('Iphone 11', 60000, '₽', ['img/iphone.png', 'img/iphone_white.png']);
 
 let catalog = new Catalog(mac, ipad, watch, iphone);
 
@@ -140,13 +140,38 @@ function createCatalog() {
   const productsContainer = createElement('div', 'products');
   catalogContainer.append(productsContainer);
 
+  let j = 0;
   for (let product of catalog.products) {
     const basketProduct = createElement('div', 'products__product');
     productsContainer.append(basketProduct);
 
-    const productImage = createElement('img', 'product__img');
-    productImage.setAttribute('src', product.img);
-    basketProduct.append(productImage);
+    const imgContainer = createElement('div', 'imgs');
+    basketProduct.append(imgContainer);
+
+    for (let i = 0; i < product.img.length; i++) {
+      const img = createElement('img');
+      img.setAttribute('src', product.img[i]);
+      img.className = `${j} product__img`;
+      img.setAttribute('id', `${i}`);
+
+      img.addEventListener('click', function(event){
+        $(document).ready(function(){
+            $("#exampleModal").modal('show');
+        });
+
+        console.log(event.target.className.slice()[0], +event.target.id);
+
+        showModal(event.target.className.slice()[0], +event.target.id);
+      });
+      if (i == 0)
+        imgContainer.append(img);
+    }
+    j++;
+
+    
+
+
+
 
     const productContent = createElement('div', 'product__content');
     basketProduct.append(productContent);
@@ -225,10 +250,71 @@ function createCatalog() {
 function createElement(elem, classElem) {
   const element = document.createElement(elem);
   if (classElem) {
-    element.classList.add(classElem);
+    element.className = classElem;
   }
 
   return element;
 }
+
+function showModal(index, id) {
+  const cont = document.querySelector('.catalog');
+  const modFad = createElement('div', 'modal fade');
+  modFad.setAttribute('id', 'exampleModal');
+  cont.append(modFad);
+
+  const modalDialog = createElement('div', 'modal-dialog modal-dialog-centered');
+  modFad.append(modalDialog);
+
+  const modalContent = createElement('div', 'modal-content');
+  modalDialog.append(modalContent);
+
+  const carouselSlide = createElement('div', 'carousel slide');
+  carouselSlide.setAttribute('id', 'carouselExampleControls');
+  carouselSlide.setAttribute('data-ride', 'carousel');
+  modalContent.append(carouselSlide);
+
+  const carouselInner = createElement('div', 'carousel-inner');
+  carouselSlide.append(carouselInner);
+
+  const aPref = createElement('a', 'carousel-control-prev');
+  aPref.setAttribute('href', '#carouselExampleControls');
+  aPref.setAttribute('role', 'button');
+  aPref.setAttribute('data-slide', 'prev');
+  carouselSlide.append(aPref);
+
+  const prevIcon = createElement('span', 'carousel-control-prev-icon');
+  prevIcon.setAttribute('aria-hidden', 'true');
+  aPref.append(prevIcon);
+
+  console.log(catalog.products, index);
+
+  for (let photo = 0; photo < catalog.products[index].img.length; photo++) {
+      const act = createElement('div', (photo===id) ? 'carousel-item active' : 'carousel-item');
+      carouselInner.append(act);
+
+      const img = createElement('img', 'd-block w-100');
+
+      img.setAttribute('src', catalog.products[index].img[photo]);
+      act.append(img);
+  }
+
+
+  const aNext = createElement('a', 'carousel-control-next');
+  aNext.setAttribute('href', '#carouselExampleControls');
+  aNext.setAttribute('role', 'button');
+  aNext.setAttribute('data-slide', 'next');
+  carouselSlide.append(aNext);
+
+  const nextIcon = createElement('span', 'carousel-control-next-icon');
+  nextIcon.setAttribute('aria-hidden', 'true');
+  aNext.append(nextIcon);
+}
+
+document.addEventListener('click', function(event){
+  if(event.target.id=== 'exampleModal'){
+      const mod = document.getElementById('exampleModal');
+      mod.remove(mod);
+  }
+});
 
 createCatalog();

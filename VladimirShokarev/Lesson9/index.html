@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="script.js" defer></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Apple</h4>
+      </div>
+      <div class="card-body">
+        <img class="productImg" src="img/yabloki.jpg" alt="apple" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <h1 class="card-title pricing-card-title">10 <small class="text-muted">рублей</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Свежие</li>
+          <li>Сочные</li>
+          <li>Вкусные</li>
+        </ul>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Количество:</span>
+          </div>
+          <input type="number" class="form-control valueCount" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <button id="addAppleBtr" type="button" class="btn btn-lg btn-block btn-primary">Добавить</button>
+        <button id="removeAppleBtr" type="button" class="btn btn-lg btn-block btn-danger">Удалить</button>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Bread</h4>
+      </div>
+      <div class="card-body">
+        <img class="productImg" src="img/bread.jpg" alt="bread" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <h1 class="card-title pricing-card-title">50 <small class="text-muted">рублей</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Свежий</li>
+          <li>Мягкий</li>
+          <li>Вкусный</li>
+        </ul>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Количество:</span>
+          </div>
+          <input type="number" class="form-control valueCount" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <button id="addBreadBtr" type="button" class="btn btn-lg btn-block btn-primary">Добавить</button>
+        <button id="removeBreadBtr" type="button" class="btn btn-lg btn-block btn-danger">Удалить</button>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Milk</h4>
+      </div>
+      <div class="card-body">
+        <img class="productImg" src="img/milk.jpg" alt="milk" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <h1 class="card-title pricing-card-title">100 <small class="text-muted">рублей</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Натуральное</li>
+          <li>Без добавок</li>
+          <li>Как у бабушки в деревне</li>
+        </ul>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Количество:</span>
+          </div>
+          <input type="number" class="form-control valueCount" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <button id="addMilkBtr" type="button" class="btn btn-lg btn-block btn-primary">Добавить</button>
+        <button id="removeMilkBtr" type="button" class="btn btn-lg btn-block btn-danger">Удалить</button>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Water</h4>
+      </div>
+      <div class="card-body">
+        <img class="productImg" src="img/water.jpg" alt="water" data-toggle="modal" data-target=".bd-example-modal-lg">
+        <h1 class="card-title pricing-card-title">70 <small class="text-muted">рублей</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Чистая</li>
+          <li>Прозрачная</li>
+          <li>Тоже вкусная</li>
+        </ul>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Количество:</span>
+          </div>
+          <input type="number" class="form-control valueCount" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <button id="addWaterBtr" type="button" class="btn btn-lg btn-block btn-primary">Добавить</button>
+        <button id="removeWaterBtr" type="button" class="btn btn-lg btn-block btn-danger">Удалить</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="catalog"> </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+</html>

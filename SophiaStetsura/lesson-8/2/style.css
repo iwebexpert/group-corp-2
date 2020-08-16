@@ -7,10 +7,10 @@ img {
     display: flex;
     justify-content: space-between;
 }
-.clear {
+.delete {
     background: red;
 }
-.clear:hover {
+.delete:hover {
     background: darkred;
 }
 .buy {
@@ -21,7 +21,58 @@ img {
 }
 .prod__header {
     font-size: 30px;
+  text-align: center;
 }
 .prod__price {
     font-size: 20px;
+}
+.minus, .quan, .plus {
+    display: inline;
+  }
+.basket__wrap {
+    display: flex;
+    justify-content: space-around;
+  max-width:800px;
+  width:100%;
+  margin: 0 auto;
+  
+}
+.count {
+    display: flex;
+    justify-content: space-around;
+  margin-top: 15px;
+}
+
+.basket__info {
+    text-align: center;
+    margin-top: 50px;
+}
+.delete {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100px;
+    height: 30px;
+}
+
+.prod__wrap{
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-end;
+  border:1px solid black;
+  max-width:150px;
+  min-height: 200px;
+  height:100%;
+  width:100%;
+}
+.add__btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100px;
+    height: 30px;
+    background: rgb(42, 179, 24);
+}
+.add__btn:hover {
+    background: yellowgreen;
 }

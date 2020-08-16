@@ -34,16 +34,26 @@
 .busketItem {
     display: flex;
     justify-content: space-between;
-    text-align: center;
     align-items: center;
-    width: 250px;
+    text-align: center;
+    width: 300px;
     margin: 0 auto;
 }
 
 .totalPriceBlock {
-    text-align: right;
+    display: inline-block;
+    margin-left: 520px;
 }
 
 .busketItem {
     margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+    margin-left: 20px;
+}
+
+.seen {
+    display: inline-block;
 }

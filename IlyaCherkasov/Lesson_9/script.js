@@ -27,6 +27,11 @@ let totalPriceBasket = document.createElement('div');
 totalPriceBasket.innerHTML = `Цена корзины: ${price}`;
 totalPriceBasket.classList.add('totalPriceBlock');
 
+let deleteFromBasketBtn = document.createElement('button');
+deleteFromBasketBtn.innerHTML = `Очистить корзину`;
+deleteFromBasketBtn.classList.add('deleteFromBasketBtn');
+deleteFromBasketBtn.id = 'clearBasket';
+
 
 
 //Описываю классы
@@ -57,22 +62,20 @@ class Basket {
         allamount = 0;
         for (let i = 0; i < this.itemsInBasket.length; i++) {
             allamount += this.itemsInBasket[i].amount;
-            console.log(allamount);
         }
         busketBlock.appendChild(busketList);
         //busketList.appendChild(deleteBtn);
     }
-    /* Пока что не смог реализовать удаление из корзины
-    deleteFromBasket(itemname) {
-        for (let i = 0; i < this.itemsInBasket.length; i++) {
-            if (this.itemsInBasket[i].name == itemname) {
-                this.itemsInBasket.pop();
-                console.log("Товар удален успешно");
-                return;
-            }
+    deleteFromBasket() {
+        busketword.remove();
+        for (let i = 1; i <= this.itemsInBasket.length; i++) {
+            document.querySelector('.busketItem').remove();
         }
-        console.log('Товара не найдено в корзине')
-    }*/
+        document.querySelector("hr").remove();
+        document.querySelector('.totalPriceBlock').remove();
+        document.getElementById('clearBasket').classList.remove('seen');
+        this.itemsInBasket = [];
+    }
     totalPrice() {
         price = 0;
         for (let i = 0; i < this.itemsInBasket.length; i++) {
@@ -91,7 +94,9 @@ document.getElementById('goods__item_add1').onclick = function () {
     mainBasket.addToBasket(chair);
     busketBlock.after(hrLine);
     hrLine.after(totalPriceBasket);
+    //hrLine.after(deleteFromBasketBtn);
     mainBasket.totalPrice();
+    document.getElementById('clearBasket').classList.add('seen');
 }
 
 document.getElementById('goods__item_add2').onclick = function () {
@@ -100,7 +105,9 @@ document.getElementById('goods__item_add2').onclick = function () {
     mainBasket.addToBasket(table);
     busketBlock.after(hrLine);
     hrLine.after(totalPriceBasket);
+    //hrLine.after(deleteFromBasketBtn);
     mainBasket.totalPrice();
+    document.getElementById('clearBasket').classList.add('seen');
 }
 
 document.getElementById('goods__item_add3').onclick = function () {
@@ -109,5 +116,11 @@ document.getElementById('goods__item_add3').onclick = function () {
     mainBasket.addToBasket(lamp);
     busketBlock.after(hrLine);
     hrLine.after(totalPriceBasket);
+    //hrLine.after(deleteFromBasketBtn);
     mainBasket.totalPrice();
+    document.getElementById('clearBasket').classList.add('seen');
+}
+
+document.getElementById('clearBasket').onclick = function () {
+    mainBasket.deleteFromBasket();
 }

@@ -1,0 +1,65 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 25px;
+}
+.container{
+    margin: 0 auto;
+    max-width: 900px;
+    min-height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.error-empty{
+    color: red;
+    text-align: center;
+}
+.clearBasket{
+    align-self: center;
+    font-size: 16px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    outline: none;
+}
+.clearBasket:hover{
+    background-color: red;
+    outline: none;
+    color: white;
+}
+.catalog{
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+.oneProduct{
+    min-height: 40px;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    padding: 10px;
+    display: flex;
+}
+.oneProductName{
+    font-size: 24px;
+    align-self: center;
+}
+.oneProductPrice{
+    font-size: 24px;
+    margin-left: 20px;
+    align-self: center;
+}
+.add-btn{
+    height: 24px;
+    width: 120px;
+    align-self: center;
+    margin-left: auto;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+.add-btn:hover{
+    background-color: red;
+    outline: none;
+    border: none;
+    color: white;
+}

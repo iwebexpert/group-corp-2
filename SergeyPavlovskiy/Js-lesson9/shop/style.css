@@ -1,0 +1,22 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid #18d622;
+}
+
+.goods__catalog {
+  display: flex;
+  flex-direction: row;
+}
+
+.goods__img {
+  max-width: 250px;
+}
+

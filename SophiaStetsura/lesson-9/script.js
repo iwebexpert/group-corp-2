@@ -153,4 +153,46 @@
     }
       infoAmount='';
   })
+
+let hb = document.createElement('h2');
+  hb.className = 'header';
+  hb.innerHTML = 'Хочешь кушать, но нет денег? Посмотри на фото еды!';
+  hb.style.textAlign = 'center';
+  main.appendChild(hb);
+  let modalBtn = document.createElement('button');
+  modalBtn.className = 'modal__btn';
+  modalBtn.innerHTML = 'ЖМАКНИ';
+  main.appendChild(modalBtn);
+  let modal = document.createElement('div');
+  modal.className = 'modal';
+  let modalContent = document.createElement('div');
+  modalContent.className = 'modal__content';
+  let closeModal = document.createElement('span');
+  closeModal.className = 'close__modal';
+  closeModal.innerHTML = '&times';
+  let img = document.createElement('img');
+  img.src = 'https://eda.ru/img/eda/1200x-i/s2.eda.ru/StaticContent/Photos/120131085053/171027192707/p_O.jpg';
+//   let img = `<div class="mySlideshow">
+//   <img src="https://eda.ru/img/eda/1200x-i/s2.eda.ru/StaticContent/Photos/120131085053/171027192707/p_O.jpg">
+//   <img src="https://cdnimg.rg.ru/img/content/173/66/14/variety-of-ice-cream-cones-picture-id685816670_d_850.jpg">
+//   <img src="https://vilkin.pro/wp-content/uploads/2018/11/sendvich-s-vetchinoi-i-syrom-770x513.jpg">
+// </div>`
+  main.appendChild(modal);
+  modal.appendChild(modalContent);
+  modalContent.appendChild(closeModal);
+  modalContent.appendChild(img);
+
+  modalBtn.onclick = function () {
+    // modal.style.display = 'block';
+    modal.classList.toggle('block');
+  }
+  closeModal.onclick = function () {
+    modal.classList.add('none');
+  }
+  window.onclick = function (e) {
+    if (e.target == modal) {
+      modal.classList.add('none');
+    } 
+  }
+
 });

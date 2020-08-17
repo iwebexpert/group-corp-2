@@ -1,0 +1,59 @@
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.goods {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.goods__item {
+    width: 300px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.goods__input {
+    margin-bottom: 20px;
+}
+
+#goods__item_add1 {
+    margin-bottom: 15px;
+}
+
+.Busket {
+    margin-top: 50px;
+}
+
+.busket_word {
+    text-align: center;
+}
+
+.busketItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.totalPriceBlock {
+    display: inline-block;
+    margin-left: 520px;
+}
+
+.busketItem {
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+    margin-left: 20px;
+}
+
+.seen {
+    display: inline-block;
+}

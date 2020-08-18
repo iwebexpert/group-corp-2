@@ -44,6 +44,14 @@ class Basket {
         this.prices.splice(i, 1);
         this.quantities.splice(i, 1);
     }
+    getOrder() {
+        let orderMessage = '';
+        [...this.getItems()].forEach((item, i) => {
+            orderMessage += `${item} ${this.getItemQuantity(i)}x, `
+        });
+
+        return orderMessage.split(0,orderMessage.length - 1);
+    }
 }
 
 let shopList = document.querySelector('.shop__list');
@@ -188,7 +196,7 @@ const addQuantity = (quantity, name) => {
             } else {
                 deleteProductFromBasket(name);
                 getBtns();
-                document.querySelector('.form').style.display = 'none';
+                if (document.querySelectorAll('.item').length === 0) document.querySelector('.form').style.display = 'none';
             }
         };
     });
@@ -266,12 +274,12 @@ const shopImages = document.querySelectorAll('.shop__img'),
 const orderBtn = document.querySelector('.order');
 
 orderBtn.addEventListener('click', () => {
-    const modalImg = document.querySelector('.modal__img'),
+    const swiperContainer = document.querySelector('.swiper-container'),
         comment = document.querySelector('#comment'),
         address = document.querySelector('.address');
     let counter = 0;
-    modalImg.style.display = 'none';
-    modalName.textContent = `You ordered: ${products.getItems().join(` ${products.getItemQuantity(counter++)}x, `)} ${products.getItemQuantity(counter)}x`;
+    swiperContainer.style.display = 'none';
+    modalName.textContent = `You ordered: ${products.getOrder()}`;
     modalPrice.textContent = `Total amount is ${products.countBasketPrice()} ${products.currency},`;
     modalComment.textContent = `Your comment: ${comment.value}`;
     modalAddress.textContent = `Your address: ${address.value},`;

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a59aba01d6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <title>Shop</title>
+</head>
+<body>
+    <div class="container">
+        <div class="shop__list"></div>
+        <div class="modal">
+            <div class="modal__inner">
+
+                <!-- Slider main container -->
+                <div class="swiper-container">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <img src="https://placehold.it/200" alt="photo" class="modal__img swiper-slide">
+                        <img src="https://placehold.it/200" alt="photo" class="modal__img swiper-slide">
+                        <img src="https://placehold.it/200" alt="photo" class="modal__img swiper-slide">
+                    </div>
+                    <!-- If we need navigation buttons    TODO
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div> -->
+                </div>
+
+                <div class="modal__content">
+                    <div class="modal__name">name</div>
+                    <div class="modal__price">500 RUB</div>
+                    <div class="modal__address"></div>
+                    <div class="modal__comment"></div>
+                </div>
+            </div>
+        </div>
+        <div class="basket">
+            <i class="fas fa-shopping-basket"> Basket</i>
+            <ul class="list"></ul>
+            <div class="total__price">Basket is clear</div>
+        </div>
+        <form action="#" class="form">
+            <input type="text" class="address" placeholder="address"><br>
+            <textarea name="comment" id="comment" cols="50" rows="10" placeholder="comment"></textarea>
+            <button class="order" type="button">Order</button>
+        </form>
+    </div>
+    <script src="shop.js"></script>
+</body>
+</html>

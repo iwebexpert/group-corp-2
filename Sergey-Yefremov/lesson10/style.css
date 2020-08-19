@@ -1,0 +1,311 @@
+* {
+    margin:0;
+    padding:0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px 20px  10px 20px;
+}
+#catalog {
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(33,47,62,1) 100%);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.basket_container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+#basket {
+    box-sizing: border-box;
+    border-radius: 15px;
+    border-spacing: 0;
+    cursor: pointer;
+    height: 100px;
+    width:120px;
+    background: linear-gradient(90deg, rgba(187,197,249,1) 0%, rgba(255,178,216,1) 100%);
+
+}
+#clearBasketButton{
+    background: orangered;
+    padding: 5px 5px;
+    text-decoration: none;
+    border: none;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor:pointer;
+}
+#clearBasketButton:hover{
+    background: red;
+}
+.product {
+    max-width: 150px;
+    min-height: 200px;
+    background: #FFFFFF;
+    box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.thumbnail {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    cursor:pointer;
+}
+
+.thumbnail >  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.buyButton {
+    background: #5A98D0;
+    padding: 5px 5px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.buyButton:active {
+    background: #e7ecf0;
+    color: black;
+}
+.buyButton:hover{
+    background-color: red;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+#productId {
+    background-color: beige;
+}
+
+.errorMessage {
+    height: 100%;
+    color: red;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Message {
+    padding: 5px;
+    height: 100%;
+    color: black;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.overlay {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 20;
+    transition: .3s all;
+}
+
+.modal {
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    /*height: 100%;*/
+    max-width: 500px;
+    min-height: 500px;
+    max-height: 800px;
+    overflow-y: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30;
+    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+    text-align: center;
+    padding: 30px;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: 0.3s all;
+
+}
+
+.modal.active,
+.overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal__cross {
+    padding: 5px;
+    position: absolute;
+    text-align: right;
+    top:5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: coral;
+    color: #fff;
+    border-radius: 3px;
+}
+a:hover{
+    background-color: darkorange;
+}
+
+#imgContainer {
+    height: 0;
+    padding-top: 80%;
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+.imgContainer {
+    cursor: pointer;
+}
+
+.imgModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 100%;
+    max-width: 100%;
+}
+.hide {
+    visibility: hidden;
+}
+.show {
+    visibility: visible;
+}
+
+.listBasket {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.total {
+    text-align: right;
+}
+
+.left {
+    justify-content: flex-end;
+}
+.right {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.nextButton {
+    background: #5A98D0;
+    padding: 5px 5px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    max-width: 200px;
+    cursor:pointer;
+}
+.nextButton:active {
+    background: #e7ecf0;
+    color: black;
+}
+.nextButton:hover{
+    background-color: red;
+}
+.adress_delivery {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.input_class  {
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin-top: 8px;;
+    max-width: 430px;
+    height: 32px;
+    padding: 5px;
+}
+
+.textarea_class {
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 8px;;
+    width: 100%;
+    padding: 5px;
+}
+.comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+label {
+    display: flex;
+    flex-direction: column;
+    width:150px;
+    margin-top: 3px;
+    padding:3px;
+}
+h2 {
+    margin-bottom: 10px;
+}

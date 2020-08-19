@@ -18,24 +18,51 @@
     </div>
     
     <div class="order">
-      <div class="basket">
-        <div class="basket__composition">
-          <h3>The Composition Of The Basket</h3>
+      <div class="basket__in">
+        <div class="helper__block">
+          <div class="basket__composition">
+            <h3>The Composition Of The Basket</h3>
+            <p id="order__sum"></p>
+          </div>
+          <div class="basket__show">
+            <span class="show">Hide Basket</span>
+          </div>
         </div>
-        <div class="basket__show">
-          <span>Show Basket</span>
-        </div>
+        <div id="basket__products"></div>
       </div>
 
       <div class="address">
-        <div class="address__delivery">
-          <h3>Delivery Address</h3>
+        <div class="helper__block">
+          <div class="address__delivery">
+            <h3>Delivery Address</h3>
+          </div>
+          <div class="address__show">
+            <span class="show">Show Address</span>
+          </div>
         </div>
-        <div class="address__show">
-          <span>Show Address</span>
+        <div id="address__input">
+          <p>Enter Address</p>
+          <textarea cols="30" rows="5"></textarea>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="helper__block">
+          <div class="comment__header">
+            <h3>Comment On The Order</h3>
+          </div>
+          <div class="comment__show">
+            <span class="show">Show Comment</span>
+          </div>
+        </div>
+        <div id="comment__input">
+          <p>Enter Comment</p>
+          <textarea cols="30" rows="5"></textarea>
         </div>
       </div>
     </div>
+
   </div>
+  <script src="basket.js"></script>
 </body>
 </html>

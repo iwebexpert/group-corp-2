@@ -1,0 +1,45 @@
+.order {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -250%);
+
+  max-width: 1000px;
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 5px;
+
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
+}
+
+.order__inner {
+  width: inherit;
+  height: inherit;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.order__address,
+.order__comments,
+.order__cost {
+  font-size: 20px;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.order__btn {
+  font-size: 20px;
+  color: #fff;
+
+  padding: 9px 20px;
+  border-radius: 5px;
+  background-color: rgb(114, 209, 127);
+  border: 1px solid rgb(0, 73, 16);
+  cursor: pointer;
+}

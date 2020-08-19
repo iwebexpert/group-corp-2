@@ -16,8 +16,15 @@ let btn3 = document.querySelector('.goodsBuy3');
 
 let basketBlock = document.querySelector('#basket');
 
-var first = true;
+let totalPriceBasket = document.createElement('div');
+totalPriceBasket.classList.add('totalPriceBlock');
 
+
+var first = true;
+var price = 0;
+var allamount = 0;
+
+var userName = '', userSecName = '', userAdress = '', userComment = '';
 
 
 //Добавление количества товаров
@@ -69,16 +76,37 @@ plus3.onclick = function () {
 let mainBasket = new Basket();
 
 btn1.onclick = function () {
-    let chair = new Items('Стул', 3420, +input1.value, 'chair');
+    if (first) {
+        let basketEmpty = document.querySelector('.basketEpty');
+        basketEmpty.remove();
+    }
+    let chair = new Items('Стул', 3420, +input1.value, 'chair', 1);
     mainBasket.addToBasket(chair);
+    mainBasket.FullPrice();
+    basketBlock.after(totalPriceBasket);
+    mainBasket.basketAdressBtn();
 }
 
 btn2.onclick = function () {
-    let table = new Items('Стол', 7990, +input2.value, 'table');
+    if (first) {
+        let basketEmpty = document.querySelector('.basketEpty');
+        basketEmpty.remove();
+    }
+    let table = new Items('Стол', 7990, +input2.value, 'table', 2);
     mainBasket.addToBasket(table);
+    mainBasket.FullPrice();
+    basketBlock.after(totalPriceBasket);
+    mainBasket.basketAdressBtn();
 }
 
 btn3.onclick = function () {
-    let lamp = new Items('Лампа', 970, +input3.value, 'lamp');
+    if (first) {
+        let basketEmpty = document.querySelector('.basketEpty');
+        basketEmpty.remove();
+    }
+    let lamp = new Items('Лампа', 1070, +input3.value, 'lamp', 3);
     mainBasket.addToBasket(lamp);
+    mainBasket.FullPrice();
+    basketBlock.after(totalPriceBasket);
+    mainBasket.basketAdressBtn();
 }

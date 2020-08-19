@@ -1,0 +1,96 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    max-width: 900px;
+    margin: 0 auto;
+}
+input {
+    margin-top: 10px;
+}
+label {
+    padding-right: 10px;
+}
+.itemBasket, .basketItem {
+    border: 1px solid darkmagenta;
+    display: inline-block;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.inputsWrapper {
+    display: inline-block;
+}
+.hide {
+    display: none;
+}
+.basketItem__input {
+    /* display: block; */
+    width: 20px;
+    text-align: center;
+}
+textarea {
+    resize: none;
+}
+.header {
+    display: inline-block;
+    margin: 20px 0;
+}
+.rollUp {  
+    background-image: url('./up.png');   
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px; 
+}
+.rollDown {
+    background-image: url('./down-arrow.png');
+}
+.btns__changeCount {
+    margin: 10px 0;
+}
+.btn__changeCount, .basketItem__input {
+    margin: 0;
+    padding: 3px 7px;
+}
+.btn__buy, .btn__delete {
+    padding: 5px 9px;
+    background-color:rgba(0, 128, 0, 0.8);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+}
+.btn__delete {
+    background-color:rgba(165, 42, 33, 0.9);
+}
+.btn__delete:hover {
+    background-color:rgba(165, 42, 33, 1);
+}
+.btn__buy:hover {
+    background-color:rgba(0, 128, 0, 0.9);
+}
+.itemBasket, .basketItem {
+    width: 160px;
+    text-align: center;
+}
+.item__img {
+    width: 140px;
+    height: 140px;
+    background-color: blueviolet;
+    margin: 0 auto 10px;
+}
+#commentBtn, #toAddress {
+    padding: 5px 9px;
+    color: white;
+    background-color:rgba(0, 128, 0, 0.9);
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+}

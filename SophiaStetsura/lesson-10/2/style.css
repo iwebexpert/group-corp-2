@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+img {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+.delete {
+    background: red;
+}
+.delete:hover {
+    background: darkred;
+}
+.buy {
+    background: chartreuse;
+}
+.buy:hover {
+    background: green;
+}
+.prod__header {
+    font-size: 30px;
+  text-align: center;
+}
+.prod__price {
+    font-size: 20px;
+}
+.minus, .quan, .plus {
+    display: inline;
+  }
+.basket__wrap {
+    display: flex;
+    justify-content: space-around;
+  max-width:800px;
+  width:100%;
+  margin: 0 auto;
+  
+}
+.count {
+    display: flex;
+    justify-content: space-around;
+  margin-top: 15px;
+}
+
+.basket__info {
+    text-align: center;
+    margin-top: 50px;
+}
+.delete {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100px;
+    height: 30px;
+}
+
+.prod__wrap{
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-end;
+  border:1px solid black;
+  max-width:150px;
+  min-height: 200px;
+  height:100%;
+  width:100%;
+}
+.add__btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100px;
+    height: 30px;
+    background: rgb(42, 179, 24);
+}
+.add__btn:hover {
+    background: yellowgreen;
+}
+.header {
+    color: blueviolet;
+}
+.modal__btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100px;
+    height: 30px;
+    background: cornflowerblue;
+}
+img {
+    /* width: 300px;
+    height: 300px; */
+    margin: 0 auto;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top:  0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    overflow: auto;
+}
+.modal__content {
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    height: 60%;
+    z-index: 999999;
+}
+.close__modal {
+    color: white;
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+}
+.block {
+    display: block;
+}
+.none {
+    display: none;
+}
+.checkout__btn {
+    background: rgb(7, 175, 111);
+    width: 200px;
+    height: 50px;
+    display: block;
+    margin: 0 auto; 
+    margin-top: 50px;
+    border-radius: 50%;
+}
+.checkout__btn:hover {
+    background: rgb(1, 65, 40);
+
+}
+span {
+    cursor: pointer;
+}
+.modal__checkout {
+    position: absolute; 
+    width: 300px; 
+    margin-left: -150px; 
+    left: 50%; 
+    top: -100%; 
+    padding: 20px; 
+    background: #fff; 
+    border: 1px solid #333; 
+    z-index: 9999; 
+    transition: all 0.5s ease-in;
+}
+.overflow {
+    width: 100%; 
+    height: 100%; 
+    z-index: 9998; 
+    background: rgba(0,0,0,0.7); 
+    position: absolute; 
+    top: 0;
+}

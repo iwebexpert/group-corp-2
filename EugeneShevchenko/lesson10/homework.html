@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework</title>
+    <script>
+        class Backet {
+            constructor(products){
+                this.products = products;
+
+                this.address = '';
+                this.addressIsHide = true;
+
+                this.comment = '';
+                this.commentIsHide = true;
+
+                this.messageElement = document.querySelector('.message')
+            }
+
+            remove(id){
+                //TODO
+            }
+
+            add(product){
+            //TODO
+            }
+
+            onSuccess(){
+                //TODO, когда нажата кнопка "Оформить заказ"
+                this.messageElement.textContent = 'Итоговая стоимость + адрес + комментарий';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="message"></div> 
+</body>
+</html>

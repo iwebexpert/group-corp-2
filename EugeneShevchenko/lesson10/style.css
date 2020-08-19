@@ -1,0 +1,42 @@
+body {
+    background-color: yellow;
+}
+
+button {
+    width: 170px;
+    padding: 12px;
+    margin: 12px;
+    color: white;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: grey;
+}
+
+button:active {
+    background-color: #eee;
+    color: black;
+}
+
+#game td {
+    border-collapse: collapse;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.food {
+    background-color: lightcoral;
+}
+
+.snake {
+    background-color: grey;
+}
+
+#message {
+    font-size: 28px;
+    color: red;
+}

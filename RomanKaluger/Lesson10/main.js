@@ -7,7 +7,7 @@ const menu = new Menu();
 const food = new Food();
 
 try{
-    settings.init({speed: 5, winLength: 4});
+    settings.init({speed: 5, winLength: 9});
     board.init(settings, snake);
     food.init(settings, snake, board);
     game.init(settings, status, board, snake, menu, food);

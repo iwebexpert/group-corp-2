@@ -55,6 +55,11 @@ class Board {
         return nextCell === null;
     }
 
+    isNextStepSnake(nextSnakeCoords){
+        let nextCell = this.getCell(nextSnakeCoords.x, nextSnakeCoords.y);
+        return nextCell.classList.contains('snake');
+    }
+
     //Еда на игровом поле (добавление)
     renderFood(coords){
         let foodCell = this.getCell(coords.x, coords.y);

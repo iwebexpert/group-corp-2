@@ -32,6 +32,11 @@ class Game {
     //1 шаг игры
     doTick(){
         this.snake.performStep();
+
+        if (this.isPartOfSnakeOnWall()) {
+            return;
+        }
+
         if(this.isGameLost()){
             return;
         }
@@ -62,7 +67,7 @@ class Game {
 
     //Проверка, окончена ли игра (проигрыш)
     isGameLost(){
-        if(this.board.isNextStepWall(this.snake.body[0])){
+        if(this.board.isNextStepSnake(this.snake.body[0])){
             clearInterval(this.timer);
             this.setMessage('Поражение!');
             return true;
@@ -70,7 +75,27 @@ class Game {
         return false;
     }
 
-    setMessage(message){
+    isPartOfSnakeOnWall() {
+        if (this.board.isNextStepWall(this.snake.body[0])) {
+
+            if (this.snake.body[0].y >= this.settings.colsCount) {
+                this.snake.body[0].y = 0;
+
+            } else if (this.snake.body[0].y < 0) {
+                this.snake.body[0].y = this.settings.colsCount;
+            }
+
+            if (this.snake.body[0].x >= this.settings.rowsCount) {
+                this.snake.body[0].x = 0;
+
+            } else if (this.snake.body[0].x < 0) {
+                this.snake.body[0].x = this.settings.rowsCount;
+            }
+
+        }
+    }
+
+    setMessage(message) {
         this.messageElement.textContent = message;
     }
 

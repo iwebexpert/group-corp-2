@@ -2,6 +2,7 @@ class InitializatorDOM {
     initializeShop(catalog, basket) {
         const container = document.createElement('div');
         container.classList.add('container');
+        this.container = container;
 
         const tabPanel = document.createElement('div');
         tabPanel.classList.add('tabPanel');
@@ -15,6 +16,7 @@ class InitializatorDOM {
 
         rootCatalogArea.classList.add('rootArea');
         rootBasketArea.classList.add('rootArea', 'hideClass', 'closeClass');
+        rootCatalogArea.style.marginTop = '7vh';
 
         const tabToggleButton = document.createElement('div');
         const tagCatalog = document.createElement('div');
@@ -31,6 +33,17 @@ class InitializatorDOM {
             'CATALOG': 1,
             'BASKET': 1,
         };
+
+        this.basketPreferences = this.createBasketPreferences();
+        this.basketPreferences.classList.add('basketPreferencesClosed');
+
+        this.basketSteps = {
+            goodsReview: 'goodsReview',
+            address: 'address',
+            comments: 'comments'
+        };
+        this.currentBasketStep = this.basketSteps.goodsReview;
+
         tabToggleButton.onmousedown = (() => {
             tabToggleButton.classList.toggle('disableBtn');
 
@@ -41,24 +54,64 @@ class InitializatorDOM {
 
             rootCatalogArea.classList.toggle('closeClass');
             rootBasketArea.classList.toggle('closeClass');
+
+
             setTimeout(() => {
                 tabToggleButton.classList.toggle('disableBtn');
             }, 2000);
 
             const mode = tagCatalog.classList.contains('selectedArea') ? 'CATALOG' : 'BASKET';
             this.createOrUpdateItemsView(mode, this.selectedPageNum[mode]);
-
         });
         this.createOrUpdateItemsView('CATALOG', this.selectedPageNum['CATALOG']);
 
+        const basketIcon = document.createElement('img');
+        const firstArrow = document.createElement('img');
+        const secondArrow = document.createElement('img');
+        const addressIcon = document.createElement('img');
+        const commentsIcon = document.createElement('img');
+        basketIcon.src = 'img/basket.png';
+        firstArrow.src = 'img/arrow.png';
+        secondArrow.src = 'img/arrow.png';
+        addressIcon.src = 'img/address.png';
+        commentsIcon.src = 'img/comment.png';
+        this.basketStatus = [basketIcon, firstArrow, addressIcon, secondArrow, commentsIcon];
+
+        basketIcon.classList.add('basketPrefStatusIcon');
+        firstArrow.classList.add('basketPrefStatusIcon');
+        secondArrow.classList.add('basketPrefStatusIcon');
+        addressIcon.classList.add('basketPrefStatusIcon');
+        commentsIcon.classList.add('basketPrefStatusIcon');
+
+        this.narrowBasketMode = false;
+
+
         tabPanel.append(tagCatalog, tabToggleButton, tagBasket);
-        container.append(tabPanel, rootBasketArea, rootCatalogArea);
+        container.append(tabPanel, rootBasketArea, rootCatalogArea, this.basketPreferences);
         document.body.append(container);
+    }
+
+    createClearBasketButton() {
+        const clearBasketButton = document.createElement('div');
+        clearBasketButton.classList.add('clearBasketButton');
+        clearBasketButton.innerHTML = 'Очистить';
+        clearBasketButton.addEventListener('click', () => {
+            this.basketPreferences.innerHTML = '';
+            this.basket.clearBasket();
+            this.createOrUpdateItemsView('BASKET', this.selectedPageNum);
+        });
+        return clearBasketButton;
+    }
+
+    createBasketPreferences() {
+        const basketPreferences = document.createElement('div');
+        basketPreferences.classList.add('basketPreferences');
+        return basketPreferences;
     }
 
     createCatalogCard(productGroupItem, mode) {
         const rootBasketArea = this.rootBasketArea;
-        const basket = this. basket;
+        const basket = this.basket;
         const productCard = document.createElement('div');
         productCard.classList.add('productCard');
         productCard.setAttribute('data-cardname', `${productGroupItem.product.name}_${mode}`);
@@ -109,10 +162,10 @@ class InitializatorDOM {
                 }
                 const totalInfoPanel = document.querySelector(`.totalInfoPanel`);
                 totalInfoPanel.remove();
-                if (basket.items.length !== 0) {
+                if (basket.items.length) {
                     rootBasketArea.append(this.createBasketTotalInfo(basket));
                 }
-                this.createOrUpdateItemsView('BASKET',this.selectedPageNum['BASKET']);
+                this.createOrUpdateItemsView('BASKET', this.selectedPageNum['BASKET']);
             }
         };
 
@@ -123,7 +176,7 @@ class InitializatorDOM {
 
         const productCount = document.createElement('div');
         productCount.classList.add('productCount');
-        productCount.innerHTML = mode === 'CATALOG' ? '0' :productGroupItem.amount;
+        productCount.innerHTML = mode === 'CATALOG' ? '0' : productGroupItem.amount;
 
         const productCountPlus = document.createElement('div');
         productCountPlus.classList.add('productCountPlus');
@@ -154,7 +207,8 @@ class InitializatorDOM {
 
         return productCard;
     }
-    createImageCarousel(productGroupItem){
+
+    createImageCarousel(productGroupItem) {
         const imageCarousel = document.createElement('div');
         imageCarousel.classList.add('imageCarousel');
 
@@ -173,29 +227,44 @@ class InitializatorDOM {
 
         let curPhotoInx = 0;
         let lastSelected = 0;
-        function checkSelectPhotoInx(){
+
+        function checkSelectPhotoInx() {
             slideRight.classList.remove('slideBlock');
             slideLeft.classList.remove('slideBlock');
-            if(curPhotoInx===0){
+            if (curPhotoInx === 0) {
                 slideLeft.classList.add('slideBlock');
             }
-            if (productGroupItem.product.imgURLsArr.length === curPhotoInx+1){
+            if (productGroupItem.product.imgURLsArr.length === curPhotoInx + 1) {
                 slideRight.classList.add('slideBlock');
             }
-
             imgsSelectors[lastSelected].classList.remove('imgSelectorSelected');
             imgsSelectors[curPhotoInx].classList.add('imgSelectorSelected');
             imageCarouselContainer.style.marginLeft = `${-curPhotoInx * 100}%`;
             lastSelected = curPhotoInx;
         }
+
         slideLeft.onclick = () => {
             curPhotoInx--;
             checkSelectPhotoInx();
         };
-        slideRight.onclick = () =>{
+        slideRight.onclick = () => {
             curPhotoInx++;
             checkSelectPhotoInx();
         };
+
+        window.addEventListener("keydown", (e) => {
+            if (e.code === 'ArrowRight') {
+                if (!slideRight.classList.contains('slideBlock')) {
+                    curPhotoInx++;
+                    checkSelectPhotoInx();
+                }
+            } else if (e.code === 'ArrowLeft') {
+                if (!slideLeft.classList.contains('slideBlock')) {
+                    curPhotoInx--;
+                    checkSelectPhotoInx();
+                }
+            }
+        });
 
         const imgsArr = productGroupItem.product.imgURLsArr.map(url => {
             const img = document.createElement('div');
@@ -207,7 +276,7 @@ class InitializatorDOM {
         const imgsSelectors = productGroupItem.product.imgURLsArr.map((url, inx) => {
             const imgSelector = document.createElement('div');
             imgSelector.classList.add('imgSelector');
-            imgSelector.onclick =() => {
+            imgSelector.onclick = () => {
                 curPhotoInx = inx;
                 checkSelectPhotoInx();
             };
@@ -218,9 +287,11 @@ class InitializatorDOM {
         imageSelectorContainer.append(...imgsSelectors);
         imageCarouselContainer.append(...imgsArr);
         imageCarousel.append(slideLeft, slideRight, imageCarouselContainer, imageSelectorContainer);
+
         return imageCarousel;
     }
-    createModalWindowWithContent(content){
+
+    createModalWindowWithContent(content) {
         const popper = document.createElement('div');
         popper.classList.add('popper');
 
@@ -230,17 +301,17 @@ class InitializatorDOM {
         const modalWindowTopPanel = document.createElement('div');
         modalWindowTopPanel.classList.add('modalWindowTopPanel');
 
-        const modalWindowBottomPanel= document.createElement('div');
+        const modalWindowBottomPanel = document.createElement('div');
         modalWindowBottomPanel.classList.add('modalWindowBottomPanel');
 
-        const modalWindowContentContainer= document.createElement('div');
+        const modalWindowContentContainer = document.createElement('div');
         modalWindowContentContainer.classList.add('modalWindowContentContainer');
 
-        const OkButton= document.createElement('div');
+        const OkButton = document.createElement('div');
         OkButton.classList.add('OkButton');
         OkButton.innerHTML = 'Ok';
 
-        const exitButton= document.createElement('div');
+        const exitButton = document.createElement('div');
         exitButton.classList.add('exitButton');
         exitButton.innerHTML = 'x';
 
@@ -256,14 +327,13 @@ class InitializatorDOM {
             setTimeout(() => popper.remove(), 500);
         };
         const openModal = () => {
-          document.body.append(popper);
-          setTimeout(() =>modalWindow.classList.add('modalWindowOpen'),0);
+            document.body.append(popper);
+            setTimeout(() => modalWindow.classList.add('modalWindowOpen'), 0);
         };
-
         exitButton.onclick = closeModal;
         OkButton.onclick = closeModal;
         popper.onclick = (e) => {
-            if (!e.target.closest('.modalWindow')){
+            if (!e.target.closest('.modalWindow')) {
                 closeModal();
             }
         };
@@ -273,7 +343,8 @@ class InitializatorDOM {
             closeModal,
         };
     }
-    createEmptyLabel(mode){
+
+    createEmptyLabel(mode) {
         const emptyLabel = document.createElement('div');
         emptyLabel.classList.add('emptyBasketLabel');
         emptyLabel.innerHTML = 'Пустота';
@@ -283,53 +354,137 @@ class InitializatorDOM {
             this.rootCatalogArea.append(emptyLabel);
         }
     }
+
     createBasketTotalInfo(basket) {
         const totalInfoPanel = document.createElement('div');
         totalInfoPanel.classList.add('totalInfoPanel');
         totalInfoPanel.innerHTML = `В корзине<strong>&nbsp;${basket.items.length}&nbsp;</strong>товаров на сумму <strong>&nbsp;${basket.countBasketPrice()}&nbsp;</strong>рублей`;
         return totalInfoPanel;
     }
-    createOrUpdateItemsView(mode, selectedPageNum = 1){
-        const productGroupItems = mode==='CATALOG' ? this.catalog.productList : this.basket.items;
+
+    createOrUpdateItemsView(mode, selectedPageNum = 1) {
+        const productGroupItems = mode === 'CATALOG' ? this.catalog.productList : this.basket.items;
         const paginator = document.createElement('div');
         paginator.classList.add('paginator');
         const pageCount = Math.ceil(productGroupItems.length / 3);
-        if (selectedPageNum > pageCount){
+        if (selectedPageNum > pageCount) {
             selectedPageNum = 1;
         }
         this.selectedPageNum = {
             ...this.selectedPageNum,
-            [mode] : selectedPageNum
+            [mode]: selectedPageNum
         };
         this.rootCatalogArea.innerHTML = '';
         this.rootBasketArea.innerHTML = '';
-            if (!productGroupItems.length) {
-                this.createEmptyLabel(mode);
-                return;
+
+        this.narrowBasketPanelSection = document.createElement('div');
+        this.narrowBasketPanelSection.classList.add('narrowBasketPanelSection');
+        this.narrowBasketPanelSection.innerHTML = ' - ';
+        this.rootBasketArea.append(this.narrowBasketPanelSection);
+        this.narrowBasketPanelSection.addEventListener("click", () => {
+            this.rootBasketArea.innerHTML = '';
+            this.rootBasketArea.append(this.narrowBasketPanelSection);
+            if (this.narrowBasketMode) {
+                this.rootBasketArea.style.height = '70vh';
+                this.createOrUpdateItemsView('BASKET', 1);
+                this.narrowBasketMode = false;
+            } else {
+                this.rootBasketArea.style.height = '3vh';
+                this.narrowBasketMode = true;
+            }
+        });
+
+        if (!productGroupItems.length) {
+            this.createEmptyLabel(mode);
+            this.basketPreferences.classList.add('basketPreferencesClosed');
+            return;
+        }
+
+        const startCount = 3 * (selectedPageNum - 1);
+
+        if (this.clearBasketButton) {
+            this.clearBasketButton.remove();
+        }
+        if (mode === 'BASKET') {
+            switch (this.currentBasketStep) {
+                case 'goodsReview': {
+                    this.basket.items.slice(startCount, startCount + 3).forEach(prItem => {
+                        this.rootBasketArea.append(this.createCatalogCard(prItem, 'BASKET'));
+                    });
+                    this.rootBasketArea.append(this.createBasketTotalInfo(this.basket));
+                    paginator.style.visibility = 'visible';
+                    break;
+                }
+                case 'address': {
+                    this.rootBasketArea.append(this.createAddressWindow());
+                    paginator.style.visibility = 'hidden    ';
+                    break;
+                }
+                case 'comments': {
+                    this.rootBasketArea.append(this.createCommentsWindow());
+                    paginator.style.visibility = 'hidden    ';
+                    break;
+                }
             }
 
-        const startCount = 3 * (selectedPageNum-1);
-        if (mode === 'BASKET'){
-            this.basket.items.slice(startCount, startCount+3).forEach(prItem => {
-                this.rootBasketArea.append(this.createCatalogCard(prItem, 'BASKET'));
-            });
-            this.rootBasketArea.append(this.createBasketTotalInfo(this.basket));
-        } else if (mode === 'CATALOG')
-            this.catalog.productList.slice(startCount, startCount+3).forEach(prItem => {
+
+            this.clearBasketButton = this.createClearBasketButton();
+            this.nextStepBasketButton = this.createNextStepBasketButton();
+            this.prevStepBasketButton = this.createPrevStepBasketButton();
+
+            this.basketStatus.forEach(val => val.classList.remove('disableButton'));
+
+            this.clearBasketButton.classList.add('disableButton');
+            switch (this.currentBasketStep) {
+                case 'goodsReview': {
+                    this.clearBasketButton.classList.remove('disableButton');
+                    this.basketStatus.slice(1).forEach(val => val.classList.add('disableButton'));
+                    break;
+                }
+                case 'address': {
+                    this.basketStatus.slice(3).forEach(val => val.classList.add('disableButton'));
+                    break;
+                }
+                case 'comments': {
+                    this.basketStatus.slice(5).forEach(val => val.classList.add('disableButton'));
+                    break;
+                }
+            }
+
+
+            if (this.isNextStepBasketAllowed()) {
+                this.nextStepBasketButton.classList.remove('disableButton');
+            } else {
+                this.nextStepBasketButton.classList.add('disableButton');
+            }
+            if (this.isPrevStepBasketAllowed()) {
+                this.prevStepBasketButton.classList.remove('disableButton');
+            } else {
+                this.prevStepBasketButton.classList.add('disableButton');
+            }
+
+            this.basketPreferences.innerHTML = '';
+            this.basketPreferences.append(this.clearBasketButton, ...this.basketStatus, this.prevStepBasketButton, this.nextStepBasketButton);
+
+            this.basketPreferences.classList.remove('basketPreferencesClosed');
+        } else if (mode === 'CATALOG') {
+            this.basketPreferences.classList.add('basketPreferencesClosed');
+            this.catalog.productList.slice(startCount, startCount + 3).forEach(prItem => {
                 this.rootCatalogArea.append(this.createCatalogCard(prItem, 'CATALOG'));
             });
+        }
 
-        for (let i = 0; i<pageCount; i++) {
+        for (let i = 0; i < pageCount; i++) {
             const pageSelector = document.createElement('div');
             pageSelector.classList.add('pageSelector');
-            pageSelector.innerHTML = `${i+1}`;
-            if (i === selectedPageNum-1){
+            pageSelector.innerHTML = `${i + 1}`;
+            if (i === selectedPageNum - 1) {
                 pageSelector.classList.add('pageSelectorSelected');
             }
             const buf = i;
             pageSelector.onclick = () => {
                 paginator.remove();
-                this.createOrUpdateItemsView(mode, buf+1)
+                this.createOrUpdateItemsView(mode, buf + 1)
             };
             paginator.append(pageSelector);
         }
@@ -339,6 +494,123 @@ class InitializatorDOM {
             this.rootBasketArea.prepend(paginator);
         }
     }
+
+    createNextStepBasketButton() {
+        const nextStepButton = document.createElement('div');
+        nextStepButton.classList.add('nextStepButton');
+        nextStepButton.innerHTML = 'Дальше';
+        console.log(this.currentBasketStep);
+        nextStepButton.addEventListener('click', () => {
+            this.basketPreferences.innerHTML = '';
+            switch (this.currentBasketStep) {
+                case 'goodsReview': {
+                    this.currentBasketStep = this.basketSteps.address;
+                    this.createOrUpdateItemsView('BASKET', 1);
+                    break;
+                }
+                case 'address': {
+                    this.currentBasketStep = this.basketSteps.comments;
+                    this.createOrUpdateItemsView('BASKET', 1);
+                    break;
+                }
+                case 'comments': {
+                    this.finishBuying();
+                    this.createOrUpdateItemsView('BASKET', 1);
+                    break;
+                }
+            }
+        });
+        return nextStepButton;
+    }
+
+    createPrevStepBasketButton() {
+        const prevStepButton = document.createElement('div');
+        prevStepButton.classList.add('nextStepButton');
+        prevStepButton.innerHTML = 'Назад';
+        prevStepButton.addEventListener('click', () => {
+            this.basketPreferences.innerHTML = '';
+            switch (this.currentBasketStep) {
+                case 'goodsReview': {
+                    break;
+                }
+                case 'address': {
+                    this.currentBasketStep = this.basketSteps.goodsReview;
+                    this.createOrUpdateItemsView('BASKET', 1);
+                    break;
+                }
+                case 'comments': {
+                    this.currentBasketStep = this.basketSteps.address;
+                    this.createOrUpdateItemsView('BASKET', 1);
+                    break;
+                }
+            }
+        });
+        return prevStepButton;
+    }
+
+    isNextStepBasketAllowed() {
+        switch (this.currentBasketStep) {
+            case 'goodsReview': {
+                return this.basket.items.length > 0;
+            }
+            case 'address': {
+                return true;
+            }
+            case 'comments': {
+                return true;
+            }
+        }
+    }
+
+    isPrevStepBasketAllowed() {
+        return (this.currentBasketStep !== 'goodsReview');
+    }
+
+    finishBuying() {
+        const successLabel = document.createElement('div');
+        successLabel.innerHTML = 'Ждите доставочку!!!';
+        successLabel.classList.add('successBuyLabel');
+        this.basket.clearBasket();
+        this.currentBasketStep = this.basketSteps.goodsReview;
+        const popper = this.createModalWindowWithContent(successLabel);
+        popper.openModal();
+    }
+
+    createAddressWindow() {
+        const form = document.createElement('div');
+        form.classList.add('addressForm');
+        const addressHTML =
+            `   <p class="addressLabel">Куда привезти вкуснятину?</p>
+    <input placeholder="Город" type="text" class="addressField">
+    <input placeholder="Улица"  class="addressField">
+    <input placeholder="Дом" class="addressField">`;
+        const saveBtn = document.createElement('div');
+        saveBtn.classList.add('sendAddressButton');
+        saveBtn.innerHTML = 'Сохранить';
+        saveBtn.addEventListener('click', () => {
+            this.addressTown = document.querySelector('.addressField:nth-child(1)');
+            this.addressStreet = document.querySelector('.addressField:nth-child(2)');
+            this.addressHome = document.querySelector('.addressField:nth-child(3)');
+        });
+        form.append(saveBtn);
+        form.insertAdjacentHTML('afterbegin', addressHTML);
+        return form;
+    }
+
+    createCommentsWindow() {
+        const form = document.createElement('div');
+        form.classList.add('commentsForm');
+        const commentsHTML =
+            `   <p class="commentsLabel">Еще пожелания?</p>
+    <input placeholder="Писать здесь" class="commentsField">`;
+        const saveBtn = document.createElement('div');
+        saveBtn.classList.add('sendCommentsButton');
+        form.insertAdjacentHTML('afterbegin', commentsHTML);
+        saveBtn.innerHTML = 'Сохранить';
+        form.append(saveBtn);
+        return form;
+    }
+
 }
 
 class Catalog {
@@ -372,11 +644,12 @@ class Product {
             this._price = price;
             this._description = description;
             this._features = features;
-            this._imgURLsArr = imgURLsArr.length ? imgURLsArr :['img/lorem1.jpg'];
+            this._imgURLsArr = imgURLsArr.length ? imgURLsArr : ['img/lorem1.jpg'];
         } else {
             throw new Error('некорректные данные при создании продукта');
         }
     }
+
     set imgURLsArr(val) {
         if (Array.isArray(val) && !val.find(x => !(typeof x === 'string'))) {
             this._imgURLsArr = val;
@@ -591,21 +864,21 @@ class Basket {
 
 const pr1 = new Product('Хачапури', 100, 'Пальчики оближешь', '100g',
     ['https://static.1000.menu/img/content-v2/51/8f/43277/xachapuri-s-syrom-suluguni_1581752500_17_max.jpg',
-                'https://rutxt.ru/files/12177/original/f79cb5878c.JPG'
-                ]);
+        'https://rutxt.ru/files/12177/original/f79cb5878c.JPG'
+    ]);
 const pr2 = new Product('Шашлык', 200, 'Не из собак', '100g',
     ['https://www.patee.ru/r/x6/15/f9/7f/960m.jpg',
-                'https://kopilka-kulinara.ru/upload/information_system_52/2/5/3/item_2537/item_2537.jpg',
-                'https://www.povarenok.ru/data/cache/2016jun/25/46/1624257_55566-710x550x.jpg'
-                ]);
+        'https://kopilka-kulinara.ru/upload/information_system_52/2/5/3/item_2537/item_2537.jpg',
+        'https://www.povarenok.ru/data/cache/2016jun/25/46/1624257_55566-710x550x.jpg'
+    ]);
 const pr3 = new Product('Шаурма', 150, 'Не из кошек', '100g',
     ['https://static.1000.menu/img/content-v2/05/d8/21554/klassicheskaya-shaurma_1589963797_11_max.jpg',
-                'https://images.cdn.inmyroom.ru/inmyroom/thumb/940x600/jpg:85/uploads/food_recipe/teaser/0b/0b0e/jpg_1000_0b0e915f-1dc7-41e9-a778-d3ac20d2e1b6.jpg?sign=7ac4ef5cd67b307374e0680358426af931bbb3bded2650d26b79b21ceeba74b5',
-                'https://www.recept.ua/files/uploads/rec_img/schaurma-s-kuricey.jpg'
-                ]);
+        'https://images.cdn.inmyroom.ru/inmyroom/thumb/940x600/jpg:85/uploads/food_recipe/teaser/0b/0b0e/jpg_1000_0b0e915f-1dc7-41e9-a778-d3ac20d2e1b6.jpg?sign=7ac4ef5cd67b307374e0680358426af931bbb3bded2650d26b79b21ceeba74b5',
+        'https://www.recept.ua/files/uploads/rec_img/schaurma-s-kuricey.jpg'
+    ]);
 const pr4 = new Product('Котяра', 1, 'Осторожно, кот', '100g',
     ['https://swan-swan.ru/sites/default/files/articles/11.jpg',
-                'https://cdnmyslo.ru/BlogArticle/02/16/0216f815-4d2a-40a7-a84e-40d408f8987f_1.jpg'
+        'https://cdnmyslo.ru/BlogArticle/02/16/0216f815-4d2a-40a7-a84e-40d408f8987f_1.jpg'
     ]);
 
 const catalog = new Catalog();

@@ -5,6 +5,8 @@
     --bg-middle: #b33a3a;
     --bg-dark: #751a2c;
     --dark: #261421;
+    --dark-opas: rgba(38, 20, 33, 0.6);
+    --dark-opas1: rgba(38, 20, 33, 0.8);
 }
 html{
     font-size: 13px;
@@ -52,6 +54,7 @@ body{
     transition-duration: 1s;
     transition-delay: 1s;
     transform-origin: center;
+    overflow: hidden;
 }
 .closeClass{
     transform: scale(0.1) rotate(360deg);
@@ -120,8 +123,8 @@ body{
     transition-duration: 0.5s;
 }
 .productCard{
-    width: 90%;
-    height: 90%;
+    width: 24vw;
+    height: 55vh;
     justify-self: center;
     align-self: center;
     border-radius: 30px;
@@ -133,18 +136,9 @@ body{
     justify-content: space-between;
     padding: 10px;
     box-sizing: border-box;
+    margin-top: 2.5vh;
 }
-.productCard>img{
-    max-width: 80%;
-    max-height: 50%;
-    border-radius: 30px;
-    border: 3px solid var(--bg-light);
-}
-.productCard>img:hover{
-    transform: scale(1.03);
-    border: 3px solid var(--bg-dark);
-    transition-duration: 0.5s;
-}
+
 .productName{
     font-size: 2.5rem;
     font-weight: bold;
@@ -170,6 +164,7 @@ body{
     margin-top: 3%;
     border-radius: 30px;
     width: 95%;
+    text-align: center;
 }
 .productCatalogTotal{
     display: flex;
@@ -271,4 +266,211 @@ body{
         padding-bottom: 15vh;
     }
 }
-
+.imageCarousel{
+    position: relative;;
+    height: 50%;
+    width: 90%;
+    border-radius: 30px;
+    border: 3px solid var(--bg-light);
+    overflow: hidden;
+    display: flex;
+    transition-duration: 0.5s;
+}
+.imageCarousel:hover{
+    transform: scale(1.03);
+    border: 3px solid var(--bg-dark);
+    transition-duration: 0.5s;
+}
+.imageCarouselElement{
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+.imageCarouselContainer{
+    max-height: 100%;
+    display: flex;
+    flex-basis: 100%;
+    transition-duration: 1s;
+}
+.slideLeft, .slideRight{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 10%;
+    top: 25%;
+    background-color: var(--dark-opas);
+    color: var(--bg-light-opas);
+    font-weight: bold;
+    font-size: 2.5vw;
+    padding: 3px;
+    box-sizing: border-box;
+    user-select: none;
+}
+.slideLeft{
+    left: 0;
+    border-radius: 0 30px 30px 0;
+}
+.slideRight{
+    left: 90%;
+    border-radius: 30px 0 0 30px;
+}
+.slideLeft:hover, .slideRight:hover{
+    background-color: var(--dark-opas1);
+    color: var(--bg-light);
+}
+.slideLeft:active, .slideRight:active{
+    color: var(--dark-opas1);
+    background-color: var(--bg-light);
+}
+.slideBlock {
+    pointer-events: none;
+    opacity: 0.3;
+}
+.imgSelector{
+    background-color: var(--dark);
+    width: 1.5vh;
+    height: 1.5vh;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.imgSelector:hover{
+    background-color: var(--bg-light-opas);
+}
+.imgSelectorSelected{
+    background-color: var(--brand-color);
+}
+.imageSelectorContainer{
+    position: absolute;
+    height: 1.5vh;
+    width: 100%;
+    top: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.popper{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--dark-opas);
+    left: 0;
+    top: 0;
+}
+.modalWindow{
+    width: 80vw;
+    height: 80vh;
+    left: 10vw;
+    top: -100vh;
+    position: fixed;
+    border-radius: 30px;
+    background-color: var(--bg-light);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition-duration: 0.5s;
+}
+.modalWindowOpen{
+    top: 10vh;
+    transition-duration: 0.5s;
+}
+.modalWindowTopPanel{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 2px solid var(--dark);
+}
+.modalWindowBottomPanel{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 2px solid var(--dark);
+}
+.modalWindowContentContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 1;
+    flex-basis: 100%;
+}
+.OkButton{
+    border-radius: 30px;
+    background-color: var(--bg-middle);
+    color: var(--bg-light-opas);
+    width: 8vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8vh;
+    font-weight: bold;
+    user-select: none;
+    margin: 1vw;
+    padding: 1.5vw;
+}
+.OkButton:hover,.exitButton:hover{
+    color: var(--brand-color);
+    background-color: var(--dark);
+}
+.OkButton:active,.exitButton:active{
+    transform: scale(0.9);
+}
+.exitButton{
+    border-radius: 50%;
+    background-color: var(--bg-middle);
+    color: var(--bg-light-opas);
+    height: 6vh;
+    width: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    font-weight: bold;
+    user-select: none;
+    margin: 1vw;
+}
+.paginator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top:0;
+    height: 4vh;
+    border-bottom: 2px solid var(--dark);
+    box-sizing: border-box;
+}
+.pageSelector{
+    width: 2vw;
+    height: 2vh;
+    font-weight: bold;
+    font-size: 1.8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark);
+    color: var(--bg-light-opas);
+    border-radius: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: pointer;
+    margin-right: 0.2vw;
+    margin-left: 0.2vw;
+}
+.pageSelector:hover{
+    background-color: var(--dark-opas);
+    color: var(--bg-middle);
+}
+.pageSelectorSelected{
+    color: var(--bg-dark);
+    background-color: var(--bg-middle);
+}

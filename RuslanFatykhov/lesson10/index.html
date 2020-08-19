@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10 Homework</title>
+    <link rel="stylesheet" href="lesson10.css">
+    <script src="lesson10.js" defer></script>
+
+</head>
+
+<body>
+    <div id="contacts">
+        <div class="column">
+            <div class="step" id="step2">
+                <div class="titles">
+                    <h1>Адрес доставки</h1>
+                </div>
+            </div>
+            <div class="contents" id="address">
+                <form class="go-right">
+                    <div>
+                        <input type="name" name="first_name" value="" id="first_name" placeholder="Имя"
+                            data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true"
+                            data-error-message="Введите ваше имя" /><label for="first_name">Имя</label>
+                    </div>
+
+                    <div>
+                        <input type="name" name="last_name" value="" id="last_name" placeholder="Фамилия"
+                            data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true"
+                            data-error-message="Введите вашу фамилию" /><label for="last_name">Фамилия</label>
+                    </div>
+                    <div>
+                        <input type="phone" name="telephone" value="" id="telephone"
+                            placeholder="Телефон +7(555)-555-5555" data-trigger="change" data-validation-minlength="1"
+                            data-type="number" data-required="true" data-error-message="Введите номер телефона" /><label
+                            for="telephone">Телефон</label>
+                    </div>
+                    <div>
+                        <input type="text" name="address" value="" id="address" placeholder="Адрес"
+                            data-trigger="change" data-validation-minlength="1" data-type="text" data-required="true"
+                            data-error-message="Введите адрес" /><label for="Address">Адрес</label>
+                    </div>
+                    <div>
+                        <input type="text" name="city" value="" id="city" placeholder="Город" data-trigger="change"
+                            data-validation-minlength="1" data-type="text" data-required="true"
+                            data-error-message="Введите город" /><label for="city">Город</label>
+                    </div>
+                    <div>
+                        <div class="state_options">
+                            <div class="select">
+                                <select id="state">
+                                    <option value="1">Москва и Московская обл.</option>
+                                    <option value="2">Республика Татарстан</option>
+                                    <option value="3">Ленинградская область</option>
+                                    <option value="4">Краснодарский край</option>
+                                </select>
+                            </div>
+                            <label class="state" for="state">Регион</label>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" name="zip" value="" id="zip" placeholder="Почтовый ящик"
+                            data-trigger="change" data-validation-minlength="1" data-type="text" data-required="true"
+                            data-error-message="Введите номер почтового ящика" /><label for="zip">п/я</label>
+                    </div>
+                    <div>
+                        <div class="country_options">
+                            <div class="select">
+                                <select id="country">
+                                    <option value="1">Россия</option>
+                                    <option value="2">Украина</option>
+                                    <option value="3">Беларусь</option>
+                                    <option value="4">Казахстан</option>
+                                </select>
+                            </div>
+                            <label class="country" for="country">Страна</label>
+                        </div>
+                    </div>
+                </form>
+                <a class="continue" href="#">Продолжить</a>
+            </div>
+        </div>
+        <div class="column">
+            <div class="step" id="step5">
+                <div class="titles">
+                    <h1>Комментарий к заказу</h1>
+                </div>
+                <textarea name="commentary" id="commentary" cols="30" rows="10"
+                    placeholder="Напишите свой комментарий к заказу"></textarea>
+            </div>
+        </div>
+        <div class="column">
+
+            <div class="step" id="step4">
+                <div class="titles">
+                    <h1>Информация об оплате</h1>
+                </div>
+                <div class="modify">
+                    <i class="fa fa-plus-circle"></i>
+                </div>
+            </div>
+            <div class="contents" id="payment">
+                <div class="left">
+                    <form class="go-right">
+                        <div>
+                            <input type="text" name="card_number" value="" id="card_number"
+                                placeholder="xxxx-xxxx-xxxx-xxxx" data-trigger="change" data-validation-minlength="1"
+                                data-type="name" data-required="true" data-error-message="Введите номер карты" /><label
+                                for="card_number">Номер
+                                карты</label>
+                        </div>
+                        <div>
+                            <div class="expiry">
+                                <div class="month_select">
+                                    <select name="exp_month" value="" id="exp_month" placeholder=""
+                                        data-trigger="change" data-type="name" data-required="true"
+                                        data-error-message="Enter Your Credit Card Expiration Date">
+                                        <option value="1">01 (Янв)</option>
+                                        <option value="2">02 (Фев)</option>
+                                        <option value="3">03 (Мар)</option>
+                                        <option value="4">04 (Апр)</option>
+                                        <option value="5">05 (Май)</option>
+                                        <option value="6">06 (Июн)</option>
+                                        <option value="7">07 (Июл)</option>
+                                        <option value="8">08 (Авг)</option>
+                                        <option value="9">09 (Сен)</option>
+                                        <option value="10">10 (Окт)</option>
+                                        <option value="11">11 (Ноя)</option>
+                                        <option value="12">12 (Дек)</option>
+                                    </select>
+                                </div>
+                                <div class="year_select">
+                                    <select name="exp_year" value="" id="exp_year" placeholder="" data-trigger="change"
+                                        data-type="name" data-required="true"
+                                        data-error-message="Enter Your Credit Card Expiration Date">
+                                        <option value="1">2030</option>
+                                        <option value="2">2029</option>
+                                        <option value="3">2028</option>
+                                        <option value="4">2027</option>
+                                        <option value="5">2026</option>
+                                        <option value="6">2025</option>
+                                        <option value="7">2024</option>
+                                        <option value="8">2023</option>
+                                        <option value="9">2022</option>
+                                        <option value="10">2021</option>
+                                    </select>
+                                </div>
+                                <label class="exp_date" for="Exp_Date">Exp Date</label>
+                            </div>
+                        </div>
+                        <div class="sec_num">
+                            <div>
+                                <input type="text" name="ccv" value="" id="ccv" placeholder="123" data-trigger="change"
+                                    data-validation-minlength="3" data-type="name" data-required="true"
+                                    data-error-message="Enter Your Card Security Code" /><label for="ccv">CCV</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <a class="continue" href="#">Продолжить</a>
+            </div>
+        </div>
+        <div class="column">
+            <div class="step" id="step5">
+                <div class="titles">
+                    <h1 class="submit-title">Подтвердить заказ</h1>
+                </div>
+            </div>
+            <div class="contents" id="final_products">
+                <div class="left" id="ordered">
+                    <div class="products">
+
+                        <img class="product_image" />
+
+                        <div id="product_details">
+                        </div>
+                    </div>
+                    <div class="final">
+                        <span class="titles"><span id="calculated_total"></span></span>
+                    </div>
+                </div>
+                <div class="right" id="reviewed">
+                    <a class="big_button" id="complete" href="#">Оформить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -81,6 +81,11 @@ let bucket = document.createElement("div");
 bucket.classList.add("bucket");
 catalog.appendChild(bucket);
 
+let bucketTitle = document.createElement("div");
+bucketTitle.classList.add("bucketTitle");
+bucketTitle.innerHTML = "Корзина";
+bucket.appendChild(bucketTitle);
+
 function createBucket(somebucket) {
   const total = document.createElement("div");
   function createTotal() {
@@ -111,6 +116,50 @@ function createBucket(somebucket) {
 
     bucket.appendChild(bucketItem);
     bucketItem.classList.add("item");
+
+    // Картинки
+
+    var imgFull = document.createElement("IMG");
+    imgFull.setAttribute("src", `img/${item.id}.jpg`);
+    imgFull.setAttribute("alt", `${item.name}`);
+    bucketItem.appendChild(imgFull);
+    imgFull.classList.add(`myImg`);
+    imgFull.id = `img${item.id}`;
+    imgFull.style.width = "50px";
+
+    // Модальное окно
+    var modal = document.createElement("div");
+    modal.classList.add("modal");
+    modal.id = "myModal";
+    bucketItem.appendChild(modal);
+
+    var span = document.createElement("span");
+    span.classList.add("close");
+    span.innerHTML = "×";
+    modal.appendChild(span);
+
+    var img = document.createElement("IMG");
+    img.setAttribute("src", `img/${item.id}.jpg`);
+    img.setAttribute("alt", `${item.name}`);
+    modal.appendChild(img);
+
+    var captionText = document.createElement("div");
+    captionText.classList.add("caption");
+    modal.appendChild(captionText);
+
+    var modalImg = document.getElementById(`img${item.id}`);
+    imgFull.onclick = function () {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    };
+
+    // Закрытие
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    //Конец картикнок
 
     name.innerHTML = item.name;
     name.classList.add("itemName");
@@ -149,48 +198,47 @@ function createBucket(somebucket) {
       bucketItemCount.innerHTML = item.count;
       createTotal();
     };
-
-    var imgFull = document.createElement("IMG");
-    imgFull.setAttribute("src", `img/${item.id}.jpg`);
-    imgFull.setAttribute("alt", `${item.name}`);
-    bucketItem.appendChild(imgFull);
-    imgFull.classList.add(`myImg`);
-    imgFull.id = `img${item.id}`;
-    imgFull.style.width = "50px";
-
-    // Get the modal
-    var modal = document.createElement("div");
-    modal.classList.add("modal");
-    modal.id = "myModal";
-    bucketItem.appendChild(modal);
-
-    var span = document.createElement("span");
-    span.classList.add("close");
-    span.innerHTML = "×";
-    modal.appendChild(span);
-
-    var img = document.createElement("IMG");
-    img.setAttribute("src", `img/${item.id}.jpg`);
-    img.setAttribute("alt", `${item.name}`);
-    modal.appendChild(img);
-
-    var captionText = document.createElement("div");
-    captionText.classList.add("caption");
-    modal.appendChild(captionText);
-
-    var modalImg = document.getElementById(`img${item.id}`);
-    imgFull.onclick = function () {
-      modal.style.display = "block";
-      modalImg.src = this.src;
-      captionText.innerHTML = this.alt;
-    };
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-      modal.style.display = "none";
-    };
   }
   createTotal();
+
+  const confirm = document.createElement("button");
+  confirm.innerHTML = "Составить заказ";
+  confirm.classList.add("btn");
+  bucket.appendChild(confirm);
+
+  confirm.onclick = function () {
+    let orderInfo = document.createElement("div");
+    orderInfo.classList.add("display");
+    catalog.appendChild(orderInfo);
+
+    let orderInfoTitle = document.createElement("div");
+    orderInfoTitle.classList.add("bucketTitle");
+    orderInfoTitle.innerHTML = "Информация заказа";
+    orderInfo.appendChild(orderInfoTitle);
+
+    let orderAdress = document.createElement("input");
+    orderAdress.classList.add("input");
+    orderAdress.setAttribute("placeholder", "Адрес");
+    orderInfo.appendChild(orderAdress);
+
+    let orderComment = document.createElement("textarea");
+    orderComment.classList.add("textarea");
+    orderComment.setAttribute("placeholder", "Ваши пожелания");
+    orderInfo.appendChild(orderComment);
+
+    let end = document.createElement("button");
+    end.classList.add("btn");
+    end.innerHTML = "Завершить заказ";
+    orderInfo.appendChild(end);
+
+    bucket.style.display = "none";
+
+    end.onclick = function () {
+      console.log(
+        `${total.innerHTML} \n Адрес ${orderAdress.value} \n Комментарий к заказу ${orderComment.value}`
+      );
+    };
+  };
 }
 
 createBucket(myBucket);

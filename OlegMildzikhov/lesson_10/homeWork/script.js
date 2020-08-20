@@ -1,16 +1,20 @@
 //Конструктор новых товаров
 class Product {
     constructor(item) {
-        const { id, name, price, count } = item;
+        const { id, name, price, count, img } = item;
 
         this.id = id;
         this.name = name;
         this.price = price;
         this.count = count;
+        this.img = img;
+
     }
 }
 
-let catalogObj = {};
+let catalogObj = {
+
+};
 let cart = {
     items: [],
 };
@@ -20,9 +24,9 @@ function addToCart(item) {
     renderCart();
 }
 
-let newBuy = new Product({ id: "1", name: "apples", price: 100, count: 1 });
-let newBuy1 = new Product({ id: "2", name: "chocolade", price: 25, count: 1 });
-let newBuy2 = new Product({ id: "3", name: "books", price: 1250, count: 1 });
+let newBuy = new Product({ id: "1", name: "apples", price: 100, count: 1, img: 'src/apple.png' });
+let newBuy1 = new Product({ id: "2", name: "chocolade", price: 25, count: 1, img: 'src/choko.png' });
+let newBuy2 = new Product({ id: "3", name: "books", price: 1250, count: 1, img: 'src/books.png' });
 
 function addToCatalog(item) {
     catalogObj[item.id] = item;
@@ -97,13 +101,14 @@ const createShopItem = (product) => {
     testCat = document.createElement("div");
     testCat.innerHTML = `
         <div class="test__header">${product.name}</div>
+        <img src='${product.img}' class="test__img"></img>
         <div class="test__count_wrapper">
         </div>
         <div class="test__price">${product.price}</div>
         <button class="bucket" data-id=${product.id}>add to bucket</button>
     `;
     testCat.className = "test__shop";
-    document.querySelector("#catalog").appendChild(testCat);
+    document.querySelector("#catalog__wrapper").appendChild(testCat);
 };
 
 createShopItem(newBuy);
@@ -124,6 +129,7 @@ const renderCart = () => {
         const el = document.createElement("div");
         el.classList.add("item");
         el.innerHTML = `<div class="item__header">${item.name}</div>
+        <img src='${item.img}' class="test__img"></img>
         <div class="item__count_wrapper">
         <button class="button-primary minus" data-id="${item.id}">-</button>
         <div class="item__count">${item.count}</div>

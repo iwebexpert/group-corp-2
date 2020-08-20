@@ -1,3 +1,7 @@
+body {
+    background-color: wheat;
+}
+
 .products__wrapper {
     display: flex;
     justify-content: space-between;
@@ -7,12 +11,28 @@
     ;
 }
 
+#catalog__wrapper {
+    display: flex;
+    justify-content: space-around;
+    max-width: 450px;
+    margin: 40px auto;
+}
+
+.catalog__header {
+    text-align: center;
+}
+
+.test__img {
+    width: 50px;
+    height: 40px;
+}
+
 .item__count_wrapper {
     display: flex;
 }
 
 .item {
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .modal__wrapper {
@@ -23,7 +43,7 @@
     width: 200px;
     margin: 0 auto;
     position: absolute;
-    top: 20%;
+    top: 70%;
     left: 40%;
 }
 

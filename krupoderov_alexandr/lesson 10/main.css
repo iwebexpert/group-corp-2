@@ -161,3 +161,31 @@
     border-bottom: 15px solid transparent;
 }
 
+.bucketContainer{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.address{
+    display: none;
+}
+
+.address.active{
+    display: block;
+}
+
+.bucket{
+    display: block;
+}
+
+.bucket.non-active{
+    display: none;
+}
+
+.comment{
+    display: none;
+}
+
+.comment.active{
+    display: block;
+}

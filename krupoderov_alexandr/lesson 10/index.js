@@ -57,6 +57,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         createSlider(){
+            function leftSlide(){
+                imgArray.push(imgArray.shift());
+                slider.childNodes[1].remove();
+                let container = document.createElement('div');
+                for (let i = 0; i < imgArray.length; i ++){
+                    let slide = document.createElement('div');
+                    slide.style.background = `url(${imgArray[i].toString()}) center/cover no-repeat`;
+                    slide.classList.add('slide');
+                    slide.classList.remove('active');
+                    if (i === 0) slide.classList.add('active');
+                    slide.addEventListener('click', () => {
+                        slider.classList.toggle('active');
+                    })
+                    container.appendChild(slide);
+                }
+                slider.childNodes[0].insertAdjacentElement('afterend', container);
+            }
+
+            function rightSlide(){
+                imgArray.unshift(imgArray.pop());
+                slider.childNodes[1].remove();
+                let container = document.createElement('div');
+                for (let i = 0; i < imgArray.length; i ++){
+                    let slide = document.createElement('div');
+                    slide.style.background = `url(${imgArray[i].toString()}) center/cover no-repeat`;
+                    slide.classList.add('slide');
+                    slide.classList.remove('active');
+                    if (i === 0) slide.classList.add('active');
+                    slide.addEventListener('click', () => {
+                        slider.classList.toggle('active');
+                    })
+                    container.appendChild(slide);
+                }
+                slider.childNodes[0].insertAdjacentElement('afterend', container);
+            }
             let slider = document.createElement('div');
             let slidesContainer = document.createElement('div');
             slider.classList.add('slider');
@@ -80,45 +115,29 @@ document.addEventListener('DOMContentLoaded', () => {
             left.classList.add('left-switch');
             let imgArray = this.images.slice();
             right.addEventListener('click', () => {
-                imgArray.unshift(imgArray.pop());
-                slider.childNodes[1].remove();
-                let container = document.createElement('div');
-                for (let i = 0; i < imgArray.length; i ++){
-                    let slide = document.createElement('div');
-                    slide.style.background = `url(${imgArray[i].toString()}) center/cover no-repeat`;
-                    slide.classList.add('slide');
-                    slide.classList.remove('active');
-                    if (i === 0) slide.classList.add('active');
-                    slide.addEventListener('click', () => {
-                        slider.classList.toggle('active');
-                    })
-                    container.appendChild(slide);
-                }
-                slider.childNodes[0].insertAdjacentElement('afterend', container);
+                rightSlide();
             });
 
             left.addEventListener('click', () => {
-                imgArray.push(imgArray.shift());
-                slider.childNodes[1].remove();
-                let container = document.createElement('div');
-                for (let i = 0; i < imgArray.length; i ++){
-                    let slide = document.createElement('div');
-                    slide.style.background = `url(${imgArray[i].toString()}) center/cover no-repeat`;
-                    slide.classList.add('slide');
-                    slide.classList.remove('active');
-                    if (i === 0) slide.classList.add('active');
-                    slide.addEventListener('click', () => {
-                        slider.classList.toggle('active');
-                    })
-                    container.appendChild(slide);
+               leftSlide();
+            })
+
+            document.addEventListener('keyup', ev => {
+                if (slider.classList.contains('active')){
+                    console.log(ev.key)
+                    if (ev.key === "ArrowRight"){
+                        rightSlide();
+                    }else if (ev.key === "ArrowLeft"){
+                        leftSlide();
+                    }
                 }
-                slider.childNodes[0].insertAdjacentElement('afterend', container);
             })
 
             slider.insertAdjacentElement('beforeend', right);
             slider.insertAdjacentElement('afterbegin', left);
             return slider;
         }
+
 
         createHtml(){
             let body = document.querySelector('body');
@@ -140,6 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let button = document.createElement('button');
             button.textContent = 'Добавить';
             button.classList.add('button-add');
+            let buttonDelete = document.createElement('button');
+            buttonDelete.textContent = 'Удалить';
+            buttonDelete.classList.add('button-delete');
             product.style.background = `url(${this.images[0].toString()}) center/cover no-repeat`;
             let slider = this.createSlider();
             body.appendChild(slider);
@@ -147,12 +169,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (event.target.classList.contains('button-add')){
                         lenaBucket.addProduct(this, 1);
                         lenaBucket.sumBucket();
-                }else {
+                        lenaBucket.createHtml();
+                }else if (event.target.classList.contains('button-delete')) {
+                        lenaBucket.deleteProduct(this);
+                        lenaBucket.sumBucket();
+                        lenaBucket.createHtml();
+                }else{
                     slider.classList.toggle('active');
                 }
             });
             product.appendChild(button);
-
+            product.appendChild(buttonDelete);
             return product;
         }
     }
@@ -169,13 +196,38 @@ document.addEventListener('DOMContentLoaded', () => {
             if (product && product instanceof Product && count > 0){
                 let newProduct = {...product};
                 newProduct.count = count;
+                for (let i = 0; i < this.products.length; i++){
+                    if (newProduct.name === this.products[i].name) {
+                        console.log(1)
+                        ++this.products[i].count;
+                        this.createHtml();
+                        return this;
+                    }
+                }
                 this.products.push(newProduct);
                 this.createHtml();
                 return this;
             }else{
                 console.log('Неправильный продукт или неверно указано количество');
             }
+        }
 
+        deleteProduct(product){
+                let newProduct = {...product};
+                for (let i = 0; i < this.products.length; i++){
+                    if (newProduct.name === this.products[i].name) {
+                        if (this.products[i].count < 1){
+                            return null
+                        } else if (this.products[i].count === 1){
+                            this.products.splice(i, 1);
+                            this.createHtml();
+                            return this;
+                        } else
+                        --this.products[i].count;
+                        this.createHtml();
+                        return this;
+                    }
+                }
         }
 
         sumBucket(){
@@ -189,18 +241,79 @@ document.addEventListener('DOMContentLoaded', () => {
         createHtml(){
             let bucket = document.createElement('div');
             bucket.classList.add('bucket');
+            let bucketNext = document.createElement('button');
+            bucketNext.textContent = 'Далее';
+
             let bucketContainer = document.getElementById('bucket');
+            bucketContainer.classList.add('bucketContainer')
             if (this.products.length === 0){
                 bucket.innerHTML = 'Корзина пуста';
                 bucketContainer.innerHTML = '';
+                bucket.appendChild(bucketNext);
                 bucketContainer.appendChild(bucket);
             }
             else {
                 bucket.innerHTML = '';
-                bucket.innerHTML = `В корзине ${this.products.length} товаров на сумму ${this.sumBucket()}`;
                 bucketContainer.innerHTML = '';
+                console.log(this.products)
+                this.products.forEach(product => {
+                    let prod = document.createElement('div');
+                    prod.innerText = `${product.name} количество: ${product.count}`;
+                    bucketContainer.appendChild(prod);
+                })
+
+                bucket.innerHTML = `В корзине ${this.products.length} товаров на сумму ${this.sumBucket()}`;
+                bucket.appendChild(bucketNext);
                 bucketContainer.appendChild(bucket);
             }
+
+
+
+            let address = document.createElement('div');
+            address.classList.add('address');
+            address.textContent = 'Адрес';
+            let addressInput = document.createElement('textarea');
+            address.appendChild(addressInput);
+            let addressNext = document.createElement('button');
+            addressNext.textContent = 'Далее';
+            let addressPrev = document.createElement('button');
+            addressPrev.textContent = 'Назад';
+            address.appendChild(addressPrev);
+            address.appendChild(addressNext);
+            bucketContainer.appendChild(address);
+
+            let comment = document.createElement('div');
+            comment.classList.add('comment');
+            comment.textContent = 'Комментарий';
+            let commentInput = document.createElement('textarea');
+            comment.appendChild(commentInput);
+            let commentNext = document.createElement('button');
+            commentNext.textContent = 'Далее';
+            let commentPrev = document.createElement('button');
+            commentPrev.textContent = 'Назад';
+            comment.appendChild(commentPrev);
+            comment.appendChild(commentNext);
+            bucketContainer.appendChild(comment);
+
+            bucketNext.addEventListener('click', () => {
+                bucket.classList.add('non-active');
+                address.classList.add('active');
+            });
+
+            addressPrev.addEventListener('click', () => {
+                bucket.classList.remove('non-active');
+                address.classList.remove('active');
+            });
+
+            addressNext.addEventListener('click', () => {
+                comment.classList.add('active');
+                address.classList.remove('active');
+            });
+
+            commentPrev.addEventListener('click', () => {
+                comment.classList.remove('active');
+                address.classList.add('active');
+            });
         }
 
     }

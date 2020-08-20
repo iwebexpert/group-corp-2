@@ -1,0 +1,36 @@
+.products__wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    margin: 0 auto;
+    margin-top: 150px;
+    ;
+}
+
+.item__count_wrapper {
+    display: flex;
+}
+
+.item {
+    border: 1px solid black;
+}
+
+.modal__wrapper {
+    margin-top: 30px;
+}
+
+.modal {
+    width: 200px;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}

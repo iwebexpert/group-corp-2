@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="catalog"></div>
+
+    <button data-modal>Тыкни меня!</button>
+    <div class="modal hide">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <form class="modal__form" action="#">
+                    <div data-close class='modal__close'>&times;</div>
+                    <div class="modal__title">Оставьте всю необходимую информацию</div>
+                    <input type="text" placeholder="Введите адрес">
+                    <input type="text" placeholder="Введите комментарий">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

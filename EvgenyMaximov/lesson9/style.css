@@ -1,5 +1,6 @@
 body {
   background: url(./img/bg.jpg) 0 0 / cover no-repeat;
+  position: relative;
 }
 
 .container {
@@ -7,6 +8,202 @@ body {
   width: 900px;
   margin: 0 auto;
 }
+
+/*КНОПКИ*/
+
+/*---------------add__btn--------------*/
+.add__btn {
+  height: 50px;
+  width: 200px;
+  display: block;
+  padding: 0 10px;
+  background: lightblue;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+}
+
+.add__btn:hover {
+  background: lightcyan;
+}
+
+.add__btn:active {
+  background: lightblue;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*---------------clear__btn--------------*/
+
+.clear__btn {
+  height: 50px;
+  width: 200px;
+  display: block;
+  padding: 0 10px;
+  background: #ffb7b7;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+}
+
+.clear__btn:hover {
+  background: #ff9c9c;
+}
+
+.clear__btn:active {
+  background: #ffb7b7;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*---------------form__btn--------------*/
+
+.form__btn {
+  height: 50px;
+  width: 200px;
+  display: block;
+  padding: 0 10px;
+  background: #57e72b;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+  margin: 10px auto;
+}
+
+.form__btn:hover {
+  background: #20f319;
+}
+
+.form__btn:active {
+  background: #57e72b;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*---------comments__btn------------*/
+
+.comments__btn {
+  height: 50px;
+  width: 170px;
+  display: block;
+  padding: 0 10px;
+  background: #8dca94;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+  margin: 10px auto;
+}
+
+.comments__btn:hover {
+  background: #a8eeb1;
+}
+
+.comments__btn:active {
+  background: #8dca94;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*--------toBasker__btn--------------*/
+
+.toBasker__btn {
+  height: 50px;
+  width: 170px;
+  display: block;
+  padding: 0 10px;
+  background: #8dca94;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+  margin: 10px auto;
+}
+
+.toBasker__btn:hover {
+  background: #a8eeb1;
+}
+
+.toBasker__btn:active {
+  background: #8dca94;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*--------confirm__btn--------------*/
+.confirm__btn {
+  height: 50px;
+  width: 170px;
+  display: block;
+  padding: 0 10px;
+  background: #8dca94;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+  margin: 10px auto;
+}
+
+.confirm__btn:hover {
+  background: #a8eeb1;
+}
+
+.confirm__btn:active {
+  background: #8dca94;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*------backToComment__btn---------*/
+
+.backToComment__btn {
+  height: 50px;
+  width: 200px;
+  display: block;
+  padding: 0 10px;
+  background: #8dca94;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+  margin: 10px auto;
+}
+
+.backToComment__btn:hover {
+  background: #a8eeb1;
+}
+
+.backToComment__btn:active {
+  background: #8dca94;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*--------Каталог--------------*/
 
 #catalog {
   display: flex;
@@ -36,36 +233,6 @@ body {
   font-weight: 700;
 }
 
-.add__btn {
-  height: 50px;
-  width: 200px;
-  display: block;
-  padding: 0 10px;
-  background: lightblue;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
-  border-radius: 50px;
-  position: relative;
-  outline: none !important;
-  margin: 15px 0;
-}
-
-.add__btn span {
-  font-size: 15px;
-  color: #212121;
-}
-
-.add__btn:hover {
-  background: lightcyan;
-}
-
-.add__btn:active {
-  background: lightblue;
-  position: relative;
-  top: 2px;
-  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
-  outline: none !important;
-}
-
 .product__image {
   height: 200px;
   width: 200px;
@@ -85,36 +252,6 @@ body {
   align-items: center;
 }
 
-.clear__btn {
-  height: 50px;
-  width: 200px;
-  display: block;
-  padding: 0 10px;
-  background: #ffb7b7;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
-  border-radius: 50px;
-  position: relative;
-  outline: none !important;
-  margin: 15px 0;
-}
-
-.clear__btn span {
-  font-size: 15px;
-  color: #212121;
-}
-
-.clear__btn:hover {
-  background: #ff9c9c;
-}
-
-.clear__btn:active {
-  background: #ffb7b7;
-  position: relative;
-  top: 2px;
-  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
-  outline: none !important;
-}
-
 .product__count {
   text-align: center;
   margin-top: 10px;
@@ -123,7 +260,13 @@ body {
   display: none;
 }
 
-.basket__card {
+.prod__card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.basket__prod {
   border: 3px solid #000;
   font-size: 20px;
   width: 300px;
@@ -131,8 +274,91 @@ body {
   background-color: lightsteelblue;
 }
 
+.minusBtn,
+.plusBtn {
+  outline: none !important;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
 #basket span {
   margin-left: 10px;
   font-size: 20px;
   font-weight: 700;
 }
+
+/*----------Форма для адреса-----------*/
+
+.address__form {
+  display: none;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  width: 400px;
+  padding-top: 20px;
+}
+
+.address__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 30px;
+}
+
+.address__body input {
+  margin: 10px 30px 10px 30px;
+}
+
+/*----------Комментарий к покупке-----------*/
+
+.comment__area {
+  display: none;
+}
+
+/*-----------Модальное окно после заполнения формы--------------*/
+
+/*.modal__window {
+  height: 200px;
+  width: 600px;
+  border: 1px solid #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #befdbc;
+}
+
+.modal__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.close__modal {
+  height: 50px;
+  width: 50px;
+  display: block;
+  padding: 0 10px;
+  background: rgb(225, 255, 224);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+}
+
+.close__modal:hover {
+  background: rgb(161, 228, 159);
+}
+
+.close__modal:active {
+  background: rgb(225, 255, 224);
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+*/

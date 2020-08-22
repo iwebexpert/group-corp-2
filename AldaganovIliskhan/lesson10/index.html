@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 1 
+        // Тут объявление фунции имеет приоритет перед объявлением переменной(но не перед назчанением или инициализацией), поэтому в алерт передается ссылка на фунцию(именно ссылка, а не вызов фунции(поэтому и получается результат : ))
+        function a(x) {
+            return x * 2;
+        }
+        var a;
+        console.log(a);
+        // 4 
+
+        function b(x, y, a) {
+            arguments[2] = 10; // эта строчка меняет значение аргумента по индексу 2 (a), на 10 
+            console.log(a); // тут выводится уже измененная a
+        }
+        b(1, 2, 3); // вызов функции
+    </script>
+</body>
+
+</html>

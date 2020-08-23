@@ -4,6 +4,56 @@ const basketContainer = document.getElementById("basket");
 const addressContainer = document.querySelector(".address__body");
 const commentArea = document.querySelector(".comment__area");
 
+document.addEventListener("DOMContentLoaded", () => {
+  container.addEventListener("click", (e) => {
+    if (e.target.classList.contains("clear__btn")) {
+      newBasket.clearBasket();
+      newBasket.isEmpty();
+      newBasket.hideClearBtn();
+      newBasket.hideOrderBtn();
+    }
+
+    if (e.target.classList.contains("order__btn")) {
+      newBasket.hideBasket();
+      formBtns.showForm();
+      formBtns.showToBasketBtn();
+      formBtns.showToCommentBtn();
+      newBasket.hideOrderBtn();
+    }
+
+    if (e.target.classList.contains("comments__btn")) {
+      formBtns.hideForm();
+      formBtns.showComment();
+      formBtns.showBackToFormBtn();
+      formBtns.showConfirmBtn();
+    }
+
+    if (e.target.classList.contains("toBasket__btn")) {
+      formBtns.hideToBasketBtn();
+      formBtns.hideForm();
+      newBasket.showBasket();
+      newBasket.showOrderBtn();
+    }
+
+    if (e.target.classList.contains("backToComment__btn")) {
+      formBtns.hideComment();
+      formBtns.showForm();
+    }
+
+    if (e.target.classList.contains("confirm__btn")) {
+      swal(
+        `Your order is ${newBasket.items.length} items for ${newBasket.totalPrice} RUB`,
+        `Wait for delivery`,
+        "success"
+      );
+
+      window.setTimeout(() => {
+        location.reload();
+      }, 3500);
+    }
+  });
+});
+
 // Оформление корзины
 
 const basketListContainer = document.createElement("div");
@@ -32,26 +82,11 @@ basketContainer.appendChild(sumBasket);
 basketContainer.appendChild(countBasket);
 basketContainer.appendChild(basketListContainer);
 
-clearBtn.addEventListener("click", () => {
-  newBasket.clearBasket();
-  newBasket.isEmpty();
-  newBasket.hideClearBtn();
-  newBasket.hideOrderBtn();
-});
-
 // Кнопка подтверждения заказа
 
 const orderBtn = document.createElement("button");
 orderBtn.textContent = "Order";
 orderBtn.classList.add("order__btn");
-orderBtn.addEventListener("click", () => {
-  newBasket.hideBasket();
-  formBtns.showForm();
-  formBtns.showToBasketBtn();
-  formBtns.showToCommentBtn();
-
-  newBasket.hideOrderBtn();
-});
 
 // -----------------------Кнопки формы---------------
 
@@ -60,12 +95,6 @@ const toBasketBtn = document.createElement("button");
 toBasketBtn.classList.add("toBasket__btn");
 toBasketBtn.setAttribute("type", "button");
 toBasketBtn.textContent = "Return to basket";
-toBasketBtn.addEventListener("click", () => {
-  formBtns.hideToBasketBtn();
-  formBtns.hideForm();
-  newBasket.showBasket();
-  newBasket.showOrderBtn();
-});
 
 // Кнопка Add comment
 const toCommentBtn = document.createElement("button");
@@ -73,41 +102,17 @@ toCommentBtn.classList.add("comments__btn");
 toCommentBtn.setAttribute("type", "button");
 toCommentBtn.textContent = "Add comment";
 
-toCommentBtn.addEventListener("click", () => {
-  formBtns.hideForm();
-  formBtns.showComment();
-  formBtns.showBackToFormBtn();
-  formBtns.showConfirmBtn();
-});
-
 // Кнопка Return to form
 const backToFormBtn = document.createElement("button");
 backToFormBtn.classList.add("backToComment__btn");
 backToFormBtn.setAttribute("type", "button");
 backToFormBtn.textContent = "Return to form";
 
-backToFormBtn.addEventListener("click", () => {
-  formBtns.hideComment();
-  formBtns.showForm();
-});
-
 // Кнопка подтверждения
 const confirmBtn = document.createElement("button");
 confirmBtn.classList.add("confirm__btn");
 confirmBtn.setAttribute("type", "button");
 confirmBtn.textContent = "Confirm";
-
-confirmBtn.addEventListener("click", () => {
-  swal(
-    `Your order is ${newBasket.items.length} items for ${newBasket.totalPrice} RUB`,
-    `Wait for delivery`,
-    "success"
-  );
-
-  window.setTimeout(() => {
-    location.reload();
-  }, 3500);
-});
 
 // ------------------Карточка продукта----------------------
 class Product {

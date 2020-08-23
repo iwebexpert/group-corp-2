@@ -1,6 +1,8 @@
-const container = document.getElementsByClassName("container");
+const container = document.querySelector(".container");
 const catalogContainer = document.getElementById("catalog");
 const basketContainer = document.getElementById("basket");
+const addressContainer = document.querySelector(".address__body");
+const commentArea = document.querySelector(".comment__area");
 
 // Оформление корзины
 
@@ -34,129 +36,80 @@ clearBtn.addEventListener("click", () => {
   newBasket.clearBasket();
   newBasket.isEmpty();
   newBasket.hideClearBtn();
-  newBasket.hideToFormBtn();
-  newBasket.hideForm();
+  newBasket.hideOrderBtn();
 });
 
-// Форма для адреса
+// Кнопка подтверждения заказа
 
-const addressForm = document.createElement("form");
-addressForm.classList.add("address__form");
+const orderBtn = document.createElement("button");
+orderBtn.textContent = "Order";
+orderBtn.classList.add("order__btn");
+orderBtn.addEventListener("click", () => {
+  newBasket.hideBasket();
+  formBtns.showForm();
+  formBtns.showToBasketBtn();
+  formBtns.showToCommentBtn();
 
-const addressBody = document.createElement("div");
-addressBody.classList.add("address__body");
-
-const formHeading = document.createElement("h2");
-formHeading.textContent = "Place your order";
-
-const country = document.createElement("div");
-country.textContent = "Country";
-const countryInput = document.createElement("input");
-countryInput.setAttribute("type", "text");
-country.appendChild(countryInput);
-
-const city = document.createElement("div");
-city.textContent = "City";
-const cityInput = document.createElement("input");
-cityInput.setAttribute("type", "text");
-city.appendChild(cityInput);
-
-const street = document.createElement("div");
-street.textContent = "Street";
-const streetInput = document.createElement("input");
-streetInput.setAttribute("type", "text");
-street.appendChild(streetInput);
-
-const house = document.createElement("div");
-house.textContent = "House";
-const houseInput = document.createElement("input");
-houseInput.setAttribute("type", "number");
-house.appendChild(houseInput);
-
-const flat = document.createElement("div");
-flat.textContent = "Flat";
-const flatInput = document.createElement("input");
-flatInput.setAttribute("type", "number");
-flat.appendChild(flatInput);
-
-const backToBasketBtn = document.createElement("button");
-backToBasketBtn.classList.add("toBasker__btn");
-backToBasketBtn.setAttribute("type", "button");
-backToBasketBtn.textContent = "Return to basket";
-backToBasketBtn.addEventListener("click", () => {
-  newBasket.backToBasket();
-  newBasket.hideForm();
+  newBasket.hideOrderBtn();
 });
 
-// Кнопка к комментарию
-const toCommentsBtn = document.createElement("button");
-toCommentsBtn.classList.add("comments__btn");
-toCommentsBtn.setAttribute("type", "button");
-toCommentsBtn.textContent = "Add comment";
+// -----------------------Кнопки формы---------------
 
-toCommentsBtn.addEventListener("click", () => {
-  newBasket.showCommentArea();
-  newBasket.showConfirmBtn();
-  newBasket.hideFormBody();
-  newBasket.showBackToFormBtn();
+// Кнопка Return to basket
+const toBasketBtn = document.createElement("button");
+toBasketBtn.classList.add("toBasket__btn");
+toBasketBtn.setAttribute("type", "button");
+toBasketBtn.textContent = "Return to basket";
+toBasketBtn.addEventListener("click", () => {
+  formBtns.hideToBasketBtn();
+  formBtns.hideForm();
+  newBasket.showBasket();
+  newBasket.showOrderBtn();
 });
 
+// Кнопка Add comment
+const toCommentBtn = document.createElement("button");
+toCommentBtn.classList.add("comments__btn");
+toCommentBtn.setAttribute("type", "button");
+toCommentBtn.textContent = "Add comment";
+
+toCommentBtn.addEventListener("click", () => {
+  formBtns.hideForm();
+  formBtns.showComment();
+  formBtns.showBackToFormBtn();
+  formBtns.showConfirmBtn();
+});
+
+// Кнопка Return to form
 const backToFormBtn = document.createElement("button");
 backToFormBtn.classList.add("backToComment__btn");
 backToFormBtn.setAttribute("type", "button");
-backToFormBtn.textContent = "Return to address form";
+backToFormBtn.textContent = "Return to form";
 
 backToFormBtn.addEventListener("click", () => {
-  newBasket.showFormBody();
-  newBasket.hideCommentArea();
-  newBasket.hideBackToFormBtn();
-  newBasket.hideConfirmBtn();
+  formBtns.hideComment();
+  formBtns.showForm();
 });
 
-// Комментарий
-const commentArea = document.createElement("textarea");
-commentArea.classList.add("comment__area");
-commentArea.setAttribute("placeholder", "Comment your order...");
-
-//Подтвердить заказ
-
+// Кнопка подтверждения
 const confirmBtn = document.createElement("button");
 confirmBtn.classList.add("confirm__btn");
+confirmBtn.setAttribute("type", "button");
 confirmBtn.textContent = "Confirm";
 
-confirmBtn.addEventListener("click", () => {});
+confirmBtn.addEventListener("click", () => {
+  swal(
+    `Your order is ${newBasket.items.length} items for ${newBasket.totalPrice} RUB`,
+    `Wait for delivery`,
+    "success"
+  );
 
-//Создание тела формы
-
-addressBody.appendChild(backToBasketBtn);
-addressBody.appendChild(formHeading);
-addressBody.appendChild(country);
-addressBody.appendChild(city);
-addressBody.appendChild(street);
-addressBody.appendChild(house);
-addressBody.appendChild(flat);
-addressBody.appendChild(toCommentsBtn);
-
-addressForm.appendChild(addressBody);
-addressForm.appendChild(backToFormBtn);
-addressForm.appendChild(commentArea);
-addressForm.insertAdjacentElement("beforeend", confirmBtn);
-basketContainer.insertAdjacentElement("afterend", addressForm);
-
-// Кнопка к форме
-
-const toFormBtn = document.createElement("button");
-toFormBtn.classList.add("form__btn");
-toFormBtn.textContent = "Order";
-
-toFormBtn.addEventListener("click", () => {
-  newBasket.showForm();
-  newBasket.hideBasket();
-  newBasket.hideConfirmBtn();
-  newBasket.hideBackToFormBtn();
+  window.setTimeout(() => {
+    location.reload();
+  }, 3500);
 });
 
-// Карточка продукта
+// ------------------Карточка продукта----------------------
 class Product {
   constructor(id, name, price, currency, count, url) {
     this.id = id;
@@ -189,7 +142,7 @@ class Product {
 
     const productName = document.createElement("div");
     productName.textContent = `Name: ${name}`;
-    productName.classList.add("name");
+    productName.classList.add(`${name}`);
 
     const productPrice = document.createElement("span");
     productPrice.textContent = `Price: ${price} ${currency}`;
@@ -217,11 +170,12 @@ class Product {
 
     addBtn.addEventListener("click", () => {
       newBasket.addItem(this);
+      newBasket.createBasketList(this);
       newBasket.resetBasket();
-      newBasket.createBasketCard();
       newBasket.isEmpty();
+      newBasket.createBasketCard();
       newBasket.showClearBtn();
-      newBasket.showToFormBtn();
+      newBasket.showOrderBtn();
     });
 
     return productCard;
@@ -243,22 +197,26 @@ class Product {
   }
 }
 
+//-------------------Корзина-----------------------------
 class Basket {
-  constructor(items, prices) {
+  constructor(items) {
     this.items = [...items];
-    this.prices = [...prices];
+    this.basketList = new Set(this.items);
+    this.totalPrice = 0;
     this.isEmpty();
   }
 
   basketSum() {
-    let totalSum = this.prices.reduce((sum, current) => sum + current, 0);
-    this.totalPrice = totalSum;
+    this.totalPrice = 0;
+    this.basketList.forEach((i) => {
+      this.totalPrice += i.price * i.count;
+    });
   }
 
   isEmpty() {
-    if (this.items.length !== 0) {
+    if (this.items.length) {
       sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
-      countBasketSpan.textContent = `Total count: ${this.prices.length}`;
+      countBasketSpan.textContent = `Total count: ${this.items.length}`;
     } else {
       sumBasketSpan.textContent = "";
       countBasketSpan.textContent = "Basket is empty...";
@@ -266,56 +224,68 @@ class Basket {
   }
 
   addItem(item) {
-    if (item instanceof Product && !this.items.includes(item.name)) {
-      this.items.push(item.name);
-      this.prices.push(item.price);
-    } else {
-      this.prices.push(item.price);
+    if (item instanceof Product) {
+      this.items.push(item);
+    }
+  }
+
+  createBasketList(item) {
+    if (item instanceof Product) {
+      this.basketList.add(item);
+      item.count++;
     }
 
     this.basketSum();
   }
 
   createBasketCard() {
-    let prodCount = 0;
-    let basketListItems = this.items.map((p) => {
+    this.basketList.forEach((p) => {
       const inBasketProductCard = document.createElement("div");
       inBasketProductCard.classList.add("prod__card");
       const inBasketProductName = document.createElement("p");
       inBasketProductName.classList.add("basket__prod");
-      inBasketProductName.textContent = `${p}`;
-      inBasketProductName.setAttribute("id", `${p}`);
+      inBasketProductName.textContent = `${p.name}`;
+      inBasketProductName.setAttribute("id", `${p.id}`);
+
+      const inBasketProductCount = document.createElement("span");
+      inBasketProductCount.textContent = `${p.count}`;
 
       const minusBtn = document.createElement("button");
-      minusBtn.setAttribute("id", `${p}`);
-      minusBtn.classList.add("minusBtn");
       minusBtn.textContent = "-";
+      minusBtn.classList.add("minus__btn");
+      minusBtn.setAttribute("id", `${p.name}`);
 
       const plusBtn = document.createElement("button");
-      plusBtn.setAttribute("id", `${p}`);
-      plusBtn.classList.add("plusBtn");
       plusBtn.textContent = "+";
+      plusBtn.classList.add("plus__btn");
+      plusBtn.setAttribute("id", `${p.name}`);
 
+      inBasketProductName.appendChild(inBasketProductCount);
       inBasketProductCard.appendChild(minusBtn);
       inBasketProductCard.appendChild(inBasketProductName);
       inBasketProductCard.appendChild(plusBtn);
-
       basketListContainer.appendChild(inBasketProductCard);
 
-      minusBtn.addEventListener("click", () => {
-        if (e.target.id === p && prodCount > 0) {
-          --prodCount;
+      minusBtn.addEventListener("click", (e) => {
+        if (e.target.id === p.name && p.count > 1) {
+          p.count--;
+          inBasketProductCount.textContent = `${p.count}`;
+          countBasketSpan.textContent = `Total count: ${--this.items.length}`;
         }
+        this.basketSum();
+        sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
       });
 
       plusBtn.addEventListener("click", (e) => {
-        if (e.target.id === p) {
-          ++prodCount;
+        if (e.target.id === p.name) {
+          p.count++;
+          inBasketProductCount.textContent = `${p.count}`;
+          countBasketSpan.textContent = `Total count: ${++this.items.length}`;
         }
+        this.basketSum();
+        sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
       });
     });
-
-    return basketListItems;
   }
 
   resetBasket() {
@@ -325,9 +295,11 @@ class Basket {
   clearBasket() {
     basketListContainer.innerHTML = "";
     this.items = [];
-    this.prices = [];
+    this.basketList.forEach((p) => {
+      p.count = 0;
+    });
+    this.basketList.clear();
   }
-  // Методы скрытия и показа форм и кнопок
 
   // Кнопка очистки
   hideClearBtn() {
@@ -340,101 +312,123 @@ class Basket {
     if (!basketContainer.contains(clearBtn))
       basketContainer.insertAdjacentElement("beforeend", clearBtn);
   }
-  // Форма
-  showForm() {
-    if ((addressForm.style.display = "none")) {
-      addressForm.style.display = "flex";
+
+  // Кнопка подтверждения заказа
+  showOrderBtn() {
+    if (!basketContainer.contains(orderBtn)) {
+      basketContainer.insertAdjacentElement("beforeend", orderBtn);
     }
   }
 
-  hideForm() {
-    if (addressForm.style.display === "flex") {
-      addressForm.style.display = "none";
-    }
-  }
-  // Тело формы с инпутами
-  showFormBody() {
-    if ((addressBody.style.display = "none")) {
-      addressBody.style.display = "flex";
+  hideOrderBtn() {
+    if (basketContainer.contains(orderBtn)) {
+      basketContainer.removeChild(orderBtn);
     }
   }
 
-  hideFormBody() {
-    if ((addressBody.style.display = "flex")) {
-      addressBody.style.display = "none";
-    }
-  }
-  // Кнопка перехода к форме
-  showToFormBtn() {
-    if (!basketContainer.contains(toFormBtn)) {
-      basketContainer.insertAdjacentElement("beforeend", toFormBtn);
-    }
-  }
-
-  hideToFormBtn() {
-    if (basketContainer.contains(toFormBtn)) {
-      basketContainer.removeChild(toFormBtn);
-    }
-  }
-  // Скрыть/показать корзину
   hideBasket() {
     if ((basketContainer.style.display = "flex")) {
       basketContainer.style.display = "none";
     }
   }
 
-  backToBasket() {
+  showBasket() {
     if ((basketContainer.style.display = "none")) {
       basketContainer.style.display = "flex";
     }
   }
-  // Скрыть/показать комментарий
-  showCommentArea() {
+}
+
+//-------------------Форма-------------------------------
+class FormBtns {
+  constructor() {}
+
+  // Показать/скрыть форму
+  showForm() {
+    if ((addressContainer.style.display = "none")) {
+      addressContainer.style.display = "flex";
+    }
+  }
+
+  hideForm() {
+    if ((addressContainer.style.display = "flex")) {
+      addressContainer.style.display = "none";
+    }
+  }
+
+  // Показать/скрыть кнопку 'обратно в корзину'
+  showToBasketBtn() {
+    if (!addressContainer.contains(toBasketBtn)) {
+      addressContainer.insertAdjacentElement("afterbegin", toBasketBtn);
+    }
+  }
+
+  hideToBasketBtn() {
+    if (addressContainer.contains(toBasketBtn)) {
+      addressContainer.removeChild(toBasketBtn);
+    }
+  }
+
+  // Показать/скрыть кнопку 'к комментарию'
+
+  showToCommentBtn() {
+    if (!addressContainer.contains(toCommentBtn)) {
+      addressContainer.insertAdjacentElement("beforeend", toCommentBtn);
+    }
+  }
+
+  hideToCommentBtn() {
+    if (addressContainer.contains(toCommentBtn)) {
+      addressContainer.removeChild(toCommentBtn);
+    }
+  }
+
+  // Показать/скрыть комментарий
+  showComment() {
     if ((commentArea.style.display = "none")) {
       commentArea.style.display = "block";
     }
   }
 
-  hideCommentArea() {
+  hideComment() {
     if ((commentArea.style.display = "block")) {
       commentArea.style.display = "none";
     }
   }
 
-  // Кнопка возврата к форме
-
+  // Показать/скрыть кнопку возвращения к форме
   showBackToFormBtn() {
-    if (!addressForm.contains(backToFormBtn)) {
-      addressForm.insertAdjacentElement("afterbegin", backToFormBtn);
+    if (!commentArea.contains(backToFormBtn)) {
+      commentArea.insertAdjacentElement("afterbegin", backToFormBtn);
     }
   }
 
   hideBackToFormBtn() {
-    if (addressForm.contains(backToFormBtn)) {
-      addressForm.removeChild(backToFormBtn);
+    if (commentArea.contains(backToFormBtn)) {
+      commentArea.removeChild(backToFormBtn);
     }
   }
 
-  //Кнопка подтверждения заказа
+  //Показать/скрыть кнопку подтверждения
   showConfirmBtn() {
-    if (!addressForm.contains(confirmBtn)) {
-      addressForm.insertAdjacentElement("beforeend", confirmBtn);
+    if (!commentArea.contains(confirmBtn)) {
+      commentArea.insertAdjacentElement("beforeend", confirmBtn);
     }
   }
   hideConfirmBtn() {
-    if (addressForm.contains(confirmBtn)) {
-      addressForm.removeChild(confirmBtn);
+    if (commentArea.contains(confirmBtn)) {
+      commentArea.removeChild(confirmBtn);
     }
   }
 }
 
-// Создание товаров, каталога, добавление товаров в каталог
+// ------------Создание товаров, каталога, добавление товаров в каталог-------------
 let tshort = new Product(
   0,
   "T-short",
   700,
   "Rub",
-  1,
+  0,
   "https://it-shirts.com/wp-content/uploads/2018/04/tshirts_javascript_starwars_01.jpg"
 );
 let shoes = new Product(
@@ -442,7 +436,7 @@ let shoes = new Product(
   "Shoes",
   5000,
   "Rub",
-  1,
+  0,
   "https://images.ru.prom.st/574632908_botinki-muzhskie-kozhanye.jpg"
 );
 let dress = new Product(
@@ -450,7 +444,7 @@ let dress = new Product(
   "Dress",
   3500,
   "Rub",
-  1,
+  0,
   "https://acoolakids.ru/static/images/acoola/styles/catalog/good/96237/20240200060_620_Back.jpg"
 );
 let socks = new Product(
@@ -458,8 +452,9 @@ let socks = new Product(
   "Socks",
   350,
   "Rub",
-  1,
+  0,
   "https://go3.imgsmail.ru/imgpreview?key=5fe2e6d99ecffae5&mb=storage&w=540"
 );
 
-newBasket = new Basket([], []);
+newBasket = new Basket([]);
+formBtns = new FormBtns();

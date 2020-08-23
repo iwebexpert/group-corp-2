@@ -5,46 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
+    <main class="main">
+        <div class="catalog">
+            <h2>Каталог</h2>
+            <div class="catalog__blocks">
+                <div class="catalog__block">
+                    <h3>Клавиатура</h3>
+                    <img src="./img/keyboard.jpg" alt="">
+                    <p>Стоимость : 3000 руб</p>
+                    <button class="add-keyboard">Добавить</button>
+                    <button class="delete-keyboard">Удалить</button>
+                </div>
+                <div class="catalog__block">
+                    <h2>Мышка</h2>
+                    <img src="./img/mouse.jpg" alt="">
+                    <p>Стоимость : 500 руб</p>
+                    <button class="add-mouse">Добавить</button>
+                    <button class="delete-mouse">Удалить</button>
+                </div>
+                <div class="catalog__block">
+                    <h2>Монитор</h2>
+                    <img src="./img/monitor.jpg" alt="">
+                    <p>Стоимость : 2000 руб</p>
+                    <button class="add-monitor">Добавить</button>
+                    <button class="delete-monitor">Удалить</button>
+                </div>
+            </div>
 
-    <script>
-
-        // 1 
-
-        // Тут  по условию строка var = 1 работает только в том случае, если if (!("a" in window)) возвращает true, но условие возвращает false, потому что в window есть значение a, но оператор ! меняет true на false(поэтому выведется undefined, потому что )
-        // if (!("a" in window)) {
-        //     var a = 1;
-        // }
-        // alert(a);
-
-        // 2 
-        // Тут вывдется a is not defined, потому что фунция a не была объявлена
-        // var b = function a(x) {
-        //     x && a(--x);
-        // };
-        // alert(a);
-        // 3
-
-        // Тут объявление фунции имеет приоритет перед объявлением переменной(но не перед назчанением или инициализацией), поэтому в алерт передается ссылка на фунцию(именно ссылка, а не вызов фунции, поэтому должно вывести : ƒ a(x) {   return x * 2;  });
-        // Если же в консоль передать вызов фунции (например a(2)), в алерт выведется 4
-        // Так же, если  инициализировать перменную (например на 4), то тут в алерт выведется 4, из-за приоритета, в первом комментарии указал как это работает
-        // function b(x, y, a) {
-        //     arguments[2] = 10;
-        //     alert(a);
-        // }
-        // b(1, 2, 3);
-
-        // 4 
-
-        // Тут строчка arguments[2] = 10, меняет значение аргумента по индексу (а), на 10, а потом в алерт выводится уже измененная 10
-        // function b(x, y, a) {
-        //     arguments[2] = 10;  эта строчка меняет значение аргумента по индексу 2 (a), на 10 
-        //     alert(a);  тут выводится уже измененная a
-        // }
-        // b(1, 2, 3);  вызов функции
-    </script>
+        </div>
+        <div class="cart">
+            <h2>Корзина</h2>
+            <p class="price-sum"></p>
+            <div class="cart__arrange">
+                <button class="cart__arrange-btn">
+                    Оформить заказ
+                </button>
+            </div>
+        </div>
+    </main>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

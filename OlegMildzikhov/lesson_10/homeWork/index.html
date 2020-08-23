@@ -16,15 +16,18 @@
         </div>
     </div>
 
-    <button data-modal>Тыкни меня!</button>
+    <button data-modal>оформить заказ</button>
     <div class="modal hide">
         <div class="modal__dialog">
             <div class="modal__content">
                 <form class="modal__form" action="#">
                     <div data-close class='modal__close'>&times;</div>
-                    <div class="modal__title">Оставьте всю необходимую информацию</div>
-                    <input type="text" placeholder="Введите адрес">
-                    <input type="text" placeholder="Введите комментарий">
+                    <div class="modal__items">
+                        <div class="testSH"></div>
+                        <input id="adress" type="text" placeholder="введите адрес">
+                        <input id="comment" type="text" placeholder="Введите комментарий">
+                    </div>
+                    <button type="submit" class="form__item_changer">Подтвердить заказ заказ</button>
                 </form>
             </div>
         </div>

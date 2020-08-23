@@ -40,11 +40,17 @@ body {
 }
 
 .modal {
-    width: 200px;
+    width: 300px;
     margin: 0 auto;
     position: absolute;
-    top: 70%;
+    top: 30%;
     left: 40%;
+    background-color: whitesmoke;
+    border-radius: 7px;
+}
+
+.modal__item {
+    display: block;
 }
 
 .hide {
@@ -53,4 +59,14 @@ body {
 
 .show {
     display: block;
+}
+
+.form__item_changer {
+    padding: 15px 40px;
+}
+
+.modal__close {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 30px;
 }

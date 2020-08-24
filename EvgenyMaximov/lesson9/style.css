@@ -7,6 +7,10 @@ body {
   min-height: 100%;
   width: 900px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /*КНОПКИ*/
@@ -31,6 +35,59 @@ body {
 
 .add__btn:active {
   background: lightblue;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*---------------minus__btn--------------*/
+.minus__btn {
+  height: 40px;
+  width: 40px;
+  display: block;
+  padding: 0 10px;
+  background: rgb(255, 163, 163);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 0 15px;
+}
+
+.minus__btn:hover {
+  background: rgb(255, 147, 147);
+}
+
+.minus__btn:active {
+  background: rgb(255, 163, 163);
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*---------------plus__btn--------------*/
+
+.plus__btn {
+  height: 40px;
+  width: 40px;
+  display: block;
+  padding: 0 10px;
+  background: rgb(160, 245, 160);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 0 15px;
+}
+
+.plus__btn:hover {
+  background: rgb(97, 184, 97);
+}
+
+.plus__btn:active {
+  background: rgb(115, 219, 115);
   position: relative;
   top: 2px;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
@@ -64,9 +121,9 @@ body {
   outline: none !important;
 }
 
-/*---------------form__btn--------------*/
+/*---------------order__btn--------------*/
 
-.form__btn {
+.order__btn {
   height: 50px;
   width: 200px;
   display: block;
@@ -80,11 +137,11 @@ body {
   margin: 10px auto;
 }
 
-.form__btn:hover {
+.order__btn:hover {
   background: #20f319;
 }
 
-.form__btn:active {
+.order__btn:active {
   background: #57e72b;
   position: relative;
   top: 2px;
@@ -120,9 +177,9 @@ body {
   outline: none !important;
 }
 
-/*--------toBasker__btn--------------*/
+/*--------toBasket__btn--------------*/
 
-.toBasker__btn {
+.toBasket__btn {
   height: 50px;
   width: 170px;
   display: block;
@@ -136,11 +193,11 @@ body {
   margin: 10px auto;
 }
 
-.toBasker__btn:hover {
+.toBasket__btn:hover {
   background: #a8eeb1;
 }
 
-.toBasker__btn:active {
+.toBasket__btn:active {
   background: #8dca94;
   position: relative;
   top: 2px;
@@ -242,12 +299,10 @@ body {
 
 #basket {
   width: 970px;
-  border: 1px solid #000;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: lightgreen;
   justify-content: center;
   align-items: center;
 }
@@ -292,7 +347,7 @@ body {
 /*----------Форма для адреса-----------*/
 
 .address__form {
-  display: none;
+  display: flex;
   flex-direction: column;
   text-align: center;
   margin: 0 auto;
@@ -301,14 +356,22 @@ body {
 }
 
 .address__body {
-  display: flex;
+  display: none;
   flex-direction: column;
-  align-items: flex-end;
+
   padding: 30px;
 }
 
+.address__body h2 {
+  margin-bottom: 20px;
+}
+
 .address__body input {
-  margin: 10px 30px 10px 30px;
+  margin: 10px;
+}
+
+.address__body p {
+  margin: 0;
 }
 
 /*----------Комментарий к покупке-----------*/
@@ -316,49 +379,3 @@ body {
 .comment__area {
   display: none;
 }
-
-/*-----------Модальное окно после заполнения формы--------------*/
-
-/*.modal__window {
-  height: 200px;
-  width: 600px;
-  border: 1px solid #000;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #befdbc;
-}
-
-.modal__body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.close__modal {
-  height: 50px;
-  width: 50px;
-  display: block;
-  padding: 0 10px;
-  background: rgb(225, 255, 224);
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
-  border-radius: 50px;
-  position: relative;
-  outline: none !important;
-  margin: 15px 0;
-}
-
-.close__modal:hover {
-  background: rgb(161, 228, 159);
-}
-
-.close__modal:active {
-  background: rgb(225, 255, 224);
-  position: relative;
-  top: 2px;
-  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
-  outline: none !important;
-}
-*/

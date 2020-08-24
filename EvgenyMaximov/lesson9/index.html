@@ -11,19 +11,51 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
+    <script
+      src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"
+      defer
+    ></script>
     <script src="./catalog.js" defer></script>
   </head>
   <body>
     <div class="container">
       <div id="catalog"></div>
       <div id="basket"></div>
-    </div>
-    <!--Modal-->
-    <!--<div class="modal__window">
-      <div class="modal__body">
-        <h2>You succesfully placed your order!</h2>
-        <button class="close__modal"><span> &#10004;</span></button>
+      <div id="form">
+        <div class="address__form">
+          <div class="address__body">
+            <h2>Enter your address</h2>
+            <div>
+              <p>Country</p>
+              <input type="text" />
+            </div>
+            <div>
+              <p>City</p>
+              <input type="text" />
+            </div>
+            <div>
+              <p>Street</p>
+              <input type="text" />
+            </div>
+            <div>
+              <p>House</p>
+              <input type="number" />
+            </div>
+            <div>
+              <p>Flat</p>
+              <input type="number" />
+            </div>
+          </div>
+          <div class="comment__area">
+            <h2>Write your wishes</h2>
+            <textarea
+              name="comment"
+              placeholder="Write some comment..."
+              cols="60"
+            ></textarea>
+          </div>
+        </div>
       </div>
-    </div>-->
+    </div>
   </body>
 </html>

@@ -1,0 +1,294 @@
+*, 
+*:before, 
+*:after {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for hiding the native checkbox */
+input[type='checkbox'].check-custom {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Styles for the basic appearance of the custom checkbox */
+input[type='checkbox'].check-custom ~ .check-toggle {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    border: 2px solid #969696;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Styles for the hover state appearance of the custom checkbox */
+input[type='checkbox'].check-custom:hover ~ .check-toggle {
+    border-color: #4a4a4a;
+}
+
+/* Styles for the focus state appearance of the custom checkbox */
+input[type='checkbox'].check-custom:focus ~ .check-toggle {
+    border-color: #b0d5ff;
+    box-shadow: 0 0 0 2px rgba(23, 133, 255, 0.25);
+}
+
+/* Styles for the checked state appearance of the custom checkbox */
+input[type='checkbox'].check-custom:checked ~ .check-toggle {
+    border-color: #86377b;
+    background: #86377b url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSIyMCA2IDkgMTcgNCAxMiI+PC9wb2x5bGluZT48L3N2Zz4=) center no-repeat;
+    background-size: 75%;
+}
+
+/* Styles for hiding the native checkbox */
+input[type='checkbox'].check-custom-toggle {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Styles for the basic appearance of the toggle switch */
+input[type='checkbox'].check-custom-toggle.toggle-switch ~ .check-toggle {
+    width: 1.5rem;
+    height: 1rem;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* Common styles for the ::before and ::after pseudo-elements of the toggle switch */
+input[type='checkbox'].check-custom-toggle.toggle-switch ~ .check-toggle::before,
+input[type='checkbox'].check-custom-toggle.toggle-switch ~ .check-toggle::after {
+content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+/* Styles for the ::before pseudo-element (the outer frame) of the toggle switch */
+input[type='checkbox'].check-custom-toggle.toggle-switch ~ .check-toggle::before {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background: #dbdbdb;
+}
+
+/* Styles for the ::after pseudo-element (the inner slider) of the toggle switch */
+input[type='checkbox'].check-custom-toggle.toggle-switch ~ .check-toggle::after {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin: 0.125rem;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+/* Styles for the ::before pseudo-element of the toggle switch in hover state */
+input[type='checkbox'].check-custom-toggle.toggle-switch:hover ~ .check-toggle::before {
+    background: #c4c4c4;
+}
+
+/* Styles for the ::before pseudo-element of the toggle switch in focus state */
+input[type='checkbox'].check-custom-toggle.toggle-switch:focus ~ .check-toggle::before {
+    box-shadow: 0 0 0 2px rgba(23, 133, 255, 0.5);
+}
+
+/* Styles for the ::before pseudo-element of the toggle switch in both focus and checked or enabled state */
+input[type='checkbox'].check-custom-toggle.toggle-switch:focus:checked ~ .check-toggle::before {
+    box-shadow: 0 0 0 2px rrgba(134, 55, 123, .5);;
+}
+
+/* Styles for the ::before pseudo-element of the toggle switch in checked or enabled state */
+input[type='checkbox'].check-custom-toggle.toggle-switch:checked ~ .check-toggle::before {
+    background: #86377b;
+}
+
+/* Styles for the ::after pseudo-element of the toggle switch in checked or enabled state */
+input[type='checkbox'].check-custom-toggle.toggle-switch:checked ~ .check-toggle::after {
+    left: auto;
+    right: 0;
+}
+
+.hamburger {
+    &-wrapper {
+        z-index: 99;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        margin-top: 50px;
+        padding: 25px 10px;
+        width: 600px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px #27273c;
+    }
+}
+
+.title {
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(to top, #86377b 20%, #27273c 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 20px;
+    margin-bottom: 20px;
+
+    &-main {
+        margin-bottom: 30px;
+        font-size: 30px;
+    }
+
+    &-amount {
+        margin-top: 5px;
+        font-size: 15px;
+    }
+}
+
+
+
+.additive,
+.size,
+.topping {
+    &-wrapper {
+        max-width: 500px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            margin-top: 5px;
+            .checkbox-text {
+                font-size: 17px;
+                font-family: 'Montserrat', sans-serif;
+                background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+}
+
+.size {
+    &-wrapper {
+        text-align: center;
+    }
+}
+
+.additive,
+.topping {
+    &-wrapper {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+.submit {
+    background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
+    padding: 10px 30px;
+    border: 0 solid #4a4a4a;
+    border-radius: 5px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    display: block;
+    box-shadow: 3px 3px 10px #27273c;
+
+    &:hover {
+        background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+    }
+
+    &:active {
+        outline: 0;
+        background-image: linear-gradient(to bottom, #cc208e 0%, #6713d2 100%);
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    background-image: linear-gradient(to top, #86377b 20%, #27273c 80%);
+}
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgBottom {
+    z-index: 5;
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}

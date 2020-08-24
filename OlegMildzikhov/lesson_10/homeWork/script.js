@@ -46,6 +46,9 @@ document.onclick = (event) => {
     if (event.target.classList.contains("bucket")) {
         addButton(event.target.dataset.id);
     }
+    if (event.target.classList.contains("form__item_changer")) {
+        adress();
+    }
 };
 
 const plusFunction = (id) => {
@@ -178,31 +181,32 @@ function confirmForm() {
 
     const modalTrigger = document.querySelector('[data-modal]');
 
-    const cartView = document.querySelector(".modal__cart_view");
+    const cartView = document.querySelector(".modal__item");
     const NewCartView = document.createElement('div');
-    NewCartView.classList.add("modal__cart_view");
+    NewCartView.classList.add("modal__item");
+    // NewCartView.classList.add("show");
 
     const modal = document.querySelector('.modal');
-    const modalForm = document.querySelector('.modal__form');
+    const modalItem = document.querySelector('.modal__items');
 
-    if (!cart.items.length) {
-        NewCartView.innerHTML = "Корзина пустая";
-    } else {
+    // if (!cart.items.length) {
+    //     NewCartView.innerHTML = "Корзина пустая";
+    // } else {
 
-        let str1 = '';
-        cart.items.forEach((it) => {
-            str1 += `${it.count} ${it.name} `;
-        });
-        NewCartView.innerHTML = `В корзине лежит ${str1}`;
-    }
-    if (cartView) {
-        cartView.replaceWith(NewCartView);
-    } else {
-        modalForm.appendChild(NewCartView);
-    }
+    //     let str1 = '';
+    //     cart.items.forEach((it) => {
+    //         str1 += `${it.count} ${it.name} `;
+    //     });
+    //     NewCartView.innerHTML = `В корзине лежит ${str1}`;
+    // }
+    // if (cartView) {
+    //     cartView.replaceWith(NewCartView);
+    // } else {
+    //     modalItem.prepend(NewCartView);
+    // }
 
 
-    modalCloseBtn = document.querySelector('[data-close]');
+    const modalCloseBtn = document.querySelector('[data-close]');
 
     modalTrigger.addEventListener('click', () => {
         modal.classList.add('show');
@@ -216,4 +220,35 @@ function confirmForm() {
 
 
 
+
+}
+
+
+function adress() {
+
+    const adrBuy = document.querySelector('#adress').value;
+    const comBuy = document.querySelector('#comment').value;
+    const testSH = document.querySelector('.testSH');
+    //Мне просто интересно, получиттся ли создать так элемент
+    const modalForm = document.querySelector('.modal__form');
+    const modalSummary = document.createElement('div');
+    modalSummary.classList.add('modal__item');
+    const cartModalView = document.querySelector('.testSH');
+
+
+    let str1 = '';
+    cart.items.forEach((it) => {
+        str1 += `${it.count} ${it.name} `;
+    });
+
+    cartModalView.textContent = `В корзине: ${str1}`;
+
+    modalSummary.textContent = `${str1}, которые будут доставлены по адресу ${adrBuy}. Комментарий к заказу: ${comBuy}`;
+    modalForm.appendChild(modalSummary);
+
+
+
+
+
+    console.log(adrBuy, comBuy, testSH.textContent);
 }

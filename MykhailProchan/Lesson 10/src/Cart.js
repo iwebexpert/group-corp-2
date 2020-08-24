@@ -4,14 +4,6 @@ class Cart {
     this.changeHandler = this.changeHandler.bind(this);
   }
 
-  total() {
-    return this.items.reduce(((a, c) => a + c.price * c.amount), 0);
-  }
-
-  itemsSum() {
-    return this.items.reduce(((a, c) => a + c.amount), 0);
-  }
-
   checkout() {
     const itemsSum = this.items.reduce(((a, c) => a + c.amount), 0);
     const total = this.items.reduce(((a, c) => a + c.price * c.amount), 0);
@@ -19,13 +11,14 @@ class Cart {
   }
 
   pushItem(item) {
-    let itemInCart = this.items.find(f => f.id === item.id);
+    const itemInCart = this.items.find(f => f.id === item.id);
     if (itemInCart) {
       itemInCart.amount += 1;
       document.getElementById(itemInCart.id + 'cartEntry').querySelector('input').value = itemInCart.amount;
     } else {//добавляем элемент в корзину
       item.amount = 1;
       this.items.push(item);
+
       const cartEntry = document.getElementById('cart').appendChild(document.createElement('div'));
       cartEntry.classList.add('cart-entry');
       cartEntry.setAttribute('id', item.id + 'cartEntry');
@@ -41,9 +34,9 @@ class Cart {
   }
 
   changeHandler(e) {
-    let itemId = parseInt(e.path[1].id);
-    let itemIndex = this.items.findIndex(f => f.id === itemId);
-    let item = this.items[itemIndex];
+    const itemId = parseInt(e.path[1].id);
+    const itemIndex = this.items.findIndex(f => f.id === itemId);
+    const item = this.items[itemIndex];
     item.amount = e.target.valueAsNumber;
 
     if (item.amount === 0) {

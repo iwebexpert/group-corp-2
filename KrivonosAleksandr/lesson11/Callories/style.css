@@ -1,0 +1,193 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+hr{
+    width: 100%;
+    color: black;
+    margin: 15px 0;
+}
+
+form{
+    padding: 30px;
+    margin: 30px 0;
+    width: 500px;
+    height: 750px;
+    border: 1px solid black;
+    box-shadow: 0 2px 7px rgba(0,0,0,.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-title{
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.section-hamb-title{
+    font-size: 28px;
+    line-height: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sizes, .filling, .additional{
+    width: 100%;
+}
+
+.sizes-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sizes-small, .sizes-big{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-hamb{
+    width: 190px;
+    height: 180px;
+    margin-bottom: 15px;
+}
+
+.checkbox {
+    display: none;
+}
+.checkbox-custom {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.checkbox-custom, .label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.label{
+    font-size: 22px;
+    font-weight: 500;
+    padding: 5px;
+}
+
+.filling-types, .additional-types{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.checkbox:checked+.checkbox-custom::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.checkbox-custom:before {
+    background: url(img/check.png) center center no-repeat;
+}
+
+.btn {
+    position: relative;
+    background: white;
+    font-size: 35px;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    color: black;
+    width: 250px;
+    margin: 30px auto;
+}
+.btn:before, .btn:after, .btn span:before, .btn span:after{
+   content: '';
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   background: black;
+   transition: .5s;
+   mix-blend-mode: hue;
+}
+.btn:before{
+     top: -2px;
+     left: -2px;
+}
+.btn:after{
+     top: -2px;
+     right: -2px;
+ }
+.btn span:before{
+    bottom: -2px;
+    left: -2px;
+}
+.btn span:after{
+    bottom: -2px;
+    right: -2px;
+}
+.btn:hover:before, .btn:hover:after, .btn:hover span:before, .btn:hover span:after{
+     width: calc( 240px / 2 );
+     height: calc( 30px / 2 );
+}
+
+.thanks{
+    position: fixed;
+    top: 10px;
+    left: -100%;
+    z-index: 10;
+    padding: 5px 15px;
+    width: 300px;
+    border: 1px solid black;
+    box-shadow: 0 2px 7px rgba(0,0,0,.4);;
+    font-size: 16px;
+    line-height: 40px;
+    transition: .6s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thanks-text{
+    font-size: 22px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.thanks-sum, .thanks-cal{
+    font-size: 22px;
+    line-height: 24px;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.btn-thanks{
+    width: 162px;
+    font-size: 26px;
+    line-height: 36px;
+    margin: 15px auto;
+}
+
+.btn-thanks:hover:before, .btn-thanks:hover:after, .btn-thanks:hover span:before, .btn-thanks:hover span:after{
+    width: calc( 150px / 2 );
+    height: calc( 28px / 2 );
+}

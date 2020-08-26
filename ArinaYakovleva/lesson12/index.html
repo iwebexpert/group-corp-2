@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap" rel="stylesheet">
+    <title>Homework 12</title>
+    <script src="./src/Hamburger.js" defer></script>
+    <script src="./src/Stuffing.js" defer></script>
+    <script src="./src/Topping.js" defer></script>
+
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="header">Создай свой гамбургер</h2>
+        <div class="size">
+            <h3 class="size_header">Выбери размер</h3>
+            <div class="big-container">
+                <input class="big_burger" type="radio" id="big">
+                <label class="big_burger" for="big">Большой (100 рублей, 40 калорий))</label>
+            </div>
+            <div class="little-conainer">
+                <input class="little_burger" type="radio" id="little">
+                <label class="little_burger" for="little">Маленький (50 рублей, 20 калорий)</label>
+            </div>
+        </div>
+        <hr>
+        <div class="ingridients">
+            <h3 class="stuffing_header">Выбери начинку</h3>
+            <div class="cheese-container">
+                <input class="cheese" type="checkbox" id="cheese">
+                <label class="cheese" for="cheese">С сыром (+10 рублей, +20 калорий)</label>
+            </div>
+            <div class="salad-container">
+                <input class="salad" type="checkbox" id="salad">
+                <label class="salad" for="salad">С салатом (+20 рублей, +5 калорий).</label>
+            </div>
+            <div class="potato-container">
+                <input class="potato" type="checkbox" id="potato">
+                <label class="potato" for="potato">С картофелем (+15 рублей, +10 калорий)</label>
+            </div>
+        </div>
+        <hr>
+        <div class="toppings">
+            <h3 class="toppings_header">Выбери приправу</h3>
+            <div class="pepper-container">
+                <input class="pepper" type="checkbox" id="pepper">
+                <label class="pepper" for="cheese">Посыпать приправой(+15 рублей, +0 калорий)</label>
+            </div>
+            <div class="mayonnaise-container">
+                <input class="mayonnaise" type="checkbox" id="mayonnaise">
+                <label class="mayonnaise" for="mayonnaise">Полить майонезом(+20 рублей, +5 калорий)</label>
+            </div>
+        </div>
+
+        <button class="calculate-btn">Рассчитать стоимость и калории</button>
+        <div class="calculated">
+            <p class="result-txt"></p>
+        </div>
+    </div>
+</body>
+
+</html>

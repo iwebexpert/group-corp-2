@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="humburger__choosing">
+
+      <div class="size">
+        <h2>Выбирете размер бургера</h2>
+        <form class="choosing__size" action="#">
+          <p><input name="choosing__size" type="radio" value="Small">Маленький (50 рублей, 20 калорий)</p>
+          <p><input name="choosing__size" type="radio" value="Big">Большой (100 рублей, 40 калорий)</p>
+        </form>
+      </div>  
+
+      <div class="toppings">
+        <h2>Начинка гамбургера</h2>
+        <form class="choosing__toppings" action="#">
+          <p><input name="choosing__toppings" type="checkbox" value="Cheese">С сыром (+10 рублей, +20 калорий)</p>
+          <p><input name="choosing__toppings" type="checkbox" value="Salad">С салатом (+20 рублей, +5 калорий)</p>
+          <p><input name="choosing__toppings" type="checkbox" value="Potato">С картофелем (+15 рублей, +10 калорий)</p>
+        </form>
+      </div>
+
+      <div class="seasoning">
+        <h2>Дополнительно</h2>
+        <form class="choosing__seasoning" action="#">
+          <p><input name="choosing__seasoning" type="checkbox" value = "Seasoning">Добавить приправу (+15 рублей, +0 калорий)</p>
+          <p><input name="choosing__seasoning" type="checkbox" value="Mayonnaise">Полить майонезом (+20 рублей, +5 калорий)</p>
+        </form>
+      </div>
+
+      <button id="result__button">Расчет стоимости и калорийности</button>
+      <br>
+      <span>ИТОГО: </span>
+      <span id="result__text"></span>
+    </div>
+  </div>
+  
+  <script src="code.js"></script>
+</body>
+</html>

@@ -201,7 +201,7 @@ class BasketOfGoods {
   basketInfo() {
     let infoBasket;
     let numberOfGoods = 0;
-    if (this.items.length == 0) {
+    if (!this.items.length) {
       infoBasket = "Корзина пуста.";
     } else {
       acceptBasket.style.display = "inline-block";

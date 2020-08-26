@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.humburger {
+    display: flex;
+    justify-content: center;
+}
+
+h4 {
+    text-align: center;
+    margin: 20px;
+}
+
+.card {
+    width: 500px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.burger-img {
+    padding: 20px;
+}
+
+img {
+    width: 350px;
+}
+
+.form-check-label,
+.form-check-input {
+    cursor: pointer;
+}
+
+.button-success {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.total {
+    margin-top: 20px;
+}
+
+.total-price,
+.total-calories {
+    display: flex;
+    justify-content: center;
+}
+
+.total-price--value,
+.total-calories--value {
+    margin-left: 5px;
+}

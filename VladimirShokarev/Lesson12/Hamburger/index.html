@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="Hamburger.js" defer></script>
+  <script type="text/javascript" src="Filling.js" defer></script>
+  <script type="text/javascript" src="Additionally.js" defer></script>
+  <script type="text/javascript" src="script.js" defer></script>
+  <title>Hamburger</title>
+</head>
+<body>
+  <form>
+  <p>Сделайте свой выбор:</p>
+  <div>
+    <input type="radio" id="miniBurg"
+     name="burger" value="" >
+    <label for="miniBurg">Маленький бургер</label>
+
+    <input type="radio" id="bigBurg"
+     name="burger" value="" checked>
+    <label for="bigBurg">Большой бургер</label>
+  </div>
+  <hr>
+  <p>Дополнительная начинка?</p>
+  <div>
+    <input type="radio" id="cheese"
+     name="filling" value="" >
+    <label for="cheese">Сыр</label>
+
+    <input type="radio" id="salad"
+     name="filling" value="" >
+    <label for="salad">Салат</label>
+
+    <input type="radio" id="potato"
+     name="filling" value="" checked>
+    <label for="potato">Картофель</label>
+  </div>
+  <hr>
+  <p>Еще что-нибудь?</p>
+  <div>
+    <input type="radio" id="seasoning"
+     name="additionally" value="" >
+    <label for="seasoning">посыпать приправой</label>
+
+    <input type="radio" id="mayonnaise"
+     name="additionally" value="" checked>
+    <label for="mayonnaise">полить майонезом</label>
+  </div>
+  <div>
+    <button type="button" id="allSum">Сумма</button>
+</form>
+
+</div>
+<div id="informTable">
+
+</div>
+
+</body>
+</html>

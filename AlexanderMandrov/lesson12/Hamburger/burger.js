@@ -65,11 +65,13 @@ class Hamburger {
     }
 
     addTopping(topping) {
+        //create and render topping on website
         const tempTopping = new Topping(topping.type, topping.price, topping.calorificValue);
         tempTopping.render();
     }
 
     addAdditive(additive) {
+        //create and render additive on website
         const tempAdditive = new Additive(additive.type, additive.price, additive.calorificValue);
         tempAdditive.render();
     }

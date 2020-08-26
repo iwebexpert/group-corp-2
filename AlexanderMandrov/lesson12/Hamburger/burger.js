@@ -1,8 +1,110 @@
+class Additive {
+    constructor(type, price, calorificValue) {
+        this.type = type;
+        this.price = price;
+        this.calorificValue = calorificValue;
+    }
+
+    render() {
+        let additiveText = '';
+        switch(this.type) {
+            case 'cheese':
+                additiveText = 'C сыром';
+                break;
+            case 'potato':
+                additiveText = 'C картофелем';
+                break;
+            case 'salad':
+                additiveText = 'C салатом';
+                break;
+        }
+        const dataAdditive = `
+        <label>
+            <input type="checkbox" class="check-custom" data-additive="${this.type}">
+            <span class="check-toggle"></span>
+            <span class="checkbox-text">${additiveText} (+${this.price} рублей, +${this.calorificValue} калорий)</span>
+        </label>
+        `;
+        document.querySelector('.additive-wrapper').insertAdjacentHTML('beforeend', dataAdditive);
+    }
+}
+
+class Topping {
+    constructor(type, price, calorificValue) {
+        this.type = type;
+        this.price = price;
+        this.calorificValue = calorificValue;
+    }
+
+    render() {
+        let toppingText = '';
+        switch(this.type) {
+            case 'species':
+                toppingText = 'Посыпать преправой';
+                break;
+            case 'mayonese':
+                toppingText = 'Полить майонезом';
+                break;
+        }
+        const dataTopping = `
+        <label>
+            <input type="checkbox" class="check-custom" data-topping="${this.type}">
+            <span class="check-toggle"></span>
+            <span class="checkbox-text">${toppingText} (+${this.price} рублей, +${this.calorificValue} калорий)</span>
+        </label>
+        `;
+        document.querySelector('.topping-wrapper').insertAdjacentHTML('beforeend', dataTopping);
+    }
+}
+
 class Hamburger {
     constructor(size, stuffings, toppings) { 
         this.size = size;
         this.stuffings = [...stuffings];
         this.toppings = [...toppings];
+    }
+
+    addTopping(topping) {
+        const tempTopping = new Topping(topping.type, topping.price, topping.calorificValue);
+        tempTopping.render();
+    }
+
+    addAdditive(additive) {
+        const tempAdditive = new Additive(additive.type, additive.price, additive.calorificValue);
+        tempAdditive.render();
+    }
+
+    init() {
+        const toppingList = [
+        {
+            type: 'species',
+            price: 15,
+            calorificValue: 0,
+        },
+        {
+            type: 'mayonese',
+            price: 20,
+            calorificValue: 5,
+        }];
+        toppingList.forEach(topping => this.addTopping(topping));
+
+        const additiveList = [
+            {
+                type: 'cheese',
+                price: 10,
+                calorificValue: 20,
+            },
+            {
+                type: 'salad',
+                price: 20,
+                calorificValue: 5,
+            },
+            {
+                type: 'potato',
+                price: 15,
+                calorificValue: 10,
+            }];
+            additiveList.forEach(additive => this.addAdditive(additive));
     }
 
     getToppings() {   
@@ -91,7 +193,10 @@ class Hamburger {
         return calorificValue;
     }
 }
-let counterSize = 0;
+
+//render additives and toppings
+const hamburger = new Hamburger('small', [], []);
+hamburger.init();
 
 let size = 'small',
     snuffings = [],
@@ -107,7 +212,6 @@ const getIndex = (smth, arr) => {
     });
     return j;
 }
-
 
 sizeElement.addEventListener('change', () => {
     if (sizeElement.checked) {
@@ -139,8 +243,6 @@ const btnSubmit = document.querySelector('.submit');
 
 btnSubmit.addEventListener('click', () => {
     const hamburger = new Hamburger(size, snuffings, toppings);
-
     const amountTitle = document.querySelector('.title-amount');
     amountTitle.textContent = `Ваш гамбургер содержит ${hamburger.calculateCalories()} калорий и стоит ${hamburger.calculatePrice()} RUB`;
-    // amountTitle.style.display = 'block';
 });

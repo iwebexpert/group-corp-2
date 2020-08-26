@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="needClasses/Hamburger.js" defer></script>
+    <script src="needClasses/Ingredients.js" defer></script>
+    <script src="needClasses/Seasoning.js" defer></script>
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <form class="form">
+            <div class="size">
+                <div class="small">
+                    <label for="small">small</label>
+                    <input value="small" name="size" type="radio" id="small">
+                </div>
+
+                <div class="big">
+                    <label for="big">big</label>
+                    <input value="big" name="size" type="radio" id="big">
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="ingredients">
+                <div class="cheess">
+                    <label for="cheess">cheess</label>
+                    <input class="ingredient" value="cheese" type="checkbox" id="cheess">
+                </div>
+
+                <div class="salad">
+                    <label for="salad">salad</label>
+                    <input class="ingredient" value="salad" type="checkbox" id="salad">
+                </div>
+
+                <div class="potato">
+                    <label for="potato">potato</label>
+                    <input class="ingredient" value="potato" type="checkbox" id="potato">
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="spices">
+                <div class="spice">
+                    <label for="spice">spice</label>
+                    <input name="spice" type="checkbox" id="spice">
+                </div>
+
+                <div class="mayonnaise">
+                    <label for="mayonnaise">mayonnaise</label>
+                    <input name="mayonnaise" type="checkbox" id="mayonnaise">
+                </div>
+            </div>
+
+            <hr />
+
+            <button class="btn">to order</button>
+            <div class="calculate"></div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -39,7 +39,7 @@ class Cart {
         this.products.forEach(item => str += `${item.name}: ${item.price} ${item.currency} - ${item.count} pieces \n`)
         return str
     }
-    getSum() {
+    goodsList() {
         let sum = 0
         this.products.forEach(item =>
             sum += item.price * item.count)
@@ -57,10 +57,6 @@ let cart1 = new Cart()
 cart1.addProduct(bread, 5)
 cart1.addProduct(meat, 1)
 
-console.log(cart1.getSum())
-console.log(cart1.getInfo())
-
-
 let cart = document.querySelector('.cart')
 let products = document.querySelector('.products')
 
@@ -72,7 +68,7 @@ function cartAppend (cartData) {
 
     let sum = document.createElement('h2')
     sum.className = 'sum'
-    sum.textContent = 'Sum : ' + cartData.getSum()
+    sum.textContent = 'Sum : ' + cartData.goodsList()
     cart.appendChild(sum)
 }
 

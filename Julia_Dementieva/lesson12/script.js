@@ -1,17 +1,17 @@
 //ES6
 class ProductItem {
     constructor(name, price, quantity){
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
-    this._product = null;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this._product = null;
     }
+
     showProduct(){
         return `Название ${this.name} Цена ${this.price}руб. Количество ${this.quantity}`;
     }
 
     render(){
-
         this._product = document.createElement('div');
         this._product.classList.add('prd');
         const prdText = document.createElement('p');
@@ -22,7 +22,6 @@ class ProductItem {
         return this._product;
     }
 }
-
 
 class Product extends ProductItem {
     constructor (name, price, quantity, imgs){
@@ -44,7 +43,6 @@ class Product extends ProductItem {
             img.setAttribute("height", "50");
             imgDiv.appendChild(img);
         }
-
         return this._product;
     }
 }
@@ -56,9 +54,6 @@ class Catalog  {
     }
 
     render(){
-
-
-    
         [...this.productList].forEach(element => {
             if(element instanceof Product){
                 this.catalog.appendChild(element.render());
@@ -69,18 +64,13 @@ class Catalog  {
                 element._product.appendChild(btn);
             }
         });
-    
         return this.catalog;
     }
-
-
 }
-
 
 class ProductInBasket extends Product {
     constructor (name, price, quantity, imgs){
         super(name, price, quantity, imgs); //Вызов конструктора родителя
-        
     }
 
     render(){
@@ -89,7 +79,6 @@ class ProductInBasket extends Product {
     }
     // Изменение количества добавленного продукта
     changeQuality(){}
-
 }
 
 class Basket  {
@@ -107,7 +96,6 @@ class Basket  {
     }
 
     render(){
-
         [...this.basketList].forEach(element => {
             if(element instanceof ProductInBasket){
                 this.basket.appendChild(element.render());
@@ -124,10 +112,9 @@ class Basket  {
         p.innerHTML = `Суммарная стоимость всех товаров в корзине: ${this.countBasketPrice()}`;
         this.basket.appendChild(p);
 
-
-    
         return this.basket;
     }
+
     // Добавить продукт
     add(){}
     // Удаление продукта из корзины
@@ -138,7 +125,4 @@ class Basket  {
     findProduct(){}
     // Динамическое изменение корзины
     changeBasket(){}
-
-
-
 }

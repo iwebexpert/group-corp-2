@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="shop">
+        <div class="burgers">
+            <div class="small-burger">
+                <input type="radio" name="burger" checked id="small-burger-input" style="margin-bottom: 15px;">
+                <label for="small-burger-input">Маленький бургер (50 рублей, 20 калорий)</label>
+            </div>
+            <div class="big-burger">
+                <input type="radio" name="burger" id="big-burger-input" value="big">
+                <label for="big-burger-input">Большой бургер (100 рублей, 40 калорий)</label>
+            </div>
+        </div>
+        <hr>
+        <div class="toppings">
+            <h2 class="toppings__title">Начинки</h2>
+            <div class="toppings__cheese">
+                <input type="checkbox" id="toppings__cheese" style="margin-bottom: 10px;">
+                <label for="toppings__cheese">Добавить сыр (+10 рублей, 20 калорий)</label>
+            </div>
+            <div class="toppings__salad">
+                <input type="checkbox" id="toppings__salad" style="margin-bottom: 10px;">
+                <label for="toppings__salad">Добавить салат (+20 рублей, 50 калорий)</label>
+            </div>
+            <div class="toppings__potato">
+                <input type="checkbox" id="toppings__potato" style="margin-bottom: 10px;">
+                <label for="toppings__potato">Добавить картофель (+15 рублей, 10 калорий)</label>
+            </div>
+        </div>
+        <hr>
+        <div class="seasonings">
+            <h2 class="seasonings__title">Приправы</h2>
+            <div class="seasonings__mayonnaise">
+                <input type="checkbox" id="seasonings__mayonnaise" style="margin-bottom: 10px;">
+                <label for="seasonings__mayonnaise">Добавить майонез (+20 рублей, 5 калорий)</label>
+            </div>
+            <div class="seasonings__ketchup">
+                <input type="checkbox" id="seasonings__ketchup" style="margin-bottom: 10px;">
+                <label for="seasonings__ketchup">Добавить кетчуп (+15 рублей, 0 калорий)</label>
+            </div>
+        </div>
+        <p class="count-all">Стоимость :  0 р. Калорий 0</p>
+        <button class="order-btn">Рассчитать</button>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

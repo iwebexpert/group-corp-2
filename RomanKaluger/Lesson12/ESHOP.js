@@ -9,16 +9,17 @@ class SizeAndToppingSelector{
             SPICES: new Spices(),
             MAYO: new Mayo()
         };
-        this.selectedRequiredTopping = this.requiredToppings.CHEESE;
-        this.selectedOptionalTopping = [];
-        this.lastSelectedRequiredSelector = null;
-        this.lastSelectedSizeSelector = null;
-        this.lastSelectedOptionalSelectors = [];
-
         this.productPriceLabel = productPriceLabel;
         this.product = productGroupItem.product;
         this.productGroupItem = productGroupItem;
-        this.product.addIngredient(this.requiredToppings.CHEESE);
+
+        this.productGroupItem.product.selectedRequiredTopping = this.productGroupItem.product.selectedRequiredTopping || this.requiredToppings.CHEESE;
+        this.productGroupItem.product.selectedOptionalTopping = this.productGroupItem.product.selectedOptionalTopping || [];
+        this.productGroupItem.product.lastSelectedRequiredSelector = this.productGroupItem.product.lastSelectedRequiredSelector ||  null;
+        this.productGroupItem.product.lastSelectedSizeSelector = this.productGroupItem.product.lastSelectedSizeSelector || null;
+        this.productGroupItem.product.lastSelectedOptionalSelectors = this.productGroupItem.product.lastSelectedOptionalSelectors || [];
+
+        this.product.addIngredient(this.productGroupItem.product.selectedRequiredTopping);
 
         this.element = document.createElement('div');
         this.element.classList.add('selectorToppingArea');
@@ -29,19 +30,23 @@ class SizeAndToppingSelector{
         selector.classList.add('toppingSelector');
 
         const icon = document.createElement('div');
-        icon.classList.add((status === 'required' && (this.selectedRequiredTopping.name === name || name === this.product.size)) ? 'checkedIcon' : 'uncheckedIcon');
+        icon.classList.add((status === 'required' && (this.productGroupItem.product.selectedRequiredTopping.name === name || name === this.product.size)) ? 'checkedIcon' : 'uncheckedIcon');
 
         const labelSelector = document.createElement('div');
         labelSelector.classList.add('toppingLabel');
         labelSelector.innerHTML = label;
 
-        if (status === 'required' && this.selectedRequiredTopping.name === name){
+        if (status === 'required' && this.productGroupItem.product.selectedRequiredTopping.name === name){
             this.lastSelectedRequired = selector;
             labelSelector.classList.add('checkedToppingLabel');
         }
 
         if (status === 'required' && name === this.product.size){
-            this.lastSelectedSizeSelector = selector;
+            this.productGroupItem.product.lastSelectedSizeSelector = selector;
+            labelSelector.classList.add('checkedToppingLabel');
+        }
+
+        if (status === 'optional' && this.product.selectedOptionalTopping.map(x=>x.name).includes(name)){
             labelSelector.classList.add('checkedToppingLabel');
         }
 
@@ -66,12 +71,12 @@ class SizeAndToppingSelector{
         this.element.addEventListener('click', (e) => {
             const realTarget = e.target.closest('.toppingSelector');
             if (realTarget && realTarget.toppingType === 'required' && Object.values(ProductToEat.productSizes).includes(realTarget.name)) {
-                if (this.lastSelectedSizeSelector){
-                    this.uncheckSelector(this.lastSelectedSizeSelector);
+                if (this.productGroupItem.product.lastSelectedSizeSelector){
+                    this.uncheckSelector(this.productGroupItem.product.lastSelectedSizeSelector);
                 }
                 this.checkSelector(realTarget);
                 this.product.size = realTarget.name;
-                this.lastSelectedSizeSelector = realTarget;
+                this.productGroupItem.product.lastSelectedSizeSelector = realTarget;
             } else
             if (realTarget && realTarget.toppingType === 'required') {
                 if (this.lastSelectedRequired){
@@ -81,19 +86,19 @@ class SizeAndToppingSelector{
                 this.checkSelector(realTarget);
                 this.product.addIngredient(this.requiredToppings[realTarget.name.toUpperCase()]);
                 this.lastSelectedRequired = realTarget;
-                this.selectedRequiredTopping = this.requiredToppings[realTarget.name];
+                this.productGroupItem.product.selectedRequiredTopping = this.requiredToppings[realTarget.name.toUpperCase()];
             } else
             if (realTarget && realTarget.toppingType === 'optional') {
-                if (this.lastSelectedOptionalSelectors.includes(realTarget)){
+                if (this.productGroupItem.product.lastSelectedOptionalSelectors.includes(realTarget)){
                     this.uncheckSelector(realTarget);
                     this.product.removeIngredient(this.optionalToppings[realTarget.name.toUpperCase()]);
-                    this.lastSelectedOptionalSelectors = this.lastSelectedOptionalSelectors.filter(x => x!==realTarget);
-                    this.selectedOptionalTopping = this.selectedOptionalTopping.filter(x => x!==this.optionalToppings[realTarget.name]);
+                    this.productGroupItem.product.lastSelectedOptionalSelectors = this.productGroupItem.product.lastSelectedOptionalSelectors.filter(x => x!==realTarget);
+                    this.productGroupItem.product.selectedOptionalTopping = this.productGroupItem.product.selectedOptionalTopping.filter(x => x!==this.optionalToppings[realTarget.name.toUpperCase()]);
                 } else {
                     this.checkSelector(realTarget);
                     this.product.addIngredient(this.optionalToppings[realTarget.name.toUpperCase()]);
-                    this.lastSelectedOptionalSelectors.push(realTarget);
-                    this.selectedOptionalTopping.push(this.optionalToppings[realTarget.name]);
+                    this.productGroupItem.product.lastSelectedOptionalSelectors.push(realTarget);
+                    this.productGroupItem.product.selectedOptionalTopping.push(this.optionalToppings[realTarget.name.toUpperCase()]);
                 }
             }
             this.caloriesLabel.innerHTML = `${this.product.countCalories()}ккал`;

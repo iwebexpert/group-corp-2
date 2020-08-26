@@ -1,0 +1,1 @@
+new Hamburger(new Fillings());

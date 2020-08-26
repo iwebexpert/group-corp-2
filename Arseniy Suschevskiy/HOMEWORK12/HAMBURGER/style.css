@@ -1,0 +1,10 @@
+form{
+    width: 700px;
+    margin: 0 auto;
+}
+fieldset{
+    display: flex;
+}
+.btn{
+    margin-top: 30px;
+}

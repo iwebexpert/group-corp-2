@@ -54,6 +54,6 @@ class Cart {
 					<div>Кол-во</div>
 			 	</div>`;
     document.getElementById('total').textContent = 'Корзина пуста';
-    cart.items = [];
+    this.items = [];
   }
 }

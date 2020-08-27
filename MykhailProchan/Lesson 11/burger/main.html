@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Hamgurger</title>
+</head>
+
+<body>
+  <form id="form" action="#" onsubmit="formAction(); event.preventDefault();">
+    Выберите размер гамбургера:
+    <div>
+      <input type="radio" id="big" name="size" value="big" required>
+      <label for="big">Большой (100 рублей, 40 калорий)</label>
+    </div>
+    <div>
+      <input type="radio" id="small" name="size" value="small">
+      <label for="small">Маленький (50 рублей, 20 калорий)</label>
+    </div>
+    <hr>
+    Выберите доп. ингридиенты:
+    <div>
+      <input type="checkbox" id="cheese" name="addons" value="cheese">
+      <label for="cheese">С сыром (+10 рублей, +20 калорий)</label>
+    </div>
+    <div>
+      <input type="checkbox" id="salad" name="addons" value="salad">
+      <label for="salad">С салатом (+20 рублей, +5 калорий).</label>
+    </div>
+    <div>
+      <input type="checkbox" id="potato" name="addons" value="potato">
+      <label for="potato">С картофелем (+15 рублей, +10 калорий)</label>
+    </div>
+    <hr>
+    Добавьте специи:
+    <div>
+      <input type="checkbox" id="flavoring" name="taste" value="potato">
+      <label for="potato">Приправа (+15 рублей, +0 калорий)</label>
+    </div>
+    <div>
+      <input type="checkbox" id="mayo" name="taste" value="potato">
+      <label for="potato">Майонез (+20 рублей, +5 калорий)</label>
+    </div>
+    <hr>
+    <div class="check"></div>
+    <p id="ccal">Калории: </p>
+    <p id="sum">Стоимость: </p>
+    <button type="submit">Рассчитать</button>
+  </form>
+
+</body>
+
+</html>

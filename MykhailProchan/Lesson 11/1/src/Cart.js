@@ -16,10 +16,11 @@ class Cart {
 		if (itemInCart) {
 			itemInCart.render();
 		} else {
-			const cartItem = new CartItem(item);
-			console.log(cartItem);
-			this.items.push(cartItem);
+			const newItem = new CartItem(item)
+			this.items.push(newItem);
+			newItem.render();
 		}
+		this.checkout();
 	}
 
 	clear() {
@@ -34,25 +35,25 @@ class Cart {
 	}
 }
 
-class CartItem extends Cart {
+class CartItem {
 	constructor(item) {
-		super();
 		this.amount = 0;
 		this.id = item.id;
 		this.name = item.name;
 		this.price = item.price;
+
 		this.changeHandler = this.changeHandler.bind(this);
+
 		this.entry = document.createElement('div');
 		this.input = document.createElement('input');
 	}
 
 	changeHandler(e) {
 		this.amount = e.target.valueAsNumber;
-
 		if (this.amount === 0) {
 			this.entry.remove();
 		}
-		this.checkout();
+		cart.checkout();
 	}
 
 	render() {
@@ -72,6 +73,6 @@ class CartItem extends Cart {
 
 			document.getElementById('cart').appendChild(this.entry);
 		}
-		this.checkout();
+		cart.checkout();
 	}
 }

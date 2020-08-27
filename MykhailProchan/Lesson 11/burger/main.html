@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
-  <title>Hamgurger</title>
+  <title>Hamburger</title>
 </head>
 
 <body>
-  <form id="form" action="#" onsubmit="formAction(); event.preventDefault();">
+  <form action="#" onsubmit="formAction(); event.preventDefault();" id="form">
     Выберите размер гамбургера:
     <div>
       <input type="radio" id="big" name="size" value="big" required>
@@ -37,18 +37,18 @@
     <hr>
     Добавьте специи:
     <div>
-      <input type="checkbox" id="flavoring" name="taste" value="potato">
-      <label for="potato">Приправа (+15 рублей, +0 калорий)</label>
+      <input type="checkbox" id="flavoring" name="taste" value="flavoring">
+      <label for="flavoring">Приправа (+15 рублей, +0 калорий)</label>
     </div>
     <div>
-      <input type="checkbox" id="mayo" name="taste" value="potato">
-      <label for="potato">Майонез (+20 рублей, +5 калорий)</label>
+      <input type="checkbox" id="mayo" name="taste" value="mayo">
+      <label for="mayo">Майонез (+20 рублей, +5 калорий)</label>
     </div>
     <hr>
-    <div class="check"></div>
-    <p id="ccal">Калории: </p>
-    <p id="sum">Стоимость: </p>
     <button type="submit">Рассчитать</button>
+    <div id="check">Чек: </div>
+    <p id="kcal">Калории: 0 ккал</p>
+    <p id="sum">Стоимость: 0 руб</p>
   </form>
 
 </body>

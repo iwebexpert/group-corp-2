@@ -1,0 +1,7 @@
+#check {
+   background-color: rgb(224, 224, 224);
+}
+
+#check > p {
+  margin: 0; padding: 0;
+}

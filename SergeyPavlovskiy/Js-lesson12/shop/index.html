@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  <script defer src="item.js"></script>
+  <script defer src="cart.js"></script>
+  <title>Корзина товаров</title>
+</head>
+
+<body>
+  <!-- Nav -->
+  <nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Корзина (<span
+            class="total-count"></span>)</button><button class="clear-cart btn btn-danger ml-2">Очистить
+          корзину</button></div>
+    </div>
+  </nav>
+
+
+  <!-- Main -->
+  <div class="container">
+    <div class="row">
+      <div class="col col-md-3 col-sm-6 col-12">
+        <div class="card">
+          <img class=" card-img-top" src="img/keyboard.jpg" alt="Card image">
+          <div class="card-block">
+            <h4 class="card-title">Клавиатура</h4>
+            <p class="card-text">Цена: ₽1000</p>
+            <a href="#" data-name="Keyboard" data-price="1000" class="add-to-cart btn btn-primary">Добавить в
+              корзину</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 col-12">
+        <div class="card"">
+            <img class="card-img-top" src="img/mouse.png" alt="Card image">
+        <div class="card-block">
+          <h4 class="card-title">Мышь</h4>
+          <p class="card-text">Цена: ₽500</p>
+          <a href="#" data-name="Mouse" data-price="500" class="add-to-cart btn btn-primary">Добавить в корзину</a>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-3 col-sm-6 col-12">
+      <div class="card">
+        <img class="card-img-top" src="img/touchpad.png" alt="Card image">
+        <div class="card-block">
+          <h4 class="card-title">Тачпад</h4>
+          <p class="card-text">Цена: ₽1500</p>
+          <a href="#" data-name="Touchpad" data-price="1500" class="add-to-cart btn btn-primary">Добавить в
+            корзину</a>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-3 col-sm-6 col-12">
+      <div class="card"">
+          <img class=" card-img-top" src="img/processor.png" alt="Card image">
+        <div class="card-block">
+          <h4 class="card-title">Процессор</h4>
+          <p class="card-text">Цена: ₽5000</p>
+          <a href="#" data-name="Processor" data-price="5000" class="add-to-cart btn btn-primary">Добавить в
+            корзину</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- Modal cart -->
+  <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Корзина</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="show-cart table">
+
+          </table>
+          <div>Итого: ₽<span class="total-cart"></span></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#order"
+            data-dismiss="modal">Доставка</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal delivery -->
+  <div class="modal fade" id="order" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
+        <div class="modal-header">
+          <h5 class="modal-title"><strong>Заказать доставку</strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Способ доставки</label>
+            <div class="col-sm-6">
+
+              <div class="radio">
+                <label><input type="radio" name="delivery" class="js-delivery-type" data-type="Самовывоз" data-summa="0"
+                    checked="">Самовывоз (бесплатно)</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" name="delivery" class="js-delivery-type" data-type="В пределах КАД"
+                    data-summa="200">В пределах МКАД (200 рублей)</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" name="delivery" class="js-delivery-type" data-type="Почта России"
+                    data-summa="300">Доставка почтой России (500 рублей)</label>
+              </div>
+              <br>
+              <div id="alert-delivery" class="alert alert-info">Пи покупке от 5 000 р. доставка бесплатна</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#comment"
+            data-dismiss="modal">Коментарии к заказу</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal comment -->
+  <div class="modal fade" id="comment" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal"><i class="icon-xs-o-md"></i></button>
+        <div class="modal-header">
+          <h5 class="modal-title"><strong>Коментарии к заказу</strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Ваш коментарий..." />
+              <span class="input-group-btn"><button class="btn btn-primary" type="button">Отправить</button></span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#cart"
+            data-dismiss="modal">Вернуться в корзину</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

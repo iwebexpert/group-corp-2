@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="main.js" defer></script>
+  <title>burger-bar</title>
+</head>
+<body>
+  <div class="container">
+    <div class="burger-choosing">
+
+      <div class="size">
+        <h2>Выбирете размер бургера</h2>
+        <form class="choosing-size" action="#">
+          <p><input name="choosing-size" type="radio" value="Small" checked>Маленький (50 рублей, 20 калорий)</p>
+          <p><input name="choosing-size" type="radio" value="Big">Большой (100 рублей, 40 калорий)</p>
+        </form>
+      </div>  
+
+      <div class="stuffings">
+        <h2>Начинка гамбургера</h2>
+        <form class="value-stuffings" action="#">
+          <p><input name="value-stuffings" type="checkbox" value="Cheese" checked>Cыр (+10 рублей, +20 калорий)</p>
+          <p><input name="value-stuffings" type="checkbox" value="Salad">Салат (+20 рублей, +5 калорий)</p>
+          <p><input name="value-stuffings" type="checkbox" value="Potato">Картошка (+15 рублей, +10 калорий)</p>
+        </form>
+      </div>
+
+      <div class="seasoning">
+        <h2>Дополнительно</h2>
+        <form class="value-seasoning" action="#">
+          <p><input name="value-seasoning" type="checkbox" value = "Seasoning">Добавить приправу (+15 рублей, +0 калорий)</p>
+          <p><input name="value-seasoning" type="checkbox" value="Mayonnaise" checked>Полить майонезом (+20 рублей, +5 калорий)</p>
+        </form>
+      </div>
+
+      <button id="button-count">Расчет</button>
+      <br>
+      <span>Итого: </span>
+      <span id="total"></span>
+    </div>
+  </div>
+</body>
+</html> 

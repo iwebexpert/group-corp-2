@@ -171,11 +171,13 @@ class CartList {
             document.querySelector('.tab1').innerHTML = "Корзина пустая";
         } else {
             let str1 = '';
+            let total = 0;
             cart.items.forEach((it) => {
                 str1 += `${it.count} ${it.name} `;
+                total += it.price * it.count;
             });
-            document.querySelector('.cart_sum').innerHTML = `В корзине лежит ${str1}`;
-            document.querySelector('.tab1').innerHTML = `В корзине лежит ${str1}`;
+            document.querySelector('.cart_sum').innerHTML = `В корзине лежит ${str1} на сумму ${total}`;
+            document.querySelector('.tab1').innerHTML = `В корзине лежит ${str1} на сумму ${total}`;
         }
         this.goodsInCart.items.forEach(good => {
             const cartItem = new CartItems(good.id, good.name, good.price, good.count, good.img);
@@ -185,7 +187,14 @@ class CartList {
         });
         document.querySelector('.goods-list').innerHTML = listHtml;
     }
+    sumOfAllItems() {
+        let totalSum = 0;
+        cart.items.forEach((it) => {
+            totalSum += it.price * it.count;
+        });
+        return totalSum;
+    }
 }
 
-let testShit = new CartList();
-testShit.render();
+let starCart = new CartList();
+starCart.render();

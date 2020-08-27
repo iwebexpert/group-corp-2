@@ -1,0 +1,199 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#catalog {
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(77, 76, 76);
+  color: white;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item {
+  margin-bottom: 20px;
+  padding: 0 30px 0 30px;
+  width: 800px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 5px solid rgb(88, 88, 88);
+  border-radius: 20px;
+  box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05),
+    inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3),
+    inset 0 15px 15px rgba(0, 0, 0, 0.3);
+}
+
+.imgIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+.imgIcon[tabindex="0"] {
+  cursor: zoom-in;
+}
+.imgIcon[tabindex="0"]:focus {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  height: auto;
+  max-width: 99%;
+  max-height: 99%;
+  margin: auto;
+  box-shadow: 0 0 20px #000, 0 0 0 1000px rgba(210, 210, 210, 0.4);
+}
+.imgIcon[tabindex="0"]:focus,  /* убрать строку, если не нужно, чтобы при клике на увеличенное фото, оно возвращалось в исходное состояние */
+.imgIcon[tabindex="0"]:focus ~ * {
+  pointer-events: none;
+  cursor: zoom-out;
+}
+
+.rightSide {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemName {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.itemCoast {
+  width: 50px;
+  text-align: left;
+}
+
+.itemCount {
+  border-radius: 10px;
+  padding: 5px 20px;
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+}
+
+.button {
+  background: #6b6b6b;
+  box-shadow: 5px 10px 50px rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 5px 20px;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  outline: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #be0000;
+  box-shadow: 5px 5px 50px rgba(109, 2, 2, 0.5);
+  color: rgb(0, 0, 0);
+}
+
+.button:active {
+  background-color: #f6f5f5;
+  box-shadow: 5px 5px 50px rgba(144, 126, 126, 0.5);
+  transform: translateY(4px);
+}
+
+.total {
+  width: 600px;
+  margin: 20px auto;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(88, 88, 88);
+  border: 5px solid rgb(88, 88, 88);
+  border-radius: 20px;
+  box-shadow: 0 -15px 15px rgb(73, 73, 73),
+    inset 0 -15px 15px rgba(255, 255, 255, 0.05),
+    inset 0 15px 15px rgba(73, 73, 73, 0.3),
+    inset 0 15px 15px rgba(73, 73, 73, 0.3);
+}
+
+.myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  color: black;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+}
+
+.close {
+  position: absolute;
+  top: 24px;
+  right: 20px;
+}
+
+.bucketTitle {
+  font-size: 28px;
+  font-weight: 200;
+  margin: 10px 0 10px 20px;
+  text-align: center;
+}
+
+.input {
+  margin-top: 8px;
+  margin-bottom: 32px;
+  background: #ffffff;
+  box-shadow: 5px 10px 50px rgba(190, 190, 190, 0.2);
+  border-radius: 10px;
+  padding: 21px 43px;
+  border: 1px solid#6b6b6b;
+
+  width: 100%;
+}
+
+.textarea {
+  margin-top: 8px;
+  margin-bottom: 48px;
+  background: #ffffff;
+  box-shadow: 5px 10px 50px rgba(190, 190, 190, 0.2);
+  border-radius: 10px;
+  padding: 21px 43px;
+  border: 1px solid #6b6b6b;
+  resize: none;
+}

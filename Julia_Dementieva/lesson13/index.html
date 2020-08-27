@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const catalogItem1 = new Product('Table', 10000, 1,['img/table.jpg','img/table1.jpg','img/table2.jpg']);
+            const catalogItem2 = new Product('Armchair', 4570, 1,['img/armchair.jpg','img/armchair1.jpg','img/armchair2.jpg']);
+            const catalogItem3 = new Product('Chair', 1390, 1,['img/chair.jpg','img/chair1.jpg']);
+            const catalogItem4 = new Product('Lamp', 1600, 1,['img/lamp.jpg','img/lamp1.jpg']);
+
+            const catalog = new Catalog([catalogItem1, catalogItem2, catalogItem3, catalogItem4]);
+            console.log(catalog);
+            document.querySelector('.catalog-container').appendChild(catalog.render());
+
+
+            const hr = document.createElement('hr');
+            document.querySelector('.catalog-container').appendChild(hr);
+
+            
+
+            
+
+            const basketItem1 = new ProductInBasket('Table', 10000, 1,['img/table.jpg','img/table1.jpg','img/table2.jpg']);
+            const basketItem2 = new ProductInBasket('Lamp', 1600, 1,['img/lamp.jpg','img/lamp1.jpg']);
+
+            const basket1 = new Basket([basketItem1, basketItem2]);
+            catalog.init(basket1);
+            document.querySelector('.basket-container').appendChild(basket1.render());
+        });
+    </script>
+    <script src="script.js" defer></script>
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="catalog-container">
+            <h2>Каталог</h2>
+        </div>
+
+        <div class="basket-container">
+            <h2>Корзина</h2>
+        </div>
+    </div>
+    
+</body>
+</html>

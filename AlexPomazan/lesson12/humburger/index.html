@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 12 Humburger</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="humburger">
+      <div class="card">
+        <form>
+          <h4>Выберите гамбургер:</h4>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="smallHumburger"
+              value="smallHumburger"
+              checked
+            />
+            <label class="form-check-label" for="smallHumburger">
+              Маленький гамбургер (50 рублей, 20 калорий)
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="bigHumburger"
+              value="bigHumburger"
+            />
+            <label class="form-check-label" for="bigHumburger">
+              Большой гамбургер (100 рублей, 40 калорий)
+            </label>
+          </div>
+          <h4>Выберите начинку (необязательно):</h4>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="cheese"
+              id="cheese"
+            />
+            <label class="form-check-label" for="cheese">
+              С сыром (+10 рублей, +20 калорий)
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="salad"
+              id="salad"
+            />
+            <label class="form-check-label" for="salad">
+              С салатом (+20 рублей, +5 калорий)
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="potatoes"
+              id="potatoes"
+            />
+            <label class="form-check-label" for="potatoes">
+              С картофелем (+15 рублей, +10 калорий)
+            </label>
+          </div>
+          <h4>Прочие добавки (необязательно):</h4>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="seasoning"
+              id="seasoning"
+            />
+            <label class="form-check-label" for="seasoning">
+              Посыпать приправой (+15 рублей, +0 калорий)
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="mayonnaise"
+              id="mayonnaise"
+            />
+            <label class="form-check-label" for="mayonnaise">
+              Полить майонезом (+20 рублей, +5 калорий)
+            </label>
+          </div>
+          <div class="button-success">
+          <button type="button" class="btn btn-success">Рассчитать</button>
+        </div>
+        </form>
+        <div class="total">
+        <div class="total-price">
+          <p>Итоговая цена:</p>
+          <span class="total-price--value"></span>
+        </div>
+        <div class="total-calories">
+        <p>Количество калорий:</p>
+        <span class="total-calories--value"></span>
+        </div>
+        </div>
+    </div>
+    <div class="burger-img">
+      <img src="https://raketaburger.ru/wp-content/uploads/2019/09/-%D1%80%D0%B0%D0%BA%D0%B5%D1%82%D0%B0-min-960x600.jpg" alt="">
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

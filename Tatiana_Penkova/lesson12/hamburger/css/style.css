@@ -1,0 +1,41 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    background-image: url('./burger.jpg');
+    background-repeat: no-repeat;
+    background-position: contain;
+  }
+
+p {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.size {
+    display: block;
+}
+
+.topping {
+    display: block;
+}
+
+div {
+    margin-top: 20px;
+}
+
+
+
+button {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0); 
+}
+
+.calculate {
+    text-align: center;
+    font-size: 28px;
+    color: rgb(71, 6, 6);
+    margin-bottom: 20px;
+}

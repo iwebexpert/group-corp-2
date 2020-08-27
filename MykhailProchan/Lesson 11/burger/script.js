@@ -9,15 +9,17 @@ const lib = {
 }
 
 function formAction() {
+  let sum = 0, kcal = 0;
 
   const data = serialize(form);
-  let sum = 0, kcal = 0;
   const kcalElement = document.querySelector('#kcal');
   const sumElement = document.querySelector('#sum');
   const checkElement = document.querySelector('#check');
+
+  checkElement.innerHTML = '';
+
   data.forEach(a => {
     const temp = lib[Object.keys(lib).find(key => a[1] == key)];
-    console.log(temp);
     checkElement.appendChild(document.createElement('p')).textContent = temp[0] +
       ' ' + temp[1] + ' руб';
     sum += temp[1];

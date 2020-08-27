@@ -5,7 +5,7 @@ class Catalog {
   }
 
   clickHandler(e) {
-    let item = Object.assign({}, this.content.find(f => f.id === parseInt(e.currentTarget.id)));
+    const item = Object.assign({}, this.content.find(f => f.id === parseInt(e.currentTarget.id)));
     cart.pushItem(item);
   }
 

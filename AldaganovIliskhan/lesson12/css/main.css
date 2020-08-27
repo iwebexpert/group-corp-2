@@ -1,0 +1,53 @@
+*, *::after,*::before {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: sans-serif;
+}
+input,label {
+    cursor: pointer;
+    
+}
+input {
+    position: relative;
+    top: 1px;
+    margin-right: 5px;
+}
+
+body {
+    background: grey;
+}
+.shop {
+    max-width: 700px;
+    margin: 100px  auto 0 auto;
+    background: #fff;
+    color: #000;
+    padding: 20px;
+}
+
+.toppings {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.big-burger {
+    margin-bottom: 15px;
+}
+button {
+    cursor: pointer;
+}
+.toppings__title,.seasonings__title {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.count-all {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+button {
+    padding: 7px 35px;
+    color: #fff;
+    background: rgb(120, 28, 196);
+}
+button:hover {
+    background: rgb(81, 47, 109);
+}

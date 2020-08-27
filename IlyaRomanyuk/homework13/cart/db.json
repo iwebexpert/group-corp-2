@@ -1,0 +1,39 @@
+{
+    "goods": [
+        {
+            "id": "1pr",
+            "name": "шорты",
+            "quantity": 1,
+            "valute": "RUB",
+            "price": 1200,
+            "url": [
+                "./assets/shorts1.jpg",
+                "./assets/shorts2.jpg",
+                "./assets/shorts3.jpg"
+            ]
+        },
+        {
+            "id": "2pr",
+            "name": "майка",
+            "quantity": 1,
+            "valute": "RUB",
+            "price": 800,
+            "url": [
+                "./assets/shirt1.jpg",
+                "./assets/shirt2.jpg",
+                "./assets/shirt3.jpg"
+            ]
+        },
+        {
+            "id": "3pr",
+            "name": "кроссовки",
+            "quantity": 1,
+            "valute": "RUB",
+            "price": 3500,
+            "url": [
+                "./assets/kross1.png",
+                "./assets/kross2.png"
+            ]
+        }
+    ]
+}

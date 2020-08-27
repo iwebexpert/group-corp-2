@@ -101,7 +101,7 @@ const addButton = (id) => {
 };
 
 const createShopItem = (product) => {
-    testCat = document.createElement("div");
+    let testCat = document.createElement("div");
     testCat.innerHTML = `
         <div class="test__header">${product.name}</div>
         <img src='${product.img}' class="test__img"></img>

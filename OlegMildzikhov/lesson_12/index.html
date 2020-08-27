@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src='./modal.js' defer></script>
+    <script src='./script.js' defer></script>
+</head>
+
+<body>
+    <div id="catalog">
+        <div>
+            <h1 class="catalog__header">Welcome to the shop!</h1>
+            <div id="catalog__wrapper"></div>
+        </div>
+    </div>
+    <div class="goods-list"></div>
+    <div class="cart_sum"></div>
+    <!-- modal window -->
+    <div class="wrapper hide">
+        <div class="tab__wrapper">
+            <div id="tab1" class="tab hide show">
+                <p class='tab1'></p>
+                <button data-id='tab2'>Далее</button>
+            </div>
+            <div id="tab2" class="tab hide ">
+                <p>Пожалуйста, введите полный адрес доставки</p>
+                <input id="adress" type="text" placeholder="введите адрес">
+                <button data-id='tab3'>Далее</button>
+            </div>
+            <div id="tab3" class="tab hide">
+                <p>Если у Вас есть какие-то комментарии к заказу, пожалуйста, укажите их ниже</p>
+                <input id="comment" type="text" placeholder="Введите комментарий">
+                <button data-id='confirm'>подтвердить оформление заказа</button>
+            </div>
+            <div id="confirm" class='tab hide'>
+                <p class="confirm_text"></p>
+                <button data-id='close'>вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+    <button data-showModal>Оформить заказ!</button>
+</body>
+
+</html>

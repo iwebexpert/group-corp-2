@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--  STYLE  -->
+    <link rel="stylesheet" href="style.css">
+    <!--  SCRIPTS  -->
+    <script src="classes/HamburgerParts.js" defer></script>
+    <script src="classes/Sizes.js" defer></script>
+    <script src="classes/Filling.js" defer></script>
+    <script src="classes/Additional.js" defer></script>
+    <script src="classes/Hamburger.js" defer></script>
+    <script src="classes/Form.js" defer></script>
+    <script src="classes/Messages.js" defer></script>
+
+    <script src="script.js" defer></script>
+
+    <title>Fast Burger</title>
+</head>
+<body>
+    <form action="POST">
+        <div class="form-title">Фаст Бургер</div>
+        <hr>
+        <div class="sizes">
+            <div class="sizes-title section-hamb-title">Размер:</div>
+            <div class="sizes-container">
+                <div class="sizes-small">
+                    <img src="https://im0-tub-ru.yandex.net/i?id=3f5830393db2b228bddacf882ba8d366&n=13" alt="hamburger" class="sizes-small--img img-hamb">
+                    <label>
+                        <input class="checkbox" id="small" type="checkbox" name="size">
+                        <span class="checkbox-custom" ></span>
+                        <span class="label">маленький</span>
+                    </label>
+                </div>
+                <div class="sizes-big">
+                    <img src="https://im0-tub-ru.yandex.net/i?id=5b48ae786b8324bf97fc9cab3b2c5ae8&ref=rim&n=33&w=281&h=188" alt="hamburger" class="sizes-big--img img-hamb">
+                    <label>
+                        <input class="checkbox" id="big" type="checkbox" name="size">
+                        <span class="checkbox-custom"></span>
+                        <span class="label">большой</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="filling">
+            <div class="filling-title section-hamb-title">Начинка:</div>
+            <div class="filling-types">
+                <label>
+                    <input class="checkbox" id="cheese" type="checkbox" name="filling">
+                    <span class="checkbox-custom"></span>
+                    <span class="label">с сыром</span>
+                </label>
+                <label>
+                    <input class="checkbox" id="salad" type="checkbox" name="filling">
+                    <span class="checkbox-custom"></span>
+                    <span class="label">с салатом</span>
+                </label>
+                <label>
+                    <input class="checkbox" id="potato" type="checkbox" name="filling">
+                    <span class="checkbox-custom"></span>
+                    <span class="label">с картофелем</span>
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="additional">
+            <div class="additional-title  section-hamb-title">Дополнительно добавить:</div>
+            <div class="additional-types">
+                <label>
+                    <input class="checkbox" id="seasonings" type="checkbox" name="additional">
+                    <span class="checkbox-custom"></span>
+                    <span class="label">приправу</span>
+                </label>
+                <label>
+                    <input class="checkbox" id="mayonnaise" type="checkbox" name="additional">
+                    <span class="checkbox-custom"></span>
+                    <span class="label">майонез</span>
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="btn btn-calculate"><span></span>Рассчитать</div>
+    </form>
+
+<!--Modal-->
+<!--Thanks For Order-->
+<div class="thanks">
+    <img src="img/ok.png" alt="" class="thanks-img">
+    <div class="thanks-text">Спасибо за Ваш заказ!<br>Мы уже начали его готовить!</div>
+    <hr>
+    <div class="thanks-sum">Итоговая сумма: <span class="thanks-sum--value"></span> руб</div>
+    <div class="thanks-cal">Всего калорий: <span class="thanks-cal--value"></span></div>
+    <hr>
+    <div class="btn btn-thanks"><span></span>Оплатить</div>
+</div>
+</body>
+</html>

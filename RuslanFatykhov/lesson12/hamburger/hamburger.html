@@ -1,0 +1,50 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="hamburger.css">
+        <script src="hamburger.js" defer></script>
+    </head>
+
+    <body>
+        <div class="container">
+
+            <img src="burger.png" alt="burger">
+
+            <form action="/" name="burger">
+                <div class="sub">Выберите размер бургера:</div>
+                <input type="radio" id="big" name="size" value="big" class="size">
+                <label for="big">Большой (100 рублей, 40 калорий)</label><br>
+                <input type="radio" id="small" name="size" value="small" class="size">
+                <label for="small">Маленький (50 рублей, 20 калорий)</label><br>
+
+                <br>
+
+                <div class="sub">Выберите начинку:</div>
+                <input type="radio" name="stuffing" value="cheese">
+                <label for="cheese">С сыром (+10 рублей, +20 калорий)</label><br>
+                <input type="radio" name="stuffing" value="salad">
+                <label for="salad">С салатом (+20 рублей, +5 калорий)</label><br>
+                <input type="radio" name="stuffing" value="potato">
+                <label for="potato">С картофелем (+15 рублей, +10 калорий).</label><br>
+
+                <br>
+
+                <div class="sub">Дополнительно:</div>
+                <input type="checkbox" id="spice" name="mayo" value="spice">
+                <label for="spice">Посыпать приправой (+15 рублей, +0 калорий)</label><br>
+                <input type="checkbox" id="mayo" name="spice" value="mayo">
+                <label for="mayo">Добавить майонез (+20 рублей, +5 калорий)</label><br>
+
+                <button type="submit" class="button" name="order">Приготовить</button>
+
+                <div id="result"></div>
+            </form>
+        </div>
+
+    </body>
+
+    </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BURGER</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="./Burger.js" defer></script>
+  <script src="./Stuffing.js" defer></script>
+  <script src="./Topping.js" defer></script>
+
+  <script src="./index.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h2 class="header">Собери свой гамбургер</h2>
+    <div class="size">
+        <h3 class="size__header">Выбери размер</h3>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="radio_little" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Маленький (50 рублей, 20 калорий)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="radio_big" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            Большой (100 рублей, 40 калорий))
+          </label>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="ingridients">
+        <h3 class="stuffing_header">Выбери начинку</h3>
+        <div class="cheese-container">
+            <input class="cheese" type="checkbox" id="cheese">
+            <label class="cheese" for="cheese">С сыром (+10 рублей, +20 калорий)</label>
+        </div>
+        <div class="salad-container">
+            <input class="salad" type="checkbox" id="salad">
+            <label class="salad" for="salad">С салатом (+20 рублей, +5 калорий).</label>
+        </div>
+        <div class="potato-container">
+            <input class="potato" type="checkbox" id="potato">
+            <label class="potato" for="potato">С картофелем (+15 рублей, +10 калорий)</label>
+        </div>
+    </div>
+    <hr>
+    <div class="toppings">
+        <h3 class="toppings_header">Выбери приправу</h3>
+        <div class="pepper-container">
+            <input class="pepper" type="checkbox" id="pepper">
+            <label class="pepper" for="cheese">Посыпать приправой(+15 рублей, +0 калорий)</label>
+        </div>
+        <div class="mayonnaise-container">
+            <input class="mayonnaise" type="checkbox" id="mayonnaise">
+            <label class="mayonnaise" for="mayonnaise">Полить майонезом(+20 рублей, +5 калорий)</label>
+        </div>
+    </div>
+
+    <button class="calculate-btn" id="calculate-btn">Рассчитать стоимость и калории</button>
+    <div class="calculated">
+        <p class="result"></p>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

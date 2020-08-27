@@ -70,16 +70,10 @@ var counter = 0;
 
 const makeGETRequest = (url) => {
     return new Promise((resolve, reject) => {
-        let xhr;
-
-        if (window.XMLHttpRequest) {
-            xhr = new XMLHttpRequest();
-        } else if (window.ActiveXObject) { 
-            xhr = new ActiveXObject("Microsoft.XMLHTTP");
-        }
+        const xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status != 200) {
                     reject(`${xhr.status}: ${xhr.statusText}`);
                 }

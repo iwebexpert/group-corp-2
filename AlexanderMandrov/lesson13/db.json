@@ -1,0 +1,15 @@
+{
+    "users": [
+        {"id": 1, "name": "Ivan Ivanov", "age": 25},
+        {"id": 2, "name": "Ivan Petrov", "age": 24},
+        {"id": 3, "name": "Anna Ivanova", "age": 29},
+        {"id": 4, "name": "Vika Sidorova", "age": 28},
+        {"id": 5, "name": "Olga Ivanova", "age": 31}
+    ],
+    "items": [
+        {"id": 1, "name": "keyboard", "price": 1000, "currency": "RUB"},
+        {"id": 2, "name": "mouse", "price": 500, "currency": "RUB"},
+        {"id": 3, "name": "cover", "price": 300, "currency": "RUB"},
+        {"id": 4, "name": "phone", "price": 30000, "currency": "RUB"}
+    ]
+}

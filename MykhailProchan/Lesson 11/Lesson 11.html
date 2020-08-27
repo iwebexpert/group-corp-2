@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lesson 10</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="src/Catalog.js" defer></script>
+	<script src="src/Cart.js" defer></script>
+	<script src="src/Spoilers.js" defer></script>
+	<script src="twoThree.js" defer></script>
+</head>
+
+<body>
+	<div class="con">
+		<p>Выберите товар из каталога, затем введите нужное кол-во а поле "кол-во" в корзине</p>
+		<p>Каталог:</p>
+		<div id="catalog"></div>
+
+		<p>Корзина:</p>
+		<p id="total"></p>
+		<button onclick="cart.clear();">Очистить корзину</button>
+
+		<details id="cart__spoiler" open>
+			<summary>Состав корзины:</summary>
+			<div id="cart"></div>
+		</details>
+
+		<details id="shipping-address__spoiler">
+			<summary>Далее</summary>
+			<div>
+				<label for="country">Страна: </label>
+				<input type="text" id="country" placeholder="Страна" required>
+			</div>
+
+			<div>
+				<label for="country">Город: </label>
+				<input type="text" id="city" placeholder="Город" required>
+			</div>
+
+			<div>
+				<label for="street">Улица, дом, квартира: </label>
+				<input type="text" id="street" placeholder="Улица, дом, квартира" required>
+			</div>
+
+			<div>
+				<label for="index">Почтовый индекс: </label>
+				<input type="number" id="index" placeholder="Почтовый индекс" required>
+			</div>
+
+			<div>
+				<label for="comment">Комментарий к заказу: </label>
+				<textarea type="textarea" class="comment" rows="4" cols="50"></textarea>
+			</div>
+
+			<button>Перейти к оплате</button>
+		</details>
+	</div>
+</body>
+
+</html>

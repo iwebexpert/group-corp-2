@@ -1,4 +1,7 @@
 "use strict";
+
+const API_URL = "";
+
 class Item {
   constructor(name, price, count, img) {
     this.img = img;
@@ -14,32 +17,26 @@ class ShoppingBucket {
     this.catalog = document.querySelector("#catalog");
   }
 
-  addItem(item, count) {
-    if (count > 0 && item instanceof Item && Number.isInteger(count)) {
-      if (!this.items.includes(item)) this.items.push(item);
-      item.count ? (item.count += count) : (item.count = count);
-      this.total += item.price * count;
-    } else {
-      return;
+  addItem(item) {
+    if (!this.items.includes(item)) {
+      this.items.push(item);
     }
   }
 
-  deleteItem(item, count) {
-    if (
-      count <= item.count &&
-      count > 0 &&
-      item instanceof Item &&
-      this.items.includes(item) &&
-      Number.isInteger(count)
-    ) {
-      item.count -= count;
-      if (item.count == 0) {
-        this.items.splice(this.items.indexOf(item), 1);
-      }
-      this.total -= item.price * count;
-    } else {
-      return;
-    }
+  fetchItem(name, price, count, img) {
+    let item = new Item(name, price, count, img);
+    this.addItem(item, count);
+  }
+
+  fetchItems() {
+    makeGETRequest(`${API_URL}/items`)
+      .then((items) => {
+        items.forEach((item) =>
+          this.fetchItem(item.name, item.price, item.count, item.img)
+        );
+        this.render();
+      })
+      .catch((errMessage) => console.log(errMessage));
   }
 
   sumTotal() {
@@ -58,6 +55,7 @@ class ShoppingBucket {
     this.renderHead();
     this.renderItems();
     this.renderFooter();
+    this.renderModal();
   }
 
   renderForm() {
@@ -142,26 +140,40 @@ class ShoppingBucket {
   }
 
   renderFooter() {
+    const footer = document.createElement("div");
+    footer.classList.add("footer");
+    document.querySelector(".bucket").appendChild(footer);
+
     const total = document.createElement("div");
     total.classList.add("total");
-    document.querySelector(".bucket").appendChild(total);
+    footer.appendChild(total);
+    this.sumTotal();
+    total.innerHTML = `Items - ${this.totalItems}, total price - ${this.totalPrice} &#8381;`;
+  }
+
+  reRenderFooter() {
+    let total = document.querySelector(".total");
     this.sumTotal();
     if (this.totalItems == 0) {
       total.innerHTML = `Empty bucket`;
+      $("#nextButton").remove();
     } else {
       total.innerHTML = `Items - ${this.totalItems}, total price - ${this.totalPrice} &#8381;`;
     }
+  }
 
+  renderModal() {
     let obj = this;
+
+    // Добавление модального окна с формой (Bootstrap)
     const nextButton = document.createElement("button");
     nextButton.setAttribute("type", "button");
-    nextButton.classList.add("btn");
-    nextButton.classList.add("btn-info");
-    nextButton.classList.add("btn-sm");
+    nextButton.classList.add("button");
     nextButton.setAttribute("data-toggle", "modal");
     nextButton.setAttribute("data-target", "#myModal");
     nextButton.innerHTML = "Confirm order";
-    document.querySelector(".bucket").appendChild(nextButton);
+    document.querySelector(".footer").appendChild(nextButton);
+    nextButton.id = "nextButton";
 
     const modal = document.createElement("div");
     modal.setAttribute("type", "button");
@@ -178,7 +190,6 @@ class ShoppingBucket {
 
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
-    modalContent.classList.add("modalContent");
     modalDialog.appendChild(modalContent);
 
     const modalHeader = document.createElement("div");
@@ -201,6 +212,7 @@ class ShoppingBucket {
     modalBody.classList.add("modal-body");
     modalContent.appendChild(modalBody);
 
+    //Добавление формы модального окна
     const modalForm = document.createElement("form");
     modalForm.classList.add("needs-validation");
     modalForm.id = "myForm";
@@ -215,7 +227,7 @@ class ShoppingBucket {
     label.setAttribute("for", "adress");
     label.innerHTML = "Adress:";
     formGroupAdress.appendChild(label);
-    //validation
+
     const adress = document.createElement("input");
     adress.setAttribute("type", "text");
     adress.classList.add("form-control");
@@ -243,10 +255,6 @@ class ShoppingBucket {
     invalid.innerHTML = "Please, enter adress.";
     formGroupAdress.appendChild(invalid);
 
-    const modalFooter = document.createElement("div");
-    modalFooter.classList.add("modal-footer");
-    modalBody.appendChild(modalFooter);
-
     const applyBtn = document.createElement("button");
     applyBtn.setAttribute("type", "submit");
     applyBtn.classList.add("button");
@@ -255,41 +263,102 @@ class ShoppingBucket {
     applyBtn.id = "submit";
     modalForm.appendChild(applyBtn);
 
+    // Добавление модального окна подтверждения
+    const modalConfrim = document.createElement("div");
+    modalConfrim.setAttribute("tabindex", "-1");
+    modalConfrim.classList.add("modal");
+    modalConfrim.classList.add("fade");
+    modalConfrim.id = "myModalConfrim";
+    modalConfrim.setAttribute("role", "dialog");
+    document.querySelector(".bucket").appendChild(modalConfrim);
+
+    const modalDialogConfrim = document.createElement("div");
+    modalDialogConfrim.classList.add("modal-dialog");
+    modalDialogConfrim.setAttribute("role", "document");
+    modalConfrim.appendChild(modalDialogConfrim);
+
+    const modalContentConfrim = document.createElement("div");
+    modalContentConfrim.classList.add("modal-content");
+    modalDialogConfrim.appendChild(modalContentConfrim);
+
+    const modalHeaderConfrim = document.createElement("div");
+    modalHeaderConfrim.classList.add("modal-header");
+    modalContentConfrim.appendChild(modalHeaderConfrim);
+
+    modalHeaderConfrim.appendChild(closeBtn);
+
+    const modalHeadingConfirm = document.createElement("h4");
+    modalHeadingConfirm.classList.add("modal-title");
+    modalHeadingConfirm.innerHTML = "Sucsess";
+    modalHeaderConfrim.appendChild(modalHeadingConfirm);
+
+    const modalBodyConfrim = document.createElement("div");
+    modalBodyConfrim.classList.add("modal-body");
+    modalContentConfrim.appendChild(modalBodyConfrim);
+
+    const modalText = document.createElement("p");
+    modalBodyConfrim.appendChild(modalText);
+
     modalForm.onsubmit = function () {
-      console.log(
-        `Items - ${obj.totalItems}, total price - ${obj.totalPrice} &#8381;, adress - ${adress.value}, message ${message.value}`
-      );
-      $("#myModal").modal("hide");
+      if (modalForm.checkValidity()) {
+        if (message.value == "") {
+          obj.message = " - ";
+        } else {
+          obj.message = message.value;
+        }
+        obj.adress = adress.value;
+        modalText.innerHTML = `
+        Items - ${obj.totalItems},
+        total price - ${obj.totalPrice} &#8381;,
+        adress: ${obj.adress},
+        message: ${obj.message};`;
+        $("#myModal").modal("hide");
+        $("#myModalConfrim").modal("show");
+      }
       return false;
     };
   }
-
-  reRenderFooter() {
-    let total = document.querySelector(".total");
-    this.sumTotal();
-    if (this.totalItems == 0) {
-      total.innerHTML = `Empty bucket`;
-    } else {
-      total.innerHTML = `Items - ${this.totalItems}, total price - ${this.totalPrice} &#8381;`;
-    }
-  }
 }
+// НЕ НУЖНО С СЕРВЕРНОЙ ЧАСТЬЮ
+// //Добавить товары и создать корзину
+// let cpu = new Item("Intel Core i5-9600K", 12854, 0, "./img/1.jpg");
+// let graphicCard = new Item("Nvidia GTX 1660S (Super)", 15161, 0, "./img/2.jpg");
+// let ram = new Item(
+//   "Corsair Vengeance LPX DDR4 3200 C16 2x8GB",
+//   3626,
+//   0,
+//   "./img/3.jpg"
+// );
 
-//Добавить товары и создать корзину
-let cpu = new Item("Intel Core i5-9600K", 12854, 0, "./img/1.jpg");
-let graphicCard = new Item("Nvidia GTX 1660S (Super)", 15161, 0, "./img/2.jpg");
-let ram = new Item(
-  "Corsair Vengeance LPX DDR4 3200 C16 2x8GB",
-  3626,
-  0,
-  "./img/3.jpg"
-);
 let myBucket = new ShoppingBucket("Philipp");
 
-//Добавить товары в корзину
-myBucket.addItem(cpu, 1);
-myBucket.addItem(ram, 2);
-myBucket.addItem(graphicCard, 1);
+// //Добавить товары в корзину
+// myBucket.addItem(cpu, 1);
+// myBucket.addItem(ram, 2);
+// myBucket.addItem(graphicCard, 1);
+
+const makeGETRequest = (url) => {
+  return new Promise((resolve, reject) => {
+    let xhr;
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status != 200) {
+          reject(`${xhr.status}: ${xhr.statusText}`);
+        }
+        resolve(JSON.parse(xhr.responseText));
+      }
+    };
+
+    xhr.open("GET", url, true);
+    xhr.send();
+  });
+};
 
 //Инициализация
-myBucket.render();
+myBucket.fetchItems();

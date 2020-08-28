@@ -100,6 +100,7 @@
   transition-timing-function: linear;
   outline: none;
   cursor: pointer;
+  font-size: 12px;
 }
 
 .button:hover {
@@ -114,9 +115,12 @@
   transform: translateY(4px);
 }
 
+button:focus {
+  outline: none !important;
+}
 .total {
   width: 600px;
-  margin: 20px auto;
+  margin-right: 10px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -171,29 +175,12 @@
 .bucketTitle {
   font-size: 28px;
   font-weight: 200;
-  margin: 10px 0 10px 20px;
+  margin: 10px 0 10px;
   text-align: center;
 }
 
-.input {
-  margin-top: 8px;
-  margin-bottom: 32px;
-  background: #ffffff;
-  box-shadow: 5px 10px 50px rgba(190, 190, 190, 0.2);
-  border-radius: 10px;
-  padding: 21px 43px;
-  border: 1px solid#6b6b6b;
-
-  width: 100%;
-}
-
-.textarea {
-  margin-top: 8px;
-  margin-bottom: 48px;
-  background: #ffffff;
-  box-shadow: 5px 10px 50px rgba(190, 190, 190, 0.2);
-  border-radius: 10px;
-  padding: 21px 43px;
-  border: 1px solid #6b6b6b;
-  resize: none;
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

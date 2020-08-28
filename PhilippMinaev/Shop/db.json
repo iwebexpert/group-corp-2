@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Intel Core i5-9600K",
+      "price": 12854,
+      "count": 1,
+      "img": "./img/1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Corsair Vengeance LPX DDR4 3200 C16 2x8GB",
+      "price": 3626,
+      "count": 2,
+      "img": "./img/3.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Nvidia GTX 1660S (Super)",
+      "price": 15161,
+      "count": 1,
+      "img": "./img/2.jpg"
+    }
+  ]
+}

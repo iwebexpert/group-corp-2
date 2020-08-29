@@ -1,0 +1,69 @@
+{
+    "goods": [{
+            "id": "1",
+            "product": "FENDER Redondo Special MBK w/bag",
+            "currency": "руб.",
+            "price": 78000,
+            "img": [
+                "./assets/fender/1.jpg",
+                "./assets/fender/2.jpg",
+                "./assets/fender/3.jpg"
+            ]
+        },
+        {
+            "id": "2",
+            "product": "YAMAHA FG820 SUNSET BLUE",
+            "currency": "руб.",
+            "price": 24990,
+            "img": [
+                "./assets/yamaha/1.jpg",
+                "./assets/yamaha/2.jpg",
+                "./assets/yamaha/3.jpg"
+            ]
+        },
+        {
+            "id": "3",
+            "product": "EPIPHONE DOVE PRO ACOUSTIC",
+            "currency": "руб.",
+            "price": 40000,
+            "img": [
+                "./assets/epiphone/1.jpg",
+                "../assets/epiphone/2.jpg",
+                "./assets/epiphone/3.jpg"
+            ]
+        },
+        {
+            "id": "4",
+            "product": "GIBSON J-200 Standard Maple Vintage Sunburst",
+            "currency": "руб.",
+            "price": 401000,
+            "img": [
+                "./assets/gibson/1.jpg",
+                "./assets/gibson/2.jpg",
+                "./assets/gibson/3.jpg"
+            ]
+        },
+        {
+            "id": "5",
+            "product": "SEAGULL 41886 Entourage Folk Burnt Umber QIT",
+            "currency": "руб.",
+            "price": 49161,
+            "img": [
+                "./assets/seagull/1.jpg",
+                "./assets/seagull/2.jpg",
+                "./assets/seagull/3.jpg"
+            ]
+        },
+        {
+            "id": "6",
+            "product": "TAYLOR 214ce-K DLX 200 Series Deluxe",
+            "currency": "руб.",
+            "price": 161000,
+            "img": [
+                "./assets/taylor/1.jpg",
+                "./assets/taylor/2.jpg",
+                "../assets/taylor/3.jpg"
+            ]
+        }
+    ]
+}

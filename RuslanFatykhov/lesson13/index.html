@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 11 Homework</title>
+    <link rel="stylesheet" href="lesson13.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="lesson13.js" defer></script>
+
+</head>
+
+<body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contacts">
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h4 class="mb-3">Контактные данные</h4>
+                <form id="myForm">
+                    <div class="row g-2">
+                        <div class="col-sm-12">
+                            <label for="lastName" class="form-label">Фамилия</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Фамилия" value="">
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="firstName" class="form-label">Имя</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Имя" value="">
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="fatherName" class="form-label">Отчество</label>
+                            <input type="text" class="form-control" id="fatherName" placeholder="Отчество" value="">
+                        </div>
+
+                        <div class="col-12">
+                            <p>Адрес</p>
+                            <label for="address" class="form-label">Улица</label>
+                            <input type="text" class="form-control" id="address" placeholder="Улица">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address2" class="form-label">Дом<</label> <input type="text"
+                                    class="form-control" id="address2" placeholder="Дом, квартира">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="country" class="form-label"></label>
+                            <select class="form-select" id="country">
+                                <option>Россия</option>
+                                <option>Беларусь</option>
+                                <option>Украина</option>
+                                <option>Казахстан</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="state" class="form-label"></label>
+                            <select class="form-select" id="state">
+                                <option>Москва и Московская обл.</option>
+                                <option>Ленинградская обл.</option>
+                                <option>Татарстан</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="zip" class="form-label">Индекс</label>
+                            <input type="text" class="form-control" id="zip" placeholder="Индекс">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Телефон</label>
+                            <input type="tel" class="form-control" id="tel" placeholder="Телефон">
+                        </div>
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Ваша электронная почта">
+                        </div>
+                        <button type="sybmit" id="continue" class="btn btn-success btn-lg btn-block">Продолжить</button>
+                    </div>
+
+            </div>
+            <div class="col">
+                <h4 class="mb-3">Оплата</h4>
+                <div class="my-3">
+                    <div class="form-check">
+                        <input id="credit" name="paymentMethod" type="radio" class="form-check-input"
+                            value="Кредитная карта VISA/MasterCard/Мир" checked>
+                        <label class="form-check-label" for="credit">Кредитная карта</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
+                            value="Дебетовая карта VISA/MasterCard/Мир">
+                        <label class="form-check-label" for="debit">Дебетовая карта</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" value="PayPal">
+                        <label class="form-check-label" for="paypal">PayPal</label>
+                    </div>
+                </div>
+                <div class="row gy-3">
+                    <div>
+                        <label for="cc-name" class="form-label"></label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="Полное имя">
+                    </div>
+                    <div>
+                        <label for="cc-number" class="form-label"></label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="Номер карты">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cc-expiration" class="form-label"></label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="Срок">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cc-cvv" class="form-label"></label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="CVV">
+                    </div>
+                </div>
+                <button type="sybmit" id="pay" class="btn btn-success btn-lg btn-block">Продолжить</button>
+                </form>
+            </div>
+            <div class="col">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span>Ваша корзина</span>
+                    <span class="badge bg-secondary rounded-pill"></span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Название продукта</h6>
+                        </div>
+                        <span class="text-muted item-name"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong>Итого: </strong>
+                        <strong class="mytotal"></strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong>ФИО: </strong>
+                        <strong class="name"></strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong>Адрес доставки: </strong>
+                        <strong class="destination"></strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong>Контакты: </strong>
+                        <strong class="keepintouch"></strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong>Способ оплаты: </strong>
+                        <strong class="payment"></strong>
+                    </li>
+                </ul>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Оформить</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{
+  "goods": [
+    {
+      "id": 0,
+      "name": "T-short",
+      "price": 700,
+      "currency": "Rub",
+      "count": 0,
+      "url": "https://it-shirts.com/wp-content/uploads/2018/04/tshirts_javascript_starwars_01.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Shoes",
+      "price": 5000,
+      "currency": "Rub",
+      "count": 0,
+      "url": "https://images.ru.prom.st/574632908_botinki-muzhskie-kozhanye.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Dress",
+      "price": 3500,
+      "currency": "Rub",
+      "count": 0,
+      "url": "https://acoolakids.ru/static/images/acoola/styles/catalog/good/96237/20240200060_620_Back.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Socks",
+      "price": 350,
+      "currency": "Rub",
+      "count": 0,
+      "url": "https://go3.imgsmail.ru/imgpreview?key=5fe2e6d99ecffae5&mb=storage&w=540"
+    }
+  ]
+}

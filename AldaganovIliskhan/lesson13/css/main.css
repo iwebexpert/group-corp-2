@@ -1,0 +1,44 @@
+*,*::after,*::before {
+    outline: none;
+}
+.main {
+    max-width: 1000px;
+    margin:0 auto;
+}
+.catalog__blocks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.catalog__block {
+    max-width: 250px;
+}
+.catalog__block img {
+    max-width: 100%;
+    min-height: 250px;
+}
+img {
+    max-height: 250px;
+}
+input {
+    min-width: 270px;
+    padding: 8px;
+    display: block;
+}
+button {
+    padding: 7px 30px;
+    min-width: 100px;
+    background: rgb(75, 6, 6);
+    color: #fff;
+    cursor: pointer;
+}
+button:hover {
+    background: rgb(134, 13, 13);
+}
+
+.address-next,.comment-next {
+    margin-left: 190px;
+    display: block;
+    margin-top: 7px;
+}

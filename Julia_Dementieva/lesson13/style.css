@@ -22,7 +22,7 @@ h2{
   justify-content: space-between;
 
 }
-.sumBasket{
+.sumBasket, .basketEmpty{
     font-size: 18px;
     font-weight: bold;
     color: red;

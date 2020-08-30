@@ -63,20 +63,20 @@ class Catalog  {
             if(this.productList[i] instanceof Product){
                 this.catalog.appendChild(this.productList[i].render());
                 const btn = document.createElement('button');
-                btn.className = 'btn btn-primary';
+                btn.className = 'btn btn-primary addBasket';
                 btn.setAttribute('id', i);
-                console.log(`${this.basket} из рендера`);
                 // Добавить событие на кнопку
                 
-                // this.basket.add(this.productList[event.target.id]);
-                // this.basket.render();
                 btn.innerHTML = 'Добавить в корзину';
-                // btn.addEventListener('click', function(event){
-                //     this.basket.add(this.productList[event.target.id]);
-                //     // document.getElementById('basket').innerHTML = '';
-                //     this.basket.render();
-                // });
+                btn.addEventListener('click', (event) => {
+
+                    this.basket.add(this.productList[event.target.id]);
+                    this.basket.clearRender();
+                    this.basket.render();
+
+                });
                 this.productList[i]._product.appendChild(btn);
+                
             }
         }
         return this.catalog;
@@ -102,8 +102,6 @@ class Basket  {
         this.basket = document.createElement('div');
     }
 
-    
-
     countBasketPrice(){
         let sum = 0;
         for (let i = 0; i < this.basketList.length; i++){
@@ -113,57 +111,90 @@ class Basket  {
     }
 
     add(product){
-        if (product instanceof ProductInBasket) {
-            this.basketList.push(product);
+        if(product instanceof Product){
+            let indexFind = this.findName(product.name);
+            if(indexFind > -1){
+                this.basketList[indexFind].quantity +=1;
+            } else {
+                const newProduct = new ProductInBasket(product.name, product.price, product.quantity, product.imgs);
+                this.basketList.push(newProduct);
+            }  
         } else { 
             console.log('Товар не может быть вставлен');
         }
-        
+    }
+
+    delete(idProduct){
+        if(idProduct>=0 && idProduct < this.basketList.length){
+            // Удаляет продукт из корзины
+            this.basketList.splice(idProduct, 1);
+        } else {
+            console.log('Удалить нельзя - неверный индекс');
+        }
     }
 
     findName(productName){
-        for(let i = 0; i < this.length(); i++){
-            if(this.showNameProduct(i) === productName){
-                return i;
+        let indexFind = -1;
+        [...this.basketList].forEach( (element, index) => {
+            // Если есть уже это продукт, то меняем количество
+            if(productName === element.name){
+                indexFind = index;
             }
-        }
-        return -1;
+        })
+        return indexFind;
     }
 
-    length(){
-        return this.basketList.length;
+    allQuantity(){
+        let sum = 0;
+        [...this.basketList].forEach((element)=>{
+            sum += element.quantity;
+        })
+        return sum;
     }
 
-    showNameProduct(index){
-        if(index>=0 && index < this.length()){
-            return this.basketList[index].name;
-        }
-        return -1;
+    clearRender(){
+        const div = document.querySelector('.basket-items');
+        div.innerHTML = '';
     }
 
-    changeQuality(index){
-        this.basketList[index].quantity += 1;
-    }
+
 
     render(){
-        [...this.basketList].forEach(element => {
-            if(element instanceof ProductInBasket){
-                this.basket.appendChild(element.render());
-                const btn = document.createElement('button');
-                btn.className = 'btn btn-danger';
-                // Добавить событие на кнопку
-                btn.innerHTML = 'Удалить из корзины';
-                element._product.appendChild(btn);
-            }
-        });
+        this.basket.className = 'basket-items';
 
-        const p = document.createElement('p');
-        p.className = 'sumBasket';
-        p.innerHTML = `Суммарная стоимость всех товаров в корзине: ${this.countBasketPrice()}`;
-        this.basket.appendChild(p);
+        if(this.basketList.length){
+            [...this.basketList].forEach((element,index) => {
+                if(element instanceof ProductInBasket){
+                    this.basket.appendChild(element.render());
+                    const btn = document.createElement('button');
+                    btn.className = 'btn btn-danger';
+                    btn.id = index;
+                    // Добавить событие на кнопку
+                    btn.innerHTML = 'Удалить из корзины';
+                    btn.addEventListener('click', (event) => {
+                        this.delete(event.target.id);
+                        this.clearRender();
+                        this.render();
+                    });
+                    element._product.appendChild(btn);
+                }
+            });
 
+            const p = document.createElement('p');
+            p.className = 'sumBasket';
+            p.innerHTML = `В корзине ${this.allQuantity()} товара на сумму ${this.countBasketPrice()}`;
+            this.basket.appendChild(p);
+        } else {
+            const p = document.createElement('p');
+            p.className = 'basketEmpty';
+            p.innerHTML = `Корзина пуста`;
+            this.basket.appendChild(p);
+        }
+        
         return this.basket;
     }
 
     
 }
+
+// Обработчики на кнопки

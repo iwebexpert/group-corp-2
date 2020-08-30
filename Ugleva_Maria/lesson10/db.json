@@ -1,0 +1,8 @@
+{
+    "catalogProducts": [
+        {"id": 0, "name": "Зеркало", "price": 700, "currency": "RUB", "count": 1},
+        {"id": 1, "name": "Принтер", "price": 20000, "currency": "RUB", "count": 1},
+        {"id": 2, "name": "Кактус", "price": 1500, "currency": "RUB", "count": 1},
+        {"id": 3, "name": "Вода", "price": 57, "currency": "RUB", "count": 1}
+    ]
+}

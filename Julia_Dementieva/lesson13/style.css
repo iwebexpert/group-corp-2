@@ -1,0 +1,29 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.wrapper {
+    width: 900px;
+    margin: 0 auto;
+    min-height: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+h2{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+.prd{
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+
+}
+.sumBasket, .basketEmpty{
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+}

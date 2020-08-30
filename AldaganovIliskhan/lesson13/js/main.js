@@ -42,6 +42,8 @@ class Cart {
             good.id
           ].textContent = `Стоимость : ${good.price} руб`;
         });
+      }).catch(() => {
+        console.log('ERROR');
       });
   }
   addProductToCart(product) {

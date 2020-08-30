@@ -133,6 +133,8 @@ class BasketOfGoods {
             headingBasket.style.display = "none";
             order.style.display = "block";
             infoBasketMessage.style.display = "none";
+            const btnsAdd = document.querySelectorAll(".btn-add");
+            const btnsDelete = document.querySelectorAll(".btn-delete");
             btnsDelete.forEach((btn, i) => {
                 btn.setAttribute("disabled", true);
             });

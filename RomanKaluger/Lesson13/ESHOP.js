@@ -186,27 +186,39 @@ class SearchFilters {
 
         this.initializatorDOM.createOrUpdateItemsView('CATALOG');
     }
+    async createInputRequest() {
+        const paramsObj = {};
+        const paramsForSort = [];
+        if (this.sortByPriceRadioAsc.checked){
+            paramsForSort.push(['price','asc']);
+        }
+        if (this.sortByPriceRadioDesc.checked){
+            paramsForSort.push(['price','desc']);
+        }
+        if (this.sortByCaloriesRadioAsc.checked){
+            paramsForSort.push(['baseCalories','asc']);
+        }
+        if (this.sortByCaloriesRadioDesc.checked){
+            paramsForSort.push(['baseCalories','desc']);
+        }
+        if (this.searchInput.value){
+            paramsObj.like = this.searchInput.value;
+        }
+        paramsObj.sorted = paramsForSort;
+        await this.setNewSortedProductsToCatalog(this.goodsDatabaseManager.getByComplexParams,paramsObj);
+    }
     initHandlers() {
+        let lastSearchInput = performance.now();
+        let lastTimeout = 0;
         this.searchPanel.addEventListener('input', async (e) => {
-            const paramsObj = {};
-            const paramsForSort = [];
-            if (this.sortByPriceRadioAsc.checked){
-                paramsForSort.push(['price','asc']);
+            const now = performance.now();
+            if (now - lastSearchInput > 500) {
+                this.createInputRequest();
+            } else {
+                clearTimeout(lastTimeout);
+                lastTimeout = setTimeout(()=>this.createInputRequest(), 500);
             }
-            if (this.sortByPriceRadioDesc.checked){
-                paramsForSort.push(['price','desc']);
-            }
-            if (this.sortByCaloriesRadioAsc.checked){
-                paramsForSort.push(['baseCalories','asc']);
-            }
-            if (this.sortByCaloriesRadioDesc.checked){
-                paramsForSort.push(['baseCalories','desc']);
-            }
-            if (this.searchInput.value){
-                paramsObj.like = this.searchInput.value;
-            }
-            paramsObj.sorted = paramsForSort;
-            await this.setNewSortedProductsToCatalog(this.goodsDatabaseManager.getByComplexParams,paramsObj);
+            lastSearchInput = now;
         });
         this.searchPanel.addEventListener('submit', (e) =>e.preventDefault());
     }

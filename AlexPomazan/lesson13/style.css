@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+h3 {
+  text-align: center;
+}
+
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-product {
+  width: 350px;
+  height: 450px;
+}
+
+.product {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-info {
+  height: 100px;
+}
+
+.name {
+  text-align: center;
+}
+
+.price {
+  display: flex;
+  justify-content: center;
+}
+
+.price-value {
+  margin-left: 5px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.product-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-success,
+.btn-danger {
+  margin: 10px 20px 5px 20px;
+  width: 150px;
+}
+
+.btn-success {
+  width: 150px;
+  padding: 5px;
+}
+
+.basket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.info-basket {
+  text-align: center;
+  width: 400px;
+  margin: 16px;
+  padding: 20px;
+}
+
+label {
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+#address {
+  width: 300px;
+}
+
+.address-div {
+  margin: 16px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.comment-div {
+  padding: 20px;
+  margin: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.address,
+.comment {
+  margin: 0px 16px 5px 16px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin: px;
+}

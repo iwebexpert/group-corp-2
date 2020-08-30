@@ -1,0 +1,19 @@
+{
+    "allProducts": [
+        {
+            "title": "Маргарита",
+            "price": 300,
+            "src": "image/products_photo/m1.jpg"
+        },
+        {
+            "title": "Мясная",
+            "price": 400,
+            "src": "image/products_photo/p1.jpg"
+        },
+        {
+            "title": "Веганская",
+            "price": 500,
+            "src": "image/products_photo/v1.jpg"
+        }
+    ]
+}

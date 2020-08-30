@@ -1,0 +1,12 @@
+{
+    "goods": [
+        {"id": 1, "title": "Playstation 5 DE", "picture": "img/ps5de.png", "price": 500},
+        {"id": 2, "title": "Playstation 5", "picture": "img/ps5.png", "price": 600},
+        {"id": 3, "title": "DualSense", "picture": "img/dualSense.png", "price": 70},
+        {"id": 4, "title": "Wireless Headset", "picture": "img/headset.png", "price": 100},
+        {"id": 5, "title": "DualSense Bl", "picture": "img/dualSenseBlack.png", "price": 70},
+        {"id": 6, "title": "VR", "picture": "img/vr.png", "price": 300},
+        {"id": 7, "title": "Spider Man", "picture": "img/sm.png", "price": 160},
+        {"id": 8, "title": "Game Set", "picture": "img/games.png", "price": 250}
+    ]
+}

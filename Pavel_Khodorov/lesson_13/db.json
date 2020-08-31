@@ -1,0 +1,35 @@
+{
+  "goods": [
+    {
+      "title": "Keyboard",
+      "price": 2000,
+      "priceType": "RUB",
+      "images": [
+        "https://media.kingston.com/hyperx/features/hx-features-keyboard-alloyfpspro-litup.jpg",
+        "https://mark.com.ru/wa-data/public/shop/products/13/19/31913/images/26553/26553.750@2x.jpeg",
+        "https://avatars.mds.yandex.net/get-mpic/1336510/img_id8139733990913955767.jpeg/orig"
+      ]
+    },
+    {
+      "title": "Mouse",
+      "price": 1000,
+      "priceType": "RUB",
+      "images": [
+        "https://epix.ru/images/catalog/accessories/mouse/hyperx/pulsefire_fps_pro/hyperpx-pulsefire-fps-pro.jpg",
+        "https://media.kingston.com/hyperx/category/hx-family-mouse-pulsefire-surge-md.jpg",
+        "https://i.ytimg.com/vi/kiEawFvNRAY/maxresdefault.jpg"
+      ]
+    },
+    {
+      "title": "Monitor",
+      "price": 10000,
+      "priceType": "RUB",
+      "images": [
+        "https://epix.ru/images/catalog/accessories/monitors/benq/zowie-xl2411p/benq-zowie-xl2411p.jpg",
+        "https://cdn.multitronic.fi/images/prod/0/C/9H.LGPLB.QBE-7.jpg",
+        "https://image.coolblue.be/max/500x500/products/1372974"
+      ]
+    }
+  ]
+
+}

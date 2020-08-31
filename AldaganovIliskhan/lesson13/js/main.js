@@ -1,9 +1,3 @@
-let addKeyboard = document.querySelector(".add-keyboard");
-let addMonitor = document.querySelector(".add-monitor");
-let addMouse = document.querySelector(".add-mouse");
-let deleteKeyboard = document.querySelector(".delete-keyboard");
-let deleteMonitor = document.querySelector(".delete-monitor");
-let deleteMouse = document.querySelector(".delete-mouse");
 let arrangeBtn = document.querySelector(".cart__arrange-btn");
 let addressNext = document.createElement("button");
 let commentNext = document.createElement("button");
@@ -17,140 +11,167 @@ class Product {
     this.id = id;
   }
 }
-
 class Cart {
   constructor() {
-    this.items = [];
+    this.cartItems = [];
     this.address = document.createElement("input");
     this.cartArrange = document.querySelector(".cart__arrange");
     this.comment = document.createElement("input");
     this.sum = 0;
   }
-  sendRequest() {
-     fetch("/goods")
+  createCatalog() {
+    const catalogBlocks = document.createElement("div");
+    catalogBlocks.classList.add("catalog__blocks");
+    fetch("/goods")
       .then((res) => res.json())
       .then((goods) => {
         goods.map((good) => {
-          const catalogBlockTitle = document.querySelectorAll(
-            ".catalog__block-title"
-          );
-          const catalogBlockPrice = document.querySelectorAll(
-            ".catalog__block-price"
-          );
-          catalogBlockTitle[good.id].textContent = good.title;
-          catalogBlockPrice[
-            good.id
-          ].textContent = `Стоимость : ${good.price} руб`;
+          const catalog = document.querySelector(".catalog");
+          const catalogBlock = document.createElement("div");
+          catalogBlock.classList.add("catalog__block");
+          const catalogBlockTitle = document.createElement("h3");
+          catalogBlockTitle.classList.add("catalog__block-title");
+          const catalogBlockImg = document.createElement("img");
+          catalogBlockImg.classList.add("catalog__block-img");
+          catalogBlockImg.setAttribute("src", good.img);
+          const addButton = document.createElement('button');
+          const catalogBlockPrice = document.createElement("p");
+          catalogBlockPrice.classList.add("catalog__block-price");
+          addButton.classList.add(`add-${good.class}`);
+          const deleteButton = document.createElement("button");
+          deleteButton.classList.add(`delete-${good.class}`);
+          catalogBlockTitle.textContent = good.title;
+          catalogBlockPrice.textContent = `Стоимость : ${good.price}`;
+          addButton.textContent = "Добавить";
+          deleteButton.textContent = "Удалить";
+          catalog.appendChild(catalogBlocks);
+          catalogBlocks.appendChild(catalogBlock);
+          catalogBlock.appendChild(catalogBlockTitle);
+          catalogBlock.appendChild(catalogBlockImg);
+          catalogBlock.appendChild(catalogBlockPrice);
+          catalogBlock.appendChild(addButton);
+          catalogBlock.appendChild(deleteButton);
         });
-      }).catch(() => {
-        console.log('ERROR');
       });
   }
-  addProductToCart(product) {
-    this.items.push(product);
-    console.log(product)
+
+  addProductToCart(e) {
+    if(e.target.className === 'add-keyboard') {
+      this.cartItems.push(new Product('keyboard',3000,'RUB',1));
+    }
+    else if (e.target.className === 'add-mouse') {
+      this.cartItems.push(new Product('mouse',500,'RUB',2));
+    }
+    else if (e.target.className === 'add-monitor') {
+      this.cartItems.push(new Product('monitor',2000,'RUB',3));
+    }
+    else {
+      return;
+    }
+    this.countCartPrice();
   }
-  deleteProductFromCart(product) {
-    this.items.map((item, i) => {
-      if (product.name === item.name) {
-        this.items.splice(i, 1);
-      }
-    });
+  deleteProductFromCart(e) {
+    if(e.target.className === 'delete-keyboard' || e.target.className === 'delete-mouse' || e.target.className === 'delete-monitor') {
+      let className = e.target.className.split('delete-')[1];
+      this.cartItems.map((item,i) => {
+        if(className === item.name) {
+          this.cartItems.splice(i,1);
+        }
+      })
+    }
+    else {
+      return;
+    }
+    this.countCartPrice();
   }
-  showBasket() {
-    this.address.style.display = "block";
-    addressNext.style.display = "block";
-    addressNext.classList.add("address-next");
-    this.address.classList.add("adress-input");
-    this.address.placeholder = "Введите адрес";
-    addressNext.textContent = "Далее";
-    this.cartArrange.appendChild(this.address);
-    this.cartArrange.appendChild(addressNext);
-    arrangeBtn.style.display = "none";
-    this.address.value = "";
-    this.comment.value = "";
+  showBasket(e) {
+    if(e.target.className === 'cart__arrange-btn') {
+      this.address.style.display = "block";
+      addressNext.style.display = "block";
+      addressNext.classList.add("address-next");
+      this.address.classList.add("adress-input");
+      this.address.placeholder = "Введите адрес";
+      addressNext.textContent = "Далее";
+      this.cartArrange.appendChild(this.address);
+      this.cartArrange.appendChild(addressNext);
+      arrangeBtn.style.display = "none";
+      this.address.value = "";
+      this.comment.value = "";
+    }
+    else {
+      return;
+    }
+    
   }
-  showComment() {
-    this.address.style.display = "none";
-    addressNext.style.display = "none";
-    this.comment.style.display = "block";
-    commentNext.style.display = "block";
-    commentNext.textContent = "Далее";
-    commentNext.classList.add("comment-next");
-    this.comment.placeholder = "Введите комментарий";
-    this.cartArrange.appendChild(this.comment);
-    this.cartArrange.appendChild(commentNext);
+  showComment(e) {
+    if(e.target.className === 'address-next') {
+      this.address.style.display = "none";
+      addressNext.style.display = "none";
+      this.comment.style.display = "block";
+      commentNext.style.display = "block";
+      commentNext.textContent = "Далее";
+      commentNext.classList.add("comment-next");
+      this.comment.placeholder = "Введите комментарий";
+      this.cartArrange.appendChild(this.comment);
+      this.cartArrange.appendChild(commentNext);
+    }
+    else {
+      return;
+    }
   }
-  showTotal() {
-    this.comment.style.display = "none";
-    commentNext.style.display = "none";
-    this.total = document.createElement("p");
-    clearBtn.classList.add("clear-btn");
-    clearBtn.textContent = "Заказать снова";
-    clearBtn.style.display = "block";
-    this.total.textContent = `Итоговая стоимость корзины ${this.sum}. Адрес : ${this.address.value}. Комментарий : ${this.comment.value}`;
-    this.cartArrange.appendChild(this.total);
-    this.cartArrange.appendChild(clearBtn);
-    this.items = [];
+  showTotal(e) {
+    if(e.target.className === 'comment-next') {
+      this.comment.style.display = "none";
+      commentNext.style.display = "none";
+      this.total = document.createElement("p");
+      clearBtn.classList.add("clear-btn");
+      clearBtn.textContent = "Заказать снова";
+      clearBtn.style.display = "block";
+      this.total.textContent = `Итоговая стоимость корзины ${this.sum}. Адрес : ${this.address.value}. Комментарий : ${this.comment.value}`;
+      this.cartArrange.appendChild(this.total);
+      this.cartArrange.appendChild(clearBtn);
+      this.cartItems = [];
+    }
+    else {
+      return;
+    }
   }
-  clearCart() {
-    arrangeBtn.style.display = "block";
-    this.cartArrange.appendChild(arrangeBtn);
-    this.total.style.display = "none";
-    clearBtn.style.display = "none";
+  clearCart(e) {
+    if(e.target.className === 'clear-btn') {
+      arrangeBtn.style.display = "block";
+      this.cartArrange.appendChild(arrangeBtn);
+      this.total.style.display = "none";
+      clearBtn.style.display = "none";
+    }
+    else {
+      return;
+    }
   }
   countCartPrice() {
-    this.sum = this.items.reduce((amount, item) => (amount += item.price), 0);
+    this.sum = this.cartItems.reduce(
+      (amount, item) => (amount += item.price),
+      0
+    );
     let priceSum = document.querySelector(".price-sum");
-    if (!this.items.length) {
+    if (!this.cartItems.length) {
       priceSum.textContent = "В корзине пусто";
     } else {
-      priceSum.textContent = `В корзине ${this.items.length}  товаров на сумму ${this.sum}`;
+      priceSum.textContent = `В корзине ${this.cartItems.length}  товаров на сумму ${this.sum}`;
     }
+    ``;
   }
 }
 
-let keyboard = new Product("Keyboard", 3000, "RUB", 1);
-let mouse = new Product("Mouse", 500, "RUB", 2);
-let monitor = new Product("Monitor", 2000, "RUB", 3);
 let cart = new Cart();
 document.addEventListener("DOMContentLoaded", () => {
-    cart.sendRequest();
-});
-arrangeBtn.addEventListener("click", () => {
-  cart.showBasket();
-});
-addressNext.addEventListener("click", () => {
-  cart.showComment();
-});
-clearBtn.addEventListener("click", () => {
-  cart.clearCart();
-});
-commentNext.addEventListener("click", () => {
-  cart.showTotal();
-});
-addKeyboard.addEventListener("click", () => {
-  cart.addProductToCart(keyboard);
+  cart.createCatalog();
   cart.countCartPrice();
 });
-addMouse.addEventListener("click", () => {
-  cart.addProductToCart(mouse);
-  cart.countCartPrice();
+document.addEventListener("click", (e) => {
+  cart.addProductToCart(e);
+  cart.deleteProductFromCart(e);
+  cart.showBasket(e);
+  cart.showComment(e);
+  cart.clearCart(e);
+  cart.showTotal(e);
 });
-addMonitor.addEventListener("click", () => {
-  cart.addProductToCart(monitor);
-  cart.countCartPrice();
-});
-deleteKeyboard.addEventListener("click", () => {
-  cart.deleteProductFromCart(keyboard);
-  cart.countCartPrice();
-});
-deleteMouse.addEventListener("click", () => {
-  cart.deleteProductFromCart(mouse);
-  cart.countCartPrice();
-});
-deleteMonitor.addEventListener("click", () => {
-  cart.deleteProductFromCart(monitor);
-  cart.countCartPrice();
-});
-cart.countCartPrice();

@@ -1,7 +1,7 @@
 {
     "goods" : [
         {
-            "id" : 0,
+            "id" : 1,
             "title" : "Клавиатура",
             "price" : 3000,
             "currency" : "RUB",
@@ -9,7 +9,7 @@
             "class" : "keyboard"
         },
         {
-            "id" : 1,
+            "id" : 2,
             "title" : "Мышка",
             "price" : 500,
             "currency" : "RUB",
@@ -17,7 +17,7 @@
             "class" : "mouse"
         },
         {
-            "id" : 2,
+            "id" : 3,
             "title" : "Монитор",
             "price" : 2000,
             "currency" : "RUB",

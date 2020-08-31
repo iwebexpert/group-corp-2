@@ -19,73 +19,75 @@ class Cart {
     this.comment = document.createElement("input");
     this.sum = 0;
   }
-  createCatalog() {
-    const catalogBlocks = document.createElement("div");
-    catalogBlocks.classList.add("catalog__blocks");
+  sendRequest() {
     fetch("/goods")
       .then((res) => res.json())
       .then((goods) => {
-        goods.map((good) => {
-          const catalog = document.querySelector(".catalog");
-          const catalogBlock = document.createElement("div");
-          catalogBlock.classList.add("catalog__block");
-          const catalogBlockTitle = document.createElement("h3");
-          catalogBlockTitle.classList.add("catalog__block-title");
-          const catalogBlockImg = document.createElement("img");
-          catalogBlockImg.classList.add("catalog__block-img");
-          catalogBlockImg.setAttribute("src", good.img);
-          const addButton = document.createElement('button');
-          const catalogBlockPrice = document.createElement("p");
-          catalogBlockPrice.classList.add("catalog__block-price");
-          addButton.classList.add(`add-${good.class}`);
-          const deleteButton = document.createElement("button");
-          deleteButton.classList.add(`delete-${good.class}`);
-          catalogBlockTitle.textContent = good.title;
-          catalogBlockPrice.textContent = `Стоимость : ${good.price}`;
-          addButton.textContent = "Добавить";
-          deleteButton.textContent = "Удалить";
-          catalog.appendChild(catalogBlocks);
-          catalogBlocks.appendChild(catalogBlock);
-          catalogBlock.appendChild(catalogBlockTitle);
-          catalogBlock.appendChild(catalogBlockImg);
-          catalogBlock.appendChild(catalogBlockPrice);
-          catalogBlock.appendChild(addButton);
-          catalogBlock.appendChild(deleteButton);
-        });
+        this.renderProducts(goods);
       });
   }
-
+  renderProducts(goods) {
+    const catalogBlocks = document.createElement("div");
+    catalogBlocks.classList.add("catalog__blocks");
+    goods.map((good) => {
+      const catalog = document.querySelector(".catalog");
+      const catalogBlock = document.createElement("div");
+      catalogBlock.classList.add("catalog__block");
+      const catalogBlockTitle = document.createElement("h3");
+      catalogBlockTitle.classList.add("catalog__block-title");
+      const catalogBlockImg = document.createElement("img");
+      catalogBlockImg.classList.add("catalog__block-img");
+      catalogBlockImg.setAttribute("src", good.img);
+      const addButton = document.createElement("button");
+      const catalogBlockPrice = document.createElement("p");
+      catalogBlockPrice.classList.add("catalog__block-price");
+      addButton.classList.add(`add-${good.class}`);
+      const deleteButton = document.createElement("button");
+      deleteButton.classList.add(`delete-${good.class}`);
+      catalogBlockTitle.textContent = good.title;
+      catalogBlockPrice.textContent = `Стоимость : ${good.price}`;
+      addButton.textContent = "Добавить";
+      deleteButton.textContent = "Удалить";
+      catalog.appendChild(catalogBlocks);
+      catalogBlocks.appendChild(catalogBlock);
+      catalogBlock.appendChild(catalogBlockTitle);
+      catalogBlock.appendChild(catalogBlockImg);
+      catalogBlock.appendChild(catalogBlockPrice);
+      catalogBlock.appendChild(addButton);
+      catalogBlock.appendChild(deleteButton);
+    });
+  }
   addProductToCart(e) {
-    if(e.target.className === 'add-keyboard') {
-      this.cartItems.push(new Product('keyboard',3000,'RUB',1));
-    }
-    else if (e.target.className === 'add-mouse') {
-      this.cartItems.push(new Product('mouse',500,'RUB',2));
-    }
-    else if (e.target.className === 'add-monitor') {
-      this.cartItems.push(new Product('monitor',2000,'RUB',3));
-    }
-    else {
+    if (e.target.className === "add-keyboard") {
+      this.cartItems.push(new Product("keyboard", 3000, "RUB", 1));
+    } else if (e.target.className === "add-mouse") {
+      this.cartItems.push(new Product("mouse", 500, "RUB", 2));
+    } else if (e.target.className === "add-monitor") {
+      this.cartItems.push(new Product("monitor", 2000, "RUB", 3));
+    } else {
       return;
     }
     this.countCartPrice();
   }
   deleteProductFromCart(e) {
-    if(e.target.className === 'delete-keyboard' || e.target.className === 'delete-mouse' || e.target.className === 'delete-monitor') {
-      let className = e.target.className.split('delete-')[1];
-      this.cartItems.map((item,i) => {
-        if(className === item.name) {
-          this.cartItems.splice(i,1);
+    if (
+      e.target.className === "delete-keyboard" ||
+      e.target.className === "delete-mouse" ||
+      e.target.className === "delete-monitor"
+    ) {
+      let className = e.target.className.split("delete-")[1];
+      this.cartItems.map((item, i) => {
+        if (className === item.name) {
+          this.cartItems.splice(i, 1);
         }
-      })
-    }
-    else {
+      });
+    } else {
       return;
     }
     this.countCartPrice();
   }
   showBasket(e) {
-    if(e.target.className === 'cart__arrange-btn') {
+    if (e.target.className === "cart__arrange-btn") {
       this.address.style.display = "block";
       addressNext.style.display = "block";
       addressNext.classList.add("address-next");
@@ -97,14 +99,12 @@ class Cart {
       arrangeBtn.style.display = "none";
       this.address.value = "";
       this.comment.value = "";
-    }
-    else {
+    } else {
       return;
     }
-    
   }
   showComment(e) {
-    if(e.target.className === 'address-next') {
+    if (e.target.className === "address-next") {
       this.address.style.display = "none";
       addressNext.style.display = "none";
       this.comment.style.display = "block";
@@ -114,13 +114,12 @@ class Cart {
       this.comment.placeholder = "Введите комментарий";
       this.cartArrange.appendChild(this.comment);
       this.cartArrange.appendChild(commentNext);
-    }
-    else {
+    } else {
       return;
     }
   }
   showTotal(e) {
-    if(e.target.className === 'comment-next') {
+    if (e.target.className === "comment-next") {
       this.comment.style.display = "none";
       commentNext.style.display = "none";
       this.total = document.createElement("p");
@@ -131,19 +130,17 @@ class Cart {
       this.cartArrange.appendChild(this.total);
       this.cartArrange.appendChild(clearBtn);
       this.cartItems = [];
-    }
-    else {
+    } else {
       return;
     }
   }
   clearCart(e) {
-    if(e.target.className === 'clear-btn') {
+    if (e.target.className === "clear-btn") {
       arrangeBtn.style.display = "block";
       this.cartArrange.appendChild(arrangeBtn);
       this.total.style.display = "none";
       clearBtn.style.display = "none";
-    }
-    else {
+    } else {
       return;
     }
   }
@@ -164,7 +161,7 @@ class Cart {
 
 let cart = new Cart();
 document.addEventListener("DOMContentLoaded", () => {
-  cart.createCatalog();
+  cart.sendRequest();
   cart.countCartPrice();
 });
 document.addEventListener("click", (e) => {

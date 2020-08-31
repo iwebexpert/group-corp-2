@@ -5,6 +5,7 @@ const addressContainer = document.querySelector(".address__body");
 const commentArea = document.querySelector(".comment__area");
 
 document.addEventListener("DOMContentLoaded", () => {
+  catalog.init();
   container.addEventListener("click", (e) => {
     if (e.target.classList.contains("clear__btn")) {
       newBasket.clearBasket();
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "success"
       );
 
-      window.setTimeout(() => {
+      setTimeout(() => {
         location.reload();
       }, 3500);
     }
@@ -123,21 +124,12 @@ class Product {
     this.currency = currency;
     this.count = count;
     this.url = url;
-    this.items = [];
-    this.addProduct(this);
-    this.createCatalog();
   }
 
   getInfo() {
     const info = document.createElement("div");
     info.textContent = `Name: ${this.name}, price: ${this.price} ${this.currency}, count: ${this.count}`;
     catalogContainer.appendChild(info);
-  }
-
-  addProduct(item) {
-    if (item instanceof Product) {
-      this.items.push(item);
-    }
   }
 
   // Создание карточки товара
@@ -174,8 +166,10 @@ class Product {
     productCard.appendChild(addBtn);
 
     addBtn.addEventListener("click", () => {
-      newBasket.addItem(this);
-      newBasket.createBasketList(this);
+      newBasket.addItem(new Product(id, name, price, currency, count, url));
+      newBasket.createBasketList(
+        new Product(id, name, price, currency, count, url)
+      );
       newBasket.resetBasket();
       newBasket.isEmpty();
       newBasket.createBasketCard();
@@ -185,20 +179,64 @@ class Product {
 
     return productCard;
   }
+}
 
-  // Создание списка каталога
-  createCatalog() {
-    this.items.forEach((p) => {
-      let newProduct = this.createProductCard(
-        p.id,
-        p.name,
-        p.price,
-        p.currency,
-        p.count,
-        p.url
-      );
-      catalogContainer.appendChild(newProduct);
+//----------------------Каталог--------------------------
+class Catalog {
+  constructor() {
+    this.items = [];
+    this.newProduct = null;
+  }
+
+  init() {
+    this.receiveCatalog();
+  }
+
+  sendRequest(url) {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", url);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status !== 200) {
+            reject(xhr.status);
+          }
+          const goods = JSON.parse(xhr.responseText);
+          resolve(goods);
+        }
+      };
+
+      xhr.send();
     });
+  }
+
+  receiveCatalog() {
+    this.sendRequest("./goods")
+      .then(
+        (goods) => {
+          goods.forEach((p) => {
+            this.items.push(
+              new Product(p.id, p.name, p.price, p.currency, p.count, p.url)
+            );
+          });
+        },
+        (status) => {
+          console.log("Error", "Status code:", status);
+        }
+      )
+      .then(() => {
+        this.items.forEach((p) => {
+          this.newProduct = Product.prototype.createProductCard(
+            p.id,
+            p.name,
+            p.price,
+            p.currency,
+            p.count,
+            p.url
+          );
+          catalogContainer.appendChild(this.newProduct);
+        });
+      });
   }
 }
 
@@ -239,7 +277,6 @@ class Basket {
       this.basketList.add(item);
       item.count++;
     }
-
     this.basketSum();
   }
 
@@ -428,38 +465,8 @@ class FormBtns {
 }
 
 // ------------Создание товаров, каталога, добавление товаров в каталог-------------
-let tshort = new Product(
-  0,
-  "T-short",
-  700,
-  "Rub",
-  0,
-  "https://it-shirts.com/wp-content/uploads/2018/04/tshirts_javascript_starwars_01.jpg"
-);
-let shoes = new Product(
-  1,
-  "Shoes",
-  5000,
-  "Rub",
-  0,
-  "https://images.ru.prom.st/574632908_botinki-muzhskie-kozhanye.jpg"
-);
-let dress = new Product(
-  2,
-  "Dress",
-  3500,
-  "Rub",
-  0,
-  "https://acoolakids.ru/static/images/acoola/styles/catalog/good/96237/20240200060_620_Back.jpg"
-);
-let socks = new Product(
-  3,
-  "Socks",
-  350,
-  "Rub",
-  0,
-  "https://go3.imgsmail.ru/imgpreview?key=5fe2e6d99ecffae5&mb=storage&w=540"
-);
+
+let catalog = new Catalog();
 
 newBasket = new Basket([]);
 formBtns = new FormBtns();

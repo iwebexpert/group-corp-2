@@ -97,6 +97,7 @@ let keyboard = new Product("Keyboard", 3000, "RUB", 1, 1);
 let mouse = new Product("Mouse", 500, "RUB", 1, 2);
 let monitor = new Product("Monitor", 2000, "RUB", 1, 3);
 let cart = new Cart();
+
 arrangeBtn.addEventListener('click', () => {
     cart.showBasket();
 });

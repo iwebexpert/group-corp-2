@@ -108,7 +108,6 @@ class Basket {
 }
 
 const basket = new Basket();
-//добавление в корзину по клику + пересчет
 function eventHandler(event) {
   const cards = document.getElementsByClassName("card");
   for (i = 0; i < cards.length; i++) {
@@ -125,7 +124,6 @@ function indexFunc(i) {
 }
 
 document.getElementsByClassName("basket")[0].addEventListener("click", setData);
-
 function setData() {
   if (basket.countSumBasket() == 0) {
     alert("Basket Is Empty");

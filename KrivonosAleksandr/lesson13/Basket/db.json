@@ -1,0 +1,7 @@
+{
+  "goods": [
+    {"id": 1, "img": ["img/jacket1.jpg", "img/jacket2.jpg", "img/jacket3.jpg"], "name": "Куртка", "price": 11900, "num": 5},
+    {"id": 2, "img": ["img/shoes1.jpg", "img/shoes2.jpg", "img/shoes3.jpg"], "name": "Кроссовки", "price": 7990, "num": 2},
+    {"id": 3, "img": ["img/tShirt1.jpg"], "name": "Футболка", "price": 2300, "num": 4}
+  ]
+}

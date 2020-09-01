@@ -1,0 +1,9 @@
+.text{
+    width: 950px;
+    margin: 60px auto;
+    padding: 10px;
+    border: 1px solid black;
+}
+.text-changed{
+    border: 1px solid darkred;
+}

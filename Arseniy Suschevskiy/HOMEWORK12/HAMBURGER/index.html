@@ -11,46 +11,46 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<form class="form">
+<form class="form" id="form">
     <fieldset class="burger">
         <legend>Choose hamburger</legend>
         <label >
-            <input type="radio" name="burger">
-            <span>Large 100 RUB</span>
+            <input type="radio" name="burger" id="big">
+            <span>Big 100 RUB</span>
         </label>
         <label >
-            <input type="radio" name="burger" checked>
+            <input type="radio" name="burger" id="small" checked>
             <span>Small 50 RUB</span>
         </label>
     </fieldset>
     <fieldset class="filling">
         <legend>Choose your filling for hamburger</legend>
         <label>
-            <input class="cheese" type="checkbox" name="fillings" checked required >
+            <input class="cheese" type="checkbox" name="fillings" id="cheese" checked>
             <span>Cheese (+10 RUB)</span>
         </label>
         <label>
-            <input class="salad" type="checkbox" name="fillings">
+            <input class="salad" type="checkbox" name="fillings" id="salad">
             <span>Salad (+20 RUB)</span>
         </label>
         <label>
-            <input class="potatoes" type="checkbox" name="fillings">
+            <input class="potatoes" type="checkbox" name="fillings" id="potato">
             <span>Potatoes (+15 RUB)</span>
         </label>
     </fieldset>
     <fieldset class="more">
         <legend>Extra filling</legend>
         <label>
-            <input type="checkbox" name="extra">
+            <input class="flavor" type="checkbox" name="extra" id="flavor">
             <span>Flavor (+15 RUB)</span>
         </label>
         <label>
-            <input type="checkbox" name="extra">
+            <input class="mayo" type="checkbox" name="extra" id="mayo">
             <span>Mayonnaise (+20 RUB)</span>
         </label>
     </fieldset>
-    <div class="output">
-
+    <div >
+        <p class="output"></p>
     </div>
     <button class="btn waves-effect waves-light" type="submit" name="action" id="Submit">Submit
         <i class="material-icons right">send</i>

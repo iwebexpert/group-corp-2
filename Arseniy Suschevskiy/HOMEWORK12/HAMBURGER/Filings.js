@@ -1,37 +1,45 @@
 class Fillings {
-	constructor() {
-		this.cheeseParam = {
-			price: 10,
-			calories: 20
-		}
-		this.saladParam = {
-			price: 20,
-			calories: 5
-		}
-		this.potatoesParam = {
-			price: 15,
-			calories: 10
-		}
+	constructor(price, calories) {
+		this.price = price;
+		this.calories = calories;
 	}
-	checkBoxes(){
+	isChecked(){
 		const fillingsArray = [];
 		this.fillingsNodeList = document.getElementsByName('fillings');
 		this.fillingsNodeList.forEach((element) => {
 			(element.checked) && (fillingsArray.push(element.className));
-		})
+		});
 		this.fillingsModel = [];
 		fillingsArray.forEach((element) => {
 			switch (element) {
 				case 'cheese':
-					this.fillingsModel.push(this.cheeseParam);
+					this.fillingsModel.push(new Cheese);
 					break;
 				case 'salad':
-					this.fillingsModel.push(this.saladParam);
+					this.fillingsModel.push(new Salad);
 					break;
 				case 'potatoes':
-					this.fillingsModel.push(this.potatoesParam);
+					this.fillingsModel.push(new Potato);
 					break;
 			}
-		})
+		});
+		return this.fillingsModel;
+	}
+}
+class Potato extends Fillings {
+	constructor() {
+		super(15, 10);
+	}
+}
+
+class Salad extends Fillings {
+	constructor() {
+		super(20, 5);
+	}
+}
+
+class Cheese extends Fillings {
+	constructor() {
+		super(10, 20);
 	}
 }

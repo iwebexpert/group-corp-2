@@ -1,0 +1,22 @@
+{
+  "goods": [
+    {
+      "name": "Стул",
+      "cost": 3420,
+      "index": "chair",
+      "delindex": 1
+    },
+    {
+      "name": "Стол",
+      "cost": 7990,
+      "index": "table",
+      "delindex": 2
+    },
+    {
+      "name": "Лампа",
+      "cost": 1070,
+      "index": "lamp",
+      "delindex": 3
+    }
+  ]
+}

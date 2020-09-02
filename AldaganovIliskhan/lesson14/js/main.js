@@ -189,7 +189,13 @@ class Cart {
         this.email.style.border = "2px solid red";
       } else {
         this.email.style.border = "2px solid black";
-        alert("Ваша форма отпрвлена!");
+      }
+      if (
+        nameRegExp.test(this.name.value) &&
+        phoneRegExp.test(this.phone.value) &&
+        emailRegExp.test(this.email.value)
+      ) {
+        alert("Ваша форма отправлена!");
       }
     } else {
       return;

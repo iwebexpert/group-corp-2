@@ -1,6 +1,4 @@
 'use strict'
-
-//json-server --watch ./db.json --static ./
 function getData(url){
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -254,8 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         createHtml(){
-            let form = document.querySelector('.order-form');
-            form.style.display = "none";
             let bucket = document.createElement('div');
             bucket.classList.add('bucket');
             let bucketNext = document.createElement('button');
@@ -287,6 +283,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
 
+            let form = document.querySelector('.order-form');
+            let newForm = form.cloneNode(true);
+            form.remove();
+            newForm.classList.add('non-active');
+            let formBack = newForm.querySelector('.order-form__back');
+            let formSubmit = newForm.querySelector('.order-form__submit');
+
             let address = document.createElement('div');
             address.classList.add('address');
             address.textContent = 'Адрес';
@@ -300,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
             address.appendChild(addressNext);
             bucketContainer.appendChild(address);
 
-
             let comment = document.createElement('div');
             comment.classList.add('comment');
             comment.textContent = 'Комментарий';
@@ -313,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
             comment.appendChild(commentPrev);
             comment.appendChild(commentNext);
             bucketContainer.appendChild(comment);
+            bucketContainer.appendChild(newForm);
 
             bucketNext.addEventListener('click', () => {
                 bucket.classList.add('non-active');
@@ -333,10 +336,63 @@ document.addEventListener('DOMContentLoaded', () => {
                 comment.classList.remove('active');
                 address.classList.add('active');
             });
-            //lesson 14
 
+            commentNext.addEventListener('click', () => {
+                comment.classList.remove('active');
+                newForm.classList.remove('non-active');
+            })
+
+            formBack.addEventListener('click', (event) => {
+                event.preventDefault();
+                comment.classList.add('active');
+                newForm.classList.add('non-active');
+            })
+
+            formSubmit.addEventListener('click', () => {
+                //asdasdsadsad
+                //+7(999)123-4567
+                //sdasdsad@mail.ru
+                function testReg(reg, input, mistake) {
+                    if (reg.test(input.value)) return true;
+                    else {
+                        drawRed(input);
+                        sayAboutMistake(input, mistake);
+                        return false;
+                    }
+                }
+                function drawRed(input){
+                    input.style.borderColor = 'red';
+                    setTimeout(() => {
+                        input.style.borderColor = 'black';
+                    }, 10000);
+                }
+
+                function sayAboutMistake(where, mistake){
+                    let mist = document.createElement('span');
+                    mist.textContent = mistake;
+                    where.insertAdjacentElement('afterend', mist);
+                    setTimeout(() => {
+                        mist.remove();
+                    }, 10000);
+                }
+
+                let nameInput = newForm.querySelector('.order-form__name'),
+                    telInput = newForm.querySelector('.order-form__tel'),
+                    emailInput = newForm.querySelector('.order-form__email');
+
+                let regName = /^[A-zА-яЁё]+$/,
+                    regTel = /\+7\(9[0-9]{2}\)[0-9]{3}-[0-9]{4}/,
+                    regEmail = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+
+                let nameCheck = testReg(regName, nameInput, 'Имя должно содержать только буквы');
+                let telCheck = testReg(regTel, telInput, 'Нужный формат телефона: +7(000)000-0000');
+                let mailCheck =  testReg(regEmail, emailInput, 'Неккоректный email');
+                console.log(nameCheck, telCheck, mailCheck);
+                if (nameCheck && telCheck && mailCheck) alert('Форма отправлена');
+            })
 
         }
+
 
     }
 

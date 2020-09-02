@@ -1,0 +1,26 @@
+
+  #message-text {
+    width: 317px;
+    height: 110px; 
+  }
+
+  .form-row {
+    width: 130px;
+    display: inline-block;
+    margin: 6px; 
+  }
+  .error-message {
+    display: inline-block;
+    animation: appearing 1s ease-in-out;
+  }
+  .error {
+    background-color: gold;
+  }
+  .false {
+    outline: none;
+    border: 2px solid red; 
+  }
+
+  .hidden {
+    display: none; 
+  }

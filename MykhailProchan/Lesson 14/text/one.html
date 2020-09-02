@@ -1,0 +1,7 @@
+<script>
+  const rgxp = /(?!\b'\b)'/ig;
+  const str = `Asdfa: 'Tasdrrq ad an't 32 !', asdqwe. 'Fgsdfgn' sdfgewr's.`;
+
+  console.log(`Ожидаемый вывод: Asdfa: "Tasdrrq ad an't 32 !", asdqwe. "Fgsdfgn" sdfgewr's.`);
+  console.log('Вывод: ' + str.replace(rgxp, `"`));
+</script>

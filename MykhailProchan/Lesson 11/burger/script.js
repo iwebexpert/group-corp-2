@@ -8,7 +8,8 @@ const lib = {
   mayo: ['С майонезом', 20, 5]
 }
 
-function formAction() {
+function formAction(event) {
+  console.log(event);
   let sum = 0, kcal = 0;
 
   const data = serialize(form);

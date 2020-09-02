@@ -219,6 +219,80 @@ class ShoppingBucket {
     modalForm.noValidate = true;
     modalBody.appendChild(modalForm);
 
+    //Имя
+    const formGroupName = document.createElement("div");
+    formGroupName.classList.add("form-group");
+    modalForm.appendChild(formGroupName);
+
+    const nameLabel = document.createElement("label");
+    nameLabel.setAttribute("for", "name");
+    nameLabel.innerHTML = "Name:";
+    formGroupName.appendChild(nameLabel);
+
+    const name = document.createElement("input");
+    name.setAttribute("type", "text");
+    name.setAttribute("pattern", "[a-zA-Z]+");
+    name.classList.add("form-control");
+    name.id = "name";
+    name.required = true;
+    formGroupName.appendChild(name);
+
+    const invalidName = document.createElement("div");
+    invalidName.classList.add("invalid-feedback");
+    invalidName.innerHTML = "Please, enter correct name(only letters).";
+    formGroupName.appendChild(invalidName);
+
+    //Телефон
+    const formGroupPhone = document.createElement("div");
+    formGroupPhone.classList.add("form-group");
+    modalForm.appendChild(formGroupPhone);
+
+    const phoneLabel = document.createElement("label");
+    phoneLabel.setAttribute("for", "phone");
+    phoneLabel.innerHTML = "Phone:";
+    formGroupPhone.appendChild(phoneLabel);
+
+    const phone = document.createElement("input");
+    phone.setAttribute("type", "text");
+    phone.setAttribute("pattern", "[+][7][(][0-9]{3}[)][0-9]{3}[-][0-9]{4}");
+    phone.classList.add("form-control");
+    phone.id = "phone";
+    phone.required = true;
+    formGroupPhone.appendChild(phone);
+
+    const invalidPhone = document.createElement("div");
+    invalidPhone.classList.add("invalid-feedback");
+    invalidPhone.innerHTML =
+      "Please, enter correct phone number(+7(000)000-0000)";
+    formGroupPhone.appendChild(invalidPhone);
+
+    //Email
+    const formGroupMail = document.createElement("div");
+    formGroupMail.classList.add("form-group");
+    modalForm.appendChild(formGroupMail);
+
+    const mailLabel = document.createElement("label");
+    mailLabel.setAttribute("for", "mail");
+    mailLabel.innerHTML = "Mail:";
+    formGroupMail.appendChild(mailLabel);
+
+    const mail = document.createElement("input");
+    mail.setAttribute("type", "text");
+    mail.setAttribute(
+      "pattern",
+      "^([a-z0-9_.-]+)@([a-z0-9_.-]+).([a-z.]{2,6})$"
+    );
+    mail.classList.add("form-control");
+    mail.id = "mail";
+    mail.required = true;
+    formGroupMail.appendChild(mail);
+
+    const invalidMail = document.createElement("div");
+    invalidMail.classList.add("invalid-feedback");
+    invalidMail.innerHTML = "Please, enter correct mail.";
+    formGroupMail.appendChild(invalidMail);
+
+    //Адрес
     const formGroupAdress = document.createElement("div");
     formGroupAdress.classList.add("form-group");
     modalForm.appendChild(formGroupAdress);
@@ -235,6 +309,11 @@ class ShoppingBucket {
     adress.required = true;
     formGroupAdress.appendChild(adress);
 
+    const invalid = document.createElement("div");
+    invalid.classList.add("invalid-feedback");
+    invalid.innerHTML = "Please, enter adress.";
+    formGroupAdress.appendChild(invalid);
+
     const formGroupMessage = document.createElement("div");
     formGroupMessage.classList.add("form-group");
     modalForm.appendChild(formGroupMessage);
@@ -249,11 +328,6 @@ class ShoppingBucket {
     message.classList.add("form-control");
     message.id = "message";
     formGroupMessage.appendChild(message);
-
-    const invalid = document.createElement("div");
-    invalid.classList.add("invalid-feedback");
-    invalid.innerHTML = "Please, enter adress.";
-    formGroupAdress.appendChild(invalid);
 
     const applyBtn = document.createElement("button");
     applyBtn.setAttribute("type", "submit");
@@ -307,9 +381,15 @@ class ShoppingBucket {
           obj.message = message.value;
         }
         obj.adress = adress.value;
+        obj.name = name.value;
+        obj.phone = phone.value;
+        obj.mail = mail.value;
         modalText.innerHTML = `
         Items - ${obj.totalItems},
         total price - ${obj.totalPrice} &#8381;,
+        name: ${obj.name},
+        phone: ${obj.phone},
+        mail: ${obj.mail},
         adress: ${obj.adress},
         message: ${obj.message};`;
         $("#myModal").modal("hide");
@@ -347,7 +427,7 @@ const makeGETRequest = (url) => {
     }
 
     xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status != 200) {
           reject(`${xhr.status}: ${xhr.statusText}`);
         }

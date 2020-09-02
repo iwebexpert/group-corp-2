@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript">
+  window.onload = function(){
+    let fText = document.getElementById('firstText').innerHTML;
+    let secText = document.getElementById('secText');
+
+    console.log(fText);
+
+    secText.innerHTML = fText.replace(/\B'|'\B/g, '"');
+  }
+  </script>
+</head>
+<body>
+  <p id="firstText">
+    I said to Jane, 'My mushroom’s better than your mushroom, because it’s bigger.' Then I saw a big yellow worm in Jane’s mushroom. I was scared. 'Oh, a worm! Yuck!' I shouted. We showed our mushrooms to Sveta. Sveta said to my sister, 'Your mushroom’s very good. We can cook it.' Jane put the mushroom in her bag. Then Sveta said to me, 'I’m sorry Helen, but your mushroom’s poisonous. We mustn’t eat it.'
+  </p>
+  <p id="secText">
+  </p>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+    "goods": [
+        {"id": 1, "name": "Apple", "amount": 0, "price": 10, "currency": "RUB"},
+        {"id": 2, "name": "Bread", "amount": 0, "price": 50, "currency": "RUB"},
+        {"id": 3, "name": "Milk", "amount": 0, "price": 100, "currency": "RUB"},
+        {"id": 4, "name": "Water", "amount": 0, "price": 70, "currency": "RUB"}
+    ]
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 14 RegExp Task</title>
+
+</head>
+
+<body>
+    <div style="line-height: 2;  width: 1000px; margin: 100px auto">
+        <p>
+            By the half-light of a suspensor lamp, dimmed and hanging near the floor, the awakened boy could see a bulky
+            female
+            shape at his door, standing one step ahead of his mother. The old woman was a witch shadow - hair like
+            matted
+            spiderwebs, hooded 'round darkness of features, eyes like glittering jewels.
+
+            'Is he not small for his age, Jessica?' the old woman asked. Her voice wheezed and twanged like an untuned
+            baliset.
+
+            Paul's mother answered in her soft contralto: 'The Atreides are known to start late getting their growth,
+            Your
+            Reverence.'
+
+            'So I've heard, so I've heard.' wheezed the old woman. 'Yet he's already fifteen.'
+
+            'Yes, Your Reverence.'
+
+            'He's awake and listening to us' said the old woman. 'Sly little rascal.' She chuckled. 'But royalty has
+            need
+            of
+            slyness. And if he's really the Kwisatz Haderach…well…'
+
+            Within the shadows of his bed, Paul held his eyes open to mere slits. Two bird-bright ovals —the eyes of the
+            old
+            woman- seemed to expand and glow as they stared into his.
+
+            'Sleep well, you sly little rascal.' said the old woman. 'Tomorrow you'll need all your faculties to meet my
+            gom
+            jabbar.'
+
+            And she was gone, pushing his mother out, closing the door with a solid thump.
+
+            Paul lay awake wondering: What's a gom jabbar?
+
+        </p>
+        <button style="font-size: 24px;">Заменить одинарные кавычки на двойные</button>
+    </div>
+    <script>
+        const text = document.querySelector("p");
+        const button = document.querySelector('button');
+
+        button.addEventListener('click', remove);
+
+        function remove(e) {
+            e.stopImmediatePropagation();
+            text.textContent = text.textContent.replace(/\B'|'\B/g, '"');
+            this.removeEventListener("click", remove);
+            button.textContent = "Заменить двойные кавычки на одинарные";
+            document.onclick = add;
+        }
+
+        function add() {
+            text.textContent = text.textContent.replace(/\B"|"\B/g, "'");
+            button.textContent = "Заменить одинарные кавычки на двойные"
+            document.onclick = remove;
+        }
+    </script>
+</body>
+
+</html>

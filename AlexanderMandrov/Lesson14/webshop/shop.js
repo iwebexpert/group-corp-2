@@ -346,22 +346,27 @@ orderBtn.addEventListener('click', (event) => {
         address = document.querySelector('.address');
 
     let counter = 0;
+    let flg = true;
     swiperContainer.style.display = 'none';
     [phone, email, name].forEach(el => {
+        if (el.value === '') el.style.border = '1px solid red';
         if (isInvalidInput(el)) {
             event.preventDefault();
-            console.log('Please input the correct input values');
-        } else {
-            modalName.textContent = `You ordered: ${products.getOrder()}`;
-            modalPrice.textContent = `Total amount is ${products.countBasketPrice()} ${products.currency},`;
-            modalComment.textContent = `Your comment: ${comment.value}`;
-            modalPhone.textContent = `Your phone: ${phone.value},`;
-            modalEmail.textContent = `Your email: ${email.value},`;
-            modalName.textContent = `Your name: ${name.value},`;
-            modalAddress.textContent = `Your address: ${address.value},`
-            modal.style.display = 'block';
+            flg = false;
         }
     });
+    if (flg) {
+        modalName.textContent = `You ordered: ${products.getOrder()}`;
+        modalPrice.textContent = `Total amount is ${products.countBasketPrice()} ${products.currency},`;
+        modalComment.textContent = `Your comment: ${comment.value}`;
+        modalPhone.textContent = `Your phone: ${phone.value},`;
+        modalEmail.textContent = `Your email: ${email.value},`;
+        modalName.textContent = `Your name: ${name.value},`;
+        modalAddress.textContent = `Your address: ${address.value},`
+        modal.style.display = 'block';
+    } else {
+        console.log('Please input the correct input values');
+    }
 });
 
 document.addEventListener('click', e => {

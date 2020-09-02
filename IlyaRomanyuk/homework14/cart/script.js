@@ -74,8 +74,7 @@ class Backet {
     prev.addEventListener("click", () => prevSlide());
 
     //Переключение по кнопкам
-    document.querySelector("body").addEventListener("keydown", e => {
-      console.log(e);
+    document.addEventListener("keydown", e => {
       if (e.keyCode == 39) {
         nextSlide();
       } else if (e.keyCode == 37) {
@@ -231,19 +230,6 @@ class Backet {
     order.checkCart();
   }
 
-  /*Генерация каталога, запрос за товарами FETCH*/
-  // generationDOM() {
-  //   this.getProducts().
-  //     then(elements => this.setProductsFromServer(elements))
-  //   this.generationForm(this);
-  // }
-
-  /*Асинхронный запрос за товарами (Тело запроса, возвращаем зарезолвленный промис) FETCH*/
-  // getProducts() {
-  //   return fetch("/goodss").
-  //     then(response => response.json())
-  // }
-
   /*Генерация каталога, запрос за товарами NEW PROMISE*/
   generationDOM() {
     this.getProducts().
@@ -325,7 +311,7 @@ class Order {
     this.cont = document.querySelector(".continue");
     this.next = document.querySelector(".next");
     this.addressBlock = document.querySelector(".address");
-    this.commentBlock = document.querySelector(".comment");
+    this.commentBlock = document.querySelector(".all");
     this.addressInput = document.querySelector("#address");
     this.commentInput = document.querySelector("#comment");
     this.productsBlock = document.querySelector(".catalog");
@@ -349,22 +335,25 @@ class Order {
 
   checkAddress() {
     this.address = this.addressInput.value;
+    if (!this.address) {
+      this.popupIfCartIsEmpty('Для того, чтобы продолжить задайте адрес');
+      return
+    }
     this.hideInfo(this.addressBlock);
     this.showInfo(this.commentBlock);
   }
 
-  popupIfCartIsEmpty() {
+  popupIfCartIsEmpty(info) {
     Swal.fire({
       icon: "error",
-      title: "Корзина пуста",
-      text: "Для того, чтобы продолжить положите товар(ы) в корзину"
+      text: `${info}`
     });
   }
   // Проверка на нажатие по кнопке "Продолжить". Мы не можем продолжить, если в корзине нет товаров.
   checkCart() {
     this.cont.addEventListener("click", e => {
       if (!Object.keys(this.cart.basket).length) {
-        this.popupIfCartIsEmpty();
+        this.popupIfCartIsEmpty('Для того, чтобы продолжить положите товар(ы) в корзину');
         return;
       }
       this.showInfo(this.addressBlock);
@@ -373,7 +362,7 @@ class Order {
       this.next.addEventListener("click", e => {
         e.preventDefault();
         if (!Object.keys(this.cart.basket).length) {
-          this.popupIfCartIsEmpty();
+          this.popupIfCartIsEmpty('Для того, чтобы продолжить положите товар(ы) в корзину');
           return;
         }
         this.checkAddress();
@@ -382,7 +371,7 @@ class Order {
       this.sendBtn.addEventListener("click", e => {
         e.preventDefault();
         if (!Object.keys(this.cart.basket).length) {
-          this.popupIfCartIsEmpty();
+          this.popupIfCartIsEmpty('Для того, чтобы продолжить положите товар(ы) в корзину');
           return;
         }
         this.checkComment();
@@ -395,24 +384,99 @@ class Order {
     this.owerlay.style.display = "block";
   }
 
-  closeOrderPopup() {
-    this.orderPopup.style.transform = " translate(-50%, -250%)";
-    this.owerlay.style.display = "none";
-  }
   // Оформление заказа
   onSuccess() {
+    let validator = new Validator();
+    if (!validator.validate()) return;
     this.showOrderPopup();
     let closeBtn = document.querySelector(".order__btn");
-    closeBtn.addEventListener("click", e => this.closeOrderPopup());
+    closeBtn.addEventListener("click", e => location.reload());
 
     let address = document.querySelector(".order__address");
     address.textContent = `Адрес: ${this.address}`;
 
     let comment = document.querySelector(".order__comments");
-    comment.textContent = `Комментарий: ${this.comments}`;
+    if (this.comments.length) {
+      comment.textContent = `Комментарий: ${this.comments}`;
+    } else {
+      comment.textContent = `Комментарий: Клиент не оставил никаких комментариев.`;
+    }
 
     let cost = document.querySelector(".order__cost");
     cost.textContent = `Стоимость: ${this.cart.result} RUB`;
+  }
+}
+
+class Validator {
+  constructor() {
+    this.errors = [];
+    this.name = document.querySelector('#name');
+    this.number = document.querySelector('#number');
+    this.email = document.querySelector('#email');
+    this.errorBlock = document.querySelectorAll('.error');
+  }
+
+  /*Проверка на валидность имени*/
+  nameValidation = (name) => {
+    let regexp = /^[A-Za-zА-Яа-я ]+$/;
+
+    if (!name) {
+      this.errorInput('Заполните поле!', 0);
+    } else if (!name.match(regexp)) {
+      this.errorInput('Имя состоит только из букв', 0);
+    }
+  }
+
+  /*Проверка на валидность почты*/
+  mailValidation = (email) => {
+    let regexp = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
+
+    if (!email) {
+      this.errorInput('Заполните поле!', 2);
+    } else if (!email.match(regexp)) {
+      this.errorInput('Нужный формат записи: example@something.com', 2);
+    }
+  }
+
+  /*Проверка на валидность телфона*/
+  telephoneValidation = (telephone) => {
+    let regexp = /^\+\d{1}\(\d{3}\)\d{3}-\d{4}$/;
+
+    if (!telephone) {
+      this.errorInput('Заполните поле!', 1);
+    } else if (!telephone.match(regexp)) {
+      this.errorInput('Нужный формат запиcи: +7(000)000-0000', 1);
+    }
+  }
+
+  /*Установка красной гнаницы у ошибочных полей*/
+  errorInput(error, el) {
+    this.errorBlock[el].textContent = error;
+    this.errorBlock[el].previousElementSibling.style.border = '2px solid red';
+    this.errors.push(error);
+  }
+
+  /*Очиста имеющихся ошибок*/
+  clearErrors() {
+    this.errors = [];
+    this.errorBlock.forEach(element => {
+      element.textContent = '';
+      element.previousElementSibling.style.border = 'none';
+    })
+  }
+
+  /*Валидация*/
+  validate() {
+    this.clearErrors();
+
+    let name = this.name.value;
+    let number = this.number.value;
+    let email = this.email.value;
+    this.nameValidation(name);
+    this.mailValidation(email);
+    this.telephoneValidation(number);
+
+    if (!this.errors.length) return true
   }
 }
 

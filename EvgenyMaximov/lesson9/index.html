@@ -21,29 +21,21 @@
     <div class="container">
       <div id="catalog"></div>
       <div id="basket"></div>
-      <div id="form">
+      <form id="form">
         <div class="address__form">
           <div class="address__body">
             <h2>Enter your address</h2>
-            <div>
-              <p>Country</p>
-              <input type="text" />
+            <div class="name">
+              <p>Name</p>
+              <input id="name" type="text" />
             </div>
-            <div>
-              <p>City</p>
-              <input type="text" />
+            <div class="number">
+              <p>Phone number</p>
+              <input id="number" type="tel" />
             </div>
-            <div>
-              <p>Street</p>
-              <input type="text" />
-            </div>
-            <div>
-              <p>House</p>
-              <input type="number" />
-            </div>
-            <div>
-              <p>Flat</p>
-              <input type="number" />
+            <div class="email">
+              <p>E-mail</p>
+              <input id="email" type="email" />
             </div>
           </div>
           <div class="comment__area">
@@ -55,7 +47,7 @@
             ></textarea>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </body>
 </html>

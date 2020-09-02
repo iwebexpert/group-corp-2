@@ -41,13 +41,28 @@ body {
   outline: none !important;
 }
 
+/*---------------added__btn--------------*/
+
+.added__btn {
+  height: 50px;
+  width: 200px;
+  display: block;
+  padding: 0 10px;
+  background: rgb(152, 248, 139);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+}
+
 /*---------------minus__btn--------------*/
 .minus__btn {
   height: 40px;
   width: 40px;
   display: block;
   padding: 0 10px;
-  background: rgb(255, 163, 163);
+  background: rgb(160, 245, 160);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
   border-radius: 50px;
   position: relative;
@@ -56,11 +71,11 @@ body {
 }
 
 .minus__btn:hover {
-  background: rgb(255, 147, 147);
+  background: rgb(97, 184, 97);
 }
 
 .minus__btn:active {
-  background: rgb(255, 163, 163);
+  background: rgb(115, 219, 115);
   position: relative;
   top: 2px;
   box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
@@ -283,11 +298,6 @@ body {
 
 .price {
   padding-right: 5px;
-}
-
-.name {
-  font-size: 24px;
-  font-weight: 700;
 }
 
 .product__image {

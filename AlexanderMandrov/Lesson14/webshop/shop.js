@@ -275,6 +275,9 @@ const editPriceAndTotal = (products, name) => {
         };
     });
     totalPrice.textContent = products.countBasketPrice() === 0 ? 'Basket is clear' : `Total amount is ${products.countBasketPrice()} ${products.currency}`;
+    if (products.countBasketPrice() === 0) {
+        modal.style.display = 'none';
+    }
 };
 
 const getBtns = () => {

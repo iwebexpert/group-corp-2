@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>validator</title>
+</head>
+<body>
+    <form>
+        <input data-rule="number" placeholder="ваше имя"><br><br>
+        <input data-rule="phone" placeholder="телефон"><br><br>
+        <input data-rule="email" placeholder="email"><br><br>
+    </form>
+    <script>
+    let inputs = document.querySelectorAll('input[data-rule]');
+    let check;
+    
+    for (let input of inputs) {
+        input.addEventListener('blur', function() {
+            let rule = this.dataset.rule;
+            let value = this.value;
+
+            switch (rule) {
+                case 'name':
+                    check = /^\d+$/.test(value);
+                break;
+                case 'phone':
+
+                break;
+                case 'email':
+
+                break;
+            }
+
+            if (ckeck) {
+                this.classList.add('green')
+            } else {
+                this.classList.add('red')
+            }
+        })
+    }
+    </script>
+</body>
+</html>

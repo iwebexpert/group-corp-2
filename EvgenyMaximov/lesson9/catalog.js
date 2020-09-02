@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
       newBasket.isEmpty();
       newBasket.hideClearBtn();
       newBasket.hideOrderBtn();
+      setTimeout(() => {
+        location.reload();
+      }, 0);
     }
 
     if (e.target.classList.contains("order__btn")) {
@@ -23,10 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (e.target.classList.contains("comments__btn")) {
-      formBtns.hideForm();
-      formBtns.showComment();
-      formBtns.showBackToFormBtn();
-      formBtns.showConfirmBtn();
+      if (formValidation() === true) {
+        formBtns.hideForm();
+        formBtns.showComment();
+        formBtns.showBackToFormBtn();
+        formBtns.showConfirmBtn();
+      }
     }
 
     if (e.target.classList.contains("toBasket__btn")) {
@@ -165,17 +170,26 @@ class Product {
     productCard.appendChild(productCount);
     productCard.appendChild(addBtn);
 
-    addBtn.addEventListener("click", () => {
-      newBasket.addItem(new Product(id, name, price, currency, count, url));
-      newBasket.createBasketList(
-        new Product(id, name, price, currency, count, url)
-      );
-      newBasket.resetBasket();
-      newBasket.isEmpty();
-      newBasket.createBasketCard();
-      newBasket.showClearBtn();
-      newBasket.showOrderBtn();
-    });
+    addBtn.addEventListener(
+      "click",
+      () => {
+        newBasket.addItem(new Product(id, name, price, currency, count, url));
+        newBasket.createBasketList(
+          new Product(id, name, price, currency, count, url)
+        );
+        newBasket.resetBasket();
+        newBasket.isEmpty();
+        newBasket.createBasketCard();
+        newBasket.showClearBtn();
+        newBasket.showOrderBtn();
+        let changeBtn = () => {
+          addBtn.textContent = "Added";
+          addBtn.classList.replace("add__btn", "added__btn");
+        };
+        changeBtn();
+      },
+      { once: true }
+    );
 
     return productCard;
   }
@@ -466,7 +480,68 @@ class FormBtns {
 
 // ------------Создание товаров, каталога, добавление товаров в каталог-------------
 
-let catalog = new Catalog();
-
+catalog = new Catalog();
 newBasket = new Basket([]);
 formBtns = new FormBtns();
+
+//--------------Валидация форм----------------------------------
+
+const name = document.querySelector(".name");
+const number = document.querySelector(".number");
+const email = document.querySelector(".email");
+const nameInput = document.querySelector("#name");
+const numberInput = document.querySelector("#number");
+const emailInput = document.querySelector("#email");
+
+const repeatName = document.createElement("p");
+repeatName.textContent =
+  "Имя может содержать только латинские буквы(3-16 символов)";
+repeatName.style.color = "red";
+
+const repeatNumber = document.createElement("p");
+repeatNumber.textContent = "Введите номер в формате +7(ххх)ххх-хххх";
+repeatNumber.style.color = "red";
+
+const repeatMail = document.createElement("p");
+repeatMail.textContent =
+  "mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.";
+repeatMail.style.color = "red";
+
+const formValidation = () => {
+  let nameRegExp = /^[a-z]{3,16}$/i;
+
+  if (!nameRegExp.test(nameInput.value)) {
+    nameInput.style.borderColor = "red";
+    name.appendChild(repeatName);
+    return false;
+  } else {
+    nameInput.style.borderColor = "green";
+    repeatName.textContent = "Вы можете использовать это имя";
+    repeatName.style.color = "green";
+  }
+
+  let numberRegExp = /^\+7\(\d{3}\)\d{3}-\d{4}$/;
+
+  if (!numberRegExp.test(numberInput.value)) {
+    numberInput.style.borderColor = "red";
+    number.appendChild(repeatNumber);
+    return false;
+  } else {
+    numberInput.style.borderColor = "green";
+    repeatNumber.textContent = "Корректный формат номера";
+    repeatNumber.style.color = "green";
+  }
+
+  let emailRegExp = /^([a-z0-9_.-]+)@([a-z0-9_.-]+)\.([a-z]{2})$/i;
+
+  if (!emailRegExp.test(emailInput.value)) {
+    emailInput.style.borderColor = "red";
+    email.appendChild(repeatMail);
+    return false;
+  } else {
+    emailInput.style.borderColor = "green";
+    repeatMail.textContent = "Вы можете использовать эту почту";
+    repeatMail.style.color = "green";
+  }
+  return true;
+};

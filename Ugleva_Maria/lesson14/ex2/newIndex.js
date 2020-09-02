@@ -312,9 +312,13 @@ function checkValidElem(exp, id) {
     return exp.test(elem.value);
 }
 function checkValidForm() {
-    if (checkValidElem(/^[A-ZА-Я]([a-zа-я]+)$/, 'userName') && checkValidElem(/^([A-ZА-Я])([a-zа-я]+)$/, 'userLastName') &&
-    checkValidElem(/^([a-z0-9_.-]+)@([a-z0-9_.-]+)\.([a-z]{2,6})$/i, 'userEmail') && checkValidElem(/^[0-9]+$/, 'userPhone') &&
-    checkValidElem(/^(\w+)$/i, 'userAddress')) {
+    const checkName = checkValidElem(/^[A-ZА-Я]([a-zа-я]+)$/, 'userName');
+    const checkLastName = checkValidElem(/^([A-ZА-Я])([a-zа-я]+)$/, 'userLastName');
+    const checkEmail = checkValidElem(/^([a-z0-9_.-]+)@([a-z0-9_.-]+)\.([a-z]{2,6})$/i, 'userEmail');
+    const checkPhone = checkValidElem(/^[0-9]+$/, 'userPhone');
+    const checkAddress = checkValidElem(/^(\w+)$/i, 'userAddress');
+    if (checkName &&  checkLastName && checkPhone && checkEmail && checkAddress)
+     {
         swal("Ваш заказ принят");
     }
     else {

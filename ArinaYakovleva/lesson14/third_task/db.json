@@ -1,0 +1,28 @@
+{
+    "goods": [
+        {
+            "id": 1,
+            "name": "Laptop",
+            "price": 40000,
+            "currency": "RUB"
+        },
+        {
+            "id": 2,
+            "name": "Monitor",
+            "price": 25000,
+            "currency": "RUB"
+        },
+        {
+            "id": 3,
+            "name": "Phone",
+            "price": 30000,
+            "currency": "RUB"
+        },
+        {
+            "id": 4,
+            "name": "Mouse",
+            "price": 1000,
+            "currency": "RUB"
+        }
+    ]
+}

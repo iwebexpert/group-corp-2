@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson14</title>
+    <script>
+      function editText() {
+        let text = document.querySelector(".text").innerHTML;
+        const regExp = /('(\w+)')/g;
+
+        let editedText = text.replace(regExp, (word) => {
+          let editedWord = '"' + word.slice(1, word.length - 1) + '"';
+          return editedWord;
+        });
+
+        // // Для проверки
+        // console.log(text.match(regExp));
+        // console.log(editedText.match(regExp));
+
+        const editedTextElement = document.createElement("p");
+        editedTextElement.style.width = "400px";
+        editedTextElement.innerHTML = `${editedText}`;
+        document.querySelector("body").appendChild(editedTextElement);
+      }
+    </script>
+  </head>
+  <body>
+    <p class="text" style="width: 400px">
+      Lorem ipsum dolor sit ame't consectetur adipisicing elit. Hic molestias
+      distinctio obcaecati eos dolores voluptatibus est. Alias nostrum rerum quo
+      molestias corporis 'autem' nihil, ipsum ullam incidunt et impedit aliquid
+      'harum' tempora 'debitis' dolore facilis! Place'at, minus temporibus!
+      Aspernatur' saepe pers'piciatis 'officiis' alias impedit culpa commodi
+      deserunt cupiditate nam 'recusandae'?
+    </p>
+    <button onclick="editText()">Edit</button>
+  </body>
+</html>

@@ -1,56 +1,59 @@
 class Hamburger {
-	constructor(fillings, extra) {
+	constructor(price, calories, fillings, extra) {
+		this.price = price;
+		this.calories = calories;
 		this.fillings = fillings;
 		this.extra = extra;
 
-		this.sizeLarge = {
-			price: 100,
-			calories: 40
-		}
-		this.sizeSmall = {
-			price: 50,
-			calories: 20
-		}
-		this.form = document.querySelector('form');
-		this.form.addEventListener('submit', (event) => this.formHandler(event));
 	}
-	formHandler(event) {
-		event.preventDefault();
-		this.getSize();
-		this.getToppings();
+	createHamburger() {
+		this.getFillings();
+		this.getExtra();
+		this.getCalculateAll();
 	}
-	// Добавить добавку
-	addTopping(topping) {
-
-	}
-	// Убрать добавку
-	removeTopping(topping) {
-
+	getFillings() {
+		this.allFillings =  this.fillings.isChecked();
 	}
 	// Получить список добавок
-	getToppings() {
-		this.fillings.checkBoxes();
-	}
-	// Узнать размер гамбургера
-	getSize() {
-		const burgers = document.getElementsByName('burger');
-		burgers[0].checked ? this.size = this.sizeLarge : this.size = this.sizeSmall;
-	}
-	// Узнать начинку гамбургера
-	getStuffing() {
-
+	getExtra() {
+		let a = this.extra.isChecked();
+		a.forEach((element) => {
+			this.allFillings.push(element);
+		});
 	}
 	// Узнать цену
 	calculatePrice() {
-
+		let totalPrice = this.price;
+		this.allFillings.forEach((element) =>{
+			totalPrice += element.price;
+		});
+		this.totalPrice = totalPrice;
 	}
 	// Узнать калорийность
 	calculateCalories() {
-
+		let totalCalories = this.calories;
+		this.allFillings.forEach((element) =>{
+			totalCalories += element.calories;
+		});
+		this.totalCalories = totalCalories;
 	}
 	getCalculateAll() {
-		this.calculatePrice()
-		this.calculateCalories()
+		this.calculatePrice();
+		this.calculateCalories();
+	}
+	showOutput() {
+		output.textContent = `Your burger will cost ${this.totalPrice} and contain ${this.totalCalories} calories`;
 	}
 
+}
+
+class BigHamburger extends Hamburger{
+	constructor(fillings, extra) {
+		super(100, 40, fillings, extra);
+	}
+}
+class SmallHamburger extends Hamburger{
+	constructor(fillings, extra) {
+		super(50, 20, fillings, extra);
+	}
 }

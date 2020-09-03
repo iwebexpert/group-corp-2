@@ -1,0 +1,128 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.product{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 5px 10px 50px rgba(16, 112, 177, 0.2);
+}
+
+.product img{
+  max-width: 100%
+}
+
+#catalog{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#basket{
+    width: 100%;
+    text-align: center;
+}
+
+
+.basket_container{
+    text-align: center;
+    margin: 20px auto;
+}
+
+.name{
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+button{
+    border: none;
+    background: #1070b1;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover{
+    background: #fff;
+    color: #1070b1;
+    box-shadow: 5px 10px 50px rgba(000, 000, 000, 0.2);
+}
+
+button:focus, textarea:focus{
+    outline: #1070b1 auto 1px;
+}
+
+button.btn-del{
+    background: #d20000;
+}
+
+button.btn-del:hover{
+    background: #fff;
+    color: #d20000;
+    box-shadow: 5px 10px 50px rgba(000, 000, 000, 0.2);
+}
+
+button.btn-del:focus {
+    outline: #d20000 auto 1px;
+}
+
+button.basket_next{
+  margin: 20px 0;
+}
+
+.price {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.basket_item {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    box-shadow: 5px 10px 50px rgb(0 0 0 / 20%);
+    margin: 20px 0;
+    align-items: center;
+}
+
+.basket_item_name, .basket_item_count, .basket_item_price {
+    flex: 1;
+}
+
+textarea {
+    display: block;
+    margin: 20px 0;
+    width: 100%;
+    padding: 10px;
+}
+
+
+.address,
+.comment{
+    display: none;
+}
+
+.basket{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}

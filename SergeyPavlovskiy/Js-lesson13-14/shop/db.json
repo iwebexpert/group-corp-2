@@ -1,0 +1,8 @@
+{
+  "items": [
+    {"id": 1,"imgURL": "img/keyboard.jpg", "name": "keyboard", "price": 500 },
+    {"id": 1,"imgURL": "img/keyboard.jpg", "name": "keyboard", "price": 500 },
+    {"id": 1,"imgURL": "img/keyboard.jpg", "name": "keyboard", "price": 500 },
+    {"id": 1,"imgURL": "img/keyboard.jpg", "name": "keyboard", "price": 500 }
+  ]
+}

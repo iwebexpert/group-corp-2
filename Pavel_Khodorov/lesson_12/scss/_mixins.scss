@@ -1,0 +1,54 @@
+@mixin h1_white {
+    font-family: Raleway, Georgia, serif;
+    color:   white;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+
+@mixin font_spanlogo {
+    font-family: Raleway, Georgia, serif;
+    color:   $color_main_dark_transparent;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+@mixin font_menu_mobile {
+    font-family: Montserrat, Georgia, serif;
+    color: $color_main_white;
+    font-size: 1rem;
+}
+
+@mixin font_menu_mobile_white{
+    font-family: Montserrat, Georgia, serif;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+@mixin font_menu_mobile_white_oppacity{
+    font-family: Montserrat, Georgia, serif;
+    color: #ffffff5d;
+    font-size: 1rem;
+}
+
+@mixin font_menu_mobile_purple {
+    font-family: Montserrat, Georgia, serif;
+    color:$color_main_dark;
+    font-size: 1rem;
+}
+
+
+@mixin font_for_card {
+    font-family: Raleway, Georgia, serif;
+    color:   $color_main_dark;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+@mixin font_for_card_white {
+    font-family: Raleway, Georgia, serif;
+    // color:   white;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+      

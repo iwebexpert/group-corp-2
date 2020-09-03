@@ -1,0 +1,48 @@
+#goods-list-section {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 1000px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(10deg, rgba(127, 0, 82, 0.6), #250a1cee);
+
+    #goods-list-section__modal {
+       width: 80%;
+        border: 1px solid black;
+        border-radius: 30px;
+        //background: linear-gradient(10deg, rgba(127, 0, 82, 0.6), #250a1ce3);
+        background-color: #ffffff;
+        margin: 0 auto;
+        padding: 1rem;
+        font-size: 2rem;
+        position: absolute;
+        left: calc((100% - 80%)/2);
+        top: 100px;
+        z-index: 3;
+        flex-direction: column;
+        
+        @include font_for_card;
+    
+        h3,
+        p {
+            padding: 30px;
+            text-align: center;
+        }
+    
+        .goods-list__product-box {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(238, 233, 233, 0.644);
+    
+            span {
+                width: 50%;
+            }
+        }
+    }
+}
+
+
+

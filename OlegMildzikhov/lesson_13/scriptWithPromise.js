@@ -37,29 +37,32 @@ class GoodsList {
     constructor() {
         this.goods = [];
     }
-    fetchGoods(cb) {
+    fetchGoods() {
         return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            let goodsArr = [];
-            xhr.open('GET', '/goods');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status !== 200) {
-                        reject(xhr.status);
-                    } else {
-                        const goodsJSON = JSON.parse(xhr.response);
-                        console.log(goodsJSON);
-                        goodsJSON.forEach((item) => {
-                            goodsArr.push(item);
-                        });
-                        resolve(cb());
+                const xhr = new XMLHttpRequest();
+                let goodsArr = [];
+                xhr.open('GET', '/goods');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status !== 200) {
+                            reject(xhr.status);
+                        } else {
+                            const goodsJSON = JSON.parse(xhr.response);
+                            console.log(goodsJSON);
+                            goodsJSON.forEach((item) => {
+                                goodsArr.push(item);
+                            });
+                            resolve();
+                        }
                     }
-                }
-            };
-            xhr.send();
-            this.goods = goodsArr;
-            return this.goods;
-        });
+                };
+                xhr.send();
+                this.goods = goodsArr;
+                return this.goods;
+            })
+            .then(() => {
+                this.render();
+            });
     }
     addToCatalog(item) {
         catalogObj[item.id] = item;
@@ -86,9 +89,6 @@ document.onclick = (event) => {
     if (event.target.classList.contains("bucket")) {
         addButton(event.target.dataset.id);
     }
-    // if (event.target.classList.contains("form__item_changer")) {
-    //     // adress();
-    // }
 };
 
 
@@ -146,8 +146,7 @@ const addButton = (id) => {
 };
 
 const list = new GoodsList();
-list.fetchGoods(() => { list.render(); });
-
+list.fetchGoods();
 
 
 

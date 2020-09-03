@@ -1,0 +1,17 @@
+.form__wrapper {
+    display: flex;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.form__item {
+    margin-top: 25px;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+.nice {
+    border: 2px solid green;
+}

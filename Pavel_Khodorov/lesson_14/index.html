@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Form Validation</title>
+</head>
+<body>
+    <body> 
+        <div class="form-box" >
+            <h1 style="text-align: center"> Форма обратной связи </h1>		 
+            <form name="regform" onsubmit="return formValidation(event)">
+            <h2 id="form-box__area__headline"></h2>
+                <p >Имя: 
+                    <input type="text" size=65 name="name" class="form-box__area"></p><br>
+                    <span class="error-text form-box__area"></span>	 
+                <p>E-mail: 
+                    <input type="text" size=65 name="email" class="form-box__area"> </p><br> 
+                    <span class="error-text form-box__area"></span>	
+                <p>Телефон: 
+                    <input type="text" size=65 name="telephone" onclick="this.value=''" value="+7(000)000-0000" class="form-box__area"> </p><br>
+                    <span class="error-text form-box__area"></span>	
+                <p> Комментарий: 
+                    <textarea cols="55" name="comment" class="form-box__area"> </textarea></p> 
+                <p>
+                    <input type="submit" value="Отправить" name="submitButton">	 
+                    <!-- <input type="reset" value="Отмена" name="Reset">  -->
+                </p>		 
+            </form> 
+            
+        </div>
+        <button id="next-ex" onclick="openNextEx()">Задание 1 и 2 из ДЗ откроется при нажатии ></button>
+        <br>
+        <div class="box-next-ex">
+            <span id="text-box__before-text">
+                'Одинарные ковычки нужно заменить на двойные'
+                кроме don't isn't doesn't didn't
+                'Одинарные ковычки нужно заменить на двойные'
+                кроме don't isn't doesn't didn't
+                'Одинарные ковычки нужно заменить на двойные'
+                кроме don't isn't doesn't didn't
+            </span>
+            <br>
+            <button id="btn-change-text" onclick="changeText()"> Изменить ' на " </button>
+            <br>
+            <span id="text-box__after-text"></span>  
+        </div>
+        
+
+    <script src="script_1.js"></script>
+    <script src="script_2.js"></script>
+</body>
+</html> 

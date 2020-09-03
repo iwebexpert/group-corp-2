@@ -1,0 +1,30 @@
+button {
+    padding: 20px;
+    background-color: rgba(0, 128, 0, 0.577);
+}
+.form-box {
+   
+
+    .input_error,
+    .p_error {
+        border-color: red;
+        color: red;
+    }
+
+    .p_error {
+        color: red;
+    }
+    .error-text {
+        color: red;
+    }
+}
+
+.box-next-ex {
+    display: none;
+    span {
+        color: black;
+    }
+    
+}
+
+

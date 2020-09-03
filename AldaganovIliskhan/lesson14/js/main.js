@@ -1,8 +1,9 @@
 let arrangeBtn = document.querySelector(".cart__arrange-btn");
 let addressNext = document.createElement("button");
 let commentNext = document.createElement("button");
+let formNext = document.createElement("button");
 let clearBtn = document.createElement("button");
-
+let sendFormBtn = document.createElement("button");
 class Product {
   constructor(name, price, currency, id) {
     this.name = name;
@@ -17,6 +18,9 @@ class Cart {
     this.address = document.createElement("input");
     this.cartArrange = document.querySelector(".cart__arrange");
     this.comment = document.createElement("input");
+    this.name = document.createElement("input");
+    this.email = document.createElement("input");
+    this.phone = document.createElement("input");
     this.sum = 0;
   }
   sendRequest() {
@@ -99,6 +103,12 @@ class Cart {
       arrangeBtn.style.display = "none";
       this.address.value = "";
       this.comment.value = "";
+      this.name.value = "";
+      this.phone.value = "";
+      this.email.value = "";
+      this.phone.style.border = "2px solid black";
+      this.email.style.border = "2px solid black";
+      this.name.style.border = "2px solid black";
     } else {
       return;
     }
@@ -118,10 +128,86 @@ class Cart {
       return;
     }
   }
-  showTotal(e) {
+  showForm(e) {
     if (e.target.className === "comment-next") {
+      let formButtons = document.createElement("div");
+      let formTitle = document.createElement("h3");
+      formTitle.textContent =
+        "Заполните форму и нажмите отправить или нажмите далее";
+      formButtons.classList.add("form-buttons");
       this.comment.style.display = "none";
       commentNext.style.display = "none";
+      formNext.textContent = "Далее";
+      formNext.classList.add("form-next");
+      sendFormBtn.textContent = "Отравить";
+      this.name.placeholder = "Имя(на латинице от 3-16 символов)";
+      this.phone.placeholder = "Номер телефона(в формате +7xxxxxxxxxx)";
+      this.email.placeholder = "Почта(например example@mail.ru)";
+      this.name.style.display = "block";
+      this.email.style.display = "block";
+      this.phone.style.display = "block";
+      formButtons.style.display = "flex";
+      sendFormBtn.style.display = "inline-block";
+      formNext.style.display = "inline-block";
+      this.cartArrange.appendChild(formTitle);
+      this.cartArrange.appendChild(this.name);
+      this.cartArrange.appendChild(this.phone);
+      this.cartArrange.appendChild(this.email);
+      this.cartArrange.appendChild(formButtons);
+      sendFormBtn.classList.add("send-form");
+      formButtons.appendChild(sendFormBtn);
+      formButtons.appendChild(formNext);
+    } else {
+      return;
+    }
+  }
+  formValidation(e) {
+    if (e.target.className === "send-form") {
+      let nameRegExp = /^[a-z]{3,16}$/i;
+      let phoneRegExp = /^\+7\(\d{3}\)\d{3}-\d{4}$/;
+      let emailRegExp = /^([a-z0-9_.-]+)@([a-z0-9_.-]+)\.([a-z]{2})$/i;
+      if (
+        !nameRegExp.test(this.name.value) &&
+        !phoneRegExp.test(this.phone.value) &&
+        !emailRegExp.test(this.email.value)
+      ) {
+        this.email.style.border = "2px solid red";
+        this.name.style.border = "2px solid red";
+        this.phone.style.border = "2px solid red";
+      }
+      if (!nameRegExp.test(this.name.value)) {
+        this.name.style.border = "2px solid red";
+      } else {
+        this.name.style.border = "2px solid black";
+      }
+      if (!phoneRegExp.test(this.phone.value)) {
+        this.phone.style.border = "2px solid red";
+      } else {
+        this.phone.style.border = "2px solid black";
+      }
+      if (!emailRegExp.test(this.email.value)) {
+        this.email.style.border = "2px solid red";
+      } else {
+        this.email.style.border = "2px solid black";
+      }
+      if (
+        nameRegExp.test(this.name.value) &&
+        phoneRegExp.test(this.phone.value) &&
+        emailRegExp.test(this.email.value)
+      ) {
+        alert("Ваша форма отправлена!");
+      }
+    } else {
+      return;
+    }
+  }
+  showTotal(e) {
+    if (e.target.className === "form-next") {
+      this.phone.style.display = "none";
+      this.name.style.display = "none";
+      this.email.style.display = "none";
+      formNext.style.display = "none";
+      sendFormBtn.style.display = "none";
       this.total = document.createElement("p");
       clearBtn.classList.add("clear-btn");
       clearBtn.textContent = "Заказать снова";
@@ -130,8 +216,6 @@ class Cart {
       this.cartArrange.appendChild(this.total);
       this.cartArrange.appendChild(clearBtn);
       this.cartItems = [];
-    } else {
-      return;
     }
   }
   clearCart(e) {
@@ -170,5 +254,7 @@ document.addEventListener("click", (e) => {
   cart.showBasket(e);
   cart.showComment(e);
   cart.clearCart(e);
+  cart.showForm(e);
   cart.showTotal(e);
+  cart.formValidation(e);
 });

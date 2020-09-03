@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hamburger</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="Hamburger.js"></script>
+	<script src="Size.js"></script>
+	<script src="Toppings.js"></script>
+	<script src="Sauces.js"></script>
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<div class="container">
+		<img src="burguer.jpg">
+		<div class="section">
+			<h2>Выберите размер гамбургера</h2>
+			<div class="size">
+				<div>
+					<input type="radio" id="small" value="small" name="size" value="small" checked>
+		  		<label for="small">Маленький  <br>(50 рублей, 20 калорий)</label>
+				</div>
+				<div>
+					<input type="radio" id="big" value="big" name="size">
+					<label for="big">Большой  <br>(100 рублей, 40 калорий)</label>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h2>Выберите начинку</h2>
+			<div class="topping">
+				<div>
+					<input type="radio" id="cheese" value="cheese" name="topping" checked>
+					<label for="cheese">Сыр <br>(+10 рублей, +20 калорий)</label>
+				</div>
+				<div>
+					<input type="radio" id="salad" value="salad" name="topping">
+					<label for="salad">Салат <br>(+20 рублей, +5 калорий)</label>
+				</div>
+				<div>
+					<input type="radio" id="potato" value="potato" name="topping">
+					<label for="potato">Картофель <br>(+15 рублей, +10 калорийй)</label>
+				</div>
+		</div>
+	</div>
+	<div class="section">
+		<h2>Выберите соус</h2>
+		<div class="sauce">
+			<div>
+				<input type="checkbox" id="mayo" value="mayo" name="mayo">
+				<label for="mayo">Полить майонезом  <br>(+20 рублей, +5 калорий)</label>
+			</div>
+			<div>
+				<input type="checkbox" id="spice" value="spice" name="spice">
+				<label for="spice">Посыпать приправой  <br>(+15 рублей, +0 калорий)</label>
+			</div>
+		</div>
+	</div>
+	<div id="result"></div>
+</div>
+</body>
+</html>

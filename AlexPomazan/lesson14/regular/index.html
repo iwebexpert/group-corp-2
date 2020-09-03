@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regular lesson 14</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    p,
+    h2 {
+      text-align: center;
+    }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <h2>Замена ' на "</h2>
+      <p class="text">
+        'What's Vix paulo sanctus scripserit i'll ex, te iriure insolens
+        voluptatum 'qui'. 'Lorem' ipsum dolor 'sit' amet, an eos 'aren't' lorem
+        ancillae expetenda, vim et utamur 'quaestio'. <br />
+        An nam debet instructior, commodo mediocrem id cum. Eu it's cum
+        'iuvaret' debitis 'voluptatibus', esse perfecto reformidans 'id' has.'
+        <br />
+        'Magna copiosae apeirian ius at. Eu cum iuvaret debitis voluptatibus,
+        esse perfecto reformidans id 'has'. <br />
+        Sea esse 'deserunt' ei, 'no' diam ubique euripidis don't has. <br />
+        Nisl o'clock omittam 'complectitur' pro an, quem omnes munere id vix.
+        Nec labore aren't 'cetero' theophrastus no, ei vero facer veritus nec.'
+      </p>
+      <button class="btn btn-outline-success">Заменить</button>
+    </div>
+    <script>
+      let text = document.querySelector(".text");
+      const btnSuccess = document.querySelector(".btn");
+      const reqular = /'\B|\B'/g;
+
+      btnSuccess.onclick = function () {
+        text.innerHTML = text.innerHTML.replace(reqular, '"');
+      };
+    </script>
+  </body>
+</html>

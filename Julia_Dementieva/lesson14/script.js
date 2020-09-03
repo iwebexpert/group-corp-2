@@ -217,6 +217,7 @@ class Basket  {
 
     render(){
         this.basket.className = 'basket-items';
+        const p = document.createElement('p');
 
         if(this.basketList.length){
             [...this.basketList].forEach((element,index) => {
@@ -236,7 +237,7 @@ class Basket  {
                 }
             });
 
-            const p = document.createElement('p');
+            
             p.className = 'sumBasket';
             p.innerHTML = `В корзине ${this.allQuantity()} товара на сумму ${this.countBasketPrice()}`;
             this.basket.appendChild(p);
@@ -246,7 +247,6 @@ class Basket  {
             basketBtn.innerHTML='Далее';
             this.basket.appendChild(basketBtn);
         } else {
-            const p = document.createElement('p');
             p.className = 'basketEmpty';
             p.innerHTML = `Корзина пуста`;
             this.basket.appendChild(p);

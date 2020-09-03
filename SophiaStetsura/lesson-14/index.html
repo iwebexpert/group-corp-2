@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form>
+        <div class="form-row">
+            <div class="col">
+                <textarea name="message" id="message-one" cols="30" rows="10"></textarea>
+                <button id="send">Отправить</button>
+                <button id="startover">Заново</button>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="form-row">
+            <div class="col">
+                <label for="name">Ваше имя:</label>
+                <input type="text" name="name" id="recipient-name" class="form-control" placeholder="Имя">
+                <div class="error-message hidden">
+                    <div class="error">Неверно</div>
+                </div>
+
+
+                <label for="mail">Ваш email:</label>
+                <input type="email" name="email" id="recipient-mail" class="form-control" placeholder="mymail@mail.ru">
+                <div class="error-message hidden">
+                    <div class="error">Неверно</div>
+                </div>
+
+
+
+                <label for="phone">Ваш телефон:</label>
+                <input type="text" name="phone" id="recipient-phone" class="form-control" placeholder="+7(000)000-0000">
+                <div class="error-message hidden">
+                    <div class="error">Неверно</div>
+                </div>
+
+                <label for="message">Комментарий:</label>
+                <textarea name="message" id="message-text" class="form-control" placeholder="Введите текст"></textarea>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary">Отправить</button>
+        <button type="reset" class="btn btn-reset">Заново</button>
+
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>

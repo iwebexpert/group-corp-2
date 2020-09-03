@@ -1,0 +1,13 @@
+button {
+  box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: center;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin: 10px;
+    border: none;
+    background-color: #2980bd;
+}

@@ -100,7 +100,7 @@ class RenderForm{
     // bootstrap
     input.className = 'form-control form-control-lg inputAddress';
     input.type = 'text';
-    input.placeholder = 'Введите адрес доставки';
+    input.placeholder = 'Введите адрес доставки (Город Улица дом)';
     address.appendChild(input);
 
     const addressBtn = document.createElement('button');
@@ -123,30 +123,109 @@ class RenderForm{
 
   }
 
+  clear(){
+    this.basket.clear();
+
+    document.querySelector('.basket-items').innerHTML = '';
+    document.querySelector('#basket').appendChild(this.basket.render());
+    console.log(document.querySelectorAll('input'));
+    document.querySelectorAll('input').forEach( (element) => {
+      element.value = '';
+    });
+    document.querySelector('textarea').value = '';
+
+  }
+
+  openBasket(){
+    const headingThree = document.querySelector('#headingThree');
+    headingThree.querySelector('button');
+    headingThree.classList.add('collapsed');
+    headingThree.setAttribute('aria-expanded', 'false');
+
+    const collapseThree = document.querySelector('#collapseThree');
+    collapseThree.classList.toggle('show');
+
+    const headingOne = document.querySelector('#headingOne');
+    headingOne.querySelector('button');
+    headingOne.classList.toggle('collapsed');
+    headingOne.setAttribute('aria-expanded', 'true');
+
+    const collapseOne = document.querySelector('#collapseOne');
+    collapseOne.classList.toggle('show');
+
+    document.querySelector('input').value = '';
+    document.querySelector('textarea').value = '';
+
+    console.log(document.querySelector('input'));
+
+    document.querySelector('[data-target="#collapseTwo"]').disabled = true;
+    document.querySelector('[data-target="#collapseThree"]').disabled = true;
+  }
+
+  showConfirm(){
+    const dialog = document.querySelector('.shadowDialog');
+    dialog.style.display ='block';
+
+    const detailInfoStyle = document.querySelector('.detailInfoStyle');
+
+    for(let i = 0; i < this.basket.length(); i++){
+        const p = document.createElement('p');
+        p.innerHTML = this.basket.showProduct(i);
+        detailInfoStyle.appendChild(p);
+    }
+
+    const sumBasket = document.querySelector('.sumBasketInfo');
+    sumBasket.innerHTML = `В корзине: ${this.basket.allQuantity()} товара на сумму 
+        ${this.basket.countBasketPrice()} рублей`;
+
+
+    const name = document.querySelector('.name');
+    name.innerHTML = `${this.basket.name}`;
+
+    const phone = document.querySelector('.phone');
+    phone.innerHTML = `${this.basket.phone}`;
+
+    const email = document.querySelector('.email');
+    email.innerHTML = `${this.basket.email}`;
+
+    const address = document.querySelector('.address');
+    address.innerHTML = `${this.basket.address}`;
+    
+    const comment = document.querySelector('.commentDetailInfo');
+    comment.innerHTML = `${this.basket.comment}`;
+  }
+
+  closeConfirm(){
+    document.querySelector('.shadowDialog').style.display ='none';
+    document.querySelector('.detailInfoStyle').innerHTML = '';
+    document.querySelector('.sumBasketInfo').innerHTML = '';
+    document.querySelector('.commentDetailInfo').innerHTML = '';
+  }
+
 
   validContact(name, phone,email, address){
-    if (!this.basket.expName(name.value)){
+    if (!this.basket.expCheck('name', name.value)){
       name.classList.add('input-error');
-      this.err += 'Поле "Имя заполнено неверно \n';
+      this.err += 'Поле "Имя" заполнено неверно \n';
     } else {
       name.classList.remove('input-error');
     }
 
-    if (!this.basket.expPhone(phone.value)){
+    if (!this.basket.expCheck('phone', phone.value)){
       phone.classList.add('input-error');
       this.err += 'Поле "Номер телефона" заполнено неверно \n';
     } else {
       phone.classList.remove('input-error');
     } 
 
-    if (!this.basket.expEmail(email.value)){
+    if (!this.basket.expCheck('email', email.value)){
       email.classList.add('input-error');
       this.err += 'Поле "Email" заполнено неверно \n';
     } else {
       email.classList.remove('input-error');
     } 
 
-    if (!this.basket.expAddress(address.value)){
+    if (!this.basket.expCheck('address', address.value)){
       address.classList.add('input-error');
       this.err += 'Поле "Address" заполнено неверно \n';
     } else {

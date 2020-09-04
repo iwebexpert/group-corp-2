@@ -88,6 +88,7 @@ class ProductInBasket extends Product {
         super(name, price, quantity, imgs); //Вызов конструктора родителя
     }
 
+
     render(){
         super.render();
         return this._product;
@@ -100,6 +101,9 @@ class Basket  {
     constructor(basketList){
         this.basketList = basketList;
         this.basket = document.createElement('div');
+        this.name = '';
+        this.phone = '';
+        this.email = '';
         this.address = '';
         this.comment = '';
     }
@@ -141,6 +145,9 @@ class Basket  {
 
     clear(){
         this.basketList.length = 0;
+        this.name = '';
+        this.phone = '';
+        this.email = '';
         this.address = '';
         this.comment = '';
     }
@@ -169,48 +176,41 @@ class Basket  {
         div.innerHTML = '';
     }
 
-    expAddress(address){
-        // Формат адреса Город(пробел)Улица(пробел)Номер дома
-        let regAddress = /^[a-z\-]+[ ][a-z\-]+[ ]\d{1,3}/i;
-        console.log(regAddress.test(address));
-        if(regAddress.test(address)){
-            return true;
+    expCheck(type, value){
+        let regExp = '';
+        switch(type){
+            case 'name':
+            regExp = /^[a-z]+$/i;
+            break;
+
+            case 'phone':
+            regExp = /^\+7\(\d{3}\)\d{3}\-\d{4}$/i;
+            break;
+
+            case 'email':
+            regExp = /^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z]{2,6})$/i;
+            break;
+
+            case 'address':
+            regExp = /^[a-z\-]+ [a-z\-]+ \d{1,3}$/i;
+            break;
+
+            default:
+            throw new Error('Передан неверный тип');
         }
 
+        if(regExp.test(value)){
+            return true;
+        }
         return false;
     }
 
-    expName(name){
-        // Имя содержит только буквы
-        let regName = /^[a-z]+$/i;
-        console.log(regName.test(name));
-        if(regName.test(name)){
-            return true;
-        }
-
-        return false;
+    length(){
+        return this.basketList.length;
     }
 
-    expPhone(phone){
-        // Телефон имеет вид +7(000)000-0000.
-        let regPhone = /^\+7\(\d{3}\)\d{3}\-\d{4}$/i;
-        console.log(regPhone.test(phone));
-        if(regPhone.test(phone)){
-            return true;
-        }
-
-        return false;
-    }
-
-    expEmail(email){
-        // Имя содержит только буквы
-        let regEmail = /^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z]{2,6})$/i;
-        console.log(regEmail.test(email));
-        if(regEmail.test(email)){
-            return true;
-        }
-
-        return false;
+    showProduct(prodBask){ 
+        return this.basketList[prodBask].showProduct();
     }
 
 
@@ -258,4 +258,3 @@ class Basket  {
     
 }
 
-// Обработчики на кнопки

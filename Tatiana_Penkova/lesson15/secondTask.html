@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script defer src="./js/secondHomework.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="catalog"></div>
+
+        <div class="adress">
+            <form action="#">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault01">Имя</label>
+                        <input type="text" placeholder="Иван" class="form-control" id="validationDefault01" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Фамилия</label>
+                        <input type="text" placeholder="Иванов" class="form-control" id="validationDefault02" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Электронная почта</label>
+                        <input type="mail" placeholder="example@mail.com" class="form-control" id="email" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="phone">Номер телефона</label>
+                        <input type="text" placeholder="+7(000)000-0000" class="form-control" id="phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault03">Адрес</label>
+                        <input type="text" placeholder="Москва, Шереметьевская улица, д.51" class="form-control"
+                            id="validationDefault03" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationDefault05">Индекс</label>
+                        <input type="text" placeholder="123456" class="form-control" id="validationDefault05" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Добавить комментарий к заказу</button>
+                <button class="btn btn-info back">Вернуться в корзину</button>
+            </form>
+        </div>
+        <div class="comment-section">
+            <form action="#">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Добавьте комментарий к заказу:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                        placeholder="Дополнительная информация" rows="3" required></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">Отправить</button>
+                <button class="btn btn-info back__adress">Вернуться к адресу</button>
+
+
+            </form>
+        </div>
+        <div class="done">
+            <p>Спасибо за заказ!</p>
+            <div id="done-title"></div>
+            <button class="btn btn-info back__catalog">Выбрать другие товары</button>
+        </div>
+        <button type="submit" class="btn-primary next">Далее</button>
+
+        <span class="error-empty">Корзина пуста</span>
+        <div class="basket">
+            <select class="item-name"></select>
+            <div class="error-name"></div>
+            <input type="number" class="item-count" value="1" placeholder="Укажите количество товара" min="1" max="100">
+            <div class="error-count"></div>
+            <button type="submit" class="send btn-primary">Добавить</button>
+            <button type="reset" class="clear btn-primary">Очистить корзину</button>
+        </div>
+
+
+
+    </div>
+    <div class="item-image">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Посмотреть изображения товара
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Носки</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="./css/img/socks-1.png" class="d-block w-100" alt="socks">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="./css/img/socks-2.png" class="d-block w-100" alt="socks">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="./css/img/socks-3.png" class="d-block w-100" alt="socks">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stat"><a class="link" href="./canvas.html">Посмотреть статистику
+                магазина</a></div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

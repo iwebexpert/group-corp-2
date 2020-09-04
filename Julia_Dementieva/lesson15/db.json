@@ -1,0 +1,21 @@
+{
+  "basket": [
+    {"id": 1, "name": "Table", "price": 10000, "quantity": 1, "imgs": ["img/table.jpg","img/table1.jpg","img/table2.jpg"]},
+    {"id": 2, "name": "Armchair", "price": 4570, "quantity": 1, "imgs": ["img/armchair.jpg","img/armchair1.jpg","img/armchair2.jpg"]},
+    {"id": 3, "name": "Chair", "price": 1390, "quantity": 1, "imgs": ["img/chair.jpg","img/chair1.jpg"]}
+  ],
+  "catalog": [
+    {"id": 1, "name": "Table", "price": 10000, "quantity": 1, "imgs": ["img/table.jpg","img/table1.jpg","img/table2.jpg"]},
+    {"id": 2, "name": "Armchair", "price": 4570, "quantity": 1, "imgs": ["img/armchair.jpg","img/armchair1.jpg","img/armchair2.jpg"]},
+    {"id": 3, "name": "Chair", "price": 1390, "quantity": 1, "imgs": ["img/chair.jpg","img/chair1.jpg"]},
+  	{"id": 4, "name": "Lamp", "price": 1600, "quantity": 1, "imgs": ["img/lamp.jpg","img/lamp1.jpg"]}
+  ],
+  "sales": [
+    {"id": 1, "month": "Январь", "sales": 254, "price": 872400},
+    {"id": 2, "month": "Февраль", "sales": 125, "price": 471800},
+    {"id": 3, "month": "Март", "sales": 200, "price": 672900},
+    {"id": 4, "month": "Апрель", "sales": 300, "price": 100000},
+    {"id": 5, "month": "Май", "sales": 100, "price": 300923},
+    {"id": 6, "month": "Июнь", "sales": 150, "price": 300923}
+  ]
+}

@@ -84,7 +84,7 @@ class RenderForm{
     // bootstrap
     inputPhone.className = 'form-control form-control-lg inputPhone';
     inputPhone.type = 'text';
-    inputPhone.placeholder = 'Введите телефон ';
+    inputPhone.placeholder = 'Введите телефон';
     address.appendChild(inputPhone);
 
     const inputEmail = document.createElement('input');
@@ -100,7 +100,7 @@ class RenderForm{
     // bootstrap
     input.className = 'form-control form-control-lg inputAddress';
     input.type = 'text';
-    input.placeholder = 'Введите адрес доставки (Город Улица Дом)';
+    input.placeholder = 'Введите адрес доставки (Город Улица дом)';
     address.appendChild(input);
 
     const addressBtn = document.createElement('button');

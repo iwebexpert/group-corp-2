@@ -1,0 +1,21 @@
+body {
+    button {
+    -webkit-box-pack: center;
+    justify-content: center;
+    line-height: 2.5;
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+    background-color: rgb(128, 0, 83);
+    box-shadow: rgba(255, 255, 255, 0.6) 2px 2px 3px inset, rgba(0, 0, 0, 0.6) -2px -2px 3px inset;
+    text-align: right;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    padding: 0px 20px;
+    border-radius: 10px;
+    }
+}
+
+    

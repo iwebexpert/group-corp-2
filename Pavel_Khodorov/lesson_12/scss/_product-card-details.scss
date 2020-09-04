@@ -1,0 +1,54 @@
+main {
+    position: relative;
+    h1 {
+        margin: 0;
+        display: block;
+        padding: .5rem 0;
+        @include font_for_card;
+        background-color: hsla(321, 100%, 39%, 0.089);
+        text-align: center;
+    }
+    
+    
+    .product-card-details{
+        
+        .product-card-details__price span {
+            margin: 0;
+            display: block;
+            padding: .5rem 0;
+            @include h1_white;
+            background: linear-gradient(10deg, #53173fe3, rgba(127, 0, 82, 0.6));
+            text-align: center;
+        }
+
+        .product-card-details__info-about-product {
+                background-color: $color_main_transparent;
+                padding: 1rem;
+                text-align: center;
+            span {
+                @include font_for_card;
+            }
+
+            p {
+                @include font_menu_mobile_purple;
+            }
+        }
+    }
+}
+@media only screen and (min-width: 1200px) {
+    main {
+        .product-card-details {
+            display: block;
+
+            .product-card-details .carousel {
+                width: 50%;
+            }
+
+
+            .product-card-details__price span {
+                width: 100%;
+            }
+        }
+            
+    }       
+}

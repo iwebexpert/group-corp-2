@@ -1,0 +1,36 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+}
+body {
+    
+    
+    margin: 0 auto;
+    
+
+    .container {
+       padding-top: 6px;
+       max-width: 1920px;
+        margin: 0 auto;
+        height: 100%;
+    }
+    main {
+        position: relative;
+    }
+}
+
+@import '_mixins';
+@import '_color';
+
+@import '_svg';
+
+
+@import '_product-card-section';
+@import '_product-card-details';
+
+
+
+
+@import '_button';
+@import '_goods-list'

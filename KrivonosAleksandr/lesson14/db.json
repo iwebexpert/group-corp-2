@@ -1,0 +1,26 @@
+{
+  "goods": [
+    {"id": 1, "img": ["img/jacket1.jpg", "img/jacket2.jpg", "img/jacket3.jpg"], "name": "Куртка", "price": 11900, "num": 5},
+    {"id": 2, "img": ["img/shoes1.jpg", "img/shoes2.jpg", "img/shoes3.jpg"], "name": "Кроссовки", "price": 7990, "num": 2},
+    {"id": 3, "img": ["img/tShirt1.jpg"], "name": "Футболка", "price": 2300, "num": 4}
+  ],
+  "goodsStatistics": [
+    {"id": 1, "name": "Куртка", "sold": 5},
+    {"id": 2, "name": "Кроссовки", "sold": 4},
+    {"id": 3, "name": "Футболка", "sold": 10}
+  ],
+  "salesStatistics": [
+    {"id": 1, "month": "Январь","sold": 85},
+    {"id": 2, "month": "Февраль", "sold": 74},
+    {"id": 3, "month": "Март", "sold": 63},
+    {"id": 4, "month": "Апрель", "sold": 90},
+    {"id": 5, "month": "Май", "sold": 40},
+    {"id": 6, "month": "Июнь", "sold": 88},
+    {"id": 7, "month": "Июль", "sold": 28},
+    {"id": 8, "month": "Август", "sold": 68},
+    {"id": 9, "month": "Сентябрь", "sold": 44},
+    {"id": 10, "month": "Октябрь", "sold": 57},
+    {"id": 11, "month": "Ноябрь", "sold": 60},
+    {"id": 12, "month": "Декабрь", "sold": 108}
+  ]
+}

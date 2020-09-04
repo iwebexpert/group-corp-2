@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <!--  STYLE  -->
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="statistics.css">
+    <!--  SCRIPT  -->
+    <script src="../services.js" defer></script>
+    <script src="../classes/diagrams.js" defer></script>
+    <script src="statistics.js" defer></script>
+</head>
+<body>
+<header>
+    <div class="container">
+        <hr>
+        <div class="inner-header">
+            <nav class="main-navigation">
+                <a href="../index.html">К покупкам</a>
+                <a href="statistics.html">Статистика продаж</a>
+            </nav>
+        </div>
+        <hr>
+    </div>
+</header>
+
+<div class="diagrams">
+    <div class="container">
+        <div class="diagrams-area">
+            <div class="pie-diagram">
+                <div class="pie-diagram--title diagram-title">Продажи в этом месяце:</div>
+                <canvas class="pie-diagram--context" width="400" height="400"></canvas>
+            </div>
+
+            <div class="bar-diagram">
+                <div class="bar-diagram--title diagram-title">Продажи за прошлый год:</div>
+                <canvas class="bar-diagram--context"  width="550" height="420"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

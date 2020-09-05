@@ -4,6 +4,7 @@ class Backet {
     this.totalPrice = 0;
     this.quantity = 0;
     this.basket = {};
+
   }
 
   //количество товаров в корзине

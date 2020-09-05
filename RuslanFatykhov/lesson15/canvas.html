@@ -2,150 +2,165 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 14 Statistics</title>
-    <link rel="stylesheet" href="lesson15.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <style>
-        h1,
-        p {
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homework 14 Statistics</title>
+  <link rel="stylesheet" href="lesson15.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
+  <style>
+    h1,
+    p {
+      text-align: center;
+    }
 
-        #canvas1 {
-            border: 2px solid black;
-            display: block;
-            margin: 30px auto;
-        }
+    #canvas1 {
+      border: 2px solid black;
+      display: block;
+      margin: 30px auto;
+    }
 
-        #canvas2 {
-            border: 2px solid black;
-            display: block;
-            margin: 30px auto;
-        }
-    </style>
+    #canvas2 {
+      border: 2px solid black;
+      display: block;
+      margin: 30px auto;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="head">
-        <nav class="navbar fixed-top navbar-light" style="background-color: #ffffff;">
-            <p class="welcome">Статистические данные</p>
-            <a href="index.html"><button class="btn btn-primary statistics">Главная</button></a>
-        </nav>
-    </div>
+  <div class="head">
+    <nav class="navbar fixed-top navbar-light" style="background-color: #ffffff">
+      <p class="welcome">Статистические данные</p>
+      <a href="index.html"><button class="btn btn-primary statistics">Главная</button></a>
+    </nav>
+  </div>
 
-    <h1>Гистограмма</h1>
-    <p>Динамика количества продаж за год, шт.</p>
-    <canvas width="1000" height="500" id="canvas1"></canvas>
-    <h1>Круговая диаграмма</h1>
-    <p>Стоимость проданных товаров за год, руб.</p>
-    <canvas width="1000" height="500" id="canvas2"></canvas>
+  <h1>Гистограмма</h1>
+  <p>Динамика количества продаж за год, шт.</p>
+  <canvas width="1000" height="500" id="canvas1"></canvas>
+  <h1>Круговая диаграмма</h1>
+  <p>Стоимость проданных товаров за год, руб.</p>
+  <canvas width="1000" height="500" id="canvas2"></canvas>
 
+  <script>
+    const getData = async () => {
+      const response = await fetch("/sales");
+      const sales = await response.json();
 
-    <script>
-        const getData = async () => {
-            const response = await fetch('/sales');
-            const sales = await response.json();
+      //Гистограмма
 
-            //Гистограмма
+      let canvas1 = document.getElementById("canvas1");
+      let ctx1 = canvas1.getContext("2d");
 
-            let canvas1 = document.getElementById('canvas1');
-            let ctx1 = canvas1.getContext('2d');
+      ctx1.fillStyle = "black";
+      ctx1.lineWidth = 2.0;
+      ctx1.beginPath();
+      ctx1.moveTo(30, 10);
+      ctx1.lineTo(30, 460);
+      ctx1.lineTo(800, 460);
+      ctx1.stroke();
 
-            ctx1.fillStyle = "black";
-            ctx1.lineWidth = 2.0;
-            ctx1.beginPath();
-            ctx1.moveTo(30, 10);
-            ctx1.lineTo(30, 460);
-            ctx1.lineTo(800, 460);
-            ctx1.stroke();
+      ctx1.fillStyle = "black";
+      for (let i = 0; i < 12; i++) {
+        ctx1.fillText((5 - i) * 30 + "", 4, i * 80 + 60);
+        ctx1.beginPath();
+        ctx1.moveTo(25, i * 80 + 60);
+        ctx1.lineTo(30, i * 80 + 60);
+        ctx1.stroke();
+      };
 
-            ctx1.fillStyle = "black";
-            for (let i = 0; i < 12; i++) {
-                ctx1.fillText((5 - i) * 30 + "", 4, i * 80 + 60);
-                ctx1.beginPath();
-                ctx1.moveTo(25, i * 80 + 60);
-                ctx1.lineTo(30, i * 80 + 60);
-                ctx1.stroke();
-            }
-            let labels = [];
-            sales.map(a => labels.push(a.month));
+      let labels = [];
+      sales.map((a) => labels.push(a.month));
 
-            for (let i = 0; i < 12; i++) {
-                ctx1.fillText(labels[i], 45 +
-                    i * 60, 475);
-            }
+      for (let i = 0; i < 12; i++) {
+        ctx1.fillText(labels[i], 45 + i * 60, 475);
+      };
 
-            let data1 = [];
-            sales.map(b => data1.push(b.sale));
+      let data1 = [];
+      sales.map((b) => data1.push(b.sale));
 
-            ctx1.fillStyle = "#4AA3EF";
+      ctx1.fillStyle = "#4AA3EF";
 
+      for (let i = 0; i < data1.length; i++) {
+        let month = data1[i];
+        ctx1.fillRect(40 + i * 60, 460 - month * 2.7, 30, month * 2.7);
+      };
 
-            for (let i = 0; i < data1.length; i++) {
-                let month = data1[i];
-                ctx1.fillRect(40 + i * 60, 460 - month * 2.7, 30, month * 2.7);
-            }
+      //Круговая диаграмма
+      let canvas2 = document.getElementById("canvas2");
+      let ctx2 = canvas2.getContext("2d");
+      let lastend = 0;
 
-            //Круговая диаграмма 
-            let canvas2 = document.getElementById('canvas2');
-            let ctx2 = canvas2.getContext("2d");
-            let lastend = 0;
+      let data2 = [];
+      sales.map((c) => data2.push(c.price * c.sale));
 
+      let myTotal = 0;
+      let myColor = [
+        "red",
+        "green",
+        "blue",
+        "yellow",
+        "black",
+        "orange",
+        "purple",
+        "grey",
+        "pink",
+        "brown",
+        "cyan",
+        "violet",
+      ];
 
-            let data2 = [];
-            sales.map(c => data2.push(c.price * c.sale));
+      for (let e = 0; e < data2.length; e++) {
+        myTotal += data2[e];
+      };
 
+      let labels2 = [];
+      sales.map((d) => labels2.push(d.month));
 
-            let myTotal = 0;
-            let myColor = ['red', 'green', 'blue', 'yellow', 'black', 'orange', 'purple', 'grey', 'pink',
-                'brown', 'cyan', 'violet'
-            ];
-            for (let e = 0; e < data2.length; e++) {
-                myTotal += data2[e];
-            }
-            let labels2 = [];
-            sales.map(d => labels2.push(d.month));
+      for (let i = 0; i < data2.length; i++) {
+        ctx2.fillStyle = myColor[i];
+        ctx2.beginPath();
+        ctx2.moveTo(canvas2.width / 4, canvas2.height / 2);
+        ctx2.arc(
+          canvas2.width / 4,
+          canvas2.height / 2,
+          canvas2.height / 2,
+          lastend,
+          lastend + Math.PI * 2 * (data2[i] / myTotal),
+          false
+        );
+        ctx2.lineTo(canvas2.width / 4, canvas2.height / 2);
+        ctx2.fill();
+        lastend += Math.PI * 2 * (data2[i] / myTotal);
+      };
 
-            for (let i = 0; i < data2.length; i++) {
-                ctx2.fillStyle = myColor[i];
-                ctx2.beginPath();
-                ctx2.moveTo(canvas2.width / 4, canvas2.height / 2);
-                ctx2.arc(canvas2.width / 4,
-                    canvas2.height / 2, canvas2.height / 2, lastend, lastend + (Math.PI * 2 * (data2[i] /
-                        myTotal)), false);
-                ctx2.lineTo(canvas2.width / 4, canvas2.height / 2);
-                ctx2.fill();
-                lastend += Math.PI * 2 * (data2[i] /
-                    myTotal);
-            }
+      for (let i = 1; i < 13; i++) {
+        ctx2.beginPath();
+        ctx2.strokeStyle = "black";
+        ctx2.lineWidth = 1;
+        ctx2.moveTo(600, 50 + i * 30);
+        ctx2.lineTo(650, 50 + i * 30);
+        ctx2.lineTo(650, 70 + i * 30);
+        ctx2.lineTo(600, 70 + i * 30);
+        ctx2.closePath();
+        ctx2.stroke();
+        ctx2.fillStyle = myColor[i - 1];
+        ctx2.fill();
 
-            for (let i = 1; i < 13; i++) {
-                ctx2.beginPath();
-                ctx2.strokeStyle = 'black';
-                ctx2.lineWidth = 1;
-                ctx2.moveTo(600, 50 + i * 30);
-                ctx2.lineTo(650, 50 + i * 30);
-                ctx2.lineTo(650, 70 + i * 30);
-                ctx2.lineTo(600, 70 + i * 30);
-                ctx2.closePath();
-                ctx2.stroke();
-                ctx2.fillStyle = myColor[i - 1];
-                ctx2.fill();
+        ctx2.beginPath();
+        ctx2.fillStyle = "black";
+        ctx2.fillText(
+          `${labels2[i - 1]}, ${data2[i - 1]} рублей`,
+          660,
+          65 + i * 30
+        );
+        ctx2.stroke();
+      };
+    };
 
-                ctx2.beginPath();
-                ctx2.fillStyle = 'black';
-                ctx2.fillText(`${labels2[i - 1]}, ${data2[i - 1]} рублей`, 660, 65 + i * 30);
-                ctx2.stroke();
-            }
-
-        };
-
-        getData();
-    </script>
-
+    getData();
+  </script>
 </body>
 
 </html>

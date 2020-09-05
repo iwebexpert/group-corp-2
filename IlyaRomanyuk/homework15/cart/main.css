@@ -1,0 +1,272 @@
+body {
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #333;
+  background-color: rgb(183, 201, 252);
+
+  position: relative;
+  height: 100vh;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.arrow-next {
+  font-size: 48px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.arrow-prev {
+  font-size: 48px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+.popup {
+  visibility: hidden;
+
+  position: absolute;
+  width: 900px;
+  height: 500px;
+  z-index: 3;
+  background-color: #fff;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__visseble {
+  width: 750px;
+  height: 350px;
+  background-color: rgb(44, 111, 255);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.popup__inner {
+  display: flex;
+  transform: translate(0, 0);
+  height: inherit;
+  border-radius: inherit;
+}
+
+.popup__item {
+  background-color: rgb(159, 235, 235);
+  width: 750px;
+  height: inherit;
+  border-radius: inherit;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transform: rotate(45deg);
+  font-size: 48px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close:hover {
+  transition: all 0.1s ease;
+  transform: rotate(135deg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 920px;
+  width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+  min-height: 500px;
+  box-sizing: border-box;
+}
+
+.info {
+  margin-bottom: 80px;
+}
+
+#catalog {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+
+.catalog__item {
+  border: 1px solid #000;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  max-width: 280px;
+  width: 100%;
+  min-height: 320px;
+
+  box-shadow: 0px 1px 28px 2px rgba(0, 0, 0, 0.75);
+}
+
+.catalog-title {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#cart {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart__item {
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-bottom: 10px;
+
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 0;
+
+  cursor: pointer;
+}
+
+.btn {
+  padding: 8px 18px;
+  border: none;
+  background: none;
+
+  border: 1px solid rgb(13, 13, 73);
+  border-radius: 5px;
+  background-color: rgb(25, 74, 107);
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn--clear {
+  background-color: rgb(201, 2, 2);
+}
+
+.img {
+  max-width: 100px;
+}
+
+.title {
+  margin-bottom: 30px;
+}
+
+#comment,
+#address {
+  resize: none;
+  outline: none;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+
+  font-size: 20px;
+  color: #333;
+}
+
+#comment {
+  height: 210px;
+}
+
+#comment:focus,
+#address:focus {
+  border: 2px solid rgb(97, 105, 184);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.address,
+.all {
+  display: none;
+}
+
+.continue {
+  padding: 12px 24px;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+
+  border: 2px solid rgb(0, 1, 65);
+  background-color: rgb(11, 76, 255);
+  display: block;
+}
+
+.next {
+  margin-top: 10px;
+}
+
+.send-btn,
+.next {
+  padding: 12px 24px;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+
+  border: 2px solid rgb(0, 1, 65);
+  background-color: rgb(11, 76, 255);
+}
+
+.buttons {
+  max-width: 350px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.continue-stat {
+  padding: 12px 24px;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+
+  border: 2px solid rgb(0, 1, 65);
+  background-color: rgb(11, 76, 255);
+  display: block;
+  text-align: center;
+  text-decoration: none
+}

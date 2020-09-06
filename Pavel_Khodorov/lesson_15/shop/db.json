@@ -1,0 +1,102 @@
+{
+    "items": [{
+            "id": 1,
+            "name": "Видеокарта nVidia GeForce GTX 1660",
+            "price": 22000,
+            "quantity": 1,
+            "images": [
+                "https://avatars.mds.yandex.net/get-mpic/2008455/img_id1669331565646531338.png/orig",
+                "https://www.kns.ru/linkpics/gigabyte-nvidia-geforce-gtx-1660-super-6gb-gv-n166soc-6gd-0.jpg",
+                "https://www.alternate.lu/p/o/j/GIGABYTE_GeForce_GTX_1660_OC_6G__Grafikkarte@@jfxy0c66_1.jpg"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Процессор Ryzen 5 2600",
+            "price": 15000,
+            "quantity": 1,
+            "images": [
+                "https://3dnews.ru/assets/external/illustrations/2018/07/14/972642/art-2.jpg",
+                "https://comp.dmkos.ru/images/publ/142/kit2.jpg",
+                "https://ru.gecid.com/data/cpu/201808040800-53057/img/02_2_amd_ryzen_5_2600.jpg"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "SSD Kingston 120gb",
+            "price": 4500,
+            "quantity": 1,
+            "images": [
+                "https://andpro.ru/upload/iblock/2c5/9abd6d07_1f76_11e7_80d7_001e67d1aaeb_1ace89ea_1f78_11e7_80d7_001e67d1aaeb.jpg",
+                "https://cdn.svyaznoy.ru/upload/iblock/d62/1025935003.jpg/resize/483x483/hq/",
+                "https://c.dns-shop.ru/thumb/st1/fit/wm/800/650/a1d8f8af4e82fc12092e37e760bff908/347602f7d3dd0a44cb6f5b0ad22d510eff10458b2d6b16c9304e464c19c1e934.jpg"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Кулер для процессора DEEPCOOL GAMMAXX 200T RET",
+            "price": 800,
+            "quantity": 1,
+            "images": [
+                "https://static.onlinetrade.ru/img/items/b/kuler_dlya_protsessora_deepcool_gammaxx200t_ret_1.jpg",
+                "https://www.overclockers.ua/news/cooler/116555-dc-gammaxx-200t-2.jpg",
+                "https://static.onlinetrade.ru/img/items/m/kuler_dlya_protsessora_deepcool_gammaxx200t_ret_8.jpg"
+            ]
+        }
+    ],
+    "sales": [{
+            "id": 1,
+            "month": "Январь",
+            "sales": 124,
+            "price": 872400
+        },
+        {
+            "id": 2,
+            "month": "Февраль",
+            "sales": 74,
+            "price": 471800
+        },
+        {
+            "id": 3,
+            "month": "Март",
+            "sales": 95,
+            "price": 672900
+        },
+        {
+            "id": 4,
+            "month": "Апрель",
+            "sales": 89,
+            "price": 872400
+        },
+        {
+            "id": 5,
+            "month": "Май",
+            "sales": 60,
+            "price": 471800
+        },
+        {
+            "id": 6,
+            "month": "Июнь",
+            "sales": 76,
+            "price": 672900
+        },
+        {
+            "id": 7,
+            "month": "Июль",
+            "sales": 69,
+            "price": 672900
+        },
+        {
+            "id": 8,
+            "month": "Август",
+            "sales": 113,
+            "price": 672900
+        },
+        {
+            "id": 9,
+            "month": "Сентябрь",
+            "sales": 44,
+            "price": 672900
+        }
+    ]
+}

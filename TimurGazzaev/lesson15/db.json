@@ -1,0 +1,12 @@
+{
+  "sales": [
+    {"id": 1, "month": "January", "sales": 21},
+    {"id": 2, "month": "February", "sales": 43},
+    {"id": 3, "month": "March", "sales": 31},
+    {"id": 4, "month": "April", "sales": 19},
+    {"id": 5, "month": "May", "sales": 48},
+    {"id": 6, "month": "June", "sales": 24},
+    {"id": 7, "month": "July", "sales": 42},
+    {"id": 8, "month": "August", "sales": 26}
+  ]
+}

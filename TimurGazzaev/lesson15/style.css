@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 200px;
+    flex-wrap: wrap;
+}
+.pie, .bar {
+    border: 1px solid red;
+}
+
+.pie {
+    padding: 5px;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin-bottom: 50px;
+}
+.prev, .next {
+    background-color: gray;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    padding: 7px 15px;
+}
+ul {
+    display: flex;
+    width: 540px;
+    flex-wrap: wrap;
+    padding: 0;
+}
+li {
+    list-style: none;
+    margin: 5px;
+    padding-left: 3px;
+    width: 140px;
+}

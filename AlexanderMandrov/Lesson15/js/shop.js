@@ -1,50 +1,16 @@
-import isCorrectInput from './utils.js';
+import { isCorrectInput, isInvalidInput, checkInputs } from './utils.js';
 import Basket from './Basket.js';
-import ItemsList from './ItemsList.js'
-import initCanvasDrawing from  './canvas.js';
 
 let products = new Basket([], [], 'RUB', []);
 const shopList = document.querySelector('.shop__list');
 
-//draw charts
-initCanvasDrawing();
-
-
-
-
-const goods = new ItemsList();
-goods.fetchItems();
-
-const isInvalidInput = (el) => {
-    if (!isCorrectInput(el.classList[0], el.value)) {
-        return true;
-    }
-    return false;
-};
-
-const checkInputs = () => {
-    const phone = document.querySelector('.phone'),
-    email = document.querySelector('.email'),
-    name = document.querySelector('.name');
-
-
-    [phone, email, name].forEach(el => {
-        el.addEventListener('input', () => {
-            if (isInvalidInput(el)) {
-                el.style.border = '1px solid red';
-            } else {
-                el.style.border = '1px solid lightgrey';
-            }
-        });
-    });
-};
+let ulList = document.querySelector('.list');
+const totalPrice = document.querySelector('.total__price');
 
 
 const renderBasket = (products) => {
-    let ulList = document.querySelector('.list');
     const liItems = document.querySelectorAll('.item');
     liItems.forEach(item => item.remove());
-    let totalPrice = document.querySelector('.total__price');
 
     totalPrice.textContent = 'Basket is clear';
 
@@ -83,11 +49,12 @@ const renderBasket = (products) => {
 
 const deleteProductFromBasket = (itemName) => {
     products.items.forEach((item, i) => {
-        if (item == itemName) {
+        if (item === itemName) {
             products.deleteItem(i);
         };
     });
     renderBasket(products);
+    getBtns();
 };
 
 const isUnique = (obj) => {
@@ -116,6 +83,8 @@ const addQuantity = (quantity, name) => {
         };
     });
 };
+
+const modal = document.querySelector('.modal');
 
 const editPriceAndTotal = (products, name) => {
     const itemPrices = document.querySelectorAll('.item__price'),
@@ -182,8 +151,7 @@ shopList.addEventListener('click', (event) => {
     };
 });
 
-const modal = document.querySelector('.modal'),
-    modalName = document.querySelector('.modal__name'),
+const modalName = document.querySelector('.modal__name'),
     modalPrice = document.querySelector('.modal__price'),
     modalComment = document.querySelector('.modal__comment'),
     modalEmail = document.querySelector('.modal__email'),
@@ -235,11 +203,5 @@ const mySwiper = new Swiper('.swiper-container', {
     direction: 'horizontal',
     loop: true,
 
-    effect: 'slide',
-
-    // Navigation arrows
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-})
+    effect: 'slide'
+});

@@ -1,3 +1,7 @@
+const phone = document.querySelector('.phone'),
+    email = document.querySelector('.email'),
+    name = document.querySelector('.name');
+
 const isCorrectInput = (type, value) =>{
     let regExp;
     switch(type) {
@@ -13,4 +17,20 @@ const isCorrectInput = (type, value) =>{
     }
 };
 
-export default isCorrectInput;
+const isInvalidInput = (el) => {
+    if (!isCorrectInput(el.classList[0], el.value)) {
+        return true;
+    }
+    return false;
+};
+
+const checkInputs = () => {
+    [phone, email, name].forEach(el => {
+        el.addEventListener('input', () => {
+            el.style.border = isInvalidInput(el) ? '1px solid red' : '1px solid lightgrey';
+        });
+    });
+};
+
+
+export { isCorrectInput, isInvalidInput, checkInputs };

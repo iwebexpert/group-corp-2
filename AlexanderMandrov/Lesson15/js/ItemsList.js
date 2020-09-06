@@ -2,6 +2,9 @@ import { makeGETRequest } from './services.js';
 
 let counter = 0;
 const shopList = document.querySelector('.shop__list');
+const modal = document.querySelector('.modal'),
+    modalName = document.querySelector('.modal__name'),
+    modalPrice = document.querySelector('.modal__price');
 
 const eventHandler = () => {
     const shopImages = document.querySelectorAll('.shop__img');

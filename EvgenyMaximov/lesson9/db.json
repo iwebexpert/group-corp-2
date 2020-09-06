@@ -32,5 +32,91 @@
       "count": 0,
       "url": "https://go3.imgsmail.ru/imgpreview?key=5fe2e6d99ecffae5&mb=storage&w=540"
     }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "month": "Jan",
+      "sales": 254,
+      "price": 872400,
+      "color": "#594a2d"
+    },
+    {
+      "id": 2,
+      "month": "Feb",
+      "sales": 125,
+      "price": 471800,
+      "color": "#660057"
+    },
+    {
+      "id": 3,
+      "month": "Mar",
+      "sales": 200,
+      "price": 372900,
+      "color": "#6e8cff"
+    },
+    {
+      "id": 4,
+      "month": "Apr",
+      "sales": 185,
+      "price": 632556,
+      "color": "#3d0c4e"
+    },
+    {
+      "id": 5,
+      "month": "May",
+      "sales": 60,
+      "price": 208432,
+      "color": "#9ce6ae"
+    },
+    {
+      "id": 6,
+      "month": "June",
+      "sales": 238,
+      "price": 854353,
+      "color": "#009e78"
+    },
+    {
+      "id": 7,
+      "month": "July",
+      "sales": 301,
+      "price": 575951,
+      "color": "#001f8f"
+    },
+    {
+      "id": 8,
+      "month": "Aug",
+      "sales": 156,
+      "price": 559573,
+      "color": "#ff7852"
+    },
+    {
+      "id": 9,
+      "month": "Sept",
+      "sales": 278,
+      "price": 304960,
+      "color": "#ebff26"
+    },
+    {
+      "id": 10,
+      "month": "Oct",
+      "sales": 215,
+      "price": 711876,
+      "color": "#0073e6"
+    },
+    {
+      "id": 11,
+      "month": "Nov",
+      "sales": 284,
+      "price": 918037,
+      "color": "#f05eff"
+    },
+    {
+      "id": 12,
+      "month": "Dec",
+      "sales": 296,
+      "price": 971749,
+      "color": "#00decc"
+    }
   ]
 }

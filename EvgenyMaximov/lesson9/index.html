@@ -15,10 +15,19 @@
       src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"
       defer
     ></script>
+    <script src="./stats.js" defer></script>
     <script src="./catalog.js" defer></script>
   </head>
   <body>
     <div class="container">
+      <button class="stat__btn">Learn Statistic</button>
+      <div class="statistic__area">
+        <span>Сумма продаж по месяцам</span>
+        <canvas id="barStat"></canvas>
+        <span>Количество продаж по месяцам</span>
+        <canvas id="pieStat"></canvas>
+        <button class="closestat__btn">Close</button>
+      </div>
       <div id="catalog"></div>
       <div id="basket"></div>
       <form id="form">

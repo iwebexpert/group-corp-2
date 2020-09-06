@@ -169,7 +169,6 @@ orderBtn.addEventListener('click', (event) => {
         name = document.querySelector('.name'),
         address = document.querySelector('.address');
 
-    let counter = 0;
     let flg = true;
     swiperContainer.style.display = 'none';
     [phone, email, name].forEach(el => {

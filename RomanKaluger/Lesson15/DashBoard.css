@@ -1,0 +1,67 @@
+.classicCanvas{
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    background-color: #7f7f7f;
+    border-radius: 30px;
+    border: 2px solid orange;
+    margin: auto;
+}
+.dashBoardMainLabel{
+    color: orange;
+    font-size: 10vh;
+    font-family: fantasy;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    grid-area: 1 / 1 / 2 / 3;
+    text-decoration: underline;
+    border-bottom: 2px solid orange;
+    animation: 1s linear 0s infinite alternate shadow;
+}
+@keyframes shadow {
+    from {
+        text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em floralwhite;
+    }
+    to {
+        text-shadow: 1px 1px 2px floralwhite, 0 0 1em orange, 0 0 0.2em black;
+    }
+}
+.dashBoard{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #343A40;
+    display: grid;
+    grid-template-columns: repeat(2, 50vw);
+    grid-template-rows: 12vh repeat(2, 44vh);
+}
+.toDashBoardBtn{
+    position: fixed;
+    top: 0;
+    left:77vw;
+    height: 12vh;
+    width: 22.5vw;
+    border-radius: 0 0 30px 30px;
+    padding: 3px;
+    border: 5px solid #343A40;
+    border-top-width: 0;
+    box-sizing: border-box;
+    background-image: url("./img/photo-1506968430777-bf7784a87f23.jpg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.5s;
+}
+.toDashBoardArrowBack{
+    transform: rotate(180deg);
+    transition-duration: 0.5s;
+}
+.toDashBoardArrow{
+    height: 100%;
+    transition-duration: 0.5s;
+}
+.toDashBoardBtn img:hover{
+    background-color: rgba(52, 58, 64, 0.3);
+    border-radius: 50%;
+    transition-duration: 0.5s;
+}

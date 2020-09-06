@@ -1,0 +1,69 @@
+.selectorToppingArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 18%;
+    cursor: pointer;
+    user-select: none;
+}
+.requiredToppingsArea{
+    height: 29%;
+    background-color: #ee5757;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4px;
+}
+.optionalToppingsArea{
+    height: 29%;
+    background-color: #cc8380;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4px;
+}
+.caloriesLabel{
+    height: 20%;
+    background-color: #8967cc;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
+.checkedIcon{
+    height: 40px;
+    width: 40px;
+    background-image: url("img/checked.png");
+    background-size: cover;
+    margin-right: 5px;
+}
+.uncheckedIcon{
+    height: 40px;
+    width: 40px;
+    background-image: url("img/unchecked.png");
+    background-size: cover;
+    margin: 5px;
+}
+.toppingLabel{
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 1;
+}
+.checkedToppingLabel{
+    color: #ffba72;
+}
+.toppingSelector{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
+}

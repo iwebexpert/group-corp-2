@@ -68,5 +68,12 @@
       "id": "textAfter",
       "content": "\"No one knows what it's like\"\n\"To be the bad\" man\nTo be the sad man\nBehind \"blue eyes\"\nAnd no one knows \"what it's like\"\nTo be hated\nTo be \"faded to telling\" only lies\nBut my dreams \"they aren't as empty\"\nAs my conscience seems to be\nI have hours, only lonely\nMy love is vengeance\nThat's never free\n"
     }
+  ],
+  "statistics": [
+    {
+      "id": "columnStatistic",
+      "monthLabels": ["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],
+      "values": [233, 145, 345, 235, 500, 424, 360, 332, 200, 100, 80, 480]
+    }
   ]
 }

@@ -567,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const statistic = new Statistic();
     statistic.createHtml();
+    //
 });
 
 //json-server --watch ./db.json --static ./

@@ -1,0 +1,133 @@
+{
+    "goods": [{
+            "id": "1",
+            "product": "FENDER Redondo Special MBK w/bag",
+            "currency": "руб.",
+            "price": 78000,
+            "img": [
+                "./assets/fender/1.jpg",
+                "./assets/fender/2.jpg",
+                "./assets/fender/3.jpg"
+            ]
+        },
+        {
+            "id": "2",
+            "product": "YAMAHA FG820 SUNSET BLUE",
+            "currency": "руб.",
+            "price": 24990,
+            "img": [
+                "./assets/yamaha/1.jpg",
+                "./assets/yamaha/2.jpg",
+                "./assets/yamaha/3.jpg"
+            ]
+        },
+        {
+            "id": "3",
+            "product": "EPIPHONE DOVE PRO ACOUSTIC",
+            "currency": "руб.",
+            "price": 40000,
+            "img": [
+                "./assets/epiphone/1.jpg",
+                "../assets/epiphone/2.jpg",
+                "./assets/epiphone/3.jpg"
+            ]
+        },
+        {
+            "id": "4",
+            "product": "GIBSON J-200 Standard Maple Vintage Sunburst",
+            "currency": "руб.",
+            "price": 401000,
+            "img": [
+                "./assets/gibson/1.jpg",
+                "./assets/gibson/2.jpg",
+                "./assets/gibson/3.jpg"
+            ]
+        },
+        {
+            "id": "5",
+            "product": "SEAGULL 41886 Entourage Folk Burnt Umber QIT",
+            "currency": "руб.",
+            "price": 49161,
+            "img": [
+                "./assets/seagull/1.jpg",
+                "./assets/seagull/2.jpg",
+                "./assets/seagull/3.jpg"
+            ]
+        },
+        {
+            "id": "6",
+            "product": "TAYLOR 214ce-K DLX 200 Series Deluxe",
+            "currency": "руб.",
+            "price": 161000,
+            "img": [
+                "./assets/taylor/1.jpg",
+                "./assets/taylor/2.jpg",
+                "../assets/taylor/3.jpg"
+            ]
+        }
+    ],
+    "sales": [{
+            "id": 1,
+            "month": "ЯНВ",
+            "sale": 25,
+            "price": 8724
+        },
+        {
+            "id": 2,
+            "month": "ФЕВ",
+            "sale": 48,
+            "price": 4718
+        },
+        {
+            "id": 3,
+            "month": "МАР",
+            "sale": 60,
+            "price": 6729
+        }, {
+            "id": 4,
+            "month": "АПР",
+            "sale": 38,
+            "price": 6482
+        }, {
+            "id": 5,
+            "month": "МАЙ",
+            "sale": 70,
+            "price": 2124
+        }, {
+            "id": 6,
+            "month": "ИЮН",
+            "sale": 15,
+            "price": 2453
+        }, {
+            "id": 7,
+            "month": "ИЮЛ",
+            "sale": 34,
+            "price": 6544
+        }, {
+            "id": 8,
+            "month": "АВГ",
+            "sale": 29,
+            "price": 4342
+        }, {
+            "id": 9,
+            "month": "СЕН",
+            "sale": 90,
+            "price": 7674
+        }, {
+            "id": 10,
+            "month": "ОКТ",
+            "sale": 76,
+            "price": 1244
+        }, {
+            "id": 11,
+            "month": "НОЯ",
+            "sale": 39,
+            "price": 2434
+        }, {
+            "id": 12,
+            "month": "ДЕК",
+            "sale": 17,
+            "price": 3454
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stat</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".create");
+        btn.addEventListener("click", async () => {
+          const response = await fetch("/sales");
+          const sales = await response.json();
+          const canavasPie = document.querySelector(".pie");
+          const canavasBar = document.querySelector(".bar");
+          const ctxPie = canavasPie.getContext("2d");
+          const ctxBar = canavasBar.getContext("2d");
+          console.log(sales.length);
+          ctxBar.fillStyle = "black"; // Задаём чёрный цвет для линий
+          ctxBar.lineWidth = 2.0; // Ширина линии
+          ctxBar.beginPath(); // Запускает путь
+          ctxBar.moveTo(30, 10); // Указываем начальный путь
+          ctxBar.lineTo(30, 460); // Перемешаем указатель
+          ctxBar.lineTo(sales.length * 100 + 30, 460); // Ещё раз перемешаем указатель
+          ctxBar.stroke(); // Делаем контур
+
+          // Цвет для рисования
+          ctxBar.fillStyle = "black";
+          // Цикл для отображения значений по Y
+          for (let i = 0; i < 6; i++) {
+            ctxBar.fillText((5 - i) * 5 + "", 4, i * 80 + 60);
+            ctxBar.beginPath();
+            ctxBar.moveTo(25, i * 80 + 60);
+            ctxBar.lineTo(30, i * 80 + 60);
+            ctxBar.stroke();
+          }
+
+          // Выводим меток
+          sales.forEach((element) => {
+            ctxBar.fillText(element.month, 30 + element.id * 100 - 50, 475);
+          });
+
+          // Цикл для от рисовки графиков
+          sales.forEach((element) => {
+            ctxBar.fillStyle = randomColor();
+            var dp = element.sales;
+            ctxBar.fillRect(
+              30 + element.id * 100 - 68,
+              460 - dp * 16,
+              50,
+              dp * 16
+            );
+          });
+
+          function randomColor() {
+            return "#" + Math.floor(Math.random() * 0xffffff).toString(16);
+          }
+        });
+      });
+    </script>
+    <style>
+      .bar,
+      .pie {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="create">Create</button>
+    <canvas class="bar" width="500" height="500"></canvas>
+    <canvas class="pie" width="500" height="500"></canvas>
+  </body>
+</html>

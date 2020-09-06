@@ -25,7 +25,7 @@ const render = (sales) => {
   // Диаграмма
   const diagram = document.querySelector(".diagram");
   const diagramCtx = diagram.getContext("2d");
-  let inaccuracy = 0;
+  let last = 0;
   const total = sales.reduce((total, item) => (total += item.price), 0);
   sales.map((item, i) => {
     diagramCtx.fillStyle = item.color;
@@ -35,13 +35,13 @@ const render = (sales) => {
       250,
       400,
       200,
-      inaccuracy,
-      inaccuracy + Math.PI * 2 * (item.price / total),
+      last,
+      last + Math.PI * 2 * (item.price / total),
       false
     );
     diagramCtx.lineTo(250, 400);
     diagramCtx.fill();
-    inaccuracy += Math.PI * 2 * (item.price / total);
+    last += Math.PI * 2 * (item.price / total);
     diagramCtx.beginPath();
     diagramCtx.moveTo(600, 208 + i * 30);
     diagramCtx.lineTo(650, 208 + i * 30);

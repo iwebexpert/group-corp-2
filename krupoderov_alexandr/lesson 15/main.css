@@ -1,0 +1,241 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 960px;
+    margin: 50px auto;
+}
+
+.mark{
+    width: 10px;
+    height: 10px;
+}
+
+.white-square{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: #efe15e;
+}
+
+.black-square{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    background-color: black;
+}
+
+.desk{
+    width: 300px;
+    height: 300px;
+}
+
+#chess{
+    margin: 200px auto 0 auto;
+    width: 300px;
+    display: flex;
+}
+
+.row{
+    position: relative;
+}
+
+.left{
+    position: absolute;
+    color: black;
+    right: 40px;
+    top: 4px;
+}
+
+.top{
+    position: absolute;
+    color: black;
+    top: -25px;
+    right: 8px;
+}
+
+.right{
+    position: absolute;
+    color: black;
+    top: 4px;
+    left: 40px;
+}
+
+.bottom{
+    position: absolute;
+    color: black;
+    bottom: -25px;
+    left: 8px;
+}
+
+.labels{
+    padding-right: 20px;
+    color: white;
+    position: relative;
+}
+
+.labels::before{
+    color: red;
+    position: absolute;
+}
+
+/*Task 2, 3*/
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 250px;
+    height: 350px;
+    border: 1px solid black;
+}
+
+#catalog{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.bucket{
+    text-align: center;
+    width: 100%;
+    height: 50px;
+}
+
+.slider{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.slider.active{
+    display: block;
+}
+
+
+.slide{
+    margin: 5% auto;
+    padding: 20px;
+    display: none;
+    position: relative;
+    width: 600px;
+    height: 500px;
+}
+
+.slide.active{
+    display: block;
+}
+
+.right-switch{
+    top: 300px;
+    right: 360px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-left: 30px solid black;
+    border-bottom: 15px solid transparent;
+}
+
+.left-switch{
+    top: 300px;
+    left: 360px;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-right: 30px solid black;
+    border-bottom: 15px solid transparent;
+}
+
+.bucketContainer{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.address{
+    display: none;
+}
+
+.address.active{
+    display: block;
+}
+
+.bucket{
+    display: block;
+}
+
+.bucket.non-active{
+    display: none;
+}
+
+.comment{
+    display: none;
+}
+
+.comment.active{
+    display: block;
+}
+
+.order-form{
+    margin: 0 auto;
+    width: 30%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.order-form.non-active{
+    display: none;
+}
+
+
+.round-diagram{
+    margin-top: 50px;
+    position: relative;
+}
+
+.bar-chart{
+    margin-top: 50px;
+    position: relative;
+}
+
+.legend-container{
+    width: 80px;
+    height: 120px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    left: 650px;
+    top: 250px;
+}
+
+.legend-container > span{
+    display: block;
+    position: relative;
+    width: 60px;
+    height: 20px;
+    padding-left: 25px;
+}
+
+.legend-container > span > span{
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 20px;
+}

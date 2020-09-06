@@ -1,0 +1,13 @@
+{
+    "goods": [
+        { "id": "0", "name": "apples", "price": 100, "count": 1, "totalBuyed": 150 },
+        { "id": "1", "name": "choco", "price": 25, "count": 1, "totalBuyed": 100 },
+        { "id": "2", "name": "books", "price": 1250, "count": 1, "totalBuyed": 80 },
+        { "id": "3", "name": "pines", "price": 100, "count": 1, "totalBuyed": 180 },
+        { "id": "4", "name": "milk", "price": 25, "count": 1, "totalBuyed": 30 },
+        { "id": "5", "name": "books", "price": 1250, "count": 1, "totalBuyed": 60 },
+        { "id": "6", "name": "vodka", "price": 100, "count": 1, "totalBuyed": 175 },
+        { "id": "7", "name": "oreo", "price": 25, "count": 1, "totalBuyed": 80 },
+        { "id": "8", "name": "pokemons", "price": 1250, "count": 1, "totalBuyed": 190 }
+    ]
+}

@@ -275,6 +275,60 @@ body {
   outline: none !important;
 }
 
+/*--------stat__btn--------------*/
+.stat__btn {
+  height: 50px;
+  width: 170px;
+  display: block;
+  padding: 0 10px;
+  background: #8dca94;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+  margin: 10px auto;
+}
+
+.stat__btn:hover {
+  background: #a8eeb1;
+}
+
+.stat__btn:active {
+  background: #8dca94;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
+/*--------closestat__btn--------------*/
+.closestat__btn {
+  height: 50px;
+  width: 100px;
+  display: block;
+  padding: 0 10px;
+  background: #8dca94;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 50px;
+  position: relative;
+  outline: none !important;
+  margin: 15px 0;
+  margin: 10px auto;
+}
+
+.closestat__btn:hover {
+  background: #a8eeb1;
+}
+
+.closestat__btn:active {
+  background: #8dca94;
+  position: relative;
+  top: 2px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.8);
+  outline: none !important;
+}
+
 /*--------Каталог--------------*/
 
 #catalog {
@@ -388,4 +442,12 @@ body {
 
 .comment__area {
   display: none;
+}
+
+/*-----------------Статистика----------------*/
+
+.statistic__area {
+  text-align: center;
+  display: none;
+  flex-direction: column;
 }

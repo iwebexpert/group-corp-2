@@ -1,3 +1,539 @@
+class Chart {
+    constructor() {
+        this.initCanvas();
+        this.getMetrics();
+        this.setValuesLimiters({limiterMax: 300, limiterMin: 0});
+        this.setConfig();
+        this.chartAreaLimiters = {
+            left: 10,
+            right:90,
+            top: 10,
+            bottom:90
+        };
+        this.activeChartAreaX = this.chartAreaLimiters.right - this.chartAreaLimiters.left;
+        this.activeChartAreaY = this.chartAreaLimiters.bottom - this.chartAreaLimiters.top;
+        this.statisticsDatabaseManager = new StatisticsDatabaseManager();
+        this.colors = [
+            'rgba(150, 40, 27, 0.4)', 'rgba(217, 30, 24, 0.4)', 'rgba(246, 71, 71, 0.4)', 'rgba(226, 106, 106, 0.4)',
+            'rgba(139,54,0,0.4)', 'rgba(249, 105, 14, 0.4)', 'rgba(245, 171, 53, 0.4)','rgba(250, 190, 88, 0.4)',
+            'rgba(1,56,46,0.47)', 'rgba(0,156,89,0.4)', 'rgba(67,255,84,0.4)', 'rgba(0, 230, 64, 0.4)'
+        ];
+        this.strokeColors = [
+            'rgba(150, 40, 27, 1)', 'rgba(217, 30, 24, 1)', 'rgba(246, 71, 71, 1)', 'rgba(226, 106, 106, 1)',
+            'rgba(139,54,0,1)', 'rgba(249, 105, 14, 1)', 'rgba(245, 171, 53, 1)','rgba(250, 190, 88, 1)',
+            'rgba(1,56,46,1)', 'rgba(0,156,89,1)', 'rgba(67,255,84,1)', 'rgba(0, 230, 64, 1)'
+        ];
+    }
+    initCanvas(){
+        this.canvas = document.createElement('canvas');
+        this.canvas.classList.add('classicCanvas');
+        this.ctx = this.canvas.getContext('2d');
+    }
+    updateCanvasPrecision(){
+        this.getMetrics();
+        this.canvas.width = this.fullWidth;
+        this.canvas.height = this.fullHeight;
+    }
+    makeShadows(){
+        this.ctx.shadowOffsetX = 2;
+        this.ctx.shadowOffsetY = 2;
+        this.ctx.shadowBlur = 2;
+        this.ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    }
+    getMetrics(){
+        this.fullWidth = this.canvas.clientWidth;
+        this.fullHeight = this.canvas.clientHeight;
+    }
+    convertPercToPx(perc, mode){
+        this.getMetrics();
+        switch (mode) {
+            case 'x': return this.fullWidth/100 * perc;
+            case 'y': return this.fullHeight/100 * perc;
+            default: throw new Error();
+        }
+    }
+    setConfig(config = {delimsY: 5}){
+        this.config = config;
+    }
+    setValuesLimiters({limiterMax, limiterMin}){
+        this.limiterMaxVal = limiterMax;
+        this.limiterMinVal = limiterMin;
+        this.valueRangeVal = limiterMax - limiterMin;
+    }
+    comparer(a, b){
+        if (a > b){
+            return 1;
+        }
+        if (a < b){
+            return -1;
+        }
+        return 0;
+    }
+}
+class StandardLayoutChart extends Chart{
+    constructor(){
+        super();
+    }
+    colorSegregator(val, data, mode = 'main') {
+        const sortedValues = data.map(v => v.y).concat([]).sort((a,b) => this.comparer(a,b));
+        if (mode === 'main'){
+            return this.colors[sortedValues.findIndex(x => val === x)];
+        }
+        return this.strokeColors[sortedValues.findIndex(x => val === x)];
+    }
+    setData(dataArr){//[{y: val, x: val}]
+        const maxValue = dataArr.map(val => val.y).reduce((acc, val) => val > acc ? val : acc);
+        const minValue = dataArr.map(val => val.y).reduce((acc, val) => val < acc ? val : acc);
+        this.setValuesLimiters({limiterMax : maxValue, limiterMin: minValue});
+        this.data = dataArr;
+    }
+    drawValueLabels() {
+        const step = Math.ceil(this.limiterMaxVal/this.config.delimsY);
+        for (let i = 0; i < this.config.delimsY; i++) {
+            this.ctx.fillText(step * i,
+                this.convertPercToPx(this.chartAreaLimiters.left - 5, 'x') ,
+                this.convertPercToPx(this.chartAreaLimiters.bottom - i /this.config.delimsY * this.activeChartAreaY, 'y'));
+        }
+    }
+    writeAxisLabels(labels) {
+        this.ctx.textAlign = 'center';
+        this.ctx.font = '0.9vw fantasy';
+        this.ctx.fillText(labels.valueLabel, this.convertPercToPx(10, 'x') ,this.convertPercToPx(this.chartAreaLimiters.top - 4, 'y'));
+        this.ctx.textAlign = 'left';
+        this.ctx.fillText(labels.paramsLabel, this.convertPercToPx(this.chartAreaLimiters.right + 1, 'x') ,this.convertPercToPx(this.chartAreaLimiters.bottom , 'y'));
+    }
+    createBasicDiagramLayout(){
+        const rowLayout = new Path2D();
+        this.ctx.strokeStyle = 'orange';
+        this.ctx.lineJoin = "round";
+        this.ctx.lineWidth = this.convertPercToPx(1,'y');
+
+        const percHeight = 80/this.config.delimsY;
+        for (let i = 1; i<this.config.delimsY; i++) {
+            rowLayout.moveTo(this.convertPercToPx(this.chartAreaLimiters.left,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom - percHeight * i,'y'));
+            rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.right,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom - percHeight * i,'y'));
+        }
+
+        rowLayout.moveTo(this.convertPercToPx(this.chartAreaLimiters.left,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom ,'y'));
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.left,'x'),this.convertPercToPx(this.chartAreaLimiters.top ,'y') );
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.left + 1.5,'x'),this.convertPercToPx(this.chartAreaLimiters.top + 5 ,'y') );
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.left - 1.5,'x'),this.convertPercToPx(this.chartAreaLimiters.top + 5,'y') );
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.left,'x'),this.convertPercToPx(this.chartAreaLimiters.top ,'y') );
+
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.left,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom ,'y'));
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.right,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom ,'y') );
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.right - 3,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom + 3,'y') );
+
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.right - 3,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom - 3 ,'y'));
+        rowLayout.lineTo(this.convertPercToPx(this.chartAreaLimiters.right,'x'),this.convertPercToPx(this.chartAreaLimiters.bottom ,'y'));
+        return rowLayout;
+    }
+}
+class ColumnDiagram extends StandardLayoutChart{
+    constructor(){
+        super();
+        this.labels = {
+            valueLabel: 'Денюжки',
+            paramsLabel: 'Месяцы',
+            paramsDividers: [],
+        };
+    }
+    async getServerData(){
+        this.statistics = await this.statisticsDatabaseManager.getColumnStatistic();
+        this.labels.paramsDividers = this.statistics[0].monthLabels;
+        this.setData(this.statistics[0].values.map((val, i) => ({y: val, x: i})));
+        /*const data = [];
+        this.labels.paramsDividers=[];
+        this.labels.valueDividers = [];
+        const dataLabels$ = rxjs.from(this.statistics[0].monthLabels);
+        const dataValues$ = rxjs.from(this.statistics[0].values);
+        rxjs.zip(dataLabels$, dataValues$).pipe(
+            rxjs.operators.scan((acc, arr) => [acc[0] + 1, arr],[-1])
+        ).subscribe(
+            ([counter, [month, value]]) => {
+                    this.labels.paramsDividers.push(month);
+                    data.push({y: value, x: counter});
+              },
+            null,
+            () => this.setData(data)
+            );*/
+    }
+    countColumnConfiguration(value = 0){
+        const width = (this.activeChartAreaX -5)/this.data.length;
+        const height = value / this.limiterMaxVal * (this.activeChartAreaY - 5);
+        return [width, height];
+    }
+    drawColumn(value, param) {//парметры - цифры
+        const [width, height] = this.countColumnConfiguration(value);
+        const configurationRect = [
+            this.convertPercToPx(param * width + this.chartAreaLimiters.left, 'x'),
+            this.convertPercToPx(this.chartAreaLimiters.bottom, 'y'),
+            this.convertPercToPx(width, 'x'),
+            this.convertPercToPx(-height, 'y'),
+        ];
+        this.ctx.fillStyle = this.colorSegregator(value, this.data, 'main');
+        this.ctx.strokeStyle = this.colorSegregator(value, this.data, 'border');
+        this.ctx.fillRect(...configurationRect);
+        this.ctx.strokeRect(...configurationRect);
+    }
+    drawLabels(labels){
+        const [width] = this.countColumnConfiguration(0);
+        this.makeShadows();
+        this.ctx.fillStyle = 'orange';
+        this.ctx.textBaseline = "middle";
+        this.writeAxisLabels(labels);
+
+        this.ctx.textAlign = 'center';
+        this.ctx.font = '1.2vw fantasy';
+        this.ctx.fillText('ДОХОДЫ ЗА ПОСЛЕДНИЙ ГОД', this.convertPercToPx(50, 'x') ,this.convertPercToPx(this.chartAreaLimiters.top - 4, 'y'));
+
+        this.ctx.fillStyle = 'rgb(249, 180, 45)';
+        this.ctx.font = '0.5vw fantasy';
+        this.labels.paramsDividers.forEach((x,i) =>{
+            this.ctx.fillText(x,
+                this.convertPercToPx(this.chartAreaLimiters.left + width * (0.5 + i), 'x') ,
+                this.convertPercToPx(this.chartAreaLimiters.bottom + (i % 2 === 0 ? 4 : 7), 'y'));
+        });
+        this.drawValueLabels();
+    }
+    async draw(){
+        await this.getServerData();
+        this.updateCanvasPrecision();
+        this.ctx.stroke(this.createBasicDiagramLayout());
+        this.drawLabels(this.labels);
+        this.data.forEach(val => this.drawColumn(val.y, val.x));
+    }
+    render() {
+        return this.canvas;
+    }
+}
+class CircleDiagram extends Chart{
+    constructor(){
+        super();
+        this.canvas.style.gridRowStart = '2';
+        this.canvas.style.gridRowEnd = '4';
+        this.config = {
+            center: {
+                x: 50,
+                y: 61
+            },
+            radius: 30
+        };
+        this.makeShadows();
+    }
+    async getServerData(){
+       const data = await this.statisticsDatabaseManager.getColumnStatistic();
+        this.statistics = data[0];
+    }
+    handleData(){
+        this.totalValue = this.statistics.values.reduce((acc, val) => acc + val);
+        this.maxValue = this.statistics.values.reduce((acc, val) => acc < val ? val : acc);
+    }
+    colorSegregator(val) {
+        const sortedValues = this.statistics.values.concat([]).sort((a,b) => this.comparer(a,b));
+        return this.colors[sortedValues.findIndex(x => val === x)];
+    }
+
+    drawSector(value, index, handledValue) {
+        const startAngle = handledValue/this.totalValue * 2 * Math.PI;
+        const endAngle = startAngle + value/this.totalValue * 2 * Math.PI;
+        const variationRadius = (value/this.maxValue * 0.6 + 0.4) * (this.config.radius);
+        const color = this.colorSegregator(value);
+        this.ctx.beginPath();
+        this.ctx.fillStyle = color;
+        this.ctx.moveTo(
+            this.convertPercToPx(this.config.center.x, 'x'),
+            this.convertPercToPx(this.config.center.y, 'y'),
+        );
+        this.ctx.arc(
+            this.convertPercToPx(this.config.center.x, 'x'),
+            this.convertPercToPx(this.config.center.y, 'y'),
+            this.convertPercToPx(variationRadius, 'x'),
+            startAngle, endAngle
+        );
+        this.ctx.closePath();
+        this.ctx.fill();
+        this.ctx.stroke();
+
+        this.ctx.fillStyle = 'orange';
+        this.ctx.textBaseline = "middle";
+        this.ctx.textAlign = 'right';
+        this.ctx.font = '0.9vw fantasy';
+
+        this.makeShadows();
+
+        this.ctx.fillText(
+            index,
+            this.convertPercToPx(this.config.center.x + (variationRadius+ 6) * Math.cos((startAngle + endAngle)/2), 'x'),
+            this.convertPercToPx(this.config.center.y + (variationRadius + 6) * Math.sin((startAngle + endAngle)/2), 'y')
+        );
+    }
+    drawLabels(){
+        this.makeShadows();
+        this.ctx.textAlign = 'center';
+        this.ctx.font = '2.2vw fantasy';
+        this.ctx.fillText('ДОХОДЫ ЗА ПОСЛЕДНИЙ ГОД', this.convertPercToPx(50, 'x') ,this.convertPercToPx(this.chartAreaLimiters.top - 5, 'y'));
+
+        this.ctx.font = '0.6vw sans-serif';
+        this.statistics.monthLabels.forEach((val,i) => {
+            this.ctx.fillText(
+                `${i}. ${val} -- $${this.statistics.values[i]} млн / ${Math.round(this.statistics.values[i]/this.totalValue*100)}%`,
+                this.convertPercToPx(12 + 25 * ((i) % 4), 'x'),
+                this.convertPercToPx(13 + 5 * Math.floor((i) / 4), 'y')
+            );
+        });
+    }
+    async draw(){
+        await this.getServerData();
+        this.handleData(this.statistics);
+        this.updateCanvasPrecision();
+
+        let handledProgress = 0;
+        this.ctx.strokeStyle = 'orange';
+        this.ctx.lineJoin = "round";
+        this.ctx.lineWidth = this.convertPercToPx(0.3,'y');
+        this.statistics.values.forEach((val, i) => {
+          this.drawSector(val, i, handledProgress);
+          handledProgress += val;
+        });
+        this.drawLabels();
+    }
+    render() {
+        return this.canvas;
+    }
+}
+class HotChart extends StandardLayoutChart{
+    constructor(){
+        super();
+        this.labels = {
+            valueLabel: 'Денюжки',
+            paramsLabel: 'Время',
+        };
+        this.sectionWidth = (this.activeChartAreaX) / 30;
+        this.sectionsAmount = (this.activeChartAreaX) / this.sectionWidth - 1;
+    }
+    startChart(){
+        if (this.startChartSubscription){
+            this.startChartSubscription.unsubscribe();
+        }
+        this.data = [];
+        rxjs.range(1,30).subscribe(x => this.generateData());
+        this.startChartSubscription = rxjs.interval(300).pipe(
+            rxjs.operators.map(() => this.generateData()),
+        ).subscribe(
+            () => this.draw()
+        );
+    }
+    calculatePointConf(val, param){
+        const x = this.chartAreaLimiters.right - this.sectionWidth * (this.data.length - param);
+        const y = this.chartAreaLimiters.bottom - (this.activeChartAreaY) * val/this.limiterMaxVal;
+        return { x, y };
+    }
+    generateData(){
+        if (this.data.length > this.sectionsAmount){
+            this.data.shift();
+            this.data.forEach(v => v.x = (v.x -1));
+        }
+        const y = Math.random() * 1.1 * this.limiterMaxVal;
+        const x = this.data.length;
+        const newData = this.data.concat([{y, x}]);
+        newData[newData.length - 1].color = this.colorSegregator(y, newData, 'main');
+        this.setData(newData);
+    }
+    drawSection(value, param) {//парметры - цифры
+        if (param > 0){
+            const lastEl = this.data[param-1];
+            const lastPointConf = this.calculatePointConf(lastEl.y, lastEl.x);
+            const lastX = lastPointConf.x;
+            const lastY = lastPointConf.y;
+
+            const pointConf = this.calculatePointConf(value, param);
+            const x = pointConf.x;
+            const y = pointConf.y;
+
+            const gradient = this.ctx.createLinearGradient(0,this.convertPercToPx( this.chartAreaLimiters.bottom, 'y'),0,this.convertPercToPx( this.chartAreaLimiters.top, 'y'));
+            this.colors.forEach((v, i) => {
+                gradient.addColorStop(i/this.colors.length, v);
+            });
+
+            this.ctx.fillStyle = gradient;
+            this.ctx.lineWidth = this.convertPercToPx(1,'y');
+            this.ctx.beginPath();
+
+            this.ctx.moveTo(this.convertPercToPx(lastX, 'x'), this.convertPercToPx(lastY, 'y'));
+            this.ctx.lineTo(this.convertPercToPx(x, 'x'), this.convertPercToPx(y, 'y'));
+            this.ctx.lineWidth = this.convertPercToPx(0.1,'y');
+            this.ctx.lineTo(this.convertPercToPx(x, 'x'), this.convertPercToPx(this.chartAreaLimiters.bottom, 'y'));
+            this.ctx.lineTo(this.convertPercToPx(lastX, 'x'), this.convertPercToPx(this.chartAreaLimiters.bottom, 'y'));
+
+            this.ctx.closePath();
+            this.ctx.stroke();
+            this.ctx.fill();
+        }
+    }
+
+    drawLabels(labels){
+        this.makeShadows();
+        this.ctx.fillStyle = 'orange';
+        this.ctx.textBaseline = "middle";
+
+        this.writeAxisLabels(labels);
+
+        this.ctx.textAlign = 'center';
+        this.ctx.font = '1.2vw fantasy';
+        this.ctx.fillText('Стоимость акций шаурмечной', this.convertPercToPx(50, 'x') ,this.convertPercToPx(this.chartAreaLimiters.top - 4, 'y'));
+
+        this.ctx.fillStyle = 'rgb(249, 180, 45)';
+        this.ctx.font = '0.7vw fantasy';
+
+        for (let i = 1; i <= this.sectionsAmount; i++) {
+            const localX = this.chartAreaLimiters.left + i / (this.sectionsAmount + 1) * this.activeChartAreaX;
+            this.ctx.moveTo(this.convertPercToPx(localX,'x'), this.convertPercToPx(this.chartAreaLimiters.bottom - 1,'y'));
+            this.ctx.lineTo(this.convertPercToPx(localX,'x'), this.convertPercToPx(this.chartAreaLimiters.bottom +2,'y'));
+        }
+
+        this.drawValueLabels();
+        this.ctx.stroke();
+    }
+    draw(){
+        this.updateCanvasPrecision();
+        this.ctx.stroke(this.createBasicDiagramLayout());
+        this.drawLabels(this.labels);
+        this.data.forEach(val => this.drawSection(val.y, val.x));
+    }
+    render() {
+        return this.canvas;
+    }
+}
+class DashBoard {
+    constructor(){
+        this.dashBoard = this.initDom();
+    }
+    init(toDashBoardBtn){
+        this.toDashBoardBtn = toDashBoardBtn;
+    }
+    initDom(){
+        const dashBoard = document.createElement('div');
+        dashBoard.classList.add('dashBoard');
+        const label = document.createElement('div');
+        label.innerHTML = 'Статистика';
+        label.classList.add('dashBoardMainLabel');
+        this.initDiagrams();
+        dashBoard.append(label, this.columnDiagramCanvas, this.circleDiagramCanvas, this.hotChartCanvas);
+
+        return dashBoard;
+    }
+    initDiagrams(){
+        this.columnDiagram = new ColumnDiagram();
+        this.circleDiagram = new CircleDiagram();
+        this.hotChart = new HotChart();
+        this.columnDiagramCanvas = this.columnDiagram.render();
+        this.circleDiagramCanvas = this.circleDiagram.render();
+        this.hotChartCanvas = this.hotChart.render();
+    }
+    updateCharts(){
+        this.columnDiagram.draw();
+        this.circleDiagram.draw();
+        this.hotChart.startChart();
+    }
+    render() {
+        return this.dashBoard;
+    }
+}
+class ToDashBoardButton{
+    constructor() {
+        this.isDashBoardOpen = false;
+        this.button = this.initDom();
+    }
+    init(container, dashboard){
+        this.container = container;
+        this.dashboard = dashboard.render();
+        this.dashboardObj = dashboard;
+        this.initHandlers();
+    }
+    initDom (){
+        const button = document.createElement('div');
+        button.classList.add('toDashBoardBtn');
+        const img = document.createElement('img');
+        img.src = './img/arrow.png';
+        img.classList.add('toDashBoardArrow');
+        button.append(img);
+        return button;
+    }
+    initHandlers(){
+        let copyOfContainerChildren;
+        this.button.addEventListener('click', () => {
+            if (this.isDashBoardOpen){
+                this.container.innerHTML = '';
+                this.button.firstChild.classList.remove('toDashBoardArrowBack');
+                this.container.append(...copyOfContainerChildren);
+            } else {
+                copyOfContainerChildren = Array.from(this.container.childNodes.values()).concat([]);//важно, что обнуление innerHTML внутри, тк предварительно надо запомнить элементы контейнера,
+                this.container.innerHTML = '';
+                this.dashboard.append(this.button);
+                this.button.firstChild.classList.add('toDashBoardArrowBack');
+                this.container.append(this.dashboard);
+                this.dashboardObj.updateCharts();
+            }
+            this.isDashBoardOpen = !this.isDashBoardOpen;
+        });
+    }
+    hide(){
+        this.button.classList.add('basketPreferencesClosed');
+    }
+    show(){
+        this.button.classList.remove('basketPreferencesClosed');
+    }
+    render() {
+        return this.button;
+    }
+}
+class DatabaseManager {
+    constructor(basePath){
+        this.basePath = basePath;
+    }
+    async changePath(path){
+        const res = await this.validatePath();
+        if (res){
+            this.basePath = path;
+        }
+    }
+    async validatePath(path){
+        return await this.getMethod(path, () => true, () => false);
+    }
+    async get(){
+        return await this.getMethod('', (xhr) => JSON.parse(xhr.responseText), () => null);
+    }
+    getMethod(params,resolveCallback, rejectCallback){
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', this.basePath + params);
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === XMLHttpRequest.DONE){
+                    if(xhr.status !== 200){
+                        if (rejectCallback){
+                            const res = rejectCallback(xhr);
+                            reject(res);
+                        } else {
+                            reject(xhr.status);
+                        }
+                    }
+                    const res = resolveCallback(xhr);
+                    resolve(res);
+                }
+            };
+            xhr.send();
+        });
+    }
+}
+class StatisticsDatabaseManager extends DatabaseManager{
+    constructor(){
+        super('http://localhost:3000/statistics?');
+    }
+    async getColumnStatistic() {
+        return await this.getMethod('id=columnStatistic', (xhr) => JSON.parse(xhr.responseText), () => null);
+    }
+}
 class Validator {
     static basePatternsName = {
         name: 'name',
@@ -330,42 +866,6 @@ class BasketView {
         return this.basketStatusWindow;
     }
 }
-
-class DatabaseManager {
-    constructor(basePath){
-        this.basePath = basePath;
-    }
-    async changePath(path){
-        const res = await this.validatePath();
-        if (res){
-            this.basePath = path;
-        }
-    }
-    async validatePath(path){
-        return await this.getMethod(path, () => true, () => false);
-    }
-    getMethod(params,resolveCallback, rejectCallback){
-            return new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', this.basePath + params);
-                xhr.onreadystatechange = () => {
-                    if(xhr.readyState === XMLHttpRequest.DONE){
-                        if(xhr.status !== 200){
-                            if (rejectCallback){
-                                const res = rejectCallback(xhr);
-                                reject(res);
-                            } else {
-                                reject(xhr.status);
-                            }
-                        }
-                        const res = resolveCallback(xhr);
-                        resolve(res);
-                    }
-                };
-                xhr.send();
-            });
-    }
-}
 class GoodsDatabaseManager extends DatabaseManager{
     constructor(){
         super('http://localhost:3000/goods?');
@@ -376,9 +876,6 @@ class GoodsDatabaseManager extends DatabaseManager{
         this.getSortedParams = this.getSortedParams.bind(this);
         this.getLikeParams = this.getLikeParams.bind(this);
         this.getByComplexParams = this.getByComplexParams.bind(this);
-    }
-    async get(){
-        return await this.getMethod('', (xhr) => JSON.parse(xhr.responseText), () => null);
     }
     getSortedParams(paramsArr){
         if (!paramsArr.length){
@@ -854,12 +1351,17 @@ class InitializatorDOM {
             const mode = tagCatalog.classList.contains('selectedArea') ? 'CATALOG' : 'BASKET';
             this.createOrUpdateItemsView(mode, this.selectedPageNum[mode]);
         });
-        this.createOrUpdateItemsView('CATALOG', this.selectedPageNum['CATALOG']);
+        this.dashBoard = new DashBoard();
+        this.toDashBoardButton = new ToDashBoardButton();
 
+        this.toDashBoardButton.init(this.container, this.dashBoard);
+        this.dashBoard.init(this.toDashBoardButton.render());
+
+        this.createOrUpdateItemsView('CATALOG', this.selectedPageNum['CATALOG']);
         this.narrowBasketMode = false;
 
         tabPanel.append(tagCatalog, tabToggleButton, tagBasket);
-        container.append(tabPanel, rootBasketArea, rootCatalogArea/*, this.basketPreferences*/, this.basketView.basketStatusWindow);
+        container.append(tabPanel, rootBasketArea, rootCatalogArea, this.basketView.basketStatusWindow, this.toDashBoardButton.render());
         document.body.append(container);
     }
 
@@ -1184,12 +1686,14 @@ class InitializatorDOM {
             }
 
             this.basketView.render();
+            this.toDashBoardButton.hide();
 
         } else if (mode === 'CATALOG') {
             this.basketView.hideBasketStatusWindow();
             this.catalog.productList.slice(startCount, startCount + 3).forEach(prItem => {
                 this.rootCatalogArea.append(this.createCatalogCard(prItem, 'CATALOG'));
             });
+            this.toDashBoardButton.show();
         }
 
         for (let i = 0; i < pageCount; i++) {

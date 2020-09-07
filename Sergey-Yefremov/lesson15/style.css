@@ -1,0 +1,19 @@
+body {
+    background: linear-gradient(to right, rgb(219, 232, 240), rgb(127, 144, 142));
+}
+h2 {
+    margin-top: 45px;
+    text-align: center;
+}
+p {
+    text-align: center;
+}
+#canvas {
+    display: block;
+    margin: 25px auto 150px auto;
+}
+#canvas1 {
+    display: block;
+    margin: 25px auto;
+    color: #051937;
+}

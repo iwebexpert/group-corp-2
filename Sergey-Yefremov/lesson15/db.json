@@ -1,0 +1,66 @@
+{
+  "sales": [{
+    "id": 1,
+    "month": "January",
+    "sale": 145,
+    "price": 12990
+  },
+    {
+      "id": 2,
+      "month": "February",
+      "sale": 128,
+      "price": 8575
+    },
+    {
+      "id": 3,
+      "month": "March",
+      "sale": 130,
+      "price": 7831
+    }, {
+      "id": 4,
+      "month": "April",
+      "sale": 120,
+      "price": 5840
+    }, {
+      "id": 5,
+      "month": "May",
+      "sale": 143,
+      "price": 10124
+    }, {
+      "id": 6,
+      "month": "June",
+      "sale": 145,
+      "price": 7400
+    }, {
+      "id": 7,
+      "month": "July",
+      "sale": 140,
+      "price": 8284
+    }, {
+      "id": 8,
+      "month": "August",
+      "sale": 150,
+      "price": 11646
+    }, {
+      "id": 9,
+      "month": "September",
+      "sale": 102,
+      "price": 5961
+    }, {
+      "id": 10,
+      "month": "October",
+      "sale": 120,
+      "price": 9244
+    }, {
+      "id": 11,
+      "month": "November",
+      "sale": 140,
+      "price": 11123
+    }, {
+      "id": 12,
+      "month": "December",
+      "sale": 165,
+      "price": 14127
+    }
+  ]
+}

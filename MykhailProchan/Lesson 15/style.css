@@ -1,0 +1,8 @@
+:not(head) {
+  padding: 0px;
+  margin: 0px;
+}
+
+.wrapper {
+  display: flex;
+}

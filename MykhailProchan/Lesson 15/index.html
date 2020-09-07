@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/charts/PieChart.js"></script>
+    <script src="/charts/BarChart.js"></script>
+    <script>
+        window.addEventListener('load', async () => {
+            const response = await fetch('/sales');
+            const data = await response.json();
+
+            const total = data.reduce((a, b) => a + b.sales, 0);
+
+            pieChart(data, total);
+            barChart(data);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="">
+            <canvas id="pie-chart" width="500px" height="500px"></canvas>
+            <p>Красный цвет - продажи за январь, зелёный цвет - продажи за февраль, синий цвет - продажи за март.</p>
+        </div>
+        <canvas id="bar-chart" width="500px" height="500px"></canvas>
+    </div>
+</body>
+
+</html>

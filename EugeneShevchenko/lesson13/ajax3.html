@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json-server</title>
+</head>
+
+<body>
+    <button>показать юзеров</button>
+    <ul></ul>
+
+    <script>
+        const list = document.querySelector('ul'),
+            btn = document.querySelector('button');
+
+        btn.addEventListener('click', () => {
+            fetch('/users')
+                .then(response => response.json())
+                .then((users) => {
+                    users.forEach((user) => {
+                        const li = document.createElement('li')
+                        li.textContent = `${user.name} (${user.age})`
+                        list.append(li)
+                    });
+                },
+                ).catch((error) => {
+                    console.error('error:', error)
+                })
+        })
+    </script>
+</body>
+
+</html>

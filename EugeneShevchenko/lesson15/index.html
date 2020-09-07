@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>статистика покупок</title>
+</head>
+
+<body>
+    <canvas id="myChart"></canvas>
+    <button class="btn-watch">просмотр статистики</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script>
+        const btn = document.querySelector('.btn-watch')
+
+        btn.addEventListener('click', () => {
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', '/months')
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status !== 200) {
+                        return
+                    }
+                    const statistics = JSON.parse(xhr.responseText)
+                    console.log(statistics)
+                    let arrLabels = []
+
+                    function myMonthes() {
+                        for(let elems of statistics) {
+                            arrLabels.push(elems.month)
+                        }
+                    }
+                    myMonthes()
+
+                    const ctx = document.querySelector('#myChart').getContext('2d')
+                    let chart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: arrLabels,
+                            datasets: [{
+                                label: 'график продаж по месяцам',
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [10, 1, 5, 2, 20, 30, 45, 17, 96, 200, 4, 42]
+                            }]
+                        },
+                        options: {}
+                    })
+
+                }
+            }
+            xhr.send()
+        })
+    </script>
+</body>
+
+</html>

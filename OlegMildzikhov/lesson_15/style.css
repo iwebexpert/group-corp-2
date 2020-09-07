@@ -1,0 +1,8 @@
+.canvas__wrapper {
+    margin: 0 auto;
+    width: 900px;
+}
+
+#canvas {
+    outline: 1px solid black;
+}

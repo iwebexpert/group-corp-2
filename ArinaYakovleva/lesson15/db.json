@@ -1,0 +1,48 @@
+{
+    "goods": [
+        {
+            "id": 1,
+            "name": "Laptop",
+            "price": 40000,
+            "currency": "RUB"
+        },
+        {
+            "id": 2,
+            "name": "Monitor",
+            "price": 25000,
+            "currency": "RUB"
+        },
+        {
+            "id": 3,
+            "name": "Phone",
+            "price": 30000,
+            "currency": "RUB"
+        },
+        {
+            "id": 4,
+            "name": "Mouse",
+            "price": 1000,
+            "currency": "RUB"
+        }
+    ],
+    "sales": [
+        {
+            "id": 1,
+            "month": "January",
+            "sales": 254,
+            "price": 800000
+        },
+        {
+            "id": 2,
+            "month": "February",
+            "sales": 150,
+            "price": 500000
+        },
+        {
+            "id": 3,
+            "month": "March",
+            "sales": 200,
+            "price": 600000
+        }
+    ]
+}

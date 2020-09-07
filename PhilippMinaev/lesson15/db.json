@@ -1,0 +1,22 @@
+{
+  "sales": [
+    {
+      "id": 1,
+      "month": "Jan",
+      "sales": 10,
+      "value": 30200
+    },
+    {
+      "id": 2,
+      "month": "Feb",
+      "sales": 5,
+      "value": 55000
+    },
+    {
+      "id": 3,
+      "month": "Mar",
+      "sales": 15,
+      "value": 48600
+    }
+  ]
+}

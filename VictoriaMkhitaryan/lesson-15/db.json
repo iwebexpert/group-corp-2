@@ -1,0 +1,62 @@
+{
+    "products": [
+        {
+            "id":  1,
+            "name": "MacBook Pro",
+            "price": 120000,
+            "currency": "₽",
+            "img": ["https://s8.hostingkartinok.com/uploads/images/2020/08/1e15eb0f4ae5785553d677aa74f389eb.jpeg"]
+        }, {
+            "id":  2,
+            "name": "Ipad Pro",
+            "price": 69000,
+            "currency": "₽",
+            "img": ["https://s8.hostingkartinok.com/uploads/images/2020/08/efb8c3c5aa170536ee225e6a38b565c8.png"]
+        }, {
+            "id": 3,
+            "name": "Apple Watch",
+            "price": 33000,
+            "currency": "₽",
+            "img": ["https://s8.hostingkartinok.com/uploads/images/2020/08/4329ebf739786443cb579664fe99c38b.jpeg"]
+        }, {
+            "id":  4,
+            "name": "Iphone 11",
+            "price": 60000,
+            "currency": "₽",
+            "img": ["https://s8.hostingkartinok.com/uploads/thumbs/2020/08/f6cdcf35a4ddafdde559ebe9ea5bef7d.png", "https://s8.hostingkartinok.com/uploads/images/2020/08/8f87a4a67b22248d4dc2b23c68e2e863.png"]
+        }
+    ],
+    "statistic": [
+        {
+            "id": 1,
+            "month": "Январь",
+            "sale": 19,
+            "sum": 623455
+        }, {
+            "id": 2,
+            "month": "Февраль",
+            "sale": 32,
+            "sum": 435678
+        }, {
+            "id": 3,
+            "month": "Март",
+            "sale": 23,
+            "sum": 235134
+        }, {
+            "id": 4,
+            "month": "Апрель",
+            "sale": 14,
+            "sum": 453224
+        }, {
+            "id": 5,
+            "month": "Май",
+            "sale": 20,
+            "sum": 243567
+        }, {
+            "id": 6,
+            "month": "Июнь",
+            "sale": 30,
+            "sum": 154687
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+{
+    "sales" : [
+        {
+           
+            "month" : "Январь",
+            "sale" : 70,
+            "price" : 5665,
+            "color" : "burlywood"
+        },
+        {
+           
+            "month" : "Февраль",
+            "sale" : 50,
+            "price" : 3455,
+            "color" : "blue"
+        },
+        {
+         
+            "month" : "Март",
+            "sale" : 25,
+            "price" : 3000,
+            "color" : "grey"
+        },
+        {
+      
+            "month" : "Апрель",
+            "sale" : 23,
+            "price" : 10000,
+            "color" : "lime"
+        },
+        {
+ 
+            "month" : "Май",
+            "sale" : 27,
+            "price" : 7000,
+            "color" : "orange"
+        },
+        {
+
+            "month" : "Июнь",
+            "sale" : 32,
+            "price" : 5220,
+            "color" : "black"
+        },
+        {
+
+            "month" : "Июль",
+            "sale" : 45,
+            "price" : 7000,
+            "color" : "yellow"
+        },
+        {
+       
+            "month" : "Агуст",
+            "sale" : 60,
+            "price" : 6000,
+            "color" : "brown"
+        },
+        {
+         
+            "month" : "Сентбрь",
+            "sale" : 33,
+            "price" : 1000,
+            "color" : "purple"
+        },
+        {
+          
+            "month" : "Октябрь",
+            "sale" : 60,
+            "price" : 5000,
+            "color" : "red"
+        },
+        {
+           
+            "month" : "Ноябрь",
+            "sale" : 12,
+            "price" : 3333,
+            "color" : "pink"
+        },
+        {
+           
+            "month" : "Декабрь",
+            "sale" : 50,
+            "price" : 2222,
+            "color" : "green"
+        }
+    ]
+}

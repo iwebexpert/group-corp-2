@@ -1,0 +1,89 @@
+{
+    "goods": [
+        {
+            "id": "1pr",
+            "name": "шорты",
+            "quantity": 1,
+            "valute": "RUB",
+            "price": 1200,
+            "url": [
+                "./assets/shorts1.jpg",
+                "./assets/shorts2.jpg",
+                "./assets/shorts3.jpg"
+            ]
+        },
+        {
+            "id": "2pr",
+            "name": "майка",
+            "quantity": 1,
+            "valute": "RUB",
+            "price": 800,
+            "url": [
+                "./assets/shirt1.jpg",
+                "./assets/shirt2.jpg",
+                "./assets/shirt3.jpg"
+            ]
+        },
+        {
+            "id": "3pr",
+            "name": "кроссовки",
+            "quantity": 1,
+            "valute": "RUB",
+            "price": 3500,
+            "url": [
+                "./assets/kross1.png",
+                "./assets/kross2.png"
+            ]
+        }
+    ],
+    "sales": [
+        {
+            "id": 1,
+            "month": "Январь",
+            "sales": 300,
+            "price": 366800,
+            "color": "#FFBF93",
+            "label": "ЯНВ"
+        },
+        {
+            "id": 2,
+            "month": "Февраль",
+            "sales": 253,
+            "price": 281300,
+            "color": "#900020",
+            "label": "ФЕВ"
+        },
+        {
+            "id": 3,
+            "month": "Март",
+            "sales": 100,
+            "price": 90310,
+            "color": "#C41E3A",
+            "label": "МАРТ"
+        },
+        {
+            "id": 4,
+            "month": "Апрель",
+            "sales": 290,
+            "price": 320450,
+            "color": "#FBEC5D",
+            "label": "АПР"
+        },
+        {
+            "id": 5,
+            "month": "Май",
+            "sales": 310,
+            "price": 380310,
+            "color": "#007BA7",
+            "label": "МАЙ"
+        },
+        {
+            "id": 6,
+            "month": "Июнь",
+            "sales": 150,
+            "price": 130290,
+            "color": "#003366",
+            "label": "ИЮН"
+        }
+    ]
+}

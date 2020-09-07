@@ -1,0 +1,28 @@
+{
+    "data": [{
+            "title": "Маргарита",
+            "price": 300,
+            "totalSales": 280
+        },
+        {
+            "title": "Мясная",
+            "price": 400,
+            "totalSales": 250
+        },
+        {
+            "title": "Веганская",
+            "price": 500,
+            "totalSales": 100
+        },
+        {
+            "title": "Пепперони",
+            "price": 300,
+            "totalSales": 175
+        },
+        {
+            "title": "Сырная",
+            "price": 400,
+            "totalSales": 200
+        }
+    ]
+}

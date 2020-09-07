@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Timur",
+      "age": 21
+    },
+    {
+      "id": 2,
+      "name": "Igor",
+      "age": 24
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Bread",
+      "price": 2,
+      "currency": "USD"
+    },
+    {
+      "id": 2,
+      "name": "Milk",
+      "price": 5,
+      "currency": "USD"
+    },
+    {
+      "id": 3,
+      "name": "Meat",
+      "price": 12,
+      "currency": "USD"
+    },
+    {
+      "id": 4,
+      "name": "Chocolate",
+      "price": 7,
+      "currency": "USD"
+    }
+  ],
+  "cart": [
+  ]
+}

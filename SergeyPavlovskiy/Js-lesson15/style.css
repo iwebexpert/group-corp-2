@@ -1,0 +1,19 @@
+body {
+  background: seashell;
+}
+h2 {
+  margin-top: 15px;
+  text-align: center;
+}
+p {
+  text-align: center;
+}
+#canvas {
+  display: block;
+  margin: 40px auto;
+}
+#canvas1 {
+  display: block;
+  margin: 40px auto;
+  color: #32507e;
+} 

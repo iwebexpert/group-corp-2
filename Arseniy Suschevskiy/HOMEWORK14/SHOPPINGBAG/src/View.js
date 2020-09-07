@@ -140,6 +140,7 @@ class View {
 			this.changeTab('Order comment');
 		}
 	}
+	// Создаем контент модального окна
 	generateModalText(){
 		this.finalModalBox.innerHTML =
 			`    <div class="modal-content">` +

@@ -1,0 +1,11 @@
+{
+  "name": "homework15",
+  "version": "1.0.0",
+  "description": "Work with Canvas",
+  "main": "PieChart.js",
+  "scripts": {
+    "start": "json-server --watch ./db.json --static ."
+  },
+  "author": "",
+  "license": "ISC"
+}

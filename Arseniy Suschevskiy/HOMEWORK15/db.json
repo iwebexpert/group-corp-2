@@ -1,0 +1,16 @@
+{
+  "sales": [
+    {"id": 1, "month": "January", "sold": 15},
+    {"id": 2, "month": "February", "sold": 20},
+    {"id": 3, "month": "March", "sold": 30},
+    {"id": 4, "month": "April", "sold": 35},
+    {"id": 5, "month": "May", "sold": 45},
+    {"id": 6, "month": "June", "sold": 65},
+    {"id": 7, "month": "July", "sold": 170},
+    {"id": 8, "month": "August", "sold": 75},
+    {"id": 9, "month": "September", "sold": 80},
+    {"id": 10, "month": "October", "sold": 185},
+    {"id": 11, "month": "November", "sold": 95},
+    {"id": 12, "month": "December", "sold": 100}
+  ]
+}

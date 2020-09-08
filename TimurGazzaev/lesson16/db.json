@@ -16,33 +16,52 @@
       "id": 1,
       "name": "Bread",
       "price": 2,
-      "currency": "USD"
+      "currency": "USD",
+      "count": 1
     },
     {
       "id": 2,
       "name": "Milk",
       "price": 5,
-      "currency": "USD"
+      "currency": "USD",
+      "count": 1
     },
     {
       "id": 3,
       "name": "Meat",
       "price": 12,
-      "currency": "USD"
+      "currency": "USD",
+      "count": 1
     },
     {
       "id": 4,
       "name": "Chocolate",
       "price": 7,
-      "currency": "USD"
+      "currency": "USD",
+      "count": 1
     }
   ],
   "cart": [
     {
-      "id": 1,
-      "name": "Bread",
-      "price": 2,
-      "currency": "USD"
+      "id": 2,
+      "name": "Milk",
+      "price": 5,
+      "currency": "USD",
+      "count": 1
+    },
+    {
+      "id": 3,
+      "name": "Meat",
+      "price": 12,
+      "currency": "USD",
+      "count": 1
+    },
+    {
+      "id": 4,
+      "name": "Chocolate",
+      "price": 7,
+      "currency": "USD",
+      "count": 2
     }
   ]
 }

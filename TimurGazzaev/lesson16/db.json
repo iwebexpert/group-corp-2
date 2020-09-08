@@ -38,5 +38,11 @@
     }
   ],
   "cart": [
+    {
+      "id": 1,
+      "name": "Bread",
+      "price": 2,
+      "currency": "USD"
+    }
   ]
 }

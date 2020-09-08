@@ -1,28 +1,60 @@
-function sendRequest(url){
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest()
-        xhr.open('GET', url)
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState === XMLHttpRequest.DONE){
-                if(xhr.status !== 200){
-                    reject(xhr.status)
-                }
-                const users = JSON.parse(xhr.responseText)
-                resolve(users)
-            }
-        }
-        xhr.send()
+let productList = []
+
+async function getProducts() {
+    const data = await fetch('/products', {
+        method: 'GET',
+    });
+    productList = await data.json()
+}
+
+function getCartProducts() {
+    fetch('/cart')
+        .then(response => response.json())
+        .then(cart => return cart
+        )
+}
+
+async function addProduct(product) {
+    const data = await fetch('/cart', {
+        method: 'POST',
+        body: JSON.stringify(product),
+        headers: {
+            'Content-type': 'application/json',
+        },
     })
 }
 
-let productList = []
+async function deleteProduct(product) {
+    const data = await fetch(`/cart/${product.id}`, {
+        method: 'DELETE',
+    })
+}
 
-sendRequest('/products').then((products) => {
-        products.forEach((product) => {
+getProducts()
+
+
+
+
+
+/*sendRequest('/products').forEach((product) => {
             productList.push(product)
-        })
     },
     (status) => {
         console.log('Error', 'Status code:', status)
     }
-)
+)*/
+
+
+
+/*
+btnAdd.addEventListener('click', async () => {
+    const data = await fetch('/basket', {
+        method: 'POST',
+        body: JSON.stringify(product),
+        headers: {
+            'Content-type': 'application/json',
+        },
+    });
+
+    console.log(data);
+});*/

@@ -23,22 +23,30 @@ setTimeout(() => {
             this.address = ''
             this.comment = ''
         }
+        reloadCart() {
+            console.log(getCartProducts())
+        }
         addProduct(product, count) {
             if(product instanceof Product && product && count > 0) {
+
                 let tmp = {...product}
                 tmp.count = count
                 if(this.products.find(item => item.id === product.id)) {
                     this.products.find(item => item.id === product.id).count += count
                 }
                 else {
-                    this.products.push(tmp)
+                    addProduct(product)
+                    /*this.products.push(tmp)*/
+                    this.reloadCart()
                 }
             }
         }
         deleteProduct(product) {
             if(product instanceof Product && product) {
                 if(this.products.find(item => item.id === product.id)) {
-                    this.products = this.products.filter(item => item.id !== product.id)
+                    deleteProduct(product)
+                    /*this.products = this.products.filter(item => item.id !== product.id)*/
+                    this.reloadCart()
                 }
             }
         }
@@ -65,6 +73,7 @@ setTimeout(() => {
     let chocolate = new Product(productList[3].id, productList[3].name, productList[3].price, productList[3].currency,)
 
     let cart1 = new Cart()
+    cart1.reloadCart()
 
     let nav = document.querySelector('.nav')
     let prev = document.querySelector('.prev')
@@ -126,6 +135,8 @@ setTimeout(() => {
     function refreshCart (cartData) {
         let cartInfo = document.createElement('div')
         cartInfo.className = 'cartInfo'
+
+        cartData.reloadCart()
 
         cartData.products.forEach( item => {
             let cartInfoItem = document.createElement('div')

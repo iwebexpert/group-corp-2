@@ -128,12 +128,11 @@ class RenderForm{
 
     document.querySelector('.basket-items').innerHTML = '';
     document.querySelector('#basket').appendChild(this.basket.render());
-    console.log(document.querySelectorAll('input'));
-    document.querySelectorAll('input').forEach( (element) => {
-      element.value = '';
-    });
+    document.querySelector('.inputName').value = '';
+    document.querySelector('.inputPhone').value = '';
+    document.querySelector('.inputEmail').value = '';
+    document.querySelector('.inputAddress').value = '';
     document.querySelector('textarea').value = '';
-
   }
 
   openBasket(){
@@ -153,10 +152,7 @@ class RenderForm{
     const collapseOne = document.querySelector('#collapseOne');
     collapseOne.classList.toggle('show');
 
-    document.querySelector('input').value = '';
-    document.querySelector('textarea').value = '';
 
-    console.log(document.querySelector('input'));
 
     document.querySelector('[data-target="#collapseTwo"]').disabled = true;
     document.querySelector('[data-target="#collapseThree"]').disabled = true;

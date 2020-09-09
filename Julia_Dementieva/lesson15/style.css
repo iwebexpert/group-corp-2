@@ -20,7 +20,19 @@ h2{
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 
+}
+
+.quanCatInput{
+  width: 50px !important;
+  height: 42px !important;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.containerInpAndBlock{
+  display: flex;
 }
 .sumBasket, .basketEmpty{
     font-size: 18px;
@@ -32,6 +44,9 @@ h2{
 .carousel-control-next:hover{
   background-color: rgba(128, 128, 128, 0.3);
 
+}
+.accordion input{
+  margin-bottom: 20px !important;
 }
 
 .mb-0{
@@ -51,11 +66,8 @@ h2{
   line-height: 1.2 !important;
 }
 
-input{
-  margin-bottom: 20px !important; /*Переопределение стилей bootstrap */
-}
+
 .input-error{
-  margin-bottom: 20px !important; /*Переопределение стилей bootstrap */
   border-color: red !important; /*Переопределение стилей bootstrap */
 }
 
@@ -149,3 +161,4 @@ canvas{
 .myLegend{
   margin-left: 30px;
 }
+

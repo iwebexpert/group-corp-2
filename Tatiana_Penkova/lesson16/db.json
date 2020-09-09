@@ -1,0 +1,65 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "name": "Носки",
+      "price": 200
+    },
+    {
+      "id": 2,
+      "name": "Полотенце",
+      "price": 400
+    },
+    {
+      "id": 3,
+      "name": "Трусы",
+      "price": 300
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "month": "Май",
+      "sales": 145,
+      "price": 39600,
+      "socks": 69,
+      "towels": 30,
+      "pants": 46
+    },
+    {
+      "id": 2,
+      "month": "Июнь",
+      "sales": 170,
+      "price": 50000,
+      "socks": 60,
+      "towels": 50,
+      "pants": 60
+    },
+    {
+      "id": 3,
+      "month": "Июль",
+      "sales": 140,
+      "price": 41500,
+      "socks": 48,
+      "towels": 43,
+      "pants": 49
+    },
+    {
+      "id": 4,
+      "month": "Август",
+      "sales": 231,
+      "price": 68100,
+      "socks": 86,
+      "towels": 74,
+      "pants": 71
+    }
+  ],
+  "basket": [
+    {
+      "id": 1,
+      "name": "Носки",
+      "price": 200,
+      "count": "1"
+    }
+  ]
+}

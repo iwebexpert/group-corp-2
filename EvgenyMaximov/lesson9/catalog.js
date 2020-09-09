@@ -6,15 +6,14 @@ const commentArea = document.querySelector(".comment__area");
 
 document.addEventListener("DOMContentLoaded", () => {
   catalog.init();
-  container.addEventListener("click", (e) => {
+  newBasket.init();
+  newBasket.createBasketList();
+  container.addEventListener("click", async (e) => {
     if (e.target.classList.contains("clear__btn")) {
-      newBasket.clearBasket();
-      newBasket.isEmpty();
+      await newBasket.clearBasket();
+      await newBasket.isEmpty();
       newBasket.hideClearBtn();
       newBasket.hideOrderBtn();
-      setTimeout(() => {
-        location.reload();
-      }, 0);
     }
 
     if (e.target.classList.contains("order__btn")) {
@@ -48,12 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (e.target.classList.contains("confirm__btn")) {
       swal(
-        `Your order is ${newBasket.items.length} items for ${newBasket.totalPrice} RUB`,
+        `Your order is ${newBasket.totalCount} items for ${newBasket.totalPrice} RUB`,
         `Wait for delivery`,
         "success"
       );
 
-      setTimeout(() => {
+      setTimeout(async () => {
+        await newBasket.clearBasket();
+        await newBasket.isEmpty();
         location.reload();
       }, 3500);
     }
@@ -170,26 +171,21 @@ class Product {
     productCard.appendChild(productCount);
     productCard.appendChild(addBtn);
 
-    addBtn.addEventListener(
-      "click",
-      () => {
-        newBasket.addItem(new Product(id, name, price, currency, count, url));
-        newBasket.createBasketList(
+    addBtn.addEventListener("click", async () => {
+      await fetch("/basket", {
+        method: "POST",
+        body: JSON.stringify(
           new Product(id, name, price, currency, count, url)
-        );
-        newBasket.resetBasket();
-        newBasket.isEmpty();
-        newBasket.createBasketCard();
-        newBasket.showClearBtn();
-        newBasket.showOrderBtn();
-        let changeBtn = () => {
-          addBtn.textContent = "Added";
-          addBtn.classList.replace("add__btn", "added__btn");
-        };
-        changeBtn();
-      },
-      { once: true }
-    );
+        ),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      newBasket.resetBasket();
+      newBasket.createBasketList();
+      newBasket.basketSum();
+      newBasket.isEmpty();
+    });
 
     return productCard;
   }
@@ -256,91 +252,132 @@ class Catalog {
 
 //-------------------Корзина-----------------------------
 class Basket {
-  constructor(items) {
-    this.items = [...items];
-    this.basketList = new Set(this.items);
+  constructor() {
     this.totalPrice = 0;
-    this.isEmpty();
+    this.totalCount = 0;
   }
 
-  basketSum() {
+  async init() {
+    await this.basketSum();
+    await this.isEmpty();
+  }
+
+  async basketSum() {
     this.totalPrice = 0;
-    this.basketList.forEach((i) => {
-      this.totalPrice += i.price * i.count;
+    this.totalCount = 0;
+    await fetch("/basket")
+      .then((responce) => responce.json())
+      .then((basket) => {
+        basket.forEach((el) => {
+          this.totalPrice += el.price * el.count;
+          this.totalCount += el.count;
+        });
+      });
+  }
+
+  async createBasketList() {
+    await fetch("/basket")
+      .then((responce) => responce.json())
+      .then((basket) => {
+        basket.forEach((p) => {
+          this.createBasketCard(p.name, p.id, p.count);
+        });
+      });
+  }
+
+  async isEmpty() {
+    await fetch("/basket")
+      .then((responce) => responce.json())
+      .then((basket) => {
+        if (basket.length) {
+          sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
+          countBasketSpan.textContent = `Total count: ${this.totalCount}`;
+          this.showClearBtn();
+          this.showOrderBtn();
+        } else {
+          sumBasketSpan.textContent = "";
+          countBasketSpan.textContent = "Basket is empty...";
+          this.hideClearBtn();
+          this.hideOrderBtn();
+        }
+      });
+  }
+
+  createBasketCard(name, id, count) {
+    const inBasketProductCard = document.createElement("div");
+    inBasketProductCard.classList.add("prod__card");
+    const inBasketProductName = document.createElement("p");
+    inBasketProductName.classList.add("basket__prod");
+    inBasketProductName.textContent = `${name}`;
+    inBasketProductName.setAttribute("id", `${id}`);
+
+    const inBasketProductCount = document.createElement("span");
+    inBasketProductCount.textContent = `${count}`;
+
+    const minusBtn = document.createElement("button");
+    minusBtn.textContent = "-";
+    minusBtn.classList.add("minus__btn");
+    minusBtn.setAttribute("id", `${id}`);
+
+    const plusBtn = document.createElement("button");
+    plusBtn.textContent = "+";
+    plusBtn.classList.add("plus__btn");
+    plusBtn.setAttribute("id", `${id}`);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "x";
+    deleteBtn.classList.add("delete__btn");
+    deleteBtn.setAttribute("id", `${id}`);
+
+    inBasketProductName.appendChild(inBasketProductCount);
+    inBasketProductCard.appendChild(minusBtn);
+    inBasketProductCard.appendChild(inBasketProductName);
+    inBasketProductCard.appendChild(plusBtn);
+    inBasketProductCard.appendChild(deleteBtn);
+    basketListContainer.appendChild(inBasketProductCard);
+
+    minusBtn.addEventListener("click", async (e) => {
+      if (count > 1) {
+        await fetch(`/basket/${e.target.id}`, {
+          method: "PATCH",
+          body: JSON.stringify({ count: count - 1 }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
+        await this.basketSum();
+        await this.isEmpty();
+        this.resetBasket();
+        await this.createBasketList();
+
+        sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
+      }
     });
-  }
 
-  isEmpty() {
-    if (this.items.length) {
+    plusBtn.addEventListener("click", async (e) => {
+      await fetch(`/basket/${e.target.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ count: count + 1 }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      await this.basketSum();
+      await this.isEmpty();
+      this.resetBasket();
+      await this.createBasketList();
       sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
-      countBasketSpan.textContent = `Total count: ${this.items.length}`;
-    } else {
-      sumBasketSpan.textContent = "";
-      countBasketSpan.textContent = "Basket is empty...";
-    }
-  }
+    });
 
-  addItem(item) {
-    if (item instanceof Product) {
-      this.items.push(item);
-    }
-  }
-
-  createBasketList(item) {
-    if (item instanceof Product) {
-      this.basketList.add(item);
-      item.count++;
-    }
-    this.basketSum();
-  }
-
-  createBasketCard() {
-    this.basketList.forEach((p) => {
-      const inBasketProductCard = document.createElement("div");
-      inBasketProductCard.classList.add("prod__card");
-      const inBasketProductName = document.createElement("p");
-      inBasketProductName.classList.add("basket__prod");
-      inBasketProductName.textContent = `${p.name}`;
-      inBasketProductName.setAttribute("id", `${p.id}`);
-
-      const inBasketProductCount = document.createElement("span");
-      inBasketProductCount.textContent = `${p.count}`;
-
-      const minusBtn = document.createElement("button");
-      minusBtn.textContent = "-";
-      minusBtn.classList.add("minus__btn");
-      minusBtn.setAttribute("id", `${p.name}`);
-
-      const plusBtn = document.createElement("button");
-      plusBtn.textContent = "+";
-      plusBtn.classList.add("plus__btn");
-      plusBtn.setAttribute("id", `${p.name}`);
-
-      inBasketProductName.appendChild(inBasketProductCount);
-      inBasketProductCard.appendChild(minusBtn);
-      inBasketProductCard.appendChild(inBasketProductName);
-      inBasketProductCard.appendChild(plusBtn);
-      basketListContainer.appendChild(inBasketProductCard);
-
-      minusBtn.addEventListener("click", (e) => {
-        if (e.target.id === p.name && p.count > 1) {
-          p.count--;
-          inBasketProductCount.textContent = `${p.count}`;
-          countBasketSpan.textContent = `Total count: ${--this.items.length}`;
-        }
-        this.basketSum();
-        sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
+    deleteBtn.addEventListener("click", async (e) => {
+      await fetch(`/basket/${e.target.id}`, {
+        method: "DELETE",
       });
-
-      plusBtn.addEventListener("click", (e) => {
-        if (e.target.id === p.name) {
-          p.count++;
-          inBasketProductCount.textContent = `${p.count}`;
-          countBasketSpan.textContent = `Total count: ${++this.items.length}`;
-        }
-        this.basketSum();
-        sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
-      });
+      sumBasketSpan.textContent = `Total price: ${this.totalPrice} RUB `;
+      await this.basketSum();
+      await this.isEmpty();
+      this.resetBasket();
+      await this.createBasketList();
     });
   }
 
@@ -348,13 +385,17 @@ class Basket {
     basketListContainer.innerHTML = "";
   }
 
-  clearBasket() {
+  async clearBasket() {
+    await fetch("/basket")
+      .then((responce) => responce.json())
+      .then((basket) => {
+        basket.forEach((el) => {
+          fetch(`basket/${el.id}`, {
+            method: "DELETE",
+          });
+        });
+      });
     basketListContainer.innerHTML = "";
-    this.items = [];
-    this.basketList.forEach((p) => {
-      p.count = 0;
-    });
-    this.basketList.clear();
   }
 
   // Кнопка очистки
@@ -481,7 +522,7 @@ class FormBtns {
 // ------------Создание товаров, каталога, добавление товаров в каталог-------------
 
 catalog = new Catalog();
-newBasket = new Basket([]);
+newBasket = new Basket();
 formBtns = new FormBtns();
 
 //--------------Валидация форм----------------------------------

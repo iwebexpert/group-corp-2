@@ -46,11 +46,8 @@ const goods = new GoodsList();
 goods.fetchGoods();
 
 const basket = new BasketOfGoods(" ", " ");
-basket.getBasket();
-
+basket.getBasketOfGoods();
 setTimeout(() => {
     basket.renderBasket();
 }, 200);
 basket.showComplitionBasket();
-
-let btnsAdd = document.querySelectorAll(".btn-add");

@@ -13,11 +13,7 @@ class BasketOfGoods {
         this._comment = comment;
     }
 
-    addToBasket(product) {
-        this.items.push(product);
-    }
-
-    async getBasket() {
+    async getBasketOfGoods() {
         const response = await fetch('/basket');
         this.items = await response.json();
     }
@@ -30,7 +26,7 @@ class BasketOfGoods {
                 'Content-type': 'application/json',
             },
         });
-        this.getBasket();
+        this.getBasketOfGoods();
 
     }
 
@@ -44,7 +40,7 @@ class BasketOfGoods {
                 'Content-type': 'application/json',
             },
         });
-        this.getBasket();
+        this.getBasketOfGoods();
 
     }
 
@@ -52,7 +48,7 @@ class BasketOfGoods {
         const data = await fetch(`/basket/${product.id}`, {
             method: 'DELETE',
         });
-        this.getBasket();
+        this.getBasketOfGoods();
 
     }
 

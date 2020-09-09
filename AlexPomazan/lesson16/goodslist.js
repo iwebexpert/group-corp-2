@@ -7,7 +7,6 @@ class GoodsList {
       .then(() => {
         const btnsAdd = document.querySelectorAll(".btn-add");
         const btnsDelete = document.querySelectorAll(".btn-delete");
-        const images = document.querySelectorAll(".img-1");
         const id = document.querySelectorAll(".product-id");
         const names = document.querySelectorAll(".name");
         const prices = document.querySelectorAll(".price-value");
@@ -27,9 +26,6 @@ class GoodsList {
             basket.items.push(product);
             basket.postBasketOfGoods(product);
             basket.renderBasket();
-
-
-
           });
         });
 

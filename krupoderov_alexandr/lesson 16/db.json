@@ -1,0 +1,120 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ivan Ivanov",
+      "age": 25
+    },
+    {
+      "id": 2,
+      "name": "Ivan Petrov",
+      "age": 24
+    },
+    {
+      "id": 3,
+      "name": "Anna Ivanova",
+      "age": 29
+    },
+    {
+      "id": 4,
+      "name": "Vika Sidorova",
+      "age": 28
+    },
+    {
+      "id": 5,
+      "name": "Olga Ivanova",
+      "age": 31
+    }
+  ],
+  "goods": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "weight": 1000,
+      "price": 150,
+      "category": [
+        "fruit",
+        "fresh"
+      ],
+      "description": "Some fresh and tasty apple",
+      "IMG_URLS": [
+        "img/apple/apple-1.jpg",
+        "img/apple/apple-2.jpg",
+        "img/apple/apple-3.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Melon",
+      "weight": 1000,
+      "price": 32,
+      "category": [
+        "berry",
+        "fresh"
+      ],
+      "description": "The best melons",
+      "IMG_URLS": [
+        "img/melon/melon-1.jpg",
+        "img/melon/melon-2.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Chicken",
+      "weight": 1000,
+      "price": 150,
+      "category": [
+        "meat"
+      ],
+      "description": "Some fresh and tasty apple",
+      "IMG_URLS": [
+        "img/chicken/chicken.jpg"
+      ]
+    }
+  ],
+  "sales": [
+    {
+      "month": "Jan",
+      "value": 100
+    },
+    {
+      "month": "Feb",
+      "value": 150
+    },
+    {
+      "month": "Mar",
+      "value": 63
+    },
+    {
+      "month": "Apr",
+      "value": 200
+    },
+    {
+      "month": "May",
+      "value": 120
+    }
+  ],
+  "bucket": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "weight": 1000,
+      "price": 150,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "name": "Melon",
+      "weight": 1000,
+      "price": 32,
+      "count": 0
+    },
+    {
+      "id": 3,
+      "name": "Chicken",
+      "weight": 1000,
+      "price": 150,
+      "count": 0
+    }
+  ]
+}

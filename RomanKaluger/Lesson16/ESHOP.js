@@ -35,7 +35,10 @@ class DatabaseManager {
             },
             body: JSON.stringify(data)
         });
-        return await response.json();
+        if (response.ok) {
+            return await response.json();
+        }
+        return null;
     }
     async patchMethod(params, data) {
         await this.requestQueueDelay();
@@ -46,7 +49,10 @@ class DatabaseManager {
             },
             body: JSON.stringify(data)
         });
-        return await response.json();
+        if (response.ok) {
+            return await response.json();
+        }
+        return null;
     }
     async putMethod(params, data) {
         await this.requestQueueDelay();
@@ -57,14 +63,20 @@ class DatabaseManager {
             },
             body: JSON.stringify(data)
         });
-        return response;
+        if (response.ok) {
+            return await response.json();
+        }
+        return null;
     }
     async deleteMethod(params) {
         await this.requestQueueDelay();
         const response = await fetch(this.basePath + params, {
             method: 'DELETE',
         });
-        return await response.json();
+        if (response.ok) {
+            return await response.json();
+        }
+        return null;
     }
     getMethod(params,resolveCallback, rejectCallback){
         return new Promise((resolve, reject) => {
@@ -154,7 +166,6 @@ class BasketDatabaseManager extends DatabaseManager{
         return await this.deleteMethod(`/${item.id}`, item);
     }
 }
-
 class BasketStatistics {
     constructor(){
         this.basketStatisticsBoard = this.initDom();

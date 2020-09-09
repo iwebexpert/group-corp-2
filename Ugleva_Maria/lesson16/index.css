@@ -1,0 +1,163 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    max-width: 900px;
+    margin: 0 auto;
+    color: black;
+}
+
+.header {
+    font-weight: 300;
+}
+
+input {
+    margin-top: 10px;
+}
+
+label {
+    padding-right: 10px;
+}
+
+.itemBasket,
+.basketItem {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.inputsWrapper {
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+.basketItem__input {
+    /* max-width: 50px; */
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+}
+
+.header {
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.rollUp {
+    background-image: url('./up.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+}
+
+.rollDown {
+    background-image: url('./down-arrow.png');
+}
+
+.btns__changeCount {
+    border-top: 1px solid rgba(40, 44, 52, 0.4);
+}
+
+.btn__changeCount,
+.basketItem__input {
+    margin: 0;
+    max-width: 100px;
+    padding: 7px 30px;
+    flex-grow: 1;
+    border: none;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    border-radius: 0px;
+}
+
+.btn__changeCount {
+    border-style: none;
+}
+
+.btn__buy,
+.btn__delete {
+    position: absolute;
+    right: 15px;
+    bottom: 0px;
+    width: 24px;
+    height: 24px;
+    background-image: url('./img/buy.png');
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.btn__delete {
+    background-image: url('./img/trash.png');
+}
+
+.btnItem-container {
+    display: inline-block;
+    width: 50%;
+    position: relative;
+}
+
+.itemBasket,
+.basketItem {
+    width: 160px;
+    text-align: center;
+}
+
+.item__img {
+    height: 280px;
+    margin: 0 auto 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    margin-bottom: 0px;
+}
+
+.card__info {
+    display: inline-block;
+    width: 50%;
+    padding-left: 15px;
+    margin: 10px 0;
+}
+
+.card-name {
+    color: gray;
+}
+
+#commentBtn,
+#toAddress {
+    padding: 5px 9px;
+    color: white;
+    background-color: rgba(0, 128, 0, 0.9);
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+}
+
+.taxtareaLabel {
+    display: block;
+}
+
+
+.cards__card {
+    border: none;
+    display: block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+}
+#boxInputsAddress {
+    width: 50%;
+}

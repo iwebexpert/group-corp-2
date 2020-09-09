@@ -1,0 +1,120 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: url("https://cdn.stocksnap.io/img-thumbs/960w/sliced-oranges_F6TBSCOKEI.jpg") no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+#app{
+    margin: 100px auto 0 auto;
+    display: flex;
+    width: 1700px;
+}
+.products-list{
+    width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 100px;
+}
+.basket{
+    margin-top: 35px;
+    width: 700px;
+    background: rgba(255, 255, 255, 0.9);
+}
+.product{
+    margin-top: 35px;
+    margin-left: 50px;
+    width: 300px;
+    height: auto;
+}
+img{
+    width: 300px;
+    height: 200px;
+}
+.card .card-content{
+    text-align: center;
+    padding: 5px;
+
+}
+.card{
+    background: rgba(255, 255, 255, 0.5);
+}
+.btn-flat {
+    font-size: 20px;
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+ul li{
+    font-size: 20px;
+    padding:12px;
+    background: rgba(238, 238, 238, 0.5);
+    width: 375px;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 70%;
+}
+i{
+    margin-left: 15px;
+    align-self: center;
+    cursor: pointer;
+}
+p{
+    font-size: 18px;
+}
+.shopping-bag{
+    margin-left: 16px;
+}
+h2{
+    margin:10px 0 20px 16px;
+}
+label{
+    font-size: 16px;
+    color: black ;
+}
+.hidden{
+    display: none;
+}
+.shop-tabs{
+    margin-bottom: 10px;
+}
+.address{
+    margin:0 100px 0 16px;
+}
+.order-comment{
+    margin:0 100px 0 16px;
+}
+.shop-message{
+    margin-right: 100px;
+}
+.price{
+    color: white;
+}
+li span:first-child{
+    width: 75px;
+}
+.next-btn{
+    margin-left: 30px;
+}
+.address .next-btn{
+    margin-left: 0;
+}
+
+/*input{*/
+/*    background: rgba(255, 255, 255, 0.4) !important;*/
+/*}*/
+/*textarea{*/
+/*    background: rgba(255, 255, 255, 0.4) !important;*/
+/*}*/
+.input-field label {
+    color: #000;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #000;
+}
+.row{
+    margin-bottom: 10px;
+}

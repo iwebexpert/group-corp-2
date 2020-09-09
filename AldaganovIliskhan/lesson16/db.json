@@ -1,0 +1,29 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "title": "Клавиатура",
+      "price": 3000,
+      "currency": "RUB",
+      "img": "./img/keyboard.jpg",
+      "class": "keyboard"
+    },
+    {
+      "id": 2,
+      "title": "Мышка",
+      "price": 500,
+      "currency": "RUB",
+      "img": "./img/mouse.jpg",
+      "class": "mouse"
+    },
+    {
+      "id": 3,
+      "title": "Монитор",
+      "price": 2000,
+      "currency": "RUB",
+      "img": "./img/monitor.jpg",
+      "class": "monitor"
+    }
+  ],
+  "cart": []
+}

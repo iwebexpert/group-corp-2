@@ -3,7 +3,8 @@
 const API_URL = "";
 
 class Item {
-  constructor(name, price, count, img) {
+  constructor(id, name, price, count, img) {
+    this.id = id;
     this.img = img;
     this.name = name;
     this.price = price;
@@ -23,20 +24,59 @@ class ShoppingBucket {
     }
   }
 
-  fetchItem(name, price, count, img) {
-    let item = new Item(name, price, count, img);
+  fetchItem(id, name, price, count, img) {
+    let item = new Item(id, name, price, count, img);
     this.addItem(item, count);
   }
 
   fetchItems() {
-    makeGETRequest(`${API_URL}/items`)
+    this.makeGETRequest(`${API_URL}/items`)
       .then((items) => {
         items.forEach((item) =>
-          this.fetchItem(item.name, item.price, item.count, item.img)
+          this.fetchItem(item.id, item.name, item.price, item.count, item.img)
         );
         this.render();
       })
       .catch((errMessage) => console.log(errMessage));
+  }
+
+  makeGETRequest(url) {
+    return new Promise((resolve, reject) => {
+      let xhr;
+      if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+      } else if (window.ActiveXObject) {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status != 200) {
+            reject(`${xhr.status}: ${xhr.statusText}`);
+          }
+          resolve(JSON.parse(xhr.responseText));
+        }
+      };
+
+      xhr.open("GET", url, true);
+      xhr.send();
+    });
+  }
+
+  //Удаление товара из БД
+  methodDELETE(item) {
+    return fetch(`/items/${item["id"]}`, { method: "DELETE" });
+  }
+
+  //Изменение товара из БД
+  methodPATCH(item) {
+    return fetch(`/items/${item["id"]}`, {
+      method: "PATCH",
+      body: JSON.stringify({ count: item.count }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
   }
 
   sumTotal() {
@@ -119,6 +159,7 @@ class ShoppingBucket {
         item.count++;
         coast.innerHTML = item.price * item.count;
         bucketItemCount.innerHTML = item.count;
+        obj.methodPATCH(item);
         obj.reRenderFooter();
       });
 
@@ -129,11 +170,14 @@ class ShoppingBucket {
       right.appendChild(deleteBtn);
       deleteBtn.onclick = function () {
         item.count--;
+        console.log(item.id);
         if (item.count == 0) {
           bucketItem.remove();
+          obj.methodDELETE(item);
         }
         coast.innerHTML = item.price * item.count;
         bucketItemCount.innerHTML = item.count;
+        obj.methodPATCH(item);
         obj.reRenderFooter();
       };
     }
@@ -399,46 +443,8 @@ class ShoppingBucket {
     };
   }
 }
-// НЕ НУЖНО С СЕРВЕРНОЙ ЧАСТЬЮ
-// //Добавить товары и создать корзину
-// let cpu = new Item("Intel Core i5-9600K", 12854, 0, "./img/1.jpg");
-// let graphicCard = new Item("Nvidia GTX 1660S (Super)", 15161, 0, "./img/2.jpg");
-// let ram = new Item(
-//   "Corsair Vengeance LPX DDR4 3200 C16 2x8GB",
-//   3626,
-//   0,
-//   "./img/3.jpg"
-// );
 
 let myBucket = new ShoppingBucket("Philipp");
-
-// //Добавить товары в корзину
-// myBucket.addItem(cpu, 1);
-// myBucket.addItem(ram, 2);
-// myBucket.addItem(graphicCard, 1);
-
-const makeGETRequest = (url) => {
-  return new Promise((resolve, reject) => {
-    let xhr;
-    if (window.XMLHttpRequest) {
-      xhr = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-      xhr = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status != 200) {
-          reject(`${xhr.status}: ${xhr.statusText}`);
-        }
-        resolve(JSON.parse(xhr.responseText));
-      }
-    };
-
-    xhr.open("GET", url, true);
-    xhr.send();
-  });
-};
 
 //Инициализация
 myBucket.fetchItems();

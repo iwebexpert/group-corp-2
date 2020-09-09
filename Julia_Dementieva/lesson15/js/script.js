@@ -1,6 +1,7 @@
 //ES6
 class ProductItem {
-    constructor(name, price, quantity){
+    constructor(id, name, price, quantity){
+        this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -8,7 +9,7 @@ class ProductItem {
     }
 
     showProduct(){
-        return `Название ${this.name} Цена ${this.price}руб. Количество ${this.quantity}`;
+        return `Название ${this.name} Цена ${this.price}руб. В наличии: ${this.quantity}`;
     }
 
     render(){
@@ -24,9 +25,17 @@ class ProductItem {
 }
 
 class Product extends ProductItem {
-    constructor (name, price, quantity, imgs){
-        super(name, price, quantity); //Вызов конструктора родителя
+    constructor (id, name, price, quantity, imgs){
+        super(id, name, price, quantity); //Вызов конструктора родителя
         this.imgs = imgs;
+    }
+
+    reducNumber(number){
+        if(this.quantity >= number){
+            this.quantity -= number;
+            return true;
+        } 
+        return false;
     }
 
     render(){
@@ -50,11 +59,42 @@ class Product extends ProductItem {
 class Catalog  {
     constructor(productList){
         this.productList = productList;
-        this.catalog = document.createElement('div');
+        this.catalog = document.querySelector('.catalog');
     }
 
     init(basket){
         this.basket = basket;
+    }
+    // id продукта и кол-во продукции, на которое изменилось
+    changePrdQuan(idProduct, changeQuantity){
+        this.productList.forEach( (element, index) => {
+            if(idProduct == element.id){
+                changeQuan(`/catalog/${element.id}`, element.quantity + changeQuantity);
+                element.quantity += changeQuantity;
+                
+            }
+        })
+
+    }
+
+    findID(idProduct){
+        let indexFind = -1;
+        this.productList.forEach( (element, index) => {
+            if(idProduct == element.id){
+                indexFind = index;            
+            }
+        })
+        return indexFind;
+    }
+
+    findName(productName){
+        let indexFind = -1;
+        [...this.productList].forEach( (element, index) => {
+            if(productName === element.name){
+                indexFind = index;
+            }
+        })
+        return indexFind;
     }
 
     render(){
@@ -62,30 +102,36 @@ class Catalog  {
         for(let i = 0; i <this.productList.length; i++){
             if(this.productList[i] instanceof Product){
                 this.catalog.appendChild(this.productList[i].render());
+                const block = document.createElement('div');
+                block.classList = 'containerInpAndBlock';
+                const quanCatInput = document.createElement('input');
+                quanCatInput.setAttribute('type', 'text');
+                quanCatInput.setAttribute('id', `quanCatInput${i}`);
+                quanCatInput.setAttribute('value', '0');
+                quanCatInput.className = "form-control quanCatInput";
+                block.appendChild(quanCatInput);
+            
                 const btn = document.createElement('button');
                 btn.className = 'btn btn-primary addBasket';
                 btn.setAttribute('id', i);
-                // Добавить событие на кнопку
-                
                 btn.innerHTML = 'Добавить в корзину';
-                btn.addEventListener('click', (event) => {
+                block.appendChild(btn);
 
-                    this.basket.add(this.productList[event.target.id]);
-                    this.basket.clearRender();
-                    this.basket.render();
-
-                });
-                this.productList[i]._product.appendChild(btn);
+                this.productList[i]._product.appendChild(block);
                 
             }
         }
         return this.catalog;
     }
+
+    clearRender(){
+        document.querySelector('.catalog').innerHTML = '';
+    }
 }
 
 class ProductInBasket extends Product {
-    constructor (name, price, quantity, imgs){
-        super(name, price, quantity, imgs); //Вызов конструктора родителя
+    constructor (id,name, price, quantity, imgs){
+        super(id, name, price, quantity, imgs); //Вызов конструктора родителя
     }
 
 
@@ -93,8 +139,10 @@ class ProductInBasket extends Product {
         super.render();
         return this._product;
     }
-    // Изменение количества добавленного продукта
-    changeQuality(){}
+    
+    showProduct(){
+        return `Название ${this.name} Цена ${this.price}руб. Количество: ${this.quantity}`;
+    }
 }
 
 class Basket  {
@@ -108,8 +156,9 @@ class Basket  {
         this.comment = '';
     }
 
-    init(renderForm){
+    init(renderForm, catalog){
         this.renderForm = renderForm;
+        this.catalog = catalog;
     }
 
     countBasketPrice(){
@@ -120,22 +169,38 @@ class Basket  {
         return sum;
     }
 
-    add(product){
-        if(product instanceof Product){
+    add(product, quantity){
+        if(product instanceof Product && product.reducNumber(+quantity)){
             let indexFind = this.findName(product.name);
             if(indexFind > -1){
-                this.basketList[indexFind].quantity +=1;
+                
+                this.basketList[indexFind].quantity += +quantity;
+                // изменение кол-ва для корзины
+                changeQuan(`/basket/${product.id}`, this.basketList[indexFind].quantity);
+                // изменение кол-ва для каталога
+                changeQuan(`/catalog/${product.id}`, product.quantity);
+                
             } else {
-                const newProduct = new ProductInBasket(product.name, product.price, product.quantity, product.imgs);
+                const newProduct = new ProductInBasket(product.id, product.name, product.price, +quantity, product.imgs);
                 this.basketList.push(newProduct);
-            }  
+
+                addPrdInBasket(newProduct);
+                changeQuan(`/catalog/${product.id}`, product.quantity);
+            } 
+            return true;
+
         } else { 
             console.log('Товар не может быть вставлен');
+            return false;
         }
     }
 
     delete(idProduct){
         if(idProduct>=0 && idProduct < this.basketList.length){
+            this.catalog.changePrdQuan(this.basketList[idProduct].id, this.basketList[idProduct].quantity);
+            
+            deleteProduct(this.basketList[idProduct].id);
+
             // Удаляет продукт из корзины
             this.basketList.splice(idProduct, 1);
         } else {
@@ -144,7 +209,11 @@ class Basket  {
     }
 
     clear(){
+        this.basketList.forEach( (index) => {
+            deleteProduct(index.id);
+        });
         this.basketList.length = 0;
+        
         this.name = '';
         this.phone = '';
         this.email = '';
@@ -157,6 +226,16 @@ class Basket  {
         [...this.basketList].forEach( (element, index) => {
             // Если есть уже это продукт, то меняем количество
             if(productName === element.name){
+                indexFind = index;
+            }
+        })
+        return indexFind;
+    }
+    // ищет по ID индекс в массиве
+    findID(productID){
+        let indexFind = -1;
+        [...this.basketList].forEach( (element, index) => {
+            if(productID === element.id){
                 indexFind = index;
             }
         })
@@ -224,15 +303,11 @@ class Basket  {
                 if(element instanceof ProductInBasket){
                     this.basket.appendChild(element.render());
                     const btn = document.createElement('button');
-                    btn.className = 'btn btn-danger';
+                    btn.className = 'btn btn-danger deleteProduct';
                     btn.id = index;
                     // Добавить событие на кнопку
                     btn.innerHTML = 'Удалить из корзины';
-                    btn.addEventListener('click', (event) => {
-                        this.delete(event.target.id);
-                        this.clearRender();
-                        this.render();
-                    });
+                    
                     element._product.appendChild(btn);
                 }
             });

@@ -21,7 +21,7 @@ loadProducts('/catalog')
     const arrCatalog = [];
 
     catalogDB.forEach( (element) => {
-          const catalogItem = new Product(element.name, element.price, element.quantity, element.imgs);
+          const catalogItem = new Product(element.id,element.name, element.price, element.quantity, element.imgs);
           arrCatalog.push(catalogItem);
     });
 
@@ -38,21 +38,44 @@ loadProducts('/catalog')
         const arrBasket = [];
 
         basketDB.forEach( (element) => {
-              const basketItem = new ProductInBasket(element.name, element.price, element.quantity, element.imgs);
+              const basketItem = new ProductInBasket(element.id,element.name, element.price, element.quantity, element.imgs);
               arrBasket.push(basketItem);
         });
         
 
         const basket = new Basket(arrBasket);
 
+
         catalog.init(basket);
         const renderForm = new RenderForm();
+        basket.init(renderForm, catalog);
         renderForm.init(basket);
         renderForm.renderAddressComment();
         renderForm.switchForm(true,false,false);
 
+
         document.querySelector('.wrapper').addEventListener('click',(event) =>{
-          if(event.target.classList.contains('nextBasket')){
+          if(event.target.classList.contains('addBasket')){
+            const input = document.querySelector(`#quanCatInput${event.target.id}`);
+            if(/^[1-9][0-9]*$/.test(input.value) && basket.add(catalog.productList[event.target.id], input.value)){
+              input.classList.remove('input-error');
+              input.value = 0;
+
+              catalog.clearRender();
+              catalog.render();
+
+              basket.clearRender();
+              basket.render();
+            } else {
+              input.classList.toggle('input-error');
+            }
+          }else if(event.target.classList.contains('deleteProduct')){
+            basket.delete(event.target.id);
+            catalog.clearRender();
+            catalog.render();
+            basket.clearRender();
+            basket.render();
+          }else if(event.target.classList.contains('nextBasket')){
             renderForm.activeAddress = true;
             renderForm.switchForm(true,true,false);
           } else if (event.target.classList.contains('nextAddress')){
@@ -81,7 +104,7 @@ loadProducts('/catalog')
               basket.address = document.querySelector('.inputAddress').value;
               basket.comment = document.querySelector('textarea').value;
               
-              // renderForm.clear();
+              
               renderForm.showConfirm();
           } else if (event.target.classList.contains('btn-secondary')){
               renderForm.closeConfirm();
@@ -122,3 +145,45 @@ async function ChartStatics(){
 }
 
 ChartStatics();
+
+
+async function changeQuan(url, quanChange){
+  const quan = await fetch(url, {
+    method: 'PATCH',
+    body: JSON.stringify({quantity: quanChange}),
+    headers:{
+      'Content-type': 'application/json',
+    }
+  });
+}
+
+async function addPrdInBasket(product){
+  const newProduct = await fetch('/basket', {
+    method: 'POST',
+    body: JSON.stringify({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      quantity: product.quantity,
+      imgs: product.imgs,
+    }),
+    headers:{
+      'Content-type': 'application/json',
+    }
+  });
+}
+
+async function deleteProduct(idProduct){
+  const id = await fetch(`/basket/${idProduct}`, {
+    method: 'DELETE'
+  });
+}
+
+async function getPrdsInBasket(name){
+  const basket = await fetch(`/basket?name=${name}`);
+  return basket.json();
+}
+
+
+
+    

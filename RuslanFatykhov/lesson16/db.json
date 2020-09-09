@@ -1,6 +1,5 @@
 {
-  "goods": [
-    {
+  "goods": [{
       "id": "1",
       "product": "FENDER Redondo Special MBK w/bag",
       "currency": "руб.",
@@ -67,8 +66,7 @@
       ]
     }
   ],
-  "sales": [
-    {
+  "sales": [{
       "id": 1,
       "month": "ЯНВ",
       "sale": 25,
@@ -142,27 +140,6 @@
     }
   ],
   "basket": [
-    {
-      "product": "FENDER Redondo Special MBK w/bag",
-      "currency": "руб.",
-      "price": "78000",
-      "img": [
-        "./assets/fender/1.jpg",
-        "./assets/fender/2.jpg",
-        "./assets/fender/3.jpg"
-      ],
-      "id": 1
-    },
-    {
-      "product": "YAMAHA FG820 SUNSET BLUE",
-      "currency": "руб.",
-      "price": "24990",
-      "img": [
-        "./assets/yamaha/1.jpg",
-        "./assets/yamaha/2.jpg",
-        "./assets/yamaha/3.jpg"
-      ],
-      "id": 2
-    }
+
   ]
 }

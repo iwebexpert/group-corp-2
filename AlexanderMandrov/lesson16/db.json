@@ -1,0 +1,75 @@
+{
+  "sales": [
+    {
+      "id": 1,
+      "month": "Январь",
+      "sales": 254,
+      "price": 872400
+    },
+    {
+      "id": 2,
+      "month": "Февраль",
+      "sales": 125,
+      "price": 471800
+    },
+    {
+      "id": 3,
+      "month": "Март",
+      "sales": 200,
+      "price": 672900
+    },
+    {
+      "id": 1,
+      "month": "Апрель",
+      "sales": 184,
+      "price": 872400
+    },
+    {
+      "id": 2,
+      "month": "Май",
+      "sales": 165,
+      "price": 471800
+    },
+    {
+      "id": 3,
+      "month": "Июнь",
+      "sales": 220,
+      "price": 672900
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "keyboard",
+      "price": 1000,
+      "currency": "RUB"
+    },
+    {
+      "id": 2,
+      "name": "mouse",
+      "price": 500,
+      "currency": "RUB"
+    },
+    {
+      "id": 3,
+      "name": "cover",
+      "price": 300,
+      "currency": "RUB"
+    },
+    {
+      "id": 4,
+      "name": "phone",
+      "price": 30000,
+      "currency": "RUB"
+    }
+  ],
+  "basket": [
+    {
+      "id": "cover",
+      "name": "cover",
+      "price": 300,
+      "currency": "RUB",
+      "quantity": 5
+    }
+  ]
+}

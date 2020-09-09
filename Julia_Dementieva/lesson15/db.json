@@ -1,16 +1,5 @@
 {
-  "basket": [
-    {
-      "id": "2",
-      "name": "Chair",
-      "price": 1390,
-      "quantity": 2,
-      "imgs": [
-        "img/chair.jpg",
-        "img/chair1.jpg"
-      ]
-    }
-  ],
+  "basket": [],
   "catalog": [
     {
       "id": 0,
@@ -38,7 +27,7 @@
       "id": 2,
       "name": "Chair",
       "price": 1390,
-      "quantity": 222,
+      "quantity": 224,
       "imgs": [
         "img/chair.jpg",
         "img/chair1.jpg"

@@ -4,13 +4,15 @@
       "id": 1,
       "name": "Хачапури",
       "price": 100,
-      "description":"Пальчики оближешь",
+      "description": "Пальчики оближешь",
       "features": "100g",
       "imgURLsArr": [
         "https://static.1000.menu/img/content-v2/51/8f/43277/xachapuri-s-syrom-suluguni_1581752500_17_max.jpg",
         "https://rutxt.ru/files/12177/original/f79cb5878c.JPG"
       ],
-      "ingredientsArr": ["CHEESE"],
+      "ingredientsArr": [
+        "CHEESE"
+      ],
       "size": "MEDIUM",
       "baseCalories": 100
     },
@@ -18,14 +20,16 @@
       "id": 2,
       "name": "Шашлык",
       "price": 200,
-      "description":"Не из собак",
+      "description": "Не из собак",
       "features": "100g",
       "imgURLsArr": [
         "https://www.patee.ru/r/x6/15/f9/7f/960m.jpg",
         "https://kopilka-kulinara.ru/upload/information_system_52/2/5/3/item_2537/item_2537.jpg",
         "https://www.povarenok.ru/data/cache/2016jun/25/46/1624257_55566-710x550x.jpg"
       ],
-      "ingredientsArr": ["CHEESE"],
+      "ingredientsArr": [
+        "CHEESE"
+      ],
       "size": "MEDIUM",
       "baseCalories": 200
     },
@@ -33,14 +37,16 @@
       "id": 3,
       "name": "Шаурма",
       "price": 150,
-      "description":"Не из кошек",
+      "description": "Не из кошек",
       "features": "100g",
-      "imgURLsArr":[
+      "imgURLsArr": [
         "https://static.1000.menu/img/content-v2/05/d8/21554/klassicheskaya-shaurma_1589963797_11_max.jpg",
         "https://images.cdn.inmyroom.ru/inmyroom/thumb/940x600/jpg:85/uploads/food_recipe/teaser/0b/0b0e/jpg_1000_0b0e915f-1dc7-41e9-a778-d3ac20d2e1b6.jpg?sign=7ac4ef5cd67b307374e0680358426af931bbb3bded2650d26b79b21ceeba74b5",
         "https://www.recept.ua/files/uploads/rec_img/schaurma-s-kuricey.jpg"
       ],
-      "ingredientsArr": ["CHEESE"],
+      "ingredientsArr": [
+        "CHEESE"
+      ],
       "size": "MEDIUM",
       "baseCalories": 150
     },
@@ -48,32 +54,52 @@
       "id": 4,
       "name": "Котяра",
       "price": 1,
-      "description":"Осторожно, кот",
+      "description": "Осторожно, кот",
       "features": "100g",
-      "imgURLsArr":[
+      "imgURLsArr": [
         "https://swan-swan.ru/sites/default/files/articles/11.jpg",
         "https://cdnmyslo.ru/BlogArticle/02/16/0216f815-4d2a-40a7-a84e-40d408f8987f_1.jpg"
       ],
-      "ingredientsArr": ["CHEESE"],
+      "ingredientsArr": [
+        "CHEESE"
+      ],
       "size": "MEDIUM",
       "baseCalories": 120
     }
   ],
-  "texts": [
-    {
-      "id": "textBefore",
-      "content": "'No one knows what it's like'\n'To be the bad' man\nTo be the sad man\nBehind 'blue eyes'\nAnd no one knows 'what it's like'\nTo be hated\nTo be 'faded to telling' only lies\nBut my dreams 'they aren't as empty'\nAs my conscience seems to be\nI have hours, only lonely\nMy love is vengeance\nThat's never free"
-    },
-    {
-      "id": "textAfter",
-      "content": "\"No one knows what it's like\"\n\"To be the bad\" man\nTo be the sad man\nBehind \"blue eyes\"\nAnd no one knows \"what it's like\"\nTo be hated\nTo be \"faded to telling\" only lies\nBut my dreams \"they aren't as empty\"\nAs my conscience seems to be\nI have hours, only lonely\nMy love is vengeance\nThat's never free\n"
-    }
-  ],
+  "basket": [],
+  "basketStats": [],
   "statistics": [
     {
       "id": "columnStatistic",
-      "monthLabels": ["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],
-      "values": [233, 145, 345, 235, 500, 424, 360, 332, 200, 100, 80, 480]
+      "monthLabels": [
+        "январь",
+        "февраль",
+        "март",
+        "апрель",
+        "май",
+        "июнь",
+        "июль",
+        "август",
+        "сентябрь",
+        "октябрь",
+        "ноябрь",
+        "декабрь"
+      ],
+      "values": [
+        233,
+        145,
+        345,
+        235,
+        500,
+        424,
+        360,
+        332,
+        200,
+        100,
+        80,
+        480
+      ]
     }
   ]
 }

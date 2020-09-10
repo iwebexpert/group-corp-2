@@ -1,0 +1,45 @@
+
+        const product = {
+            "id": 1,
+            "title": "Компьютерная мышь",
+            "price": 400,
+            "count": 5
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnAdd = document.querySelector('.add');
+            btnAdd.addEventListener('click', async () => {
+                const data = await fetch('/basket', {
+                    method: 'POST',
+                    body: JSON.stringify(product),
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                });
+
+                console.log(data);
+            });
+
+            const btnChange = document.querySelector('.change');
+            btnChange.addEventListener('click', async () => {
+                const data = await fetch(`/basket/${product.id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({count: product.count + 1}),
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                });
+
+                console.log(data);
+            });
+
+            const btnDelete = document.querySelector('.delete');
+            btnDelete.addEventListener('click', async () => {
+                const data = await fetch(`/basket/${product.id}`, {
+                    method: 'DELETE',
+                });
+
+                console.log(data);
+            });
+        });
+    

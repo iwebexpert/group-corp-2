@@ -26,8 +26,6 @@ class BasketOfGoods {
                 'Content-type': 'application/json',
             },
         });
-        this.getBasketOfGoods();
-
     }
 
     async patchBasketOfGoods(product, quantity) {
@@ -40,16 +38,12 @@ class BasketOfGoods {
                 'Content-type': 'application/json',
             },
         });
-        this.getBasketOfGoods();
-
     }
 
     async deleteBasketOfGoods(product) {
         const data = await fetch(`/basket/${product.id}`, {
             method: 'DELETE',
         });
-        this.getBasketOfGoods();
-
     }
 
     countBasketPrice() {

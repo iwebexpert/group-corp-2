@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/order.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+
+  <div class="overlay"></div>
+  <div class="popup">
+    <div class="close">+</div>
+    <div class="arrow-next">></div>
+    <div class="arrow-prev">></div>
+    <div class="popup__visseble">
+      <div class="popup__inner"></div>
+    </div>
+  </div>
+  <div class="container">
+    <!--Каталог-->
+    <div class="catalog">
+      <a href="/stats.html" class='continue-stat'>Просмотреть статистику продаж</a>
+      <h1 class="catalog-title">Каталог</h1>
+      <div id="catalog"></div>
+    </div>
+
+
+    <!--Корзина-->
+    <h1 class="title">Корзина</h1>
+    <button class="btn  btn--clear">Очистить карзину</button>
+    <p class="info">В корзине: <span class="totalPrice">Корзина пуста</span></p>
+    <div id="cart"></div>
+
+    <!--Форма-->
+    <form class="form" action="POST">
+      <div class="form-group address">
+        <label for="address">Адрес</label>
+        <input id="address" name="address"></input>
+        <button class="next">Далее</button>
+      </div>
+
+      <div class="all">
+        <div class="form-group name">
+          <label for="name">Имя</label>
+          <input id="name" name="name"></input>
+          <span class="error"></span>
+        </div>
+
+        <div class="form-group number">
+          <label for="number">Телефон</label>
+          <input id="number" name="number"></input>
+          <span class="error"></span>
+        </div>
+
+        <div class="form-group email">
+          <label for="email">Почта</label>
+          <input id="email" name="email"></input>
+          <span class="error"></span>
+        </div>
+
+        <div class="form-group comment">
+          <label for="comment">Комментарий</label>
+          <textarea id="comment" name="comment"></textarea>
+        </div>
+
+        <button id="btn" class="send-btn">Отправить</button>
+      </div>
+
+    </form>
+
+    <!--Продолжить-->
+    <button class="continue">Продолжить</button>
+
+    <!--Попап-->
+    <div class="order">
+      <div class="order__inner">
+        <div class="order__address"></div>
+        <div class="order__comments"></div>
+        <div class="order__cost"></div>
+        <button class="order__btn">Отлично</button>
+      </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "name": "apples",
+      "price": 30,
+      "imgURL": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/apples-royalty-free-image-164084111-1537885595.jpg"
+    },
+    {
+      "id": 2,
+      "name": "bananas",
+      "price": 45,
+      "imgURL": "https://cosmosmagazine.com/wp-content/uploads/2020/02/100118_Debunked_01.jpg"
+    },
+    {
+      "id": 3,
+      "name": "lemons",
+      "price": 40,
+      "imgURL": "https://www.agriorbit.com/wp-content/uploads/2020/05/lemons-2039830_1280-1.jpg"
+    },
+    {
+      "id": 4,
+      "name": "cherries",
+      "price": 50,
+      "imgURL": "https://southmelbournemarket.com.au/wp-content/uploads/2014/11/cherries1.jpg"
+    }
+  ],
+  "basket": []
+}

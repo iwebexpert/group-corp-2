@@ -1,0 +1,21 @@
+.BasketStatisticsBoard{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #dae0d7;
+}
+.toBasketStatisticsButton{
+    top: 0vh;
+    left:89vw;
+    font-size: 3vh;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+.tableHtmlBasketStats{
+    width: 100%;
+    max-height: 73vh;
+    color: orange;
+    background-color: #343A40;
+    font-size: 20px;
+}

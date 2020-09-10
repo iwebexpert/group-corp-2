@@ -1,48 +1,27 @@
 {
-  "goods": [
-    {
-      "id": "0",
-      "name": "apples",
-      "price": 100,
-      "count": 1,
-      "img": "./src/apple.png"
-    },
-    {
-      "id": "1",
-      "name": "chocolade",
-      "price": 25,
-      "count": 1,
-      "img": "./src/choko.png"
-    },
-    {
-      "id": "2",
-      "name": "books",
-      "price": 1250,
-      "count": 1,
-      "img": "./src/books.png"
-    }
-  ],
-  "basket": [
-    {
-      "id": "0",
-      "name": "apples",
-      "price": 100,
-      "count": 3,
-      "img": "./src/apple.png"
-    },
-    {
-      "id": "1",
-      "name": "chocolade",
-      "price": 25,
-      "count": 3,
-      "img": "./src/choko.png"
-    },
-    {
-      "id": "2",
-      "name": "books",
-      "price": 1250,
-      "count": 3,
-      "img": "./src/books.png"
-    }
-  ]
+    "goods": [{
+            "id": "0",
+            "name": "apples",
+            "price": 100,
+            "count": 1,
+            "img": "./src/apple.png"
+        },
+        {
+            "id": "1",
+            "name": "chocolade",
+            "price": 25,
+            "count": 1,
+            "img": "./src/choko.png"
+        },
+        {
+            "id": "2",
+            "name": "books",
+            "price": 1250,
+            "count": 1,
+            "img": "./src/books.png"
+        }
+    ],
+    "basket": [
+
+    ]
 }

@@ -6,22 +6,36 @@ class Cart {
 
 	pushItem(item) {
 		let itemInCart = this.items.find(f => f.id === item.id);
-		if (item.amount) {
-			this.items.push(item);
-		} else if (itemInCart) {
-			itemInCart.render();
-			this.patchItem(itemInCart);
+		if (itemInCart) {
+			itemInCart.amount += 1;
+			this.patchItem(itemInCart).then(res => {
+				if (res.status === 200) {
+					itemInCart.render();
+					this.checkout();
+				} else {
+					itemInCart.amount -= 1;
+					console.log('Ошибка добавления предмета');
+					return;
+				}
+			})
 		} else {
 			const newItem = new CartItem(item)
-			this.items.push(newItem);
-			this.sendItem(item);
-			newItem.render();
+			this.sendItem(item).then(res => {
+				if (res.status === 201) {
+					this.items.push(newItem);
+					newItem.render();
+					this.checkout();
+				} else {
+					console.log('Ошибка добавления предмета');
+					return;
+				}
+			})
 		}
-		this.checkout();
 	}
 
-	async sendItem(item) {
-		const data = await fetch('/cart', {
+	//методы для связи с сервером начинаются тут
+	sendItem(item) {
+		return fetch('/cart', {
 			method: 'POST',
 			body: JSON.stringify(item, item.amount = 1),
 			headers: {
@@ -30,8 +44,8 @@ class Cart {
 		})
 	}
 
-	async patchItem(item) {
-		const data = await fetch('/cart/' + item.id, {
+	patchItem(item) {
+		return fetch('/cart/' + item.id, {
 			method: 'PATCH',
 			body: JSON.stringify({ amount: item.amount }),
 			headers: {
@@ -40,19 +54,37 @@ class Cart {
 		})
 	}
 
-	async deleteItem(item) {
-		const data = await fetch('/cart/' + item.id, {
+	deleteItem(item) {
+		fetch('/cart/' + item.id, {
 			method: 'DELETE'
+		}).then(res => {
+			if (res.status === 200) {
+				this.items.splice(this.items.findIndex(el => el.id === item.id), 1);
+			} else {
+				console.log('Ошибка удаления предметов');
+			}
 		})
-		this.items.splice(this.items.findIndex(el => el.id === item.id), 1);
 	}
 
-	async renderCart() {
-		const data = await fetch('/cart', { method: 'GET' }).then(res => res.json()).then(res => res.forEach(el => {
-			const item = new CartItem(el);
-			this.pushItem(item);
-		}))
+	renderCart() {
+		fetch('/cart', { method: 'GET' })
+			.then(res => {
+				if (res.status === 200) {
+					return res.json();
+				} else {
+					console.log('Ошибка получения корзины с сервера');
+					return;
+				}
+			})
+			.then(res => {
+				res.forEach(el => {
+					const item = new CartItem(el);
+					this.items.push(item);
+				})
+				this.checkout();
+			})
 	}
+	//методы для связи с сервером заканчиваются тут
 
 	checkout() {
 		const total = this.items.reduce(((a, c) => a + c.price * c.amount), 0);
@@ -94,20 +126,25 @@ class CartItem {
 		this.amount = e.target.valueAsNumber;
 		if (this.amount === 0) {
 			this.entry.remove();
-			cart.deleteItem(this)
+			cart.deleteItem(this);
+			cart.checkout();
 		} else {
-			cart.patchItem(this);
+			cart.patchItem(this).then(res => {
+				if (res.status != 200) {
+					console.log('Ошибка добавления товара');
+					this.render();
+				}
+				cart.checkout();
+			});
 		}
-		cart.checkout();
 	}
 
 	render() {
 		if (this.amount != 0) {
-			this.amount += 1;
 			this.input.value = this.amount;
 		} else {//добавляем элемент в корзину
 			this.amount = 1;
-			this.renderNew()
+			this.renderNew();
 		}
 		cart.checkout();
 	}

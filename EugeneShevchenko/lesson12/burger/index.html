@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-	<form name="" action="" id="form">
-		<fieldset>
-			<legend>создать бургер</legend>
-			<div class="row">
-				<p>выбрать размер</p>
-				<div class="radio-variant">
-					<input type="radio" name="size" id="small" value="small" />
-					<label for="small">маленький</label>
-				</div>
-				<div class="radio-variant">
-					<input type="radio" name="size" id="large" value="large" />
-					<label for="large">большой</label>
-				</div>
-			</div>
-			<div class="row additions">
-				<p>Добавки</p>
-				<div class="checkbox-variant">
-					<input type="checkbox" name="add" id="cheese" value="cheese"/>
-					<label for="cheese">сыр</label>
-				</div>
-				<div class="checkbox-variant">
-					<input type="checkbox" name="add" id="salad" value="salad"/>
-					<label for="salad">перец</label>
-				</div>
-				<div class="checkbox-variant">
-					<input type="checkbox" name="add" id="potato" value="potato"/>
-					<label for="potato">кортошечка</label>
-				</div>
-				<div class="checkbox-variant">
-					<input type="checkbox" name="add" id="onion" value="onion"/>
-					<label for="onion">майонез</label>
-				</div>
-				<div class="checkbox-variant">
-					<input type="checkbox" name="add" id="ketchup" value="ketchup"/>
-					<label for="ketchup">кутчуп</label>
-				</div>
-			</div>
-			<div class="submit">
-				<input type="submit" value="заказать" />
-			</div>
-		</fieldset>
-		<br />
-		<div id="result">
-		</div>
-	</form>
-	<script src="index.js"></script>
+  <form name="" action="" id="form">
+    <fieldset>
+      <legend>создать бургер</legend>
+      <div class="row">
+        <p>выбрать размер</p>
+        <div class="radio-variant">
+          <input type="radio" name="size" id="small" value="small"/>
+          <label for="small">маленький</label>
+        </div>
+        <div class="radio-variant">
+          <input type="radio" name="size" id="large" value="large" />
+          <label for="large">большой</label>
+        </div>
+      </div>
+      <div class="row additions">
+        <p>Добавки</p>
+        <div class="checkbox-variant">
+          <input type="checkbox" name="add" id="cheese" value="cheese" />
+          <label for="cheese">сыр</label>
+        </div>
+        <div class="checkbox-variant">
+          <input type="checkbox" name="add" id="salad" value="salad" />
+          <label for="salad">перец</label>
+        </div>
+        <div class="checkbox-variant">
+          <input type="checkbox" name="add" id="potato" value="potato" />
+          <label for="potato">кортошечка</label>
+        </div>
+        <div class="checkbox-variant">
+          <input type="checkbox" name="add" id="onion" value="onion" />
+          <label for="onion">майонез</label>
+        </div>
+        <div class="checkbox-variant">
+          <input type="checkbox" name="add" id="ketchup" value="ketchup" />
+          <label for="ketchup">кутчуп</label>
+        </div>
+      </div>
+      <div id="button" class="submit">
+        <input type="submit" value="заказать" />
+      </div>
+    </fieldset>
+    <br />
+    <div id="result">
+    </div>
+  </form>
+  <script src="index.js"></script>
 </body>
+
 </html>

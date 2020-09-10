@@ -1,0 +1,29 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "title": "Keyboard",
+      "price": 2000,
+      "currency": "RUB",
+      "img": "https://avatars.mds.yandex.net/get-mpic/1336510/img_id8139733990913955767.jpeg/orig",
+      "class": "keyboard"
+    },
+    {
+      "id": 2,
+      "title": "Mouse",
+      "price": 1000,
+      "currency": "RUB",
+      "img": "https://media.kingston.com/hyperx/category/hx-family-mouse-pulsefire-surge-md.jpg",
+      "class": "mouse"
+    },
+    {
+      "id": 3,
+      "title": "Monitor",
+      "price": 10000,
+      "currency": "RUB",
+      "img": "https://cdn.multitronic.fi/images/prod/0/C/9H.LGPLB.QBE-7.jpg",
+      "class": "monitor"
+    }
+  ],
+  "cart": []
+}

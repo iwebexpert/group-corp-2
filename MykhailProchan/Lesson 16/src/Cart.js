@@ -1,21 +1,18 @@
 class Cart {
 	constructor() {
 		this.items = [];
-	}
-
-	checkout() {
-		const total = this.items.reduce(((a, c) => a + c.price * c.amount), 0);
-		const itemsSum = this.items.reduce(((a, c) => a + c.amount), 0);
-		document.getElementById('total').textContent = 'В корзине ' + itemsSum + ' товаров на сумму: ' + total + ' руб.';
+		this.renderCart();
 	}
 
 	pushItem(item) {
 		let itemInCart = this.items.find(f => f.id === item.id);
-
-		if (itemInCart) {
+		if (item.amount) {
+			this.items.push(item);
+			console.log(this.items)
+		} else if (itemInCart) {
 			itemInCart.render();
 			this.patchItem(itemInCart);
-			console.log(this.items)
+			console.log(this.items);
 		} else {
 			const newItem = new CartItem(item)
 			this.items.push(newItem);
@@ -48,8 +45,21 @@ class Cart {
 	async deleteItem(item) {
 		const data = await fetch('/cart/' + item.id, {
 			method: 'DELETE'
-		});
+		})
 		this.items.splice(this.items.findIndex(el => el.id === item.id), 1);
+	}
+
+	async renderCart() {
+		const data = await fetch('/cart', { method: 'GET' }).then(res => res.json()).then(res => res.forEach(el => {
+			const item = new CartItem(el);
+			this.pushItem(item);
+		}))
+	}
+
+	checkout() {
+		const total = this.items.reduce(((a, c) => a + c.price * c.amount), 0);
+		const itemsSum = this.items.reduce(((a, c) => a + c.amount), 0);
+		document.getElementById('total').textContent = 'В корзине ' + itemsSum + ' товаров на сумму: ' + total + ' руб.';
 	}
 
 	clear() {
@@ -66,7 +76,6 @@ class Cart {
 
 class CartItem {
 	constructor(item) {
-		this.amount = 0;
 		this.id = item.id;
 		this.name = item.name;
 		this.price = item.price;
@@ -75,6 +84,22 @@ class CartItem {
 
 		this.entry = document.createElement('div');
 		this.input = document.createElement('input');
+
+		if (item.amount) {
+			this.amount = item.amount;
+			this.entry.classList.add('cart-entry');
+			this.entry.setAttribute('id', this.id + 'cartEntry');
+			this.entry.appendChild(document.createElement('div')).textContent = this.name;
+			this.entry.appendChild(document.createElement('div')).textContent = this.price;
+			this.input = this.entry.appendChild(document.createElement('input'));
+			this.input.setAttribute('type', 'number');
+			this.input.addEventListener('change', this.changeHandler);
+			this.input.value = this.amount;
+			document.getElementById('cart').appendChild(this.entry);
+			cart.checkout();
+		} else {
+			this.amount = 0;
+		}
 	}
 
 	changeHandler(e) {

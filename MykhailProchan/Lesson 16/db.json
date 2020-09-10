@@ -18,22 +18,22 @@
   ],
   "cart": [
     {
-      "id": 1,
-      "name": "Мышка",
-      "price": 1000,
+      "id": 3,
+      "name": "Ещё что-то",
+      "price": 300,
       "amount": 2
     },
     {
       "id": 2,
       "name": "Клавиатура",
       "price": 2000,
-      "amount": 2
+      "amount": 3
     },
     {
-      "id": 3,
-      "name": "Ещё что-то",
-      "price": 300,
-      "amount": 3
+      "id": 1,
+      "name": "Мышка",
+      "price": 1000,
+      "amount": 5
     }
   ]
 }

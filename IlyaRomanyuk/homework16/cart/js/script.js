@@ -280,7 +280,7 @@ class Backet {
   }
 
   /*Генерация каталога, запрос за товарами NEW PROMISE*/
-  generationDOM() {
+  async generationDOM() {
     this.getProducts().
       then(elements => this.setProductsFromServer(elements),
         error => {
@@ -290,6 +290,13 @@ class Backet {
             text: `${error}`
           });
         })
+    let response = await this.methodGET();
+    let data = await response.json();
+    data.forEach(element => {
+      this.basket[element.id] = element;
+      this.renderCart(`${this.countBasketPrice()} ${this.quantityInCart()}`);
+      this.renderProductInCart();
+    })
     this.generationForm(this);
   }
 

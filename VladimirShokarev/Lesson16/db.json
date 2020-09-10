@@ -1,0 +1,65 @@
+{
+  "goods": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "amount": 1,
+      "price": 10,
+      "currency": "RUB"
+    },
+    {
+      "id": 2,
+      "name": "Bread",
+      "amount": 1,
+      "price": 50,
+      "currency": "RUB"
+    },
+    {
+      "id": 3,
+      "name": "Milk",
+      "amount": 1,
+      "price": 100,
+      "currency": "RUB"
+    },
+    {
+      "id": 4,
+      "name": "Water",
+      "amount": 1,
+      "price": 70,
+      "currency": "RUB"
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "month": "Март",
+      "sales": 254,
+      "price": 872400
+    },
+    {
+      "id": 2,
+      "month": "Апрель",
+      "sales": 125,
+      "price": 471800
+    },
+    {
+      "id": 3,
+      "month": "Май",
+      "sales": 200,
+      "price": 672900
+    },
+    {
+      "id": 4,
+      "month": "Июнь",
+      "sales": 180,
+      "price": 572900
+    },
+    {
+      "id": 5,
+      "month": "Июль",
+      "sales": 300,
+      "price": 910900
+    }
+  ],
+  "basket": []
+}

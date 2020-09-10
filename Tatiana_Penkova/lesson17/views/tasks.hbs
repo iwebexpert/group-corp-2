@@ -1,0 +1,29 @@
+<h4>Список задач</h4>
+
+{{#if todos.length}}
+<ul>
+    {{#each todos}}
+    <li class="todo">
+        <form action="/complete" method="POST">
+            <label>
+                {{#if completed}}
+                <input type="checkbox" checked name="completed">
+                {{else}}
+                <input type="checkbox" name="completed">
+                {{/if}}
+                <span>{{title}}</span>
+
+                <input type="hidden" value="{{_id}}" name="id">
+                <button class="btn btns-small" type="submit">Сохранить</button>
+            </label>
+        </form>
+
+
+    </li>
+
+    {{/each}}
+</ul>
+{{else}}
+<p>Поздравляю, задач нет! Вы все сделали!</p>
+
+{{/if}}

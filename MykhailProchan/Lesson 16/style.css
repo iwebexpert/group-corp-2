@@ -1,0 +1,62 @@
+:not(head) {
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.con, textarea {
+	width: 305px;
+	margin: 0 auto;
+}
+
+details {
+	background-color: rgb(235, 235, 235);
+	border-radius: 3%;
+	margin: 15px 0;
+	padding-bottom: 15px;
+	display: block;
+}
+
+summary {
+	height: 20px;
+}
+
+button {
+	margin: 0 auto;
+}
+
+label, input {
+	display: block;
+}
+
+.catalog-entry,
+.catalog-top-row {
+	display: grid;
+	grid-template-columns: 50px 200px 50px;
+}
+
+.catalog-entry>div,
+.catalog-top-row>div {
+	border: 1px solid #ababab;
+}
+
+.catalog-entry, .cart-entry {
+	cursor: pointer;
+}
+
+.cart-entry {
+	display: grid;
+	grid-template-columns: 200px 50px 50px;
+}
+
+.cart-entry>div {
+	border: 1px solid #ababab;
+}
+
+
+#shipping-address__spoiler>div {
+	margin: 10px 0;
+}
+
+input:not(:placeholder-shown):invalid {
+  border: 2px solid #b34a4a;
+}

@@ -1,0 +1,9 @@
+<div>
+	<h2>Задачи на сегодня:</h2>
+	<ol class="todo__list">
+		{{#each tasks}}
+		<li> {{>task}}</li>
+		{{/each}}
+	</ol>
+	{{>form}}
+</div>

@@ -1,0 +1,54 @@
+{
+  "catalogProducts": [
+    {
+      "id": "shirt",
+      "name": "Рубашка",
+      "price": 4000,
+      "currency": "RUB",
+      "count": 1,
+      "img": "./img/shirts.jpg"
+    },
+    {
+      "id": "tie",
+      "name": "Галстук",
+      "price": 1000,
+      "currency": "RUB",
+      "count": 1,
+      "img": "./img/shirt.jpg"
+    },
+    {
+      "id": "jacket",
+      "name": "Пиждак",
+      "price": 4500,
+      "currency": "RUB",
+      "count": 1,
+      "img": "./img/blazer.jpg"
+    },
+    {
+      "id": "suit",
+      "name": "Костюм",
+      "price": 10000,
+      "currency": "RUB",
+      "count": 1,
+      "img": "./img/suit.jpg"
+    }
+  ],
+  "basketProducts": [
+    {
+      "id": "shirt",
+      "name": "Рубашка",
+      "price": 4000,
+      "currency": "RUB",
+      "count": "3",
+      "img": "./img/shirts.jpg"
+    },
+    {
+      "id": "tie",
+      "name": "Галстук",
+      "price": 1000,
+      "currency": "RUB",
+      "count": "3",
+      "img": "./img/shirt.jpg"
+    }
+  ]
+}

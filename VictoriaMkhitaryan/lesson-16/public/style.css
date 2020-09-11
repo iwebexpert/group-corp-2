@@ -1,0 +1,135 @@
+.catalog {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  min-height: 100%;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.products {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 900px;
+}
+
+.products__product {
+  width: 385px;
+  height: 320px;
+  background: #FFFFFF;
+  box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+  border-radius: 10px;
+  padding: 18px 32px;
+  margin: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.product__img {
+  align-self: center;
+  margin-bottom: 20px;
+  width: 150px;
+}
+
+.product__content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product__name {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.product__btn {
+  margin-top: 10px;
+}
+
+.product__price {
+  font-size: 25px;
+  color: #000000ad;
+  flex-grow: 1;
+}
+
+.card {
+  width: 400px;
+  background: #FFFFFF;
+  box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  max-height: 702px;
+}
+
+.summary__product-info {
+  text-align: start;
+}
+
+.summary__product-info_span {
+  white-space: nowrap
+}
+
+.summary__result {
+  bottom: 10px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.info__title {
+  text-align: start;
+  margin: 0px;
+  font-weight: 600;
+}
+
+input {
+  margin-bottom: 20px !important;
+}
+
+button {
+  box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin: 10px;
+  border: none;
+}
+
+.btn-statistics {
+  margin: 20px;
+}
+
+.button-next {
+  margin-top: 20px;
+}
+
+.btn-collapse {
+  color: black !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.product__buy-btn {
+  background-color: black;
+}
+
+.product__delete-btn {
+  background-color: #ff00009e;
+}
+
+.product__add-btn {
+  background-color: #3082cc;
+}

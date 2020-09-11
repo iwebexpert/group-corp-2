@@ -1,0 +1,61 @@
+{
+  "goods": [
+    {
+      "name": "Стул",
+      "cost": 3420,
+      "index": "chair",
+      "delindex": 1
+    },
+    {
+      "name": "Стол",
+      "cost": 7990,
+      "index": "table",
+      "delindex": 2
+    },
+    {
+      "name": "Лампа",
+      "cost": 1070,
+      "index": "lamp",
+      "delindex": 3
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "month": "Январь",
+      "sales": 254,
+      "price": 1145280
+    },
+    {
+      "id": 2,
+      "month": "Февраль",
+      "sales": 502,
+      "price": 287390
+    },
+    {
+      "id": 3,
+      "month": "Март",
+      "sales": 117,
+      "price": 556310
+    },
+    {
+      "id": 4,
+      "month": "Апрель",
+      "sales": 320,
+      "price": 556310
+    },
+    {
+      "id": 5,
+      "month": "Май",
+      "sales": 141,
+      "price": 556310
+    },
+    {
+      "id": 6,
+      "month": "Июнь",
+      "sales": 506,
+      "price": 556310
+    }
+  ],
+  "cart": []
+}

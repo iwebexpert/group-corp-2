@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basket</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <main>
+        <button class="cart-button button" type="button" id="basket-btn">Корзина</button>
+
+        <section class="product-card-section">
+            <a class="product-card-section__box" href="#" target="blanck">
+                <aside>
+                    <img src="image/products_photo/m1.jpg" alt="margarita" height="370">
+                    <button class="product-card-section_btn-order" data-product-name='Маргарита'
+                        onclick="addItemToCart()">Заказать</button>
+                    <p>Маргарита</p>
+                    <span>Вкусно, сырно</span>
+                </aside>
+            </a>
+            <a class="product-card-section__box" href="#" target="blanck">
+                <aside>
+                    <img src="image/products_photo/p1.jpg" alt="meet" height="370">
+                    <button class="product-card-section_btn-order" data-product-name='Мясная'
+                        onclick="addItemToCart()">Заказать</button>
+                    <p>Мясная</p>
+                    <span>Ароматная, мясная</span>
+                </aside>
+            </a>
+            <a class="product-card-section__box" href="#" target="blanck">
+                <aside>
+                    <img src="image/products_photo/v1.jpg" alt="vegan" height="370">
+                    <button class="product-card-section_btn-order" data-product-name='Веганская'
+                        onclick="addItemToCart()">Заказать</button>
+                    <p>Веганская</p>
+                    <span>Без ингредиентов животного происхождения</span>
+                </aside>
+            </a>
+        </section>
+
+    </main>
+
+    <div id="goods-list-section" class="goods-list">
+        <div id="goods-list-section__modal">
+            <input type="submit" value="X" id="goods-list-section__delete">
+            <h3 id="goods-list_head-line">Корзина</h3>
+            <div id="goods-list__product-box"></div>
+            <p id="goods-list__total"></p>
+            <button class="cart-button button" type="button" id="arrange-btn">Оформить</button>
+        </div>
+    </div>
+    <div class="goods-list-section__arrange">
+        <div class="modal__checkout">
+            <h1>Оформить заказ</h1>
+            <form>
+                <input type="text" placeholder="Введите Ваш адрес"><br>
+                <textarea type="text" placeholder="Ваш комментарий"></textarea>
+                <input id='submit' type="submit" value="Отправить">
+            </form>>
+        </div>
+    </div>
+
+    <script src="script/goods_list.js" defer></script>
+
+</body>
+
+</html>

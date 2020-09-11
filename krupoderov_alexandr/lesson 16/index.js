@@ -17,6 +17,20 @@ function getData(url) {
     });
 }
 
+async function changeProd(prod, count){
+    //console.log('count: ', count)
+    let body = {"count": count};
+    body = JSON.stringify(body);
+    await fetch(`/bucket/${prod.id}`,{
+        method: "PATCH",
+        body: body,
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
+}
+
+
 
 //Task 1
 
@@ -216,12 +230,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (newProduct.name === this.products[i].name) {
                         console.log(1)
                         ++this.products[i].count;
+                        changeProd(product, this.products[i].count);
                         this.createHtml();
                         return this;
                     }
                 }
                 this.products.push(newProduct);
-
+                changeProd(product, newProduct.count);
                 this.createHtml();
                 return this;
             } else {
@@ -237,10 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         return null
                     } else if (this.products[i].count === 1) {
                         this.products.splice(i, 1);
+                        changeProd(product, 0);
                         this.createHtml();
                         return this;
                     } else
                         --this.products[i].count;
+                         changeProd(product, this.products[i].count);
                     this.createHtml();
                     return this;
                 }

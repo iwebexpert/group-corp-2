@@ -1,4 +1,3 @@
-
 /*
     1. Привязать добавление товара в корзину к реальному API.
     2. Добавить API для удаления товара из корзины.
@@ -9,11 +8,12 @@
 setTimeout(() => {
 
     class Product {
-        constructor(id, name, price, currency) {
+        constructor(id, name, price, currency, count) {
             this.id = id
             this.name = name
             this.price = price
             this.currency = currency
+            this.count = count
         }
     }
 
@@ -23,30 +23,55 @@ setTimeout(() => {
             this.address = ''
             this.comment = ''
         }
-        reloadCart() {
-            console.log(getCartProducts())
+        async reloadCart() {
+            this.products = await getCartProducts()
+            this.products === [] ? cart.appendChild(emptyCart) : emptyCart.remove()
         }
-        addProduct(product, count) {
-            if(product instanceof Product && product && count > 0) {
+        refreshCart() {
+            this.reloadCart().then( response => {
 
-                let tmp = {...product}
-                tmp.count = count
+                !this.products.length ? cart.appendChild(emptyCart) : emptyCart.remove()
+
+                let cartInfo = document.createElement('div')
+                cartInfo.className = 'cartInfo'
+
+                this.products.forEach( item => {
+                    let cartInfoItem = document.createElement('div')
+                    cartInfoItem.className = 'cartInfoItem'
+                    cartInfoItem.textContent = `${item.name} : ${item.price} ${item.currency} - ${item.count} pieces`
+
+                    let deleteIcon = document.createElement('img')
+                    deleteIcon.className = `deleteIco delete-${item.name.toLowerCase()}`
+                    deleteIcon.src = 'img/delete.svg'
+
+                    cartInfoItem.appendChild(deleteIcon)
+                    cartInfo.appendChild(cartInfoItem)
+                })
+
+                let sum = document.createElement('h2')
+                sum.className = 'sum'
+                sum.textContent = 'Sum : ' + this.getSum()
+
+                cart.appendChild(cartInfo)
+                cart.appendChild(sum)
+                }
+            )
+        }
+        addProduct(product) {
+            if(product instanceof Product && product) {
                 if(this.products.find(item => item.id === product.id)) {
-                    this.products.find(item => item.id === product.id).count += count
+                    addCount(product, this.products.find(item => item.id === product.id).count + 1)
                 }
                 else {
                     addProduct(product)
-                    /*this.products.push(tmp)*/
-                    this.reloadCart()
                 }
             }
         }
         deleteProduct(product) {
             if(product instanceof Product && product) {
                 if(this.products.find(item => item.id === product.id)) {
+                    //this.products = this.products.filter(item => item.id !== product.id)
                     deleteProduct(product)
-                    /*this.products = this.products.filter(item => item.id !== product.id)*/
-                    this.reloadCart()
                 }
             }
         }
@@ -56,9 +81,9 @@ setTimeout(() => {
                 sum += item.price * item.count)
             return sum + ' ' + this.products[0].currency
         }
-        reset() {
-            this.products = []
-        }
+        /*reset() {
+            resetCart()
+        }*/
         setAddress(address) {
             this.address = address
         }
@@ -67,13 +92,13 @@ setTimeout(() => {
         }
     }
 
-    let bread = new Product(productList[0].id, productList[0].name, productList[0].price, productList[0].currency,)
-    let milk = new Product(productList[1].id, productList[1].name, productList[1].price, productList[1].currency,)
-    let meat = new Product(productList[2].id, productList[2].name, productList[2].price, productList[2].currency,)
-    let chocolate = new Product(productList[3].id, productList[3].name, productList[3].price, productList[3].currency,)
+    let bread = new Product(productList[0].id, productList[0].name, productList[0].price, productList[0].currency, productList[0].count)
+    let milk = new Product(productList[1].id, productList[1].name, productList[1].price, productList[1].currency,  productList[1].count)
+    let meat = new Product(productList[2].id, productList[2].name, productList[2].price, productList[2].currency,  productList[2].count)
+    let chocolate = new Product(productList[3].id, productList[3].name, productList[3].price, productList[3].currency,  productList[3].count)
 
     let cart1 = new Cart()
-    cart1.reloadCart()
+    cart1.refreshCart()
 
     let nav = document.querySelector('.nav')
     let prev = document.querySelector('.prev')
@@ -89,7 +114,6 @@ setTimeout(() => {
     order.className = 'buttonHidden'
 
     emptyCart.textContent = 'Your cart is empty'
-    cart.appendChild(emptyCart)
 
     let addressTitle = document.createElement('h2')
     addressTitle.textContent = 'Enter your info'
@@ -132,51 +156,17 @@ setTimeout(() => {
     comment.appendChild(commentTitle)
     comment.appendChild(commentInput)
 
-    function refreshCart (cartData) {
-        let cartInfo = document.createElement('div')
-        cartInfo.className = 'cartInfo'
-
-        cartData.reloadCart()
-
-        cartData.products.forEach( item => {
-            let cartInfoItem = document.createElement('div')
-            cartInfoItem.className = 'cartInfoItem'
-            cartInfoItem.textContent = `${item.name} : ${item.price} ${item.currency} - ${item.count} pieces`
-
-            let deleteIcon = document.createElement('img')
-            deleteIcon.className = `deleteIco delete-${item.name.toLowerCase()}`
-            deleteIcon.src = 'img/delete.svg'
-
-            cartInfoItem.appendChild(deleteIcon)
-            cartInfo.appendChild(cartInfoItem)
-        })
-
-        let sum = document.createElement('h2')
-        sum.className = 'sum'
-        sum.textContent = 'Sum : ' + cartData.getSum()
-
-        let clearIco = document.createElement('img')
-        clearIco.className = 'clearIco'
-        clearIco.src = 'img/clearCart.svg'
-
-        cart.appendChild(cartInfo)
-        sum.appendChild(clearIco)
-        cart.appendChild(sum)
-    }
-
     function cartAppend (cartData, productName) {
-        cartData.products.length && cartRemove()
-        cart1.addProduct(productName, 1)
-        refreshCart (cartData)
         emptyCart.remove()
+        cartData.products.length && cartRemove()
+        cartData.addProduct(productName)
+        cartData.refreshCart(cartData)
     }
 
     function deleteItem (cartData, productName) {
         cartRemove ()
         cartData.deleteProduct(productName)
-
-        cartData.products.length && refreshCart (cartData)
-
+        cartData.products.length && cartData.refreshCart (cartData)
         !cartData.products.length ? cart.appendChild(emptyCart) : null
     }
 
@@ -227,7 +217,6 @@ setTimeout(() => {
 
     breadArea.onclick = function () {
         cartAppend(cart1, bread)
-
     }
 
     milkArea.onclick = function () {
@@ -244,12 +233,12 @@ setTimeout(() => {
 
     cart.onclick = function (event) {
         switch (event.target.className) {
-            case 'clearIco': {
+            /*case 'clearIco': {
                 cart1.reset()
                 cartRemove()
                 cart.appendChild(emptyCart)
                 break
-            }
+            }*/
             case 'deleteIco delete-milk': {
                 deleteItem(cart1, milk)
                 break
@@ -323,4 +312,4 @@ setTimeout(() => {
         cart1.setComment(event.target.value)
     }
 
-}, 500)
+}, 100)

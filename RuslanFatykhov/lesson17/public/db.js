@@ -1,3 +1,3 @@
-const db = [];
+const db = []
 
 module.exports = db

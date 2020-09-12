@@ -8,7 +8,7 @@ const app = express()
 app.engine('hbs', hbs({
 	extname: 'hbs',
 	defaultLayout: 'main',
-	layoutsDir: path.join(__dirname, 'views', 'layouts'),
+	layoutsDir: path.join(__dirname, 'views', 'layouts')
 }))
 
 app.set('view engine', 'hbs')
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 	})
 })
 
-app.use(express.json());
+app.use(express.json())
 app.use(express.urlencoded({
 	extended: false
 }))

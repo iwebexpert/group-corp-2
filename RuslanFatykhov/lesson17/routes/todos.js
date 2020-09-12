@@ -15,8 +15,8 @@ router.post('/', (req, res) => {
 		date: new Date().toLocaleDateString()
 	}
 
-	db.push(newTodo);
-	res.redirect('/');
+	db.push(newTodo)
+	res.redirect('/')
 })
 
 router.post('/:id', (req, res) => {
@@ -26,7 +26,7 @@ router.post('/:id', (req, res) => {
 		if (db.some(task => task.id === req.params.id)) {
 			db.forEach(el => {
 				if (req.params.id == el.id) {
-					db.splice(0, 1);
+					db.splice(0, 1)
 				}
 			})
 			res.redirect('/')

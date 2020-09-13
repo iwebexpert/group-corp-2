@@ -7,4 +7,4 @@ const schema = new Schema({
     id: {type: String, required: true, unique: true}
 })
 
-module.exports = model('toDoItem', schema)
+module.exports = model('toDoItem', schema, 'toDoItems')

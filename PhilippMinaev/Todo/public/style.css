@@ -1,0 +1,42 @@
+.todo {
+  margin-bottom: 10px;
+}
+
+.todo-block {
+  display: flex;
+  flex-direction: row;
+}
+
+.todo span.completed {
+  text-decoration: line-through;
+}
+
+.todo label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: #f3f3f3;
+  padding: 1rem;
+  border-radius: 24px;
+}
+
+.todo i {
+  z-index: 2;
+}
+
+.nav-logo {
+  margin-left: 10px;
+}
+
+ul {
+  margin-left: 10px;
+}
+
+.delete-btns {
+  margin-bottom: 10px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,23 @@
+<div class="body">
+  <div>
+    <h3>Задачи</h3>
+  </div>
+
+  <div>
+    <ul>
+      {{#each tasks}}
+      <li>
+        <div>
+          <a href="/tasks/{{@key}}">{{this.title}}</a>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <form action="/tasks" method="POST">
+    <h4>Add task</h4>
+    <input type="text" name="title" class="task_title" placeholder="Task title">
+    <input type="submit" class="submit_button" value="Create Task">
+  </form>
+</div> 

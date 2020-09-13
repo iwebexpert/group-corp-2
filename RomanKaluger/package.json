@@ -10,6 +10,7 @@
     "@jest/globals": "latest",
     "autosize": "^4.0.2",
     "babel-loader": "^8.1.0",
+    "cors": "^2.8.5",
     "css-loader": "^4.3.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",

@@ -1,0 +1,32 @@
+
+<div class="container">
+        <h2> Список дел </h2>
+
+        <form action="/addtask" method="POST">
+
+            <input type="text" name="newtask" placeholder="добавьте новую задачу">
+            <button> Добавить </button>
+
+
+            <h2> В процессе </h2>
+      <ul class="inProgress">
+            {{#each task}}
+      
+                <li><input type="checkbox" name="check" value="{{this}}" />
+                    {{this}}
+                </li>
+              {{/each}}
+</ul>
+                    <button formaction="/removetask" type="submit" id="top"> done! </button>
+        </form>
+
+        <h2> Выполненные </h2>
+<ul class='compileted'>
+        {{#each complete}}
+        
+            <li><input type="checkbox" checked>
+                {{this}}
+            </li>
+         {{/each}}
+</ul>
+    </div>

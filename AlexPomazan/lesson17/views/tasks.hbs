@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div class="add-task">
+        <h4 class="heading-form">Add Task</h4>
+
+        <form action="/tasks" class="form" method="POST">
+            <input class="form__title" type="text" name="title" placeholder="Title">
+            <span class="error-input"></span>
+            <input class="btn btn-outline-success btn-add " type="submit" value="&#10010">
+        </form>
+    </div>
+
+    <h2>Tasks</h2>
+
+    <div class="tasks">
+        {{#if tasks.length}}
+        <div class="tasks-list">
+            {{#each tasks}}
+            <div class="task-item">
+                {{#if this.performed}}
+                <div class="task-item__text card">
+                    <p class="task-text line-through">{{this.title}}</p>
+                    <p class="task-performance-yes"> Performance: &#10004</p>
+                </div>
+
+                <div class="task-item__btns">
+                    <button data-id="{{this.id}}" type="submit" class="btn  btn-danger btn-delete">&#10006;
+                    </button>
+                </div>
+
+                {{else}}
+                <div class="task-item__text card">
+                    <p class="task-text line-through">{{this.title}}</p>
+                    {{!-- <p class="task-performanec-not">Performance: &#10006</p> --}}
+                </div>
+                <div class="task-item__btns">
+                    <button data-id="{{this.id}}" type="submit" class="btn  btn-success btn-performed">&#10004;
+                    </button>
+                    <button data-id="{{this.id}}" type="submit" class="btn  btn-danger btn-delete">&#10006;
+                    </button>
+                </div>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{else}}
+    <h5 class="tasks-empty">Todo list is empty!</h5>
+    {{/if}}
+</div>
+</div>

@@ -28,9 +28,15 @@ header {
     justify-content: flex-start;
 }
 
-.header-heading {
+a {
+    font-size: 25px;
+    text-decoration: none;
     color: white;
+}
 
+a:hover {
+    text-decoration: none;
+    color: white;
 }
 
 .add-task {

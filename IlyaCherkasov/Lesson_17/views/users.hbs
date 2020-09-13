@@ -1,0 +1,26 @@
+<div class="container">
+    <form action="/users" method="POST">
+        <h3>Заметки</h3>
+        <div class="form_title">
+            <label for="littleInput">Название</label>
+            <input type="text" class="littleInput" name="title">
+        </div>
+        <div class="form_comments">
+            <label for="bigInput">Описание</label>
+            <textarea type="text" class="bigInput" name="comments" cols="50" rows="6"></textarea>
+        </div>
+        <button type="submit" class="addBtn">Добавить</button>
+    </form>
+</div>
+<hr>
+
+{{#each users}}
+<div class="Message">
+    <p>{{this.title}}</p>
+    <h6>Описание</h6>
+    <p>{{this.comments}}</p>
+    <form action="/users/{{this.id}}?method=delete" method="POST">
+        <button type="submit">Удалить</button>
+    </form>
+</div>
+{{/each}}

@@ -1,0 +1,36 @@
+<div class="body">
+    <div>
+        <h3>Todos</h3>
+    </div>
+    <div class="todos">
+        {{#if todos.length}}
+            <ul class="todos-list">
+                {{#each todos}}
+                    <li class="todo-item">
+
+                        <div>
+                            {{#if this.completed}}
+                                <a class="todos-link  line-through" href="/todo/{{@key}}">{{this.title}}</a>
+                            {{else}}
+                                <a class="todos-link" href="/todo/{{@key}}">{{this.title}}</a>
+                            {{/if}}
+                        </div>
+
+                        <div class="btns">
+                            <button data-id="{{this.id}}" type="submit" class="btn  btn-save">Done</button>
+                            <button data-id="{{this.id}}" type="submit" class="btn  btn-delete">Delete</button>
+                        </div>
+
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p class="text">Congrats! No todos!</p>
+        {{/if}}
+    </div>
+    <form action="/todos" class="form" method="POST">
+        <h4 class="form-title">Add a new task</h4>
+        <input class="title-task" type="text" name="title" placeholder="To do ...">
+        <input class="btn btn-add" type="submit" value="Create a todo">
+    </form>
+</div>

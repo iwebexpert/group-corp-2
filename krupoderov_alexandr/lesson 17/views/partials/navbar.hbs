@@ -1,0 +1,18 @@
+<nav class="purple accent-4">
+	<div class="nav-wrapper">
+		<a href="/" class="brand-logo center">Todos</a>
+		<ul class="left hide-on-med-and-down">
+			{{#if isIndex}}
+				<li class="active"><a href="/">Todos</a></li>
+			{{else}}
+				<li><a href="/">Todos</a></li>
+			{{/if}}
+
+			{{#if isCreate}}
+				<li class="active"><a href="/create">Create</a></li>
+			{{else}}
+				<li><a href="/create">Create</a></li>
+			{{/if}}
+		</ul>
+	</div>
+</nav>

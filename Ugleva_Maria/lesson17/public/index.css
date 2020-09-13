@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    font-family: 'Roboto', sans-serif;
+}
+h1{
+    margin: 50px 0;
+    text-align: center;
+}
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.addTask {
+    display: flex;
+    flex-direction: column;
+    font-weight: 100;
+}
+button {
+    padding: 8px 15px;
+    border-style: none;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: white;
+    outline: none;
+}
+ul {
+    margin: 10px 0;
+}
+li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+form{
+    display: flex;
+    align-items: center;
+}
+
+.addTask__btn {
+    color: white;
+    background-color: rgba(0, 102, 255, 0.8);
+    margin-left: 15px;    
+}
+.addTask__btn:hover {
+    background-color: rgba(0, 102, 255, 1);    
+}
+.addTask__input {
+    border: none;
+    width: 500px;
+    border-bottom: 1px solid gray;
+    outline: none;
+    margin-top: 10px;
+}
+.addTask__input:active, .addTask__input:focus {
+    border-bottom: 2px solid green;
+    outline: none;
+}
+.todoList__title {
+    margin: 0 10px;
+}
+.todoList__btn-save {
+    background-image: url(./img/tick.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+}
+.todoList__btn-save:hover{
+    background-color: rgba(204, 204, 204, 1);
+    transition: .5s;
+}
+.todoList__btn-delete{
+    background-image: url(./img/bin.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 7px 10px;
+    width: 16px;
+    height: 16px;
+}
+.todoList__btn-delete:hover{
+    background-color: rgba(204, 204, 204, 1);
+    transition: .5s;
+}

@@ -1,0 +1,35 @@
+<div class='addTask'>
+    <p>Добавить задачу</p>
+    <form action="/tasks" method="POST">
+        <div>
+            <input class='addTask__input' type="text" name="title">
+        </div>
+        <div>
+            <button type="submit" class='addTask__btn'>Создать</button>
+        </div>
+    </form>
+</div>
+{{#if tasks.length}}
+<div>
+    <ul class='todoList'>
+        {{#each tasks}}
+        <li>
+            <form action="/complete" method='POST'>
+                <button class='todoList__btn-save' name='completed' value={{completed}} type='submit'></button>
+                <span class='todoList__title'>
+                    {{#if completed}}
+                    <s>{{todoTitle}}</s>
+                    {{else}}{{todoTitle}}{{/if}}</span>
+                <input type="hidden" value="{{_id}}" name="id">
+            </form>
+             <form class='form__delete' action="/delete" method="POST">
+                    <input type="hidden" value="{{_id}}" name="id">
+                    <button class='todoList__btn-delete' type='submit'></button>
+                </form>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{else}}
+<p>Нет задач</p>
+{{/if}}

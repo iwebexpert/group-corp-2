@@ -1,0 +1,22 @@
+.container {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.add {
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  margin: 10px 0;
+}
+
+.todo__input {
+  width: 200px;
+  height: 40px;
+  text-align: center;
+}
+
+.todo__list {
+  text-align: left;
+}

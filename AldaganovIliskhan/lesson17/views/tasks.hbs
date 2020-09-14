@@ -1,0 +1,22 @@
+<div class="container">
+    <form action="/tasks" method="POST" >
+        <input type="text" class="task-value" name="title">
+        <input type="submit" value="Добавить" class="add-task">
+    </form>
+    <div class="tasks">
+        <h2 class="tasks__title">Задачи</h2>
+        {{#if tasks}}
+        <ul class="tasks-list">
+            {{#each tasks}}
+            <li class="task">
+                <input type="checkbox" class="task__checkbox" onchange="onCheckboxChange({{this.id}})">
+                <p class="task__title"> {{this.title}}</p>
+                <i class="remove-btn" onclick="removeTask({{this.id}})">&#10006;</i>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+         <p>Задачи отсутсвуют</p>
+        {{/if}}
+    </div>
+</div>

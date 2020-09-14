@@ -1,11 +1,49 @@
 {
-    "statistic": [
-        {"id": 1, "month": "Январь", "sales": 60, "sum": 869345},
-        {"id": 2, "month": "Февраль", "sales": 50, "sum": 373729},
-        {"id": 3, "month": "Март", "sales": 40, "sum": 387382},
-        {"id": 4, "month": "Апрель", "sales": 30, "sum": 68533},
-        {"id": 5, "month": "Май", "sales": 20, "sum": 38948},
-        {"id": 6, "month": "Июнь", "sales": 10, "sum": 92002}
-    ]
-    
+  "statistic": [
+    {
+      "id": 1,
+      "month": "Январь",
+      "sales": 60,
+      "sum": 869345
+    },
+    {
+      "id": 2,
+      "month": "Февраль",
+      "sales": 50,
+      "sum": 373729
+    },
+    {
+      "id": 3,
+      "month": "Март",
+      "sales": 40,
+      "sum": 387382
+    },
+    {
+      "id": 4,
+      "month": "Апрель",
+      "sales": 30,
+      "sum": 68533
+    },
+    {
+      "id": 5,
+      "month": "Май",
+      "sales": 20,
+      "sum": 38948
+    },
+    {
+      "id": 6,
+      "month": "Июнь",
+      "sales": 10,
+      "sum": 92002
+    }
+  ],
+  "basket": [
+    {
+      "id": 1
+    },
+    {
+      "id": "lalala",
+      "title": "ret"
+    }
+  ]
 }

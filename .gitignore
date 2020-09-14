@@ -105,3 +105,14 @@ dist
 
 # IDE
 .idea/
+AlexanderMandrov/examplelesson17/express.js
+AlexanderMandrov/examplelesson17/package-lock.json
+AlexanderMandrov/examplelesson17/package.json
+AlexanderMandrov/examplelesson17/helpers/users.js
+AlexanderMandrov/examplelesson17/public/main.js
+AlexanderMandrov/examplelesson17/views/error.hbs
+AlexanderMandrov/examplelesson17/views/user.hbs
+AlexanderMandrov/examplelesson17/views/users.hbs
+AlexanderMandrov/examplelesson17/views/layouts/default.hbs
+AlexanderMandrov/examplelesson17/views/partials/footer.hbs
+AlexanderMandrov/examplelesson17/views/partials/header.hbs

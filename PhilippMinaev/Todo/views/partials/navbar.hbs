@@ -1,0 +1,18 @@
+<nav class="deep-purple darken-2">
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo nav-logo">Todos</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {{#if isIndex}}
+            <li class="active deep-purple darken-4"><a href="/">Todos</a></li>
+            {{else}}
+            <li><a href="/">Todos</a></li>
+            {{/if}}
+
+            {{#if isCreate}}
+            <li class="active deep-purple darken-4"><a href="/create">Create</a></li>
+            {{else}}
+            <li><a href="/create">Create</a></li>
+            {{/if}}
+        </ul>
+    </div>
+</nav>

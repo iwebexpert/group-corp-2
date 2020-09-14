@@ -1,8 +1,8 @@
-const express = require('express');
-const hbs = require('express-handlebars');
-const path = require('path');
-let tasks = require('./helpers/tasks');
-const app = express();
+const express = require('express')
+const hbs = require('express-handlebars')
+const path = require('path')
+let tasks = require('./helpers/tasks')
+const app = express()
 
 app.engine('hbs', hbs({
     extname: 'hbs',
@@ -11,10 +11,10 @@ app.engine('hbs', hbs({
     partialsDir: path.join(__dirname, 'views', 'partials'),
 }))
 
-app.set('view engine', 'hbs');
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static('public'));
+app.set('view engine', 'hbs')
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(express.static('public'))
 
 
 app.get('/', (req, res) => {
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 app.post('/tasks', (req, res) => {
     const { title } = req.body
     for (let i = 0; i < tasks.length; i++) {
-        tasks[i].id = i;
+        tasks[i].id = i
     }
     if (title) {
         tasks.push({
@@ -34,13 +34,13 @@ app.post('/tasks', (req, res) => {
             id: tasks.length,
         });
     }
-    res.redirect('/');
+    res.redirect('/')
 })
 
 app.delete('/tasks/:id', (req, res) => {
-    let id = req.params.id;
-    tasks = tasks.filter((item) => item.id !== +id);
-    res.render('tasks', { layout: 'default', tasks });
+    let id = req.params.id
+    tasks = tasks.filter((item) => item.id !== +id)
+    res.render('tasks', { layout: 'default', tasks })
 })
 
 app.patch('/tasks/:id', (req, res) => {
@@ -48,28 +48,28 @@ app.patch('/tasks/:id', (req, res) => {
     tasks = tasks.map(task => {
         if (task.id == id) {
             task.completed = !task.completed
-            return task;
+            return task
         } else {
-            return task;
+            return task
         }
     })
 
-    res.render('tasks', { layout: 'default', tasks });
+    res.render('tasks', { layout: 'default', tasks })
 })
 
 app.get('/task/:id', (req, res) => {
-    const id = (req.params.id) ? req.params.id : null;
-    const task = tasks[id];
+    const id = (req.params.id) ? req.params.id : null
+    const task = tasks[id]
 
-    res.render('task', { layout: 'default', task });
+    res.render('task', { layout: 'default', task })
 })
 
 app.get('*', (req, res) => {
-    res.status(404).render('error', { layout: 'default' });
+    res.status(404).render('error', { layout: 'default' })
 })
 
 app.listen(4000, () => {
-    console.log('Server is running');
+    console.log('Server is running')
     console.log('http://localhost:4000/')
 })
 

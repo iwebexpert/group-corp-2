@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <h1>Список задач</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Задача</th>
+      <th>Комментарий</th>
+      <th>Дата</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+  	{{#each db}}
+    <tr>
+      <td>{{this.title}}</td>
+      <td>{{this.info}}</td>
+      <td>{{this.date}}</td>
+
+      <td class="delete">
+      	<form action="/todos/{{this.id}}?method=delete" method="POST">
+      		<button type="submit" class="btn btn-success">Выполнить</button>
+      	</form>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+	<form action="/todos" method="POST">
+	    <input name="title" type="text" class="form-control" placeholder="Напишите задачу">
+	    <textarea name="info" type="text" class="form-control" placeholder="Добавьте комментарий"></textarea>
+      <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary btn-lg">Добавить</button>
+      </div>
+	  </div>
+	</form>
+  
+</div>
+
+

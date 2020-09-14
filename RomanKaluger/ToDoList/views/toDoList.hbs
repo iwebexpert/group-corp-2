@@ -1,0 +1,14 @@
+<div class="toDoList">
+    {{#if toDOItems}}
+        {{#each toDOItems}}
+            <div class="toDoCard">
+                <div data-name="toDoCardStatus" data-card-id="{{this.id}}" class="{{this.classes}}"></div>
+                <div class="toDoCardText">{{this.text}}</div>
+                <div class="toDoCardDate">{{this.date}}</div>
+                <div data-name="toDoCardDelete" data-card-id="{{this.id}}" class="toDoCardDelete"></div>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="notice">Нет данных</div>
+    {{/if}}
+</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="/main.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- знак ">" - берем из partials -->
+        {{> header}}
+        <div class="tasks">
+            <!-- Если две скобки, выведет html -->
+            {{{body}}}
+        </div>
+        
+        {{> footer}}
+    </div>
+
+</body>
+</html>

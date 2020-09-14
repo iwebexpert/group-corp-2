@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+    max-width: 1010px;
+    margin: 0 auto;
+}
+
+.container form {
+    margin: 10px 0 10px 200px;
+    width: 200px;
+}
+form h3 {
+    padding-bottom: 10px;
+    font-size: 24px;
+}
+.form_title {
+    padding-bottom: 20px;
+}
+.form_comments {
+    padding-bottom: 10px;
+}
+.littleInput {
+    font-size: 16px;
+}
+.bigInput {
+    padding: 10px;
+    font-size: 16px;
+}
+.addBtn {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px 20px;
+    background-color: #fff;
+    transition: .3s;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.addBtn:hover {
+    background-color: #888;
+    transition: .3s;
+    color: #fff;
+}
+.Message {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0 10px 300px;
+    width: 200px;
+}
+
+.Message p {
+    display: block;
+    margin: 10px;
+}
+
+.Message h6 {
+    display: block;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.Message button {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px 20px;
+    background-color: #fff;
+    transition: .3s;
+    margin-bottom: 10px;
+    cursor: pointer;
+    margin: 5px 10px;
+}
+.Message button:hover {
+    background-color: #888;
+    transition: .3s;
+    color: #fff;
+}

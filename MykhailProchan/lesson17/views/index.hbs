@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson17</title>
+  <script>
+    function patchTask(event) {
+      fetch('/', {
+        method: 'PATCH',
+        body: JSON.stringify({ checked: event.target.checked, id: event.target.id }),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      }).then(res => {
+        console.log(res.status);
+        if (res.status === 200) {
+          console.log('200');
+          return;
+        } else {
+          const el = document.getElementById(event.target.id);
+          if (event.target.checked === true) {
+            el.checked = false;
+          } else {
+            el.checked = true;
+          }
+          console.log('Ошибка смены статуса задачи')
+        }
+      })
+    }
+
+    function delTask(event) {
+      fetch('/', {
+        method: 'DELETE',
+        body: JSON.stringify({ id: event.target.id }),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          document.getElementById(parseInt(event.target.id) + 'd').remove();
+        } else {
+          console.log('Ошибка удаления задачи');
+        }
+      })
+    }
+
+    function sendTask() {
+      const inp = document.getElementById('todo-text-input');
+      if (inp.value) {
+        fetch('/', {
+          method: 'POST',
+          body: JSON.stringify({ text: inp.value }),
+          headers: {
+            'Content-type': 'application/json'
+          }
+        }).then(res => {
+          if (res.status === 201) {
+            document.getElementById(parseInt(event.target.id) + 'd').remove();
+          } else {
+            console.log('Ошибка создания задачи');
+          }
+        })
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+  {{#if tasksList}}
+  {{#each tasksList}}
+  <div class="task" id="{{id}}d">
+    <input type="checkbox" id="{{id}}chb" onclick="patchTask(event)" {{#if checked}} checked {{/if}}>
+    <label for="{{id}}">{{text}}</label>
+    <input type="button" id="{{id}}b" value="Удалить" onclick="delTask(event)">
+  </div>
+  {{/each}}
+  {{/if}}
+  <form action="/" method="POST">
+    <input type="text" name="text" required>
+    <button type="submit">Добавить</button>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+.wrapper{
+  width: 500px;
+  margin: 0 auto;
+}
+.input-field.inline{
+  width: 78%;
+}
+.completed__list{
+  text-decoration: line-through;
+  text-align: center;
+}
+.completed-btn{
+  width: 25px;
+  padding: 0 3px 0 3px;
+}
+h2{
+  text-align: center;
+}
+li{
+  margin-bottom: 5px;
+}

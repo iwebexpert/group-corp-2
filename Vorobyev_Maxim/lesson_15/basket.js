@@ -200,20 +200,6 @@ function eventHandler(event) {
   }
 }
 
-for (let i = 0; i < document.getElementsByClassName("basket__item__plus").length; i++) {
-  document.getElementsByClassName("basket__item__plus")[i].addEventListener('click', async () => {
-    const data = await fetch('/basket', {
-      method: 'POST',
-      body: JSON.stringify(productsArr[0]),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    });
-
-    console.log(data);
-  });
-}
-
 function indexFuncPlus(i) {
   return function() {
     basket.addToBasket(productsArr[i]);

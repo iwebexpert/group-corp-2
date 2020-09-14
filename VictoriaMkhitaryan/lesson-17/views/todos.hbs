@@ -1,0 +1,22 @@
+<h3>Todo List</h3>
+
+<form action="/todos" method="POST" class="header">
+  <div>
+    <input class="addTask" type="text" name="title" placeholder="Введите задачу">
+  </div>
+  <div>
+    <input class="addBtn" type="submit" value="Добавить">
+  </div>
+</form>
+  {{#if todos}}
+    <ul class="todos">
+      {{#each todos}}
+        <li id={{this.id}} class="{{#if this.completed}}todo checked{{else}}todo{{/if}}">
+          <p onclick="onChange({{this.id}})">{{this.title}}<p>
+          <span class="{{#if this.completed}}close checked{{else}}close{{/if}}" onclick="onClickDelete({{this.id}})">&#10006;</span>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <h3>Список задач пуст</h3>
+  {{/if}}

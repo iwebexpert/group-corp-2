@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    color: #649cb3;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+    box-sizing: border-box;
+    border: 2px solid #81b4e3;
+    border-radius: 8px;
+    width: 500px;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding-bottom: 20px;
+}
+
+.tasks-link{
+    text-decoration: none;
+    color: #5b9eba;
+    font-size: 20px;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.input-task{
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.add-btn{
+    margin-bottom: 25px;
+}
+
+.done-txt{
+    color: #e32945;
+    font-weight: bold;
+}

@@ -1,0 +1,21 @@
+.todo{
+    margin-bottom: 10px;
+}
+
+.todo span{
+    color: rgba(0, 0, 0, 0.9)
+}
+
+.todo span.completed{
+    text-decoration: line-through;
+}
+
+.todo label{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(176, 176, 176, 0.1);
+}

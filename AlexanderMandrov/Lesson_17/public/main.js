@@ -3,14 +3,14 @@ let doneBtns = document.querySelectorAll('.btn-outline-success')
 
 
 deleteBtns.forEach(element => {
-    element.addEventListener('click', deletetask)
+    element.addEventListener('click', deleteTodo)
 })
 
 doneBtns.forEach(element => {
-    element.addEventListener('click', savetask)
+    element.addEventListener('click', doneTodo)
 })
 
-async function deletetask() {
+async function deleteTodo() {
     let id = this.dataset.id
     let response = await fetch(`/todo/${id}`, { method: 'DELETE' })
     if (response.ok) {
@@ -18,7 +18,7 @@ async function deletetask() {
     }
 }
 
-async function savetask() {
+async function doneTodo() {
     const id = this.dataset.id
     let response = await fetch(`/todo/${id}`, { method: 'PATCH' })
     if (response.ok) {

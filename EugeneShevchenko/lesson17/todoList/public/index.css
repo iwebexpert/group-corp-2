@@ -1,0 +1,27 @@
+.nav-wrapper {
+  padding: 0 2rem;
+}
+
+.description {
+  font-size: 2rem;
+}
+
+.task {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task h1{
+  margin-bottom: 2rem;
+}
+
+.task p.big {
+  font-size: 2rem;
+}
+.card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

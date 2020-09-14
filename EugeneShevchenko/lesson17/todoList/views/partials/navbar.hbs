@@ -1,0 +1,24 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">:to_do:</a>
+
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {{#if isHome}}
+      <li class="active"><a href="/">Главная</a></li>
+      {{else}}
+      <li><a href="/">Главная</a></li>
+      {{/if}}
+      {{#if isDone}}
+      <li class="active"><a href="/done">Список выполненных дел</a></li>
+      {{else}}
+      <li><a href="/done">Список выполненных дел</a></li>
+      {{/if}}
+      {{#if isAdd}}
+      <li class="active"><a href="/add">Добавить</a></li>
+      {{else}}
+      <li><a href="/add">Добавить</a></li>
+      {{/if}}
+
+      </ul>
+  </div>
+</nav>

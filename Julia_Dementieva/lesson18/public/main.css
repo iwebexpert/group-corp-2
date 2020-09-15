@@ -1,0 +1,81 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+a{
+	text-decoration: none;
+	font-size: 20px;
+	color: black !important;
+}
+
+.checkbox
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  margin: 10px;
+
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='red' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+}
+.wrapper{
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.tasks{
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+.addBtn{
+	width: 100%;
+	margin-top: 10px;
+}
+
+textarea{
+	height: 100px !important;
+	margin-top: 10px !important;
+}
+h3{
+	margin-bottom: 20px !important;
+	color: #00008B;
+}
+.task{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.taskEmpty{
+	margin: 0 auto;
+	text-align: center;
+	color: red;
+	margin-bottom: 20px;
+	font-size: 20px;
+
+}
+.detailsTask h2{
+	color: #00008B;
+}
+
+.detailsTask a{
+	text-decoration: none !important;
+}
+.detailsTask h6{
+	color: red;
+}
+.btn-danger{
+	width: 152px ;
+	height: 36px;
+}
+.taskOne{
+	margin-bottom: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+}

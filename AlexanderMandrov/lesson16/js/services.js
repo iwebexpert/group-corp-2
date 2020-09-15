@@ -40,6 +40,6 @@ const sendData = async (url, method, data) => {
     } catch {
         return false;
     }
-}
+};
 
 export { getData, makeGETRequest, sendData };

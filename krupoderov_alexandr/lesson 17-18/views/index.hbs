@@ -1,0 +1,16 @@
+<h2>Todos page</h2>
+
+{{#if todos.length}}
+	<ul>
+		{{#each todos}}
+			<li class="todo">
+					<label>
+						{{>add}}
+						{{>delete}}
+					</label>
+			</li>
+		{{/each}}
+	</ul>
+{{else}}
+	<p>No todos to do :)</p>
+{{/if}}

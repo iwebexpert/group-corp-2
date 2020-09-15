@@ -20,10 +20,13 @@ router.get('/create', (req, res) => {
 })
 
 router.post('/create', async (req, res) => {
+	if (req.body.title === ''){
+		res.redirect('/create')
+		return
+	}
 	const todo = new TodoModel({
 		title: req.body.title
 	})
-
 	await todo.save()//Сохрание модели
 	res.redirect('/')
 })
@@ -32,6 +35,11 @@ router.post('/complete', async (req, res) => {
 	const todo = await TodoModel.findById(req.body.id)
 	todo.completed = !!req.body.completed
 	await todo.save()
+	res.redirect('/')
+})
+
+router.post('/deletetodo', async (req, res) =>{
+	await TodoModel.findByIdAndDelete(req.body.id)
 	res.redirect('/')
 })
 

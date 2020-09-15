@@ -11,6 +11,6 @@ const schema = new Schema({
 	}
 })//Конфигурация для будущей модели
 
-module.exports = model('Todo', schema) //Регистрация модели схема, первое имя, второе по
+module.exports = model('Todo', schema, 'todos') //Регистрация модели схема, первое имя, второе по
 // какой
 // схеме сформировать модель

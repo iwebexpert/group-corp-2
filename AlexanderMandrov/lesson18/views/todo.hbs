@@ -1,0 +1,31 @@
+<div class="mx-auto w-75">
+    <ul class="list-group">
+        {{#each todos}}
+            <li class="list-group-item d-flex justify-content-between">
+                <div class="mt-2">
+                    {{#if this.done}}
+                    <h3><a class="text-primary done" href="/todo/{{this._id}}">{{this.label}}</a></h3>
+                    {{else}}
+                    <h3><a class="text-primary" href="/todo/{{this._id}}">{{this.label}}</a></h3>
+                    {{/if}}
+                </div>
+                <span class="btn-group float-right">
+                    <button type="button" data-id="{{this._id}}" class="btn btn-outline-success btn-md">
+                        Done
+                    </button>
+                    <button type="button" data-id="{{this._id}}" class="btn btn-outline-danger btn-md">
+                        Delete
+                    </button>
+                </span>
+            </li>
+        {{/each}}
+    </ul>
+    <div>
+        <form action="/todo" method="POST">
+        <div class="form-group d-flex justify-content-between mt-2">
+            <input class="form-control" type="text" name="label" placeholder="What needs to be done?">
+            <button type="submit" class="btn btn-primary btn-md ml-2">Add</button>
+        </div>
+        </form>
+    </div>
+</div>

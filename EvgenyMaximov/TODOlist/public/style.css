@@ -20,3 +20,21 @@
 .todo__list {
   text-align: left;
 }
+.task {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgb(253, 78, 78);
+  color: white;
+  outline: none !important;
+  border-color: red;
+}
+
+.completed {
+  background-color: rgb(89, 233, 89);
+}

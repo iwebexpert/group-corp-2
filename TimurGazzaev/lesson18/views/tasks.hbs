@@ -1,0 +1,23 @@
+<div class="wrap">
+    <form action="/tasks" method="POST" class="header">
+        <div>
+            <input class="addTask" type="text" name="title" placeholder="Введите задачу">
+        </div>
+        <div>
+            <input class="addBtn" type="submit" value="Добавить">
+        </div>
+    </form>
+    <h3>Список задач</h3>
+    {{#if tasks}}
+        <ul class="tasks">
+            {{#each tasks}}
+                <li class="{{#if this.completed}}taskItem checked{{else}}taskItem{{/if}}" data-id="{{this._id}}" data-completed="{{this.completed}}">
+                    {{this.title}}
+                </li>
+                <span class="{{#if this.completed}}close checked{{else}}close{{/if}}" data-id="{{this._id}}">&#10006;</span>
+            {{/each}}
+        </ul>
+    {{else}}
+        <h3>Задач нет</h3>
+    {{/if}}
+</div>

@@ -1,0 +1,38 @@
+<div class="body">
+    <div>
+        <h3>Задачи</h3>
+    </div>
+
+    <div class="todos">
+        {{#if todos.length}}
+        <ul class="todos-list">
+            {{#each todos}}
+            <li class="todo-item">
+
+                <div>
+                    {{#if this.completed}}
+                    <a class="todos-link  line-through" href="/todo/{{this._id}}">{{this.title}}</a>
+                    {{else}}
+                    <a class="todos-link" href="/todo/{{this._id}}">{{this.title}}</a>
+                    {{/if}}
+                </div>
+
+                <div class="btns">
+                    <button data-id="{{this._id}}" type="submit" class="btn  btn-save">Выполнено</button>
+                    <button data-id="{{this._id}}" type="submit" class="btn  btn-delete">Удалить</button>
+                </div>
+
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <p class="text">список задач пуст</p>
+        {{/if}}
+    </div>
+    <button class="btn btn-delete-all" id="deleteAll">Удалить все задачи</button>
+    <form action="/todos" class="form" method="POST">
+        <h4 class="form-title">Добавить задачу</h4>
+        <input class="title-task" type="text" name="title" placeholder="Название">
+        <input class="btn btn-add" type="submit" value="Создать задачу">
+    </form>
+</div>

@@ -1,17 +1,32 @@
-.todo {
-  margin-bottom: 10px;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .todo-block {
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
+  width: 600px;
 }
 
 .todo span.completed {
   text-decoration: line-through;
 }
 
-.todo label {
+.todos {
+  flex-grow: 1;
+}
+
+.todo {
+  height: 55px;
+  margin-bottom: 10px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -20,6 +35,10 @@
   background: #f3f3f3;
   padding: 1rem;
   border-radius: 24px;
+}
+
+.btn {
+  border-radius: 20px;
 }
 
 .todo i {
@@ -35,8 +54,9 @@ ul {
 }
 
 .delete-btns {
+  flex-grow: 0;
   margin-bottom: 10px;
-  height: 53px;
+  height: 55px;
   display: flex;
   align-items: center;
 }

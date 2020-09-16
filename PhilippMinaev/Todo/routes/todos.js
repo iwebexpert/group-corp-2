@@ -19,45 +19,56 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const todo = new Todo({
-    title: req.body.title,
-  });
-  await todo.save();
-  res.redirect("/");
+  if (req.body.title) {
+    const todo = new Todo({
+      title: req.body.title,
+    });
+    await todo.save();
+    res.redirect("/");
+  } else {
+    res.redirect("/create");
+  }
 });
 
 router.post("/complete", async (req, res) => {
+  const checked = req.body.checked;
   const todos = await Todo.find({}).lean();
-  const checkedIds = req.body.checked;
-  console.log(checkedIds);
-  console.log(typeof checkedIds);
-  todos.forEach(async (element) => {
-    let todo = await Todo.findById(element._id);
-    if (
-      (checkedIds instanceof Object &&
-        Object.values(checkedIds).includes(todo.id)) ||
-      (checkedIds instanceof String && checkedIds == todo.id)
-    ) {
-      todo.completed = true;
+  async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
     }
-    if (
-      (checkedIds instanceof Object &&
-        !Object.values(checkedIds).includes(todo.id)) ||
-      (checkedIds instanceof String && checkedIds !== todo.id) ||
-      checkedIds == undefined
-    ) {
-      todo.completed = false;
-    }
-    todo.save();
+  }
+  const start = async (todos) => {
+    await asyncForEach(todos, async (task) => {
+      let todo = await Todo.findById(task._id);
+      switch (typeof checked) {
+        case "object":
+          Object.values(checked).find((item) => item == todo._id) == todo._id
+            ? (todo.completed = true)
+            : (todo.completed = false);
+          break;
+        case "string":
+          checked == todo._id
+            ? (todo.completed = true)
+            : (todo.completed = false);
+          break;
+        case "undefined":
+          todo.completed = false;
+          break;
+
+        default:
+          break;
+      }
+      await todo.save();
+    });
+  };
+  start(todos).then(() => {
+    res.redirect("/");
   });
-  res.redirect("/");
 });
 
 router.post("/delete", async (req, res) => {
-  let todo = await Todo.findById(req.body.id);
-  console.log(todo);
-  todo.deleteOne();
-  await todo.save();
+  await Todo.findByIdAndDelete(req.body.id);
   res.redirect("/");
 });
 

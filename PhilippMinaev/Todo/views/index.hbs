@@ -1,35 +1,41 @@
 {{#if todos.length}}
 <div class="todo-block">
-    <ul>
+    <ul class="todos">
         <form action="/complete" method="POST">
             {{#each todos}}
             <li class="todo">
                 <label>
                     {{#if completed}}
-                    <input type="checkbox" checked name="checked" value="{{_id}}">
+                    <input type="checkbox" class="checkbox-indigo filled-in" checked name="checked" value="{{_id}}">
                     <span class="completed">{{title}}</span>
                     {{else}}
-                    <input type="checkbox" name="checked" value="{{_id}}">
+                    <input type="checkbox" class="checkbox-indigo filled-in" name="checked" value="{{_id}}">
                     <span>{{title}}</span>
                     {{/if}}
-
                 </label>
             </li>
             {{/each}}
 
-            <button class="btn btn-small purple" type="submit">Save</button>
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Save
+                <i class="material-icons right">filter_drama</i>
+            </button>
         </form>
     </ul>
-    <ul>
+    <ul class="todos-remove">
         {{#each todos}}
 
         <li class="delete-btns">
+            <label>
+                <form action="/delete" method="POST">
 
-            <form action="/delete" method="POST">
-                <button class="btn btn-small red">delete</button>
-                <input type="hidden" name="id" value="{{_id}}">
-            </form>
-
+                    <button class="btn waves-effect waves-light red" style="border-radius:100%; width:38px; padding:0;"
+                        type="submit" name="action">
+                        <i class="material-icons">delete_forever</i>
+                    </button>
+                    <input type="hidden" name="id" value="{{_id}}">
+                </form>
+            </label>
         </li>
 
         {{/each}}
@@ -37,5 +43,5 @@
 </div>
 
 {{else}}
-<p>No todos :(</p>
+<p style="padding: 15px;">No todos :(</p>
 {{/if}}

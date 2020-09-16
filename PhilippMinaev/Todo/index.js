@@ -19,10 +19,9 @@ app.set("views", "views");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
-    // to support URL-encoded bodies
     extended: true,
   })
 );
@@ -40,7 +39,7 @@ async function start() {
       }
     );
     app.listen(PORT, () => {
-      console.log("Server has been started...");
+      console.log(`Server has been started... (localhost:${PORT})`);
     });
   } catch (e) {
     console.log(e);

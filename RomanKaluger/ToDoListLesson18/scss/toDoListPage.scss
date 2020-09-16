@@ -1,0 +1,275 @@
+$bgPrimary: #343A40;
+$bgPrimaryLight: #546068;
+$bgPrimaryLight2: #88a0a8;
+$primary: orange;
+$primaryDark: #865122;
+$light: floralwhite;
+$alert: red;
+
+@mixin center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+@mixin header-big {
+  font: {
+    size: 100px;
+    weight: bold;
+    family: fantasy;
+  };
+}
+@mixin text-standard($size) {
+  color: $primary;
+  font: {
+    size: $size;
+    weight: normal;
+    family: sans-serif;
+  };
+}
+@mixin border-standard {
+  border: 2px solid $primaryDark;
+  border-radius: 20px;
+}
+@mixin button-click {
+  &:hover{
+    transform: scale(1.1);
+  }
+  &:active{
+    transform: scale(0.9);
+  }
+}
+
+@keyframes shadow {
+  from {
+    text-shadow: 1px 1px 2px black, 0 0 1em orange, 0 0 0.2em floralwhite;
+  }
+  to {
+    text-shadow: 1px 1px 2px floralwhite, 0 0 1em orange, 0 0 0.2em black;
+  }
+}
+.notice{
+  @include text-standard(25px);
+}
+.containerToDoList {
+  width: 100vw;
+  height: 100vh;
+  background-color: $bgPrimary;
+  color: $primary;
+  position: relative;
+  .toDOListHeader {
+    @include center-content;
+    @include header-big;
+    width: 100%;
+    padding: 10px;
+    text-decoration: underline;
+    border-bottom: 2px solid $primary;
+    animation: 1s linear 0s infinite alternate shadow;
+  }
+  .toDoList {
+    --width: 85%;
+    --top: 34vh;
+    @include text-standard(25px);
+    @include border-standard;
+    @include center-content;
+    width: var(--width);
+    background-color: $bgPrimaryLight2;
+    min-height: 100px;
+    max-height: calc(90vh - var(--top) - 5vh);
+    padding: 10px;
+    position: absolute;
+    top: var(--top);
+    left: calc((100% - var(--width))/2);
+    overflow-x: hidden;
+    .toDoCard{
+      @include border-standard;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: $bgPrimaryLight;
+      height: 8vh;
+      overflow: hidden;
+      box-sizing: border-box;
+      margin: 10px;
+      .toDoCardText{
+        @include border-standard;
+        @include center-content;
+        justify-content: normal;
+        background-color: $light;
+        width: 70%;
+        height: 6vh;
+        margin: 10px;
+        flex-grow: 1;
+        word-break: break-all;
+        white-space: pre-line;
+        padding: 10px;
+        overflow: auto;
+        box-sizing: border-box;
+      }
+      .toDoCardPrior{
+        height: 6vh;
+        width: 6vh;
+        margin-right: 10px;
+        img {
+          height: 6vh;
+          width: 6vh;
+        }
+      }
+      .toDoCardDelete{
+        @include button-click;
+        height: 6vh;
+        width: 6vh;
+        background: {
+          image: url(https://img.icons8.com/color/100/000000/delete-forever.png);
+          size: cover;
+        };
+      }
+      .toDoCardStatus{
+        @include button-click;
+        height: 6vh;
+        width: 6vh;
+        background-size: cover;
+        background-image: url('https://img.icons8.com/color/100/000000/fail.png');
+      }
+      .toDoCardStatusCompleted{
+        background-image: url('https://img.icons8.com/fluent/100/000000/task-completed.png');
+      }
+      .toDoCardDate{
+        @include border-standard;
+        @include center-content;
+        color: $light;
+        background-color: $bgPrimaryLight2;
+        padding: 10px;
+        height: 6vh;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .addStringContainer{
+    @include border-standard;
+    --addPadding: 10px;
+    --addHeight: 40px;
+    display: grid;
+    grid-template-columns: 56vw 14vw;
+    grid-template-rows: 5vh 5vh;
+    padding: var(--addPadding);
+    background-color: $bgPrimaryLight;
+    width: 70vw;
+    height: 10vh;
+    margin: 10px auto 10px auto;
+    .addString{
+      @include border-standard;
+      @include text-standard(25px);
+      width: 95%;
+      margin: auto;
+      padding: var(--addPadding);
+      height: 5vh;
+      resize: none;
+      position: relative;
+      box-sizing: border-box;
+      &:focus{
+        outline: none;
+      }
+      &ValidationAlert{
+        border: 4px solid red;
+      }
+    }
+    .addToDoBtn{
+      @include text-standard(28px);
+      @include border-standard;
+      @include center-content;
+      background-color: $primary;
+      color: $light;
+      padding: 10px;
+      box-sizing: border-box;
+      grid-area: 1 / 2 / 3 / 2;
+      width: 95%;
+      height: 100%;
+      cursor: pointer;
+      &:hover{
+        background-color: $primaryDark;
+      }
+      &:active{
+        transform: scale(0.9);
+      }
+    }
+    .priorityContainer{
+      width: 95%;
+      height: 90%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .headerPrior{
+        @include text-standard(2vh);
+        font-weight: bold;
+      }
+      label{
+        height: 3.5vh;
+        margin-right: 50px;
+        margin-left: 50px;
+      }
+      input {
+        display: none;
+      }
+      input:checked+label{
+        @include border-standard;
+        border: 3px solid red;
+        padding: 3px;
+      }
+      img {
+        @include button-click;
+        width: 3.5vh;
+      }
+    }
+  }
+  .sortedBlockContainer{
+    @include border-standard;
+    box-sizing: border-box;
+    width: 60vw;
+    height: 6.5vh;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $bgPrimaryLight2;
+    margin: auto;
+    .categoryCheckContainer {
+      @include text-standard(20px);
+      @include border-standard;
+      width: 49.5%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: transparentize($bgPrimary, 0.7);
+      input{
+        margin-right: 10px;
+        margin-left: 40px;
+      }
+    }
+  }
+  .clearAllBtn{
+    --width: 10vw;
+    @include border-standard;
+    @include center-content;
+    @include text-standard(30px);
+    @include button-click;
+    cursor: pointer;
+    padding: 10px;
+    color: $light;
+    background-color: $alert;
+    margin-top: 3vh;
+    height: 4vh;
+    width: var(--width);
+    position: absolute;
+    top: 88vh;
+    left: calc((100% - var(--width))/2);
+  }
+}
+

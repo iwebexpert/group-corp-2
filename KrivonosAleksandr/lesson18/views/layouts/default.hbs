@@ -1,0 +1,33 @@
+{{> header}}
+    <div class="todo-list">
+      <div class="todo-header">
+        <h2 class="list-title">Список задач</h2>
+          <p class="task-count">Оставшиеся задачи</p>
+      </div>
+
+      <div class="todo-body">
+        <div class="tasks">
+            {{{body}}}
+        </div>
+
+        <div class="new-task-creator">
+            <form action="/add"  method="POST">
+                <input type="text" name="text" class="new task" placeholder="новая задача" aria-label="new task name"/>
+                <button class="btn create" aria-label="create new task">+</button>
+              </form>
+        </div>
+
+        <div class="delete-stuff">
+            <form action="/delete" method="POST">
+              <button class="btn delete">Очистить выполненные задачи</button>
+            </form>
+            <form action="/deleteAll" method="POST">
+                <button class="btn delete">Очистить список задач</button>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </body>
+</html>

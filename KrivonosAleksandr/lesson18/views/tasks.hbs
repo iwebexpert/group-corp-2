@@ -1,0 +1,13 @@
+{{#if tasks}}
+    {{#each tasks}}
+        <div class="task tasks" id="{{this._id}}">
+            <input type="checkbox" class="checkbox" {{#if this.done}}checked{{/if}} id="task-{{this._id}}" />
+            <label for="task-{{this._id}}" class="checkbox">
+                <span class="custom-checkbox"></span>
+                {{this.text}}
+            </label>
+        </div>
+    {{/each}}
+    {{else}}
+    <div class="no-tasks">У Вас нет никаких задач</div>
+{{/if}}

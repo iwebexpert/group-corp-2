@@ -1,0 +1,47 @@
+<div class="container">
+    <div>
+        <h3>ToDo list</h3>
+    </div>
+    <div>
+        <h5>Добавить дела</h5>
+        <form action="/create" method="POST">
+            <div class="form-group">
+            <label for="exampleInputEmail1">Задание</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputPassword1">Пояснение</label>
+            <textarea type="text" class="form-control" id="exampleInputPassword1" name="comments"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{#if todos.length}}
+{{#each todos}}
+<div class="container flex">
+    <div class="infoToDo">
+        <h6>Задача</h6>
+        {{this.title}}
+    </div>
+    <div class="infoToDo">
+        <h6>Пояснение</h6>
+        {{this.comments}}
+    </div>
+    <div class="infoToDo">
+        <h6>Время</h6>
+        {{this.date}}
+        {{this.time}}
+    </div>
+    <div class="infoToDo">
+        <form action="/users/{{this.id}}?method=delete" method="POST">
+      		<button type="submit" class="btn btn-danger">Удалить</button>
+      	</form>
+    </div>
+</div>
+{{/each}}
+{{else}}
+<p class="container flex">No todos!</p>
+{{/if}}

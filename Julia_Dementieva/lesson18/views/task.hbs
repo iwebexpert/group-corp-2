@@ -1,0 +1,13 @@
+<div class="detailsTask">
+    <h2>{{task.taskname}}</h2>
+    {{#if task.check}}
+        <h6>(Задача выполнена)</h6>
+    {{else}}<h6>(Задача не выполнена)</h6>
+    {{/if}}
+    {{#if task.comment}}
+        <h4>Комментарий</h4>
+        <p>{{task.comment}}</p>
+    {{/if}}
+    
+    <button class="btn btn-warning"><a href="/tasks">Все задачи</a></button>
+</div>

@@ -1,0 +1,32 @@
+<div>
+    <h3>Ваши задачи</h3>
+    <div class="task">
+        {{#each tasks}}
+        <div class="taskOne">
+        {{#if this.check}}
+            <a href="/tasks/{{this._id}}"><input class="checkbox" type="checkbox" id={{this._id}} checked>{{this.taskname}}</a><Br>
+        {{else}}
+            <a href="/tasks/{{this._id}}"><input class="checkbox" type="checkbox" id={{this._id}}>{{this.taskname}}</a><Br>
+        {{/if}}
+        <button id={{this._id}} class="btn btn-danger">Удалить задачу</button>
+        </div>
+        {{else}}
+        <p class="taskEmpty">Список задач пуст!</p>
+        
+        {{/each}}
+    </div>
+</div>
+<div>
+    <h3>Добавить задачу</h3>
+    <form action="/tasks" method="POST">
+    <div>
+        <input class="form-control" type="text" name="taskname" placeholder="Название задачи">
+    </div>
+    <div>
+        <textarea class="form-control" type="text" name="comment" placeholder="Комментарий"></textarea>
+    </div>
+    <div>
+        <input class="btn btn-success addBtn" type="submit" value="Добавить задачу">
+    </div>
+    </form>
+</div>

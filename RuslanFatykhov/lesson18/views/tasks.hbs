@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <h1>Список задач</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Задача</th>
+        <th>Комментарий</th>
+        <th>Дата</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each todos}}
+      <tr>
+        <form action="/complete" method="POST" value="{{_id}}" name="id">
+          {{#if completed}}
+          <td>
+            <input name="id" type="hidden" value="{{_id}}">
+            <input type="checkbox" name="completed" class=".big-checkbox" onchange="this.form.submit()" checked>
+          </td>
+          <td>
+            <div class="strike">{{title}}</div>
+          </td>
+          <td>
+            <div class="strike">{{commentary}}</div>
+          </td>
+          <td>
+            <div class="strike">{{date}}</div>
+          </td>
+          {{else}}
+          <td>
+            <input name="id" type="hidden" value="{{_id}}">
+            <input type="checkbox" name="completed" class=".big-checkbox" onchange="this.form.submit()">
+          </td>
+          <td>
+            <div>{{title}}</div>
+          </td>
+          <td>
+            <div>{{commentary}}</div>
+          </td>
+          <td>
+            <div>{{date}}</div>
+          </td>
+          {{/if}}
+        </form>
+        <form action="/delete" method="POST">
+          <td class="delete">
+            <button type="submit" class="btn btn-danger deleteBtn" value="{{_id}}" name="id">Удалить</button>
+          </td>
+        </form>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <form action="/create" method="POST">
+  <div class="input-field">
+	    <input name="title" type="text" class="form-control" placeholder="Напишите задачу">
+  </div>  
+  <div class="input-field">
+	    <textarea name="commentary" type="text" class="form-control" placeholder="Добавьте комментарий"></textarea>
+  </div>       
+  <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary btn-lg add">Добавить</button>
+  </div>
+	</form>
+</div>
+

@@ -197,8 +197,9 @@ let hb = document.createElement('h2');
 let checkoutBtn = document.createElement('button');
 checkoutBtn.className = 'checkout__btn';
 checkoutBtn.innerHTML = 'Оформить заказ';
-main.appendChild(checkoutBtn);
 let modalCheck = document.querySelector('.modal__checkout');
+   modalCheck.appendChild(checkoutBtn);
+
 let overflow = document.createElement('div');
   if (!Element.prototype.remove) {
     Element.prototype.remove = function remove() {

@@ -1,0 +1,50 @@
+<h2>Список дел</h2>
+
+<form action="/create" method="POST">
+  <div class="input-field">
+    <input type="text" name="title" minlength="1">
+    <label>Добавьте новую задачу</label>
+  </div>
+
+  <button type="submit" class="btn">Добавить</button>
+</form>
+
+<h2> В процессе </h2>
+{{#if todosInProg.length}}
+<ul>
+{{#each todosInProg}}
+<li class="todo">
+    <form action="/complete" method="POST">
+      <label>
+        <input type="checkbox" name="completed">
+        <span>{{title}}</span>
+        <input type="hidden" value="{{_id}}" name="id">
+        <button class="btn btn-small" type="submit">Выполненно!</button>
+      </label>
+    </form>
+  </li>
+{{/each}}
+</ul>
+{{else}}
+<p>Нет текущих задач(</p>
+{{/if}}
+
+
+<h2>Выполненные </h2>
+{{#if todosComp.length}}
+<ul>
+  {{#each todosComp}}
+  <li class="todo">
+   <label>
+        <input type="checkbox" checked name="completed">
+        <span class="completed">{{title}}</span>
+        <input type="hidden" value="{{_id}}" name="id">
+        <button class="btn btn-small" type="submit">Выполненно!</button>
+      </label>
+    </form>
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<p>Нет законченных задач(</p>
+{{/if}}

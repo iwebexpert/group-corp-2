@@ -1,0 +1,10 @@
+<div>
+    <h2>{{task.title}}</h2>
+    <p class="tasks-link">Added at: {{task.date}}</p>
+    {{#if task.completed}}
+    <p class="tasks-link">Task is done</p>
+    {{else}}
+    <p class="tasks-link">Task is not done yet</p>
+    {{/if}}
+    <p><a href="/">All tasks</a></p>
+</div>

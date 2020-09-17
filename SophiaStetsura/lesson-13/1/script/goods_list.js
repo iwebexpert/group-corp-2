@@ -22,7 +22,7 @@ function makeGETRequest(url) {
                 if (xhr.status != 200) {
                     reject();
                 }
-                resolve(JSON.parse(xhr.responseText));
+                resolve(JSON.parse(xhr.response));
             }
         }
         xhr.send();

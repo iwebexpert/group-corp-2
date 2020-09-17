@@ -1,0 +1,22 @@
+<div>
+    <h3>Пользователи</h3>
+    <ul>
+        {{#each users}}
+            <li><a href="/users/{{@key}}">{{this.username}}</a></li>
+        {{/each}}
+    </ul>
+</div>
+<div>
+    <h3>Добавить пользователя</h3>
+    <form action="/users" method="POST">
+    <div>
+        <input type="text" name="username" placeholder="Имя пользователя">
+    </div>
+    <div>
+        <input type="number" name="age" placeholder="Возраст">
+    </div>
+    <div>
+        <input type="submit" value="Создать пользователя">
+    </div>
+    </form>
+</div>

@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(33,47,62,1) 100%);
+    color: white;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.todo-container {
+    background: linear-gradient(90deg, rgba(187,197,249,1) 0%, rgba(255,178,216,1) 100%);
+    color: white;
+    min-height: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 1000px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo {
+    width: 600px;
+}
+
+.todo-container h2 {
+    margin-bottom: 20px;
+}
+
+.todo-header input {
+    width: 94.5%;
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+    padding: 16px;
+}
+
+.todo-header button {
+    border-radius: 3px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    background: radial-gradient(circle, rgba(6,246,64,1) 0%, rgba(0,255,194,1) 100%);
+}
+.todo-header button:hover{
+    background: radial-gradient(circle, rgba(2,255,25,1) 0%, rgba(106,255,0,1) 76%);
+
+}
+
+.todo-container ul {
+    list-style: none;
+}
+
+.todo-list-item {
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+}
+
+.todo-list-item form {
+    width: 100%;
+    display: flex;
+}
+
+.todo-list-item input {
+    flex-grow: 2;
+    margin-right: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.todo-list-item label {
+    flex-grow: 2;
+    padding: 10px;
+}
+.todo-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-list-item .edit {
+    color: rgb(143, 233, 58);
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.todo-list-item .remove {
+    color: rgba(255,80,2,1);
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.todo-list-item .remove:hover{
+    color: rgba(255,0,0,1);
+}
+
+.todo-list-item-checked {
+    background-color: white;
+    color: black;
+    opacity: .3;
+    text-decoration: line-through;
+}
+
+footer {
+    margin-top: auto;
+    padding: 20px 0;
+    background: linear-gradient(90deg, rgba(187,197,249,1) 0%, rgba(255,178,216,1) 100%);
+    text-align: center;
+    color: white;
+}

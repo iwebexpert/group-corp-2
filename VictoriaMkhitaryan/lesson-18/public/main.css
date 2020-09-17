@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo {
+    list-style-type: none;
+    display: flex;
+}
+
+
+.checkbox {
+    display: none;
+}
+
+.todo.checked{
+    text-decoration: line-through;
+}
+
+.addTask, .addBtn {
+    margin: 0,
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+
+.addBtn {
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+}

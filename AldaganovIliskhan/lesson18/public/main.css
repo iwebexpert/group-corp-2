@@ -1,0 +1,61 @@
+*,*::after,*::before {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+ul {
+    list-style-type: none;
+}
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+input[type=checkbox] {
+    cursor: pointer;
+}
+.task-value {
+    padding: 3px 10px;
+    width: 200px;
+}
+.add-task {
+    background: rgb(66, 28, 116);
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: none;
+}
+.add-task:hover {
+    background: rgb(64, 53, 158);
+}
+.tasks__title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.task {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background: #ccc;
+    max-width: 300px;
+}
+.task__title {
+    display: inline-block;
+    margin-left: 5px;
+}
+.task__checkbox {
+    position: relative;
+    top: 2px;
+}
+.remove-btn {
+    font-style: normal;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+.remove-btn:hover {
+    opacity: 0.4;
+}

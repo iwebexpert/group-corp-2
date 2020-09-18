@@ -1,6 +1,7 @@
 const wrapper = document.querySelector('.wrapper');
 wrapper.addEventListener('click', (event) => {
     if(event.target.classList.contains('checkbox')){
+      event.preventDefault();
       if(event.target.checked){
         saveCheckbox(event.target.id, true);
       } else{

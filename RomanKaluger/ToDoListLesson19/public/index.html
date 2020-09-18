@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDoList</title>
+    <script type="module" src="main.bundle.js" defer></script>
+</head>
+<body>
+<div class="containerToDoList">
+    <div class="toDOListHeader">
+        Список задач
+    </div>
+    <div class="addStringContainer">
+        <textarea class="addString"  placeholder="Сделать..."></textarea>
+        <div class="addToDoBtn">Добавить</div>
+        <form name="priorityContainer" class="priorityContainer">
+            <div class="headerPrior">Приоритет: </div>
+            <input type="radio" name="priorityCheck" id="lowPrior" value="0">
+            <label for="lowPrior"><img src="https://img.icons8.com/fluent/100/000000/low-priority.png"/></label>
+            <input type="radio" name="priorityCheck" checked id="middlePrior" value="1">
+            <label for="middlePrior"><img src="https://img.icons8.com/fluent/100/000000/medium-priority.png"/></label>
+            <input type="radio" name="priorityCheck" id="highPrior" value="2">
+            <label for="highPrior"><img src="https://img.icons8.com/fluent/100/000000/high-priority.png"/></label>
+        </form>
+    </div>
+    <div class="sortedBlockContainer">
+        <form name="categoryCheckForm" class="categoryCheckContainer">
+            <input type="radio" name="categoryCheck" checked id="date" value="date">
+            <label for="date">По дате</label>
+            <input type="radio" name="categoryCheck" id="priority" value="priority">
+            <label for="priority">По важности</label>
+            <input type="radio" name="categoryCheck" id="completed" value="completed">
+            <label for="completed">По выполнению</label>
+        </form>
+        <form name="upOrDownForm" class="categoryCheckContainer">
+            <input type="radio" name="upOrDown" id="asc" value="asc">
+            <label for="asc" >По возрастанию</label>
+            <input type="radio" name="upOrDown" checked id="desc" value="desc">
+            <label for="desc">По убыванию</label>
+        </form>
+    </div>
+    <div class="toDoList"></div>
+    <div class="clearAllBtn">Очистить</div>
+</div>
+</body>
+</html>

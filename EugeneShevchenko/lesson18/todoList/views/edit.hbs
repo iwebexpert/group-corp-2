@@ -1,0 +1,21 @@
+<h1>Редактировать: {{task.title}}</h1>
+
+<form action="/done/edit" method="POST">
+
+  <div class="input-field">
+    <input id="title" name="title" type="text" class="validate" required value="{{task.title}}">
+    <label for="title">Заголовок</label>
+    <span class="helper-text" data-error="Добавьте заголовок"></span>
+  </div>
+
+  <div class="input-field">
+    <input id="description" name="description" type="text" class="validate" required value="{{task.description}}">
+    <label for="description">Текст</label>
+    <span class="helper-text" data-error="Добавьте описание"></span>
+  </div>
+
+  <input type="hidden" name="id" value="{{task._id}}">
+
+  <button type="submit" class="btn waves-effect waves-light" type="submit">Редактировать</button>
+
+</form>

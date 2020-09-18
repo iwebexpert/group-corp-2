@@ -4,6 +4,7 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const todoRoutes = require("./routes/todos");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
@@ -25,6 +26,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cors());
 
 app.use(todoRoutes);
 
@@ -39,7 +41,7 @@ async function start() {
       }
     );
     app.listen(PORT, () => {
-      console.log(`Server has been started... (localhost:${PORT})`);
+      console.log(`Server has been started... (http://localhost:${PORT})`);
     });
   } catch (e) {
     console.log(e);

@@ -1,0 +1,26 @@
+<h1>Выши задачи</h1>
+
+{{#if tasks.length}}
+{{#each tasks}}
+  <div class="row">
+    <div class="col s6 offset-s3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{this.title}}</span>
+          <p class="description">{{this.description}}</p>
+        </div>
+        <div class="card-action star">
+          <a href="/done/{{_id}}" target="_blank"><i class="material-icons">zoom_in</i></a>
+          <a href="/done/{{_id}}/edit?allow=true"><i class="material-icons">edit</i></a>
+          <form action="/done/remove" method="POST">
+            <input type="hidden" name="id" value="{{_id}}">
+            <button class="btn red"><i class="material-icons">delete</i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
+{{else}}
+<p>пусто</p>
+{{/if}}

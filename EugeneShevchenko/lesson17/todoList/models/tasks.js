@@ -73,10 +73,10 @@ class Task {
         })
     }
 
-    static async getById(id) {
-      const tasks = await Task.getAll()
-      return tasks.find(c => c.id === id)
-    }
+  static async getById(id) {
+    const tasks = await Task.getAll()
+    return tasks.find(c => c.id === id)
+  }
 }
 
 module.exports = Task

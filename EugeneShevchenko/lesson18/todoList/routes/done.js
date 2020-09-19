@@ -3,7 +3,7 @@ const Task = require('../models/tasks')
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const tasks = await Task.getAll()
+  const tasks = await Task.find().lean()
     res.render('done', {
       title: 'Список дел',
       isDone: true,
@@ -16,22 +16,32 @@ router.get('/:id/edit', async (req, res) => {
     return res.redirect('/')
   }
 
-  const task = await Task.getById(req.params.id)
+  const task = await Task.findById(req.params.id).lean()
 
   res.render('edit', {
-    title: `Редактировать ${task.title}`,
+    title: `Редактировать ${this.title}`,
     task
   })
 })
 
 router.post('/edit', async (req, res) => {
-  await Task.update(req.body)
-
+  const {id} = req.body
+  delete req.body.id
+  await Task.findByIdAndUpdate(id, req.body).lean()
   res.redirect('/done')
 })
 
+router.post('/remove', async (req, res) => {
+  try {
+    await Task.deleteOne({_id: req.body.id})
+    res.redirect('/done')
+  } catch(e) {
+    console.log(e)
+  }
+})
+
 router.get('/:id', async (req, res) => {
-  const task = await Task.getById(req.params.id)
+  const task = await Task.findById(req.params.id).lean()
   res.render('task', {
     layout: 'empty',
     title: `Задача ${task.title}`,

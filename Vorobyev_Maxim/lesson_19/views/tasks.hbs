@@ -1,0 +1,29 @@
+<div class="ml-4 mt-4">
+  <div>
+    <h3>Tasks</h3>
+  </div>
+  <div class="tasks">
+    <ul class="tasks__list list-group list-group-flush mb-4">
+      {{#each tasks}}
+      <li class="task list-group-item">
+        <div>
+          {{#if this.completed}}
+          <a class="text-success" href="/task/{{@key}}">{{this.title}}</a>
+          {{else}}
+          <a href="/task/{{@key}}">{{this.title}}</a>
+          {{/if}}
+        </div>
+        <div>
+          <button data-id="{{this.id}}" type="submit" class="button__comp btn btn-success">Done</button>
+          <button data-id="{{this.id}}" type="submit" class="button__delete btn btn-danger">Delete</button>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <form action="/tasks" method="POST">
+    <h4>Add task</h4>
+    <input class="form-control inp w-25" type="text" name="title" placeholder="Task name">
+    <button type="submit" class="btn btn-primary mt-2 btn-lg btn-block w-25 sbm__button">Add</button>
+  </form>
+</div>

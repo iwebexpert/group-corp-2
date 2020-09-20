@@ -1,0 +1,32 @@
+html{
+  font-family: 'Cedarville Cursive', cursive;
+  text-align: center;
+  background: linear-gradient(#1bb3ff, #eef743);
+  height: 100%;
+}
+
+h1{
+  font-size: 50px;
+}
+
+input{
+  border-radius: 25px;
+  height: 25px;
+  width: 200px;
+}
+
+button{
+  border-radius: 25px;
+  height: 25px;
+  width: 100px;
+  background: white;
+}
+
+ul{
+  list-style: none;
+  font-size: 25px;
+}
+
+.completed_items{
+  margin-top: 0;
+}

@@ -63,7 +63,7 @@ router.delete('/tasks/:id', async(req, res) => {
             res.json(doc)
         })
     })
-    //изменение статуса задачи 
+    //изменение статуса задачи, которая в процессе выполнения
 router.post('/tasks/inprogress/:id', async(req, res) => {
         const taskId = req.params.id
         const { completed } = req.body

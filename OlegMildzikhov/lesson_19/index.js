@@ -3,7 +3,7 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     path = require('path'),
     mongoose = require('mongoose'),
-    todoRouts = require('./routes/todos')
+    todoRouts = yrequire('./routes/todos')
 
 
 const app = express(),

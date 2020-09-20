@@ -1,38 +1,55 @@
 <template>
   <div class="users">
-    <ul class="tasks-list">
+    <ul v-if="GET_AUTH" class="tasks-list">
       <User
         v-on:deleteTask="deleteTask"
         v-on:changeCompliting="changeCompliting"
         v-bind:key="i"
         v-bind:user="user"
-        v-for="(user, i) in users"
+        v-for="(user, i) in GET_USERS"
       />
     </ul>
+    <Form v-if="GET_AUTH" v-on:createNewTask="createNewTask" />
+    <p v-else>Для просмотра списка задач зарегистрируйтесь, затем авторизуйтесь</p>
   </div>
 </template>
 
 <script>
 import User from "@/components/UsersItem.vue";
+import Form from "@/components/Form.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Users",
-  components: { User },
+  components: { User, Form },
 
-  props: {
-    users: {
-      type: Array,
-      required: true
-    }
+  data() {
+    return {
+      isFetching: false
+    };
   },
 
   methods: {
+    ...mapActions(["getTasks", "patchTask", "removeTask", "createTask"]),
+
     changeCompliting(id) {
-      this.$emit("changeCompliting", id);
+      this.patchTask(id);
     },
 
     deleteTask(id) {
-      this.$emit("deleteTask", id);
+      this.removeTask(id);
+    },
+
+    createNewTask(task) {
+      this.createTask(task);
     }
+  },
+
+  computed: {
+    ...mapGetters(["GET_USERS", "GET_AUTH"])
+  },
+
+  mounted() {
+    this.getTasks();
   }
 };
 </script>

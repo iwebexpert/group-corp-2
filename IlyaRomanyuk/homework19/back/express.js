@@ -2,7 +2,11 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const model = require('./models/todos')
+const usersModel = require('./models/users')
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
+
+const TOKEN_SECRET_KEY = 'dfhidusfhyiudayfidayfihvkcxvuydsf'
 
 mongoose.connect('mongodb+srv://Ilya:MpBd1942@chats.sbg2t.mongodb.net/todos', {
     useNewUrlParser: true,
@@ -18,6 +22,29 @@ app.use(express.json())
 app.use(cors())
 app.use(express.static('public'))
 
+
+//JWT
+const checkAuthentication = (req, res, next) => {
+    if (req.headers.authorization) {
+        const [type, token] = req.headers.authorization.split(' ')
+
+        jwt.verify(token, TOKEN_SECRET_KEY, (err, decoded) => {
+            if (err) {
+                res.status(403).json({ 'message': 'Пользователь не авторизован (verify)' })
+                return
+            }
+
+            req.user = decoded
+
+            next()
+        })
+    } else {
+        res.status(403).json({ 'message': 'Пользователь не авторизован' })
+    }
+}
+
+//Доспуп
+app.use('/chats', checkAuthentication)
 
 app.get('/', async (req, res) => {
     let todos = await model.find({}).lean()
@@ -79,6 +106,47 @@ app.get('/todo/:id', async (req, res) => {
     const id = (req.params.id) ? req.params.id : null
     const todo = await model.findById({ _id: id }).lean()
     res.status(200).json(todo)
+})
+
+app.post('/register', async (req, res) => {
+    const { email, name, password } = req.body
+
+    if (!email || !password) {
+        res.status(400).json({ message: 'Не передан email или password' })
+        return
+    }
+
+    const user = new usersModel({ email, name, password })
+    await user.save()
+    res.status(201).json(user)
+})
+
+app.post('/auth', async (req, res) => {
+    const { email, password } = req.body
+
+    if (!email || !password) {
+        res.status(400).json({ message: 'Не передан email или password' })
+        return
+    }
+
+    const user = await usersModel.findOne({ email })
+    if (!user) {
+        res.status(401).json({ message: 'Пользователь не найден' })
+        return
+    }
+
+    if (!user.validatePassword(password)) {
+        res.status(401).json({ message: 'Неправильный логин/пароль' })
+        return
+    }
+
+    const plainUser = JSON.parse(JSON.stringify(user))
+    delete plainUser.password
+
+    res.status(201).json({
+        ...plainUser,
+        token: jwt.sign(plainUser, TOKEN_SECRET_KEY)
+    })
 })
 
 //Errors

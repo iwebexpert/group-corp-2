@@ -42,7 +42,6 @@ router.post('/complete', async(req, res) => {
 
     todo.completed = !!req.body.completed
     await todo.save()
-
     res.redirect('/')
 })
 

@@ -52,12 +52,12 @@ router.delete('/tasks/:id', async(req, res) => {
         const taskId = req.params.id
 
         if (!taskId) {
-            res.status(400).json({ error: 'Не передан идентификатор задачи', id })
+            res.status(400).json({ error: 'Не передан идентификатор задачи', taskId })
         }
 
         const task = await Todo.findByIdAndRemove(taskId, (err, doc) => {
             if (err) {
-                res.status(400).json({ error: 'не удалось удалить задачу', id })
+                res.status(400).json({ error: 'не удалось удалить задачу', taskId })
                 return
             }
             res.json(doc)

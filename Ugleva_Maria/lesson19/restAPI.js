@@ -3,8 +3,9 @@ const express = require("express");
 const hbs = require("express-handlebars");
 const path = require("path");
 const mongoose = require("mongoose");
-const todosRoutes = require("./routes/todos");
 const bodyParser = require("body-parser");
+const cors = require('cors');
+const todosRoutes = require('./routes/todos')
 
 // получение приложения
 const app = express();
@@ -24,16 +25,17 @@ app.engine(
 );
 // регистрация движка
 app.set("view engine", "hbs");
-
+// для считывания данных из req.body
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
+app.use(express.static("public"));
 // подключение routera
 app.use(todosRoutes);
 
-// для считывания данных из req.body
-app.use(express.urlencoded({ extended: true }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static("public"));
 
 // подключение бд
 async function serverStart() {
@@ -43,12 +45,14 @@ async function serverStart() {
       {
         useNewUrlParser: true,
         useFindAndModify: false,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
       }
     );
     // поднять сервер: номер и callback
-    app.listen(3000, () => {
+    app.listen(4000, () => {
       // ссылка для открытия в браузере
-      console.log("http://localhost:3000");
+      console.log("http://localhost:4000");
     });
   } catch (e) {
     console.log(e);

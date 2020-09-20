@@ -6,9 +6,9 @@ catalogItems.classList.add("row", "row-cols-1", "row-cols-md-3");
 const addressContainer = document.getElementById("address");
 const commentContainer = document.getElementById("comment");
 
-class BaseWithCatalogProduct  {
+class BaseWithCatalogProduct {
   constructor(catalogProducts) {
-    this.catalogBox = catalogProducts
+    this.catalogBox = catalogProducts;
   }
   getCatalogProduct(id) {
     return this.catalogBox.find((item) => item.id === id);
@@ -19,12 +19,12 @@ class BaseWithCatalogProduct  {
   getAll() {
     return this.catalogBox;
   }
-};
+}
 
-class BaseWithBasketProduct  {
-    constructor() {
-        this.basketBox = []
-    }
+class BaseWithBasketProduct {
+  constructor() {
+    this.basketBox = [];
+  }
   getBasketProduct(id) {
     return this.basketBox.find((item) => item.id === id);
   }
@@ -37,7 +37,7 @@ class BaseWithBasketProduct  {
   setProps(id, name, value) {
     this.basketBox.find((item) => item.id === +id)[name] = +value;
   }
-};
+}
 
 //обертка для заголовка + добавление стрелочки для сворачивания
 function wrapperForHeader(header, idForRollUp) {
@@ -101,7 +101,7 @@ class Catalog extends objWithBaseFunc {
   constructor(catalogProducts) {
     super();
     this.catalogProduct = new BaseWithCatalogProduct(catalogProducts);
-    this.buyProduct = new BaseWithBasketProduct;
+    this.buyProduct = new BaseWithBasketProduct();
   }
   renderCatalog() {
     const headerCatalog = `<h2 class="header">Каталог</h2>`;
@@ -115,11 +115,11 @@ class Catalog extends objWithBaseFunc {
     this.catalogProduct.getAll().forEach((item) => this.renderProducts(item));
     catalogContainer.append(catalogItems);
   }
-  async upadateBasketItems()  {
-      const data = await fetch("./basketProducts");
-      this.buyProduct.basketBox = await data.json();
-      this.renderBasketItems();
-    }
+  async upadateBasketItems() {
+    const data = await fetch("./basketProducts");
+    this.buyProduct.basketBox = await data.json();
+    this.renderBasketItems();
+  }
   renderBasketItems() {
     const basketInfo = document.createElement("p");
     const box = document.getElementById("basketBody");
@@ -160,13 +160,13 @@ class Catalog extends objWithBaseFunc {
         event.preventDefault();
         input.value++;
         (async () => {
-            const data = await fetch(`basketProducts/${basketItem.id}`, {
-                method: 'PATCH',
-                body: JSON.stringify({count: input.value}),
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            });
+          const data = await fetch(`basketProducts/${basketItem.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({ count: input.value }),
+            headers: {
+              "Content-type": "application/json",
+            },
+          });
         })();
         this.upadateBasketItems();
       };
@@ -175,13 +175,13 @@ class Catalog extends objWithBaseFunc {
         event.preventDefault();
         if (input.value > 1) input.value--;
         (async () => {
-            const data = await fetch(`basketProducts/${basketItem.id}`, {
-                method: 'PATCH',
-                body: JSON.stringify({count: input.value}),
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            });
+          const data = await fetch(`basketProducts/${basketItem.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({ count: input.value }),
+            headers: {
+              "Content-type": "application/json",
+            },
+          });
         })();
         this.upadateBasketItems();
       };
@@ -194,10 +194,10 @@ class Catalog extends objWithBaseFunc {
       );
       // удалить элемент корзины
       let deleteItemBasket = (event) => {
-       (async () => {
-            const data = await fetch(`/basketProducts/${event.target.id}`, {
-                method: 'DELETE',
-            });
+        (async () => {
+          const data = await fetch(`/basketProducts/${event.target.id}`, {
+            method: "DELETE",
+          });
         })();
         this.upadateBasketItems();
       };
@@ -403,7 +403,7 @@ function createAddress() {
   const btnSubmit = document.createElement("button");
   btnSubmit.type = "submit";
   btnSubmit.textContent = "Заказать";
-  btnSubmit.classList.add("btn", "btn-primary");
+  btnSubmit.classList.add("btn", "btn-primary", "mt-3", "mb-4");
   addressContainer.append(boxInputsAddress);
   btnSubmit.addEventListener("click", () => checkValidForm());
   addressContainer.append(btnSubmit);
@@ -435,6 +435,7 @@ function checkValidForm() {
 function createBtnFurther(id, listener) {
   const btnFurther = document.createElement("button");
   btnFurther.textContent = "Далее";
+  btnFurther.classList.add("btn", "btn-primary", "mt-3", "mb-4");
   btnFurther.id = id;
   btnFurther.addEventListener("click", listener);
   btnFurther.style.display = "none";

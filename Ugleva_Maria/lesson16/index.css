@@ -137,17 +137,6 @@ textarea {
     color: gray;
 }
 
-#commentBtn,
-#toAddress {
-    padding: 5px 9px;
-    color: white;
-    background-color: rgba(0, 128, 0, 0.9);
-    cursor: pointer;
-    border-radius: 3px;
-    outline: none;
-    border: none;
-}
-
 .taxtareaLabel {
     display: block;
 }

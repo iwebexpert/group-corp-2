@@ -1,0 +1,21 @@
+{
+  "name": "HOMEWORK18 + 19",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "mongoose": "^5.10.6",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5"
+  }
+}

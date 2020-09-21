@@ -5,6 +5,10 @@ const getters = {
 
     GET_AUTH(state) {
         return state.isAuth
+    },
+
+    GET_DATA(state) {
+        return state.data
     }
 }
 

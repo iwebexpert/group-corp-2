@@ -44,9 +44,11 @@ export default {
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .btn {
+  text-decoration: none;
   border: none;
   background-color: none;
 
@@ -54,6 +56,7 @@ export default {
   border-radius: 5px;
   color: #fff;
   border: 1px solid #333;
+  font-size: 16px;
 
   margin-left: 20px;
 

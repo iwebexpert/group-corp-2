@@ -1,48 +1,28 @@
 <template>
   <div id="app">
     <Header />
-    <Users
-      v-on:deleteTask="deleteTask"
-      v-on:changeCompliting="changeCompliting"
-      v-bind:users="GET_USERS"
-    />
-    <Form v-on:createNewTask="createNewTask" />
+    <router-view />
     <Footer />
   </div>
 </template>
 
 <script>
-import Users from "@/components/UsersPage.vue";
-import { mapActions, mapGetters } from "vuex";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Form from "@/components/Form.vue";
+import { mapActions } from "vuex";
 export default {
   name: "App",
-  components: { Users, Header, Form, Footer },
+  components: { Header, Footer },
 
   methods: {
-    ...mapActions(["getTasks", "patchTask", "removeTask", "createTask"]),
-
-    changeCompliting(id) {
-      this.patchTask(id);
-    },
-
-    deleteTask(id) {
-      this.removeTask(id);
-    },
-
-    createNewTask(task) {
-      this.createTask(task);
-    }
-  },
-
-  computed: {
-    ...mapGetters(["GET_USERS"])
+    ...mapActions(["session"])
   },
 
   mounted() {
-    this.getTasks();
+    if (localStorage.getItem("data")) {
+      let data = JSON.parse(localStorage.getItem("data"));
+      this.session(data);
+    }
   }
 };
 </script>

@@ -60,9 +60,6 @@ app.delete('/tasks/:id', async (req, res) => {
 
 app.patch('/tasks/:id', async (req, res) => {
     let id = req.params.id
-    if (!id) {
-        res.redirect('/tasks')
-    }
     const doneTask = await tasksModels.findById({ _id: id }).lean()
         .then(res => res.completed)
         .then(async (completed) => {

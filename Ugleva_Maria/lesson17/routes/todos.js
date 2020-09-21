@@ -17,6 +17,7 @@ router.get("/tasks", async (req, res) => {
 });
 
 router.post("/tasks", urlencodedParser, async (req, res) => {
+  console.log(req.body)
   const task = new Task({
     todoTitle: req.body.title,
   });

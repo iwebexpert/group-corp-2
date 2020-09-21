@@ -39,7 +39,7 @@
       "name": "Рубашка",
       "price": 4000,
       "currency": "RUB",
-      "count": "3",
+      "count": 4,
       "img": "./img/shirts.jpg"
     },
     {

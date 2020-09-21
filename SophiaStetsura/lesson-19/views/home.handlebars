@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="wrapper">
+
+    <h1>To Do List</h1>
+
+    <form id="form" action='/' method='post'>
+      <input id="input_field" placeholder="To Do Item" name="title" type="text" />
+      <button class="addItem">Add Item</button>
+    </form>
+
+    <hr>
+    <ul>
+      {{#each todoAll}}
+      <li>{{title}}</li>
+    </ul>
+    {{/each}}
+    <div id="container">
+      <ul>
+        {{#data}}
+        <li>
+          <a href="/complete/{{@index}}">
+            <button class="complete" action="/complete" type="button" name="complete">Done</button>
+          </a>
+          {{.}}
+        </li>
+        {{/data}}
+      </ul>
+    </div>
+
+    <hr>
+
+    <div class="completed_items">
+      <h1>Completed</h1>
+      <ul id="done">
+        {{#complete}}
+        <li>{{.}}</li>
+        {{/complete}}
+      </ul>
+    </div>
+
+  </div>
+</body>
+
+</html>

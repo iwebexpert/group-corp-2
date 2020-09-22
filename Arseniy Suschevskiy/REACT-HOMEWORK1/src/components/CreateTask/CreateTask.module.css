@@ -1,0 +1,31 @@
+.CreateTask{
+    margin: 15px 0px;
+}
+
+.CreateTask input{
+    outline: none;
+    width: 200px;
+    height: 25px;
+    font-size: 16px;
+    display: inline-block;
+
+}
+
+.CreateTask button{
+    height: 31px;
+    display: inline-block;
+    font-size: 16px;
+    color: black;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-left:  5px;
+    outline: none;
+}
+
+.CreateTask button:hover{
+    background: rgba(255,255,255,.8);
+}
+.CreateTask button:active{
+    background: rgba(255,255,255, 1);
+}

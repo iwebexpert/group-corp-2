@@ -15,7 +15,7 @@ export default () => {
     const isWs = useSelector(s => s.app.wsStatus);
     const dispatch = useDispatch();
     useEffect(()=>{
-        autosize(textArea.current)
+        autosize(textArea.current);
     }, []);
     useEffect(() => {
         if (isWs) {

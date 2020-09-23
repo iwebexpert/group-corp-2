@@ -1,0 +1,24 @@
+.ControlButtons{
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+}
+.clearCheckedBtn, .clearAllBtn{
+    height: 31px;
+    display: inline-block;
+    font-size: 16px;
+    color: black;
+    background: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-left:  5px;
+    outline: none;
+}
+.clearAllBtn{
+}
+.clearCheckedBtn{
+
+}
+.clearCheckedBtn:hover, .clearAllBtn:hover  {
+    background: rgba(255,255,255,.8);
+}

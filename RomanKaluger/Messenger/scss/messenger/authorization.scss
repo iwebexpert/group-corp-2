@@ -1,0 +1,33 @@
+@import './../common/globalVariables';
+@import "./../common/commonMixinsApp";
+.AuthContainer{
+  @include center-content;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bgPrimaryLight;
+  .AuthArea{
+    @include --border('all', $primary, true);
+    @include --padding;
+    @include center-content;
+    width: 50vw;
+    height: 50vh;
+    .AuthLabel{
+      display: block;
+      font-size: 30px;
+      color: $primary;
+      margin: 10px;
+    }
+    .AuthInput{
+      @include --padding;
+      @include --border('all', $primary2, true);
+      margin: 10px;
+      display: block;
+      font-size: 30px;
+      color: $primary;
+      &:focus{
+        @include --border('all', $primary, true);
+        outline: none;
+      }
+    }
+  }
+}

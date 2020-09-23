@@ -1,0 +1,16 @@
+@import './commonMixinsApp';
+.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+.validationFieldError{
+    @include --border('all', $alert, false);
+}
+.button {
+    @include --padding;
+    @include --border('all', $light, true);
+    background-color: $primary;
+    color: $light;
+    font-size: 30px;
+    margin: 5px;
+}

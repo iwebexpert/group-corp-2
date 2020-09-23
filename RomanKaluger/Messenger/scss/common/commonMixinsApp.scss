@@ -1,0 +1,50 @@
+@import "./../common/globalVariables";
+@mixin center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+@mixin header-big {
+  font: {
+    size: 100px;
+    weight: bold;
+    family: fantasy;
+  };
+}
+@mixin --padding{
+  padding: $stdPadding;
+  box-sizing: border-box;
+}
+@mixin --border($sides, $color, $rad) {
+  @if($sides == 'all') {
+    border: 3px solid $color;
+  } @else {
+    @each $side in $sides{
+      border-#{$side}: 3px solid $color;;
+    }
+  }
+  @if($rad){
+    border-radius: 12px;
+  }
+}
+@mixin text-standard($size) {
+  color: $primary;
+  font: {
+    size: $size;
+    weight: normal;
+    family: sans-serif;
+  };
+}
+@mixin border-standard {
+  border: 2px solid $primaryDark;
+  border-radius: 20px;
+}
+@mixin button-click {
+  &:hover{
+    transform: scale(1.1);
+  }
+  &:active{
+    transform: scale(0.9);
+  }
+}

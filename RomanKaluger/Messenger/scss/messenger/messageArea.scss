@@ -1,0 +1,81 @@
+@import "./../common/globalVariables";
+@import "../common/commonMixinsApp";
+@keyframes shadow {
+  from {
+    text-shadow: 1px 1px 2px $deepDark, 0 0 1em $primary, 0 0 0.2em $light;
+  }
+  to {
+    text-shadow: 1px 1px 2px $light, 0 0 1em $primary, 0 0 0.2em $deepDark;
+  }
+}
+.MessagesPage{
+  display: flex;
+  .selectDialogPanel{
+    width: 17vw;
+    height: 100vh;
+    background-color: $bgPrimary;
+    @include --border('right', $primary1, false);
+    .searchMessPanel{
+      height: 5vh;
+      width: 100%;
+      background-color: $bgPrimaryLight;
+    }
+  }
+  .MessengerArea{
+    width: 83vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .MessengerTopPanel{
+      width: 100%;
+      height: 5vh;
+      background-color: $bgPrimaryLight;
+    }
+    .MessagesArea{
+      @include --padding;
+      width: 100%;
+      flex-grow: 1;
+      background-color: $bgPrimaryLight3;
+      .Message {
+        @include --padding;
+        @include --border('all', $primary, true);
+        background-color: transparentize($primary, 0.5);
+        font-size: 20px;
+        max-width: 70%;
+        margin: 3px;
+      }
+    }
+    .InputMessageArea{
+      @include --padding;
+      width: 100%;
+      background-color: $bgPrimaryLight2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .InputMessageTextArea{
+        @include --border('all', $primary2, true);
+        @include --padding;
+        width: 80%;
+        min-height: 6vh;
+        max-height: 20vh;
+        resize: none;
+        font-size: 22px;
+        &:focus{
+          outline: none;
+        }
+      }
+      .SendMsgBtn {
+        @include --padding;
+        @include button-click;
+        background-color: $bgPrimaryLight2;
+        background-image: url("https://img.icons8.com/clouds/100/000000/cloud-mail.png");
+        background-size: contain;
+        height: 6vh;
+        width: 6vh;
+        margin: 5px;
+      }
+    }
+
+  }
+}

@@ -19,7 +19,12 @@ const App = () => {
   return (
     <div className="App container mt-5 w-50">
       <div className="card border-dark">
-        <div className="card-header text-dark">{`You're logged in as `}<span className="text-danger">{username}</span></div>
+        <div className="card-header text-dark">
+          {`You're logged in as `}
+          <span className="text-danger">
+            {username}
+          </span>
+        </div>
         <div className="card-body">
           <h4 className="card-title text-dark">Chat</h4>
           <Chat messageList={messageList} deleteMessage={deleteMessage} />

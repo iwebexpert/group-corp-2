@@ -13,11 +13,15 @@ const CreateMessage = ({ pushMessage }) => {
     setMessage('');
   };
 
+  const onHandleKeyDown = (event) => {
+    if (event.key === 'Enter') onHandleClick();
+  };
+
   return (
     <div className="CreateMessage">
       <div className="form-group d-flex justify-content-between mb-0 m-1">
-        <input className="form-control mr-1" type="text" name="text" placeholder="Write your message here.." value={message} onChange={onHandleChange} />
-        <button type="submit" className="btn btn-primary btn-md px-5" onClick={onHandleClick}>Send</button>
+        <input onKeyDown={onHandleKeyDown} className="form-control mr-1" type="text" name="text" placeholder="Write your message here.." value={message} onChange={onHandleChange} />
+        <button type="submit"  className="btn btn-primary btn-md px-5" onClick={onHandleClick}>Send</button>
       </div>
     </div>
   );

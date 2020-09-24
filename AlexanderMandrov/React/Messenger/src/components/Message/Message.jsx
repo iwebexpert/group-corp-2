@@ -11,14 +11,12 @@ const Message = ({ message, deleteMessage }) => {
   }, [message])
 
   const renderBotMessage = (
-    <p className="text-warning mb-0">
-      <span className="text-primary">
-        {'⊂(✾◕ ‿ ◕✾)つ•٠· '}
+    <p className="text-primary mb-0">
+      {'⊂(✾◕ ‿ ◕✾)つ•٠· '}
+      <span className="text-warning">
+        {`${username} said: `}
       </span>
-      {`${username} said: `}
-      <span className="text-danger">
-        {text}
-      </span>
+      {text}
     </p>
   );
 
@@ -26,7 +24,12 @@ const Message = ({ message, deleteMessage }) => {
     <>
       <div className="mt-1">
         <p className="text-secondary mb-0">{date}</p>
-        <p className="card-text text-primary mb-1">{text}</p>
+        <p className="card-text text-primary mb-1">
+          {text}
+          <span className="text-warning">
+            {` (${username})`}
+          </span>
+        </p>
         { isBot ? renderBotMessage : null }
       </div>
       <span className="btn-group float-right">

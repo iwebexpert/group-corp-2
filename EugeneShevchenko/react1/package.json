@@ -1,21 +1,26 @@
 {
   "name": "react1",
   "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
+  "description": "react app",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "devServer": "cross-env NODE_ENV=development webpack-dev-server --open",
-    "build": "cross-env NODE_ENV=production webpack"
+    "dev": "cross-env NODE_ENV=development webpack",
+    "dev-server": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=production webpack --mode production"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "node",
+    "react",
+    "js"
+  ],
+  "author": "eugene shevchenko <imsorler@gmail.com>",
   "license": "ISC",
   "browserslist": "> 0.25%, not dead",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.2",

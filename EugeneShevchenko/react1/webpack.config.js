@@ -1,5 +1,5 @@
 const path = require('path')
-const HtmlWebpackPlugin =  require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -50,21 +50,21 @@ module.exports = {
               hmr: isDev,
               reloadAll: true
             }
-          },
+          }, 
           'css-loader',
           'sass-loader',
         ],
       },
       {
-        test: /\.m?js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }
       }
-    ]
+    ],
   }
 }

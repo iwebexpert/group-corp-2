@@ -1,6 +1,6 @@
 import React from 'react';
 import Messages from './components/Messages/Messages.js';
-import ButtonSendMessages from "./components/ButtonSendMessage/ButtonSendMessages";
+import ButtonSendMessages from './components/ButtonSendMessage/ButtonSendMessages';
 
 const App = (props) => {
 	return (

@@ -1,56 +1,50 @@
 import React from "react";
 import {useCallback, useEffect, useRef, useState, useMemo} from "react";
 import autosize from "autosize/src/autosize";
-import config from "./../../configs/connectionConfig";
-import {useDispatch, useSelector} from "react-redux";
-import uniqid from 'uniqid';
-import {sendMessage} from "../../redux/actions";
+import {useSelector} from "react-redux";
+import {activateBtn, disableBtn} from "../../utils/helpers";
+import {DbWorker} from "../../utils/DbWorker";
 
 export default () => {
     const [mes, setMes] = useState('');
     const textArea = useRef();
     const sendBtn = useRef();
-    const disableSendBtn = useCallback(() => sendBtn.current.classList.add('disabled'), []);
-    const activateSendBtn = useCallback(() => sendBtn.current.classList.remove('disabled'),[]);
-    const isWs = useSelector(s => s.app.wsStatus);
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        autosize(textArea.current);
+    const {wsStatus} = useSelector(s => s.app);
+    useEffect(()=>{autosize(textArea.current)}, []);
+    useEffect(() => {
+        if (wsStatus) {
+            activateBtn(sendBtn.current);
+        } else {
+            disableBtn(sendBtn.current);
+        }
+    },[wsStatus]);
+    const onChangeHandler = useCallback((e) => {
+        const msg = e.target.value;
+        setMes(msg);
     }, []);
     useEffect(() => {
-        if (isWs) {
-            activateSendBtn();
-        } else {
-            disableSendBtn();
-        }
-    },[isWs]);
-    const onChangeHandler = useCallback((msg) => {
-        setMes(msg);
-        if (msg === ''){
-            disableSendBtn();
+        if (mes === ''){
+            disableBtn(sendBtn.current);
             return;
         }
-        activateSendBtn();
-    }, []);
-    const sendMessageHandler = useCallback((msg) => {
-        /*if (isWs) {
-            config.ws.send(JSON.stringify({
-                text: msg,
-                isRead: {type: Boolean, required: true},
-                dateSend: Date.now(),
-                id: uniqid(),
-                author: { type: Schema.Types.ObjectId, ref: 'User' },
-                readers: [{ type: Schema.Types.ObjectId, ref: 'User' }]
-            }));
-        }*/
+        activateBtn(sendBtn.current);
+    },[mes]);
+    const sendMessageHandler = useCallback(async (msg) => {
         if (msg){
-            dispatch(sendMessage(msg));
-            textArea.current.value = '';
+            disableBtn(sendBtn.current);
+            await DbWorker.sendMessage(msg);
+            activateBtn(sendBtn.current);
+            setMes('');
         }
-    }, [isWs]);
+    }, [wsStatus, setMes]);
+    const submitHandler = useCallback((e) => {
+        if (e.key === 'Enter' && e.ctrlKey) {
+            sendMessageHandler(mes);
+        }
+    }, [sendMessageHandler, mes]);
     return (
         <div className={'InputMessageArea'}>
-            <textarea value={mes} ref={textArea} onChange={(e) => onChangeHandler(e.target.value)} placeholder={'Введите сообщение'} className={'InputMessageTextArea'}/>
+            <textarea value={mes} onKeyDown={submitHandler} ref={textArea} onChange={onChangeHandler} placeholder={'Введите сообщение'} className={'InputMessageTextArea'}/>
             <div ref={sendBtn} onClick={() => sendMessageHandler(textArea.current.value)} className={'SendMsgBtn SendMsgBtnDisable'}/>
         </div>
     );

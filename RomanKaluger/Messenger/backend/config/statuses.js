@@ -1,9 +1,7 @@
 module.exports={
     wsTypes : {
-        AUTH: 'AUTH',
-        AUTH_SUCCESS: 'AUTH_SUCCESS',
-        REGISTER: 'REGISTER',
+        CHATS: 'CHATS',
         MESSAGE: 'MESSAGE',
-        ERROR: 'ERROR'
-    }
+        REMEMBER_ME:'REMEMBER_ME'
+    },
 };

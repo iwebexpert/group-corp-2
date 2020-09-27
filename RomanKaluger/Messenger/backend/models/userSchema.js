@@ -7,7 +7,7 @@ const userSchema = new Schema({
     email: {type: String, required: true},
     name: {type: String, default: "Guest"},
     password: {type: String, required: true},
-    id: {type: String, required: true, unique: true}
+    friends: [{type: Schema.Types.ObjectId, ref: 'User'}]
 });
 
 userSchema.pre('save', function(next) {
@@ -21,6 +21,5 @@ userSchema.pre('save', function(next) {
 userSchema.methods.validatePassword = function(password){
     return bcrypt.compareSync(password, this.password);
 };
-
 
 module.exports = model('User', userSchema, 'users');

@@ -1,12 +1,25 @@
-import React from "react";
-import {useSelector} from "react-redux";
+import React, {useState, useEffect, useRef} from "react";
 import Message from "./Message";
+import {DbWorker} from "../../utils/DbWorker";
 
-export default () => {
-    const messages = useSelector(s => s.app.chats.id1);
+export default ({curChat}) => {
+    const [messages, setMessages] = useState([]);
+    const mesAreaRef = useRef();
+    useEffect(() => {
+        if (curChat){
+            async function f() {
+                const msgs = await DbWorker.getMessages(curChat._id);
+                setMessages(msgs);
+            }
+            f();
+        }
+    }, [curChat]);
+    useEffect(() => {
+        mesAreaRef.current.scrollTop = mesAreaRef.current.scrollHeight - mesAreaRef.current.clientHeight;
+    });
     return (
-        <div className={'MessagesArea'}>
-            {messages.map(msg => <Message message={msg}/>)}
+        <div ref={mesAreaRef} className={'MessagesArea'}>
+            {messages.map((msg, index, array) => <Message key={array[array.length - 1 - index]._id} message={array[array.length - 1 - index]}/>)}
         </div>
     );
 }

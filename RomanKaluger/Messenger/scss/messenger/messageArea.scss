@@ -14,11 +14,136 @@
     width: 17vw;
     height: 100vh;
     background-color: $bgPrimary;
+    cursor: pointer;
+    position: relative;
     @include --border('right', $primary1, false);
     .searchMessPanel{
+      @include center-content;
       height: 5vh;
       width: 100%;
       background-color: $bgPrimaryLight;
+      .searchMessPanelInput{
+        @include --border('all', $bgPrimary, true);
+        @include --padding;
+        @include text-standard(1.5vh);
+        width: 90%;
+        height: 4vh;
+        background-color: $light;
+        color: $bgPrimaryLight;
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+    .CategorySelectorDlgPnCont{
+      width: 100%;
+      display: flex;
+      .CategorySelectorDlgPn{
+        @include --padding;
+        @include center-content;
+        @include text-standard(30px);
+        @include --border('bottom', $primary, false);
+        height: 5vh;
+        width: 50%;
+        &:hover{
+          background-color: $primary2;
+          color: $deepDark;
+        }
+      }
+    }
+    .ChatsSectionDlgPn{
+      @include --padding;
+      @include --border(top bottom, $primary, false);
+      text-align: center;
+      font-size: 25px;
+      width: 96%;
+      max-height: 75vh;
+      margin: 10px auto 10px auto;
+      color: $primary2;
+      background-color: transparentize($bgPrimaryLight, 0.5);
+      &:first-child{
+        background-color: transparentize($bgPrimaryLight2, 0.5);
+      }
+      .ChatsSectionHeaderDlgPn{
+        @include --padding;
+        @include center-content;
+        @include --border(bottom, $bgPrimaryLight3, false);
+        margin: 10px;
+        color: $primary;
+        font-size: 40px;
+      }
+      .chatSelector{
+        &:nth-child(2n){
+          background-color: transparentize($deepDark, 0.5);
+        }
+        &:hover{
+          background-color: transparentize($primary2, 0.5);
+        }
+        &Selected{
+          @include --border(bottom top, $primary, false);
+          background-color: transparentize($primary, 0.5) !important;
+        }
+        @include --border(top bottom, $bgPrimaryLight3, false);
+        @include center-content;
+        width: 100%;
+        background-color: $bgPrimaryLight;
+        .chatSelectorTitle{
+          @include center-content;
+          color: $primary;
+          size: 25px;
+          font-weight: bold;
+          height: 35px;
+        }
+        .chatSelectorPeopleBtn{
+          display: flex;
+          justify-content: space-around;
+          .--localBtn{
+            @include --border('all', $light, true);
+            @include button-click;
+            height: 50px;
+            width: 50px;
+            margin: 10px;
+            background-size: contain;
+            background-color: $bgPrimary;
+          }
+          .startChatUserBtn{
+            @extend .--localBtn;
+            background-image: url("https://img.icons8.com/clouds/100/000000/add-message.png");
+          }
+          .addFriendUserBtn{
+            @extend .--localBtn;
+            background-image: url("https://img.icons8.com/clouds/100/000000/add-user-group-man-man.png");
+          }
+        }
+      }
+    }
+    .ShortMenuContainer{
+      @include --padding;
+      @include center-content;
+      @include --border(top, $primary, false);
+      height: 15vh;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: calc(100% - 15vh);
+      .shortMenuGreeting{
+        @include center-content;
+        color: $primary;
+        font-size: 2vh;
+        margin: 10px;
+        font-weight: bold;
+      }
+      .UnAuthorizeBtn{
+        @include --border('all', $light, true);
+        @include --padding;
+        @include button-click;
+        @include center-content;
+        background-color: $primary;
+        color: $light;
+        height: 6vh;
+        font-weight: bold;
+        width: 60%;
+      }
     }
   }
   .MessengerArea{
@@ -26,24 +151,59 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-
+    .emptyMessengerArea{
+      @include center-content;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      font-size: 5vh;
+      color: $primary;
+      background-color: $bgPrimaryLight;
+    }
     .MessengerTopPanel{
+      @include center-content;
       width: 100%;
       height: 5vh;
       background-color: $bgPrimaryLight;
+      .chatTitleTopPn{
+        @include --padding;
+        color: $primary;
+        font-weight: bold;
+        font-size: 4vh;
+      }
     }
     .MessagesArea{
       @include --padding;
       width: 100%;
       flex-grow: 1;
       background-color: $bgPrimaryLight3;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: auto;
       .Message {
         @include --padding;
         @include --border('all', $primary, true);
-        background-color: transparentize($primary, 0.5);
+        @include center-content;
+        background-color: transparentize($bgPrimary, 0.5);
         font-size: 20px;
         max-width: 70%;
         margin: 3px;
+        .MessageAuthor{
+          @include --border(all, $bgPrimary, false);
+          @include --padding;
+          @include center-content;
+          margin: 10px;
+          border-radius: 30%;
+          background-color: $light;
+        }
+      }
+      .MyMessage{
+        @extend .Message;
+        background-color: transparentize($primary, 0.5);
+        align-self: flex-end;
+        margin-left: 30px;
       }
     }
     .InputMessageArea{

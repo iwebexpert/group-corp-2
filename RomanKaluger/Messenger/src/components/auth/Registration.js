@@ -6,15 +6,16 @@ import {activateBtn, disableBtn} from "../../utils/helpers";
 
 export default () => {
     const signBtnRef = useRef();
+    const formRef = useRef();
     const signHandler = useCallback(async (e) => {
-           const formData = document.querySelector('.AuthArea').elements;
+           const formData = formRef.current.elements;
            disableBtn(signBtnRef.current);
            await DbWorker.register(formData);
            activateBtn(signBtnRef.current);
     },[]);
     return (
         <div className={'AuthContainer'}>
-            <form className={'AuthArea'}>
+            <form ref={formRef} className={'AuthArea'}>
                 <label className={'AuthLabel'} htmlFor={'regName'}>Имя</label>
                 <input className={'AuthInput'} name={'regName'} id={'regName'} type={'text'} placeholder={'Имя'}/>
                 <label className={'AuthLabel'} htmlFor={'regEmail'}>Почта</label>

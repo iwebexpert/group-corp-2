@@ -8,15 +8,16 @@ import {DbWorker} from "../../utils/DbWorker";
 export default () => {
     useAuthCheck(routesPaths.MESSENGER);
     const sigInBtnRef = useRef();
+    const formRef = useRef();
     const signInHandler = useCallback(async (e) => {
-            const formData = document.querySelector('.AuthArea').elements;
+            const formData = formRef.current.elements;
             disableBtn(sigInBtnRef.current);
             await DbWorker.auth(formData);
             activateBtn(sigInBtnRef.current);
     },[]);
     return (
         <div className={'AuthContainer'}>
-            <form className={'AuthArea'}>
+            <form ref={formRef} className={'AuthArea'}>
                 <label className={'AuthLabel'} htmlFor={'authEmail'}>Почта</label>
                 <input className={'AuthInput'} name={'authEmail'} id={'authEmail'} type={'text'} placeholder={'Почта'}/>
                 <label className={'AuthLabel'} htmlFor={'authPassword'}>Пароль</label>

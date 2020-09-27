@@ -12,7 +12,6 @@ export class Messenger extends Component {
         this.setState({ messages: this.state.messages.concat([message]) });
         clearInterval(this.interval);
     };
-
     componentDidUpdate() {
         clearInterval(this.interval);
         this.lastAuthor = this.state.messages[this.state.messages.length - 1].author;
@@ -20,10 +19,9 @@ export class Messenger extends Component {
             this.handleMessageSend({
                 text: `Привет, ${this.lastAuthor}`,
                 author: 'Robot'
-            })
+            });
         }, 1000);
-    }
-
+    };
     render() {
         const { messages } = this.state;
         return (<div>

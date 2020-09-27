@@ -6,16 +6,9 @@ export class MessageForm extends Component {
         text: '',
         author: '',
     };
-
     static propTypes = {
         onSend: PropTypes.func.isRequired,
     };
-
-    // handleInputChange = (event) => {
-    //     this.setState({text: event.target.value});
-
-    // };
-
     handleInputChange = (event) => {
         const fieldName = event.target.name;
         this.setState({ [fieldName]: event.target.value });
@@ -24,31 +17,29 @@ export class MessageForm extends Component {
     handleMessageSend = () => {
         const { onSend } = this.props;
         const { text } = this.state;
-
-        if (!text) {
-            alert('Введите текст сообщения');
+        const { author } = this.state;
+        if (!text || !author) {
+            alert('Заполните оба поля');
             return;
         }
 
         if (typeof onSend === 'function') {
             onSend(this.state);
-
             this.setState({ text: '' });
+            this.setState({ author: '' })
         }
-
     };
     handleKeyDownEnter = (event) => {
-        if (event.keyCode === 13) {
+        if (event.ctrlKey && event.keyCode === 13) {
             this.handleMessageSend();
         }
     }
 
     render() {
         const { text, author } = this.state;
-
         return (<>
             <div>
-                <input name="author" type="text" onChange={this.handleInputChange} placeholder="Введите имя автора" value={author} />
+                <input name="author" onKeyDown={this.handleKeyDownEnter} type="text" onChange={this.handleInputChange} placeholder="Введите имя автора" value={author} />
             </div>
             <div>
                 <textarea onKeyDown={this.handleKeyDownEnter} name="text" onChange={this.handleInputChange} placeholder="Введите текст сообщения" value={text} />
@@ -60,6 +51,3 @@ export class MessageForm extends Component {
     }
 }
 
-// MessageForm.propTypes = {
-//     onSend: PropTypes.func.isRequired,
-// };

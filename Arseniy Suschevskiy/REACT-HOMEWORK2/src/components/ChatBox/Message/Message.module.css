@@ -1,0 +1,28 @@
+.Message{
+    display: flex;
+    align-items: center;
+}
+
+.Message p{
+    max-width: 500px;
+    margin-bottom: 12px;
+    line-height: 24px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    text-align: center;
+    color: #fff;
+
+}
+.Message.received p{
+    background: #e5e5ea;
+    color: #000;
+}
+.Message.send{
+    flex-direction: row-reverse;
+}
+.Message.send p{
+    color: #fff;
+    background: #0b93f6;
+    align-self: flex-end;
+}

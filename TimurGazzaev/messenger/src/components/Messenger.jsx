@@ -13,7 +13,7 @@ export class Messenger extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state !== prevState) {
+        if (this.state.messages !== prevState.messages) {
             if(this.state.messages[this.state.messages.length - 1]['author'] === 'Бот') {
                 return
             }

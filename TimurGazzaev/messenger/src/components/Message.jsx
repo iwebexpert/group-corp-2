@@ -1,0 +1,13 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+export const messageType = {
+    author: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired
+}
+
+export const Message = ({text, author}) => {
+    return <div>{text} - <b>{author}</b></div>
+}
+
+Message.propTypes = messageType

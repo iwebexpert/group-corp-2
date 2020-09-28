@@ -1,0 +1,18 @@
+.container{
+    margin: 20px auto;
+    border: 2px solid #649bbd;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.main-header{
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    color: #649bbd;
+}
+
+hr{
+    border: 1px solid #649bbd;
+}

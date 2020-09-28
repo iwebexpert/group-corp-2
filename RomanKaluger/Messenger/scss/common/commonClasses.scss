@@ -7,10 +7,18 @@
     @include --border('all', $alert, false);
 }
 .button {
+    @include button-click;
     @include --padding;
     @include --border('all', $light, true);
     background-color: $primary;
     color: $light;
     font-size: 30px;
     margin: 5px;
+}
+.selectedTab{
+    @include --border('bottom', $bgPrimaryLight, false);
+    background-color: $primary;
+    color: $bgPrimary!important;
+    transform: scaleY(1.05);
+    transform-origin: bottom;
 }

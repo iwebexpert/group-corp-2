@@ -1,3 +1,5 @@
 export default {
-    host: 'ws://localhost:4000/'
+    hostHttp: 'http://localhost:4001',
+    host:'ws://localhost:4000',
+    throttleTime: 500
 };

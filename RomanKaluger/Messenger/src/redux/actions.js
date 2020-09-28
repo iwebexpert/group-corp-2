@@ -7,9 +7,16 @@ export function changeWsStatus(payload) {
     }
 }
 
-export function sendMessage(payload) {
+export function setCurrentUser(payload) {
     return {
-        type: types.SEND_MESSAGE,
+        type: types.SET_CURRENT_USER,
         payload: payload
     }
 }
+export function setSelectedChat(payload) {
+    return {
+        type: types.SET_SELECTED_CHAT,
+        payload: payload
+    }
+}
+

@@ -1,22 +1,24 @@
 import React from "react";
 import MessagesPage from "../messenger/MessagesPage";
 import {useEffect} from "react";
-import {initializeApp} from "../../utils/initializeApp";
-import {destroyApp} from "../../utils/destroyApp";
-import {Provider} from 'react-redux';
-import {store} from './../../redux/StorageRedux';
+import {initializeWs} from "../../utils/initializeWs";
+import {destroyWs} from "../../utils/destroyWs";
+import {useSelector} from 'react-redux';
 import routesPaths from "../../configs/routesPaths";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Authorization from "../auth/Authorization";
 import Registration from "../auth/Registration";
 
 export default () => {
+    const curUser = useSelector(s => s.app.curUser);
+    const id = curUser ? curUser._id : null;
     useEffect(() => {
-        initializeApp();
-        return destroyApp;
-        },[]);
+        if (curUser){
+            initializeWs(curUser);
+            return destroyWs;
+        }
+        },[id]);
     return (
-        <Provider store={store}>
             <Router>
                 <div className={'appContainer'}>
                     <Switch>
@@ -35,7 +37,6 @@ export default () => {
                     </Switch>
                 </div>
             </Router>
-        </Provider>
     );
 }
 

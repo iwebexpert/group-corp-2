@@ -52,8 +52,7 @@ export default class MessageForm extends Component {
                   value={author} />
         </div>
         <div>
-          <textarea className="chat__input" 
-                    onKeyDown={() => {}} 
+          <textarea className="chat__input"
                     name="message" 
                     onChange={this.handleInputChange} 
                     onKeyDown={this.handleKeyDown}

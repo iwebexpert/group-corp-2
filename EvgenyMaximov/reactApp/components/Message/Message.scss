@@ -1,0 +1,21 @@
+.message {
+  max-width: 350px;
+  background-color: rgb(243, 241, 112);
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 20px;
+  margin: 5px;
+
+  &-author {
+    color: grey;
+    font-size: 14px;
+  }
+
+  &-bot {
+    align-self: flex-start;
+  }
+
+  &-user {
+    align-self: flex-end;
+  }
+}

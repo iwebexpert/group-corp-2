@@ -1,0 +1,14 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+//IMPORT BASE
+@import "base/variables";
+@import "base/icons";
+@import "base/user";
+@import "base/state";
+@import "base/dates";
+
+//IMPORT BASE
+@import "blocks/chatArea";

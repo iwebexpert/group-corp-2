@@ -1,0 +1,20 @@
+.user_account{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  &__imgLink{
+    display: block;
+    margin-right: 5px;
+  }
+  &__img{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  &__infoLink{
+    font-size: 16px;
+    text-decoration: none;
+    color: $secondaryText;
+    margin-bottom: 2px;
+  }
+}

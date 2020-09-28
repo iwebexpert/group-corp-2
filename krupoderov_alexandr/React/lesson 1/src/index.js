@@ -9,10 +9,10 @@ const rerenderTree = () => {
 		,document.getElementById('root'));
 }
 
-rerenderTree()
+rerenderTree();
 
 store.subscribe(
 	() => {rerenderTree(store.getState())}
-)
+);
 
 

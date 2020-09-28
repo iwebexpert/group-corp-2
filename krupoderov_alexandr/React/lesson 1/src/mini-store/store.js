@@ -12,7 +12,7 @@ const store = {
 	},
 
 	getState(){
-		return this._state
+		return this._state;
 	},
 
 	dispatch(action){

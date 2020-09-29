@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(228, 222, 222);
+  padding: 5px;
+  color: rgb(75, 72, 72);
+  border-bottom: 1px solid rgb(75, 72, 72);
+  text-shadow: 1px 1px white;
+  font-size: 25px;
+
+  h1 {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

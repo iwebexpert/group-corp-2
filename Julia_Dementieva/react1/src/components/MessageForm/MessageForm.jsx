@@ -6,12 +6,13 @@ import {FullscreenExit, Send} from '@material-ui/icons';
 const styles = {
     root: {
         display: 'flex',
-        margin: '5px',
+        justifyContent:'space-around',
+        margin: '0 auto',
+        marginTop: '15px',
+        width: '90%',
     },
     btn: {
         backgroundColor: 'red',
-    },
-    textField: {
     },
     label: {
         fontSize: '26',
@@ -71,11 +72,6 @@ class MessageFormClass extends Component {
                 onKeyDown={this.handleKeyDown}
                 autoFocus
                 className={classes.textField}
-                // InputProps={{
-                //     classes: {
-                //       input: classes.textField,
-                //     },
-                // }}
                 InputLabelProps={{style: {fontSize: 13}}}
             />
 
@@ -94,7 +90,6 @@ class MessageFormClass extends Component {
             color="primary" 
             onClick={this.handleMessageSend}
             className={classes.btn}
-            
             >
                 <Send />
             </Fab>

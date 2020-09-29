@@ -1,0 +1,24 @@
+.header {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-avatar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90px;
+    margin-right: 25px; 
+    font-family: Roboto;
+    font-size: 15px;
+}
+
+.header-logo{
+    color: blue;
+    margin-left: 25px; 
+    font-family: Roboto;
+    font-size: 25px;
+}

@@ -1,6 +1,4 @@
 .messenger {
-    height: 80%;
-    width: 70%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -11,9 +9,12 @@
 .messages-list {
     display: flex;
     flex-direction: column;
-    background-color: bisque;
-    height: 50%;
+    background-color: rgb(231, 245, 245);
+    height: 370px;
     padding: 20px;
     width: calc(100% - 40px);
     overflow-y: scroll;
+}
+.message-form{
+    width: 100%;
 }

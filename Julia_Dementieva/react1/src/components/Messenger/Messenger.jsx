@@ -13,8 +13,7 @@ export class Messenger extends Component {
 
     state ={
         messages: [
-            {author: 'Web1', text: 'Привет', id: nanoid()}, 
-            {author: 'Web1', text: 'Hi', id: nanoid()},
+            {author: 'Web', text: 'Привет', id: nanoid()}, 
         ],
         nameRobot: "Robot",
         answerRobot: ['Чем могу помочь?','Привет, какая хорошая погода!','Добрый день!', 'Hi'],
@@ -43,7 +42,7 @@ export class Messenger extends Component {
             setTimeout(() =>{
                 this.setState(
                     { messages: [ ...this.state.messages, {author: `${this.state.nameRobot}`, text: `${this.lastMessageAuthor(1)}, ${this.randomAnswerRobot()}`, id: nanoid()}] });
-            }, 1000);
+            }, 2000);
         }
     }
  
@@ -53,11 +52,13 @@ export class Messenger extends Component {
 
         return (
             <div className="messenger">
-                <h2>Chat with the robot</h2>
                 <div className="messages-list">
                     <MessageList  items={messages}/>
                 </div>
-                <MessageForm onSend={this.handleMessageSend} />
+                <div className="message-form"> 
+                    <MessageForm onSend={this.handleMessageSend} />
+                </div>
+               
             </div>
         )
     }

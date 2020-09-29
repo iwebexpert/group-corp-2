@@ -17,7 +17,7 @@ export class Message extends Component {
         return (
             <div className={classes}>
                 <ul>
-                    <li  key={text}>{text} - <b className="message-author">{author}</b></li>
+                    <li  key={text} style={{listStyleType: "none"}}>{text} - <b className="message-author">{author}</b></li>
                 </ul>
             </div>
         )

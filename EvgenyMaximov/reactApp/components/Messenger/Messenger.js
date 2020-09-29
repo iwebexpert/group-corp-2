@@ -13,9 +13,11 @@ export class Messenger extends React.Component {
 
   interval = null;
 
+  list = React.createRef();
+
   scrollChat = () => {
-    const list = document.querySelector(".messages-list");
-    list.scrollTop = 9999;
+    const listItem = this.list.current;
+    listItem.scrollTop = 9999;
   };
 
   onMessageSend = (message) => {
@@ -29,7 +31,7 @@ export class Messenger extends React.Component {
     this.setState({
       messages: this.state.messages.concat([message]),
     });
-
+    this.scrollChat();
     clearInterval(this.interval);
   };
 
@@ -76,7 +78,7 @@ export class Messenger extends React.Component {
     const { messages } = this.state;
     return (
       <div className="chat">
-        <div className="messages-list">
+        <div className="messages-list" ref={this.list}>
           <MessagesList messages={messages} class={this.props.classList} />
         </div>
         <div className="form">

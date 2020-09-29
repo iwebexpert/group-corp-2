@@ -1,0 +1,7 @@
+.chat-root {
+    width: 100%;
+    background-color: whitesmoke;
+}
+.chat-inline {
+    display: inline;
+}

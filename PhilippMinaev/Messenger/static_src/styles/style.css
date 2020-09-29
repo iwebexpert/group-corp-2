@@ -1,0 +1,43 @@
+.message-field {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.messages {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+  width: 100%;
+}
+
+.message {
+  background-color: rgb(183, 222, 235);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 18px;
+  margin: 5px;
+}
+
+.message-author {
+  color: gray;
+  font-size: 14px;
+}
+.input-panel {
+  width: 100%;
+  display: flex;
+  padding-right: 20px;
+}

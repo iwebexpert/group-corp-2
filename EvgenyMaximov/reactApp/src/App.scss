@@ -1,3 +1,14 @@
+/*---------variables colors---------------*/
+
+$light: rgb(228, 222, 222);
+$dark1: rgb(75, 72, 72);
+$dark2: rgb(110, 105, 105);
+
+#root {
+  box-sizing: border-box;
+  border: 1px solid $dark1;
+}
+
 .container {
   width: 100%;
   position: relative;
@@ -25,32 +36,26 @@
   background: transparent;
 }
 
-$light: rgb(228, 222, 222);
-$dark1: rgb(75, 72, 72);
-$dark2: rgb(110, 105, 105);
-
-#root {
-  box-sizing: border-box;
-  border: 1px solid $dark1;
-}
-
+/*-----------header-------------*/
 .header {
   display: flex;
   justify-content: center;
   padding: 5px;
-  text-shadow: 1px 1px white;
+
   font-size: 25px;
 
   &-light {
     background-color: $light;
     color: $dark1;
     border-bottom: 1px solid $dark1;
+    text-shadow: 1px 1px white;
   }
 
   &-dark {
     background-color: $dark2;
     color: $light;
     border-bottom: 1px solid $light;
+    text-shadow: 1px 1px black;
   }
 
   h1 {
@@ -61,13 +66,7 @@ $dark2: rgb(110, 105, 105);
   }
 }
 
-.chat {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+/*-----------messenger-------------*/
 
 .messenger {
   width: 80%;
@@ -87,6 +86,16 @@ $dark2: rgb(110, 105, 105);
   }
 }
 
+/*-----------chat-------------*/
+.chat {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*-----------empty-list-------------*/
 .empty-list {
   padding-top: 30%;
   text-align: center;
@@ -100,6 +109,7 @@ $dark2: rgb(110, 105, 105);
   }
 }
 
+/*-----------.message-form-------------*/
 .message-form {
   width: 100%;
   padding: 20px;
@@ -115,6 +125,7 @@ $dark2: rgb(110, 105, 105);
   }
 }
 
+/*-----------footer-------------*/
 .footer {
   text-align: center;
   padding: 20px;

@@ -20,6 +20,8 @@ export class MessageForm extends React.Component {
     const { onSend } = this.props;
     const { text, author } = this.state;
 
+    const textRegExp = /\S|(^\w$)/gi;
+
     if (!author) {
       Swal.fire({
         text: "Введите автора сообщения",
@@ -28,7 +30,7 @@ export class MessageForm extends React.Component {
       return;
     }
 
-    if (!text) {
+    if (!text || !textRegExp.test(text)) {
       Swal.fire({
         text: "Введите текст сообщения",
         icon: "error",

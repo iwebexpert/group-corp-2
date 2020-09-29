@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { TextField, Fab } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
-import "./MessageForm.scss";
+import "../../src/App.scss";
 
 export class MessageForm extends React.Component {
   state = {
@@ -50,7 +50,7 @@ export class MessageForm extends React.Component {
   render() {
     const { text, author } = this.state;
     return (
-      <div className="message-form">
+      <div className={this.props.class}>
         <TextField
           label="Введите имя автора"
           name="author"

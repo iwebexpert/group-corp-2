@@ -1,6 +1,5 @@
-import { Divider } from "@material-ui/core";
 import React from "react";
-import "./Footer.scss";
+import "../../src/App.scss";
 
 export const Footer = (props) => {
   return (

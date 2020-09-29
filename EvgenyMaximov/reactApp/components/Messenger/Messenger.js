@@ -3,7 +3,8 @@ import { nanoid } from "nanoid";
 
 import { MessageForm } from "../MessageForm";
 import { MessagesList } from "../MessageList";
-import "./Messenger.scss";
+
+import "../../src/App.scss";
 
 export class Messenger extends React.Component {
   state = {
@@ -19,17 +20,32 @@ export class Messenger extends React.Component {
 
   onMessageSend = (message) => {
     message.id = nanoid();
-    this.setState({ messages: this.state.messages.concat([message]) });
+    const time = new Date();
+    message.time = time.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour24: true,
+    });
+    this.setState({
+      messages: this.state.messages.concat([message]),
+    });
 
     clearInterval(this.interval);
   };
 
   componentDidUpdate() {
+    if (this.state.messages.length === 0) {
+      return;
+    }
+    const username = this.state.messages[this.state.messages.length - 1].author;
+
+    if (username === "Бот") {
+      return;
+    }
+
     this.scrollChat();
 
     clearInterval(this.interval);
-
-    const username = this.state.messages[this.state.messages.length - 1].author;
 
     const botAnswers = [
       `Привет, ${username}! Я чат-бот...`,
@@ -59,12 +75,15 @@ export class Messenger extends React.Component {
   render() {
     const { messages } = this.state;
     return (
-      <div className="messenger">
+      <div className="chat">
         <div className="messages-list">
-          <MessagesList messages={messages} />
+          <MessagesList messages={messages} class={this.props.classList} />
         </div>
         <div className="form">
-          <MessageForm onSend={this.onMessageSend} />
+          <MessageForm
+            onSend={this.onMessageSend}
+            class={this.props.classForm}
+          />
         </div>
       </div>
     );

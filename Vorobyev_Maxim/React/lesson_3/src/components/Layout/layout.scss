@@ -1,0 +1,16 @@
+* {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+}
+
+.blockForFlexHieght {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.commonBlock {
+  display: flex;
+  flex-grow: 3;
+}

@@ -1,43 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import classNames from 'classnames';
 import './Message.scss';
+import { Fab, Box, Typography, makeStyles } from '@material-ui/core';
+import { DeleteForever } from '@material-ui/icons';
 
-const Message = ({ message, deleteMessage }) => {
-  const [isBot, setIsBot] = useState(false);
-  const { text, date, id, username } = message;
+const useStyles = makeStyles({
+  usernameStyle: {
+    fontSize: 12,
+  },
+  timeStyle: {
+    fontSize: 10,
+  },
+  textPrimary: {
+    fontSize: 16,
+    color: '#0d47a1', 
+  },
+  messageInner: {
+    backgroundColor: '#bbdefb',
+    borderRadius: 15,
+    minWidth: 250,
+    maxWidth: "75%"
+  },
+  textWarning: {
+    color: '#4527a0'
+  },
+  textSecondary: {
+    color: '#00acc1'
+  }
+});
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsBot(true), 1000);
-    return () => clearTimeout(timeout)
-  }, [message])
+const Message = ({ message, deleteMessage, isBot }) => {
+  const classes = useStyles();
+  const { textPrimary, textSecondary, textWarning,
+          messageInner, usernameStyle, timeStyle } = classes;
+  const { text, date, username, id } = message;
 
-  const renderBotMessage = (
-    <p className="text-primary mb-0">
-      {'⊂(✾◕ ‿ ◕✾)つ•٠· '}
-      <span className="text-warning">
-        {`${username} said: `}
-      </span>
-      {text}
-    </p>
+  const alignStyles = isBot ? 'left' : 'right';
+  const time = isBot ? new Date(date.getTime() + 1000) : date;
+
+  const btn = (
+    <Box pt={1}>
+      <Fab 
+          color="secondary"
+          size="small"
+          onClick={() => deleteMessage(id)}>
+        <DeleteForever/>
+      </Fab>
+    </Box>
   );
 
   return (
-    <>
-      <div className="mt-1">
-        <p className="text-secondary mb-0">{date}</p>
-        <p className="card-text text-primary mb-1">
-          {text}
-          <span className="text-warning">
-            {` (${username})`}
-          </span>
-        </p>
-        { isBot ? renderBotMessage : null }
-      </div>
-      <span className="btn-group float-right">
-        <button type="button" className="btn btn-outline-danger btn-sm my-2" onClick={() => deleteMessage(id)}>
-          Delete
-        </button>
-      </span>
-    </>
+    <Box width={1}>
+      <Box display="flex" justifyContent={isBot ? 'flex-start': 'flex-end'} mr={1}>
+        <Box className={messageInner} mr={1} px={2} mb={1}>
+          <Typography 
+              className={classNames(textWarning, usernameStyle)} 
+              align={alignStyles}>
+            {username}
+          </Typography>
+          <Typography 
+              className={textPrimary}>
+            {text}
+          </Typography>
+          <Typography 
+              className={classNames(textSecondary, timeStyle)} 
+              align={alignStyles}>
+            {time.toLocaleString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}
+          </Typography>
+        </Box>
+        {isBot ? null : btn}
+      </Box>
+    </Box>
   );
 };
 

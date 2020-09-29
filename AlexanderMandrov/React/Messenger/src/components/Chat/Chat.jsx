@@ -1,18 +1,21 @@
 import React from 'react';
 import './Chat.scss';
 import Message from '../Message';
+import { List, ListItem } from '@material-ui/core';
 
 const Chat = ({ messageList, deleteMessage }) => {
   return (
-    <ul className="list-group">
+    <List className="Chat">
       {messageList.map(message => {
         return (
-          <li className="list-group-item d-flex justify-content-between" key={message.id}>
-            <Message message={message} deleteMessage={deleteMessage} />
-          </li>
+          <ListItem key={message.id} disableGutters>
+            {message.username !== 'Bot' ? 
+              <Message message={message} deleteMessage={deleteMessage} /> :
+              <Message message={message} isBot />}
+          </ListItem>
         );
       })}
-    </ul>
+    </List>
   );
 };
 

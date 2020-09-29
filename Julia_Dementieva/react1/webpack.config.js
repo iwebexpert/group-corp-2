@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     // Входная точка
@@ -29,7 +30,16 @@ module.exports = {
                     },
                     
                 }
-            }
+            },
+            {
+                test: /\.s?css$/i,
+                use: [
+                  'style-loader',
+                  MiniCssExtractPlugin.loader,
+                  'css-loader',
+                  'sass-loader',
+                ],
+              },
         ]
     },
 
@@ -37,6 +47,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
             filename: 'index.html',
-        })
+        }),
+        new MiniCssExtractPlugin({
+            // Название файла в dist
+            filename: 'main.css',
+        }),
     ]
 }

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import {Message} from './Message';
+import {Message} from '../Message';
 
 export class MessageList extends Component {
     
     render() {
         const {items} = this.props;
         return (
-            items.map((item, index) => (<Message text={item.text} author={item.author} key={index} />)) 
+            items.map((item) => (<Message text={item.text} author={item.author} key={item.id} />)) 
            
         );
     }
 }
 
-export default MessageList
 
 

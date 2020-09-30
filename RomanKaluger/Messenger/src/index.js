@@ -4,9 +4,14 @@ import App from './components/common/App'
 import "./../scss/root.scss"
 import {Provider} from "react-redux";
 import {store} from "./redux/StorageRedux";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 ReactDom.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
-    document.querySelector('.root'));
+        <MuiThemeProvider>
+            <Provider store={store}>
+                 <App/>
+             </Provider>
+        </MuiThemeProvider>
+        ,
+        document.querySelector('.root'));

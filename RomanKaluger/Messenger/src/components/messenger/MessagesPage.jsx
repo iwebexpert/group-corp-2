@@ -1,6 +1,6 @@
 import React from "react";
-import MessengerArea from "../messenger/MessengerArea";
-import SelectDialogPanel from "../messenger/SelectDialogPanel";
+import MessengerArea from "./MessengerArea";
+import SelectDialogPanel from "./SelectDialogPanel";
 
 export default () => {
     return (

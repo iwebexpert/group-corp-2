@@ -10,7 +10,7 @@ export class DbWorker {
             email: formData.authEmail.value,
             password: formData.authPassword.value,
         };
-        const json = await DbWorker.postAuthorized(`${connectionConfig.hostHttp}/auth`, body, false);
+        const json = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/auth`, body, false);
         if (json) {
             DbWorker.dispatch(setCurrentUser(json));
         }
@@ -22,17 +22,17 @@ export class DbWorker {
             name: formData.regName.value,
             password: formData.regPassword.value,
         };
-        const res = await DbWorker.postAuthorized(`${connectionConfig.hostHttp}/register`, body, false);
+        const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/register`, body, false);
         if (res) {
             swal("Успешно", 'Теперь авторизуйтесь', "success");
         }
         return res;
     };
-    static postAuthorized = async (url, body, isAuth = true) => {
+    static reqAuthorized = async (url, body ={}, isAuth = true, method = 'POST') => {
         try {
             const curUser = store.getState().app.curUser;
             const res = await fetch(url, {
-                method: 'POST',
+                method,
                 headers: {
                     authorization: isAuth ? curUser.token : null,
                     'Content-Type': 'application/json',
@@ -50,6 +50,7 @@ export class DbWorker {
             return null;
         }
     };
+
     static sendMessage = async (text) => {
         const { selectedChat, curUser } = store.getState().app;
         const message = {
@@ -58,7 +59,7 @@ export class DbWorker {
             author: curUser._id,
             authorName: curUser.name
         };
-        return await DbWorker.postAuthorized(`${connectionConfig.hostHttp}/chats/shared/${selectedChat.sharedId}/message`, message);
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/${selectedChat.sharedId}/message`, message);
     };
     static createChat = async (user) => {
         const {curUser} = store.getState().app;
@@ -67,12 +68,19 @@ export class DbWorker {
             members: [user._id, curUser._id],
             creator: curUser._id,
         };
-        return await DbWorker.postAuthorized(`${connectionConfig.hostHttp}/chats`, newChat);
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats`, newChat);
+    };
+    static deleteChat = async (chatId) => {
+        const {curUser} = store.getState().app;
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/owner/id/${curUser._id}/${chatId}`, undefined, true,'DELETE');
+    };
+    static deleteMessage = async (chatId, messageId) => {
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/chat/message/${chatId}/message`, {messageId}, true,'DELETE');
     };
     static authGet = async (url, user) => {
         return await fetch(url, {
             headers: {
-                authorization: user.token,
+                authorization: user ? user.token : 'unauth',
                 'Content-Type': 'application/json',
             }
         });

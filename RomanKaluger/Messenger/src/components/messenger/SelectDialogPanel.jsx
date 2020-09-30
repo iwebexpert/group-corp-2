@@ -6,6 +6,7 @@ import ChatsOnDialogPanel from "./ChatsOnDialogPanel";
 import ContactsOnDialogPanel from "./ContactsOnDialogPanel";
 import {setSelectedChat} from "../../redux/actions";
 import ShortMenu from "./ShortMenu";
+import classNames from 'classnames';
 import {DbWorker} from "../../utils/DbWorker";
 const categories = {
     CHATS: 'CHATS',
@@ -30,15 +31,15 @@ async function find(input, curUser, setDialogs, selectedChat, dispatch) {
             }
             const defaultContacts = await defaultContactsRes.json();
             const defaultChats = await defaultChatsRes.json();
-            if (selectedChat) {
-                const newSelChatVersion = defaultChats.find(ch => ch.sharedId === selectedChat.sharedId) || null;
-                dispatch(setSelectedChat(newSelChatVersion));
-            }
             setDialogs(prev => ({
                 contacts: defaultContacts,
                 chats: defaultChats,
                 category: prev.category
             }));
+            if (selectedChat) {
+                const newSelChatVersion = defaultChats.find(ch => ch.sharedId === selectedChat.sharedId) || null;
+                dispatch(setSelectedChat(newSelChatVersion));
+            }
         }
     } catch (e) {
         setDialogs({
@@ -73,17 +74,19 @@ export default () => {
     },[search]);
     const inputRef = useRef();
     const clearInput = useCallback(() => inputRef.current.value = '', []);
+    const categoryPeople = classNames('CategorySelectorDlgPn', {selectedTab: dialogs.category === categories.PEOPLE});
+    const categoryChats = classNames('CategorySelectorDlgPn', {selectedTab: dialogs.category === categories.CHATS});
     return (
         <div className={'selectDialogPanel'}>
             <SearchMessPanel ref={inputRef} search={search}/>
             <div className={'CategorySelectorDlgPnCont'}>
                 <div
                     onClick={() => setDialogs(prev => ({...prev, category: categories.CHATS}))}
-                    className={`CategorySelectorDlgPn ${dialogs.category === categories.CHATS ? 'selectedTab' : ''}`}>
+                    className={categoryChats}>
                     Чаты
                 </div>
                 <div onClick={() => setDialogs(prev => ({...prev, category: categories.PEOPLE}))}
-                     className={`CategorySelectorDlgPn ${dialogs.category === categories.PEOPLE ? 'selectedTab' : ''}`}>
+                     className={categoryPeople}>
                     Контакты
                 </div>
             </div>

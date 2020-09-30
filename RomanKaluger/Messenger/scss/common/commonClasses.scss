@@ -22,3 +22,38 @@
     transform: scaleY(1.05);
     transform-origin: bottom;
 }
+.avatar{
+    @include center-content;
+    border-radius: 50%;
+    background-color: $primary2;
+    color: $bgPrimary;
+    font-weight: bold;
+    font-size: 2vh;
+    min-height: 4vh;
+    min-width: 4vh;
+    max-height: 4vh;
+    max-width: 4vh;
+    margin: 5px;
+    &Big{
+        @extend .avatar;
+        min-width: 8vh;
+        min-height: 8vh;
+        max-height: 8vh;
+        max-width: 8vh;
+        box-sizing: border-box;
+    }
+}
+.primaryText{
+    color: $primary;
+    font-size: 18px;
+    &Ellipsis{
+        @extend .primaryText;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+.NoteText{
+    margin: auto;
+    color: transparentize($bgPrimary, 0.5);
+    font-size: 16px;
+}

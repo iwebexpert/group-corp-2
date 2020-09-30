@@ -25,6 +25,7 @@
       display: block;
       font-size: 30px;
       color: $primary;
+      background-color: $light;
       &:focus{
         @include --border('all', $primary, true);
         outline: none;

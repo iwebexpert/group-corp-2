@@ -18,4 +18,9 @@ const createBotMessage = (text, username) => {
   }
 };
 
-export { createMessage, createBotMessage };
+const validateMessage = (message) => {
+  const regExp = /\S|(^\w$)/gi;
+  return regExp.test(message);
+}
+
+export { createMessage, createBotMessage, validateMessage };

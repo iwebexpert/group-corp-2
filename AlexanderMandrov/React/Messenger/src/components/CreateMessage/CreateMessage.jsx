@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './CreateMessage.scss';
 import { Button, TextField, Box } from '@material-ui/core';
 import { Send } from '@material-ui/icons';
+import { validateMessage } from '../../utils/utils';
 
 const CreateMessage = ({ pushMessage }) => {
   const [message, setMessage] = useState('');
@@ -11,9 +12,10 @@ const CreateMessage = ({ pushMessage }) => {
   };
 
   const onHandleClick = () => {
-    let lst = [];
-    if (message !== '') pushMessage(message, lst);
-    setMessage('');
+    if (validateMessage(message)) {
+      pushMessage(message);
+      setMessage('');
+    }
   };
 
   const onHandleKeyDown = (event) => {

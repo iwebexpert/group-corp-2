@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { createRef, useEffect } from 'react';
 import './Chat.scss';
 import Message from '../Message';
 import { List, ListItem } from '@material-ui/core';
 
 const Chat = ({ messageList, deleteMessage }) => {
+  const list = createRef();
+  
+  const onHandleScrollBottom = () => {
+    const ref = list.current;
+    ref.scrollTop = 999;
+  };
+
+  useEffect(() => {
+    onHandleScrollBottom();
+  }, [messageList]);
+
   return (
-    <List className="Chat">
+    <List className="Chat" ref={list}>
       {messageList.map(message => {
         return (
           <ListItem key={message.id} disableGutters>

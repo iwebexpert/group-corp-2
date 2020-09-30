@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import {Messenger} from './components/Messenger.jsx'
+import {Layout} from './components/Layout.jsx'
 
-ReactDom.render(<Messenger />, document.getElementById('root'))
+ReactDom.render(<Layout />, document.getElementById('root'))

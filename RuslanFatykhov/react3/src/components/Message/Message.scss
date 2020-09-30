@@ -1,0 +1,27 @@
+.message {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 20px;
+  margin: 20px;
+
+  &-author {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+  }
+
+  &-bot {
+    border-radius: 50px 50px 50px 0;
+    word-wrap: break-word;
+    margin-right: 350px;
+
+    background: #e5e5ea;
+  }
+
+  &-sender {
+    border-radius: 50px 50px 0 50px;
+    margin-left: 350px;
+    word-wrap: break-word;
+    background: #3498db;
+  }
+}

@@ -1,0 +1,15 @@
+.heading-chats {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+hr {
+    border: none;
+    color: rgb(224, 224, 224);
+    background-color: rgb(224, 224, 224);
+    height: 1px;
+}
+
+.box {
+    margin-left: 20px;
+}

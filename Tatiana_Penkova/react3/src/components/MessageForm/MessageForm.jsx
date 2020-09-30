@@ -23,7 +23,8 @@ export class MessageForm extends Component {
         const { onSend } = this.props;
         const { text, author } = this.state;
 
-        if (!text) {
+
+        if (!text || text.trim().length == 0) {
             alert("Введите текст сообщения");
             return;
         }
@@ -32,6 +33,7 @@ export class MessageForm extends Component {
             alert("Введите автора сообщения!");
             return;
         }
+
 
         if (typeof onSend === "function") {
             onSend(this.state);

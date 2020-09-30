@@ -4,6 +4,7 @@ import { Container, Grid } from '@material-ui/core'
 import { Header } from './Header'
 import { MessageField } from './MessageField'
 import { ChatList } from './ChatList'
+import { Footer } from './Footer'
 
 export const Layout = () => {
     return (
@@ -15,8 +16,7 @@ export const Layout = () => {
                     <MessageField />
                 </Grid>
             </Container>
-
-
+            <Footer />
         </>
 
     )

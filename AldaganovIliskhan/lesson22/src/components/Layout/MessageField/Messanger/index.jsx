@@ -24,7 +24,7 @@ export class Messanger extends Component {
         if (author !== 'Bot') {
             setTimeout(() => {
                 this.handleMessageSend({ text: `Hi, ${author}! Бот на связи...`, author: 'Bot' });
-            }, 1000);
+            }, 3000);
         }
     }
 

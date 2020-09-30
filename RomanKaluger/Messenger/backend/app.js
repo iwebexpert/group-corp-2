@@ -150,11 +150,11 @@ app.delete('/chats/owner/id/:ownerid/:chatid', async (req, res) => {
 let petyaTimeOut = 0;
 function PetyaTalks(chat, authorName) {
     ////////Петя-бот
+    clearTimeout(petyaTimeOut);
     petyaTimeOut = setTimeout(async () => {
         let petya = await userModel.find({name: 'Петя'}).lean();
         petya = petya[0];
         if (chat.members.includes(petya._id)) {
-            clearTimeout(petyaTimeOut);
             const petyaMessage = new messageModel({
                 text: `Привет, ${authorName}, я Петя-бот`,
                 dateSend: Date.now(),

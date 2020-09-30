@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {setCurrentUser} from "../../redux/actions";
+import {setCurrentUser} from "../../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import routesPaths from "../../configs/routesPaths";
+import routesPaths from "../../../configs/routesPaths";
 import RadialMenu from "react-radial-menu";
 
 const items = [

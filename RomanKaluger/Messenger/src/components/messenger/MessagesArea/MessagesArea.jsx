@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import Message from "./Message";
-import {DbWorker} from "../../utils/DbWorker";
+import {DbWorker} from "../../../utils/DbWorker";
 
 export default ({curChat}) => {
     const [messages, setMessages] = useState([]);

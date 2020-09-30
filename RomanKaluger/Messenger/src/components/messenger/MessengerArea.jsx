@@ -1,6 +1,6 @@
 import React from "react";
 import MessengerTopPanel from "./MessengerTopPanel";
-import MessagesArea from "./MessagesArea";
+import MessagesArea from "./MessagesArea/MessagesArea";
 import InputMessageArea from "./InputMessageArea";
 import useAuthCheck from "../../utils/useAuthCheck";
 import {useSelector} from "react-redux";

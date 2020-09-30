@@ -2,7 +2,7 @@ import React, {useCallback, useRef, useState} from "react";
 import {useSelector} from "react-redux";
 import classNames from 'classnames';
 import Popover from "@material-ui/core/Popover";
-import {DbWorker} from "../../utils/DbWorker";
+import {DbWorker} from "../../../utils/DbWorker";
 
 
 export default ({message, chat}) => {

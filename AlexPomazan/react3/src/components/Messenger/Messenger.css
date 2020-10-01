@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    font-family: Tahoma, sans-serif;
+}
+
+p,
+b {
+    font-size: 14px;
+}
+
+
+
+.chat-bot {
+    margin-bottom: 18px;
+    text-align: center;
+
+}

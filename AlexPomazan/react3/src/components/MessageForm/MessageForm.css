@@ -1,0 +1,18 @@
+.message-form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.message-form__input,
+.message-form__textarea {
+    width: 400px;
+}
+
+.message-form__textarea {
+    min-height: 35px;
+    max-height: 300px;
+    margin-bottom: 5px;
+}

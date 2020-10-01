@@ -1,0 +1,13 @@
+
+.navbar {
+  box-shadow: none;
+  background-color: var(--bg-color) !important;
+}
+
+.navbar__toolbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar__title {
+}

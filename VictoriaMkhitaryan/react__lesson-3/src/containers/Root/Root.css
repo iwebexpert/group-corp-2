@@ -1,0 +1,16 @@
+.content_theme_chat {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: '2%';
+}
+
+.chat_theme_chat {
+  width:68%;
+  margin: 20px auto;
+}
+
+.chat__icon-button {
+  background-color: var(--button-color) !important; 
+  color: white !important;
+}

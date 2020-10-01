@@ -1,0 +1,25 @@
+.chat__list {
+  padding-top: 0 !important;
+  width: 30%;
+  min-height: 549px;
+  background-color: white;
+  border-radius: 4px;
+  overflow: auto;
+  margin-top: 19px !important;
+}
+
+.chat__search {
+  background-color: var(--bg-color-card);
+}
+
+.chat__input {
+  font-size: 18px;
+  border: 0px;
+  width: 100%;
+  outline: none;
+}
+
+.chat__text{
+  text-align: center;
+  padding: 10px;
+}

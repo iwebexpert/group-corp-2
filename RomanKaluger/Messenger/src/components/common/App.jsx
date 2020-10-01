@@ -8,7 +8,6 @@ import routesPaths from "../../configs/routesPaths";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Authorization from "../auth/Authorization";
 import Registration from "../auth/Registration";
-
 export default () => {
     const curUser = useSelector(s => s.app.curUser);
     const id = curUser ? curUser._id : null;

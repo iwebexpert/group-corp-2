@@ -27,4 +27,34 @@ body, html{
     height: 100%;
   }
 }
-
+.MuiFab-root{
+  background-color: $primary!important;
+  color: $bgPrimary!important;
+  margin: 10px!important;
+}
+.Mui-disabled{
+  background-color: $bgPrimary!important;
+  color: $bgPrimaryLight!important;
+}
+.MuiBackdrop-root{
+  background-color: transparentize($bgPrimary, 0.1)!important;
+  z-index: 100!important;
+}
+.MuiCircularProgress-root{
+  color: $primary!important;
+  width: 10vh!important;
+  height: 10vh!important;
+}
+.MuiDialog-paper{
+  z-index: 150;
+  background-color: $bgPrimaryLight3!important;
+  color: $bgPrimary!important;
+}
+.MuiPopover-root>.MuiPaper-root{
+  background-color: transparent!important;
+  box-shadow: unset;
+}
+.radial-menu-circle{
+  width: auto!important;
+  height: auto!important;
+}

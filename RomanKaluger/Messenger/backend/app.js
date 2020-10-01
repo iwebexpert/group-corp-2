@@ -33,6 +33,10 @@ const checkAuthentication = (authorization) => {
 };
 const checkAuthenticationMiddleware = (req, res, next) =>{
     if(req.headers.authorization){
+        if(req.headers.authorization === 'unauth') {
+            res.status(401).json({'message': 'Выполнен выход из аккаунта'});
+            return;
+        }
         const decoded = checkAuthentication(req.headers.authorization);
         if (!decoded) {
                 res.status(403).json({'message': 'Пользователь не авторизован'});
@@ -50,6 +54,16 @@ const getChatsForUser = async (id) => {
 
 const wsTypes = statuses.wsTypes;
 const wss = new WebSocket.Server({port: config.port});
+
+function broadCast(actionType, body, condition){
+    wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN && condition(client)) {
+            client.send(JSON.stringify({
+                type: actionType,
+            }));
+        }
+    });
+}
 
 wss.on('connection', (ws) => {
     ws.on('message', async (msg) => {
@@ -105,13 +119,7 @@ app.post('/chats', async (req, res) => {
                 createdChat = newChat;
             }
         });
-        wss.clients.forEach((client) => {
-            if (client.readyState === WebSocket.OPEN && members.includes(client.userId)) {
-                client.send(JSON.stringify({
-                    type: wsTypes.CHATS,
-                }));
-            }
-        });
+        broadCast(wsTypes.CHATS, null, (client) => members.includes(client.userId));
         res.status(200).json(createdChat);
     } catch (e) {
         res.status(200).json({message: e.message});
@@ -131,13 +139,36 @@ app.delete('/chats/owner/id/:ownerid/:chatid', async (req, res) => {
                 return;
             }
             res.json(doc);
-        })
+        });
+        broadCast(wsTypes.CHATS, null, (client) => client.userId === ownerid);
     } catch (e) {
         res.status(400).json({error: 'Не удалось удалить чат'});
     }
 
 });
 
+let petyaTimeOut = 0;
+function PetyaTalks(chat, authorName) {
+    ////////Петя-бот
+    clearTimeout(petyaTimeOut);
+    petyaTimeOut = setTimeout(async () => {
+        let petya = await userModel.find({name: 'Петя'}).lean();
+        petya = petya[0];
+        if (chat.members.includes(petya._id)) {
+            const petyaMessage = new messageModel({
+                text: `Привет, ${authorName}, я Петя-бот`,
+                dateSend: Date.now(),
+                author: petya._id,
+                authorName: petya.name
+            });
+            await petyaMessage.save();
+            chat.messages.push(petyaMessage._id);
+            await chat.save();
+            broadCast(wsTypes.MESSAGE, null, () => true);
+        }
+    },3000);
+    ///////Петя-бот
+}
 app.post('/chats/shared/:sharedid/message', async (req, res) => {
     try {
         const sharedid = req.params.sharedid;
@@ -151,36 +182,17 @@ app.post('/chats/shared/:sharedid/message', async (req, res) => {
         const sharedChats = await chatModel.find({sharedId: sharedid});
         for (const chat of sharedChats) {
             chat.messages.push(message._id);
-            ////////Петя-бот
-            let petya = await userModel.find({name: 'Петя'}).lean();
-            petya = petya[0];
-            if (chat.members.includes(petya._id)) {
-                const petyaMessage = new messageModel({
-                    text: `Привет, ${authorName}, я Петя-бот`,
-                    dateSend: Date.now(),
-                    author: petya._id,
-                    authorName: petya.name
-                });
-                await petyaMessage.save();
-                chat.messages.push(petyaMessage._id);
-            }
-            ///////Петя-бот
+            PetyaTalks(chat, authorName);
             await chat.save();
         }
-        wss.clients.forEach((client) => {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({
-                    type: wsTypes.MESSAGE
-                }));
-            }
-        });
+        broadCast(wsTypes.MESSAGE, null, () => true);
         res.status(200).json(message);
     } catch (e) {
         res.status(500).json({error: 'Не удалось сохранить сообщение в БД'});
     }
 });
 
-app.delete('/chats/chat/message/:chatid/message', (req, res) => {
+app.delete('/chats/chat/message/:chatid/message', async (req, res) => {
     try {
         const {chatid} = req.params;
         const {messageId} = req.body;
@@ -188,10 +200,9 @@ app.delete('/chats/chat/message/:chatid/message', (req, res) => {
             res.status(400).json({message: 'Не передан messageId'});
             return;
         }
-        chatModel.findOneAndUpdate(
+        await chatModel.findOneAndUpdate(
             {_id: chatid},
-            {$pull: {messages: {_id: messageId}}},
-            {safe: true, upsert: true},
+            {$pull: {messages: messageId}},
             (err, doc) => {
                 if(err){
                     res.status(500).json({error: 'Не удалось удалить сообщение из БД'});
@@ -199,6 +210,7 @@ app.delete('/chats/chat/message/:chatid/message', (req, res) => {
                 }
                 res.status(200).json(doc);
             });
+        broadCast(wsTypes.MESSAGE, null, () => true);
     } catch (e) {
         res.status(500).json({error: 'Не удалось удалить сообщение из БД'});
     }

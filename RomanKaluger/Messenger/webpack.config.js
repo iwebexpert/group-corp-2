@@ -30,7 +30,7 @@ module.exports={
                use:['file-loader']
             },
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: {
                     loader: "babel-loader",
@@ -39,7 +39,7 @@ module.exports={
                             "@babel/preset-env",
                             "@babel/preset-react"
                         ],
-                        plugins: ['@babel/plugin-proposal-class-properties']
+                        plugins: ["@babel/plugin-proposal-class-properties"]
                     }
                 }
             },
@@ -47,6 +47,7 @@ module.exports={
                 test: /\.s[ac]ss$/i,
                 use: [
                     'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
                 ],
@@ -54,7 +55,7 @@ module.exports={
         ]
     },
     resolve: {
-        extensions: ['.js','.json','.png', '.jpg', '.css', '.sass', '.scss']
+        extensions: ['.js','.jsx','.json','.png', '.jpg', '.css', '.sass', '.scss']
     },
     optimization: {
         splitChunks: {

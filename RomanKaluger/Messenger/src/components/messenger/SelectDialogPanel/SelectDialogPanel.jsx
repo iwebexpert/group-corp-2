@@ -1,53 +1,19 @@
 import React, { useRef, useCallback, useState, useEffect} from "react";
 import SearchMessPanel from "./SearchMessPanel";
 import {useDispatch, useSelector} from "react-redux";
-import connectionConfig from "../../configs/connectionConfig";
-import ChatsOnDialogPanel from "./ChatsOnDialogPanel";
-import ContactsOnDialogPanel from "./ContactsOnDialogPanel";
-import {setSelectedChat} from "../../redux/actions";
+import connectionConfig from "../../../configs/connectionConfig";
+import ChatsOnDialogPanel from "../ChatsOnDialogPanel/ChatsOnDialogPanel";
+import ContactsOnDialogPanel from "../ContactsDialogPanel/ContactsOnDialogPanel";
 import ShortMenu from "./ShortMenu";
-import {DbWorker} from "../../utils/DbWorker";
-const categories = {
-    CHATS: 'CHATS',
-    PEOPLE: 'PEOPLE'
-};
+import classNames from 'classnames';
+import find from "./findChats";
+import {categories} from "./categories";
+
 const initialState = {
     contacts: [],
     chats: [],
     category: categories.CHATS
 };
-
-async function find(input, curUser, setDialogs, selectedChat, dispatch) {
-    try {
-        if (curUser) {
-            let defaultChatsRes, defaultContactsRes;
-            if (!input) {
-                defaultChatsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/chats/owner/${curUser._id}`, curUser);
-                defaultContactsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/user/friends/ownerid/${curUser._id}`, curUser);
-            } else {
-                defaultChatsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/chats/title/${curUser._id}/${input}`, curUser);
-                defaultContactsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/name/${input}`, curUser);
-            }
-            const defaultContacts = await defaultContactsRes.json();
-            const defaultChats = await defaultChatsRes.json();
-            if (selectedChat) {
-                const newSelChatVersion = defaultChats.find(ch => ch.sharedId === selectedChat.sharedId) || null;
-                dispatch(setSelectedChat(newSelChatVersion));
-            }
-            setDialogs(prev => ({
-                contacts: defaultContacts,
-                chats: defaultChats,
-                category: prev.category
-            }));
-        }
-    } catch (e) {
-        setDialogs({
-            contacts: [],
-            chats: [],
-            category: categories.CHATS
-        });
-    }
-}
 
 export default () => {
     const [dialogs, setDialogs] = useState(initialState);
@@ -73,17 +39,19 @@ export default () => {
     },[search]);
     const inputRef = useRef();
     const clearInput = useCallback(() => inputRef.current.value = '', []);
+    const categoryPeople = classNames('CategorySelectorDlgPn', {selectedTab: dialogs.category === categories.PEOPLE});
+    const categoryChats = classNames('CategorySelectorDlgPn', {selectedTab: dialogs.category === categories.CHATS});
     return (
         <div className={'selectDialogPanel'}>
             <SearchMessPanel ref={inputRef} search={search}/>
             <div className={'CategorySelectorDlgPnCont'}>
                 <div
                     onClick={() => setDialogs(prev => ({...prev, category: categories.CHATS}))}
-                    className={`CategorySelectorDlgPn ${dialogs.category === categories.CHATS ? 'selectedTab' : ''}`}>
+                    className={categoryChats}>
                     Чаты
                 </div>
                 <div onClick={() => setDialogs(prev => ({...prev, category: categories.PEOPLE}))}
-                     className={`CategorySelectorDlgPn ${dialogs.category === categories.PEOPLE ? 'selectedTab' : ''}`}>
+                     className={categoryPeople}>
                     Контакты
                 </div>
             </div>

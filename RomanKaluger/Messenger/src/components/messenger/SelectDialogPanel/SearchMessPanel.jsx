@@ -1,6 +1,6 @@
 import React from "react";
 import { throttle } from 'throttle-debounce';
-import connectionConfig from "../../configs/connectionConfig";
+import connectionConfig from "../../../configs/connectionConfig";
 
 export default React.forwardRef(({search}, ref) => {
     const onInputHandler = throttle(connectionConfig.throttleTime, false, (name) => {

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import Message from "./Message";
-import {DbWorker} from "../../utils/DbWorker";
+import {DbWorker} from "../../../utils/DbWorker";
 
 export default ({curChat}) => {
     const [messages, setMessages] = useState([]);
@@ -19,7 +19,10 @@ export default ({curChat}) => {
     });
     return (
         <div ref={mesAreaRef} className={'MessagesArea'}>
-            {messages.map((msg, index, array) => <Message key={array[array.length - 1 - index]._id} message={array[array.length - 1 - index]}/>)}
+            {   messages.length
+                ? messages.map((msg, index, array) => <Message key={array[array.length - 1 - index]._id} chat={curChat} message={array[array.length - 1 - index]}/>)
+                : <span className={'NoteText'}>Сообщений пока нет...</span>
+            }
         </div>
     );
 }

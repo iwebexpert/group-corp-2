@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { createRef, useEffect } from 'react';
 import './Chat.scss';
 import Message from '../Message';
+import { List, ListItem } from '@material-ui/core';
 
 const Chat = ({ messageList, deleteMessage }) => {
+  const list = createRef();
+  
+  const onHandleScrollBottom = () => {
+    const ref = list.current;
+    ref.scrollTop = 999;
+  };
+
+  useEffect(() => {
+    onHandleScrollBottom();
+  }, [messageList]);
+
   return (
-    <ul className="list-group">
+    <List className="Chat" ref={list}>
       {messageList.map(message => {
         return (
-          <li className="list-group-item d-flex justify-content-between" key={message.id}>
-            <Message message={message} deleteMessage={deleteMessage} />
-          </li>
+          <ListItem key={message.id} disableGutters>
+            {message.username !== 'Bot' ? 
+              <Message message={message} deleteMessage={deleteMessage} /> :
+              <Message message={message} isBot />}
+          </ListItem>
         );
       })}
-    </ul>
+    </List>
   );
 };
 

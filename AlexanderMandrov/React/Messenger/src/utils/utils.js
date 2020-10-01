@@ -1,12 +1,26 @@
-const generateId = () => `unsleeping${Math.round(Math.random() * 1e8).toString(16)}`;
+import { nanoid } from 'nanoid';
 
-const createMessage = (text, username = 'guest') => {
+const createMessage = (text, username) => {
   return {
     text,
     username,
-    id: generateId(),
-    date: (new Date()).toLocaleString([], {hour: '2-digit', minute:'2-digit', second: '2-digit'})
+    id: nanoid(),
+    date: new Date()
   }
 };
 
-export { createMessage };
+const createBotMessage = (text, username) => {
+  return {
+    text: `⊂(✾◕ ‿ ◕✾)つ•٠· ${username} said: ${text}`,
+    username: 'Bot',
+    id: nanoid(),
+    date: new Date()
+  }
+};
+
+const validateMessage = (message) => {
+  const regExp = /\S|(^\w$)/gi;
+  return regExp.test(message);
+}
+
+export { createMessage, createBotMessage, validateMessage };

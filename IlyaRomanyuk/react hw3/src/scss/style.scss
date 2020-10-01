@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: sans-serif;
+    background-color: rgb(77, 0, 150)
+}
+
+/*Variables*/
+
+@import "_variables.scss";
+
+/*Blocks*/
+
+@import "blocks/_main.scss";
+@import "blocks/_messenger.scss";
+@import "blocks/_navbar.scss";
+@import "blocks/_content.scss";
+@import "blocks/_header.scss";
+@import "blocks/_wrapper.scss";
+@import "blocks/_footer.scss";

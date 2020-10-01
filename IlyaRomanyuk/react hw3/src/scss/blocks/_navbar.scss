@@ -1,0 +1,72 @@
+.navbar {
+    width: 30%;
+    padding: 30px;
+
+    background-color: $navbarBackColor;
+
+    &__about {
+        display: flex;
+        align-items: center;
+
+        margin-bottom: 45px;
+
+        &--head {
+            margin-bottom: 0px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__input {
+        width: 100%;
+
+        input {
+            border: none;
+            background: transparent;
+
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+
+            border-bottom: 1px solid $smallColor;
+            color: $smallColor;
+            outline: none;
+        }
+    }
+
+    &__img {
+        max-width: 60px;
+        width: 100%;
+        margin-right: 50px;
+
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    &__info {
+
+        &-name {
+            color: $fontColor;
+            font-size: $font;
+            margin-bottom: 7px;
+
+            &--color {
+                color: #000;
+                font-size: $font;
+                margin-bottom: 7px;
+            }
+        }
+
+        &-mess {
+            color: $smallColor;
+            font-size: $lastFont;
+        }
+    }
+}

@@ -27,7 +27,7 @@ class Messenger extends React.Component {
         this.time = setTimeout(() => {
             this.addNewMessage(defaultAnswerFromBot);
             clearTimeout(this.time);
-        }, 1500)
+        }, 4000)
     }
 
     render() {

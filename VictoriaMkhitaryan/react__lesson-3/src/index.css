@@ -1,0 +1,14 @@
+:root {
+  background-color: #E5E5E5;
+
+  --text-color: white;
+  --text-color-secondary: black;
+  --button-color: #EB5757;
+  --button-color-hovered: #EB7D7D;
+  --bg-color: #EB5757;
+  --bg-color-card: #FCEAEA;
+}
+
+h1 {
+  color: rgb(255, 0, 157);
+}

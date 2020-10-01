@@ -21,13 +21,12 @@ const styles = {
 
 class MessageFormClass extends Component {
     state={
-        author: '',
+        author: this.props.person.name,
         text: '',
     }
 
     handleInputChange = (event) => {
-        const fieldName = event.target.name;
-        this.setState({[fieldName]: event.target.value}); 
+        this.setState({['text']: event.target.value}); 
     };
     // Проверка введенных данных
     isEmpty(str) {
@@ -39,7 +38,7 @@ class MessageFormClass extends Component {
         const {author, text} = this.state;
 
         if(this.isEmpty(text) || this.isEmpty(author)){
-            alert('Нужно заполнить все поля');
+            alert('Поле "Сообщение" пустое');
             
             return;
         }
@@ -49,7 +48,6 @@ class MessageFormClass extends Component {
 
             this.setState({
                 text: '',
-                author: '',
             });
         }
     };
@@ -63,17 +61,6 @@ class MessageFormClass extends Component {
         const {classes} = this.props;
 
         return (<div className={classes.root}>
-            <TextField 
-                label="Введите имя автора"
-                name="author"
-                type="text"
-                value={author}
-                onChange={this.handleInputChange}
-                onKeyDown={this.handleKeyDown}
-                autoFocus
-                className={classes.textField}
-                InputLabelProps={{style: {fontSize: 13}}}
-            />
 
             <TextField 
                 label="Введите текст сообщения"
@@ -83,7 +70,7 @@ class MessageFormClass extends Component {
                 onKeyDown={this.handleKeyDown}
                 InputLabelProps={{style: {fontSize: 13}}}
                 multiline
-                
+                fullWidth 
             />
             <Fab 
             variant="round" 

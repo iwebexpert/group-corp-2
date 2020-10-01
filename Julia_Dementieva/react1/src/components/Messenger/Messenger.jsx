@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {MessageList} from '../MessageList';
 import {MessageForm} from '../MessageForm';
+import {Switch, Link, Route} from 'react-router-dom';
+import {chats} from '../../helper/chatsData'
 
 import { nanoid } from 'nanoid'
 
@@ -12,16 +14,24 @@ export class Messenger extends Component {
     }
 
     state ={
-        messages: [
-            {author: 'Web', text: 'Привет', id: nanoid()}, 
-        ],
+        chats,
         nameRobot: "Robot",
         answerRobot: ['Чем могу помочь?','Привет, какая хорошая погода!','Добрый день!', 'Hi'],
     };
 
     handleMessageSend = (message) => {
+        const {chats} = this.state;
+        // const {match} = this.props;
+
+        const chat = chats['0'];
         message.id = nanoid();
-        this.setState({messages: this.state.messages.concat([message])});
+        chat.messages = this.messages.concat([message])
+
+        chats['0'] = chat;
+
+        this.setState({
+            chats,
+        });
     };
 
     // С помощью floar and random получаю индекс массива answerRobot, генерация числа от 0 до length-1
@@ -31,34 +41,57 @@ export class Messenger extends Component {
     }
 
     lastMessageAuthor = (minusMessage) => {
-        return this.state.messages[this.state.messages.length-minusMessage].author;
+        const messageList = this.state.chats['0'].messages;
+        return messageList[messageList.length-minusMessage].author;
     }
 
     componentDidUpdate() {
         // Исправила баг, теперь если один и тот же автор пишет несколько сообщений сразу, то робот ответит только один раз
         // Появился новый баг, если два разных автора пишут в чат, то робот во второй раз отвечает самому себе(т.к. в this.lastMessageAuthor(1))
         // будет его имя, не стала исправлять,т.к. скоро все равно messenger разобьется на несколько чатов, следовательно, будет только один автор 
-        if (this.lastMessageAuthor(1) !== this.state.nameRobot && this.lastMessageAuthor(1) !== this.lastMessageAuthor(2)) {  
+        // if (this.lastMessageAuthor(1) !== this.state.nameRobot && this.lastMessageAuthor(1) !== this.lastMessageAuthor(2)) {  
             setTimeout(() =>{
-                this.setState(
-                    { messages: [ ...this.state.messages, {author: `${this.state.nameRobot}`, text: `${this.lastMessageAuthor(1)}, ${this.randomAnswerRobot()}`, id: nanoid()}] });
-            }, 2000);
-        }
-    }
- 
+                if(this.lastMessageAuthor(1)!==this.state.nameRobot){
 
+                
+                this.setState(
+                    this.handleMessageSend({text: `${this.lastMessageAuthor(1)}, ${this.randomAnswerRobot()}`, author: `${this.state.nameRobot}`}));
+                }
+            }, 3000);
+            
+    }
+
+    get messages(){
+        const {chats} = this.state;
+        // const {infoChats} = this.props;
+
+        // let messages = null;
+
+        // if(infoChats && chats[infoChats.params.id]){
+        //     messages = chats[infoChats.params.id].messages;
+        // }
+        
+
+        let messages = null;
+
+        if(chats[0]){
+            messages = chats[0].messages;
+        }
+
+        return messages;
+    }
+    
     render() {
-        const {messages} = this.state;
+        const messages = this.messages;
 
         return (
             <div className="messenger">
                 <div className="messages-list">
-                    <MessageList  items={messages}/>
+                    {messages ? <MessageList  items={messages}/> : <div>Выберите чат слева</div>}
                 </div>
                 <div className="message-form"> 
-                    <MessageForm onSend={this.handleMessageSend} />
-                </div>
-               
+                    {messages && <MessageForm onSend={this.handleMessageSend} person={this.props.person}/>}
+                </div>           
             </div>
         )
     }

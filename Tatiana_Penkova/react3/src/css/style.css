@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    height: 100vh;
+}
+
+.main {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.chats {
+    width: 30%;
+    height: 78.2vh;
+    overflow-y: auto;
+}
+

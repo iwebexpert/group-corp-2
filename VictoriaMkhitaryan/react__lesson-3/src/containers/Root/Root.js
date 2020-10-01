@@ -31,13 +31,24 @@ export default class Root extends Component {
 
   render() {
     const chats = [
-    //   {
-    //   chat_id: 0,
-    //   user: {
-    //     username: 'qwerty',
-    //     avatar: undefined,
-    //   }
-    // }
+      {
+        chat_id: 0,
+        user: {
+          username: 'qwerty',
+        }
+      },
+      {
+        chat_id: 1,
+        user: {
+          username: 'qwe',
+        }
+      },
+      {
+        chat_id: 2,
+        user: {
+          username: 'aaaaaa',
+        }
+      }
   ];
     return(
       <>

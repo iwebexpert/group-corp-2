@@ -21,11 +21,11 @@ export default function ChatList(props) {
   const handleKeyDownSearch = (e) => {
     if (e.key === 'Enter') {
       if (searchInput != '') {
-        searchArray([]);
+        setSearchArray([]);
         props.chats.map(data => {
           if (data.user.username == searchInput){
             // searchArray.push(data);
-            searchArray([...searchArray, data]);  /// >??????????????????????????
+            setSearchArray([...searchArray, data]);  /// >??????????????????????????
           }
         })
         setSearchClick(true);
@@ -40,34 +40,28 @@ export default function ChatList(props) {
       let unread = unreadMessage.filter(item => item.chat_id == data.chat_id).length;
 
       return(
-        <ChatItem data={data} unread={unread} key={index}/>  // nanoid()
+        <ChatItem chats={data} unread={unread} key={index}/>  // nanoid()
       );
     });
   }
 
   const renderChatItemSearch = (data, index) => {
-    let unread = this.unreadMessage.filter(item => item.chat_id == data.chat_id).length;
+    let unread = unreadMessage.filter(item => item.chat_id == data.chat_id).length;
 
     return(
-      <ChatItem data={data} unread={unread} key={index}/>
+      <ChatItem chats={data} unread={unread} key={index}/>
     );
   }
 
   return(
     <List className="listScroll" className="chat__list">
-      <ListItem>
-        <TextInput className="chat__input" 
-                    placeholder="Поиск" 
+      <ListItem className="chat__search">
+        <TextInput modifiers="chat__input" 
+                    label="Поиск" 
                     type="text"
                     value={searchInput}
                     onChange={handleOnInputSearch}
                     onKeyDown={handleKeyDownSearch} />
-        <input className="chat__input" 
-                placeholder="Поиск" 
-                type="text"
-                value={props.searchInput}
-                onChange={handleOnInputSearch}
-                onKeyDown={handleKeyDownSearch} />
       </ListItem>
       {props.chats.length ?
         (searchClick ?  

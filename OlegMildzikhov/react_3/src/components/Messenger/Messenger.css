@@ -1,0 +1,31 @@
+/*.messenger {*/
+/* background-color: cadetblue;*/
+/* padding: 20px;*/
+/*}*/
+
+/*.messages-list {*/
+/* display: flex;*/
+/* flex-direction: column;*/
+/* list-style: none;*/
+/*}*/
+
+
+.messanger {
+ height: 80%;
+ width: 70%;
+ margin: 0 auto;
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.messages-list {
+ display: flex;
+ flex-direction: column;
+ background-color: bisque;
+ height: 50%;
+ padding: 20px;
+ width: calc(100% - 40px);
+ overflow-y: scroll;
+}

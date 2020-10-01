@@ -1,0 +1,32 @@
+.MessageField{
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    background-color: #181717;
+    width: 100%;
+    max-width: 728px;
+    display: flex;
+    font-size: 1.5rem;
+}
+
+.MessageField input{
+    line-height: 1.5;
+    width: 75%;
+    font-size: 1.5rem;
+    background: #3a3a3a;
+    outline: none;
+    padding: 0 10px;
+    color: white;
+    border: 1px solid black;
+}
+.MessageField input:first-child{
+    width: 25%;
+}
+
+.MessageField button{
+    border: 1px solid black;
+    outline: none;
+    font-size: 50px;
+    width: 20%;
+    background-color: #38388f;
+}

@@ -1,7 +1,7 @@
-import { Divider } from "@material-ui/core";
 import React from "react";
-import "./Header.scss";
 import EcoIcon from "@material-ui/icons/Eco";
+
+import "../../src/App.scss";
 
 export const Header = (props) => {
   return (

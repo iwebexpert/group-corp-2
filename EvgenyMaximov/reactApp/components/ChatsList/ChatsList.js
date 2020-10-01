@@ -4,18 +4,17 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
 import ChatIcon from "@material-ui/icons/Chat";
+import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "30%",
-    maxWidth: 360,
+    width: "20%",
     backgroundColor: "rgb(228, 222, 222)",
   },
 }));
 
-export const SelectedListItem = (props) => {
+export const ChatsList = (props) => {
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 

@@ -1,10 +1,10 @@
 .message {
   max-width: 350px;
-  background-color: rgb(243, 241, 112);
   padding: 10px 12px;
   border-radius: 12px;
   font-size: 20px;
   margin: 5px;
+  border: 1px solid rgb(75, 72, 72);
 
   &-author {
     color: grey;
@@ -13,9 +13,61 @@
 
   &-bot {
     align-self: flex-start;
+    background-color: rgb(247, 200, 113);
+    position: relative;
+  }
+
+  &-bot:after {
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 15px 0 0;
+    border-color: rgb(247, 200, 113) transparent transparent transparent;
+  }
+
+  &-bot:before {
+    position: absolute;
+    top: 100%;
+    left: 19px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 17px 18px 0 0;
+    border-color: rgb(75, 72, 72) transparent transparent transparent;
   }
 
   &-user {
     align-self: flex-end;
+    background-color: rgb(243, 241, 112);
+    position: relative;
+  }
+
+  &-user:after {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 15px 15px 0;
+    border-color: transparent rgb(243, 241, 112) transparent transparent;
+  }
+
+  &-user:before {
+    position: absolute;
+    top: 100%;
+    right: 19px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 18px 17px 0;
+    border-color: transparent rgb(75, 72, 72) transparent transparent;
   }
 }

@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { TextField, Fab } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
-import "./MessageForm.scss";
+import "../../src/App.scss";
 
 export class MessageForm extends React.Component {
   state = {
@@ -20,6 +20,8 @@ export class MessageForm extends React.Component {
     const { onSend } = this.props;
     const { text, author } = this.state;
 
+    const textRegExp = /\S|(^\w$)/gi;
+
     if (!author) {
       Swal.fire({
         text: "Введите автора сообщения",
@@ -28,7 +30,7 @@ export class MessageForm extends React.Component {
       return;
     }
 
-    if (!text) {
+    if (!text || !textRegExp.test(text)) {
       Swal.fire({
         text: "Введите текст сообщения",
         icon: "error",
@@ -50,7 +52,7 @@ export class MessageForm extends React.Component {
   render() {
     const { text, author } = this.state;
     return (
-      <div className="message-form">
+      <div className={this.props.class}>
         <TextField
           label="Введите имя автора"
           name="author"

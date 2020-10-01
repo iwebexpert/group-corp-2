@@ -13,20 +13,12 @@ export default class Root extends Component {
   state = {
       messagesData: []
   };
-
-  // list = React.createRef();
   
   handleMessageSend = ({message, author}) => {
     this.setState({ ...this.state, messagesData: [...this.state.messagesData, {id: nanoid(), message: message, author: author ? author : 'Anonymous'}] });
   };
 
   componentDidUpdate() {
-    // let elem = document.getElementById('listScroll2');
-    // elem.scrollTop = elem.scrollHeight;
-
-    // const listItem = this.list.current;
-    // listItem.scrollTop = 9999;
-
     if (this.state.messagesData.length%2 == 1) {
       setTimeout(() => {
         this.setState({ ...this.state, messagesData: [...this.state.messagesData, {id: nanoid(), author: "Robot", message: "пора спать..."}] });

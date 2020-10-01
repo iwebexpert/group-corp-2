@@ -7,12 +7,13 @@ import ListItem from '@material-ui/core/ListItem';
 
 import ChatItem from '../ChatItem/ChatItem';
 import TextInput from '../TextInput/TextInput';
+import { nanoid } from 'nanoid';
 
 export default function ChatList(props) {
-  const [searchInput, setSearchInput] = useState(''); // ''
-  const [searchArray, setSearchArray] = useState([]); // ''
-  const [searchClick, setSearchClick] = useState(false); // ''
-  const [unreadMessage, seUnreadMessage] = useState([]); // ''
+  const [searchInput, setSearchInput] = useState('');
+  const [searchArray, setSearchArray] = useState([]);
+  const [searchClick, setSearchClick] = useState(false);
+  const [unreadMessage, seUnreadMessage] = useState([]);
 
   const handleOnInputSearch = (e) => {
     setSearchInput(e.target.value);
@@ -24,8 +25,7 @@ export default function ChatList(props) {
         setSearchArray([]);
         props.chats.map(data => {
           if (data.user.username == searchInput){
-            // searchArray.push(data);
-            setSearchArray([...searchArray, data]);  /// >??????????????????????????
+            setSearchArray([...searchArray, data]);
           }
         })
         setSearchClick(true);
@@ -40,7 +40,7 @@ export default function ChatList(props) {
       let unread = unreadMessage.filter(item => item.chat_id == data.chat_id).length;
 
       return(
-        <ChatItem chats={data} unread={unread} key={index}/>  // nanoid()
+        <ChatItem chats={data} unread={unread} key={nanoid()}/>
       );
     });
   }
@@ -49,7 +49,7 @@ export default function ChatList(props) {
     let unread = unreadMessage.filter(item => item.chat_id == data.chat_id).length;
 
     return(
-      <ChatItem chats={data} unread={unread} key={index}/>
+      <ChatItem chats={data} unread={unread} key={nanoid()}/>
     );
   }
 
@@ -66,7 +66,7 @@ export default function ChatList(props) {
       {props.chats.length ?
         (searchClick ?  
           searchArray.map((data, index) => (
-            renderChatItemSearch(data, index)
+            renderChatItemSearch(data, nanoid())
         ))
         : 
           renderChatItem()

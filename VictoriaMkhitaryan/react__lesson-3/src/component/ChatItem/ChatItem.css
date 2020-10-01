@@ -1,0 +1,22 @@
+.chat__link {
+  text-decoration: none;
+  color: black;
+}
+
+.chat__userAvatar {
+  width: 45px !important;
+  height: 45px !important;
+}
+
+.chat__unreadMessage {
+  background-color: rgba(235, 87, 87, 0.12) !important;
+}
+
+.chat__username {
+  margin: 2px;
+  padding-left: 4px;
+}
+
+.chat__unreadMessage_text{
+  color: grey;
+}

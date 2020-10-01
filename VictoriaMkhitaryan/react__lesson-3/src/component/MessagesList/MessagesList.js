@@ -7,10 +7,9 @@ import ListItem from '@material-ui/core/ListItem';
 import Chip from '@material-ui/core/Chip';
 
 export default function MessagesList(props) {
-  // return (props.messagesData.map((item, index) => (<Message text={item.message} author={item.author} key={index} />)));
   return(
     props.messagesData.map((item, index) => 
-      <ListItem key={index} className={(item.author != "Robot") ? "chat__list-item-come" : "chat__list-item-me"}>
+      <ListItem key={item.id} className={(item.author != "Robot") ? "chat__list-item-come" : "chat__list-item-me"}>
         <div><h4 className="chat__user-text">{item.author}</h4></div>
         <Chip label={item.message} className={(item.author != "Robot") ? "chat__chip-me" : null}/>
       </ListItem>

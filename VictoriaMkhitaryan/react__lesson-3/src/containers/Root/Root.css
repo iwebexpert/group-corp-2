@@ -1,23 +1,13 @@
-.chat__card {
-  width: 500px;
+.content_theme_chat {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: '2%';
+}
+
+.chat_theme_chat {
+  width:68%;
   margin: 20px auto;
-}
-
-.chat__header {
-  background-color: var(--bg-color-card);
-  flex-direction: row-reverse;
-  text-align: center;
-  padding: 10px;
-}
-
-.chat__content {
-  height: 400px;
-  overflow: auto;
-}
-
-.chat__background-color {
-  background-color: var(--bg-color-card);
-  justify-content: space-between;
 }
 
 .chat__icon-button {

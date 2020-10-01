@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './MessageForm.css';
 
-import Button from '../Button/Button';
+import TextInput from '../TextInput/TextInput';
 
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
@@ -42,34 +42,27 @@ export default class MessageForm extends Component {
   
   render() {
     const {message, author} = this.state;
-    console.log(message);
 
     return(
       <>
-        <div>
-          <input className="chat__input" 
-                  name="author" 
-                  type="text" 
-                  onChange={this.handleInputChange} 
-                  placeholder="Введите имя автора" 
-                  value={author} />
-        </div>
-        <div>
-          <textarea className="chat__input" 
-                    name="message" 
-                    onChange={this.handleInputChange} 
-                    onKeyDown={this.handleKeyDown}
-                    placeholder="Введите текст сообщения" 
-                    value={message} />
-        </div>
-        <div>
+          <TextInput modifiers="message-form__author"
+                      label="Введите имя автора"
+                      name="author"
+                      value={author}
+                      onChange={this.handleInputChange} />
+          <TextInput modifiers="message-form__message"
+                      label="Введите текст сообщения"
+                      name="message"
+                      value={message}
+                      onChange={this.handleInputChange}
+                      onKeyDown={this.handleKeyDown}
+                      multiline />
           <IconButton
                 className="chat__icon-button"
                 size="medium"
                 onClick={this.handleMessageSend} >
             <SendIcon />
           </IconButton>
-        </div>
       </>
     );
   }

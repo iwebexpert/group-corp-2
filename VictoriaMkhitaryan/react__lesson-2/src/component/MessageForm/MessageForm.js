@@ -34,7 +34,10 @@ export default class MessageForm extends Component {
   };
 
   handleKeyDown = (event) => {
-    if (event.key === 'Enter') this.handleMessageSend();
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.handleMessageSend();
+    }
   };
   
   render() {
@@ -53,7 +56,6 @@ export default class MessageForm extends Component {
         </div>
         <div>
           <textarea className="chat__input" 
-                    onKeyDown={() => {}} 
                     name="message" 
                     onChange={this.handleInputChange} 
                     onKeyDown={this.handleKeyDown}

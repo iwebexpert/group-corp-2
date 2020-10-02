@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // для классов - withStyles, для функ.компонента - makeStyles
-import {Button, TextField, Fab, withStyles} from '@material-ui/core';
-import {FullscreenExit, Send} from '@material-ui/icons';
+import {TextField, Fab, withStyles} from '@material-ui/core';
+import {Send} from '@material-ui/icons';
 
 const styles = {
     root: {

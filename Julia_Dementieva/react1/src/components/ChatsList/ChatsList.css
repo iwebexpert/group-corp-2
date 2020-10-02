@@ -1,3 +1,16 @@
-.chatList{
-   
+.btnAddChat{
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+    height: 10%;
+}
+.chatsList{
+    height: 80%;
+    overflow-y: scroll;
+}
+.chats{
+    height: 100%;
+}
+.add{
+    color: red;
 }

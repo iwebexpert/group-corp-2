@@ -4,6 +4,7 @@ import {ChatsList} from '../components/ChatsList'
 
 import {Paper} from '@material-ui/core';
 
+import {chats} from '../helper/chatsData'
 export class Home extends Component {
     constructor(props){
         super(props);
@@ -16,17 +17,18 @@ export class Home extends Component {
             height: '500px',
         }
     }
+
     render() {
         
         return (<>
                 <div style={this.style}>
                 
                 <Paper elevation={3} style={{width: "30%"}}>
-                    <ChatsList />
+                    <ChatsList chatId={this.props.chatId}/>
                 </Paper>
                 <Paper elevation={3} style={{width: "69%"}}>
                     {/* <Messenger person={this.props.person} infoChats={this.props.match}/> */}
-                    <Messenger person={this.props.person}/>
+                    <Messenger person={this.props.person} chatId={this.props.chatId}/>
                 </Paper>
                     
                 </div>    

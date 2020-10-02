@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import List from '@material-ui/core/List';
+import {List, IconButton, TextField, withStyles } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 
 import { nanoid } from 'nanoid'
 
@@ -8,7 +9,13 @@ import {chats} from '../../helper/chatsData'
 
 import './ChatsList.css'
 
-export class ChatsList extends Component {
+const styles = {
+    root: {
+        color: 'blue',
+    },
+};
+
+class ChatsListClass extends Component {
     state={
 
         chatsList:[
@@ -33,24 +40,35 @@ export class ChatsList extends Component {
 
     render() {
         const chatsList = this.state.chatsList;
+        const {classes} = this.props;
         return (
-            <div>
-                {/* <List>
-                    {
-                        chatsList.map((item) => <ChatItem avatar={item.avatar} author={item.author} key={item.id}/>)
-                    }
-                    
-                </List> */}
-
+            <div className='chats'>
+                <div className='chatsList'>
                 <List>
                     {
                         chats.map((chat) => <ChatItem avatar={chat.avatar} author={chat.author} id={chat.id} key={chat.id}/>)
                     }
                     
                 </List>
-  
+                </div>
+                <div className='btnAddChat'>
+                    <TextField 
+                        label="Введите название чата"
+                        name="text"
+                        InputLabelProps={{style: {fontSize: 13}}}
+                        multiline
+                        fullWidth 
+                    />
+                    <IconButton aria-label="add" className={classes.root}>
+                        <AddIcon />
+                    </IconButton>
+                </div>
+                
+                
             </div>
             
         );
     }
 }
+
+export const ChatsList = withStyles(styles)(ChatsListClass);

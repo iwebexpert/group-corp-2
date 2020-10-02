@@ -24,7 +24,7 @@ class HeaderClass extends Component {
                 <Link to="/" style={{ textDecoration: 'none' }}><div className="header-logo">VChats</div></Link>
                 <Link to="/About" style={{ textDecoration: 'none' }}>
                     <div className="header-avatar">
-                        <Avatar className={classes.root}>W</Avatar>
+                        <Avatar className={classes.root} src={this.props.person.avatar} />
                         {this.props.person.name}
                     </div>
                 </Link>

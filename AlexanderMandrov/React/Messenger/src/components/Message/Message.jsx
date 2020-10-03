@@ -51,7 +51,7 @@ const Message = ({ message, deleteMessage, isBot, user }) => {
 
   return (
     <Box width={1}>
-      <Box display="flex" justifyContent={isBot ? 'flex-start': 'flex-end'} mr={1}>
+      <Box display="flex" justifyContent={isBot ? 'flex-start': 'flex-end'} mr={2}>
         <Box className={messageInner} mr={1} px={2} mb={1}>
           <Typography 
               className={classNames(textWarning, usernameStyle)} 

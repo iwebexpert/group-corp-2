@@ -27,7 +27,7 @@ const messageShorter = (message) => {
   return message.length < 39 ? message : `${message.slice(0, 36)}...`;
 };
 
-const findMessagesByReceiver = (chats, receiver) => {
+const findChatByReceiver = (chats, receiver) => {
   return chats.filter(chat => chat.id === receiver)[0];
 };
 
@@ -50,4 +50,4 @@ const setDelay = (chat, chats, setChats, sender, receiver, editIdx = 0) => {
   }, 2000);
 }
 
-export { createMessage, createBotMessage, validateInput, messageShorter, findMessagesByReceiver, findChatIndexByReceiver, setDelay };
+export { createMessage, createBotMessage, validateInput, messageShorter, findChatByReceiver, findChatIndexByReceiver, setDelay };

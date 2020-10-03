@@ -6,8 +6,9 @@ import Chat from '../Chat';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import WelcomePage from '../../pages/WelcomePage';
+import ProfilePage from '../../pages/ProfilePage'
 import { Container, Box } from '@material-ui/core';
-import { createMessage, findChatIndexByReceiver, findMessagesByReceiver, setDelay } from '../../utils/utils';
+import { createMessage, findChatIndexByReceiver, findChatByReceiver, setDelay } from '../../utils/utils';
 import { rawChats, createPrimaryChats } from '../../constants/constants';
 
 const Layout = () => {
@@ -15,13 +16,20 @@ const Layout = () => {
   const [chats, setChats] = useState(rawChats);
   const currentReceiver = window.location.pathname.split('/')[2];
   const [receiver, setReceiver] = useState(currentReceiver);
+
+  const deleteMessage = (id) => {
+    const chat = findChatByReceiver(chats, receiver);
+    chat.messages = chat.messages.filter(item => item.id !== id);
+    const editIdx = findChatIndexByReceiver(chats, receiver);
+    setChats([...chats].map((elem, idx) => idx === editIdx ? chat : elem));
+  };
   
   const handleChatClick = (receiver) => {
     setReceiver(receiver);
   };
 
   const pushMessage = (messageText) => {
-    const chat = findMessagesByReceiver(chats, receiver);
+    const chat = findChatByReceiver(chats, receiver);
     chat.messages.push(createMessage(messageText, user));
     const editIdx = findChatIndexByReceiver(chats, receiver);
     setChats([...chats].map((elem, idx) => idx === editIdx ? chat : elem));
@@ -43,13 +51,14 @@ const Layout = () => {
           <Box display="flex" justifyContent="flex-end" flexDirection="column" mb={5}>
             <Switch>
               <Route path="/" exact component={WelcomePage} />
+              <Route path="/profile" render={() => <ProfilePage user={user} />} />
               <Route path="/chats/:id" render={({ match }) => {
                 const { id } = match.params;
                 if (findChatIndexByReceiver(chats, id) === -1) return <Redirect to="/" />;
                 return (
                   <>
-                    <Chat getMessageList={() => findMessagesByReceiver(chats, id).messages} user={user} />
-                    <CreateMessage pushMessage={pushMessage}/>
+                    <Chat getMessageList={() => findChatByReceiver(chats, id).messages} user={user} deleteMessage={deleteMessage} />
+                    <CreateMessage pushMessage={pushMessage} />
                   </>
                 );
               }} 

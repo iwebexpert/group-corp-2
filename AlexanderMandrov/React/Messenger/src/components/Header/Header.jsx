@@ -31,9 +31,11 @@ const Header = () => {
           <Typography variant="h6" className={title}>
             <Link to="/" className="Header-link__reset">Messenger</Link>
           </Typography>
-          <IconButton edge="start" className={menuButton} color="inherit">
-            <AccountCircle />
-          </IconButton>
+          <Link to="/profile" className="Header-link__reset">
+            <IconButton edge="start" className={menuButton} color="inherit">
+              <AccountCircle />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

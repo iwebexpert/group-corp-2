@@ -3,7 +3,7 @@ import './Chat.scss';
 import Message from '../Message';
 import { List, ListItem } from '@material-ui/core';
 
-const Chat = ({ getMessageList, user }) => {
+const Chat = ({ getMessageList, user, deleteMessage }) => {
   const list = createRef();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Chat = ({ getMessageList, user }) => {
         return (
           <ListItem key={message.id} disableGutters>
             {message.username === user ? 
-              <Message message={message} user={user} /> :
+              <Message message={message} user={user} deleteMessage={deleteMessage} /> :
               <Message message={message} isBot />}
           </ListItem>
         );

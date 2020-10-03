@@ -31,6 +31,18 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          "file-loader",
+          {
+            loader: "image-webpack-loader",
+            options: {
+              disable: true,
+            },
+          },
+        ],
+      },
     ],
   },
 
@@ -43,4 +55,9 @@ module.exports = {
       filename: "main.css",
     }),
   ],
+
+  devtool: "eval-source-map",
+  devServer: {
+    historyApiFallback: true,
+  },
 };

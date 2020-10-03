@@ -3,10 +3,12 @@ import ReactDom from "react-dom";
 
 import { Layout } from "./components/Layout";
 import "./index.scss";
-
+import { BrowserRouter as Router } from "react-router-dom";
 ReactDom.render(
   <>
-    <Layout />
+    <Router>
+      <Layout />
+    </Router>
   </>,
   document.getElementById("root")
 );

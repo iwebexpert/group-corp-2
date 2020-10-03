@@ -15,9 +15,11 @@ import AddIcon from "@material-ui/icons/Add";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "20%",
+    height: "758px",
     backgroundColor: "rgb(228, 222, 222)",
     display: "flex",
     flexDirection: "column",
+    overflowY: "scroll",
   },
 
   chatList: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   addChatForm: {
     display: "flex",
     justifyContent: "center",
-    padding: "0px 0px 10px 0px",
+    padding: "10px 0px 5px 0px",
   },
 }));
 
@@ -74,6 +76,20 @@ export const ChatsList = (props) => {
 
   return (
     <div className={classes.root}>
+      <div className={classes.addChatForm}>
+        <TextField
+          label="Добавить чат"
+          name="title"
+          type="text"
+          value={title}
+          onChange={onInputChange}
+          onKeyDown={keyDownHandler}
+        />
+        <Fab variant="round" color="primary" size="small" onClick={addChat}>
+          <AddIcon />
+        </Fab>
+      </div>
+      <Divider />
       <List className={classes.chatList}>
         {props.chats.map((c) => {
           return (
@@ -94,19 +110,6 @@ export const ChatsList = (props) => {
         })}
         <Divider />
       </List>
-      <div className={classes.addChatForm}>
-        <TextField
-          label="Добавить чат"
-          name="title"
-          type="text"
-          value={title}
-          onChange={onInputChange}
-          onKeyDown={keyDownHandler}
-        />
-        <Fab variant="round" color="primary" size="small" onClick={addChat}>
-          <AddIcon />
-        </Fab>
-      </div>
     </div>
   );
 };

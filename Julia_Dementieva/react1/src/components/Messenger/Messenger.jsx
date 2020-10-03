@@ -15,25 +15,29 @@ export class Messenger extends Component {
     }
 
     state ={
-        chats,
         nameRobot: "Robot",
         answerRobot: ['Чем могу помочь?','Привет, какая хорошая погода!','Добрый день!', 'Hi'],
     };
 
     handleMessageSend = (message) => {
-        const {chats} = this.state;
-        const {chatId} = this.props;
+        const { onAdd } = this.props;
 
-        const chat = chats[chatId];
+        if (typeof (onAdd) === 'function'){
+            onAdd(this.props.chatId, message);
+        }
+        // const {chats} = this.state;
+        // const {chatId} = this.props;
 
-        message.id = nanoid();
-        chat.messages = this.messages.concat([message])
+        // const chat = chats[chatId];
 
-        chats[chatId] = chat;
+        // message.id = nanoid();
+        // chat.messages = this.messages.concat([message])
 
-        this.setState({
-            chats,
-        });
+        // chats[chatId] = chat;
+
+        // this.setState({
+        //     chats,
+        // });
     };
 
     // С помощью floar and random получаю индекс массива answerRobot, генерация числа от 0 до length-1
@@ -43,8 +47,10 @@ export class Messenger extends Component {
     }
 
     lastMessageAuthor = (minusMessage) => {
-        const messageList = this.state.chats[this.props.chatId].messages;
-        return messageList[messageList.length-minusMessage].author;
+        // const messageList = this.state.chats[this.props.chatId].messages;
+        // return messageList[messageList.length-minusMessage].author;
+        
+        return this.messages[this.messages.length-minusMessage].author;
     }
 
     componentDidUpdate() {
@@ -64,40 +70,38 @@ export class Messenger extends Component {
     }
 
     get messages(){
-        const {chats} = this.state;
+        const {chats} = this.props;
         const {chatId} = this.props;
 
         let messages = null;
 
-        if(chatId && chats[chatId]){
+        if(chatId >=0 && chats[chatId]){
             messages = chats[chatId].messages;
         }
-
         return messages;
     }
     
     render() {
         const messages = this.messages;
+        const {chats} = this.props;
         const {chatId} = this.props;
-        console.log(chatId)
-        console.log(chats[chatId])
         return (
             <div className="messenger">
                 <div className="messages-info">
                     <ListItem alignItems="center">
                         
                         <ListItemAvatar>
-                        <Avatar src={this.state.chats[chatId].avatar} />  
+                        <Avatar src={chats[chatId].avatar} />  
                         
                         </ListItemAvatar>
                         <ListItemText
-                        primary={this.state.chats[chatId].author}
+                        primary={chats[chatId].author}
                         />
                         
                     </ListItem>
                 </div>
                 <div className="messages-list">
-                    {messages ? <MessageList  items={messages}/> : <div>Выберите чат слева</div>}
+                    {messages ? <MessageList  items={messages}/> : <div>Пока в чате сообщений нет</div>}
                 </div>
                 <div className="message-form"> 
                     {messages && <MessageForm onSend={this.handleMessageSend} person={this.props.person}/>}

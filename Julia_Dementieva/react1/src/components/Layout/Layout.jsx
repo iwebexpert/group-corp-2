@@ -9,6 +9,9 @@ import { Route,Switch, Redirect  } from 'react-router-dom';
 import {About} from '../../pages/About';
 import {Error} from '../../pages/Error';
 
+import { nanoid } from 'nanoid';
+
+import { chats } from '../../helper/chatsData';
 import './Layout.css'
 
 export class Layout extends Component {
@@ -25,28 +28,61 @@ export class Layout extends Component {
     }
 
     state={
-        name: "Web",
-        age: 28,
-        city: "Москва",
-        chatId: '0',
-        avatar: 'https://images.squarespace-cdn.com/content/v1/55c8e052e4b01bd89f02a45e/1452208562614-J8AFSSTSMN3DJ6Q798XX/ke17ZwdGBToddI8pDm48kE7xzgWkeVHhMSpwGz7q3y4UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2du1iGr6rVFVouDCrC-EYDz_rjS4LofYkqCp0pRSzPi5Jm7cT0R_dexc_UL_zbpz6JQ/image-asset.jpeg?format=1000w'
+        chats,
+        person:{
+            name: "Web",
+            age: 28,
+            city: "Москва",
+            mainChat: 'Тестовый чат',
+            avatar: 'https://images.squarespace-cdn.com/content/v1/55c8e052e4b01bd89f02a45e/1452208562614-J8AFSSTSMN3DJ6Q798XX/ke17ZwdGBToddI8pDm48kE7xzgWkeVHhMSpwGz7q3y4UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2du1iGr6rVFVouDCrC-EYDz_rjS4LofYkqCp0pRSzPi5Jm7cT0R_dexc_UL_zbpz6JQ/image-asset.jpeg?format=1000w',    
+        }
+  }
+
+    componentDidMount() {
+        console.log('lay mount')
+        console.log(this.state.chats)
     }
+    chatAddHandler = (newchat) => {
+        console.log(newchat);
+        const chat = {
+            id: this.state.chats.length,
+            author: newchat,
+            avatar: 'https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif',
+            messages: [],
+        }
+
+        const newChats = [...this.state.chats, chat]
+        console.log([...this.state.chats, chat])
+        this.setState({
+            chats: newChats,
+        })
+        console.log(this.state.chats)
+    };
+    // id-chat
+    messageAddHandler = (id, message) => {
+        message.id = nanoid();
+        const newChats = this.state.chats;
+        newChats[id].messages = newChats[id].messages ? newChats[id].messages.concat([message]) : [message];
+
+        this.setState({
+            chats: newChats,
+        });
+
+    };
 
     render() {
         return (<>
             <div className="container">
-                <Header person={this.state} />
+                <Header person={this.state.person} />
                 <div style={this.style}>
                     <Paper elevation={3} style={{width: "30%"}}>
-                        <ChatsList chatId={this.state.chatId}/>
+                        <ChatsList chats={this.state.chats} onAdd={this.chatAddHandler}/>
                     </Paper>
                     <Paper elevation={3} style={{width: "69%"}}>
                         <Switch>
-                            <Route exact path="/chats/:id([0-9]+)" render={(props) => <Messenger person={this.state} chatId={(props.match.params.id)} />} />
+                            <Route exact path="/chats/:id([0-9]+)" render={(props) => <Messenger person={this.state.person} chatId={Number(props.match.params.id)} chats={this.state.chats} onAdd={this.messageAddHandler}/>} />
                             <Route exact path="/" render={() => (<Redirect to="/chats/0" />)} />
-                            <Route exact path="/About" render={() => (<About person={this.state}/>)}>
-                                <Route exact path="/About/chats/:id([0-9]+)" render={(props) => <Messenger person={this.state} chatId={(props.match.params.id)} />} />
-                            </Route>
+                            <Route exact path="/About" render={() => (<About person={this.state.person}/>)}/>
                             <Route path="*" >
                                 <Error />
                             </Route>

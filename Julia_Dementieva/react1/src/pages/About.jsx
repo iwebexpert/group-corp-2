@@ -31,6 +31,7 @@ export class About extends Component {
                         <h1>Логин: {this.props.person.name}</h1>
                         <h1>Возраст: {this.props.person.age}</h1>
                         <h1>Город: {this.props.person.city}</h1>
+                        <h1>Главный чат: {this.props.person.mainChat}</h1>
 
                     </div>
                 </Paper>

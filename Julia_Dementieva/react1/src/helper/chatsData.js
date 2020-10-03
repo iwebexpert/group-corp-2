@@ -6,7 +6,7 @@ export const chats = [
         messages: [
             {
                 id: 0,
-                author: 'WebDev',
+                author: 'Web',
                 text: 'Hi!'
             },
         ],
@@ -18,7 +18,7 @@ export const chats = [
         messages: [
             {
                 id: 0,
-                author: 'WebDev',
+                author: 'Web',
                 text: 'React.js!'
             },
         ],
@@ -30,12 +30,12 @@ export const chats = [
         messages: [
             {
                 id: 0,
-                author: 'WebDev',
+                author: 'Web',
                 text: 'Привет!'
             },
             {
                 id: 1,
-                author: 'WebDev',
+                author: 'Web',
                 text: 'Что нового?'
             },
         ],

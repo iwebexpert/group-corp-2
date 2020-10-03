@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import {ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
 import {MessageList} from '../MessageList';
 import {MessageForm} from '../MessageForm';
 import {Switch, Link, Route} from 'react-router-dom';
 import {chats} from '../../helper/chatsData'
-
+import {Paper} from '@material-ui/core';
 import { nanoid } from 'nanoid'
 
 import './Messenger.css';
@@ -21,13 +22,14 @@ export class Messenger extends Component {
 
     handleMessageSend = (message) => {
         const {chats} = this.state;
-        // const {match} = this.props;
+        const {chatId} = this.props;
 
-        const chat = chats['0'];
+        const chat = chats[chatId];
+
         message.id = nanoid();
         chat.messages = this.messages.concat([message])
 
-        chats['0'] = chat;
+        chats[chatId] = chat;
 
         this.setState({
             chats,
@@ -41,7 +43,7 @@ export class Messenger extends Component {
     }
 
     lastMessageAuthor = (minusMessage) => {
-        const messageList = this.state.chats['0'].messages;
+        const messageList = this.state.chats[this.props.chatId].messages;
         return messageList[messageList.length-minusMessage].author;
     }
 
@@ -63,19 +65,12 @@ export class Messenger extends Component {
 
     get messages(){
         const {chats} = this.state;
-        // const {infoChats} = this.props;
-
-        // let messages = null;
-
-        // if(infoChats && chats[infoChats.params.id]){
-        //     messages = chats[infoChats.params.id].messages;
-        // }
-        
+        const {chatId} = this.props;
 
         let messages = null;
 
-        if(chats[0]){
-            messages = chats[0].messages;
+        if(chatId && chats[chatId]){
+            messages = chats[chatId].messages;
         }
 
         return messages;
@@ -83,9 +78,24 @@ export class Messenger extends Component {
     
     render() {
         const messages = this.messages;
-
+        const {chatId} = this.props;
+        console.log(chatId)
+        console.log(chats[chatId])
         return (
             <div className="messenger">
+                <div className="messages-info">
+                    <ListItem alignItems="center">
+                        
+                        <ListItemAvatar>
+                        <Avatar src={this.state.chats[chatId].avatar} />  
+                        
+                        </ListItemAvatar>
+                        <ListItemText
+                        primary={this.state.chats[chatId].author}
+                        />
+                        
+                    </ListItem>
+                </div>
                 <div className="messages-list">
                     {messages ? <MessageList  items={messages}/> : <div>Выберите чат слева</div>}
                 </div>

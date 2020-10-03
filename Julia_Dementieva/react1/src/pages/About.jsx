@@ -9,7 +9,7 @@ export class About extends Component {
             width: '100%',
             marginTop: '25px',
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             flexDirectiom: 'colomn',
             height: '500px',
         }
@@ -20,12 +20,13 @@ export class About extends Component {
         return (<>
             <div style={this.style}>
                 
-                <Paper elevation={3} style={{width: "35%", backgroundRepeat: 'no-repeat',
-                backgroundImage: "url('https://lh3.googleusercontent.com/proxy/8hQqiCgfTJu53B_hZGovmYp8fxvNpMKvDXxojR9Mjls7URhmwHWofnzGkl3AhV1vQ40VySpyFAtzbKiVXgpKvaZfK1pkrSiJq4qcoF--gYieCTwxOcJJ255iRXAEuB3NQNgGCb3g3aN4tlBfFcfOYObmcp855ueCjtvfipBhKT0LkmhQIe6vbVf3guTuyomuIi9h6P3LqeFNxmtueOP87v5AS_DS96w4e0pgjOT4cbYIkYnQIHa9x4A6H6KLsV_JDxV1R0xRE_QaE2DzZMHIo3SoMvyW7tjRgYLRgxQos0xr451Io_qv6v9ndM6p39KrVJJwVmYeb3VDAjV47zIzI8sitcbBRR8-VFz4Y1g4cUjC')"}}>
+                <Paper elevation={3} style={{width: "35%",height: "58%", backgroundRepeat: 'no-repeat',
+                backgroundPosition: "center center",
+                backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/55c8e052e4b01bd89f02a45e/1452208562614-J8AFSSTSMN3DJ6Q798XX/ke17ZwdGBToddI8pDm48kE7xzgWkeVHhMSpwGz7q3y4UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2du1iGr6rVFVouDCrC-EYDz_rjS4LofYkqCp0pRSzPi5Jm7cT0R_dexc_UL_zbpz6JQ/image-asset.jpeg?format=1000w')"}}>
                     
                 
                 </Paper>
-                <Paper elevation={3} style={{width: "64%"}}>
+                <Paper elevation={3} style={{width: "56%",height: "80%"}}>
                     <div className='infoUser'> 
                         <h1>Логин: {this.props.person.name}</h1>
                         <h1>Возраст: {this.props.person.age}</h1>

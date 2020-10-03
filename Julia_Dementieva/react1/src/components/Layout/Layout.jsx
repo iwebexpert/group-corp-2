@@ -6,38 +6,53 @@ import {ChatsList} from '../ChatsList'
 import {Paper} from '@material-ui/core';
 
 import { Route,Switch, Redirect  } from 'react-router-dom';
-import {Home} from '../../pages/Home';
 import {About} from '../../pages/About';
 import {Error} from '../../pages/Error';
-import {chats} from '../../helper/chatsData'
 
 import './Layout.css'
 
 export class Layout extends Component {
+    constructor(props){
+        super(props);
+        this.style = 
+        {
+            width: '100%',
+            marginTop: '25px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            height: '500px',
+        }
+    }
+
     state={
         name: "Web",
         age: 28,
-        city: "Moscow",
+        city: "Москва",
         chatId: '0',
-        avatar: 'https://lh3.googleusercontent.com/proxy/8hQqiCgfTJu53B_hZGovmYp8fxvNpMKvDXxojR9Mjls7URhmwHWofnzGkl3AhV1vQ40VySpyFAtzbKiVXgpKvaZfK1pkrSiJq4qcoF--gYieCTwxOcJJ255iRXAEuB3NQNgGCb3g3aN4tlBfFcfOYObmcp855ueCjtvfipBhKT0LkmhQIe6vbVf3guTuyomuIi9h6P3LqeFNxmtueOP87v5AS_DS96w4e0pgjOT4cbYIkYnQIHa9x4A6H6KLsV_JDxV1R0xRE_QaE2DzZMHIo3SoMvyW7tjRgYLRgxQos0xr451Io_qv6v9ndM6p39KrVJJwVmYeb3VDAjV47zIzI8sitcbBRR8-VFz4Y1g4cUjC'
+        avatar: 'https://images.squarespace-cdn.com/content/v1/55c8e052e4b01bd89f02a45e/1452208562614-J8AFSSTSMN3DJ6Q798XX/ke17ZwdGBToddI8pDm48kE7xzgWkeVHhMSpwGz7q3y4UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2du1iGr6rVFVouDCrC-EYDz_rjS4LofYkqCp0pRSzPi5Jm7cT0R_dexc_UL_zbpz6JQ/image-asset.jpeg?format=1000w'
     }
 
     render() {
         return (<>
             <div className="container">
                 <Header person={this.state} />
-                <Switch>
-                    {/* <Route exact path="/chats/:id([0-9]+)" render={(props) => <Home person={this.state} {...props} />}/> */}
-                    <Route exact path="/chats/:id([0-9]+)" render={(props) => <Home person={this.state} chatId={Number(props.match.params.id)} />} />
-                    <Route exact path="/" render={() => (<Redirect to="/chats/0" />)} />
-                    <Route exact path="/About" >
-                        <About person={this.state}/>
-                    </Route>
-                    <Route path="*" >
-                        <Error />
-                    </Route>
-                    
-                </Switch>
+                <div style={this.style}>
+                    <Paper elevation={3} style={{width: "30%"}}>
+                        <ChatsList chatId={this.state.chatId}/>
+                    </Paper>
+                    <Paper elevation={3} style={{width: "69%"}}>
+                        <Switch>
+                            <Route exact path="/chats/:id([0-9]+)" render={(props) => <Messenger person={this.state} chatId={(props.match.params.id)} />} />
+                            <Route exact path="/" render={() => (<Redirect to="/chats/0" />)} />
+                            <Route exact path="/About" render={() => (<About person={this.state}/>)}>
+                                <Route exact path="/About/chats/:id([0-9]+)" render={(props) => <Messenger person={this.state} chatId={(props.match.params.id)} />} />
+                            </Route>
+                            <Route path="*" >
+                                <Error />
+                            </Route>
+                        </Switch>
+                    </Paper>
+                </div>
             </div>
             
             

@@ -57,7 +57,7 @@ class MessageFormClass extends Component {
     };
 
     render() {
-        const {text, author} = this.state;
+        const {text} = this.state;
         const {classes} = this.props;
 
         return (<div className={classes.root}>

@@ -10,15 +10,13 @@ export  class ChatItem extends Component {
             <div>
                 <Link to={`/chats/${id}`} style={{ textDecoration: 'none' }}>
                 <ListItem alignItems="center" key={id}>
+                    <ListItemAvatar>
+                    <Avatar src={avatar} />  
                     
-                        <ListItemAvatar>
-                        <Avatar src={avatar} />  
-                        
-                        </ListItemAvatar>
-                        <ListItemText
-                        primary={author}
-                        />
-                        
+                    </ListItemAvatar>
+                    <ListItemText
+                    primary={author}
+                    />
                 </ListItem>
                 </Link>
                 <Divider variant="inset" component="li" />

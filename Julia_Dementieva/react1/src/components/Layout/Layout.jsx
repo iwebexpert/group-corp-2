@@ -5,7 +5,7 @@ import {ChatsList} from '../ChatsList'
 
 import {Paper} from '@material-ui/core';
 
-import { Route,Switch, Redirect  } from 'react-router-dom';
+import { Route,Switch, Redirect, Link  } from 'react-router-dom';
 import {About} from '../../pages/About';
 import {Error} from '../../pages/Error';
 
@@ -38,10 +38,6 @@ export class Layout extends Component {
         }
   }
 
-    componentDidMount() {
-        console.log('lay mount')
-        console.log(this.state.chats)
-    }
     chatAddHandler = (newchat) => {
         console.log(newchat);
         const chat = {
@@ -49,15 +45,15 @@ export class Layout extends Component {
             author: newchat,
             avatar: 'https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif',
             messages: [],
-        }
+        };
 
-        const newChats = [...this.state.chats, chat]
-        console.log([...this.state.chats, chat])
+        const newChats = [...this.state.chats, chat];
+        console.log([...this.state.chats, chat]);
         this.setState({
             chats: newChats,
-        })
-        console.log(this.state.chats)
+        });
     };
+
     // id-chat
     messageAddHandler = (id, message) => {
         message.id = nanoid();
@@ -76,11 +72,11 @@ export class Layout extends Component {
                 <Header person={this.state.person} />
                 <div style={this.style}>
                     <Paper elevation={3} style={{width: "30%"}}>
-                        <ChatsList chats={this.state.chats} onAdd={this.chatAddHandler}/>
+                        <ChatsList chats={this.state.chats} onAdd={this.chatAddHandler} />
                     </Paper>
                     <Paper elevation={3} style={{width: "69%"}}>
                         <Switch>
-                            <Route exact path="/chats/:id([0-9]+)" render={(props) => <Messenger person={this.state.person} chatId={Number(props.match.params.id)} chats={this.state.chats} onAdd={this.messageAddHandler}/>} />
+                            <Route exact path="/chats/:id([0-9]+)" render={ (props) => (Number(props.match.params.id) < this.state.chats.length) ? <Messenger person={this.state.person} chatId={Number(props.match.params.id)} chats={this.state.chats} onAdd={this.messageAddHandler}/> : <Error />} />
                             <Route exact path="/" render={() => (<Redirect to="/chats/0" />)} />
                             <Route exact path="/About" render={() => (<About person={this.state.person}/>)}/>
                             <Route path="*" >
@@ -90,8 +86,6 @@ export class Layout extends Component {
                     </Paper>
                 </div>
             </div>
-            
-            
             </>
         )
     }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import {List } from '@material-ui/core';
-import {ListItem, ListItemText, ListItemAvatar, Avatar, Divider } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 import {ChatItem} from '../ChatItem';
 import {ChatForm} from '../ChatForm';
@@ -9,6 +7,7 @@ import {ChatForm} from '../ChatForm';
 import './ChatsList.css'
 
 export class ChatsList extends Component {
+
     handleChatAdd = (newchat) => {
         const {onAdd} = this.props;
         if (newchat) {
@@ -29,9 +28,7 @@ export class ChatsList extends Component {
                     
                 </List>
                 </div>
-                <ChatForm onSend={this.handleChatAdd} idForNewChat={chats.length + 1}/>
-                
-                
+                <ChatForm onSend={this.handleChatAdd}/>
             </div>
         );
     }

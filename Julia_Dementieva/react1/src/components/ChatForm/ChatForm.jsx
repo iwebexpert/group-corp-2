@@ -65,11 +65,11 @@ class ChatFormClass extends Component {
                     multiline
                     fullWidth 
                 />
-                <Link to={`/chats/${this.props.idForNewChat}`} style={{ textDecoration: 'none' }}>
-                    <IconButton aria-label="add" className={classes.root} onClick={this.handleChatSend}>
-                        <AddIcon />
-                    </IconButton>
-                </Link>
+                
+                <IconButton aria-label="add" className={classes.root} onClick={this.handleChatSend}>
+                    <AddIcon />
+                </IconButton>
+                
             </div>
         )
     }

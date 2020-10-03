@@ -29,11 +29,11 @@ const useStyles = makeStyles({
   }
 });
 
-const Message = ({ message, deleteMessage, isBot }) => {
+const Message = ({ message, deleteMessage, isBot, user }) => {
   const classes = useStyles();
   const { textPrimary, textSecondary, textWarning,
           messageInner, usernameStyle, timeStyle } = classes;
-  const { text, date, username, id } = message;
+  const { text, username, id, date } = message;
 
   const alignStyles = isBot ? 'left' : 'right';
   const time = isBot ? new Date(date.getTime() + 1000) : date;
@@ -56,7 +56,7 @@ const Message = ({ message, deleteMessage, isBot }) => {
           <Typography 
               className={classNames(textWarning, usernameStyle)} 
               align={alignStyles}>
-            {username}
+            {isBot ? username : user}
           </Typography>
           <Typography 
               className={textPrimary}>

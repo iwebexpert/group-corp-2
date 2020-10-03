@@ -1,0 +1,16 @@
+.link-reset {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.listItemText {
+    min-height: 40px;
+}
+
+.Layout {
+    &-add__chat {
+        min-height: 64px;
+        max-width: 240px;
+    }
+}

@@ -1,15 +1,20 @@
 import React from 'react';
 import classes from 'classnames';
 
-export const ChatItem = ({ name, mess, image, auth }) => {
+export const ChatItem = ({ author, message, image, title }) => {
+    let style = '';
+    if (title !== author) {
+        style = '--right';
+    }
+
     return (
-        <div className={classes({ 'wrapper__data': !auth, 'wrapper__data--right': auth })}>
-            <div className={classes({ 'wrapper__icon': !auth, 'wrapper__icon--right': auth })}>
+        <div className={classes(`wrapper__data${style}`)}>
+            <div className={classes(`wrapper__icon${style}`)}>
                 <img src={image} alt="" />
             </div>
-            <div className={classes({ 'wrapper__info': !auth, 'wrapper__info--right': auth })}>
-                <p className='wrapper__name'>{name}</p>
-                <div className={classes({ 'wrapper__message': !auth, 'wrapper__message--right': auth })}>{mess}</div>
+            <div className={classes(`wrapper__info${style}`)}>
+                <p className='wrapper__name'>{author}</p>
+                <div className={classes(`wrapper__message${style}`)}>{message}</div>
             </div>
         </div>
     )

@@ -1,46 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LayoutHeader } from './LayoutHeader';
 import { ChatList } from './ChatList';
 import { ChatForm } from './ChatForm';
-import m1 from './../../img/mans/m1.png';
-import m4 from './../../img/mans/m4.png';
 
-export class Layout extends React.Component {
-    state = {
-        chats: [
-            { name: 'Helga Källström', mess: 'We can go to the bar we were last Saturday. I like it.', image: m4, auth: false },
-            { name: 'Helga Källström', mess: 'oohh so more ?', image: m4, auth: false },
-        ]
+export const Layout = ({ chats, match, updateChats }) => {
+    let time = null;
+
+    const getNeedChats = () => {
+        const id = match.params.id;
+        return chats.find(el => el.id == id);
     }
 
-    addNewMessage = (mess) => {
-        this.setState({ chats: [...this.state.chats, mess] })
-        clearTimeout(this.time);
+    const addNewMessage = (mess) => {
+        updateChats(mess, match.params.id);
+        clearTimeout(time)
     }
 
-    componentDidUpdate() {
-        const state = this.state.chats;
-        const lastPerson = state[state.length - 1].name;
-
-        const defaultAnswerFromBot = {
-            name: 'Helga Källström',
-            mess: `${lastPerson} - oohh so more ?`,
-            image: m4,
-            auth: false
+    useEffect(() => {
+        if (getNeedChats().messages.length) {
+            const { title, image } = getNeedChats();
+            const { author } = getNeedChats().messages[getNeedChats().messages.length - 1];
+            if (author !== title) {
+                time = setTimeout(() => {
+                    addNewMessage({ author: title, message: `${author} - Hi!!!`, image });
+                }, 4000)
+            }
         }
+    }, [chats])
 
-        this.time = setTimeout(() => {
-            this.addNewMessage(defaultAnswerFromBot);
-        }, 4000)
-    }
-
-    render() {
-        return (
-            <>
-                <LayoutHeader />
-                <ChatList chats={this.state.chats} />
-                <ChatForm onSendMessage={this.addNewMessage} />
-            </>
-        )
-    }
+    return (
+        <>
+            <LayoutHeader chat={getNeedChats()} />
+            <ChatList chats={getNeedChats()} />
+            <ChatForm onSendMessage={addNewMessage} />
+        </>
+    )
 }

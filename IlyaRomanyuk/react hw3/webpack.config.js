@@ -8,6 +8,14 @@ module.exports = {
     filename: 'bundle.js',
   },
 
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      components: path.join(__dirname, 'src', 'components'),
+      pages: path.join(__dirname, 'src', 'pages'),
+    },
+  },
+
   module: {
     rules: [
       {
@@ -52,4 +60,8 @@ module.exports = {
       filename: 'index.html',
     })
   ],
+
+  devServer: {
+    historyApiFallback: true,
+  }
 }

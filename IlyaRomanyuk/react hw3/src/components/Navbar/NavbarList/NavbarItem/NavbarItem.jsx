@@ -1,14 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export const NavbarItem = ({ name, mess, image }) => {
+export const NavbarItem = ({ title, messages, image, id }) => {
+
     return (
-        <div className="navbar__about">
-            <div className="navbar__img"><img src={image} alt="" /></div>
+        <Link to={`/chats/${id}`} className="navbar__link" >
+            <div className="navbar__about">
+                <div className="navbar__img"><img src={image} alt="" /></div>
 
-            <div className="navbar__info">
-                <p className="navbar__info-name">{name}</p>
-                <span className="navbar__info-mess">{mess}</span>
+                <div className="navbar__info">
+                    <p className="navbar__info-name">{title}</p>
+                    {messages.length && <span className="navbar__info-mess">{messages[messages.length - 1].message}</span>}
+                    {!messages.length && <span className="navbar__info-mess">Пока сообщений нет</span>}
+                </div>
             </div>
-        </div>
+        </Link>
+
     )
 }

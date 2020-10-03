@@ -1,0 +1,16 @@
+$drawerWidth: 240px;
+
+.Sidebar {
+    &-add__chat {
+        min-height: 64px;
+        max-width: $drawerWidth;
+    }
+
+    &-link__reset:hover {
+        text-decoration: none;
+    }
+
+    &-last__message {
+        min-height: 40px;
+    }
+}

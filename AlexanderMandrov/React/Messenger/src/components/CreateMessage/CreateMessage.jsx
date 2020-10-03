@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './CreateMessage.scss';
 import { Button, TextField, Box } from '@material-ui/core';
 import { Send } from '@material-ui/icons';
-import { validateMessage } from '../../utils/utils';
+import { validateInput } from '../../utils/utils';
 
 const CreateMessage = ({ pushMessage }) => {
   const [message, setMessage] = useState('');
@@ -12,7 +12,7 @@ const CreateMessage = ({ pushMessage }) => {
   };
 
   const onHandleClick = () => {
-    if (validateMessage(message)) {
+    if (validateInput(message)) {
       pushMessage(message);
       setMessage('');
     }

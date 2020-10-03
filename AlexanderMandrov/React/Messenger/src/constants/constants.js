@@ -45,7 +45,7 @@ usernames.forEach(user => {
   messages.push(rawMessages[Math.floor(Math.random()*5)]);
 });
 
-const createPrimaryChats = () => {
+const createPrimaryChats = (usernames, sender = undefined) => {
   return usernames.map((user, id) => {
     return {
       id: user,
@@ -53,15 +53,15 @@ const createPrimaryChats = () => {
       messages: [
         {
           id: nanoid(),
-          username: user,
+          username: sender ? sender : user,
           date: (new Date()),
-          text: messages[id]
+          text: sender ? 'Hi there!' : messages[id]
         }
       ]
     }
   });
 };
 
-const rawChats = createPrimaryChats();
+const rawChats = createPrimaryChats(usernames);
 
-export { rawChats, notifications, avatarColors };
+export { rawChats, notifications, avatarColors, createPrimaryChats };

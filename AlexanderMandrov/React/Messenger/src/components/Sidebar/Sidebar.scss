@@ -13,4 +13,8 @@ $drawerWidth: 240px;
     &-last__message {
         min-height: 40px;
     }
+
+    &-list {
+        width: $drawerWidth;
+    }
 }

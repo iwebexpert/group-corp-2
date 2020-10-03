@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import './Sidebar.scss';
@@ -8,14 +8,9 @@ import { Drawer, List, ListItem, ListItemText,
 import { deepOrange, deepPurple, green, blue, indigo, teal, cyan, lime } from '@material-ui/core/colors';
 import { AddCircleOutline } from '@material-ui/icons';
 import { notifications, avatarColors } from '../../constants/constants';
-import { messageShorter } from '../../utils/utils';
-
-const drawerWidth = 240;
+import { messageShorter, validateInput } from '../../utils/utils';
 
 const useStyles = makeStyles((theme) => ({
-  list: {
-    width: drawerWidth,
-  },
   badge: {
     top: 8,
     marginBottom: 8
@@ -48,10 +43,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Sidebar = ({ chats, user, onChatClick }) => {
+const Sidebar = ({ chats, user, onChatClick, pushRawChat }) => {
   const classes = useStyles();
-  const {list, badge, green, orange, purple, blue, indigo, teal, cyan, lime } = classes;
+  const { badge, green, orange, purple, blue, indigo, teal, cyan, lime } = classes;
+  const [newReceiver, setNewReceiver] = useState('');
   const palette = [purple, orange, green, blue, indigo, teal, cyan, lime];
+
+  const handleChange = (event) => {
+    setNewReceiver(event.target.value)
+  };
+
+  const handleClick = () => {
+    if (validateInput(newReceiver)) {
+      pushRawChat(newReceiver);
+      setNewReceiver('');
+    }
+  };
+
   return (
     <Drawer variant="persistent" open>
       <Box display="flex" justifyContent="space-between" className="Sidebar-add__chat" px={1} pt={1.2}>
@@ -59,19 +67,22 @@ const Sidebar = ({ chats, user, onChatClick }) => {
           variant="outlined"
           size="small"
           placeholder="Create new chat"
+          value={newReceiver}
           fullWidth
+          onChange={handleChange}
         />
         <Box ml={1} mb={0} mt={-0.5}>
           <IconButton
               color="primary"
               variant="contained"
-              size="medium">
+              size="medium"
+              onClick={handleClick}>
             <AddCircleOutline/>
           </IconButton>
         </Box>
       </Box>
       <Divider />
-      <List className={list}>
+      <List className="Sidebar-list">
         {chats.map(({ username, id, messages }, idx) => {
           const lastMessage = messages[messages.length - 1];
           const lastMessageText = messageShorter(lastMessage.text);

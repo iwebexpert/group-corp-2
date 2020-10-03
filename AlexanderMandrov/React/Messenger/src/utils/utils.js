@@ -18,9 +18,9 @@ const createBotMessage = (sender, receiver) => {
   }
 };
 
-const validateMessage = (message) => {
+const validateInput = (text) => {
   const regExp = /\S|(^\w$)/gi;
-  return regExp.test(message);
+  return regExp.test(text);
 };
 
 const messageShorter = (message) => {
@@ -36,7 +36,18 @@ const findChatIndexByReceiver = (chats, receiver) => {
   chats.forEach((chat, idx) => {
     if (chat.id === receiver) index = idx;
   });
-  return index === -1 ? undefined : index;
+  return index;
 };
 
-export { createMessage, createBotMessage, validateMessage, messageShorter, findMessagesByReceiver, findChatIndexByReceiver };
+const setDelay = (chat, chats, setChats, sender, receiver, editIdx = 0) => {
+  setTimeout(() => {
+    const { messages } = chat;
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage.username !== 'Bot') {
+      chat.messages.push(createBotMessage(sender, receiver));
+      setChats([...chats].map((elem, idx) => idx === editIdx ? chat : elem));
+    }
+  }, 2000);
+}
+
+export { createMessage, createBotMessage, validateInput, messageShorter, findMessagesByReceiver, findChatIndexByReceiver, setDelay };

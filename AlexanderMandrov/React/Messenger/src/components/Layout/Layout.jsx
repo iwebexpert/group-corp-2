@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './Layout.scss';
 import CreateMessage from '../CreateMessage';
 import Chat from '../Chat';
@@ -7,8 +7,8 @@ import Header from '../Header';
 import Sidebar from '../Sidebar';
 import WelcomePage from '../../pages/WelcomePage';
 import { Container, Box } from '@material-ui/core';
-import { createMessage, createBotMessage, findChatIndexByReceiver, findMessagesByReceiver } from '../../utils/utils';
-import { rawChats } from '../../constants/constants';
+import { createMessage, findChatIndexByReceiver, findMessagesByReceiver, setDelay } from '../../utils/utils';
+import { rawChats, createPrimaryChats } from '../../constants/constants';
 
 const Layout = () => {
   const [user, setUser] = useState('guest');
@@ -25,20 +25,19 @@ const Layout = () => {
     chat.messages.push(createMessage(messageText, user));
     const editIdx = findChatIndexByReceiver(chats, receiver);
     setChats([...chats].map((elem, idx) => idx === editIdx ? chat : elem));
-    setTimeout(() => {
-      const { messages } = chat;
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage.username !== 'Bot') {
-        chat.messages.push(createBotMessage(user, receiver));
-        setChats([...chats].map((elem, idx) => idx === editIdx ? chat : elem));
-      }
-    }, 2000);
+    setDelay(chat, chats, setChats, user, receiver, editIdx);
+  };
+
+  const pushRawChat = (receiver) => {
+    const chat = createPrimaryChats([receiver], user)[0];
+    setChats([chat, ...chats]);
+    setDelay(chat, chats, setChats, user, receiver);
   };
 
   return (
     <>
       <Header />
-      <Sidebar chats={chats} user={user} onChatClick={handleChatClick} />
+      <Sidebar chats={chats} user={user} onChatClick={handleChatClick} pushRawChat={pushRawChat} />
       <main className="Layout-main">
         <Container maxWidth="lg">
           <Box display="flex" justifyContent="flex-end" flexDirection="column" mb={5}>
@@ -46,8 +45,10 @@ const Layout = () => {
               <Route path="/" exact component={WelcomePage} />
               <Route path="/chats/:id" render={({ match }) => {
                 const { id } = match.params;
+                if (findChatIndexByReceiver(chats, id) === -1) return <Redirect to="/" />;
                 return <Chat getMessageList={() => findMessagesByReceiver(chats, id).messages} user={user} /> }} 
               />
+              <Redirect to="/" />
             </Switch>
             <CreateMessage pushMessage={pushMessage}/>
           </Box>

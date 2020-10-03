@@ -46,11 +46,16 @@ const Layout = () => {
               <Route path="/chats/:id" render={({ match }) => {
                 const { id } = match.params;
                 if (findChatIndexByReceiver(chats, id) === -1) return <Redirect to="/" />;
-                return <Chat getMessageList={() => findMessagesByReceiver(chats, id).messages} user={user} /> }} 
+                return (
+                  <>
+                    <Chat getMessageList={() => findMessagesByReceiver(chats, id).messages} user={user} />
+                    <CreateMessage pushMessage={pushMessage}/>
+                  </>
+                );
+              }} 
               />
               <Redirect to="/" />
             </Switch>
-            <CreateMessage pushMessage={pushMessage}/>
           </Box>
         </Container>
       </main>

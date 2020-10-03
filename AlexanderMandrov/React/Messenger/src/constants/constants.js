@@ -39,13 +39,13 @@ let notifications = [],
   avatarColors = [],
   messages = [];
 
-usernames.forEach(user => {
+usernames.forEach(() => {
   notifications.push(Math.floor(Math.random() * 20));
   avatarColors.push(Math.floor(Math.random() * paletteLength));
-  messages.push(rawMessages[Math.floor(Math.random()*5)]);
+  messages.push(rawMessages[Math.floor(Math.random() * 5)]);
 });
 
-const createPrimaryChats = (usernames, sender = undefined) => {
+const createPrimaryChats = (usernames, sender = null) => {
   return usernames.map((user, id) => {
     return {
       id: user,

@@ -1,7 +1,8 @@
+@import '../../css/variables';
+
 .CreateMessage {
-    $drawerWidth: 270px;
     background-color: #fff;
     position: absolute;
     bottom: 0;
-    width: calc(100% - #{$drawerWidth});
+    width: calc(100% - #{$drawerWidth + 30});
 }

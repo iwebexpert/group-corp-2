@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './CreateMessage.scss';
+import './MessageForm.scss';
 import { Button, TextField, Box } from '@material-ui/core';
 import { Send } from '@material-ui/icons';
 import { validateInput } from '../../utils/utils';
 
-const CreateMessage = ({ pushMessage }) => {
+const MessageForm = ({ pushMessage }) => {
   const [message, setMessage] = useState('');
 
   const onHandleChange = (event) => {
@@ -24,7 +24,7 @@ const CreateMessage = ({ pushMessage }) => {
 
 
   return (
-    <div className="CreateMessage">
+    <div className="MessageForm">
       <Box display="flex" justifyContent="space-between" mx={1} mb={1} mt={1}>
         <TextField
           variant="outlined"
@@ -50,4 +50,4 @@ const CreateMessage = ({ pushMessage }) => {
   );
 };
 
-export default CreateMessage;
+export default MessageForm;

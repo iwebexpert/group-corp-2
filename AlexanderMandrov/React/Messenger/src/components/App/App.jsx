@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import './Layout.scss';
-import CreateMessage from '../CreateMessage';
+import './App.scss';
+import MessageForm from '../MessageForm';
 import Chat from '../Chat';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import WelcomePage from '../../pages/WelcomePage';
-import ProfilePage from '../../pages/ProfilePage'
+import ProfilePage from '../../pages/ProfilePage';
 import { Container, Box } from '@material-ui/core';
 import { createMessage, findChatIndexByReceiver, findChatByReceiver, setDelay } from '../../utils/utils';
 import { rawChats, createPrimaryChats } from '../../constants/constants';
 
-const Layout = () => {
+const App = () => {
   const [user, setUser] = useState('guest');
   const [chats, setChats] = useState(rawChats);
   const currentReceiver = window.location.pathname.split('/')[2];
@@ -46,7 +46,7 @@ const Layout = () => {
     <>
       <Header />
       <Sidebar chats={chats} user={user} onChatClick={handleChatClick} pushRawChat={pushRawChat} />
-      <main className="Layout-main">
+      <main className="App-main">
         <Container maxWidth="lg">
           <Box display="flex" justifyContent="flex-end" flexDirection="column" mb={5}>
             <Switch>
@@ -58,7 +58,7 @@ const Layout = () => {
                 return (
                   <>
                     <Chat getMessageList={() => findChatByReceiver(chats, id).messages} user={user} deleteMessage={deleteMessage} />
-                    <CreateMessage pushMessage={pushMessage} />
+                    <MessageForm pushMessage={pushMessage} />
                   </>
                 );
               }} 
@@ -72,4 +72,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default App;

@@ -23,7 +23,7 @@ const usernames = [
     'perfectaspiring',
     'catdiscemergency',
     'thoroughforemast'
-  ];
+];
 
 const rawMessages = [
   'I was just thinking about you!',

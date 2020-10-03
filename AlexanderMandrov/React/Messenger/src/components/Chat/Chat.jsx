@@ -1,13 +1,13 @@
 import React, { createRef, useEffect } from 'react';
 import './Chat.scss';
-import Message from '../Message';
+import Message from './Message';
 import { List, ListItem } from '@material-ui/core';
 
 const Chat = ({ getMessageList, user, deleteMessage }) => {
   const list = createRef();
 
   useEffect(() => {
-    list.current.scrollTop = 999;
+    list.current.scrollTop = 999999;
   }, [getMessageList]);
 
   return (

@@ -6,8 +6,8 @@ export const messageType = {
     text: PropTypes.string.isRequired
 }
 
-export const Message = ({text, author, time}) => {
-    return <div className={author === 'Бот' ? 'message bot' : 'message'}>
+export const Message = ({id, text, author, time}) => {
+    return <div id={id} className={author === 'Timur' ? 'message' : 'message bot'}>
         <div className="author">{author}</div>
         <div className="messageText">{text}</div>
         <div className="time">{time}</div>

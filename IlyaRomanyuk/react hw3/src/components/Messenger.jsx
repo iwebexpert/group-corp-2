@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { Switch, Route } from "react-router-dom";
+
 import { Navbar } from './Navbar';
 import { Layout } from './Layout';
-import { Switch, Route } from "react-router-dom";
 import { Profile } from './../pages/Profile';
+import { Home } from './../pages/Home';
+import { Error } from './../pages/Error';
 
 import { chats } from './../helpers/chatData';
-import { Home } from './../pages/Home';
+
 
 const Messenger = () => {
     let info = null;
@@ -47,6 +50,7 @@ const Messenger = () => {
                             <Route path="/chats/:id([0-9]+)" render={(props) => <Layout chats={data} updateChats={updateChats} {...props} />} exact />
                             <Route path="/profile" exact><Profile /></Route>
                             <Route path="/" exact><Home /></Route>
+                            <Route path="*"><Error /></Route>
                         </Switch>
                     </div>
                 </div>

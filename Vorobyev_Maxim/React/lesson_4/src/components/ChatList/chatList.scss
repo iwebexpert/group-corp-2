@@ -1,0 +1,79 @@
+.chatListBlock {
+  color: white;
+  flex-grow: 0;
+  background-color: rgba(0, 0, 0, 0.83);;
+  padding-left: 38px;
+  padding-right: 50px;
+  padding-top: 12px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chatsListBlock {
+  overflow-y: auto;
+  max-height: 650px;
+}
+
+.chatsListBlock::-webkit-scrollbar { 
+  width: 0; 
+}
+
+.listItem {
+  margin-top: 18px;
+}
+
+.listItem:hover {
+  border-radius: 14px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.linkItem {
+  color: white;
+  text-decoration: none;
+}
+
+.newChatName {
+  align-self: center;
+  color: white;
+  width: 80%;
+  border-radius: 5px;
+  height: 35px;
+  line-height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 7px;
+  padding-left: 7px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.0001);
+  border: 0.5px solid rgba(255, 255, 255, 0.24);
+}
+
+.addChatButton {
+  align-self: center;
+  margin-left: 10px;
+  height: 35px;
+  width: 35px;
+  background: rgba(0, 0, 0, 0.0);
+  border: none;
+  font-size: 35px;
+  line-height: 35px;
+  color: white;
+}
+
+.addChatButton:hover{
+  cursor: pointer;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 1.0);
+  color: black;
+}
+
+.addNewChatBlock {
+  margin-top: 20px;
+  display: flex;
+  height: 36px;
+}

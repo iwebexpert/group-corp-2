@@ -12,20 +12,10 @@ export class Message extends Component {
       'message-sender': author !== 'Bot',
       'message-bot': author === 'Bot',
     });
-
-    if (audio) {
-      return (
-        <div className={classes}>
-          <AudioMessage/>
-          <b className="mesage-author"> {author} {time}</b>
-        </div>
-      );
-    } else {
-      return (
-        <div className={classes}>
-          {text}<b className="message-author"> {author} {time}</b>
-        </div>
-      );
-    }
+    return (
+      <div className={classes}>
+        {text}<b className="message-author"> {author} {time}</b>
+      </div>
+    );
   }
 }

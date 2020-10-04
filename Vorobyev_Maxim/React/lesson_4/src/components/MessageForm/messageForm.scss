@@ -1,0 +1,60 @@
+.textAreaInput {
+  width: 100%;
+  margin: 20px; 
+}
+
+hr {
+  background-color: black;
+  opacity: 0.24;
+}
+
+.sendPhotoVoice {
+  display: flex;
+}
+
+.sendMessageBlock {
+  padding: 24px;
+  margin-left: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.voice {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.mainSender {
+  height: 38px;
+  padding: 4px;
+  padding-right: 8px;
+  padding-left: 8px;
+  box-sizing: border-box;
+  margin-top: -4px;
+  width: 53vw;
+  resize: none;
+  border-radius: 5px;
+}
+
+.mainSenderAuthor {
+  font-size: 24px;
+  line-height: 24px;
+  height: 38px;
+  padding: 4px;
+  margin-left: 12px;
+  padding-right: 8px;
+  padding-left: 8px;
+  box-sizing: border-box;
+  margin-top: -4px;
+  width: 18vw;
+  resize: none;
+  border-radius: 5px;
+}
+
+.sendIcon {
+  margin-right: 26px;
+}
+
+.sendIcon:hover {
+  cursor: pointer;
+}

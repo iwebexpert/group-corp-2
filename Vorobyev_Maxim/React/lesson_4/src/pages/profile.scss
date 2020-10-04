@@ -1,0 +1,79 @@
+.profileBlock {
+  left: 50%;
+  top: 50%;
+  margin-left: -220px;
+  margin-top: -245px;
+  position: absolute;
+  width: 400px;
+  height: 490px;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.profileHeaderFlex {
+  padding: 20px;
+  height: 150px;
+  display: flex;
+}
+
+.nickNameBlock {
+  align-self: center;
+}
+
+.nickNameBlock p{
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.imgBlock {
+  margin-right: 30px;
+  width: 150px;
+  height: 150px;
+}
+
+.profileHeaderFlex img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mainInfoBlockFlex {
+  padding: 22px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.count {
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.socials>:hover {
+  cursor: pointer;
+}
+
+.otherProfileInfo {
+  padding: 22px;
+}
+
+.city, .bd {
+  margin-bottom: 20px;
+}
+
+.flexBlockSocials {
+  display: flex;
+  justify-content: space-between;
+}
+
+.backLink {
+  text-decoration: none;
+}
+
+.back:hover {
+  cursor: pointer;
+}

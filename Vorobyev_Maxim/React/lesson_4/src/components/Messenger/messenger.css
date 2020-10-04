@@ -1,0 +1,24 @@
+.messenger {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 90%;
+  max-height: 722px;
+  padding: 20px;
+  width: calc(100% - 40px);
+}
+
+.choose {
+  margin: 0 auto;
+  margin-top: 20%;
+  color: black;
+  font-size: 28px;
+}

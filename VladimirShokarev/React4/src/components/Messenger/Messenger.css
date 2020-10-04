@@ -1,0 +1,32 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.NavAndList{
+    background-color: cornflowerblue;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.messenger {
+    height: 470px; 
+    /* width: 70%; */
+    /* margin: 0 auto; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.messages-list {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    height: 400px;
+    padding: 20px;
+    width: calc(100% - 40px);
+    overflow-y: scroll;
+}

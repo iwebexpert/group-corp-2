@@ -1,0 +1,25 @@
+.message {
+    // flex-grow: 1;
+    overflow: hidden;
+    padding: 5px;
+    min-height: 60px;;
+
+    &-author {
+        color: gray;
+        font-size: 14px;
+    }
+
+    &-bot {
+        align-self: flex-start;
+    }
+
+    &-sender {
+        align-self: flex-end;
+    }
+
+    &-paper {
+        max-width: 400px;
+        padding: 5px;
+        margin: 3px auto;
+    }
+}

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import {ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
 import {MessageList} from '../MessageList';
 import {MessageForm} from '../MessageForm';
-
+import {Switch, Link, Route} from 'react-router-dom';
+import {chats} from '../../helper/chatsData'
+import {Paper} from '@material-ui/core';
 import { nanoid } from 'nanoid'
 
 import './Messenger.css';
@@ -12,16 +15,16 @@ export class Messenger extends Component {
     }
 
     state ={
-        messages: [
-            {author: 'Web', text: 'Привет', id: nanoid()}, 
-        ],
         nameRobot: "Robot",
         answerRobot: ['Чем могу помочь?','Привет, какая хорошая погода!','Добрый день!', 'Hi'],
     };
 
     handleMessageSend = (message) => {
-        message.id = nanoid();
-        this.setState({messages: this.state.messages.concat([message])});
+        const { onAdd } = this.props;
+
+        if (typeof (onAdd) === 'function'){
+            onAdd(this.props.chatId, message);
+        }
     };
 
     // С помощью floar and random получаю индекс массива answerRobot, генерация числа от 0 до length-1
@@ -31,34 +34,58 @@ export class Messenger extends Component {
     }
 
     lastMessageAuthor = (minusMessage) => {
-        return this.state.messages[this.state.messages.length-minusMessage].author;
+        
+        return this.messages[this.messages.length-minusMessage].author;
     }
 
     componentDidUpdate() {
-        // Исправила баг, теперь если один и тот же автор пишет несколько сообщений сразу, то робот ответит только один раз
-        // Появился новый баг, если два разных автора пишут в чат, то робот во второй раз отвечает самому себе(т.к. в this.lastMessageAuthor(1))
-        // будет его имя, не стала исправлять,т.к. скоро все равно messenger разобьется на несколько чатов, следовательно, будет только один автор 
-        if (this.lastMessageAuthor(1) !== this.state.nameRobot && this.lastMessageAuthor(1) !== this.lastMessageAuthor(2)) {  
-            setTimeout(() =>{
+
+        setTimeout(() =>{
+            if(this.messages.length > 0 && this.lastMessageAuthor(1)!==this.state.nameRobot){ 
                 this.setState(
-                    { messages: [ ...this.state.messages, {author: `${this.state.nameRobot}`, text: `${this.lastMessageAuthor(1)}, ${this.randomAnswerRobot()}`, id: nanoid()}] });
-            }, 2000);
-        }
+                    this.handleMessageSend({text: `${this.lastMessageAuthor(1)}, ${this.randomAnswerRobot()}`, author: `${this.state.nameRobot}`}));
+                }
+        }, 3000);
+            
+            
+            
     }
- 
 
+    get messages(){
+        const {chats} = this.props;
+        const {chatId} = this.props;
+
+        let messages = null;
+
+        if(chatId >=0 && chats[chatId]){
+            messages = chats[chatId].messages;
+        }
+        return messages;
+    }
+    
     render() {
-        const {messages} = this.state;
-
+        const messages = this.messages;
+        const {chats} = this.props;
+        const {chatId} = this.props;
         return (
             <div className="messenger">
+                <div className="messages-info">
+                    <ListItem alignItems="center">   
+                        <ListItemAvatar>
+                        <Avatar src={chats[chatId].avatar} />  
+                        
+                        </ListItemAvatar>
+                        <ListItemText
+                        primary={chats[chatId].author}
+                        /> 
+                    </ListItem>
+                </div>
                 <div className="messages-list">
-                    <MessageList  items={messages}/>
+                    {messages.length > 0 ? <MessageList  items={messages}/> : <div>Пока в чате сообщений нет</div>}
                 </div>
                 <div className="message-form"> 
-                    <MessageForm onSend={this.handleMessageSend} />
-                </div>
-               
+                    <MessageForm onSend={this.handleMessageSend} person={this.props.person}/>
+                </div>           
             </div>
         )
     }

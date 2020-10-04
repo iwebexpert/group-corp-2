@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import {Avatar, TextField, Fab, withStyles} from '@material-ui/core';
+import {Avatar,  withStyles} from '@material-ui/core';
 import { deepOrange } from '@material-ui/core/colors';
+import { Link } from 'react-router-dom';
 
 import './Header.css';
 
@@ -20,11 +21,13 @@ class HeaderClass extends Component {
         const {classes} = this.props;
         return (
             <div className="header">
-                <div className="header-logo">VChats</div>
-                <div className="header-avatar">
-                    <Avatar className={classes.root}>W</Avatar>
-                    {this.props.name}
-                </div>
+                <Link to="/" style={{ textDecoration: 'none' }}><div className="header-logo">VChats</div></Link>
+                <Link to="/About" style={{ textDecoration: 'none' }}>
+                    <div className="header-avatar">
+                        <Avatar className={classes.root} src={this.props.person.avatar} />
+                        {this.props.person.name}
+                    </div>
+                </Link>
             </div>
         )
     }

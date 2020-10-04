@@ -1,48 +1,35 @@
 import React, { Component } from 'react'
-import List from '@material-ui/core/List';
-
-import { nanoid } from 'nanoid'
+import {List } from '@material-ui/core';
 
 import {ChatItem} from '../ChatItem';
+import {ChatForm} from '../ChatForm';
 
 import './ChatsList.css'
 
 export class ChatsList extends Component {
-    state={
 
-        chatsList:[
-            {
-                id: nanoid(),
-                author: "Olga",
-                avatar: "O",
-            },
-            {
-                id: nanoid(),
-                author: "Stanislav",
-                avatar: "S",
-            },
-            {
-                id: nanoid(),
-                author: "Mikhail",
-                avatar: "M",
-            },
-            
-        ]
+    handleChatAdd = (newchat) => {
+        const {onAdd} = this.props;
+        if (newchat) {
+            if (typeof (onAdd) === 'function'){
+                onAdd(newchat);
+            }
+        }
     }
-
     render() {
-        const chatsList = this.state.chatsList;
+        const {chats} = this.props;
         return (
-            <div>
+            <div className='chats'>
+                <div className='chatsList'>
                 <List>
                     {
-                        chatsList.map((item) => <ChatItem avatar={item.avatar} author={item.author} key={item.id}/>)
+                        chats.map((chat) => <ChatItem avatar={chat.avatar} author={chat.author} id={chat.id} key={chat.id}/>)
                     }
                     
                 </List>
-  
+                </div>
+                <ChatForm onSend={this.handleChatAdd}/>
             </div>
-            
         );
     }
 }

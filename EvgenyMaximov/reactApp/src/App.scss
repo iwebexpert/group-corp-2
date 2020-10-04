@@ -4,6 +4,10 @@ $light: rgb(228, 222, 222);
 $dark1: rgb(75, 72, 72);
 $dark2: rgb(110, 105, 105);
 
+body {
+  margin: 4px;
+}
+
 #root {
   box-sizing: border-box;
   border: 1px solid $dark1;
@@ -36,12 +40,33 @@ $dark2: rgb(110, 105, 105);
   background: transparent;
 }
 
+/*-----------home-page-------------*/
+.home-page {
+  height: 758px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  text-decoration: none !important;
+
+  &-light {
+    color: $light;
+    text-shadow: 1px 1px black;
+  }
+
+  &-dark {
+    color: $dark1;
+    text-shadow: 1px 1px white;
+  }
+}
+
 /*-----------header-------------*/
 .header {
   display: flex;
   justify-content: center;
   padding: 5px;
-
+  text-decoration: none !important;
   font-size: 25px;
 
   &-light {
@@ -64,6 +89,16 @@ $dark2: rgb(110, 105, 105);
     justify-content: space-between;
     align-items: center;
   }
+}
+
+.profile-icon {
+  position: absolute;
+  top: 40px;
+  left: 100px;
+  border: 1px solid $light;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: $light;
 }
 
 /*-----------messenger-------------*/
@@ -95,10 +130,37 @@ $dark2: rgb(110, 105, 105);
   justify-content: center;
 }
 
+.chat-label {
+  display: flex;
+  color: $dark1;
+  text-decoration: none;
+}
+
+.chat-title {
+  padding: 10px 30px;
+  margin-top: 5px;
+  font-size: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #000;
+
+  &-light {
+    color: $dark1;
+    background-color: $light;
+  }
+
+  &-dark {
+    color: $light;
+    background-color: $dark2;
+  }
+}
+
 /*-----------empty-list-------------*/
 .empty-list {
   padding-top: 30%;
   text-align: center;
+  text-decoration: none !important;
 
   &-light {
     color: $light;

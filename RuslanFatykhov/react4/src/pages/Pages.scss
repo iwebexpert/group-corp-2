@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.back {
+  background-color: #3498db;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  border-radius: 15px;
+  margin-top: 50px;
+}
+
+.profile {
+  margin: 50px auto;
+}
+
+.avatar {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+}
+
+.image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

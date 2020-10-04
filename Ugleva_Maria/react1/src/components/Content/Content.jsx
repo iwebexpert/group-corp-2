@@ -1,16 +1,10 @@
-import React, {Component} from "react";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import MessageField from '../MessageField';
-import MessagesList from '../MessagesList';
-import ChatsList from '../ChatsList';
-import './Content.scss';
+import React, { Component } from "react";
+import "./Content.scss";
+import { Route, Switch } from "react-router-dom";
+import ChatsComponent from "./chatsComponent";
+import Profile from "./Profile";
 
-
-class Content extends Component{
-  state = {
-    messages: [],
-  };
+class Content extends Component {
   componentDidUpdate = () => {
     if (this.state.messages.length % 2 === 1) {
       setTimeout(
@@ -30,26 +24,15 @@ class Content extends Component{
       );
     }
   };
-  handleSend = (message) => {
-    this.setState({ messages: this.state.messages.concat(message) });
-    console.log(this.state.messages);
-  };
-render() {
+  render() {
     return (
-        <div className='content'>
-          <Grid container spacing={3}>
-            <Grid item xs={4}>
-              <Paper><ChatsList /></Paper>
-            </Grid>
-            <Grid item xs={8}>
-              <Paper>
-                <MessagesList messages={this.state.messages} />
-                <MessageField onSend={this.handleSend} />
-              </Paper>
-            </Grid>
-          </Grid>
-        </div>
-      );
-    }
+      <div className="content">
+        <Switch>
+          <Route path="/profile" component={Profile} />
+          <Route path="/" component={ChatsComponent} />
+        </Switch>
+      </div>
+    );
+  }
 }
 export default Content;

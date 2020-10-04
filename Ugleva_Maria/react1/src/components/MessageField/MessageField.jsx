@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { TextField,  Fab } from "@material-ui/core";
-import {Send} from '@material-ui/icons';
-import './MessageField.scss';
-import { nanoid } from 'nanoid';
+import { TextField, Fab } from "@material-ui/core";
+import { Send } from "@material-ui/icons";
+import "./MessageField.scss";
+import { nanoid } from "nanoid";
+import { connect } from "react-redux";
+import { addNewMessageToChat } from '../../actions/chatsAction';
+
 class MessageField extends Component {
   state = {
     text: "",
     author: "",
-    id: nanoid()
+    id: nanoid(),
   };
-  handleChage = (e) => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSend = (e) => {
@@ -18,7 +21,7 @@ class MessageField extends Component {
       alert("Заполните все поля");
       return;
     }
-    this.props.onSend(this.state);
+    this.props.addNewMessageToChat(this.state, this.props.chatId);
     this.setState({ text: "", author: "", id: nanoid() });
   };
   handleEnter = (e) => {
@@ -29,32 +32,38 @@ class MessageField extends Component {
   render() {
     return (
       <>
-        <form className='fields-inputs' onKeyDown={this.handleEnter}>
+        <form className="fields-inputs" onKeyDown={this.handleEnter}>
           <TextField
             label="Автор"
             name="author"
             value={this.state.author}
             type="text"
-            onChange={this.handleChage}
+            onChange={this.handleChange}
           />
           <TextField
             id="standard-basic"
             label="Введите сообщение"
             name="text"
             value={this.state.text}
-            onChange={this.handleChage}
+            onChange={this.handleChange}
             multiline
           />
-          <Fab 
-            variant="round" 
-            color="primary" 
-            onClick={this.handleSend}
-            >
-                <Send />
-            </Fab>
+          <Fab variant="round" color="primary" onClick={this.handleSend}>
+            <Send />
+          </Fab>
         </form>
       </>
     );
   }
 }
-export default MessageField;
+const mapStateToProps = (state) => {
+  return {
+    chatId: state.activeChat,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewMessageToChat: (message, id) => dispatch(addNewMessageToChat(message, id))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);

@@ -1,9 +1,21 @@
 body {
     margin: 0;
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
 }
 .layout {
     width: 100%;
     min-height: 100vh;
     background-color: blanchedalmond;
     margin: 0;
+}
+.addresser {
+    color: gray;
+    font-size: 12px;
+    text-align: right;
+}
+.content {
+    color: black;
 }

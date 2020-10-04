@@ -7,7 +7,7 @@ let initialState = {
 		{id: uuidv4(), name: 'Sasha', photoUrl: user},
 		{id: uuidv4(), name: 'Igor', photoUrl: user},
 		{id: uuidv4(), name: 'Mary', photoUrl: user},
-		{id: uuidv4(), name: 'Arina', photoUrl: user},
+		{id: uuidv4(), name: 'BOOOOOOOR', photoUrl: user}, // FUCK THE POLICE
 	]
 }
 

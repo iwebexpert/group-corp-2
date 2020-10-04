@@ -1,5 +1,5 @@
 import React from 'react'
-import {Drawer, Divider, List, ListItem, ListItemText, MenuItem, Menu, TextField, Button} from "@material-ui/core"
+import {Drawer, Divider, List, ListItem, ListItemText, Menu, TextField, Button} from "@material-ui/core"
 import IconButton from "@material-ui/core/IconButton"
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
@@ -7,7 +7,7 @@ import {useTheme} from "@material-ui/core/styles"
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import AddIcon from '@material-ui/icons/Add'
 import GroupIcon from '@material-ui/icons/Group'
-import {Link, NavLink} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 
 export const ChatList = ({chats, addChat, classes, open, handleDrawerToggle}) => {
     const theme = useTheme()

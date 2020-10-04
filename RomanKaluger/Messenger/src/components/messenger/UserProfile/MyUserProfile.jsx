@@ -19,6 +19,8 @@ export default function ({user}) {
 
     const formRef = useRef();
     const [selectedSex, setSelectedSex] = useState(user.sex);
+    const [selectedFamilyStatus, setSelectedFamilyStatus] = useState(user.familyStatus);
+
     useEffect(() => {
         setSelectedSex(user.sex);
     },[user.sex]);
@@ -47,6 +49,9 @@ export default function ({user}) {
                             <div style={{gridArea: '2 / 10 / 4 / 15'}} className={"infoText"}>Имя</div>
                             <div style={{gridArea: '5 / 10 / 7 / 15'}} className={"infoText"}>Возраст</div>
                             <div style={{gridArea: '8 / 10 / 10 / 15'}} className={"infoText"}>Пол</div>
+                            <div style={{gridArea: '11 / 10 / 13 / 15'}} className={"infoText"}>Город</div>
+                            <div style={{gridArea: '14 / 10 / 16 / 15'}} className={"infoText"}>Страна</div>
+                            <div style={{gridArea: '17 / 10 / 19 / 15'}} className={"infoText"}>Семейное положение</div>
                             {
                                 editorMode ?
                                     <>
@@ -64,20 +69,37 @@ export default function ({user}) {
                                                 </RadioGroup>
                                             </FormControl>
                                         </div>
+                                        <div className="editorField5">
+                                            <TextField name={'City'} required label="Город" defaultValue={user.city} variant="filled"/>
+                                        </div>
+                                        <div className="editorField6">
+                                            <TextField  name={'Country'} label="Страна" defaultValue={user.country} variant="filled"/>
+                                        </div>
+                                        <div className="editorField7">
+                                            <FormControl component="fieldset">
+                                                <RadioGroup aria-label="familyStatus" name="familyStatus" value={selectedFamilyStatus} onChange={(e)=> setSelectedFamilyStatus(e.target.value)}>
+                                                    <FormControlLabel value="Женат(Замужем)" control={<Radio/>} label="Женат(Замужем)" />
+                                                    <FormControlLabel value="Свободен(а)" control={<Radio/>} label="Свободен(а)" />
+                                                </RadioGroup>
+                                            </FormControl>
+                                        </div>
                                         <div className="editorField4">
                                             <TextField name={'AvaUrl'} label="Avatar Url" defaultValue={user.avatarUrl} variant="filled"/>
                                         </div>
                                         </>
                                            :
                                  <>
-                                     <div style={{gridArea:'2 / 25 / 4 / 30'}} className={"infoText"}>{user.name}</div>
-                                     <div style={{gridArea:'5 / 25 / 7 / 30'}} className={"infoText"}>{user.age}</div>
-                                     <div style={{gridArea:'8 / 25 / 10 / 30'}} className={"infoText"}>{user.sex}</div>
+                                     <div style={{gridArea:'2 / 20 / 4 / 25'}} className={"infoText"}>{user.name}</div>
+                                     <div style={{gridArea:'5 / 20 / 7 / 25'}} className={"infoText"}>{user.age}</div>
+                                     <div style={{gridArea:'8 / 20 / 10 / 25'}} className={"infoText"}>{user.sex}</div>
+                                     <div style={{gridArea:'11 / 20 / 13 / 25'}} className={"infoText"}>{user.city}</div>
+                                     <div style={{gridArea:'14 / 20 / 16 / 25'}} className={"infoText"}>{user.country}</div>
+                                     <div style={{gridArea:'17 / 20 / 19 / 25'}} className={"infoText"}>{user.familyStatus}</div>
                                  </>
                             }
                             <div style={{gridArea:'33 / 2 / 35 / 7'}} onClick={() => setEditorMode(true)} className={editorBtnClass}>Редактировать</div>
-                            <div style={{gridArea:'33 / 15 / 35 / 25'}} onClick={() => setEditorMode(false)} className={cancelSaveBtnClass}>Отменить</div>
-                            <div style={{gridArea:'33 / 25 / 35 / 35'}} onClick={saveChanges} className={cancelSaveBtnClass}>Сохранить</div>
+                            <div style={{gridArea:'33 / 15 / 35 / 20'}} onClick={() => setEditorMode(false)} className={cancelSaveBtnClass}>Отменить</div>
+                            <div style={{gridArea:'33 / 20 / 35 / 25'}} onClick={saveChanges} className={cancelSaveBtnClass}>Сохранить</div>
                         </div>
                         </form>
                     </div>

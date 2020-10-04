@@ -34,12 +34,14 @@ export default () => {
                 <CircularProgress/>
             </Backdrop>
             <form ref={formRef} className={'AuthArea'}>
-                <label className={'AuthLabel'} htmlFor={'authEmail'}>Почта</label>
-                <input className={'AuthInput'} name={'authEmail'} id={'authEmail'} type={'text'} placeholder={'Почта'}/>
-                <label className={'AuthLabel'} htmlFor={'authPassword'}>Пароль</label>
-                <input className={'AuthInput'} name={'authPassword'} id={'authPassword'} type={'password'} placeholder={'Пароль'}/>
-                <div ref={sigInBtnRef} onClick={signInHandler} className={'button'}>Войти</div>
-                <NavLink to={routesPaths.REGISTER} >Регистрация</NavLink>
+                <div className="AuthAreaSection">
+                    <label className={'AuthLabel'} htmlFor={'authEmail'}>Почта</label>
+                    <input className={'AuthInput'} name={'authEmail'} id={'authEmail'} type={'text'} placeholder={'Почта'}/>
+                    <label className={'AuthLabel'} htmlFor={'authPassword'}>Пароль</label>
+                    <input className={'AuthInput'} name={'authPassword'} id={'authPassword'} type={'password'} placeholder={'Пароль'}/>
+                    <div ref={sigInBtnRef} onClick={signInHandler} className={'button'}>Войти</div>
+                    <NavLink to={routesPaths.REGISTER} >Регистрация</NavLink>
+                </div>
             </form>
         </div>
     );

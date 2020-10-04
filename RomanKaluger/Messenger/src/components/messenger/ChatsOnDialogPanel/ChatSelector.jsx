@@ -15,23 +15,19 @@ export default function ({chat}) {
     const {curUser, selectedChat} = useSelector(s => s.app);
     const dispatch = useDispatch();
     useEffect(() => {
-        async function f() {
-            const msg = await getLastMsg(chat._id, curUser);
-            setMessage(msg);
-        }
-        f();
-    }, [curUser, selectedChat]);
-    const chatClass = classNames('chatSelector', {chatSelectorSelected: selectedChat && selectedChat.sharedId === chat.sharedId});
+        getLastMsg(chat._id, setMessage);
+    }, [chat]);
+    const chatClass = classNames('chatSelector', {chatSelectorSelected: selectedChat === chat._id});
     const history = useHistory();
     const selectChat = useCallback(() => {
-        dispatch(setSelectedChat(chat));
+        dispatch(setSelectedChat(chat._id));
         history.push(`/messenger/chats/${chat._id}`);
     }, [chat]);
     return (
         <>
             <ListItem className={chatClass} alignItems="flex-start">
                 <img onClick={() => setIsDeleteCandidate(true)} className={'DeleteChatBtnSelector'} src="https://img.icons8.com/color/48/000000/delete-sign.png"/>
-                <ChatRemoveDialog isDeleteCandidate={isDeleteCandidate} selectedChat={selectedChat} chat={chat} setIsDeleteCandidate={setIsDeleteCandidate}/>
+                <ChatRemoveDialog isDeleteCandidate={isDeleteCandidate} chat={chat} setIsDeleteCandidate={setIsDeleteCandidate}/>
                 <Grid onClick={selectChat} spacing={3} container alignItems='center' justify='space-between'>
                     <Grid item container xs={3} justify={'space-around'} direction={'column'} alignItems={'center'}>
                         <div className={'avatar'}>

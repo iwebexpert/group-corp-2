@@ -8,7 +8,15 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {openUserProfile} from "../../../redux/actions";
 
 export default function () {
-    const {userProfileToShow, curUser} = useSelector(s => s.app);
+    const {userProfileToShow, curUser,contacts} = useSelector(s => s.app);
+    useEffect(() => {
+        if (userProfileToShow){
+            const allUsers = Object.values(contacts).flat();
+            if (!allUsers.includes(userProfileToShow)){
+                dispatch(openUserProfile(allUsers.find(x => x._id === userProfileToShow._id)));
+            }
+        }
+    },[contacts]);
     const dispatch = useDispatch();
     return (
         <>

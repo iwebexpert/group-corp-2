@@ -24,4 +24,15 @@ export function setSelectedChat(payload) {
         payload: payload
     }
 }
-
+export function setChats(payload) {
+    return {
+        type: types.SET_CHATS,
+        payload: payload
+    }
+}
+export function setContacts(payload) {
+    return {
+        type: types.SET_CONTACTS,
+        payload: payload
+    }
+}

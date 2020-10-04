@@ -17,14 +17,14 @@ const initialState = {
 
 export default () => {
     const [dialogs, setDialogs] = useState(initialState);
-    const {curUser, selectedChat} = useSelector(s => s.app);
+    const {curUser} = useSelector(s => s.app);
     const dispatch = useDispatch();
     useEffect( () => {
         search();
     },[]);
     const search = useCallback((input) => {
-        find(input, curUser, setDialogs, selectedChat, dispatch);
-    }, [curUser, selectedChat]);
+        find(input, curUser, setDialogs, dispatch);
+    }, [curUser]);
     useEffect(() => {
         if (connectionConfig.ws){
             const searchWsHandler = (e) => {
@@ -57,8 +57,8 @@ export default () => {
             </div>
             {
                 dialogs.category === categories.CHATS
-                    ? <ChatsOnDialogPanel chats={dialogs.chats}/>
-                    : <ContactsOnDialogPanel clearInput={clearInput} users={dialogs.contacts}/>
+                    ? <ChatsOnDialogPanel/>
+                    : <ContactsOnDialogPanel clearInput={clearInput}/>
             }
             <ShortMenu/>
         </div>

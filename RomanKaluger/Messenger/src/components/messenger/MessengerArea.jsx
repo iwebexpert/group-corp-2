@@ -10,16 +10,16 @@ import {PAGE_CURRENT} from "../../configs/statuses";
 
 export default () => {
     useAuthCheck(PAGE_CURRENT);
-    const curChat = useSelector(s => s.app.selectedChat);
+    const {selectedChat, chats} = useSelector(s => s.app);
     return (
         <div className={'MessengerArea'}>
-          <MessengerTopPanel chat={curChat}/>
+          <MessengerTopPanel chat={chats.find(x => x._id === selectedChat)}/>
                     <Switch>
                         <Route path={routesPaths.MESSENGER} exact>
                             <div className="emptyMessengerArea">Сперва Выберите чат на панели слева</div>
                         </Route>
                         <Route path={routesPaths.CHAT}>
-                            <MessagesArea curChat={curChat}/>
+                            <MessagesArea/>
                             <InputMessageArea/>
                         </Route>
                     </Switch>

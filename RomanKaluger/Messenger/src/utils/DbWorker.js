@@ -24,6 +24,10 @@ export class DbWorker {
             age: formData.regAge.value,
             sex: formData.regSex.value,
             avatarUrl: formData.regAva.value,
+            city: formData.regCity.value,
+            country: formData.regCountry.value,
+            familyStatus: formData.regStatus.value,
+
         };
         const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/register`, body, false);
         if (res) {
@@ -32,16 +36,19 @@ export class DbWorker {
         return res;
     };
     static updateUser = async (formData) => {
-        const curUser = store.getState().app.curUser;
         const body = {
             name: formData.Name.value,
             age: formData.Age.value,
             sex: formData.Sex.value,
             avatarUrl: formData.AvaUrl.value,
+            city: formData.City.value,
+            country: formData.Country.value,
+            familyStatus: formData.familyStatus.value,
         };
         const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/update/user/`, body, true);
         DbWorker.dispatch(setCurrentUser(res));
         DbWorker.dispatch(openUserProfile(res));
+        console.log(res)
         if (res) {
             swal("Успешно", 'Данные обновлены', "success");
         }
@@ -71,14 +78,15 @@ export class DbWorker {
     };
 
     static sendMessage = async (text) => {
-        const { selectedChat, curUser } = store.getState().app;
+        const { selectedChat, curUser, chats } = store.getState().app;
+        const selChatObj = chats.find(x => x._id === selectedChat);
         const message = {
             text,
             dateSend: Date.now(),
             author: curUser._id,
             authorName: curUser.name
         };
-        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/${selectedChat.sharedId}/message`, message);
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/${selChatObj.sharedId}/message`, message);
     };
     static createChat = async (user) => {
         const {curUser} = store.getState().app;

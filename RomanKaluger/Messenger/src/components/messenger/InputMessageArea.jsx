@@ -28,9 +28,10 @@ export default () => {
             sendMessageHandler(mes);
         }
     }, [sendMessageHandler, mes]);
+    const avatarContent = curUser ?  (curUser.avatarUrl ? <img src={curUser.avatarUrl} alt={'Аватар'}/> : curUser.name.slice(0,2)) : null;
     return (
         <div className={'InputMessageArea'}>
-            <div onClick={() => dispatch(openUserProfile(curUser))} className="avatarBig">{curUser.avatarUrl ? <img src={curUser.avatarUrl} alt={'Аватар'}/> : curUser.name.slice(0,2)}</div>
+            <div onClick={() => dispatch(openUserProfile(curUser))} className="avatarBig">{avatarContent}</div>
             <TextareaAutosize
                 ref={textArea} rowsMax={8} rowsMin={3}
                 value={mes} className={'InputMessageTextArea'} onKeyDown={submitHandler}

@@ -151,13 +151,12 @@ async function start() {
 
     });
 
-    let petyaTimeOut = 0;
+    const petyaTimeOut = {};
     function PetyaTalks(chat, authorName) {
         ////////Петя-бот
-        clearTimeout(petyaTimeOut);
-        petyaTimeOut = setTimeout(async () => {
-            let petya = await userModel.find({name: 'Петя'}).lean();
-            petya = petya[0];
+        clearTimeout(petyaTimeOut[chat._id]);
+        petyaTimeOut[chat._id] = setTimeout(async () => {
+            let petya = await userModel.findOne({name: 'Петя'}).lean();
             if (chat.members.includes(petya._id)) {
                 const petyaMessage = new messageModel({
                     text: `Привет, ${authorName}, я Петя-бот`,
@@ -346,11 +345,14 @@ async function start() {
     app.post('/update/user/', async (req, res) => {
         try {
             const gotUser = req.user;
-            const {name, age, sex, avatarUrl} = req.body;
+            const {name, age, sex, avatarUrl, city, country, familyStatus} = req.body;
             const user = await userModel.findOne({_id: gotUser._id});
             user.name = name;
             user.age = age;
             user.sex = sex;
+            user.city = city;
+            user.country = country;
+            user.familyStatus = familyStatus;
             user.avatarUrl = avatarUrl;
             await user.save();
             res.status(200).json({
@@ -362,11 +364,13 @@ async function start() {
             res.status(400).json({message: 'Ошибка при обновлении данных'});
         }
     });
+    const genders = ['Мужской', 'Женский'];
+    const familyStatuses = ['Женат(Замужем)','Свободен(а)'];
     app.post('/register', async (req, res) => {
         try {
-            const {email, name, password, age, sex, avatarUrl} = req.body;
-            if(!email || !password){
-                res.status(400).json({message: 'Не передан email или password'});
+            const {email, name, password, age, sex, avatarUrl, country, city, familyStatus} = req.body;
+            if(!email || !password || (sex && !genders.includes(sex)) || (familyStatus && !familyStatuses.includes(familyStatus))){
+                res.status(400).json({message: 'Неверные регистрационные данные'});
                 return;
             }
             const candidate = await userModel.find({ $or:[ {name}, {email} ]}).lean();
@@ -374,7 +378,7 @@ async function start() {
                 res.status(400).json({message: 'Почта или имя уже задействованы'});
                 return;
             }
-            const user = new userModel({email, name, password, friends: [], age, sex, avatarUrl: avatarUrl || ''});
+            const user = new userModel({email, name, password, friends: [], age, sex, avatarUrl: avatarUrl || '', country, city, familyStatus});
             await user.save();
             res.status(201).json(user);
         } catch (e) {

@@ -11,7 +11,10 @@ const userSchema = new Schema({
     subscribers:[{type: Schema.Types.ObjectId, ref: 'User'}],
     age: {type: Number, required: false},
     sex: {type: String, required: false},
-    avatarUrl:  {type: String, required: false}
+    avatarUrl:  {type: String, required: false},
+    country:  {type: String, required: false},
+    city:  {type: String, required: false},
+    familyStatus:  {type: String, required: false},
 });
 
 userSchema.pre('save', function(next) {

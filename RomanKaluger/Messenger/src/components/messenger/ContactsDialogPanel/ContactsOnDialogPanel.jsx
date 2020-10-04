@@ -4,22 +4,11 @@ import UserSelector from "./UserSelector";
 import List from "@material-ui/core/List";
 import {userTypes} from "./userTypes";
 import {openUserProfile} from "../../../redux/actions";
+import {categorizeUser} from "../../../utils/helpers";
 
-const categorize = (user, curUser) => {
-    if (user.subscribers.includes(curUser._id) && user.subscriptions.includes(curUser._id)){
-        return userTypes.FRIEND;
-    }
-    if (user.subscribers.includes(curUser._id) && !user.subscriptions.includes(curUser._id)){
-        return userTypes.SUBSCRIPTIONS;
-    }
-    if (!user.subscribers.includes(curUser._id) && user.subscriptions.includes(curUser._id)){
-        return userTypes.SUBSCRIBERS;
-    }
-    return userTypes.OTHER;
-};
-export default ({users, clearInput}) => {
-    const user = useSelector(s => s.app.curUser);
-    const {friends, subscribers, subscriptions, others} = users;
+export default ({clearInput}) => {
+    const {curUser, contacts} = useSelector(s => s.app);
+    const {friends, subscribers, subscriptions, others} = contacts;
     const dispatch = useDispatch();
     const openUserInfo = (e) => {
         const el = e.target.closest('.chatSelector');
@@ -30,7 +19,7 @@ export default ({users, clearInput}) => {
         if (!id) {
             return;
         }
-            const usr = [].concat(...Object.values(users)).find(x => x._id === id);
+            const usr = [].concat(...Object.values(contacts)).find(x => x._id === id);
             if (usr){
                 dispatch(openUserProfile(usr));
             }
@@ -44,7 +33,7 @@ export default ({users, clearInput}) => {
                             Поиск
                         </div>
                         <List>
-                        {others.map(u => <UserSelector clearInput={clearInput} key={u._id}  type={categorize(u, user)} user={u}/>)}
+                        {others.map(u => <UserSelector clearInput={clearInput} key={u._id}  type={categorizeUser(u, curUser)} user={u}/>)}
                         </List>
                     </div>
                     :
@@ -54,7 +43,7 @@ export default ({users, clearInput}) => {
                                 Друзья
                             </div>
                             {
-                                friends.length ? <List>{friends.map(u => <UserSelector key={u._id} type={userTypes.FRIEND} user={u}/>)}</List> : 'Друзей нет'
+                                friends.length ? <List>{friends.map(u => <UserSelector clearInput={clearInput} key={u._id} type={userTypes.FRIEND} user={u}/>)}</List> : 'Друзей нет'
                             }
                         </div>
                         <div onClick={openUserInfo} className={'ChatsSectionDlgPn'}>
@@ -62,7 +51,7 @@ export default ({users, clearInput}) => {
                                 Подписки
                             </div>
                             {
-                                subscriptions.length ? <List>{subscriptions.map(u => <UserSelector key={u._id} type={userTypes.SUBSCRIPTIONS} user={u}/>)}</List> : 'Подписок нет'
+                                subscriptions.length ? <List>{subscriptions.map(u => <UserSelector clearInput={clearInput} key={u._id} type={userTypes.SUBSCRIPTIONS} user={u}/>)}</List> : 'Подписок нет'
                             }
                         </div>
                         <div onClick={openUserInfo} className={'ChatsSectionDlgPn'}>
@@ -70,7 +59,7 @@ export default ({users, clearInput}) => {
                                 Подписчики
                             </div>
                             {
-                                subscribers.length ? <List>{subscribers.map(u => <UserSelector key={u._id} type={userTypes.SUBSCRIBERS} user={u}/>)}</List> : 'Подписчиков нет'
+                                subscribers.length ? <List>{subscribers.map(u => <UserSelector clearInput={clearInput} key={u._id} type={userTypes.SUBSCRIBERS} user={u}/>)}</List> : 'Подписчиков нет'
                             }
                         </div>
                     </>

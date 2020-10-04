@@ -3,6 +3,9 @@
     opacity: 0.5;
     pointer-events: none;
 }
+.hidden{
+    visibility: hidden;
+}
 .validationFieldError{
     @include --border('all', $alert, false);
 }
@@ -14,6 +17,7 @@
     color: $light;
     font-size: 30px;
     margin: 5px;
+    cursor: pointer;
 }
 .selectedTab{
     @include --border('bottom', $bgPrimaryLight, false);

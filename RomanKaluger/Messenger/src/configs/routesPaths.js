@@ -2,5 +2,5 @@ export default {
     REGISTER: '/register',
     AUTH: '/auth',
     MESSENGER: '/messenger',
-    CHAT: '/messenger/chats/:id'
+    CHAT: '/messenger/chats/:idchat'
 }

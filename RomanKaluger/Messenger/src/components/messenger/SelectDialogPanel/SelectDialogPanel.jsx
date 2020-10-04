@@ -29,7 +29,7 @@ export default () => {
         if (connectionConfig.ws){
             const searchWsHandler = (e) => {
                 const msg = JSON.parse(e.data);
-                if (msg.type === 'CHATS' || msg.type === 'MESSAGE') {
+                if (msg.type === 'CHATS' || msg.type === 'MESSAGE' || 'CONTACTS') {
                     search();
                 }
             };

@@ -5,8 +5,7 @@ import {DbWorker} from "../../utils/DbWorker";
 import {activateBtn, disableBtn} from "../../utils/helpers";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop/Backdrop";
-import TextField from "@material-ui/core/TextField";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+
 
 export default () => {
     const [isLoad, setIsLoad] = useState(false);
@@ -26,11 +25,14 @@ export default () => {
                 <CircularProgress/>
             </Backdrop>
             <form ref={formRef} className={'AuthArea'}>
-                <label className={'AuthLabel'} htmlFor={'regName'}>Имя</label>
                 <input className={'AuthInput'} name={'regName'} id={'regName'} type={'text'} placeholder={'Имя'}/>
-                <label className={'AuthLabel'} htmlFor={'regEmail'}>Почта</label>
+                <input className={'AuthInput'} name={'regAge'} id={'regAge'} type={'text'} placeholder={'Возраст'}/>
+                <input className={'AuthInput'} name={'regAva'} id={'regAva'} type={'text'} placeholder={'URL картинки'}/>
+                <select name={'regSex'} id={'regSex'} className={'AuthInput'}>
+                    <option>Мужской</option>
+                    <option>Женский</option>
+                </select>
                 <input className={'AuthInput'} name={'regEmail'} id={'regEmail'} type={'text'} placeholder={'Почта'}/>
-                <label className={'AuthLabel'} htmlFor={'regPassword'}>Пароль</label>
                 <input className={'AuthInput'} name={'regPassword'} id={'regPassword'} type={'password'} placeholder={'Пароль'}/>
                 <div ref={signBtnRef} onClick={signHandler} className={'button'}>Зарегистрироваться</div>
                 <NavLink to={routesPaths.AUTH} >Авторизация</NavLink>

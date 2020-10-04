@@ -8,6 +8,7 @@ import routesPaths from "../../configs/routesPaths";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Authorization from "../auth/Authorization";
 import Registration from "../auth/Registration";
+import UserProfile from "../messenger/UserProfile/UserProfile";
 export default () => {
     const curUser = useSelector(s => s.app.curUser);
     const id = curUser ? curUser._id : null;
@@ -18,10 +19,12 @@ export default () => {
         }
         },[id]);
     return (
+        <>
+            <UserProfile/>
             <Router>
                 <div className={'appContainer'}>
                     <Switch>
-                        <Route exact path={routesPaths.MESSENGER}>
+                        <Route path={routesPaths.MESSENGER}>
                                 <MessagesPage/>
                         </Route>
                         <Route path={routesPaths.REGISTER}>
@@ -36,6 +39,7 @@ export default () => {
                     </Switch>
                 </div>
             </Router>
+        </>
     );
 }
 

@@ -1,5 +1,5 @@
 import connectionConfig from "../configs/connectionConfig";
-import {setCurrentUser} from "../redux/actions";
+import {openUserProfile, setCurrentUser} from "../redux/actions";
 import swal from "sweetalert";
 import {store} from "../redux/StorageRedux";
 
@@ -21,10 +21,29 @@ export class DbWorker {
             email: formData.regEmail.value,
             name: formData.regName.value,
             password: formData.regPassword.value,
+            age: formData.regAge.value,
+            sex: formData.regSex.value,
+            avatarUrl: formData.regAva.value,
         };
         const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/register`, body, false);
         if (res) {
             swal("Успешно", 'Теперь авторизуйтесь', "success");
+        }
+        return res;
+    };
+    static updateUser = async (formData) => {
+        const curUser = store.getState().app.curUser;
+        const body = {
+            name: formData.Name.value,
+            age: formData.Age.value,
+            sex: formData.Sex.value,
+            avatarUrl: formData.AvaUrl.value,
+        };
+        const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/update/user/`, body, true);
+        DbWorker.dispatch(setCurrentUser(res));
+        DbWorker.dispatch(openUserProfile(res));
+        if (res) {
+            swal("Успешно", 'Данные обновлены', "success");
         }
         return res;
     };
@@ -76,6 +95,22 @@ export class DbWorker {
     };
     static deleteMessage = async (chatId, messageId) => {
         return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/chat/message/${chatId}/message`, {messageId}, true,'DELETE');
+    };
+    static addFriend = async (friend) =>{
+        const {curUser} = store.getState().app;
+        const body = {
+            userId: curUser._id,
+            friendId: friend._id
+        };
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/users/user/friends`, body, true,'POST');
+    };
+    static removeFriend = async (friend) =>{
+        const {curUser} = store.getState().app;
+        const body = {
+            userId: curUser._id,
+            friendId: friend._id
+        };
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/users/user/friends`, body, true,'DELETE');
     };
     static authGet = async (url, user) => {
         return await fetch(url, {

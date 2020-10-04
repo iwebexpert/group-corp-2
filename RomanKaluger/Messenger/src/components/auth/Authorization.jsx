@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import routesPaths from "../../configs/routesPaths";
 import useAuthCheck from "../../utils/useAuthCheck";
@@ -6,9 +6,12 @@ import {activateBtn, disableBtn} from "../../utils/helpers";
 import {DbWorker} from "../../utils/DbWorker";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {setCurrentUser} from "../../redux/actions";
+import {useDispatch} from "react-redux";
 
 export default () => {
     const [isLoad, setIsLoad] = useState(false);
+    const dispatch = useDispatch();
     useAuthCheck(routesPaths.MESSENGER);
     const sigInBtnRef = useRef();
     const formRef = useRef();
@@ -20,6 +23,11 @@ export default () => {
             activateBtn(sigInBtnRef.current);
             setIsLoad(false);
     },[]);
+    useEffect(()=>{
+        if (localStorage.curUser){
+            dispatch(setCurrentUser(JSON.parse(localStorage.curUser)));
+        }
+    }, []);
     return (
         <div className={'AuthContainer'}>
             <Backdrop open={isLoad}>

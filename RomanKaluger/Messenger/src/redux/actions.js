@@ -6,10 +6,15 @@ export function changeWsStatus(payload) {
         payload: payload
     }
 }
-
 export function setCurrentUser(payload) {
     return {
         type: types.SET_CURRENT_USER,
+        payload: payload
+    }
+}
+export function openUserProfile(payload) {
+    return {
+        type: types.OPENED_USER_PROFILE,
         payload: payload
     }
 }

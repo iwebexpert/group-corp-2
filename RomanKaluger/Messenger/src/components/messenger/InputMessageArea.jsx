@@ -1,16 +1,18 @@
 import React from "react";
 import {useCallback, useRef, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {DbWorker} from "../../utils/DbWorker";
 import Fab from '@material-ui/core/Fab'
 import SendIcon from '@material-ui/icons/Send';
 import {wsStatuses} from "../../configs/statuses";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import {openUserProfile} from "../../redux/actions";
 
 export default () => {
     const [mes, setMes] = useState('');
+    const dispatch = useDispatch();
     const textArea = useRef();
-    const {wsStatus} = useSelector(s => s.app);
+    const {wsStatus, curUser} = useSelector(s => s.app);
     const onChangeHandler = useCallback((e) => {
         const msg = e.target.value;
         setMes(msg);
@@ -28,6 +30,7 @@ export default () => {
     }, [sendMessageHandler, mes]);
     return (
         <div className={'InputMessageArea'}>
+            <div onClick={() => dispatch(openUserProfile(curUser))} className="avatarBig">{curUser.avatarUrl ? <img src={curUser.avatarUrl} alt={'Аватар'}/> : curUser.name.slice(0,2)}</div>
             <TextareaAutosize
                 ref={textArea} rowsMax={8} rowsMin={3}
                 value={mes} className={'InputMessageTextArea'} onKeyDown={submitHandler}

@@ -7,10 +7,11 @@ import {useTheme} from "@material-ui/core/styles"
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import AddIcon from '@material-ui/icons/Add'
 import GroupIcon from '@material-ui/icons/Group'
-import {NavLink} from "react-router-dom"
+import {NavLink, useHistory} from "react-router-dom"
 
 export const ChatList = ({chats, addChat, classes, open, handleDrawerToggle}) => {
     const theme = useTheme()
+    const history = useHistory()
 
     const [anchorEl, setAnchorEl] = React.useState(null)
     const [chatName, setChatName] = React.useState(null)
@@ -28,6 +29,7 @@ export const ChatList = ({chats, addChat, classes, open, handleDrawerToggle}) =>
         addChat(chatName)
         setChatName('')
         setAnchorEl(null)
+        history.push(`/chats/${chats.length}`)
     }
 
     return (
@@ -58,39 +60,39 @@ export const ChatList = ({chats, addChat, classes, open, handleDrawerToggle}) =>
             </List>
             <Divider />
             <List>
-                <ListItem button >
-                    <div className={classes.addChartItem} onClick={handleMenu}>
+                <ListItem button onClick={handleMenu}>
+                    <div className={classes.addChartItem}>
                         <AddIcon/>
                         <ListItemText className={classes.user} primary={'Add chat'} />
                     </div>
-                    <Menu
-                        className={classes.addChart}
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        open={menuOpen}
-                        onClose={() => setAnchorEl(null)}
-                    >
-                        <TextField
-                            className={classes.addChartInput}
-                            label="Title"
-                            name="title"
-                            onChange={handleInputChange}
-                            value={chatName}
-                            variant="outlined"
-                            autoFocus
-                        />
-                        <Button onClick={createChart} className={classes.addChartButton} variant="contained" color="primary">Create chat</Button>
-                    </Menu>
                 </ListItem>
+                <Menu
+                    className={classes.addChart}
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={menuOpen}
+                    onClose={() => setAnchorEl(null)}
+                >
+                    <TextField
+                        className={classes.addChartInput}
+                        label="Title"
+                        name="title"
+                        onChange={handleInputChange}
+                        value={chatName}
+                        variant="outlined"
+                        autoFocus
+                    />
+                    <Button onClick={createChart} className={classes.addChartButton} variant="contained" color="primary">Create chat</Button>
+                </Menu>
             </List>
         </Drawer>
     )

@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     },
     activeChat: {
         backgroundColor: '#b8b8b8',
-        padding: 10
+        padding: '10px 16px 10px 26px',
     },
     user: {
         marginLeft: 10

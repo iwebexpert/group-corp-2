@@ -14,7 +14,7 @@ export const MessagesList = (props) => {
             ? props.items.map((item, index) => (
             <Message id={index} author={item.author} text={item.text} time={item.time} key={index} />
             ))
-            : <div>There are no messages yet</div>
+            : <div className="emptyMessageBlock">There are no messages. Start chat.</div>
         }
     </div>
 }

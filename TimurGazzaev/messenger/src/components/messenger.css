@@ -30,6 +30,10 @@ a {
   scrollbar-width: none;
 }
 
+.emptyMessageBlock {
+  margin: 0 auto;
+}
+
 .message {
   align-self: flex-end;
   margin-top: 20px;

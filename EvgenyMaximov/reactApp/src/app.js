@@ -9,7 +9,7 @@ import { ChatsList } from "../components/ChatsList/ChatsList";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header/Header";
 import { AppRoater } from "../components/AppRoater/AppRoater";
-import { chats } from "../src/helpers/chatsData";
+import { chats } from "./helpers/chatsData";
 
 import "./App.scss";
 

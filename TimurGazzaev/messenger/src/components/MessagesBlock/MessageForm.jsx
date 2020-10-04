@@ -1,27 +1,16 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Button, TextField, withStyles} from "@material-ui/core"
+import {Button, TextField} from "@material-ui/core"
 
-const styles = {
-    root: {
-
-    }
-}
-
-class MessageFormClass extends Component {
+export class MessageForm extends Component {
     state = {
-        author: 'Тимур',
+        author: 'Timur',
         text: '',
         time: ''
     }
 
     static propTypes = {
         onSend: PropTypes.func.isRequired
-    }
-
-    getTime = () => {
-        let date = new Date()
-        return `${date.getHours()}:${date.getMinutes()}`
     }
 
     handleInputChange = (event) => {
@@ -43,11 +32,10 @@ class MessageFormClass extends Component {
             return
         }
 
-        this.state.time = this.getTime()
+        this.state.time = this.props.getTime()
 
         if (typeof onSend === 'function') {
-            onSend(this.state)
-
+            onSend(this.state.author, this.state.text, this.state.time)
             this.setState({text: ''})
         }
     }
@@ -64,7 +52,7 @@ class MessageFormClass extends Component {
         return (<>
 
             <TextField
-                label="Имя"
+                label="Name"
                 name="author"
                 onChange={this.handleInputChange}
                 value={author}
@@ -73,11 +61,11 @@ class MessageFormClass extends Component {
             />
 
             <TextField
-                label="Сообщение"
+                label="Message"
                 onKeyDown={this.onKeyPress}
                 name="text"
                 onChange={this.handleInputChange}
-                placeholder="Введите сообщение"
+                placeholder="Enter your message"
                 value={text}
                 variant="outlined"
                 multiline
@@ -85,10 +73,8 @@ class MessageFormClass extends Component {
                 className={this.props.classes.text}
             />
 
-            <Button onClick={this.handleMessageSend} className={this.props.classes.button} variant="contained" color="primary">Отправить сообщение</Button>
+            <Button onClick={this.handleMessageSend} className={this.props.classes.button} variant="contained" color="primary">Send Message</Button>
 
         </>)
     }
 }
-
-export const MessageForm = withStyles(styles)(MessageFormClass)

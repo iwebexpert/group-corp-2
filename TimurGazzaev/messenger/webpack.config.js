@@ -7,6 +7,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
+        publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -35,6 +36,14 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader'],
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             }
         ]
     },
@@ -48,4 +57,9 @@ module.exports = {
             filename: 'main.css'
         })
     ],
+
+    devtool: 'eval-source-map',
+    devServer: {
+        historyApiFallback: true,
+    },
 }

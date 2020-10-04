@@ -3,9 +3,13 @@ import './messenger.css'
 import { Header } from './Header/Header'
 import { ChatList } from './ChatList/ChatList'
 import {MessagesBlock} from "./MessagesBlock/MessagesBlock"
-import { Container, Grid } from '@material-ui/core'
+import { Container} from '@material-ui/core'
 import {makeStyles} from "@material-ui/core/styles"
-
+import {BrowserRouter, Switch, Route} from "react-router-dom"
+import {Error} from "./Error/Error"
+import {Profile} from "./Profile/Profile"
+import {chats} from '../helpers/chatsData'
+import {profile} from '../helpers/profile'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -26,11 +30,22 @@ const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
+    headWrap: {
+        display: "flex",
+        justifyContent: "space-between",
+    },
     menuButton: {
         marginRight: theme.spacing(2),
     },
     hide: {
         display: 'none',
+    },
+    burgerBlock: {
+        display: "flex",
+        alignItems: "center"
+    },
+    profileBlock: {
+
     },
     drawer: {
         width: drawerWidth,
@@ -43,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
     },
@@ -51,8 +65,36 @@ const useStyles = makeStyles((theme) => ({
         height: 53,
         paddingTop: 10
     },
+    chatItem: {
+        padding: 0
+    },
+    chat: {
+        display: "flex",
+        alignItems: "center",
+        padding: '10px 16px',
+        width: '100%'
+    },
+    activeChat: {
+        backgroundColor: '#b8b8b8',
+        padding: 10
+    },
     user: {
         marginLeft: 10
+    },
+    addChartItem: {
+        display: "flex",
+        alignItems: "center"
+    },
+    addChart: {
+        padding: 10
+    },
+    addChartInput: {
+        display: "block",
+        margin: 10
+    },
+    addChartButton: {
+        display: "block",
+        margin: '0 10px'
     },
     content: {
         flexGrow: 1,
@@ -78,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
         width: 500
     },
     button: {
-        margin: '10px 0 0 440px'
+        margin: '10px 0 0 510px'
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -87,25 +129,53 @@ const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 220,
     },
+    profileCart: {
+        margin: '100px auto',
+        width: 300,
+    },
+    info: {
+        marginTop: 32
+    },
+    infoValue: {
+        fontWeight: "bold"
+    }
 }))
 
 export const Layout = () => {
     const classes = useStyles()
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
+    const [chatsData, setChatsData] = useState(chats)
 
     const handleDrawerToggle = () => {
         setOpen(!open)
     }
 
+    const addChat = (chatName) => {
+        setChatsData(prev => [...prev, {id: chatsData.length, title: chatName, type: 1, messages: []}])
+    }
+
+    const addMessage = (currentChat, author, message, time) => {
+        let newArr = [...chatsData]
+        newArr[currentChat].messages.push({id: newArr[currentChat].messages.length, author: author, text: message, time: time})
+        setChatsData(newArr)
+    }
+
     return (
-        <>
-            <Header classes={classes} open={open} handleDrawerToggle={handleDrawerToggle}/>
+        <BrowserRouter>
+            <Header classes={classes} open={open} setOpen={setOpen} handleDrawerToggle={handleDrawerToggle}/>
             <Container>
-                <Grid container spacing={2}>
-                    <ChatList classes={classes} open={open} handleDrawerToggle={handleDrawerToggle}/>
-                    <MessagesBlock classes={classes} open={open}/>
-                </Grid>
+                <ChatList chats={chatsData} addChat={addChat} classes={classes} open={open} setOpen={setOpen} handleDrawerToggle={handleDrawerToggle}/>
+                <Switch>
+                    <Route path = '/chats/:id([0-9]+)' render={(props) => <MessagesBlock {...props} chats={chatsData} addMessage={addMessage} classes={classes} open={open}/>} exact/>
+                    <Route path = '/profile' exact>
+                        <Profile classes={classes} data={profile[0]}/>
+                    </Route>
+                    <Route path = '/' exact> </Route>
+                    <Route path = '*'>
+                        <Error/>
+                    </Route>
+                </Switch>
             </Container>
-        </>
+        </BrowserRouter>
     )
 }

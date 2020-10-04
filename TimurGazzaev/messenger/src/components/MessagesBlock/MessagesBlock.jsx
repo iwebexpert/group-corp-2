@@ -6,45 +6,47 @@ import clsx from "clsx"
 
 export class MessagesBlock extends Component {
     state = {
-        messages: [{author: 'Тимур', text: 'Хорошо, пока', time: '12:47'}, {author: 'Бот', text: 'До скорой встречи, Тимур', time: '12:48'}],
         isFetching: false
     }
 
-    handleMessageSend = (message) => {
-        this.setState({messages: this.state.messages.concat([message])})
+    getTime = () => {
+        let date = new Date()
+        let hours = date.getHours()
+        let minutes = date.getMinutes()
+        return `${hours}:${minutes > 9 ? minutes : `0${minutes}`}`
     }
 
+    sendMessage = (author, message, time) => {
+        let currentChat = this.props.match.params.id
+        let messages = this.props.chats[currentChat].messages
 
+        this.props.addMessage(currentChat, author, message, time)
 
-    componentDidUpdate(prevProps, prevState) {
-        let messages = this.state.messages
-
-        if (messages !== prevState.messages) {
-            if (messages[messages.length - 1]['author'] === 'Бот' || this.state.isFetching) {
-                return
-            }
-            this.setState({isFetching: true})
-            setTimeout(() => {
-                this.handleMessageSend({author: 'Бот', text: `Привет, ${messages[messages.length - 1].author}`, time: this.getTime()})
-                this.setState({isFetching: false})
-            }, 500)
+        if (messages[messages.length - 1]['author'] === 'Бот' || this.state.isFetching) {
+            return
         }
+        this.setState({isFetching: true})
+        setTimeout(() => {
+            this.props.addMessage(currentChat, 'Бот',
+                `Привет, ${messages[messages.length - 1].author}`, this.getTime())
+            this.setState({isFetching: false})
+        }, 1000)
     }
 
     render() {
-        const {messages} = this.state
-
         return (
-            <Grid className={clsx(this.props.classes.content, {[this.props.classes.contentShift]: this.props.open})}>
-                <Grid item xs={4} className={this.props.classes.messages} >
-                    <MessagesList items={messages}/>
-                </Grid>
-                <Divider/>
-                <Grid item xs={8} className={this.props.classes.form}>
-                    <MessageForm classes={this.props.classes} onSend={this.handleMessageSend}/>
+            <Grid container spacing={2}>
+                <Grid
+                    className={clsx(this.props.classes.content, {[this.props.classes.contentShift]: this.props.open})}>
+                    <Grid item xs={4} className={this.props.classes.messages}>
+                        <MessagesList items={this.props.chats[this.props.match.params.id].messages}/>
+                    </Grid>
+                    <Divider/>
+                    <Grid item xs={8} className={this.props.classes.form}>
+                        <MessageForm classes={this.props.classes} getTime={this.getTime} onSend={this.sendMessage}/>
+                    </Grid>
                 </Grid>
             </Grid>
-
         )
     }
 }

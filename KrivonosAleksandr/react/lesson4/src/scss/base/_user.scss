@@ -1,0 +1,25 @@
+.user_account{
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  &__imgLink{
+    display: block;
+    margin-right: 10px;
+  }
+  &__img{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  &__infoLink{
+    font-size: 18px;
+    text-decoration: none;
+    color: $secondaryText;
+    margin-bottom: 2px;
+  }
+  &__lastMessage{
+    font-size: 14px;
+    color: $mainText;
+    text-decoration: none;
+  }
+}

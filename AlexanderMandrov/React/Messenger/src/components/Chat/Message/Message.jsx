@@ -29,11 +29,11 @@ const useStyles = makeStyles({
   }
 });
 
-const Message = ({ message, deleteMessage, isBot }) => {
+const Message = ({ message, deleteMessage, isBot, user }) => {
   const classes = useStyles();
   const { textPrimary, textSecondary, textWarning,
           messageInner, usernameStyle, timeStyle } = classes;
-  const { text, date, username, id } = message;
+  const { text, username, id, date } = message;
 
   const alignStyles = isBot ? 'left' : 'right';
   const time = isBot ? new Date(date.getTime() + 1000) : date;
@@ -51,12 +51,12 @@ const Message = ({ message, deleteMessage, isBot }) => {
 
   return (
     <Box width={1}>
-      <Box display="flex" justifyContent={isBot ? 'flex-start': 'flex-end'} mr={1}>
+      <Box display="flex" justifyContent={isBot ? 'flex-start': 'flex-end'} mr={2}>
         <Box className={messageInner} mr={1} px={2} mb={1}>
           <Typography 
               className={classNames(textWarning, usernameStyle)} 
               align={alignStyles}>
-            {username}
+            {isBot ? username : user}
           </Typography>
           <Typography 
               className={textPrimary}>

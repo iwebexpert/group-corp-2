@@ -1,0 +1,9 @@
+.Header {
+    &-link__reset {
+        color: #fff;
+        &:hover {
+            text-decoration: none;
+            color: lightblue;
+        }
+    }
+}

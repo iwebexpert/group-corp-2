@@ -1,5 +1,6 @@
+@import '../../css/variables';
+
 .Chat {
-    $offsetHeight: 140px;
     max-height: calc(100vh - #{$offsetHeight});
     overflow: scroll;
 }

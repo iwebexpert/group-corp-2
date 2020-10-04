@@ -1,8 +1,9 @@
 import React from 'react';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
-import { AccountCircle, Menu } from '@material-ui/icons';
+import { AccountCircle } from '@material-ui/icons';
 
 const drawerWidth = 240;
 
@@ -10,11 +11,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexGrow: 1,
+    marginLeft: theme.spacing(2),
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -29,15 +28,14 @@ const Header = () => {
     <div className={root}>
       <AppBar position="static" className={appBar}>
         <Toolbar>
-          <IconButton edge="start" className={menuButton} color="inherit">
-            <Menu />
-          </IconButton>
           <Typography variant="h6" className={title}>
-            Messenger
+            <Link to="/" className="Header-link__reset">Messenger</Link>
           </Typography>
-          <IconButton edge="start" className={menuButton} color="inherit">
-            <AccountCircle />
-          </IconButton>
+          <Link to="/profile" className="Header-link__reset">
+            <IconButton edge="start" className={menuButton} color="inherit">
+              <AccountCircle />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

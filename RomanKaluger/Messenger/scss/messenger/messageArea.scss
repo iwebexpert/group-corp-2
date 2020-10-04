@@ -109,7 +109,7 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           width: 100%;
-          margin-bottom: 6px;
+          margin-bottom: 2px;
         }
         .chatSelectorMessage{
           @include center-content;
@@ -133,28 +133,32 @@
           display: flex;
           justify-content: space-around;
           flex-wrap: wrap;
-          @include --padding;
+          padding: 4px;
           background-color: transparentize($primary1, 0.8);
           border-radius: $border;
           box-sizing: border-box;
           width: 100%;
-          height: 100%;
+          height: 90%;
           .--localBtn{
             @include --border('all', $light, true);
             @include button-click;
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             margin: 5px;
             background-size: contain;
             background-color: $bgPrimary;
           }
           .startChatUserBtn{
             @extend .--localBtn;
-            background-image: url("https://img.icons8.com/clouds/100/000000/add-message.png");
+            background-image: url("https://img.icons8.com/color/100/000000/speech-bubble-with-dots.png");
           }
           .addFriendUserBtn{
             @extend .--localBtn;
-            background-image: url("https://img.icons8.com/clouds/100/000000/add-user-group-man-man.png");
+            background-image: url("https://img.icons8.com/color/100/000000/checked-user-male--v1.png");
+          }
+          .removeFriendUserBtn{
+            @extend .--localBtn;
+            background-image: url("https://img.icons8.com/color/100/000000/remove-user-male--v1.png");
           }
         }
       }
@@ -209,6 +213,7 @@
       width: 100%;
       height: 5vh;
       background-color: $bgPrimaryLight;
+      flex-direction: row;
       .chatTitleTopPn{
         @include --padding;
         color: $primary;
@@ -255,7 +260,7 @@
       background-color: $bgPrimaryLight2;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-around;
       .InputMessageTextArea{
         @include --border('all', $primary2, true);
         @include --padding;

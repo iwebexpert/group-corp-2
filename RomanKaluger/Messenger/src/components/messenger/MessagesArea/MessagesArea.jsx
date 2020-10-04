@@ -1,10 +1,15 @@
 import React, {useState, useEffect, useRef} from "react";
 import Message from "./Message";
 import {DbWorker} from "../../../utils/DbWorker";
+import {useParams} from 'react-router-dom';
+import {useSelector} from "react-redux";
 
-export default ({curChat}) => {
+export default () => {
     const [messages, setMessages] = useState([]);
+    const {chats} = useSelector(x => x.app);
     const mesAreaRef = useRef();
+    const {idchat} = useParams();
+    const curChat=chats.find(x => x._id === idchat);
     useEffect(() => {
         if (curChat){
             async function f() {

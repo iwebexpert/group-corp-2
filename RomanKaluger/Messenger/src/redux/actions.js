@@ -6,10 +6,15 @@ export function changeWsStatus(payload) {
         payload: payload
     }
 }
-
 export function setCurrentUser(payload) {
     return {
         type: types.SET_CURRENT_USER,
+        payload: payload
+    }
+}
+export function openUserProfile(payload) {
+    return {
+        type: types.OPENED_USER_PROFILE,
         payload: payload
     }
 }
@@ -19,4 +24,15 @@ export function setSelectedChat(payload) {
         payload: payload
     }
 }
-
+export function setChats(payload) {
+    return {
+        type: types.SET_CHATS,
+        payload: payload
+    }
+}
+export function setContacts(payload) {
+    return {
+        type: types.SET_CONTACTS,
+        payload: payload
+    }
+}

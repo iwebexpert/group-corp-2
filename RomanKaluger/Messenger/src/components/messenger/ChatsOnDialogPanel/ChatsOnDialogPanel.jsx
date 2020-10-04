@@ -1,8 +1,10 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import ChatSelector from "./ChatSelector";
+import {useSelector} from "react-redux";
 
-export default ({chats}) => {
+export default () => {
+    const {chats} = useSelector(s => s.app);
     return (
         <div className={'ChatsSectionDlgPn'}>
             <List>

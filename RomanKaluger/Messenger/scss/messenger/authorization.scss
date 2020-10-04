@@ -5,13 +5,23 @@
   width: 100vw;
   height: 100vh;
   background-color: $bgPrimaryLight;
+  a{
+    width: 40vw;
+    text-align: center;
+  }
   .AuthArea{
     @include --border('all', $primary, true);
     @include --padding;
     @include center-content;
     width: 50vw;
-    height: 50vh;
+    height: 70vh;
     cursor: pointer;
+    flex-direction: row!important;
+    flex-wrap: wrap;
+    .AuthAreaSection{
+      @include center-content;
+      width: 23vw;
+    }
     .AuthLabel{
       display: block;
       font-size: 30px;
@@ -30,6 +40,9 @@
         @include --border('all', $primary, true);
         outline: none;
       }
+    }
+    .alertInput{
+      border-color: $alert!important;
     }
   }
 }

@@ -70,12 +70,12 @@ module.exports={
     },
     devServer: {
         port:4200,
-        historyApiFallback: {
+        historyApiFallback: true/*{
             rewrites: [
-                { from: /^\/(\.)*/, to: '/' },
-                { from: /^\/(\.)*\/(\.)*/, to: '/' },
+                { from: /^\/(\.)*!/, to: '/' },
+                { from: /^\/(\.)*\/(\.)*!/, to: '/' },
             ]
-        }
+        }*/
     },
     devtool: "source-map",
 };

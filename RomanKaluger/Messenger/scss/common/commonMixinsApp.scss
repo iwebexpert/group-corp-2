@@ -21,7 +21,7 @@
     border: 3px solid $color;
   } @else {
     @each $side in $sides{
-      border-#{$side}: 3px solid $color;;
+      border-#{$side}: 3px solid $color;
     }
   }
   @if($rad){

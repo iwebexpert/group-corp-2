@@ -9,43 +9,22 @@ import Chat from '../../component/Chat/Chat';
 import ChatList from '../../component/ChatList/ChatList';
 import Card from '@material-ui/core/Card';
 
-import { chats } from '../../helpers/chats';
-
 export default class Messenger extends Component {
-  state = {
-      chats,
-  };
-  
   handleMessageSend = (message) => {
-    const {chats} = this.state;
-    const {match} = this.props;
-
-    const chat = chats[this.props.id];
-    message.id = nanoid();
-    chat.messages = this.messages.concat([message])
-
-    chats[this.props.id] = chat;
-
-    this.setState({ chats });
+    if (typeof(this.props.messageSend === 'function'))
+      this.props.messageSend(this.props.id, message);
   };
 
-  handleAdd = (title) => {
-    console.log(title);
-    const chat = {
-      id: this.state.chats[this.state.chats.length - 1].id + 1,
-      title: title,
-      messages: [],
-    };
-
-    const newChats = [...this.state.chats, chat];
-        console.log([...this.state.chats, chat]);
-        this.setState({
-            chats: newChats,
-        });
-  };
+  handleChatAdd = (chat) => {
+    if (chat) {
+        if (typeof (this.props.addChat) === 'function'){
+            this.props.addChat(chat);
+        }
+    }
+}
 
   componentDidUpdate() {
-    console.log(this.messages);
+    console.log(this.message);
     if(this.messages.length){
       const { author } = this.messages[this.messages.length - 1];
       if (author != 'Robot'){
@@ -57,32 +36,31 @@ export default class Messenger extends Component {
   }
 
   get messages(){
-    const { chats } = this.state;
+    const { chats, id } = this.props;
     let messages = null;
 
-    if(this.props.id >= 0 && chats[this.props.id]){
-        messages = chats[this.props.id].messages;
+    if(id >= 0 && chats[id]){
+        messages = chats[id].messages;
     }
     return messages;
   }
 
   render() {
-    console.log(this.state);
-    
-    const { chats } = this.state;
+    const { chats, id } = this.props;
     const messages = this.messages;
+    console.log(chats);
     return(
       <>
         <Container modifiers="container_theme_chat">
           <Navbar />
           <Content modifiers="content_theme_chat">
             <ChatList chats={chats}
-                      currentChat={this.props.id}
-                      handleAdd={this.handleAdd} />
+                      currentChat={id}
+                      handleAdd={this.handleChatAdd} />
             { messages ?
                           <Chat modifiers="chat_theme_chat"
                                 messages={messages}
-                                title={chats[this.props.id].title}
+                                title={chats[id].title}
                                 author={this.props.person.name}
                                 handleMessageSend={this.handleMessageSend} />
                       : 

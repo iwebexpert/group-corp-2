@@ -23,7 +23,6 @@ export default function Chat(props) {
     <Card className={classnames('chat', props.modifiers)}>
       <CardHeader className='chat__header' 
                   title={props.title} />
-                  {console.log(props.title)}
       <CardContent className='chat__content'
                     id='listScroll2'
                     ref={scroll}>

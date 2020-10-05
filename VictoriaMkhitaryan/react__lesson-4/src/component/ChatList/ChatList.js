@@ -78,7 +78,7 @@ export default function ChatList(props) {
                       onChange={handleOnInputSearch}
                       onKeyDown={handleKeyDownSearch} />
         </ListItem>
-        {props.chats.length ?
+        {props.chats ?
           (searchClick ?  
             searchArray.map((data, index) => (
               renderChatItemSearch(data, nanoid())

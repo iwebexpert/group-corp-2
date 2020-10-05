@@ -18,12 +18,46 @@ p, h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
 }
 
+.error {
+    text-align: center
+}
+
 body {
     margin: 0;
 
     font-family: sans-serif;
     background-color: rgb(77, 0, 150)
 }
+
+::-webkit-scrollbar-button {
+    background-repeat:no-repeat;
+    width:6px;
+    height:0px
+    }
+    
+    ::-webkit-scrollbar-track {
+    background-color:#32312e;
+    box-shadow:0px 0px 3px #000 inset;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color:#4d0096;
+    box-shadow:0px 1px 1px #fff inset;
+    background-position:center;
+    background-repeat:no-repeat;
+    }
+    
+    ::-webkit-resizer{
+    background-repeat:no-repeat;
+    width:7px;
+    height:0px
+    }
+    
+    ::-webkit-scrollbar{
+    width: 11px;
+    }
 
 /*Variables*/
 
@@ -38,3 +72,4 @@ body {
 @import "blocks/_header.scss";
 @import "blocks/_wrapper.scss";
 @import "blocks/_footer.scss";
+@import "blocks/_profile.scss";

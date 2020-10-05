@@ -3,15 +3,17 @@ import { Button } from '@material-ui/core'
 import m1 from './../../../img/mans/m1.png';
 
 export const ChatForm = ({ onSendMessage }) => {
-    const message = useRef(null);
+    const mess = useRef(null);
     const person = useRef(null);
 
     const handleClick = () => {
-        if (message.current.value.trim() && person.current.value.trim()) {
-            let mess = message.current.value;
-            let name = person.current.value;
-            onSendMessage({ name, mess, image: m1, auth: true })
-            message.current.value = '';
+        if (mess.current.value.trim() && person.current.value.trim()) {
+            let message = mess.current.value;
+            let author = person.current.value;
+
+            onSendMessage({ author, message, image: m1 })
+
+            mess.current.value = '';
             person.current.value = '';
         }
         return
@@ -28,7 +30,7 @@ export const ChatForm = ({ onSendMessage }) => {
             </div>
 
             <div>
-                <textarea onKeyDown={pressOnButton} ref={message} type="text" placeholder="Write a message"></textarea>
+                <textarea onKeyDown={pressOnButton} ref={mess} type="text" placeholder="Write a message"></textarea>
             </div>
 
             <Button variant="contained" color="primary" onClick={handleClick}>send</Button>

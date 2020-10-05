@@ -1,5 +1,5 @@
 import { Wrap } from 'components/Layout';
-import { Profile } from 'components/ProfileTemplate';
+import { Profile } from 'pages/ProfileTemplate';
 
 export const routes = [
   {

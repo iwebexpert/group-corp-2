@@ -35,7 +35,7 @@ export class Messenger extends Component {
 							level={3}
 							style={style.contentLayout.contentHeader}
 						>{this.props.chat.name}</Typography.Title>
-						<Link to="/profile" exact style={{ color: 'white' }}><Typography.Title level={4} style={style.contentLayout.contentHeader}>Профиль</Typography.Title></Link>
+						<Link to="/profile" exact style={{ color: 'white' }}><Typography.Title level={3} style={style.contentLayout.contentHeader}>Профиль</Typography.Title></Link>
 					</Header>
 					<div style={style.contentLayout.messageList}>
 						{this.props.chat.messages[this.props.match.params.id] && <MessagesList items={this.props.chat.messages} />}

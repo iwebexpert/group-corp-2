@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #2e364a;
+    width: 90%;
+    align-self: self-end;
+    border-radius: 10px;
+    justify-self: center;
+    margin: 3% auto 0 auto;
+    height: 60px;
+}
+
+.message{
+    font-size: 18px;
+    background-color: #2e364a!important;
+    border-color: #424a5e!important;
+    border-radius: 8px;
+    color: white;
+    width: 85%;
+    resize: none;
+    height: 36px!important;
+    overflow-y: scroll!important;
+}
+
+.message:focus{
+    outline: none;
+    border: 2px solid #78eae1!important;
+}
+.btn{
+    background-color: #44c4b8!important;
+}

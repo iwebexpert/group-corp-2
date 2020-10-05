@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 import { MessagesList } from '../MessagesList';
 import { MessageForm } from '../MessageForm';
 
+let interval = null;
 
 export class Messanger extends Component {
     // state = {
@@ -20,16 +21,19 @@ export class Messanger extends Component {
         chat.messages = this.messages.concat([message]);
         chats[match.params.id] = chat;
         this.setState({ chats });
+        clearInterval(interval);
     };
 
-    // componentDidUpdate() {
-    //     const { author } = this.state.messages[this.state.messages.length - 1];
-    //     if (author !== 'Bot') {
-    //         setTimeout(() => {
-    //             this.handleMessageSend({ text: `Hi, ${author}! Бот на связи...`, author: 'Bot' });
-    //         }, 3000);
-    //     }
-    // }
+    componentDidUpdate() {
+        const { author } = this.messages[this.messages.length - 1];
+        if (author !== 'Bot') {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                this.handleMessageSend({ text: `Hi, ${author}! Бот на связи...`, author: 'Bot' });
+            }, 3000);
+        }
+        console.log(this.messages)
+    }
     get messages() {
         const { chats } = this.props;
         const { match } = this.props;

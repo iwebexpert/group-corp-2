@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
@@ -18,11 +19,20 @@ export default class MessageField extends React.Component {
     this.textInput = React.createRef();
   }
 
+  static propTypes = {
+    chatId: PropTypes.number.isRequired,
+  };
+
   state = {
-    messages: [
-      { text: "Привет!", author: "Робот" },
-      { text: "Как дела?", author: "Робот" },
-    ],
+    chats: {
+      1: { title: "Виталя", messageList: [1] },
+      2: { title: "Ахмед", messageList: [2] },
+      3: { title: "Софа", messageList: [] },
+    },
+    messages: {
+      1: { text: "Привет!", sender: "bot" },
+      2: { text: "Здравствуйте!", sender: "bot" },
+    },
     input: "",
   };
 
@@ -34,34 +44,76 @@ export default class MessageField extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleKeyUp = (event, message) => {
+  handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Enter
-      this.sendMessage(message);
+      this.handleSendMessage(this.state.input, "me");
     }
   };
 
-  sendMessage = (message) => {
-    if (message != "")
+  handleSendMessage = (message, sender) => {
+    const { messages, chats, input } = this.state;
+    const { chatId } = this.props;
+
+    if (input.length > 0 || sender === "bot") {
+      const messageId = Object.keys(messages).length + 1;
       this.setState({
-        messages: [...this.state.messages, { text: message, author: "Я" }],
-        input: "",
+        messages: {
+          ...messages,
+          [messageId]: { text: message, sender: sender },
+        },
+        chats: {
+          ...chats,
+          [chatId]: {
+            ...chats[chatId],
+            messageList: [...chats[chatId]["messageList"], messageId],
+          },
+        },
       });
+    }
+    if (sender === "me") {
+      this.setState({ input: "" });
+    }
   };
 
   componentDidMount() {
     this.textInput.current.focus();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const { messages } = this.state;
+    if (
+      Object.keys(prevState.messages).length < Object.keys(messages).length &&
+      Object.values(messages)[Object.values(messages).length - 1].sender ===
+        "me"
+    ) {
+      setTimeout(
+        () => this.handleSendMessage("Не приставай ко мне, я робот!", "bot"),
+        1000
+      );
+    }
+  }
+
   render() {
-    const messageElements = this.state.messages.map((message, index) => (
-      <Message key={index} text={message.text} author={message.author} />
+    const { messages, chats } = this.state;
+    const { chatId } = this.props;
+
+    const messageElements = chats[
+      chatId
+    ].messageList.map((messageId, index) => (
+      <Message
+        key={index}
+        text={messages[messageId].text}
+        sender={messages[messageId].sender}
+      />
     ));
 
     return (
       <div className="messages">
-        <div className="message-field">{messageElements}</div>
-        <div className="input-panel">
+        <div key="messageElements" className="message-field">
+          {messageElements}
+        </div>
+        <div key="textInput" className="input-panel">
           <TextField
             name="input"
             ref={this.textInput}
@@ -77,30 +129,12 @@ export default class MessageField extends React.Component {
             variant="contained"
             color="primary"
             endIcon={<Icon>send</Icon>}
-            onClick={() => this.handleClick(this.state.input)}
+            onClick={() => this.handleSendMessage(this.state.input, "me")}
           >
             Send
           </Button>
         </div>
       </div>
     );
-  }
-
-  componentDidUpdate() {
-    if (
-      this.state.messages[this.state.messages.length - 1].author == "Я" &&
-      this.state.input == ""
-    ) {
-      setTimeout(
-        () =>
-          this.setState({
-            messages: [
-              ...this.state.messages,
-              { text: "Не приставай ко мне, я робот!", author: "Робот" },
-            ],
-          }),
-        1000
-      );
-    }
   }
 }

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default class Message extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
+    sender: PropTypes.string.isRequired,
   };
 
   render() {
@@ -12,11 +12,11 @@ export default class Message extends React.Component {
       <div
         className="message"
         style={{
-          alignSelf: this.props.author === "Робот" ? "flex-start" : "flex-end",
+          alignSelf: this.props.sender === "me" ? "flex-end" : "flex-start",
         }}
       >
         <div>{this.props.text}</div>
-        <div className="message-author">{this.props.author}</div>
+        <div className="message-sender">{this.props.sender}</div>
       </div>
     );
   }

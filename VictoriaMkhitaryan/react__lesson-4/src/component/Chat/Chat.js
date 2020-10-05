@@ -32,9 +32,8 @@ export default function Chat(props) {
         </List>
       </CardContent>
       <CardActions className='chat__form'>
-        {console.log(props.title)}
         <MessageForm handleMessageSend={props.handleMessageSend}
-                      author={props.title} />
+                      author={props.author} />
       </CardActions>
     </Card>
   );

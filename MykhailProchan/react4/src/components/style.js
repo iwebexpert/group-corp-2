@@ -6,12 +6,12 @@ export default {
   },
 
   siderLayout: {
-    padding: '',
     textAlign: 'center',
 
     siderHeaderText: {
       margin: '13px 0 19px 0',
-      color: 'white'
+      color: 'white',
+      display: 'block'
     }
   },
 

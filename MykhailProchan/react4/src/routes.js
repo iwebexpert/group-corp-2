@@ -1,5 +1,5 @@
 import { Wrap } from 'components/Layout';
-import { Messenger } from 'components/Messenger';
+import { Profile } from 'components/ProfileTemplate';
 
 export const routes = [
   {
@@ -11,5 +11,10 @@ export const routes = [
     path: '/chats/:id([0-9]+)',
     exact: true,
     component: Wrap
+  },
+  {
+    path: '/profile',
+    exact: true,
+    component: Profile
   }
 ];

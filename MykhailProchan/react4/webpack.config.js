@@ -12,7 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      components: path.join(__dirname, 'src', 'components'),
+      components: path.join(__dirname, 'src', 'components')
     },
     plugins: [
       new DirectoryNamedWebpackPlugin({

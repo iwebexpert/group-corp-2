@@ -1,0 +1,17 @@
+.chat__header {
+  background-color: var(--bg-color-card);
+  flex-direction: row-reverse;
+  text-align: center;
+  padding: 10px;
+}
+
+.chat__content {
+  height: 400px;
+  overflow: auto;
+}
+
+.chat__form {
+  background-color: var(--bg-color-card);
+  justify-content: space-between;
+  align-items: start !important;
+}

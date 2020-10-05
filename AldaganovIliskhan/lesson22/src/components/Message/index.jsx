@@ -10,13 +10,8 @@ export const messageType = {
 
 export class Message extends React.Component {
     static propTypes = messageType;
-
-    // get direction(){
-    //     return this.props.author === 'Bot' ? 'start' : 'end';
-    // }
-
-    render(){
-        const {text, author} = this.props;
+    render() {
+        const { text, author } = this.props;
 
         const classes = classNames('message', {
             'message-sender': author !== 'Bot',
@@ -25,6 +20,6 @@ export class Message extends React.Component {
 
         return <div className={classes}>
             {text} - <b className="message-author">{author}</b>
-            </div>;
+        </div>;
     }
 }

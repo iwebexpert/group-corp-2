@@ -1,0 +1,14 @@
+import React from 'react'
+import ReactDom from 'react-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import 'antd/dist/antd.css'
+
+import { routes } from './routes';
+
+ReactDom.render(
+	<BrowserRouter>
+		<Switch>
+			{routes.map((route, index) => (<Route key={index} {...route} />))}
+		</Switch>
+	</BrowserRouter>
+	, document.getElementById('root'))

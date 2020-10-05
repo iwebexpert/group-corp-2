@@ -49,7 +49,7 @@ export class Messenger extends Component {
 
     return (
       <>
-        <Grid container spacing={0}>
+        <Grid container>
           <Grid item xs={12}>
             <Header />
           </Grid>

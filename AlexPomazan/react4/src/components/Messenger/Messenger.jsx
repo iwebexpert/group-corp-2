@@ -57,9 +57,9 @@ export class Messenger extends Component {
 
     const chat = chats[match.params.id];
     message.id = nanoid();
-    // if (message.author === "Bot Bob") {
-    //   message.img = botImg;
-    // } else message.img = manImg;
+    if (message.author === "Bot Bob") {
+      message.img = botImg;
+    } else message.img = manImg;
 
     chat.messages = this.messages.concat([message]);
     chats[match.params.id] = chat;

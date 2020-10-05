@@ -1,0 +1,28 @@
+.text{
+    border: 1px solid #577d94;
+    background-color: #577d94;
+    border-radius: 6px;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding: 5px;
+    text-align: left;
+    display: flex;
+}
+
+.message-author{
+    font-size: 15px;
+    color: whitesmoke;
+}
+
+.message-sender{
+    align-self: flex-end;
+}
+
+.message-bot{
+    align-self: flex-start;
+}
+
+.item-text{
+    padding-bottom: 5px;
+}

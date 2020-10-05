@@ -1,0 +1,21 @@
+.main-header{
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    color: #649bbd;
+}
+
+.chat-bot{
+    padding-top: 9px;
+    text-align: center;
+}
+
+.not-choosen{
+    margin: 0 auto;
+    color: red;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 30px;
+}

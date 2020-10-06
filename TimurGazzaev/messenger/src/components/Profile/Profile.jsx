@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card, CardActionArea, CardMedia, CardContent, Typography} from "@material-ui/core"
 import user from '../../assets/user.png'
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles"
 
 export const useStyles = makeStyles((theme) => ({
     profileCart: {

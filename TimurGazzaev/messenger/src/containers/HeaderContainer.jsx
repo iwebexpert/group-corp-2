@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux"
 import {setDrawer} from "../actions/settings"
 import {Header} from "../components/Header/Header"
-import {getMessages} from "../actions/chats";
+import {getMessages} from "../actions/chats"
 
 export const ChatListContainer = ({isDrawerOpen, setDrawer, getMessages, profile}) => {
 

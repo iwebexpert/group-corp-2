@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
 import {getMessages, sendMessage} from '../actions/chats'
-import {MessagesBlock} from "../components/MessagesBlock/MessagesBlock";
+import {MessagesBlock} from "../components/MessagesBlock/MessagesBlock"
 
 const MessagesBlockContainer = ({chatId, messages, getMessages, sendMessage, isDrawerOpen}) =>  {
 

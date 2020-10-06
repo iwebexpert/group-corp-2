@@ -4,7 +4,7 @@ import MenuIcon from "@material-ui/icons/Menu"
 import clsx from "clsx"
 import {AccountCircle} from "@material-ui/icons"
 import {Link} from "react-router-dom"
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles"
 
 export const useStyles = makeStyles((theme) => ({
     root: {

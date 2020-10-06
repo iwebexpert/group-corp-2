@@ -1,7 +1,7 @@
 export const chats = [
   {
     id: 0,
-    title: "Друзья",
+    title: "Семейный чат",
     messages: [],
   },
   {
@@ -11,7 +11,7 @@ export const chats = [
   },
   {
     id: 2,
-    title: "Семейный чат",
+    title: "Друзья",
     messages: [],
   },
 ];

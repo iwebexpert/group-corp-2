@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { TextField, Fab } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
-import "../../src/App.scss";
+import "../../App.scss";
 
 export class MessageForm extends React.Component {
   state = {

@@ -5,29 +5,20 @@ import Switch from "@material-ui/core/Switch";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import classNames from "classnames";
 
-import { ChatsList } from "../components/ChatsList/ChatsList";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header/Header";
-import { AppRoater } from "../components/AppRoater/AppRoater";
-import { chats } from "./helpers/chatsData";
+import { ChatsListContainer } from "./containers/ChatsListContainer";
+import { Footer } from "./components/Footer";
+import { HeaderContainer } from "./containers/HeaderContainer";
+import { AppRoater } from "./components/AppRoater/AppRoater";
 
 import "./App.scss";
 
-export const App = (props) => {
+export const App = () => {
   const [state, setState] = useState({
     isDark: false,
   });
 
-  const [list, updList] = useState(chats);
-
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
-  };
-
-  const addChat = (chat) => {
-    chat.id = list.length;
-    chat.messages = [];
-    updList([...list, chat]);
   };
 
   const classHeader = classNames("header", {
@@ -81,10 +72,10 @@ export const App = (props) => {
         />
       </div>
       <div>
-        <Header class={classHeader} />
+        <HeaderContainer classheader={classHeader} />
       </div>
       <div className="container">
-        <ChatsList chats={list} onAdd={addChat} />
+        <ChatsListContainer />
         <div className={classMessenger}>
           <AppRoater
             classform={classMessageForm}
@@ -92,7 +83,6 @@ export const App = (props) => {
             classmessenger={classMessenger}
             classhomepage={classHomePage}
             classchattitle={classChatTitle}
-            chats={list}
           />
         </div>
       </div>

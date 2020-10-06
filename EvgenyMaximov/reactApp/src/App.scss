@@ -93,12 +93,16 @@ body {
 
 .profile-icon {
   position: absolute;
-  top: 40px;
+  text-align: center;
+  top: 15px;
   left: 100px;
   border: 1px solid $light;
-  padding: 10px;
-  border-radius: 50%;
+  padding: 5px;
+  border-radius: 10px;
   background-color: $light;
+  text-decoration: none !important;
+  color: $dark2;
+  font-size: 20px;
 }
 
 /*-----------messenger-------------*/

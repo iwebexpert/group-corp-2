@@ -1,10 +1,9 @@
 import React from "react";
-import { nanoid } from "nanoid";
 
 import { MessageForm } from "../MessageForm";
 import { MessagesList } from "../MessageList";
 
-import "../../src/App.scss";
+import "../../App.scss";
 
 export class Messenger extends React.Component {
   interval = null;
@@ -16,38 +15,18 @@ export class Messenger extends React.Component {
     listItem.scrollTop = 9999;
   };
 
-  onMessageSend = (message) => {
-    message.id = nanoid();
-
-    const { chats, match } = this.props;
-    const chat = chats[match.params.id];
-
-    chat.messages = this.messages.concat([message]);
-
-    const time = new Date();
-    message.time = time.toLocaleString("en-US", {
-      hour: "numeric",
-      minute: "numeric",
-      hour24: true,
-    });
-    this.setState({ chats: chats, [match.params.id]: chat });
-
-    this.scrollChat();
-    clearInterval(this.interval);
-  };
-
   componentDidUpdate() {
-    if (this.messages.length === 0) {
+    const { messages, onMessageSend } = this.props;
+    if (messages.length === 0) {
       return;
     }
-    const username = this.messages[this.messages.length - 1].author;
+    const username = messages[messages.length - 1].author;
 
     if (username === "Бот") {
       return;
     }
 
     this.scrollChat();
-
     clearInterval(this.interval);
 
     const botAnswers = [
@@ -70,38 +49,30 @@ export class Messenger extends React.Component {
       author: "Бот",
     };
 
-    this.interval = setInterval(() => {
-      this.onMessageSend(botText);
+    this.interval = setTimeout(() => {
+      onMessageSend(botText);
+      this.scrollChat();
     }, 1500);
   }
 
-  get messages() {
-    const { chats, match } = this.props;
-
-    let messages = null;
-
-    if (match && chats[match.params.id]) {
-      messages = chats[match.params.id].messages;
-    }
-
-    return messages;
-  }
-
   render() {
-    const messages = this.messages;
-    const { chats, match } = this.props;
-    const chatTitle = chats[match.params.id].title;
+    const {
+      messages,
+      classlist,
+      classform,
+      onMessageSend,
+      chatTitle,
+      classchattitle,
+    } = this.props;
+
     return (
       <div className="chat">
-        <div className={this.props.classchattitle}>{chatTitle}</div>
+        <div className={classchattitle}>{chatTitle}</div>
         <div className="messages-list" ref={this.list}>
-          <MessagesList messages={messages} class={this.props.classlist} />
+          <MessagesList messages={messages} class={classlist} />
         </div>
         <div className="form">
-          <MessageForm
-            onSend={this.onMessageSend}
-            class={this.props.classform}
-          />
+          <MessageForm onSend={onMessageSend} class={classform} />
         </div>
       </div>
     );

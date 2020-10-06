@@ -1,30 +1,29 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import { Messenger } from "../Messenger";
-import { Home } from "../../src/pages/Home";
-import { Profile } from "../../src/pages/Profile";
-import { Error } from "../../src/pages/Error";
+import { Home } from "../../pages/Home";
+import { ProfileContainer } from "../../containers/ProfileContainer";
+import { Error } from "../../pages/Error";
+import { MessengerContainer } from "../../containers/MessengerContainer";
 
 export const AppRoater = (props) => {
-  const { classform, classlist, classchattitle, chats } = props;
+  const { classform, classlist, classchattitle } = props;
   return (
     <Switch>
       <Route path="/" exact>
         <Home class={props.classhomepage} />
       </Route>
       <Route path="/profile" exact>
-        <Profile />
+        <ProfileContainer />
       </Route>
       <Route
         path="/chats/:id([0-9]+)"
         render={(props) => (
-          <Messenger
+          <MessengerContainer
             {...props}
             classform={classform}
             classlist={classlist}
             classchattitle={classchattitle}
-            chats={chats}
           />
         )}
         exact

@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
 import './messenger.css'
-import { Header } from './Header/Header'
-import { ChatList } from './ChatList/ChatList'
-import {MessagesBlock} from "./MessagesBlock/MessagesBlock"
+import {BrowserRouter, Switch, Route} from "react-router-dom"
 import { Container} from '@material-ui/core'
 import {makeStyles} from "@material-ui/core/styles"
-import {BrowserRouter, Switch, Route} from "react-router-dom"
+import { Header } from './Header/Header'
+import { ChatList } from './ChatList/ChatList'
 import {Error} from "./Error/Error"
 import {Profile} from "./Profile/Profile"
 import {chats} from '../helpers/chatsData'
 import {profile} from '../helpers/profile'
+import MessagesBlockContainer from "../containers/MessagesBlock"
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -106,9 +106,6 @@ const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 220,
     },
-    messages: {
-        height: 700
-    },
     form: {
         margin: '30px auto 0',
     },
@@ -141,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const Layout = () => {
+export const Messenger = () => {
     const classes = useStyles()
     const [open, setOpen] = useState(false)
     const [chatsData, setChatsData] = useState(chats)
@@ -166,7 +163,7 @@ export const Layout = () => {
             <Container>
                 <ChatList chats={chatsData} addChat={addChat} classes={classes} open={open} setOpen={setOpen} handleDrawerToggle={handleDrawerToggle}/>
                 <Switch>
-                    <Route path = '/chats/:id([0-9]+)' render={(props) => <MessagesBlock {...props} chats={chatsData} addMessage={addMessage} classes={classes} open={open}/>} exact/>
+                    <Route path = '/chats/:id([0-9]+)' render={(props) => <MessagesBlockContainer {...props} chats={chatsData} addMessage={addMessage} classes={classes} open={open}/>} exact/>
                     <Route path = '/profile' exact>
                         <Profile classes={classes} data={profile[0]}/>
                     </Route>

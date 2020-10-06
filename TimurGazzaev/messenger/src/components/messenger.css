@@ -3,6 +3,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  overflow: hidden;
 }
 
 a {
@@ -13,7 +14,7 @@ a {
 .messagesList {
   margin: 0 auto;
   width: 1000px;
-  height: 702px;
+  height: 600px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;

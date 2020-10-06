@@ -14,7 +14,6 @@ class ChatsListContainerClass extends React.Component {
     chat.id = chats.length;
     chat.messages = [];
     this.props.addChatAction({ chat });
-    console.log(this.props);
   };
 
   render() {

@@ -4,13 +4,8 @@ import { nanoid } from "nanoid";
 
 import { Messenger } from "../components/Messenger";
 import { chatsLoadAction, chatsMessageSendAction } from "../actions/chats";
-import { profileLoadAction } from "../actions/profile";
 
 class MessengerContainerClass extends React.Component {
-  componentDidMount() {
-    this.props.chatsLoadAction();
-  }
-
   onMessageSend = (message) => {
     message.id = nanoid();
     const { chatId } = this.props;
@@ -52,7 +47,6 @@ class MessengerContainerClass extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const chats = state.chats.entries;
-  const profile = state.profile.entries;
   const { match } = ownProps;
 
   let messages = [];
@@ -67,7 +61,6 @@ const mapStateToProps = (state, ownProps) => {
     messages,
     chatId: match ? match.params.id : null,
     chatTitle,
-    profile,
   };
 };
 
@@ -76,7 +69,6 @@ const mapDispatchToProps = (dispatch) => {
     chatsLoadAction: () => dispatch(chatsLoadAction()),
     chatsMessageSendAction: (message) =>
       dispatch(chatsMessageSendAction(message)),
-    profileLoadAction: () => dispatch(profileLoadAction()),
   };
 };
 

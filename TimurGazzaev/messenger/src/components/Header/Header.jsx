@@ -4,10 +4,53 @@ import MenuIcon from "@material-ui/icons/Menu"
 import clsx from "clsx"
 import {AccountCircle} from "@material-ui/icons"
 import {Link} from "react-router-dom"
+import {makeStyles} from "@material-ui/core/styles";
 
-export const Header = ({classes, open, setOpen, handleDrawerToggle}) => {
-    const [anchorEl, setAnchorEl] = React.useState(null)
+export const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+    },
+    appBar: {
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        width: `calc(100% - ${240}px)`,
+        marginLeft: 240,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    headWrap: {
+        display: "flex",
+        justifyContent: "space-between",
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    hide: {
+        display: 'none',
+    },
+    burgerBlock: {
+        display: "flex",
+        alignItems: "center"
+    },
+    profileBlock: {
+
+    },
+    profileBlockWrap: {
+        display: "flex",
+        alignItems: "center"
+    }
+}))
+
+export const Header = ({open, setOpen, profile}) => {
+    const [anchorEl, setAnchorEl] = useState(null)
     const menuOpen = Boolean(anchorEl)
+    const classes = useStyles()
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget)
@@ -30,26 +73,27 @@ export const Header = ({classes, open, setOpen, handleDrawerToggle}) => {
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerToggle}
+                        onClick={() => setOpen(!open)}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Messenger
-                    </Typography>
+                    <Typography variant="h6" noWrap>Messenger</Typography>
                 </div>
                 <div className={classes.profileBlock}>
-                    <IconButton
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleMenu}
-                        color="inherit"
-                    >
-                        <AccountCircle />
-                    </IconButton>
+                    <div className={classes.profileBlockWrap}>
+                        <Typography variant="h6" noWrap>{profile && `${profile.name} ${profile.surName}`}</Typography>
+                        <IconButton
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleMenu}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                    </div>
                     <Menu
                         id="menu-appbar"
                         anchorEl={anchorEl}
@@ -69,7 +113,7 @@ export const Header = ({classes, open, setOpen, handleDrawerToggle}) => {
                             <Link to='/profile'>Profile</Link>
                         </MenuItem>
                         <MenuItem>
-                            My account
+                            Settings
                         </MenuItem>
                     </Menu>
                 </div>

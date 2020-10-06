@@ -1,11 +1,17 @@
-export const CHATS_LOAD = 'CHATS_LOAD'
-export const CHATS_MESSAGE_SEND = 'CHATS_MESSAGE_SEND'
+export const GET_CHATS = 'GET_CHATS'
+export const SEND_MESSAGE = 'SEND_MESSAGE'
+export const ADD_CHAT = 'ADD_CHAT'
 
-export const chatLoadAction = () => ({
-    type: CHATS_LOAD
+export const getMessages = () => ({
+    type: GET_CHATS
 })
 
-export const chatMessageSendAction = (message) => ({
-    type: CHATS_MESSAGE_SEND,
+export const sendMessage = (message) => ({
+    type: SEND_MESSAGE,
     payload: message
+})
+
+export const addChat = (chatName) => ({
+    type: ADD_CHAT,
+    payload: chatName
 })

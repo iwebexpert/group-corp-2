@@ -35,7 +35,7 @@ export class MessageForm extends Component {
         this.state.time = this.props.getTime()
 
         if (typeof onSend === 'function') {
-            onSend(this.state.author, this.state.text, this.state.time)
+            onSend(this.state)
             this.setState({text: ''})
         }
     }
@@ -49,7 +49,7 @@ export class MessageForm extends Component {
     render() {
         const {text, author} = this.state
 
-        return (<>
+        return <>
 
             <TextField
                 label="Name"
@@ -73,8 +73,9 @@ export class MessageForm extends Component {
                 className={this.props.classes.text}
             />
 
-            <Button onClick={this.handleMessageSend} className={this.props.classes.button} variant="contained" color="primary">Send Message</Button>
-
-        </>)
+            <Button onClick={this.handleMessageSend} className={this.props.classes.button} variant="contained" color="primary">
+                Send Message
+            </Button>
+        </>
     }
 }

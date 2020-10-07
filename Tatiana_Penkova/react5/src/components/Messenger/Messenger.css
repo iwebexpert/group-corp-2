@@ -1,0 +1,41 @@
+.messanger {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #c2f5ff;
+    padding: 10px;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    padding: 20px;
+    width: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+.new-chat {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: whitesmoke;
+}
+
+.empty-chat {
+    margin: auto;
+    color: #303f9f;
+    font-size: 20px;
+}
+
+
+.MuiSvgIcon-root.arrow-to-chat {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+}

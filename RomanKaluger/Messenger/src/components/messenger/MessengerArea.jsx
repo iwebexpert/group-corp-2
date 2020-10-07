@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import MessengerTopPanel from "./MessengerTopPanel";
 import MessagesArea from "./MessagesArea/MessagesArea";
-import InputMessageArea from "./InputMessageArea";
+import InputMessageArea from "./InputMessageArea/InputMessageArea";
 import useAuthCheck from "../../utils/useAuthCheck";
 import {useSelector} from "react-redux";
 import {Switch, Route} from 'react-router-dom';
@@ -10,6 +10,7 @@ import {PAGE_CURRENT} from "../../configs/statuses";
 
 export default () => {
     useAuthCheck(PAGE_CURRENT);
+    const [pendingMessages, setPendingMessages] = useState([]);
     const {selectedChat, chats} = useSelector(s => s.app);
     return (
         <div className={'MessengerArea'}>
@@ -19,8 +20,8 @@ export default () => {
                             <div className="emptyMessengerArea">Сперва Выберите чат на панели слева</div>
                         </Route>
                         <Route path={routesPaths.CHAT}>
-                            <MessagesArea/>
-                            <InputMessageArea/>
+                            <MessagesArea pendingMessages={pendingMessages} setPendingMessages={setPendingMessages}/>
+                            <InputMessageArea pendingMessages={pendingMessages} setPendingMessages={setPendingMessages}/>
                         </Route>
                     </Switch>
         </div>

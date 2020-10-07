@@ -8,6 +8,7 @@ const messageSchema = new Schema({
     dateRead: {type: Number},
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     authorName: { type: String},
+    isForward: {type: Boolean, default: false},
+    forwardMessages: [{type: Object}]
 });
-
 module.exports = model('Message', messageSchema, 'messages');

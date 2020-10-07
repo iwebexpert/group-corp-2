@@ -30,9 +30,16 @@ export function setChats(payload) {
         payload: payload
     }
 }
+export function setForwardMessage(payload) {
+    return {
+        type: types.SET_FORWARD_MESSAGE,
+        payload: payload
+    }
+}
 export function setContacts(payload) {
     return {
         type: types.SET_CONTACTS,
         payload: payload
     }
 }
+

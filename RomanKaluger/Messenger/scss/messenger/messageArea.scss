@@ -51,118 +51,6 @@
         }
       }
     }
-    .ChatsSectionDlgPn{
-      @include --padding;
-      @include --border(top bottom, $primary, false);
-      text-align: center;
-      font-size: 25px;
-      width: 96%;
-      max-height: 75vh;
-      margin: 10px auto 10px auto;
-      color: $primary2;
-      overflow-y: auto;
-      overflow-x: hidden;
-      background-color: transparentize($bgPrimaryLight, 0.5);
-      &:first-child{
-        background-color: transparentize($bgPrimaryLight2, 0.5);
-      }
-      .ChatsSectionHeaderDlgPn{
-        @include --padding;
-        @include center-content;
-        @include --border(bottom, $bgPrimaryLight3, false);
-        margin: 10px;
-        color: $primary;
-        font-size: 40px;
-
-      }
-      .chatSelector{
-        &:nth-child(2n){
-          background-color: transparentize($deepDark, 0.5);
-        }
-        &:hover{
-          background-color: transparentize($primary2, 0.5);
-        }
-        &Selected{
-          @include --border(bottom top, $primary, false);
-          background-color: transparentize($primary, 0.5) !important;
-        }
-        @include --border(top bottom, $bgPrimaryLight3, false);
-        @include center-content;
-        width: 100%;
-        height: 11vh;
-        background-color: $bgPrimaryLight;
-        .DeleteChatBtnSelector{
-          @include button-click;
-          position: absolute;
-          width: 30px;
-          height: 30px;
-          top: 10px;
-          left: calc(100% - 40px);
-        }
-        .chatSelectorTitle{
-          text-align: center;
-          color: $primary;
-          font-size: 27px;
-          font-weight: bold;
-          height: 35px;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          width: 100%;
-          margin-bottom: 2px;
-        }
-        .chatSelectorMessage{
-          @include center-content;
-          font-size: 15px;
-          text-align: center;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          width: 100%;
-          height: 60px;
-          word-break: break-all;
-          .EmptyChatPlaceholder{
-            @include --padding;
-            background-color: transparentize($primary2, 0.5);
-            border-radius: $border;
-            font-size: 14px;
-            color: transparentize($bgPrimary, 0.5);
-            width: 100%;
-          }
-        }
-        .chatSelectorPeopleBtn{
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          padding: 4px;
-          background-color: transparentize($primary1, 0.8);
-          border-radius: $border;
-          box-sizing: border-box;
-          width: 100%;
-          height: 90%;
-          .--localBtn{
-            @include --border('all', $light, true);
-            @include button-click;
-            height: 35px;
-            width: 35px;
-            margin: 5px;
-            background-size: contain;
-            background-color: $bgPrimary;
-          }
-          .startChatUserBtn{
-            @extend .--localBtn;
-            background-image: url("https://img.icons8.com/color/100/000000/speech-bubble-with-dots.png");
-          }
-          .addFriendUserBtn{
-            @extend .--localBtn;
-            background-image: url("https://img.icons8.com/color/100/000000/checked-user-male--v1.png");
-          }
-          .removeFriendUserBtn{
-            @extend .--localBtn;
-            background-image: url("https://img.icons8.com/color/100/000000/remove-user-male--v1.png");
-          }
-        }
-      }
-    }
     .ShortMenuContainer{
       @include center-content;
       @include --padding;
@@ -231,18 +119,73 @@
       justify-content: flex-start;
       align-items: flex-start;
       overflow: auto;
+      .MessagesContainer{
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      .messageContainer{
+        @include center-content;
+        width: 100%;
+        flex-grow: 1;
+        &Selected{
+            background-color: transparentize($light,0.5);
+        }
+        .MuiCircularProgress-root{
+          color: $primary!important;
+          width: 3vh!important;
+          height: 3vh!important;
+          align-self: center!important;
+        }
+      }
       .Message {
         @include --padding;
         @include --border('all', $primary, true);
+        .messageContainer{
+          display: table-column-group!important;
+        }
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: center;
         background-color: transparentize($bgPrimary, 0.5);
         font-size: 20px;
         max-width: 70%;
         word-break: break-all;
         margin: 10px;
+        align-self: flex-start;
+        position: relative;
+        .avatar{
+          margin-right: auto;
+          order: 2;
+          align-self: center;
+        }
+        .MessageText{
+          align-self: center;
+          justify-self: center;
+          order: 5;
+          flex-grow: 1;
+          text-align: center;
+        }
           .MyIconAuthor{
-            order: 1;
+            margin-left: auto;
+            margin-right: 0;
+            order: 7;
+            align-self: center;
+          }
+      }
+
+      .ForwardMessage{
+        @extend .Message;
+        background-color: transparentize($light, 0.4)!important;
+        order: 1;
+        &:before{
+          content: ' ';
+          display: block;
+          height: 100%;
+          width: 3px;
+          background-color: $bgPrimaryLight;
         }
       }
       .MyMessage{
@@ -261,6 +204,7 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
+      flex-wrap: wrap;
       .InputMessageTextArea{
         @include --border('all', $primary2, true);
         @include --padding;
@@ -287,6 +231,7 @@
 }
 .PanelMessageActions{
   @include center-content;
+  flex-direction: row;
   background-color: $bgPrimary;
   color: $light;
   width: 10vw;

@@ -10,6 +10,7 @@
     @include --border('all', $alert, false);
 }
 .button {
+    @include center-content;
     @include button-click;
     @include --padding;
     @include --border('all', $light, true);
@@ -93,4 +94,22 @@
     background-color: $bgPrimary;
     width: 60vw;
     height: 80vh;
+}
+.DeleteSign{
+    @include button-click;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: calc(100% - 40px);
+}
+.interactiveButton{
+    @include button-click;
+    width: 30px;
+    height: 30px;
+    &:hover{
+        background-color: transparentize($primary2, 0.5);
+        border-radius: $border;
+        transition-duration: 1s;
+    }
 }

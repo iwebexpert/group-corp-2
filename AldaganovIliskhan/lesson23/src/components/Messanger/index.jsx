@@ -51,6 +51,7 @@ export class Messanger extends Component {
     }
     render() {
         const messages = this.messages;
+        console.log(messages)
         return (
             <Grid item xs={9}>
                 <div className="messanger">

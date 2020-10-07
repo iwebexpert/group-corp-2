@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Button } from '@material-ui/core'
 import m1 from './../../../img/mans/m1.png';
 
-export const ChatForm = ({ onSendMessage }) => {
+export const ChatForm = ({ onMessageSend }) => {
     const mess = useRef(null);
     const person = useRef(null);
 
@@ -11,7 +11,7 @@ export const ChatForm = ({ onSendMessage }) => {
             let message = mess.current.value;
             let author = person.current.value;
 
-            onSendMessage({ author, message, image: m1 })
+            onMessageSend({ author, message, image: m1 })
 
             mess.current.value = '';
             person.current.value = '';

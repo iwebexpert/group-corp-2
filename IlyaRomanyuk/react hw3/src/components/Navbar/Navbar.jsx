@@ -6,16 +6,16 @@ import { NavbarMenu } from './NavbarMenu';
 import { NavbarForm } from './NavbarForm'
 
 
-export const Navbar = ({ dataList, addNewChat }) => {
-    const [list, setList] = useState(dataList);
+export const Navbar = ({ chats, addNewChat, person }) => {
+    const [list, setList] = useState(chats);
 
     useEffect(() => {
-        setList(dataList)
-    }, [dataList])
+        setList(chats)
+    }, [chats])
 
     const findNeedChat = (chat) => {
         var regexp = new RegExp(chat.toLowerCase(), "gi");
-        let newList = dataList.filter(el => {
+        let newList = Object.values(chats).filter(el => {
             if (el.title.toLowerCase().match(regexp)) {
                 return el
             }
@@ -26,9 +26,9 @@ export const Navbar = ({ dataList, addNewChat }) => {
     return (
         <>
             <NavbarMenu />
-            <NavbarAbout />
+            <NavbarAbout person={person} />
             <NavbarSearch findNeedChat={findNeedChat} />
-            <NavbarList list={list} />
+            <NavbarList list={list} person={person} />
             <NavbarForm addNewChat={addNewChat} />
         </>
     )

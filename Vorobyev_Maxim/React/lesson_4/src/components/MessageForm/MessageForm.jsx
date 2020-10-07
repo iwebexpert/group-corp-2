@@ -92,7 +92,7 @@ export class MessageForm extends Component {
         <div className="sendMessageBlock">
           <div className="sendPhotoVoice">
             <AttachFileIcon className="clip"/>
-            <KeyboardVoiceIcon className="voice" name="audio" onMouseDown={this.startRecording} onMouseUp={this.stopRecording}/> 
+            <KeyboardVoiceIcon className="voice" name="audio"/> {/*onMouseDown={this.startRecording} onMouseUp={this.stopRecording}  */}
             <textarea placeholder="Type Message..." name="text" onChange={this.handleInputChange} onKeyDown={this.handleKeyDownEnter} value={text} type="text" className="mainSender"/>
           </div>
           <textarea placeholder="Type Author..." name="author" onChange={this.handleInputChange} onKeyDown={this.handleKeyDownEnter} value={author} type="text" className="mainSenderAuthor"/>

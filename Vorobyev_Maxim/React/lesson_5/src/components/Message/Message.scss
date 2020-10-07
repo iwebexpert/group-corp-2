@@ -1,0 +1,21 @@
+.message {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 20px;
+    margin: 5px;
+
+    &-author {
+        color: grey;
+        font-size: 14px;
+    }
+
+    &-bot {
+        align-self: flex-start;
+    }
+
+    &-sender {
+        align-self: flex-end;
+    }
+}

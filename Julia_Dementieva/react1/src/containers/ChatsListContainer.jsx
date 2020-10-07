@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { nanoid } from 'nanoid';
 
 import {ChatsList} from '../components/ChatsList';
 import {chatsLoadAction, chatsListSendAction} from '../actions/chats';
@@ -8,7 +7,6 @@ import {chatsLoadAction, chatsListSendAction} from '../actions/chats';
 class ChatsListContainerClass extends React.Component {
     
     componentDidMount(){
-        console.log('chatsLoadActionjjjjjjjjjjjjjjjjjjjjjjjjjjj')
         this.props.chatsLoadAction();
     }
 
@@ -22,19 +20,17 @@ class ChatsListContainerClass extends React.Component {
 
     render(){
         const {chatsLoad} = this.props;
-        console.log('render', chatsLoad)
         return(chatsLoad ? <ChatsList chats={chatsLoad} onAdd={this.chatAddHandler}  /> : <div>Данные не получены</div>)
     }
 }
 
 function mapStateToProps(state, ownProps){
-    const chats = state.chats.entries;
-    const load = state.chats.loading;
+    const {entries, loading} = state.chats;
 
     let chatsLoad = null;
 
-    if(load){
-        chatsLoad = chats;
+    if(loading){
+        chatsLoad = entries;
     }
  
     return {
@@ -48,6 +44,5 @@ function mapDispatchToProps(dispatch){
         chatsListSendAction: (chat) => dispatch(chatsListSendAction(chat)),
     }
 }
-
 
 export const ChatsListContainer = connect(mapStateToProps, mapDispatchToProps)(ChatsListContainerClass);

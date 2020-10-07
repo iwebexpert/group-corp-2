@@ -18,16 +18,14 @@ class HeaderContainerClass extends React.Component {
 }
 
 function mapStateToProps(state, ownProps){
-    const load = state.about.loading;
-    const person = state.about.entries;
+    const {loading, entries} = state.about;
 
     let infoPerson = null;
 
-    if(load){
-        infoPerson = person;
+    if(loading){
+        infoPerson = entries;
     }
     
-
     return {
         infoPerson
     };

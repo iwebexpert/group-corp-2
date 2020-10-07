@@ -5,45 +5,54 @@ import { nanoid } from 'nanoid';
 import {Messenger} from 'components/Messenger';
 import {Error} from '../pages/Error';
 import {chatsLoadAction, chatsMessageSendAction} from '../actions/chats';
+import {aboutLoadAction} from '../actions/about';
+import {robotLoadAction} from '../actions/robot';
 
 class MessengerContainerClass extends React.Component {
     
     componentDidMount(){
-        console.log('chatsLoadActionjjjjjjjjjjjjjjjjjjjjjjjjjjj')
         this.props.chatsLoadAction();
+        this.props.aboutLoadAction();
+        this.props.robotLoadAction();
     }
 
     handleMessageSend = (message) => {
         const {chatId, chatsMessageSendAction} = this.props;
-        console.log('Contai', message)
         chatsMessageSendAction({
             ...message,
             id: nanoid(),
             chatId,
         });
-        
     };
 
     render(){
-        const {authorChat, namePerson, avatarChat, messages} = this.props;
-        return(messages ? <Messenger {...this.props} messages={messages} authorChat={authorChat}  avatarChat={avatarChat} namePerson={namePerson} onAdd={this.handleMessageSend} /> : <Error />)
+        const {messages, namePerson, nameRobot} = this.props;
+        return((messages && namePerson && nameRobot) ? <Messenger {...this.props}  onAdd={this.handleMessageSend} /> : <Error />)
     }
 }
 
 function mapStateToProps(state, ownProps){
     const chats = state.chats.entries;
     const {match} = ownProps;
+    const {loading, entries} = state.about;
 
-    let messages = null;
-    let authorChat = null;
-    let namePerson = 'Web1';
-    let avatarChat = null;
+    let messages, authorChat = null;
+    let namePerson, avatarChat = null;
+    let nameRobot, answerRobot = null;
 
     if(match && chats[match.params.id]){
         messages = chats[match.params.id].messages;
         authorChat = chats[match.params.id].author;
         avatarChat = chats[match.params.id].avatar;
-        // namePerson = chats[match.params.id].avatar;
+    }
+
+    if(loading){
+        namePerson = entries.name;
+    }
+
+    if(state.robot.loading){
+        nameRobot = state.robot.entries.nameRobot;
+        answerRobot = state.robot.entries.answerRobot;
     }
     
     return {
@@ -52,12 +61,16 @@ function mapStateToProps(state, ownProps){
         authorChat,
         avatarChat,
         namePerson,
+        nameRobot,
+        answerRobot,
     };
 }
 
 function mapDispatchToProps(dispatch){
     return {
         chatsLoadAction: () => dispatch(chatsLoadAction()),
+        aboutLoadAction: () => dispatch(aboutLoadAction()),
+        robotLoadAction: () => dispatch(robotLoadAction()),
         chatsMessageSendAction: (message) => dispatch(chatsMessageSendAction(message)),
     }
 }

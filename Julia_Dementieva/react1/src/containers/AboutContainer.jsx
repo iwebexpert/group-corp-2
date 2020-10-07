@@ -18,17 +18,13 @@ class AboutContainerClass extends React.Component {
 }
 
 function mapStateToProps(state, ownProps){
-    console.log(state)
-    const load = state.about.loading;
-    const person = state.about.entries;
-    console.log('AboutMap', load )
+    const {loading, entries} = state.about;
 
     let infoPerson = null;
 
-    if(load){
-        infoPerson = person;
+    if(loading){
+        infoPerson = entries;
     }
-    
 
     return {
         infoPerson

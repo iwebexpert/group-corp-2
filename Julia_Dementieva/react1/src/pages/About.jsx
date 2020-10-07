@@ -16,9 +16,7 @@ export class About extends Component {
     }
 
     render() {
-        console.log(this.props)
         const {infoPerson} = this.props;
-        console.log('infoPerson',infoPerson)
         return (<>
             <div style={this.style}>
                 
@@ -35,9 +33,7 @@ export class About extends Component {
 
                     </div>
                 </Paper>
-                    
             </div> 
-        
         </>
         )
     }

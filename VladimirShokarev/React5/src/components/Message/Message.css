@@ -1,0 +1,23 @@
+.message {
+    background-color: cornflowerblue;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 26px;
+    margin: 5px;
+    
+}
+
+.message-author {
+   color: rgb(7, 24, 6);
+    font-size: 16px;
+}
+
+.message-bot {
+    align-self: flex-start;
+    font-style: italic;
+    background-color:cornflowerblue;
+}
+
+.message-sender {
+     align-self: flex-end;
+}

@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {Header} from '../components/Header';
-import {aboutLoadAction} from '../actions/about';
+import {mapStateToProps} from '../mapForConnect/mapStateToProps';
+import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
+
 
 class HeaderContainerClass extends React.Component {
     
@@ -17,25 +19,4 @@ class HeaderContainerClass extends React.Component {
     }
 }
 
-function mapStateToProps(state, ownProps){
-    const {loading, entries} = state.about;
-
-    let infoPerson = null;
-
-    if(loading){
-        infoPerson = entries;
-    }
-    
-    return {
-        infoPerson
-    };
-}
-
-function mapDispatchToProps(dispatch){
-    return {
-        aboutLoadAction: () => dispatch(aboutLoadAction()),
-    }
-}
-
-
-export const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderContainerClass);
+export const HeaderContainer = connect(mapStateToProps('HeaderContainer'), mapDispatchToProps('HeaderContainer'))(HeaderContainerClass);

@@ -53,7 +53,11 @@ class MessageFormClass extends Component {
     };
 
     handleKeyDown = (event) => {
-        if (event.key === 'Enter') this.handleMessageSend();
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.handleMessageSend();
+        }
+        
     };
 
     render() {

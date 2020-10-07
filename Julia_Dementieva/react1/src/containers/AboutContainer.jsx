@@ -2,7 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {About} from '../pages/About';
-import {aboutLoadAction} from '../actions/about';
+
+
+import {mapStateToProps} from '../mapForConnect/mapStateToProps';
+import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 
 class AboutContainerClass extends React.Component {
     
@@ -17,25 +20,25 @@ class AboutContainerClass extends React.Component {
     }
 }
 
-function mapStateToProps(state, ownProps){
-    const {loading, entries} = state.about;
+export const AboutContainer = connect(mapStateToProps('AboutContainer'), mapDispatchToProps('AboutContainer'))(AboutContainerClass);
+// function mapStateToProps(state, ownProps){
+//     const {loading, entries} = state.about;
 
-    let infoPerson = null;
+//     let infoPerson = null;
 
-    if(loading){
-        infoPerson = entries;
-    }
+//     if(loading){
+//         infoPerson = entries;
+//     }
 
-    return {
-        infoPerson
-    };
-}
+//     return {
+//         infoPerson
+//     };
+// }
 
-function mapDispatchToProps(dispatch){
-    return {
-        aboutLoadAction: () => dispatch(aboutLoadAction()),
-    }
-}
+// function mapDispatchToProps(dispatch){
+//     return {
+//         aboutLoadAction: () => dispatch(aboutLoadAction()),
+//     }
+// }
 
 
-export const AboutContainer = connect(mapStateToProps, mapDispatchToProps)(AboutContainerClass);

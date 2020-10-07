@@ -2,7 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {ChatsList} from '../components/ChatsList';
-import {chatsLoadAction, chatsListSendAction} from '../actions/chats';
+import {mapStateToProps} from '../mapForConnect/mapStateToProps';
+import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
+
+
 
 class ChatsListContainerClass extends React.Component {
     
@@ -23,26 +26,26 @@ class ChatsListContainerClass extends React.Component {
         return(chatsLoad ? <ChatsList chats={chatsLoad} onAdd={this.chatAddHandler}  /> : <div>Данные не получены</div>)
     }
 }
+export const ChatsListContainer = connect(mapStateToProps('ChatsListContainer'), mapDispatchToProps('ChatsListContainer'))(ChatsListContainerClass);
+// function mapStateToProps(state, ownProps){
+//     const {entries, loading} = state.chats;
 
-function mapStateToProps(state, ownProps){
-    const {entries, loading} = state.chats;
+//     let chatsLoad = null;
 
-    let chatsLoad = null;
-
-    if(loading){
-        chatsLoad = entries;
-    }
+//     if(loading){
+//         chatsLoad = entries;
+//     }
  
-    return {
-        chatsLoad,
-    };
-}
+//     return {
+//         chatsLoad,
+//     };
+// }
 
-function mapDispatchToProps(dispatch){
-    return {
-        chatsLoadAction: () => dispatch(chatsLoadAction()),
-        chatsListSendAction: (chat) => dispatch(chatsListSendAction(chat)),
-    }
-}
+// function mapDispatchToProps(dispatch){
+//     return {
+//         chatsLoadAction: () => dispatch(chatsLoadAction()),
+//         chatsListSendAction: (chat) => dispatch(chatsListSendAction(chat)),
+//     }
+// }
 
-export const ChatsListContainer = connect(mapStateToProps, mapDispatchToProps)(ChatsListContainerClass);
+

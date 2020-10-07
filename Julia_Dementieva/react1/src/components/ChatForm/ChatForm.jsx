@@ -26,6 +26,10 @@ class ChatFormClass extends Component {
         return (!str || /^\s*$/.test(str));
     }
 
+    // limitStr(str){
+    //     return (/^*{1,10}$/.test(str));
+    // }
+
     handleChatSend = () => {
         
         const {onSend} = this.props;
@@ -35,6 +39,11 @@ class ChatFormClass extends Component {
             alert('Введите название чата');       
             return;
         }
+
+        // if(!this.limitStr(nameChat)){
+        //     alert('Название чата слишком длинное');       
+        //     return;
+        // }
 
         if(typeof onSend === 'function'){
             onSend(nameChat);
@@ -46,7 +55,11 @@ class ChatFormClass extends Component {
     };
 
     handleKeyDown = (event) => {
-        if (event.key === 'Enter') this.handleChatSend();
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.handleChatSend();
+        }
+        
     };
 
     render() {
@@ -64,6 +77,7 @@ class ChatFormClass extends Component {
                     InputLabelProps={{style: {fontSize: 13}}}
                     multiline
                     fullWidth 
+                    inputProps={{ maxLength: 15 }}
                 />
                 
                 <IconButton aria-label="add" className={classes.root} onClick={this.handleChatSend}>

@@ -17,6 +17,8 @@ export class About extends Component {
 
     render() {
         console.log(this.props)
+        const {infoPerson} = this.props;
+        console.log('infoPerson',infoPerson)
         return (<>
             <div style={this.style}>
                 
@@ -26,10 +28,10 @@ export class About extends Component {
                 </Paper>
                 <Paper elevation={3} style={{width: "56%",height: "80%"}}>
                     <div className='infoUser'> 
-                        <h1>Логин: {this.props.person.name}</h1>
-                        <h1>Возраст: {this.props.person.age}</h1>
-                        <h1>Город: {this.props.person.city}</h1>
-                        <h1>Главный чат: {this.props.person.mainChat}</h1>
+                        <h1>Логин: {infoPerson.name}</h1>
+                        <h1>Возраст: {infoPerson.age}</h1>
+                        <h1>Город: {infoPerson.city}</h1>
+                        <h1>Главный чат: {infoPerson.mainChat}</h1>
 
                     </div>
                 </Paper>

@@ -21,7 +21,7 @@ const styles = {
 
 class MessageFormClass extends Component {
     state={
-        author: this.props.person.name,
+        author: this.props.person,
         text: '',
     }
 
@@ -45,7 +45,7 @@ class MessageFormClass extends Component {
 
         if(typeof onSend === 'function'){
             onSend(this.state);
-
+            console.log('Form', onSend)
             this.setState({
                 text: '',
             });

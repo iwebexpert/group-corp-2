@@ -10,9 +10,6 @@ import { nanoid } from 'nanoid'
 import './Messenger.css';
 
 export class Messenger extends Component {
-    constructor(props){
-        super(props);
-    }
 
     state ={
         nameRobot: "Robot",
@@ -21,9 +18,10 @@ export class Messenger extends Component {
 
     handleMessageSend = (message) => {
         const { onAdd } = this.props;
-
+        console.log('Messenger',message)
+        console.log('Messenger',onAdd)
         if (typeof (onAdd) === 'function'){
-            onAdd(this.props.chatId, message);
+            onAdd(message);
         }
     };
 
@@ -35,48 +33,31 @@ export class Messenger extends Component {
 
     lastMessageAuthor = (minusMessage) => {
         
-        return this.messages[this.messages.length-minusMessage].author;
+        return this.props.messages[this.props.messages.length-minusMessage].author;
     }
 
     componentDidUpdate() {
-
+        const {messages} = this.props;
         setTimeout(() =>{
-            if(this.messages.length > 0 && this.lastMessageAuthor(1)!==this.state.nameRobot){ 
+            if(messages.length > 0 && this.lastMessageAuthor(1)!==this.state.nameRobot){ 
                 this.setState(
                     this.handleMessageSend({text: `${this.lastMessageAuthor(1)}, ${this.randomAnswerRobot()}`, author: `${this.state.nameRobot}`}));
                 }
         }, 3000);
-            
-            
-            
-    }
-
-    get messages(){
-        const {chats} = this.props;
-        const {chatId} = this.props;
-
-        let messages = null;
-
-        if(chatId >=0 && chats[chatId]){
-            messages = chats[chatId].messages;
-        }
-        return messages;
     }
     
     render() {
-        const messages = this.messages;
-        const {chats} = this.props;
-        const {chatId} = this.props;
+        const {authorChat, namePerson, avatarChat, messages } = this.props;
         return (
             <div className="messenger">
                 <div className="messages-info">
                     <ListItem alignItems="center">   
                         <ListItemAvatar>
-                        <Avatar src={chats[chatId].avatar} />  
+                        <Avatar src={avatarChat} />  
                         
                         </ListItemAvatar>
                         <ListItemText
-                        primary={chats[chatId].author}
+                        primary={authorChat}
                         /> 
                     </ListItem>
                 </div>
@@ -84,7 +65,7 @@ export class Messenger extends Component {
                     {messages.length > 0 ? <MessageList  items={messages}/> : <div>Пока в чате сообщений нет</div>}
                 </div>
                 <div className="message-form"> 
-                    <MessageForm onSend={this.handleMessageSend} person={this.props.person}/>
+                    <MessageForm onSend={this.handleMessageSend} person={namePerson}/>
                 </div>           
             </div>
         )

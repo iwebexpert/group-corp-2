@@ -1,0 +1,27 @@
+.dialog_link {
+  text-decoration: none;
+  width: 98%;
+  min-height: 76px;
+  margin-top: 17px;
+  transition: .3s;
+  box-sizing: border-box;
+  padding: 10px 9px;
+  display: flex;
+  cursor: pointer;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .user_dialog_account {
+    align-items: flex-start;
+    margin-bottom: 0;
+    transition: .4s;
+  }
+
+  &:hover {
+    border-left: 2px solid $secondaryText;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 10px 9px 10px 13px;
+  }
+}

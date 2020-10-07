@@ -28,26 +28,29 @@ const messageShorter = (message) => {
 };
 
 const findChatByReceiver = (chats, receiver) => {
-  return chats.filter(chat => chat.id === receiver)[0];
+  return chats.filter(chat => chat.username === receiver)[0];
 };
 
 const findChatIndexByReceiver = (chats, receiver) => {
   let index = -1;
   chats.forEach((chat, idx) => {
-    if (chat.id === receiver) index = idx;
+    if (chat.username === receiver) index = idx;
   });
   return index;
 };
 
-const setDelay = (chat, chats, setChats, sender, receiver, editIdx = 0) => {
+const setDelay = (sender, receiver, dispatch, setSendBotMessage, editIdx = 0) => {
   setTimeout(() => {
-    const { messages } = chat;
-    const lastMessage = messages[messages.length - 1];
-    if (lastMessage.username !== 'Bot') {
-      chat.messages.push(createBotMessage(sender, receiver));
-      setChats([...chats].map((elem, idx) => idx === editIdx ? chat : elem));
-    }
+    dispatch(setSendBotMessage(sender, receiver, editIdx));
   }, 2000);
-}
+};
 
-export { createMessage, createBotMessage, validateInput, messageShorter, findChatByReceiver, findChatIndexByReceiver, setDelay };
+const createProfileInfo = (profileInfo) => {
+  return {
+    ...profileInfo,
+    date: new Date().toLocaleString(),
+    image: 'https://source.unsplash.com/random',
+  };
+};
+
+export { createMessage, createBotMessage, validateInput, messageShorter, findChatByReceiver, findChatIndexByReceiver, setDelay, createProfileInfo };

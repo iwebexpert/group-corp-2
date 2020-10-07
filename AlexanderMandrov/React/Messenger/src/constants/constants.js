@@ -25,6 +25,93 @@ const usernames = [
     'thoroughforemast'
 ];
 
+const rawProfileInfo = {
+  firstname: 'Wispy',
+  lastname: 'Briskpress',
+  BIO: '23 y.o. designer from San Fransisco',
+  username: 'yellso',
+  number: '+7 953 932-58-23'
+};
+
+const stickers = [
+  '❤',
+  '😏',
+  '🙄',
+  '🥶',
+  '🐦',
+  '🙆🏻‍♀',
+  '🦈',
+  '🙃',
+  '🧐',
+  '🤓',
+  '🥺',
+  '😡',
+  '🤬',
+  '🥵',
+  '🤯',
+  '😓',
+  '🤥',
+  '🤤',
+  '🥴',
+  '🤒',
+  '👻',
+  '👽',
+  '😾',
+  '🧠',
+  '🐶',
+  '🐷',
+  '🐵',
+  '🐱',
+  '🦀',
+  '🦞',
+  '🐳',
+  '🍀',
+  '🍄',
+  '🌚',
+  '☃',
+  '🍏',
+  '🍋',
+  '🥝',
+  '🍈',
+  '🌽',
+  '🥑',
+  '🍱',
+  '🥘',
+  '🥃',
+  '🍾',
+  '🥡',
+  '🥂',
+  '⚽',
+  '🏀',
+  '🏈',
+  '🏓',
+  '🥇',
+  '🏆',
+  '🎪',
+  '🎬',
+  '🥁',
+  '🎰',
+  '🗿',
+  '⛩',
+  '🛤',
+  '🏪',
+  '📺',
+  '📞',
+  '📱',
+  '🔫',
+  '💣',
+  '🧨',
+  '🗝',
+  '☣',
+  '😂',
+  '😉',
+  '😜',
+  '🤣',
+  '💩',
+  '👾',
+  '🤐',
+];
+
 const rawMessages = [
   'I was just thinking about you!',
   'You are a great example for others.',
@@ -48,7 +135,7 @@ usernames.forEach(() => {
 const createPrimaryChats = (usernames, sender = null) => {
   return usernames.map((user, id) => {
     return {
-      id: user,
+      id: id,
       username: user,
       messages: [
         {
@@ -62,6 +149,4 @@ const createPrimaryChats = (usernames, sender = null) => {
   });
 };
 
-const rawChats = createPrimaryChats(usernames);
-
-export { rawChats, notifications, avatarColors, createPrimaryChats };
+export { usernames, notifications, avatarColors, createPrimaryChats, rawProfileInfo, stickers };

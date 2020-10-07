@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import './Sidebar.scss';
+import Spinner from '../Spinner';
 import { Drawer, List, ListItem, ListItemText, 
         ListItemAvatar, Avatar, Divider, Badge, 
         makeStyles, Box, IconButton, TextField } from '@material-ui/core';
 import { deepOrange, deepPurple, green, blue, indigo, teal, cyan, lime } from '@material-ui/core/colors';
 import { AddCircleOutline } from '@material-ui/icons';
-import { notifications, avatarColors } from '../../constants/constants';
-import { messageShorter, validateInput } from '../../utils/utils';
+import { fetchChats, setNewChat, setSendBotMessage } from '../../redux/ducks/chats';
+import { usernames, notifications, avatarColors, createPrimaryChats } from '../../constants/constants';
+import { messageShorter, validateInput, setDelay } from '../../utils/utils';
 
 const useStyles = makeStyles((theme) => ({
   badge: {
@@ -43,11 +46,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Sidebar = ({ chats, user, onChatClick, pushRawChat }) => {
+const Sidebar = ({ user, onChatClick }) => {
+  const dispatch = useDispatch();
+  const { chatsReducer } = useSelector((state) => state);
+  const { chats } = chatsReducer;
+
   const classes = useStyles();
   const { badge, green, orange, purple, blue, indigo, teal, cyan, lime } = classes;
+
   const [newReceiver, setNewReceiver] = useState('');
   const palette = [purple, orange, green, blue, indigo, teal, cyan, lime];
+
+  useEffect(() => {
+    if (!chats) {
+      dispatch(fetchChats(usernames));
+    }
+  }, []);
 
   const handleChange = (event) => {
     setNewReceiver(event.target.value)
@@ -55,7 +69,9 @@ const Sidebar = ({ chats, user, onChatClick, pushRawChat }) => {
 
   const handleClick = () => {
     if (validateInput(newReceiver)) {
-      pushRawChat(newReceiver);
+      const chat = createPrimaryChats([newReceiver], user)[0];
+      dispatch(setNewChat(chat));
+      setDelay(user, newReceiver, dispatch, setSendBotMessage);
       setNewReceiver('');
     }
   };
@@ -83,11 +99,11 @@ const Sidebar = ({ chats, user, onChatClick, pushRawChat }) => {
       </Box>
       <Divider />
       <List className="Sidebar-list">
-        {chats.map(({ username, id, messages }, idx) => {
+        {chats === null ? <Spinner color="teal"/> : chats.map(({ username, id, messages }, idx) => {
           const lastMessage = messages[messages.length - 1];
           const lastMessageText = messageShorter(lastMessage.text);
           return (
-            <Link to={`/chats/${id}`} className="Sidebar-link__reset" key={nanoid()} onClick={onChatClick.bind(this, id)}>
+            <Link to={`/chats/${username}`} className="Sidebar-link__reset" key={nanoid()} onClick={onChatClick.bind(this, username)}>
               <ListItem button divider>
                   <ListItemAvatar>
                     <Badge color="secondary" badgeContent={notifications[idx]} className={badge}>

@@ -29,12 +29,20 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.35",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "classnames": "^2.2.6",
+    "immutability-helper": "^3.1.1",
     "nanoid": "^3.1.12",
+    "npm": "^6.14.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-spinners": "^0.9.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   }
 }

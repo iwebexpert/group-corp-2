@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
         marginRight: 20
     },
     text: {
-        width: 500
+        width: 500,
     },
     button: {
         margin: '10px 0 0 510px'

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux"
-import {Profile} from "../components/Profile/Profile"
+import {Profile} from "./Profile"
 
 export const ProfileContainer = ({data}) => {
 

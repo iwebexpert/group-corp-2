@@ -17,6 +17,11 @@ export const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         width: 240,
     },
+    drawerPaperDark: {
+        width: 240,
+        backgroundColor: '#171717',
+        color: '#fff'
+    },
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
@@ -41,15 +46,23 @@ export const useStyles = makeStyles((theme) => ({
         backgroundColor: '#b8b8b8',
         padding: '10px 16px 10px 26px',
     },
+    activeChatDark: {
+        backgroundColor: '#232227',
+        padding: '10px 16px 10px 26px',
+    },
     user: {
         marginLeft: 10
+    },
+    userDark: {
+        marginLeft: 10,
+        color: '#bbb'
     },
     addChartItem: {
         display: "flex",
         alignItems: "center"
     },
     addChart: {
-        padding: 10
+        padding: 10,
     },
     addChartInput: {
         display: "block",
@@ -61,7 +74,7 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const ChatList = ({chats, addChat, open, handleDrawerToggle}) => {
+export const ChatList = ({chats, addChat, open, handleDrawerToggle, darkTheme}) => {
     const theme = useTheme()
     const history = useHistory()
     const classes = useStyles()
@@ -91,22 +104,22 @@ export const ChatList = ({chats, addChat, open, handleDrawerToggle}) => {
             variant="persistent"
             anchor="left"
             open={open}
-            classes={{
-                paper: classes.drawerPaper,
-            }}
+            classes={{paper: darkTheme ? classes.drawerPaperDark : classes.drawerPaper}}
         >
             <div className={classes.drawerTop}>
                 <IconButton onClick={handleDrawerToggle}>
-                    {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    {theme.direction === 'ltr'
+                        ? <ChevronLeftIcon color={darkTheme ? 'primary' : 'default'}/>
+                        : <ChevronRightIcon color={darkTheme ? 'primary' : 'default'}/>}
                 </IconButton>
             </div>
             <Divider />
             <List>
                 {chats.length && chats.map((chat, index) => (
                         <ListItem button key={index} className={classes.chatItem} >
-                            <NavLink to={`/chats/${chat.id}`} activeClassName={classes.activeChat} className={classes.chat}>
+                            <NavLink to={`/chats/${chat.id}`} activeClassName={darkTheme ? classes.activeChatDark : classes.activeChat} className={classes.chat}>
                             {chat.type ? <GroupIcon color="primary"/> : <AccountBoxIcon color="primary"/>}
-                            <ListItemText className={classes.user} primary={chat.title} />
+                            <ListItemText className={darkTheme ? classes.userDark : classes.user} primary={chat.title} />
                             </NavLink>
                         </ListItem>
                 ))}

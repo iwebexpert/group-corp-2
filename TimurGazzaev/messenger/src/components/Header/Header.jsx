@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {AppBar, Toolbar, IconButton, Typography, Menu, MenuItem} from "@material-ui/core"
+import React from 'react'
+import {AppBar, Toolbar, IconButton, Typography, Switch} from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import clsx from "clsx"
 import {AccountCircle} from "@material-ui/icons"
@@ -38,28 +38,22 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center"
     },
-    profileBlock: {
-
+    rightBlock: {
+        display: "flex",
+        alignItems: "center",
+        width: 300,
+        justifyContent: "space-between"
     },
+    profileBlock: {},
     profileBlockWrap: {
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        color: '#fff'
     }
 }))
 
-export const Header = ({open, setOpen, profile}) => {
-    const [anchorEl, setAnchorEl] = useState(null)
-    const menuOpen = Boolean(anchorEl)
+export const Header = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
     const classes = useStyles()
-
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget)
-    }
-
-    const handleMenuItem = () => {
-        setAnchorEl(null)
-        setOpen(false)
-    }
 
     return (
         <AppBar
@@ -69,7 +63,7 @@ export const Header = ({open, setOpen, profile}) => {
             })}
         >
             <Toolbar className={classes.headWrap}>
-                <div  className={classes.burgerBlock}>
+                <div className={classes.burgerBlock}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -77,45 +71,25 @@ export const Header = ({open, setOpen, profile}) => {
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" noWrap>Messenger</Typography>
                 </div>
-                <div className={classes.profileBlock}>
-                    <div className={classes.profileBlockWrap}>
-                        <Typography variant="h6" noWrap>{profile && `${profile.name} ${profile.surName}`}</Typography>
-                        <IconButton
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleMenu}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
+                <div className={classes.rightBlock}>
+                    <Switch color="default" checked={darkTheme} onChange={() => setDarkTheme(!darkTheme)} />
+                    <div className={classes.profileBlock}>
+                        <Link to='/profile' className={classes.profileBlockWrap}>
+                            <Typography variant="h6" noWrap>{profile && `${profile.name} ${profile.surName}`}</Typography>
+                            <IconButton
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                color="inherit"
+                            >
+                                <AccountCircle/>
+                            </IconButton>
+                        </Link>
                     </div>
-                    <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        open={menuOpen}
-                        onClose={() => setAnchorEl(null)}
-                    >
-                        <MenuItem onClick={handleMenuItem}>
-                            <Link to='/profile'>Profile</Link>
-                        </MenuItem>
-                        <MenuItem>
-                            Settings
-                        </MenuItem>
-                    </Menu>
                 </div>
             </Toolbar>
         </AppBar>

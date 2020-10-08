@@ -1,6 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardContent, Typography, CardMedia } from "@material-ui/core";
+import {
+  Card,
+  CardContent,
+  Typography,
+  CardMedia,
+  Divider,
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -24,8 +30,10 @@ const useStyles = makeStyles({
   },
 });
 
-export const Profile = () => {
+export const Profile = (props) => {
   const classes = useStyles();
+
+  const { firstName, secondName, nickName, age } = props.profile;
 
   return (
     <div className="home-page">
@@ -36,19 +44,28 @@ export const Profile = () => {
             component="img"
             image="../../src/icons/avatar.ico"
           ></CardMedia>
+          <Divider />
           <Typography color="textSecondary" gutterBottom>
-            User full name
+            Full Name
           </Typography>
           <Typography variant="h5" component="h2">
-            Maximov Evgeny
+            {firstName} {secondName}
           </Typography>
-          <br />
+          <Divider />
           <Typography className={classes.pos} color="textSecondary">
             Nickname
           </Typography>
           <Typography variant="h5" component="p">
-            Areukiddin
+            {nickName}
           </Typography>
+          <Divider />
+          <Typography className={classes.pos} color="textSecondary">
+            Age
+          </Typography>
+          <Typography variant="h5" component="p">
+            {age}
+          </Typography>
+          <Divider />
         </CardContent>
       </Card>
     </div>

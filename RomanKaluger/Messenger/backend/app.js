@@ -175,12 +175,12 @@ async function start() {
     app.post('/chats/shared/:sharedid/message', async (req, res) => {
         try {
             const sharedid = req.params.sharedid;
-            const {author, authorName, text, dateSend} = req.body;
-            if(!author || !text){
+            const {author, authorName, text, dateSend,forwardMessages, isForward} = req.body;
+            if(!author && (!forwardMessages && !text)){
                 res.status(400).json({message: 'Не передан текст сообщения (text) или имя автора (author)'});
                 return;
             }
-            const message = new messageModel({text, dateSend, author, authorName});
+            const message = new messageModel({text: text || ' ', dateSend, author, authorName, isForward, forwardMessages});
             await message.save();
             const sharedChats = await chatModel.find({sharedId: sharedid});
             for (const chat of sharedChats) {
@@ -191,6 +191,31 @@ async function start() {
             broadCast(wsTypes.MESSAGE, null, () => true);
             res.status(200).json(message);
         } catch (e) {
+            console.log(e.message);
+            res.status(500).json({error: 'Не удалось сохранить сообщение в БД'});
+        }
+    });
+    app.post('/chats/shared/message/updateStatus/', async (req, res) => {
+        try {
+            const user = req.user;
+            const {sharedId, isRead} = req.body;
+            if(!sharedId){
+                res.status(400).json({message: 'Не передан статус'});
+                return;
+            }
+            const sharedChats = await chatModel.find({sharedId: sharedId}).lean();
+            const messagesIds = Array.from(new Set(sharedChats.map(ch => ch.messages).flat()));
+            const messages = await messageModel.find({_id: {$in: messagesIds}});
+            for (const mes of messages) {
+                if (mes.author !== user._id && mes.isRead !== isRead){
+                    mes.isRead = isRead;
+                    await mes.save();
+                }
+            }
+            broadCast(wsTypes.MESSAGE, null, () => true);
+            res.status(200).json({message: 'Данные обновлены'});
+        } catch (e) {
+            console.log(e.message);
             res.status(500).json({error: 'Не удалось сохранить сообщение в БД'});
         }
     });

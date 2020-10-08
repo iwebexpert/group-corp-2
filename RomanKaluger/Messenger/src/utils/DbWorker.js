@@ -2,6 +2,7 @@ import connectionConfig from "../configs/connectionConfig";
 import {openUserProfile, setCurrentUser} from "../redux/actions";
 import swal from "sweetalert";
 import {store} from "../redux/StorageRedux";
+import uniqid from 'uniqid';
 
 export class DbWorker {
     static dispatch = store.dispatch;
@@ -48,7 +49,6 @@ export class DbWorker {
         const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/update/user/`, body, true);
         DbWorker.dispatch(setCurrentUser(res));
         DbWorker.dispatch(openUserProfile(res));
-        console.log(res)
         if (res) {
             swal("Успешно", 'Данные обновлены', "success");
         }
@@ -76,16 +76,32 @@ export class DbWorker {
             return null;
         }
     };
-
-    static sendMessage = async (text) => {
-        const { selectedChat, curUser, chats } = store.getState().app;
-        const selChatObj = chats.find(x => x._id === selectedChat);
-        const message = {
+    static createMessage = (text, forwardMessageRaw=null) => {
+        const { curUser } = store.getState().app;
+        const forwardMessages = forwardMessageRaw
+            ? forwardMessageRaw.messages.map(x =>  ({
+                text: x.text,
+                dateSend: x.dateSend,
+                author: x.author,
+                authorName: x.authorName,
+                forwardMessages: x.forwardMessages,
+                isForward: true,
+                _id: uniqid()
+            }))
+            : null;
+        return {
             text,
             dateSend: Date.now(),
             author: curUser._id,
-            authorName: curUser.name
+            authorName: curUser.name,
+            forwardMessages,
+            isForward: false
         };
+    };
+    static sendMessage = async (text, forwardMessageRaw = null) => {
+        const { selectedChat, chats } = store.getState().app;
+        const selChatObj = chats.find(x => x._id === selectedChat);
+        const message = DbWorker.createMessage(text,forwardMessageRaw);
         return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/${selChatObj.sharedId}/message`, message);
     };
     static createChat = async (user) => {
@@ -143,4 +159,25 @@ export class DbWorker {
             return [];
         }
     };
+    static getMessageById = async (messageId) => {
+        try {
+            const curUser = store.getState().app.curUser;
+            const msgRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/messages/messageid/${messageId}`, curUser);
+            const msg = await msgRes.json();
+            if (!msgRes.ok) {
+                swal('Ошибка', msg.message, 'error');
+                return null;
+            }
+            return msg;
+        } catch (e) {
+            swal('Ошибка', e.message, 'error');
+            return null;
+        }
+    };
+    static tickMessagesAsRead = async (chat) => {
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/message/updateStatus/`,
+            {isRead: true, sharedId: chat.sharedId});
+    };
+
+
 }

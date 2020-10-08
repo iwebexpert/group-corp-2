@@ -1,0 +1,13 @@
+@import "./../../../../scss/common/globalVariables";
+@import "./../../../../scss/common/commonMixinsApp";
+.ForwardMessageNotification{
+  @include center-content;
+  @include --padding;
+  border-radius: $border;
+  flex-grow: 1;
+  background-color: transparentize($bgPrimary, 0.5);
+  color: $light;
+  font-size: 20px;
+  margin: 3px;
+  position: relative;
+}

@@ -24,8 +24,7 @@ export class ChatsList extends Component {
                 <List>
                     {
                         chats.map((chat) => <ChatItem avatar={chat.avatar} author={chat.author} id={chat.id} key={chat.id}/>)
-                    }
-                    
+                    }             
                 </List>
                 </div>
                 <ChatForm onSend={this.handleChatAdd}/>

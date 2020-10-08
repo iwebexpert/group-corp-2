@@ -18,14 +18,14 @@ const styles = {
 
 class HeaderClass extends Component {
     render() {
-        const {classes} = this.props;
+        const {infoPerson, classes} = this.props;
         return (
             <div className="header">
                 <Link to="/" style={{ textDecoration: 'none' }}><div className="header-logo">VChats</div></Link>
                 <Link to="/About" style={{ textDecoration: 'none' }}>
                     <div className="header-avatar">
-                        <Avatar className={classes.root} src={this.props.person.avatar} />
-                        {this.props.person.name}
+                        <Avatar className={classes.root} src={infoPerson.avatar} />
+                        {infoPerson.name}
                     </div>
                 </Link>
             </div>

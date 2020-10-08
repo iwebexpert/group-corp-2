@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import './MessengerScreen.css'
 
-import * as messengerActions from '../../store/messenger/actions';
-import * as messengerSelectors from '../../store/messenger/reducer';
-
-import { chatsLoad, messageSend } from '../../store/messenger/actions';
+import { chatsLoad, messageSend, addChat } from '../../store/messenger/actions';
 
 import Navbar from '../../component/Navbar/Navbar';
 import Container from '../../component/Container/Container';
@@ -19,59 +16,27 @@ import Card from '@material-ui/core/Card';
 
 class MessengerScreen extends Component {
   handleMessageSend = (message) => {
-    // if (typeof(this.props.messageSend === 'function'))
-    //   this.props.messageSend(this.props.id, message);
-
     const chatId = this.props.id;
     message.id = nanoid();
     this.props.messageSend({ ...message, chatId });
   };
 
-  handleChatAdd = (chat) => {
-    if (chat) {
-        if (typeof (this.props.addChat) === 'function'){
-            this.props.addChat(chat);
-        }
-    }
+  handleChatAdd = (title) => {
+    this.props.addChat(title);
   }
-
-  // componentDidUpdate() {
-  //   console.log(this.message);
-  //   if(this.messages.length){
-  //     const { author } = this.messages[this.messages.length - 1];
-  //     if (author != 'Robot'){
-  //       setTimeout(() => {
-  //         this.handleMessageSend({ message: `Hi, ${ author }! Это Robot...`, author: 'Robot' });
-  //       }, 1000);
-  //     }
-  //   }
-  // }
 
   componentDidMount() {
     this.props.chatsLoad();
-    console.log("(((1111))))", this.props.chats);
   }
 
-  // get messages(){
-  //   const { id } = this.props;
-  //   const chats = this.props.chats;
-  //   let messages = null;
-
-  //   if(id >= 0 && chats[id]){
-  //       messages = chats[id].messages;
-  //   }
-  //   return messages;
-  // }
-
   render() {
-    const { id } = this.props;
-    const chats = this.props.chats;
-    const messages = this.messages;
+    const { id, chats, messages, profile } = this.props;
+
     console.log(chats);
     return(
       <>
         <Container modifiers="container_theme_chat">
-          <Navbar />
+          <Navbar profile={profile} />
           <Content modifiers="content_theme_chat">
             <ChatList chats={chats}
                       currentChat={id}
@@ -80,7 +45,7 @@ class MessengerScreen extends Component {
                           <Chat modifiers="chat_theme_chat"
                                 messages={messages}
                                 title={chats[id].title}
-                                author={this.props.person.name}
+                                author={profile.name}
                                 handleMessageSend={this.handleMessageSend} />
                       : 
                           <Card className="chat__card-warn">
@@ -96,18 +61,22 @@ class MessengerScreen extends Component {
 }
 
 function mapStateToProps(state, ownProps){
+  console.log(state, ownProps);
   const chats = state.chats.entries;
-  const {match} = ownProps;
+  const match = ownProps;
 
   let messages = null;
 
-  if(match && chats[match.params.id]){
-      messages = chats[match.params.id].messages;
+
+  if(match && chats[match.id]){
+      messages = chats[match.id].messages;
   }
   
   return {
+      chats,
       messages,
-      chatId: match ? match.params.id: null,
+      chatId: match ? match.id: null,
+      profile: state.profile.profiles[0]
   };
 }
 
@@ -115,6 +84,7 @@ function mapDispatchToProps(dispatch){
   return {
     chatsLoad: () => dispatch(chatsLoad()),
     messageSend: (message) => dispatch(messageSend(message)),
+    addChat: (title) => dispatch(addChat(title)),
   }
 }
 

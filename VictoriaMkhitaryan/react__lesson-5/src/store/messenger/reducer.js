@@ -2,7 +2,7 @@ import update from 'react-addons-update';
 import * as types from './actionTypes';
 
 const initialState = {
-    entries: {},
+    entries: [],
     loading: false
 };
 

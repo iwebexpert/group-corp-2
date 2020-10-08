@@ -36,7 +36,8 @@ export default function ChatList(props) {
   }
 
   const renderChatItem = () => {
-    return props.chats.map(data => {
+    console.log(props.chats);
+    return props.chats[0] ? props.chats.map(data => {
       // let unread = unreadMessage.filter(item => item.chat_id == data.chat_id).length;
       let unread = false;
 
@@ -46,7 +47,7 @@ export default function ChatList(props) {
                   key={nanoid()}
                   currentChat={props.currentChat}/>
       );
-    });
+    }) : null;
   }
 
   const renderChatItemSearch = (data) => {

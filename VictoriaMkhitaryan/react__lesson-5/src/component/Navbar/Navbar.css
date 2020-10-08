@@ -12,3 +12,8 @@
 .link-button {
   color: white;
 }
+
+.navbar__profile {
+  text-decoration: none;
+  padding-left: 6px;
+}

@@ -26,46 +26,6 @@ export default function ProfileInfo(props) {
           <h2>Возраст: {props.person.age}</h2>
           <h2>Город: {props.person.city}</h2>
         </div>
-        {/* <Box display="flex"
-            alignItems='flex-start'
-            justifyContent="space-between"
-        >
-          <Box p={2}>
-            {props.avatar ? <Avatar className="profile-info__avatar" src={"data:image/png;base64," + `${props.avatar}`} /> : <AccountCircleOutlinedIcon className="profile-info__avatar"/>}
-            <Typography component="div">
-              <Box fontSize='h5.fontSize' m={1} textAlign="center">
-                {props.firstname}
-              </Box>
-              <Box fontSize='h5.fontSize' textAlign="center">
-                {props.lastname}
-              </Box>
-            </Typography>
-          </Box>  
-          <Box flexGrow={2}>
-            <Typography component="div">
-              <Box fontSize={18} m={1}>
-                {props.username}
-              </Box>
-              <Box fontSize={18} m={1}>
-                Пол:  {props.gender ? '♀' : '♂'}
-              </Box>
-              <Box fontSize={18} m={1}>
-                Город: {props.city}
-              </Box>
-              <Box fontSize={18} m={1}>
-                Дата рождения: {props.date}
-              </Box>
-              <Box fontSize={18} m={1}>
-                Любимые жанры: {props.genre}
-              </Box>
-              <Box fontSize={18} m={1}>
-                Любимые игры: {props.game}
-              </Box>
-            </Typography>
-          </Box>
-          {button}
-        </Box> */}
-
       </CardContent>
     </Card>
   );

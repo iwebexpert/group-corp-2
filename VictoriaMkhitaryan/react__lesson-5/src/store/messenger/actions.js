@@ -9,3 +9,9 @@ export function messageSend(message) {
     dispatch({type: types.SEND_MESSAGE, payload: message});
   };
 }
+
+export function addChat(title) {
+  return dispatch => {
+    dispatch({type: types.ADD_CHAT, payload: title});
+  };
+}

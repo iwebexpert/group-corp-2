@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Header} from "../Messenger-Header/index";
-import {Messenger} from "../Messenger";
+import {Messenger} from "../Messenger/index";
 import {ChatList} from "../Chat-list";
 import "./Layout.css"
 export  class Layouts extends Component {

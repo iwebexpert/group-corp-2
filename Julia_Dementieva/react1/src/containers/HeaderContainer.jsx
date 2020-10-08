@@ -9,7 +9,10 @@ import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 class HeaderContainerClass extends React.Component {
     
     componentDidMount(){
-        this.props.aboutLoadAction();
+        if(this.props.infoPerson == null){
+            this.props.aboutLoadAction();
+        }
+        console.log('header',this.props.infoPerson);
     }
 
     render(){

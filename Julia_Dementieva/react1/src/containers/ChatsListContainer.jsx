@@ -10,15 +10,20 @@ import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 class ChatsListContainerClass extends React.Component {
     
     componentDidMount(){
-        this.props.chatsLoadAction();
+        
+        if(this.props.chatsLoad == null){
+            this.props.chatsLoadAction();
+        }
+        console.log('chatlist',this.props.infoPerson);
     }
 
     chatAddHandler = (newchat) => {
-        const {chatsListSendAction} = this.props;
+        const {chatsListSendAction, redirect, lastChatId} = this.props;
         chatsListSendAction({
             author: newchat,
             avatar: 'https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif',
         });
+        redirect(lastChatId);
     };
 
     render(){

@@ -10,9 +10,13 @@ import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 class MessengerContainerClass extends React.Component {
     
     componentDidMount(){
-        this.props.chatsLoadAction();
-        this.props.aboutLoadAction();
-        this.props.robotLoadAction();
+        if(this.props.chatId ==null){
+            this.props.chatsLoadAction();
+            this.props.aboutLoadAction();
+            this.props.robotLoadAction();
+        }
+        console.log('mesee',this.props.chatId);
+        
     }
 
     handleMessageSend = (message) => {

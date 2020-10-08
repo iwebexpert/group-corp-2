@@ -10,7 +10,11 @@ import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 class AboutContainerClass extends React.Component {
     
     componentDidMount(){
-        this.props.aboutLoadAction();
+        if(this.props.infoPerson == null){
+            this.props.aboutLoadAction();
+        }
+        console.log('about',this.props.infoPerson);
+        
     }
 
     render(){

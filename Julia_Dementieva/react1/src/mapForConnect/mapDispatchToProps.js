@@ -1,6 +1,7 @@
 import {aboutLoadAction} from '../actions/about';
 import {chatsLoadAction, chatsListSendAction, chatsMessageSendAction} from '../actions/chats';
 import {robotLoadAction} from '../actions/robot';
+import {push} from 'connected-react-router';
 
 export const mapDispatchToProps = (component) => {
     switch(component){
@@ -19,6 +20,7 @@ export const mapDispatchToProps = (component) => {
                 return {
                     chatsLoadAction: () => dispatch(chatsLoadAction()),
                     chatsListSendAction: (chat) => dispatch(chatsListSendAction(chat)),
+                    redirect: (chatId) => dispatch(push(`/chats/${chatId}`)),
                 }
             };
         };
@@ -30,6 +32,7 @@ export const mapDispatchToProps = (component) => {
                     aboutLoadAction: () => dispatch(aboutLoadAction()),
                     robotLoadAction: () => dispatch(robotLoadAction()),
                     chatsMessageSendAction: (message) => dispatch(chatsMessageSendAction(message)),
+                    
                 }
             };
         };
@@ -37,6 +40,6 @@ export const mapDispatchToProps = (component) => {
             
 
         default:
-            return undefined;
+            return null;
     }
 };

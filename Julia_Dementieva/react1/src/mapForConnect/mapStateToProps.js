@@ -19,9 +19,11 @@ export const mapStateToProps = (component) => {
                 const {entries, loading} = state.chats;
 
                 let chatsLoad = (loading) ? entries : null;
+                let lastChatId = (loading) ? Object.keys(chatsLoad).length : null;
 
                 return {
                     chatsLoad,
+                    lastChatId,
                 };
             };
         };
@@ -58,6 +60,6 @@ export const mapStateToProps = (component) => {
         };
 
         default:
-            return undefined;
+            return null;
     }
 };

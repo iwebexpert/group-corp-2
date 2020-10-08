@@ -1,0 +1,5 @@
+export const ADD_NEW_CHAT = 'ADD_NEW_CHAT'
+export const ADD_NEW_MESSAGE_TO_CHAT = 'ADD_NEW_MESSAGE_TO_CHAT'
+export const CHAT_LOAD = 'CHAT_LOAD'
+
+export const PROFILE_LOAD = 'PROFILE_LOAD'

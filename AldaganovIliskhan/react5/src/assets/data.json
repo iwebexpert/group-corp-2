@@ -1,0 +1,28 @@
+{
+  "chats": [
+    {
+      "title": "dasdas",
+      "messages": [],
+      "id": 1
+    },
+    {
+      "title": "dsadsadasa",
+      "messages": [],
+      "id": 2
+    }
+  ],
+  "messages": [
+    {
+      "chatId": 2,
+      "message": "dasasd",
+      "author": "aasd",
+      "id": 1
+    }
+  ],
+  "profile": {
+    "id": 1,
+    "name": "Ivan Ivanov",
+    "nickname": "Crucial",
+    "age": "22"
+  }
+}

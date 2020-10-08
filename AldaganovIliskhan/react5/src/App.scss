@@ -1,0 +1,13 @@
+*,*::after,*::before {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+.messanger {
+    max-width: 1200px;
+    color: #fff;
+    margin: 0 auto;
+}

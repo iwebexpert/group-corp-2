@@ -14,17 +14,24 @@ export class Messanger extends Component {
     // };
 
     handleMessageSend = (message) => {
+
         const { chats } = this.props;
         const { match } = this.props;
         message.id = nanoid();
         const chat = chats[match.params.id];
-        chat.messages = this.messages.concat([message]);
+        // chat.messages = this.messages.concat([message]);
+        chat.messages = [...this.messages, message];
         chats[match.params.id] = chat;
         this.setState({ chats });
         clearInterval(interval);
+        console.log(chat.messages)
+
     };
 
     componentDidUpdate() {
+        if (!this.messages) {
+            return;
+        }
         const { author } = this.messages[this.messages.length - 1];
         if (author !== 'Bot') {
             clearInterval(interval);
@@ -32,7 +39,6 @@ export class Messanger extends Component {
                 this.handleMessageSend({ text: `Hi, ${author}! Бот на связи...`, author: 'Bot' });
             }, 3000);
         }
-        console.log(this.messages)
     }
     get messages() {
         const { chats } = this.props;
@@ -45,6 +51,7 @@ export class Messanger extends Component {
     }
     render() {
         const messages = this.messages;
+        console.log(messages)
         return (
             <Grid item xs={9}>
                 <div className="messanger">

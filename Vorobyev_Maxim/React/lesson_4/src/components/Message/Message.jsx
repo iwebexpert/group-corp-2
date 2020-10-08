@@ -4,8 +4,6 @@ import './message.scss';
 import {AudioMessage} from '../AudioMessage';
 
 export class Message extends Component {
-  audio = false;
-
   render() {
     const {text, author, time, audio} = this.props;
     const classes = classNames('message', {

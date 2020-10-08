@@ -36,7 +36,7 @@ export class ChatList extends Component {
           id: 1,
           author: 'WebDev',
           text: 'default',
-        },
+        }, 
       ],
     };
     chats.push(newChatData);

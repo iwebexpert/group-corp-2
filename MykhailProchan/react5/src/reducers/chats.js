@@ -34,11 +34,11 @@ export const chatsReducer = (state = initialState, action) => {
       console.log(action.payload)
       return update(state, {
         entries: {
-          [action.payload]: {
+          $push: [{
             id: action.payload.id,
             name: action.payload.name,
             messages: action.payload.messages
-          }
+          }]
         }
       })
 

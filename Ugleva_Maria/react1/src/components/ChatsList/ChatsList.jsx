@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     padding: "20px",
-    maxWidth: 360,
-    bosSizing: "border-box",
+    maxWidth: '360px',
+    boxSizing: "border-box",
     backgroundColor: theme.palette.background.paper,
   },
   margin: {

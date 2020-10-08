@@ -13,7 +13,7 @@ const ChatsComponent = () => {
               <ChatsList />
             </Paper>
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={8}>
             <Paper>
                 <Route path="/:id" component={MessagesList} />
             </Paper>

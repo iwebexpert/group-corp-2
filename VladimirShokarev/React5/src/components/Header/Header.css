@@ -1,0 +1,15 @@
+.header {
+    height: 80px;
+    background-color: cornflowerblue;
+}
+
+.MuiList-root.MuiList-padding {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: #303f9f;
+    font-size: 30px;
+}

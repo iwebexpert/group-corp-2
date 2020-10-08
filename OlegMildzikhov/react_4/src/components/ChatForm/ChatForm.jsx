@@ -1,5 +1,4 @@
 import React,{Component} from "react";
-// import './post-add-form.css'
 
 export class ChatAddForm extends Component{
     constructor(props) {
@@ -29,7 +28,7 @@ this.setState({
             onSubmit={this.onSubmit}>
             <input
                 type="text"
-                placeholder="type here!"
+                placeholder="Введите название чата"
                 className="form-control new-post-label"
                 onChange={this.onValueChange}
                 value={this.state.text}
@@ -40,10 +39,4 @@ this.setState({
             >add</button>
         </form>
     )}
-// render(){
-//     return(
-//         <div>hi!</div>
-//     )
-// }
-
 }

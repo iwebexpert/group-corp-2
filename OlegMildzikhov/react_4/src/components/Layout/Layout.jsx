@@ -1,13 +1,11 @@
-import React, {Component} from "react";
-import {Header} from "../Messenger-Header/index";
-import {MessagesList} from "components/MessageList";
-import {Messenger} from "../Messenger/index";
-import {MessageForm} from "components/MessageForm";
-import {ChatList} from "../Chat-list";
+import React, {Component} from 'react';
+import {Header} from '../Messenger-Header/index';
+import {Messenger} from '../Messenger/index';
+import {ChatList} from '../Chat-list';
 import {chats} from '../Chats-data/ChatData';
 import {Switch, Route, Link} from 'react-router-dom';
-import {Profile} from "components/Chats-profile/Profile";
-import {ChatAddForm} from "../ChatForm/ChatForm";
+import {Profile} from 'components/Chats-profile/Profile';
+import {ChatAddForm} from '../ChatForm/ChatForm';
 import "./Layout.css";
 
 export  class Layouts extends Component {

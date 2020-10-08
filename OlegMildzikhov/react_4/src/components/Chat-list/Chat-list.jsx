@@ -18,75 +18,17 @@ constructor(props) {
 }
     render() {
         const chatsList = this.props.nameOfChats;
-        // const {info} = this.props.nameOfChats;
-        // console.log('chatlist',chatsList, this.props.nameOfChats);
-        // const {chatsList} = this.state;
         return (
             <div className={'chatNmess'}>
-                    <List>
+                    <List component="nav" aria-label="main mailbox folders">
                         {chatsList.map((chat) => (
-                            <ListItem  key={chat.id}>
-                                <Link   to={`/chats/${chat.id}`}>
+                            <ListItem button key={chat.id}>
+                                <Link to={`/chats/${chat.id}`}>
                                     <span className={"chat__item"} >{chat.title}</span>
                                 </Link>
                             </ListItem>
                         ))}
                     </List>
-                {/* <div className={'sfs'}>
-                    <Switch>
-                        <Route path="/chats/:id([0-9]+)" component={Messenger} exact></Route>
-                        <Route path="/profile/:title" render={(props) => <Profile {...props} name={info}/>}
-                               exact></Route>
-                    </Switch>
-                </div> */}
-             
-                {/*<div>*/}
-                {/*    <Switch>*/}
-                {/*        <Route path="/profile/:title" render={(props) => <Profile {...props} name={author}/>}  exact></Route>*/}
-                {/*    </Switch>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <Link to={`/profile/${author}`}>*/}
-                {/*        <ListItemText primary='Открыть профиль'></ListItemText>*/}
-                {/*    </Link>*/}
-                {/*</div>*/}
-                {/*<List component="nav" aria-label="main mailbox folders">*/}
-                {/*    <ListItem button>*/}
-                {/*        <ListItemIcon>*/}
-                {/*            <SaveIcon />*/}
-                {/*        </ListItemIcon>*/}
-                {/*        <ListItemText primary="Сохраненные сообщения" />*/}
-                {/*    </ListItem>*/}
-                {/*    <ListItem button>*/}
-                {/*        <ListItemIcon>*/}
-                {/*            <Star />*/}
-                {/*        </ListItemIcon>*/}
-                {/*        <ListItemText primary="Важные сообщения" />*/}
-                {/*    </ListItem>*/}
-                {/*</List>*/}
-                {/*<Divider />*/}
-                {/*<List component="nav" aria-label="secondary mailbox folders">*/}
-                {/*    <ListItem button>*/}
-                {/*        <Link to="/chat/1/">*/}
-                {/*            <ListItemText primary="Софи" />*/}
-                {/*        </Link>*/}
-                {/*    </ListItem>*/}
-                {/*    <ListItem button>*/}
-                {/*        <Link to="/chat/2/">*/}
-                {/*            <ListItemText primary="Вова" />*/}
-                {/*        </Link>*/}
-                {/*    </ListItem>*/}
-                {/*    <ListItem button>*/}
-                {/*        <Link to="/chat/3/">*/}
-                {/*            <ListItemText primary="Сергей" />*/}
-                {/*        </Link>*/}
-                {/*    </ListItem>*/}
-                {/*    <ListItem button>*/}
-                {/*        <Link to="/chat/4/">*/}
-                {/*            <ListItemText primary="Илья" />*/}
-                {/*        </Link>*/}
-                {/*    </ListItem>*/}
-                {/*</List>*/}
             </div>
         );
     }

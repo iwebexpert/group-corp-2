@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {Link, Switch, Route, BrowserRouter} from 'react-router-dom'
-import {MessagesList} from "../MessageList/";
-import {MessageForm} from "../MessageForm";
-import {chats} from '../Chats-data/ChatData';
-import {Header} from '../Messenger-Header';
+import {Link, Switch, Route, BrowserRouter} from 'react-router-dom';
+import {MessagesList} from '../MessageList/';
+import {MessageForm} from '../MessageForm';
 import './Messenger.css';
-import ListItemText from "@material-ui/core/ListItemText";
 
 export class Messenger extends Component {
     constructor(props) { 

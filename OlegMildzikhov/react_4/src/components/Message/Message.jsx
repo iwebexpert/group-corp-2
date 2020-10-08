@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Message.css'
+import './Message.css';
 import classNames from 'classnames';
 
 

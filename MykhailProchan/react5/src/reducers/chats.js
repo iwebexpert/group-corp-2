@@ -3,6 +3,7 @@ import update from 'react-addons-update'
 import {
   CHATS_LOAD,
   CHATS_MESSAGE_SEND,
+  ADD_CHAT,
 } from '../actions/chats'
 
 const initialState = {
@@ -21,15 +22,23 @@ export const chatsReducer = (state = initialState, action) => {
       }
 
     case CHATS_MESSAGE_SEND:
-      console.log(action.payload)
-
-
       return update(state, {
         entries: {
           [action.payload.chatId]: {
             messages: { $push: [{ text: action.payload.text, author: action.payload.author }] },
           },
         },
+      })
+
+    case ADD_CHAT:
+      return update(state, {
+        entries: {
+          [action.payload]: {
+            id: '3',
+            name: action.payload.name,
+            messages: []
+          }
+        }
       })
 
     default:

@@ -1,3 +1,3 @@
 export const profile = {
-  name: ''
+  name: 'Заглушка профиля, ведутся работы'
 }

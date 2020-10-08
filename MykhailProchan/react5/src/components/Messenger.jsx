@@ -27,7 +27,6 @@ export class Messenger extends Component {
 	}
 
 	render() {
-		//console.log(this.props)
 		return (
 			<>
 				<Content style={style.contentLayout}>

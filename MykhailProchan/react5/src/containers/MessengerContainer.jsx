@@ -6,12 +6,10 @@ import { chatsLoadAction, chatsMessageSendAction } from '../actions/chats'
 
 class MessengerContainerClass extends React.Component {
   componentDidMount() {
-    //console.log(this.props)
     this.props.chatsLoadAction();
   }
 
   handleMessageSend = (message) => {
-    //console.log(this.props.match.params.id)
     const chatId = this.props.match.params.id
     this.props.chatsMessageSendAction({
       ...message,
@@ -23,9 +21,8 @@ class MessengerContainerClass extends React.Component {
     return <Messenger messages={this.props.messages} name={this.props.name} onSend={this.handleMessageSend} />
   }
 }
-//render={(props) =><MessengerContainer {...props} chat={chats[parseInt(props.match.params.id)]} onSend={handleMessageSend} />}
+
 function mapStateToProps(state, ownProps) {
-  //console.log(state)
   const chats = state.chats.entries
   const { match } = ownProps
 

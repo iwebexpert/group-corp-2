@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Button, TextField } from '@material-ui/core';
 import './ChatAdd.scss'
 import axios from 'axios';
-export const ChatAdd = ({ onAddChat, chats }) => {
+export const ChatAdd = ({ onAddChat, chats, addChat }) => {
     const [inputValue, setInputValue] = useState('');
     const onAdd = (inputValue) => {
         if (!inputValue) {
@@ -18,7 +18,7 @@ export const ChatAdd = ({ onAddChat, chats }) => {
         axios.post('http://localhost:3001/chats',
             newChat
         );
-        onAddChat(newChat);
+        addChat(newChat);
         setInputValue('');
     }
     const onKeyDownEnter = (e, inputValue) => {

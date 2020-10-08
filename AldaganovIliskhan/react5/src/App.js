@@ -9,8 +9,17 @@ import { MessangerField } from "./components/MessangerField";
 import { setChats } from "./actions/setChats";
 import { setProfile } from "./actions/setProfile";
 import { Profile } from "./components/Profile";
+import { addChat } from "./actions/addChat";
+import { removeChat } from "./actions/removeChat";
 
-const App = ({ chats, setChats, setProfile, profileData }) => {
+const App = ({
+  chats,
+  setChats,
+  setProfile,
+  profileData,
+  addChat,
+  removeChat,
+}) => {
   const [activeChat, setActiveChat] = useState(null);
   let history = useHistory();
   useEffect(() => {
@@ -22,7 +31,7 @@ const App = ({ chats, setChats, setProfile, profileData }) => {
     axios.get("http://localhost:3001/profile").then(({ data }) => {
       setProfile(data);
     });
-  }, [setChats]);
+  }, [setChats, setProfile]);
   useEffect(() => {
     const chatId = history.location.pathname.split("/chats/")[1];
     if (chats) {
@@ -30,14 +39,7 @@ const App = ({ chats, setChats, setProfile, profileData }) => {
       setActiveChat(chat);
     }
   }, [history.location.pathname, chats]);
-  const onAddChat = (obj) => {
-    const newChats = [...chats, obj];
-    setChats(newChats);
-  };
-  const onRemoveChat = (chatId) => {
-    const newChats = chats && chats.filter((chat) => chat.id !== chatId);
-    setChats(newChats);
-  };
+
   const onEditChat = (newTitle, chatId) => {
     const newChats =
       chats &&
@@ -69,24 +71,33 @@ const App = ({ chats, setChats, setProfile, profileData }) => {
           <Profile profileData={profileData} />
         </Route>
         <Route path="/">
-          <Header active={Boolean(activeChat)} setActiveChat={setActiveChat} />
+          <Header
+            active={Boolean(activeChat)}
+            setActiveChat={setActiveChat}
+            profileData={profileData}
+          />
           <MessangerField
             chats={chats}
-            onAddChat={onAddChat}
             onClickChat={onClickChat}
             activeChat={activeChat}
             onAddMessage={onAddMessage}
             chat={activeChat}
-            onRemoveChat={onRemoveChat}
             onEditChat={onEditChat}
+            addChat={addChat}
+            removeChat={removeChat}
           />
         </Route>
       </Switch>
     </div>
   );
 };
-const mapStateToProps = ({ chats, profile }) => ({
+const mapStateToProps = ({ chats, profile, addChat }) => ({
   chats: chats.items,
   profileData: profile.profileData,
 });
-export default connect(mapStateToProps, { setChats, setProfile })(App);
+export default connect(mapStateToProps, {
+  setChats,
+  setProfile,
+  addChat,
+  removeChat,
+})(App);

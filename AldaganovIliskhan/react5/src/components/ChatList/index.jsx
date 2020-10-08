@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import removeSvg from '../../assets/img/remove.svg'
 import editSvg from '../../assets/img/edit.svg'
 import axios from 'axios';
-export const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onRemoveChat, onEditChat }) => {
+export const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onRemoveChat, onEditChat, addChat, removeChat }) => {
   let history = useHistory();
 
   const onClick = (i, chat) => {
@@ -19,7 +19,7 @@ export const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onRemoveCh
     if (window.confirm('Вы действительно хотите удалить чат?')) {
       i += 1;
       axios.delete(`http://localhost:3001/chats/${chatId}`).then(() => {
-        onRemoveChat(chatId);
+        removeChat(chatId);
       });
       if (history.location.pathname !== '/') {
         let currentChat = history.location.pathname.split('/chats/')[1];
@@ -61,7 +61,7 @@ export const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onRemoveCh
         </List> : <div style={{ padding: '40px' }}>Создайте чат</div>
       }
 
-      <ChatAdd onAddChat={onAddChat} chats={chats} />
+      <ChatAdd onAddChat={onAddChat} chats={chats} addChat={addChat} />
     </div>
   )
 }

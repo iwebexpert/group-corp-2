@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const NavbarItem = ({ title, messages, image, id }) => {
-
+export const NavbarItem = ({ id, image, messages, title }) => {
     return (
         <Link to={`/chats/${id}`} className="navbar__link" >
             <div className="navbar__about">

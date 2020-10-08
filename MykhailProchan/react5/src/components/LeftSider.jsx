@@ -14,7 +14,7 @@ export const LeftSider = (props) => {
   }
 
   const createRoom = () => {
-    this.props.onCreate(newRoomName)
+    props.onCreate(newRoomName)
     toggleModalVisibility()
   }
 
@@ -43,7 +43,7 @@ export const LeftSider = (props) => {
       }
     </Menu>
     <div style={{ height: '42px', background: 'white' }}>
-      <Button type="primary" style={{ marginLeft: '30px' }} onClick={createRoom}>Создать комнату</Button>
+      <Button type="primary" style={{ marginLeft: '30px' }} onClick={toggleModalVisibility}>Создать комнату</Button>
     </div>
     <Modal
       title="Создание комнаты"

@@ -11,7 +11,9 @@ export class LeftSiderContainerClass extends React.Component {
 
   createRoom = (name) => {
     this.props.addChatAction({
-      ...name
+      id: this.props.chats.entries.length,
+      name,
+      messages: []
     })
   }
 
@@ -29,8 +31,7 @@ export class LeftSiderContainerClass extends React.Component {
 
 function mapStateToProps(state) {
   const chats = state
-  console.log(state) //ПУСТО ЧЗХ
-  console.log('asdasdadasdadasdasdasdasdasdasdasd')
+  console.log(state)
 
   return {
     ...chats

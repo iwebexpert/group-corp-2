@@ -31,12 +31,13 @@ export const chatsReducer = (state = initialState, action) => {
       })
 
     case ADD_CHAT:
+      console.log(action.payload)
       return update(state, {
         entries: {
           [action.payload]: {
-            id: '3',
+            id: action.payload.id,
             name: action.payload.name,
-            messages: []
+            messages: action.payload.messages
           }
         }
       })

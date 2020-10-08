@@ -15,5 +15,3 @@ export const addChatAction = (chat) => ({
   type: ADD_CHAT,
   payload: chat
 })
-
-//TODO action addChat

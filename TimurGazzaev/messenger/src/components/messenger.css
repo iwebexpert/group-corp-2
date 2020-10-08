@@ -1,8 +1,27 @@
+:root {
+  --body-bg-color: #fff;
+  --main-font-color: #000;
+  --deveder-color: rgba(0, 0, 0, 0.12);
+  --menu-bg: #fff;
+  --outline-input: none
+}
+
+:root[theme='dark'] {
+  --body-bg-color: #212121;
+  --main-font-color: #fff;
+  --deveder-color: rgba(255, 255, 255, 0.2);
+  --menu-bg: #212121;
+  --outline-input: 1px solid #3f51b5;
+}
+
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  overflow: hidden;
+  background-color: var(--body-bg-color);
+  color: var(--main-font-color);
 }
 
 a {
@@ -10,10 +29,14 @@ a {
   color: #000
 }
 
+.MuiDivider-root {
+  background-color: var(--deveder-color) !important;
+}
+
 .messagesList {
   margin: 0 auto;
   width: 1000px;
-  height: 702px;
+  height: 600px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -75,3 +98,16 @@ a {
   margin: 2px 0 0 5px;
 }
 
+.MuiPaper-root.MuiMenu-paper {
+  background-color: var(--menu-bg);
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root {
+  color: var(--main-font-color);
+  outline: var(--outline-input)
+}
+
+.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl {
+  color: var(--main-font-color);
+  opacity: 0.5;
+}

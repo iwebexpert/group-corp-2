@@ -3,15 +3,81 @@ import {Drawer, Divider, List, ListItem, ListItemText, Menu, TextField, Button} 
 import IconButton from "@material-ui/core/IconButton"
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import {useTheme} from "@material-ui/core/styles"
+import {makeStyles, useTheme} from "@material-ui/core/styles"
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import AddIcon from '@material-ui/icons/Add'
 import GroupIcon from '@material-ui/icons/Group'
 import {NavLink, useHistory} from "react-router-dom"
 
-export const ChatList = ({chats, addChat, classes, open, handleDrawerToggle}) => {
+export const useStyles = makeStyles((theme) => ({
+    drawer: {
+        width: 240,
+        flexShrink: 0,
+    },
+    drawerPaper: {
+        width: 240,
+    },
+    drawerPaperDark: {
+        width: 240,
+        backgroundColor: '#171717',
+        color: '#fff'
+    },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
+    },
+    drawerTop: {
+        height: 53,
+        paddingTop: 10
+    },
+    chatItem: {
+        padding: 0
+    },
+    chat: {
+        display: "flex",
+        alignItems: "center",
+        padding: '10px 16px',
+        width: '100%'
+    },
+    activeChat: {
+        backgroundColor: '#b8b8b8',
+        padding: '10px 16px 10px 26px',
+    },
+    activeChatDark: {
+        backgroundColor: '#232227',
+        padding: '10px 16px 10px 26px',
+    },
+    user: {
+        marginLeft: 10
+    },
+    userDark: {
+        marginLeft: 10,
+        color: '#bbb'
+    },
+    addChartItem: {
+        display: "flex",
+        alignItems: "center"
+    },
+    addChart: {
+        padding: 10,
+    },
+    addChartInput: {
+        display: "block",
+        margin: 10
+    },
+    addChartButton: {
+        display: "block",
+        margin: '0 10px'
+    }
+}))
+
+export const ChatList = ({chats, addChat, open, handleDrawerToggle, darkTheme}) => {
     const theme = useTheme()
     const history = useHistory()
+    const classes = useStyles()
 
     const [anchorEl, setAnchorEl] = React.useState(null)
     const [chatName, setChatName] = React.useState(null)
@@ -38,22 +104,22 @@ export const ChatList = ({chats, addChat, classes, open, handleDrawerToggle}) =>
             variant="persistent"
             anchor="left"
             open={open}
-            classes={{
-                paper: classes.drawerPaper,
-            }}
+            classes={{paper: darkTheme ? classes.drawerPaperDark : classes.drawerPaper}}
         >
             <div className={classes.drawerTop}>
                 <IconButton onClick={handleDrawerToggle}>
-                    {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    {theme.direction === 'ltr'
+                        ? <ChevronLeftIcon color={darkTheme ? 'primary' : 'default'}/>
+                        : <ChevronRightIcon color={darkTheme ? 'primary' : 'default'}/>}
                 </IconButton>
             </div>
             <Divider />
             <List>
-                {chats.map((chat, index) => (
+                {chats.length && chats.map((chat, index) => (
                         <ListItem button key={index} className={classes.chatItem} >
-                            <NavLink to={`/chats/${chat.id}`} activeClassName={classes.activeChat} className={classes.chat}>
+                            <NavLink to={`/chats/${chat.id}`} activeClassName={darkTheme ? classes.activeChatDark : classes.activeChat} className={classes.chat}>
                             {chat.type ? <GroupIcon color="primary"/> : <AccountBoxIcon color="primary"/>}
-                            <ListItemText className={classes.user} primary={chat.title} />
+                            <ListItemText className={darkTheme ? classes.userDark : classes.user} primary={chat.title} />
                             </NavLink>
                         </ListItem>
                 ))}
@@ -87,7 +153,7 @@ export const ChatList = ({chats, addChat, classes, open, handleDrawerToggle}) =>
                         label="Title"
                         name="title"
                         onChange={handleInputChange}
-                        value={chatName}
+                        value={chatName || ''}
                         variant="outlined"
                         autoFocus
                     />

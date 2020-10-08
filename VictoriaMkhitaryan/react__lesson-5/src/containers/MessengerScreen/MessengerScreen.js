@@ -26,7 +26,8 @@ class MessengerScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.chatsLoad();
+    if (!this.props.chats[0])
+      this.props.chatsLoad();
   }
 
   render() {

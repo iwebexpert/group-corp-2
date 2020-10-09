@@ -9,7 +9,6 @@ class MessengerContainerClass extends React.Component {
   onMessageSend = (message) => {
     message.id = nanoid();
     const { chatId } = this.props;
-
     const time = new Date();
     message.time = time.toLocaleString("en-US", {
       hour: "numeric",

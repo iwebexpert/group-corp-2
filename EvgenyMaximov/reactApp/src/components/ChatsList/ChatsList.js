@@ -11,6 +11,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ChatIcon from "@material-ui/icons/Chat";
 import AddIcon from "@material-ui/icons/Add";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,14 +32,22 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     padding: "10px 0px 5px 0px",
   },
+
+  chatTitle: {
+    paddingRight: "30px",
+  },
 }));
 
 export const ChatsList = (props) => {
   const classes = useStyles();
 
-  const [selectedIndex, setSelectedIndex] = useState(1);
-  const handleListItemClick = (index) => {
-    setSelectedIndex(index);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleListItemClick = (chatId) => {
+    setSelectedIndex(chatId);
+    if (props.chats[chatId].fire) {
+      props.unfireChat(chatId);
+    }
   };
 
   const [chat, setChat] = useState({ title: "" });
@@ -94,17 +103,20 @@ export const ChatsList = (props) => {
         {props.chats.map((c) => {
           return (
             <ListItem
-              key={c.id}
+              key={c.chatId}
               button
-              selected={selectedIndex === c.id}
-              onClick={() => handleListItemClick(c.id)}
+              selected={selectedIndex === c.chatId}
+              onClick={() => handleListItemClick(c.chatId)}
             >
-              <Link to={`/chats/${c.id}`} className="chat-label">
+              <Link to={`/chats/${c.chatId}`} className="chat-label">
                 <ListItemIcon>
                   <ChatIcon />
                 </ListItemIcon>
-                <ListItemText primary={c.title} />
+                <ListItemText primary={c.title} className={classes.chatTitle} />
               </Link>
+              {c.fire ? (
+                <FiberManualRecordIcon fontSize="small" color="primary" />
+              ) : null}
             </ListItem>
           );
         })}

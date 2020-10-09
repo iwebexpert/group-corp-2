@@ -27,7 +27,7 @@ body {
 }
 
 .messages-list {
-  height: 600px;
+  height: 595px;
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@ body {
 
 .chat-title {
   padding: 10px 30px;
-  margin-top: 5px;
+  margin: 5px 0;
   font-size: 20px;
   text-align: center;
   box-sizing: border-box;

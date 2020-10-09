@@ -1,6 +1,12 @@
 import update from "react-addons-update";
 
-import { CHATS_LOAD, CHATS_MESSAGE_SEND, ADD_CHAT } from "../actions/chats";
+import {
+  CHATS_LOAD,
+  CHATS_MESSAGE_SEND,
+  ADD_CHAT,
+  CHAT_FIRE,
+  CHAT_UNFIRE,
+} from "../actions/chats";
 
 const initialState = {
   entries: [],
@@ -27,6 +33,7 @@ export const chatsReducer = (state = initialState, action) => {
                   text: action.payload.text,
                   author: action.payload.author,
                   time: action.payload.time,
+                  chatId: action.payload.chatId,
                 },
               ],
             },
@@ -36,6 +43,27 @@ export const chatsReducer = (state = initialState, action) => {
     case ADD_CHAT:
       return update(state, {
         entries: { $push: [action.payload.chat] },
+      });
+    case CHAT_FIRE:
+      return update(state, {
+        entries: {
+          [action.payload]: {
+            fire: {
+              $set: true,
+            },
+          },
+        },
+      });
+
+    case CHAT_UNFIRE:
+      return update(state, {
+        entries: {
+          [action.payload]: {
+            fire: {
+              $set: false,
+            },
+          },
+        },
       });
 
     default:

@@ -1,17 +1,20 @@
 export const chats = [
   {
-    id: 0,
     title: "Семейный чат",
+    chatId: 0,
     messages: [],
+    fire: false,
   },
   {
-    id: 1,
     title: "Рабочий чат",
+    chatId: 1,
     messages: [],
+    fire: false,
   },
   {
-    id: 2,
     title: "Друзья",
+    chatId: 2,
     messages: [],
+    fire: false,
   },
 ];

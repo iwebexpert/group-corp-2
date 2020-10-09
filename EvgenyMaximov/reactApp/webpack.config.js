@@ -8,6 +8,17 @@ module.exports = {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
   },
+  resolve: {
+    extensions: [".js", ".jsx"],
+    alias: {
+      components: path.join(__dirname, "src", "components"),
+      pages: path.join(__dirname, "src", "pages"),
+      containers: path.join(__dirname, "src", "containers"),
+      actions: path.join(__dirname, "src", "actions"),
+      reducers: path.join(__dirname, "src", "reducers"),
+      middlewares: path.join(__dirname, "src", "middlewares"),
+    },
+  },
 
   module: {
     rules: [

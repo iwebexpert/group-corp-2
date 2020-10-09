@@ -16,14 +16,16 @@ export const mapStateToProps = (component) => {
 
         case 'ChatsListContainer': {
             return function (state, ownProps){
-                const {entries, loading} = state.chats;
+                const {entries, loading, fireChatsId} = state.chats;
 
                 let chatsLoad = (loading) ? entries : null;
                 let lastChatId = (loading) ? Object.keys(chatsLoad).length : null;
+                let fireListId = (loading) ? fireChatsId : null;
 
                 return {
                     chatsLoad,
                     lastChatId,
+                    fireListId
                 };
             };
         };

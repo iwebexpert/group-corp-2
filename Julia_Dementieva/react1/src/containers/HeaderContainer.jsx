@@ -16,9 +16,7 @@ class HeaderContainerClass extends React.Component {
     }
 
     render(){
-        const {infoPerson} = this.props;
-
-        return((infoPerson) ? <Header infoPerson={infoPerson} /> : <div>Данные о пользователе не получены</div>)
+        return( <Header {...this.props} />)
     }
 }
 

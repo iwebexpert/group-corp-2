@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './MessangerField.scss'
-import { ChatList } from '../ChatList'
+import ChatList from '../ChatList'
 import { MessagesAdd } from './MessagesAdd'
 
 export const MessangerField = ({ chats, onClickChat, activeChat, onAddMessage, chat, active, onEditChat, addChat, removeChat, editChat }) => {

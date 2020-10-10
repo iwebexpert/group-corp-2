@@ -1,18 +1,18 @@
 import React from 'react'
-
 import List from '@material-ui/core/List';
-import { ChatAdd } from './../ChatAdd';
 import classNames from 'classnames'
+import axios from 'axios';
+import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+
+import { ChatAdd } from './../ChatAdd';
 import './ChatList.scss'
-import { useHistory } from 'react-router-dom';
 import removeSvg from '../../assets/img/remove.svg'
 import editSvg from '../../assets/img/edit.svg'
-import axios from 'axios';
-export const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onRemoveChat, onEditChat, addChat, removeChat }) => {
-  let history = useHistory();
+const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onEditChat, addChat, removeChat, push, pathname }) => {
 
   const onClick = (i, chat) => {
-    history.push(`/chats/${i + 1}`);
+    push(`/chats/${i + 1}`);
     onClickChat(chat);
   }
   const onRemove = (chatId, i) => {
@@ -21,18 +21,18 @@ export const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onRemoveCh
       axios.delete(`http://localhost:3001/chats/${chatId}`).then(() => {
         removeChat(chatId);
       });
-      if (history.location.pathname !== '/') {
-        let currentChat = history.location.pathname.split('/chats/')[1];
+      if (pathname !== '/') {
+        let currentChat = pathname.split('/chats/')[1];
         currentChat = Number(currentChat);
         if (currentChat < i) {
-          history.push(`/chats/${currentChat}`);
+          push(`/chats/${currentChat}`);
         }
         else if (currentChat === 1) {
-          history.push('/');
+          push('/');
         }
         else if (currentChat >= i) {
           currentChat -= 1;
-          history.push(`/chats/${currentChat}`);
+          push(`/chats/${currentChat}`);
         };
       };
     };
@@ -65,3 +65,7 @@ export const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onRemoveCh
     </div>
   )
 }
+const mapStateToProps = state => ({
+  pathname: state.router.location.pathname,
+})
+export default connect(mapStateToProps, { push })(ChatList)

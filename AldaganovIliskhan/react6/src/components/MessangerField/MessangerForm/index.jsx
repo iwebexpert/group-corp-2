@@ -46,8 +46,8 @@ export const MessangerForm = ({ onAddMessage, chat, chats }) => {
     }
     return (
         <div className="messanger__form" style={{ textAlign: 'center' }}>
-            <TextField id='standart-basic' label="Введите имя" style={{ marginRight: '10px' }} value={author} onChange={(e) => setAuthor(e.target.value)} onKeyDown={(e) => onKeyDownEnter(e, message)} />
-            <TextField id='standart-basic' label="Введите сообщение" value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={(e) => onKeyDownEnter(e, message)} />
+            <TextField label="Введите имя" style={{ marginRight: '10px' }} value={author} onChange={(e) => setAuthor(e.target.value)} onKeyDown={(e) => onKeyDownEnter(e, message)} />
+            <TextField label="Введите сообщение" value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={(e) => onKeyDownEnter(e, message)} />
             <Fab
                 variant="round"
                 color="primary"

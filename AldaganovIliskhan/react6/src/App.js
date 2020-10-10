@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import "./App.scss";
@@ -19,9 +19,9 @@ const App = ({
   profileData,
   addChat,
   removeChat,
+  pathname,
 }) => {
   const [activeChat, setActiveChat] = useState(null);
-  let history = useHistory();
   useEffect(() => {
     axios
       .get("http://localhost:3001/chats?_embed=messages")
@@ -33,12 +33,12 @@ const App = ({
     });
   }, [setChats, setProfile]);
   useEffect(() => {
-    const chatId = history.location.pathname.split("/chats/")[1];
+    const chatId = pathname.split("/chats/")[1];
     if (chats) {
       const chat = chats.find((chat, i) => i + 1 === Number(chatId));
       setActiveChat(chat);
     }
-  }, [history.location.pathname, chats]);
+  }, [pathname, chats]);
 
   const onEditChat = (newTitle, chatId) => {
     const newChats =
@@ -91,9 +91,10 @@ const App = ({
     </div>
   );
 };
-const mapStateToProps = ({ chats, profile, addChat }) => ({
+const mapStateToProps = ({ chats, profile, router }) => ({
   chats: chats.items,
   profileData: profile.profileData,
+  pathname: router.location.pathname,
 });
 export default connect(mapStateToProps, {
   setChats,

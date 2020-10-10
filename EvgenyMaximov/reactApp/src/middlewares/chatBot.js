@@ -5,6 +5,8 @@ import {
 } from "../actions/chats";
 import { nanoid } from "nanoid";
 
+let timer = null;
+
 export const chatBotMiddware = (store) => (next) => (action) => {
   if (action.type === CHATS_MESSAGE_SEND) {
     const { author, chatId } = action.payload;
@@ -39,9 +41,13 @@ export const chatBotMiddware = (store) => (next) => (action) => {
     };
 
     if (author !== "Бот") {
-      setTimeout(() => {
+      timer = setTimeout(() => {
         store.dispatch(chatsMessageSendAction(botText));
       }, 1500);
+    }
+
+    if (action.type === CHATS_MESSAGE_SEND && author === "Бот") {
+      clearTimeout(timer);
     }
 
     if (router.location.pathname !== `/chats/${chatId}`) {

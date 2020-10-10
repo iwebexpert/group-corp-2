@@ -12,6 +12,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ChatIcon from "@material-ui/icons/Chat";
 import AddIcon from "@material-ui/icons/Add";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +36,18 @@ const useStyles = makeStyles((theme) => ({
 
   chatTitle: {
     paddingRight: "30px",
+  },
+
+  chatLabel: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  deleteIcon: {
+    alignSelf: "flex-end",
+    alignContent: "flex-start",
+    zIndex: "10",
   },
 }));
 
@@ -79,6 +92,10 @@ export const ChatsList = (props) => {
     }
   };
 
+  const deleteChat = (chatId) => {
+    props.onDelete(chatId);
+  };
+
   const keyDownHandler = (e) => {
     if (e.keyCode === 13 && e.ctrlKey) addChat();
   };
@@ -103,6 +120,7 @@ export const ChatsList = (props) => {
         {props.chats.map((c) => {
           return (
             <ListItem
+              className={classes.chatLabel}
               key={c.chatId}
               button
               selected={selectedIndex === c.chatId}
@@ -117,6 +135,12 @@ export const ChatsList = (props) => {
               {c.fire ? (
                 <FiberManualRecordIcon fontSize="small" color="primary" />
               ) : null}
+              <div
+                className={classes.deleteIcon}
+                onClick={() => deleteChat(c.chatId)}
+              >
+                <DeleteIcon fontSize="small" color="secondary" />
+              </div>
             </ListItem>
           );
         })}

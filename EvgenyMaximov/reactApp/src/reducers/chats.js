@@ -6,6 +6,9 @@ import {
   ADD_CHAT,
   CHAT_FIRE,
   CHAT_UNFIRE,
+  MESSAGE_DELETE,
+  CLEAR_CHAT,
+  CHAT_DELETE,
 } from "../actions/chats";
 
 const initialState = {
@@ -63,6 +66,41 @@ export const chatsReducer = (state = initialState, action) => {
               $set: false,
             },
           },
+        },
+      });
+
+    case MESSAGE_DELETE:
+      let messageIndex = state.entries
+        .find((chat) => chat.chatId == action.payload.chatId)
+        .messages.findIndex((message) => message.id == action.payload.id);
+      return update(state, {
+        entries: {
+          [action.payload.chatId]: {
+            messages: {
+              $splice: [[messageIndex, 1]],
+            },
+          },
+        },
+      });
+
+    case CLEAR_CHAT:
+      return update(state, {
+        entries: {
+          [action.payload]: {
+            messages: {
+              $splice: [[0]],
+            },
+          },
+        },
+      });
+
+    case CHAT_DELETE:
+      let chatIndex = state.entries.findIndex(
+        (chat) => chat.chatId == action.payload
+      );
+      return update(state, {
+        entries: {
+          $splice: [[chatIndex, 1]],
         },
       });
 

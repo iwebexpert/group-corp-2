@@ -141,6 +141,8 @@ body {
 }
 
 .chat-title {
+  display: flex;
+  align-items: center;
   padding: 10px 30px;
   margin: 5px 0;
   font-size: 20px;
@@ -158,6 +160,22 @@ body {
     color: $light;
     background-color: $dark2;
   }
+}
+
+.clear-icon {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 70px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 5px 30px;
+  border-radius: 5px;
 }
 
 /*-----------empty-list-------------*/

@@ -7,24 +7,22 @@ import MessagesBlockContainer from "./MessagesBlock/MessagesBlockContainer"
 import ChatListContainer from "./ChatList/ChatListContainer"
 import HeaderContainer from "./Header/HeaderContainer"
 import ProfileContainer from "./Profile/ProfileContainer"
+import {connect} from "react-redux"
 
-export const Messenger = () => {
+const Messenger = ({pathname}) => {
     return (
-        <BrowserRouter>
-            <Container>
-                <HeaderContainer/>
-                <ChatListContainer/>
-                <Switch>
-                    <Route path='/chats/:id([0-9]+)' component={MessagesBlockContainer} exact/>
-                    <Route path='/profile' exact>
-                        <ProfileContainer/>
-                    </Route>
-                    <Route path='/' exact> </Route>
-                    <Route path='*'>
-                        <Error/>
-                    </Route>
-                </Switch>
-            </Container>
-        </BrowserRouter>
+        <Container>
+            <HeaderContainer/>
+            <ChatListContainer/>
+            {pathname === '/profile' && <ProfileContainer/>}
+            {pathname.includes('/chats') && <MessagesBlockContainer/>}
+            {/*{pathname === '*' && <Error/>}*/}
+        </Container>
     )
 }
+
+const mapStateToProps = state => ({
+    pathname: state.router.location.pathname,
+})
+
+export default connect(mapStateToProps, null)(Messenger)

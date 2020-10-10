@@ -1,38 +1,41 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
-import {getMessages, sendMessage} from '../../actions/chats'
+import {deleteMessage, sendMessage} from '../../actions/chats'
 import {MessagesBlock} from "./MessagesBlock"
+import {createMatchSelector} from "connected-react-router";
 
-const MessagesBlockContainer = ({chatId, messages, getMessages, sendMessage, isDrawerOpen}) =>  {
-
-    useEffect(() => {
-        getMessages()
-    }, [])
+const MessagesBlockContainer = ({chatId, messages, sendMessage, isDrawerOpen, deleteMessage}) =>  {
 
     const addMessage = (message) => {
         message.id = nanoid()
         sendMessage({...message, chatId})
     }
 
-    return <MessagesBlock messages={messages} addMessage={addMessage} open={isDrawerOpen} chatId={chatId}/>
+    const handleDeleteMessage = (messageId) => {
+        deleteMessage(chatId, messageId)
+    }
+
+    return <MessagesBlock messages={messages} addMessage={addMessage} open={isDrawerOpen} handleDeleteMessage={handleDeleteMessage}/>
 }
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state){
     const chats = state.chats.entries
-    const {match} = ownProps
+    const matchSelector = createMatchSelector("/chats/:chatId")
+    const match = matchSelector(state)
+    const chatId = match ? match.params.chatId : null
 
     let messages = null
-
-    if(match && chats[match.params.id]){
-        messages = chats[match.params.id].messages
+    let chatsTmp = chats.filter(chat => chat.id.toString() === chatId)[0]
+    if(chatId && chatsTmp){
+        messages = chatsTmp.messages
     }
 
     return {
         messages,
-        chatId: match ? match.params.id: null,
-        isDrawerOpen: state.settings.isDrawerOpen
+        chatId,
+        isDrawerOpen: state.settings.isDrawerOpen,
     }
 }
 
-export default connect(mapStateToProps, {getMessages, sendMessage})(MessagesBlockContainer)
+export default connect(mapStateToProps, {sendMessage, deleteMessage})(MessagesBlockContainer)

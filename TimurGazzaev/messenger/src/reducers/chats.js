@@ -1,29 +1,24 @@
 import update from 'react-addons-update'
 
-import {
-    GET_CHATS,
-    SEND_MESSAGE,
-    ADD_CHAT
-} from '../actions/chats'
-
 const initialState = {
-    entries: {},
-    loading: false
+    entries: [],
+    isFetching: false
 }
 
 import {chats} from '../helpers/chatsData'
 
 export const chatsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_CHATS:
+        case 'GET_CHATS':
             return {
                 ...state,
                 entries: chats,
             }
-        case SEND_MESSAGE:
+        case 'SEND_MESSAGE':
+            let chatIndexSend = state.entries.findIndex(chat => chat.id.toString() === action.payload.chatId)
             return update(state, {
                 entries: {
-                    [action.payload.chatId]: {
+                    [chatIndexSend]: {
                         messages: {
                             $push: [{
                                 id: action.payload.id,
@@ -35,11 +30,55 @@ export const chatsReducer = (state = initialState, action) => {
                     }
                 }
             })
-        case ADD_CHAT:
+        case 'DELETE_MESSAGE':
+            let chatIndexDelete = state.entries.findIndex(chat => chat.id.toString() === action.payload.chatId)
+            let index = state.entries.filter(chat => chat.id.toString() === action.payload.chatId)[0].messages.findIndex(message => message.id === action.payload.messageId)
+            return update(state, {
+                entries: {
+                    [chatIndexDelete]: {
+                        messages: {
+                            $splice: [[index, 1]]
+                        }
+                    }
+                }
+            })
+        case 'ADD_CHAT':
+            const {chatId, title} = action.payload
             return {
                 ...state,
-                entries: [...state.entries, {id: state.entries.length, title: action.payload, type: 1, messages: []}]
+                entries: [
+                    ...state.entries,
+                    {
+                        id: chatId,
+                        title,
+                        type: 1,
+                        onFire: false,
+                        messages: [],
+                    }
+                ]
             }
+        case 'DELETE_CHAT':
+            return {
+                ...state,
+                entries: state.entries.filter(chat => chat.id !== action.payload)
+            }
+        case 'SET_ON_FIRE':
+            let chatIndexFire = state.entries.findIndex(chat => chat.id.toString() === action.payload.chatId)
+            return update(state, {
+                entries: {
+                    [chatIndexFire]: {
+                        onFire: {
+                            $set: action.payload.onFire
+                        }
+                    }
+                }
+            })
+        case 'TOGGLE_IS_FETCHING':
+            return {
+                ...state,
+                isFetching: !state.isFetching
+            }
+
         default:
             return state;
     }

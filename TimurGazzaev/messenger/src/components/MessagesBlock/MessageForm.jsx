@@ -13,6 +13,13 @@ export class MessageForm extends Component {
         onSend: PropTypes.func.isRequired
     }
 
+    getTime = () => {
+        let date = new Date()
+        let hours = date.getHours()
+        let minutes = date.getMinutes()
+        return `${hours}:${minutes > 9 ? minutes : `0${minutes}`}`
+    }
+
     handleInputChange = (event) => {
         const fieldName = event.target.name
         this.setState({[fieldName]: event.target.value})
@@ -32,7 +39,7 @@ export class MessageForm extends Component {
             return
         }
 
-        this.state.time = this.props.getTime()
+        this.state.time = this.getTime()
 
         if (typeof onSend === 'function') {
             onSend(this.state)

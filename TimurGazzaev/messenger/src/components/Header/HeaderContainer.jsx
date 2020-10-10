@@ -2,16 +2,16 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux"
 import {setDrawer, setDarkTheme} from "../../actions/settings"
 import {Header} from "./Header"
-import {getMessages} from "../../actions/chats"
+import {push} from "connected-react-router"
 
-export const ChatListContainer = ({isDrawerOpen, setDrawer, getMessages, profile, darkTheme, setDarkTheme}) => {
+export const ChatListContainer = ({redirect, isDrawerOpen, setDrawer, profile, darkTheme, setDarkTheme}) => {
 
     useEffect(() => {
-        getMessages()
-        setDarkTheme(localStorage.getItem('theme') === 'dark')
+        document.documentElement.setAttribute("theme", darkTheme ? 'dark' : 'white')
     }, [])
 
-    return <Header open={isDrawerOpen} setOpen={setDrawer} profile={profile} darkTheme={darkTheme} setDarkTheme={setDarkTheme}/>
+    return <Header redirect={redirect} open={isDrawerOpen} setOpen={setDrawer} profile={profile}
+                   darkTheme={darkTheme} setDarkTheme={setDarkTheme}/>
 }
 
 function mapStateToProps(state){
@@ -22,4 +22,12 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {setDrawer, getMessages, setDarkTheme})(ChatListContainer)
+function mapDispatchToProps(dispatch){
+    return {
+        setDrawer: () => dispatch(setDrawer()),
+        setDarkTheme: () => dispatch(setDarkTheme()),
+        redirect: (path) => dispatch(push(path)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatListContainer)

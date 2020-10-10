@@ -19,10 +19,9 @@ export class ChatsList extends Component {
     }
     render() {
         const {chats, fireChats, onClick} = this.props;
-        console.log('chats', chats)
-        console.log('chats', fireChats)
         return (
-            <div className='chats'>
+            (chats) ?
+            (<div className='chats'>
                 <div className='chatsList'>
                 <List>
                     {
@@ -31,7 +30,7 @@ export class ChatsList extends Component {
                 </List>
                 </div>
                 <ChatForm onSend={this.handleChatAdd}/>
-            </div>
+            </div>) : <div>Данные загружаются</div>
         );
     }
 }

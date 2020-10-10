@@ -25,7 +25,8 @@ class HeaderClass extends Component {
     render() {
         const {infoPerson, classes} = this.props;
         return (
-            <div className="header">
+            (infoPerson) ?
+            (<div className="header">
                 {/* <Link to="/" style={{ textDecoration: 'none' }}><div className="header-logo">VChats</div></Link> */}
                 <div button="true" onClick={this.handleRedirect} style={{ cursor: 'pointer' }} className="header-logo">VChats</div>
                 <Link to="/About" style={{ textDecoration: 'none' }}>
@@ -34,7 +35,7 @@ class HeaderClass extends Component {
                         {infoPerson.name}
                     </div>
                 </Link>
-            </div>
+            </div>) : <div>Данные загружаются</div>
         )
     }
 }

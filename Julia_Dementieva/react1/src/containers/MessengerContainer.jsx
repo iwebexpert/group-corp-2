@@ -14,7 +14,7 @@ class MessengerContainerClass extends React.Component {
             this.props.chatsLoadAction();
             this.props.aboutLoadAction();
             this.props.robotLoadAction();
-        }
+        };
     }
 
     handleMessageSend = (message) => {

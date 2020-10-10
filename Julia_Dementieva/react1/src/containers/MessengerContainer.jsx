@@ -10,9 +10,11 @@ import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 class MessengerContainerClass extends React.Component {
     
     componentDidMount(){
-        this.props.chatsLoadAction();
-        this.props.aboutLoadAction();
-        this.props.robotLoadAction();
+        if(this.props.chatId ==null){
+            this.props.chatsLoadAction();
+            this.props.aboutLoadAction();
+            this.props.robotLoadAction();
+        };
     }
 
     handleMessageSend = (message) => {
@@ -25,54 +27,8 @@ class MessengerContainerClass extends React.Component {
     };
 
     render(){
-        const {messages, namePerson, nameRobot} = this.props;
-        return((messages && namePerson && nameRobot) ? <Messenger {...this.props}  onAdd={this.handleMessageSend} /> : <Error />)
+        return(<Messenger {...this.props}  onAdd={this.handleMessageSend} />)
     }
 }
 
 export const MessengerContainer = connect(mapStateToProps('MessengerContainer'), mapDispatchToProps('MessengerContainer'))(MessengerContainerClass);
-
-// function mapStateToProps(state, ownProps){
-//     const chats = state.chats.entries;
-//     const {match} = ownProps;
-//     const {loading, entries} = state.about;
-
-//     let messages, authorChat = null;
-//     let namePerson, avatarChat = null;
-//     let nameRobot, answerRobot = null;
-
-//     if(match && chats[match.params.id]){
-//         messages = chats[match.params.id].messages;
-//         authorChat = chats[match.params.id].author;
-//         avatarChat = chats[match.params.id].avatar;
-//     }
-
-//     if(loading){
-//         namePerson = entries.name;
-//     }
-
-//     if(state.robot.loading){
-//         nameRobot = state.robot.entries.nameRobot;
-//         answerRobot = state.robot.entries.answerRobot;
-//     }
-    
-//     return {
-//         messages,
-//         chatId: match ? match.params.id: null,
-//         authorChat,
-//         avatarChat,
-//         namePerson,
-//         nameRobot,
-//         answerRobot,
-//     };
-// }
-
-// function mapDispatchToProps(dispatch){
-//     return {
-//         chatsLoadAction: () => dispatch(chatsLoadAction()),
-//         aboutLoadAction: () => dispatch(aboutLoadAction()),
-//         robotLoadAction: () => dispatch(robotLoadAction()),
-//         chatsMessageSendAction: (message) => dispatch(chatsMessageSendAction(message)),
-//     }
-// }
-

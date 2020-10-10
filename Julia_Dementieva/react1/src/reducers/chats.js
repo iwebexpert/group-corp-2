@@ -3,12 +3,15 @@ import update from 'react-addons-update';
 import {
     CHATS_LOAD,
     CHATS_MESSAGE_SEND,
-    CHATSLISTS_SEND
+    CHATSLISTS_SEND,
+    MESSAGE_FIRE,
+    MESSAGE_UNFIRE,
 } from '../actions/chats';
 
 const initialState = {
     entries: {},
-    loading: false,
+    loading: null,
+    fireChatsId: [],
 };
 
 import {chats} from '../helper/chatsData';
@@ -20,9 +23,11 @@ export const chatsReducer = (state = initialState, action) => {
                 ...state,
                 entries: chats,
                 loading: true,
+                fireChatsId: Array(chats.length).fill(false),
             };
         case CHATS_MESSAGE_SEND:
             //react-addons-update
+            console.log('send', state.fireChatsId)
             return update(state, {
                 entries: {
                     [action.payload.chatId]: {
@@ -35,6 +40,20 @@ export const chatsReducer = (state = initialState, action) => {
             return update(state, {
                 entries: {$push: [{id: newId, author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
             });
+
+        case MESSAGE_FIRE:
+            return update(state, {
+                fireChatsId: {
+                    [+action.payload.chatId] : {$set: true},
+                }
+        });
+        
+        case MESSAGE_UNFIRE: 
+            return update(state, {
+                fireChatsId: {
+                    [+action.payload.chatId] : {$set: false},
+                }
+        });
 
         default:
             return state;

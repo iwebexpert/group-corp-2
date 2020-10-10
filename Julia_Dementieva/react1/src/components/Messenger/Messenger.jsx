@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
 import {MessageList} from '../MessageList';
 import {MessageForm} from '../MessageForm';
+import {Error} from '../../pages/Error';
 
 import './Messenger.css';
 
@@ -13,33 +14,12 @@ export class Messenger extends Component {
             onAdd(message);
         }
     };
-
-    // С помощью floar and random получаю индекс массива answerRobot, генерация числа от 0 до length-1
-    // Math.floor(Math.random() * (max - min + 1)) + min -- макс и мин включительно
-    randomAnswerRobot = () => {
-        const {answerRobot} = this.props;
-        return answerRobot[Math.floor(Math.random() * answerRobot.length )];
-    }
-
-    lastMessageAuthor = (minusMessage) => {
-        
-        return this.props.messages[this.props.messages.length-minusMessage].author;
-    }
-
-    componentDidUpdate() {
-        const {messages, nameRobot} = this.props;
-        setTimeout(() =>{
-            if(messages.length > 0 && this.lastMessageAuthor(1)!==nameRobot){ 
-                this.setState(
-                    this.handleMessageSend({text: `${this.lastMessageAuthor(1)}, ${this.randomAnswerRobot()}`, author: `${nameRobot}`}));
-                }
-        }, 3000);
-    }
     
     render() {
         const {authorChat, namePerson, avatarChat, messages } = this.props;
         return (
-            <div className="messenger">
+            (messages) ?
+            (<div className="messenger">
                 <div className="messages-info">
                     <ListItem alignItems="center">   
                         <ListItemAvatar>
@@ -57,7 +37,7 @@ export class Messenger extends Component {
                 <div className="message-form"> 
                     <MessageForm onSend={this.handleMessageSend} person={namePerson}/>
                 </div>           
-            </div>
+            </div>) : <Error />
         )
     }
 }

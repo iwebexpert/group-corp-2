@@ -10,42 +10,31 @@ import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 class ChatsListContainerClass extends React.Component {
     
     componentDidMount(){
-        this.props.chatsLoadAction();
+        
+        if(this.props.chatsLoad == null){
+            this.props.chatsLoadAction();
+        }
     }
 
     chatAddHandler = (newchat) => {
-        const {chatsListSendAction} = this.props;
+        const {chatsListSendAction, redirect, lastChatId} = this.props;
         chatsListSendAction({
             author: newchat,
             avatar: 'https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif',
         });
+        redirect(lastChatId);
     };
 
+    chatClickHandler = (chatId) =>{
+        const {messageUnfireAction} = this.props;
+        if (chatId >= 0){
+            messageUnfireAction({chatId});
+        }
+    }
+
     render(){
-        const {chatsLoad} = this.props;
-        return(chatsLoad ? <ChatsList chats={chatsLoad} onAdd={this.chatAddHandler}  /> : <div>Данные не получены</div>)
+        const {chatsLoad, fireListId} = this.props;
+        return( <ChatsList chats={chatsLoad} fireChats={fireListId} onAdd={this.chatAddHandler} onClick={this.chatClickHandler}/>)
     }
 }
 export const ChatsListContainer = connect(mapStateToProps('ChatsListContainer'), mapDispatchToProps('ChatsListContainer'))(ChatsListContainerClass);
-// function mapStateToProps(state, ownProps){
-//     const {entries, loading} = state.chats;
-
-//     let chatsLoad = null;
-
-//     if(loading){
-//         chatsLoad = entries;
-//     }
- 
-//     return {
-//         chatsLoad,
-//     };
-// }
-
-// function mapDispatchToProps(dispatch){
-//     return {
-//         chatsLoadAction: () => dispatch(chatsLoadAction()),
-//         chatsListSendAction: (chat) => dispatch(chatsListSendAction(chat)),
-//     }
-// }
-
-

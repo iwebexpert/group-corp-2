@@ -9,13 +9,14 @@ import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
 class HeaderContainerClass extends React.Component {
     
     componentDidMount(){
-        this.props.aboutLoadAction();
+        if(this.props.infoPerson == null){
+            this.props.aboutLoadAction();
+        }
+        console.log('header',this.props.infoPerson);
     }
 
     render(){
-        const {infoPerson} = this.props;
-
-        return((infoPerson) ? <Header infoPerson={infoPerson} /> : <div>Данные о пользователе не получены</div>)
+        return( <Header {...this.props} />)
     }
 }
 

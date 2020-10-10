@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {IconButton, TextField, withStyles} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
-import { Link } from 'react-router-dom';
-
 import './ChatForm.css'
 
 
@@ -26,10 +24,6 @@ class ChatFormClass extends Component {
         return (!str || /^\s*$/.test(str));
     }
 
-    // limitStr(str){
-    //     return (/^*{1,10}$/.test(str));
-    // }
-
     handleChatSend = () => {
         
         const {onSend} = this.props;
@@ -39,11 +33,6 @@ class ChatFormClass extends Component {
             alert('Введите название чата');       
             return;
         }
-
-        // if(!this.limitStr(nameChat)){
-        //     alert('Название чата слишком длинное');       
-        //     return;
-        // }
 
         if(typeof onSend === 'function'){
             onSend(nameChat);
@@ -59,7 +48,6 @@ class ChatFormClass extends Component {
             event.preventDefault();
             this.handleChatSend();
         }
-        
     };
 
     render() {

@@ -3,6 +3,7 @@ import {List } from '@material-ui/core';
 
 import {ChatItem} from '../ChatItem';
 import {ChatForm} from '../ChatForm';
+import {Error} from '../../pages/Error';
 
 import './ChatsList.css'
 
@@ -17,18 +18,19 @@ export class ChatsList extends Component {
         }
     }
     render() {
-        const {chats} = this.props;
+        const {chats, fireChats, onClick} = this.props;
         return (
-            <div className='chats'>
+            (chats) ?
+            (<div className='chats'>
                 <div className='chatsList'>
                 <List>
                     {
-                        chats.map((chat) => <ChatItem avatar={chat.avatar} author={chat.author} id={chat.id} key={chat.id}/>)
+                        chats ? chats.map((chat) => <ChatItem avatar={chat.avatar} author={chat.author} id={chat.id} fire={fireChats[chat.id]} onClick={onClick} key={chat.id}/>) : <Error/>
                     }             
                 </List>
                 </div>
                 <ChatForm onSend={this.handleChatAdd}/>
-            </div>
+            </div>) : <div>Данные загружаются</div>
         );
     }
 }

@@ -1,0 +1,76 @@
+.messanger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .Messanger_field {
+        background: url('../src/img/messengerFieldBack.jpg') no-repeat center;
+        border-right: 3px solid #F3F3F3;
+        overflow-y: scroll;
+        background-size: cover;
+        height: 85%;
+        @include scrollStyle;
+        display: flex;
+        flex-direction: column;
+    }
+    .Messanger_form {
+        height: 15%;
+        border-bottom: 5px solid #F3F3F3;
+        border-right: 3px solid #F3F3F3;
+        display: flex;
+        align-items: center;
+        transition: .3s;
+        input {
+            width: 1024px;
+            height: 54px;
+            margin-left: 40px;
+            margin-top: 8px;
+            outline: none;
+            font-size: 24px;
+            border-radius: 10px;
+            &::placeholder {
+                transition: .3s;
+            }
+            &:focus::placeholder {
+                transition: .3s;
+                color: transparent;
+            }
+        }
+        img {
+            width: 96px;
+            height: 67px;
+            margin-top: 5px;
+            cursor: pointer;
+            transition: .3s;
+            &:hover {
+                transition: .3s;
+                transform: rotate(-2deg);
+            }
+        }
+    }
+    .Messanger_field_full {
+        background: url('../src/img/messengerFieldBack.jpg') no-repeat center;
+        border-right: 3px solid #F3F3F3;
+        overflow-y: scroll;
+        background-size: cover;
+        height: 100%;
+        border-bottom: 3px solid #F3F3F3;
+        @include scrollStyle;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h2 {
+            color: #fff;
+            font-size: 36px;
+            font-weight: bold;
+            padding: 50px 200px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.7);;
+            background-color: rgba(136, 161, 167, 0.8);
+            border: 1px solid rgba(136, 161, 167, 0.8);
+        }
+    }
+    .Messanger_form_No {
+        transition: .3s;
+        display: none;
+    }
+}

@@ -1,0 +1,52 @@
+.profile {
+    background: url('../src/img/messengerFieldBack.jpg') no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #fff;
+    div {
+        
+    }
+    img {
+        margin-top: 50px;
+    }
+    p {
+        margin-left: 20px;
+        margin-bottom: 5px;
+        color: #D7D7D7;
+        font-size: 18px;
+        text-align: left;
+        margin-top: 15px;
+    }
+    input {
+        width: 280px;
+        height: 40px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        background-color: #BDB7B6;
+        font-size: 24px;
+        padding-left: 10px;
+    }
+    button {
+        margin-top: 50px;
+        margin-bottom: 200px;
+        border-radius: 20px;
+        border: none;
+        width: 240px;
+        height: 40px;
+        color: #E1DADA;
+        background-color: #D06161;
+        font-size: 18px;
+        cursor: pointer;
+        transition: .3s;
+        &:hover {
+            transition: .3s;
+            background-color: #c73a3a;
+        }
+    }
+}

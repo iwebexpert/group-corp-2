@@ -57,7 +57,7 @@ export class Messenger extends Component{
 
  
     componentDidUpdate(){
-        if(this.messages.length){
+        if(this.messages !== null && this.messages.length){
             clearTimeout(this.state.interval);
 
             const name = this.messages[this.messages.length-1].author;

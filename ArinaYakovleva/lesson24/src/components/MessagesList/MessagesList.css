@@ -1,0 +1,17 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+#root{
+    display: flex;
+    justify-content: center;
+}
+
+.messages-list{
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: calc(100% - 40px);
+    overflow-y: scroll;
+}

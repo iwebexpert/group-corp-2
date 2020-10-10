@@ -1,7 +1,3 @@
-import {
-    SET_DRAWER, SET_DARK_THEME,
-} from '../actions/settings'
-
 const initialState = {
     isDrawerOpen: true,
     darkTheme: false
@@ -9,22 +5,20 @@ const initialState = {
 
 export const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_DRAWER:
+        case 'SET_DRAWER':
             return {
                 ...state,
                 isDrawerOpen: !state.isDrawerOpen,
             }
-        case SET_DARK_THEME:
-            if (action.payload) {
+        case 'SET_THEME':
+            if (!state.darkTheme) {
                 document.documentElement.setAttribute("theme", "dark")
-                localStorage.setItem('theme', 'dark')
             } else {
                 document.documentElement.setAttribute("theme", "white")
-                localStorage.setItem('theme', 'white')
             }
             return {
                 ...state,
-                darkTheme: action.payload,
+                darkTheme: !state.darkTheme,
             }
         default:
             return state

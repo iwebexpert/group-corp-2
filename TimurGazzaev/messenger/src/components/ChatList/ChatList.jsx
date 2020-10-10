@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Drawer, Divider, List, ListItem, ListItemText, Menu, TextField, Button} from "@material-ui/core"
 import IconButton from "@material-ui/core/IconButton"
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
@@ -6,19 +6,20 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import {makeStyles, useTheme} from "@material-ui/core/styles"
 import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import AddIcon from '@material-ui/icons/Add'
+import CloseIcon from '@material-ui/icons/Close'
 import GroupIcon from '@material-ui/icons/Group'
-import {NavLink, useHistory} from "react-router-dom"
+import {nanoid} from 'nanoid'
 
 export const useStyles = makeStyles((theme) => ({
     drawer: {
-        width: 240,
+        width: 270,
         flexShrink: 0,
     },
     drawerPaper: {
-        width: 240,
+        width: 270,
     },
     drawerPaperDark: {
-        width: 240,
+        width: 270,
         backgroundColor: '#171717',
         color: '#fff'
     },
@@ -34,35 +35,65 @@ export const useStyles = makeStyles((theme) => ({
         paddingTop: 10
     },
     chatItem: {
-        padding: 0
+        padding: '5px 10px',
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    activeChat: {
+        backgroundColor: '#b8b8b8',
+        padding: '5px 10px',
+        display: "flex",
+        '&:hover': {
+            backgroundColor: '#b8b8b8'
+        }
+    },
+    activeChatDark: {
+        backgroundColor: '#232227',
+        padding: '5px 10px',
+        display: "flex",
+        '&:hover': {
+            backgroundColor: '#232227'
+        }
     },
     chat: {
         display: "flex",
         alignItems: "center",
-        padding: '10px 16px',
+        padding: 5,
         width: '100%'
     },
-    activeChat: {
-        backgroundColor: '#b8b8b8',
-        padding: '10px 16px 10px 26px',
-    },
-    activeChatDark: {
-        backgroundColor: '#232227',
-        padding: '10px 16px 10px 26px',
-    },
     user: {
-        marginLeft: 10
+        marginLeft: 10,
+        marginRight: 10,
+        alignItems: "center",
+        display: "flex"
     },
     userDark: {
         marginLeft: 10,
+        marginRight: 10,
+        display: "flex",
+        alignItems: "center",
         color: '#bbb'
+    },
+    notification: {
+        backgroundColor: "red",
+        width: 10,
+        height: 10,
+        marginLeft: 10,
+        borderRadius: 25
+    },
+    deleteIco: {
+        cursor: 'pointer',
+        width: 18,
+        '&:hover': {
+            fill: '#f00'
+        }
     },
     addChartItem: {
         display: "flex",
         alignItems: "center"
     },
     addChart: {
-        padding: 10,
+        padding: 5,
     },
     addChartInput: {
         display: "block",
@@ -74,13 +105,12 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const ChatList = ({chats, addChat, open, handleDrawerToggle, darkTheme}) => {
+export const ChatList = ({chats, chatId, addChat, deleteChat, redirect, open, handleDrawerToggle, darkTheme}) => {
     const theme = useTheme()
-    const history = useHistory()
     const classes = useStyles()
 
-    const [anchorEl, setAnchorEl] = React.useState(null)
-    const [chatName, setChatName] = React.useState(null)
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [chatName, setChatName] = useState(null)
     const menuOpen = Boolean(anchorEl);
 
     const handleMenu = (event) => {
@@ -91,11 +121,33 @@ export const ChatList = ({chats, addChat, open, handleDrawerToggle, darkTheme}) 
         setChatName(event.target.value)
     }
 
+    const handleChatChoose = (chatId) => {
+        redirect(chatId)
+    }
+
     const createChart = () => {
-        addChat(chatName)
-        setChatName('')
-        setAnchorEl(null)
-        history.push(`/chats/${chats.length}`)
+        let id = nanoid()
+        if (chatName) {
+            setChatName('')
+            setAnchorEl(null)
+            addChat(id, chatName)
+            redirect(id)
+        } else {
+            alert('Введите название чата')
+        }
+    }
+
+    const handleDeleteChat = (title, chatId) => {
+        if(confirm(`Are you sure you want to delete chat ${title}?`)) {
+            deleteChat(chatId)
+            redirect(chats[0].id)
+        }
+    }
+
+    const onKeyPress = (event) => {
+        if (event.keyCode === 13) {
+            createChart()
+        }
     }
 
     return (
@@ -109,27 +161,32 @@ export const ChatList = ({chats, addChat, open, handleDrawerToggle, darkTheme}) 
             <div className={classes.drawerTop}>
                 <IconButton onClick={handleDrawerToggle}>
                     {theme.direction === 'ltr'
-                        ? <ChevronLeftIcon color={darkTheme ? 'primary' : 'default'}/>
-                        : <ChevronRightIcon color={darkTheme ? 'primary' : 'default'}/>}
+                        ? darkTheme ? <ChevronLeftIcon color='primary'/> : <ChevronLeftIcon/>
+                        : darkTheme ? <ChevronRightIcon color='primary'/> : <ChevronRightIcon/>}
                 </IconButton>
             </div>
-            <Divider />
+            <Divider/>
             <List>
-                {chats.length && chats.map((chat, index) => (
-                        <ListItem button key={index} className={classes.chatItem} >
-                            <NavLink to={`/chats/${chat.id}`} activeClassName={darkTheme ? classes.activeChatDark : classes.activeChat} className={classes.chat}>
+                {chats.length && chats.map((chat) => (
+                    <ListItem button key={chat.id} className={chatId === chat.id.toString() ?
+                        darkTheme ? classes.activeChatDark : classes.activeChat : classes.chatItem}>
+                        <div onClick={() => handleChatChoose(chat.id)} className={classes.chat}>
                             {chat.type ? <GroupIcon color="primary"/> : <AccountBoxIcon color="primary"/>}
-                            <ListItemText className={darkTheme ? classes.userDark : classes.user} primary={chat.title} />
-                            </NavLink>
-                        </ListItem>
+                            <div className={darkTheme ? classes.userDark : classes.user}>
+                                <ListItemText primary={chat.title}/>
+                                {chat.onFire && <div className={classes.notification}> </div>}
+                            </div>
+                        </div>
+                        <CloseIcon onClick={() => handleDeleteChat(chat.title, chat.id)} className={classes.deleteIco}/>
+                    </ListItem>
                 ))}
             </List>
-            <Divider />
+            <Divider/>
             <List>
                 <ListItem button onClick={handleMenu}>
                     <div className={classes.addChartItem}>
                         <AddIcon/>
-                        <ListItemText className={classes.user} primary={'Add chat'} />
+                        <ListItemText className={classes.user} primary={'Add chat'}/>
                     </div>
                 </ListItem>
                 <Menu
@@ -150,6 +207,7 @@ export const ChatList = ({chats, addChat, open, handleDrawerToggle, darkTheme}) 
                 >
                     <TextField
                         className={classes.addChartInput}
+                        onKeyDown={onKeyPress}
                         label="Title"
                         name="title"
                         onChange={handleInputChange}
@@ -157,7 +215,8 @@ export const ChatList = ({chats, addChat, open, handleDrawerToggle, darkTheme}) 
                         variant="outlined"
                         autoFocus
                     />
-                    <Button onClick={createChart} className={classes.addChartButton} variant="contained" color="primary">Create chat</Button>
+                    <Button onClick={createChart} className={classes.addChartButton} variant="contained"
+                            color="primary">Create chat</Button>
                 </Menu>
             </List>
         </Drawer>

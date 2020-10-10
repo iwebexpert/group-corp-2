@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {MessagesList} from './MessagesList'
 import {MessageForm} from './MessageForm'
 import {Grid, Divider} from "@material-ui/core"
@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        marginLeft: 220,
+        marginLeft: 250,
     },
     form: {
         margin: '30px auto 0',
@@ -36,50 +36,26 @@ export const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 220,
     },
+    closeIcon: {
+        width: 16,
+        cursor: "pointer",
+        marginLeft: 10
+    }
 }))
 
-export const MessagesBlock = ({messages, addMessage, open, chatId}) => {
-
-    const [isFetching, setIsFetching] = useState(false)
+export const MessagesBlock = ({messages, addMessage, open, handleDeleteMessage}) => {
 
     const classes = useStyles()
-
-    const getTime = () => {
-        let date = new Date()
-        let hours = date.getHours()
-        let minutes = date.getMinutes()
-        return `${hours}:${minutes > 9 ? minutes : `0${minutes}`}`
-    }
-
-    const sendMessage = (message) => {
-
-        addMessage(message)
-
-        if (isFetching) {
-            return
-        }
-
-        setIsFetching(true)
-
-        setTimeout(() => {
-            addMessage({
-                author: 'Бот',
-                text: `Привет, ${message.author}`,
-                time: getTime()
-            })
-            setIsFetching(false)
-        }, 1000)
-    }
 
     return (
         <Grid container spacing={2}>
             <Grid className={clsx(classes.content, {[classes.contentShift]: open})}>
                 <Grid item xs={4} className={classes.messages}>
-                    {messages && <MessagesList messages={messages}/>}
+                    <MessagesList messages={messages} handleDeleteMessage={handleDeleteMessage} classes={classes}/>
                 </Grid>
                 <Divider/>
                 <Grid item xs={8} className={classes.form}>
-                    <MessageForm classes={classes} getTime={getTime} onSend={sendMessage}/>
+                    <MessageForm classes={classes} onSend={addMessage}/>
                 </Grid>
             </Grid>
         </Grid>

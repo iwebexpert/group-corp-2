@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme) => ({
         }),
     },
     appBarShift: {
-        width: `calc(100% - ${240}px)`,
+        width: `calc(100% - ${270}px)`,
         marginLeft: 240,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
@@ -52,8 +52,16 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const Header = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
+export const Header = ({redirect, open, setOpen, profile, darkTheme, setDarkTheme}) => {
     const classes = useStyles()
+
+    const handleProfileClick = () => {
+        redirect('/profile')
+    }
+
+    const handleMessengerClick = () => {
+        redirect('/chats/0')
+    }
 
     return (
         <AppBar
@@ -73,12 +81,12 @@ export const Header = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" noWrap>Messenger</Typography>
+                    <Typography variant="h6" noWrap onClick={handleMessengerClick}>Messenger</Typography>
                 </div>
                 <div className={classes.rightBlock}>
-                    <Switch color="default" checked={darkTheme} onChange={() => setDarkTheme(!darkTheme)} />
+                    <Switch color="default" checked={darkTheme} onChange={() => setDarkTheme()} />
                     <div className={classes.profileBlock}>
-                        <Link to='/profile' className={classes.profileBlockWrap}>
+                        <div onClick={handleProfileClick} className={classes.profileBlockWrap}>
                             <Typography variant="h6" noWrap>{profile && `${profile.name} ${profile.surName}`}</Typography>
                             <IconButton
                                 aria-label="account of current user"
@@ -88,7 +96,7 @@ export const Header = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
                             >
                                 <AccountCircle/>
                             </IconButton>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </Toolbar>

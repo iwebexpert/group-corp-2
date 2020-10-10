@@ -1,8 +1,9 @@
 export const chats = [
     {
-        id: 0,
+        id: '0',
         title: 'ИКТО-01-17',
         type: 1,
+        onFire: false,
         messages: [
             {
                 id: 0,
@@ -31,9 +32,10 @@ export const chats = [
         ],
     },
     {
-        id: 1,
+        id: '1',
         title: 'Погружение в React',
         type: 1,
+        onFire: false,
         messages: [
             {
                 id: 0,
@@ -62,9 +64,10 @@ export const chats = [
         ],
     },
     {
-        id: 2,
+        id: '2',
         title: 'Егор Петров',
         type: 0,
+        onFire: false,
         messages: [
             {
                 id: 0,
@@ -93,9 +96,10 @@ export const chats = [
         ],
     },
     {
-        id: 3,
+        id: '3',
         title: 'Лучшие друзья',
         type: 1,
+        onFire: false,
         messages: [
             {
                 id: 0,
@@ -124,9 +128,10 @@ export const chats = [
         ],
     },
     {
-        id: 4,
-        title: 'Александра Иванова',
+        id: '4',
+        title: 'Саша Иванова',
         type: 0,
+        onFire: false,
         messages: [
             {
                 id: 0,
@@ -153,5 +158,5 @@ export const chats = [
                 time: '19:54'
             },
         ],
-    },
+    }
 ]

@@ -23,7 +23,7 @@ export const initStore = () => {
     persistReducer(persistConfig, createRootReducer(history)),
     initialStore,
     composeWithDevTools(
-      applyMiddleware(routerMiddleware(history), chatBotMiddware)
+      applyMiddleware(routerMiddleware(history), chatBotMiddware, logger)
     )
   );
 

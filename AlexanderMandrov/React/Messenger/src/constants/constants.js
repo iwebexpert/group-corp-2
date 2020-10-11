@@ -120,33 +120,28 @@ const rawMessages = [
   'I appreciate all of your opinions.',
 ];
 
-const paletteLength = 8;
-
-let notifications = [],
-  avatarColors = [],
-  messages = [];
+let messages = [];
 
 usernames.forEach(() => {
-  notifications.push(Math.floor(Math.random() * 20));
-  avatarColors.push(Math.floor(Math.random() * paletteLength));
   messages.push(rawMessages[Math.floor(Math.random() * 5)]);
 });
 
 const createPrimaryChats = (usernames, sender = null) => {
   return usernames.map((user, id) => {
     return {
-      id: id,
+      id: nanoid(),
+      fired: true,
       username: user,
-      messages: [
+      messages: sender ? [] : [
         {
           id: nanoid(),
           username: sender ? sender : user,
           date: (new Date()),
-          text: sender ? 'Hi there!' : messages[id]
+          text: messages[id]
         }
       ]
     }
   });
 };
 
-export { usernames, notifications, avatarColors, createPrimaryChats, rawProfileInfo, stickers };
+export { usernames, createPrimaryChats, rawProfileInfo, stickers };

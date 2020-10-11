@@ -11,7 +11,6 @@ async function analyzeMessages(chats, curUser) {
             chat.lastMessage = messages[messages.length - 1];
             chat.activeMessages = messages;
     }
-    console.log('ff')
 }
 export const getChatSelectorInfo = store => next => async action => {
     if (action.type === actionTypes.SET_CHATS) {

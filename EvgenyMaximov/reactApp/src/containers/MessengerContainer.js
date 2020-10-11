@@ -3,13 +3,17 @@ import { connect } from "react-redux";
 import { nanoid } from "nanoid";
 
 import { Messenger } from "../components/Messenger";
-import { chatsLoadAction, chatsMessageSendAction } from "../actions/chats";
+import {
+  chatsLoadAction,
+  chatsMessageSendAction,
+  messageDeleteAction,
+  clearChatAction,
+} from "../actions/chats";
 
 class MessengerContainerClass extends React.Component {
   onMessageSend = (message) => {
     message.id = nanoid();
     const { chatId } = this.props;
-
     const time = new Date();
     message.time = time.toLocaleString("en-US", {
       hour: "numeric",
@@ -21,6 +25,16 @@ class MessengerContainerClass extends React.Component {
       ...message,
       chatId,
     });
+  };
+
+  onMessageDelete = (id) => {
+    const { messageDeleteAction, chatId } = this.props;
+
+    messageDeleteAction({ chatId, id });
+  };
+
+  onClearChat = (chatId) => {
+    this.props.clearChatAction(chatId);
   };
 
   render() {
@@ -37,6 +51,8 @@ class MessengerContainerClass extends React.Component {
         chatTitle={chatTitle}
         messages={messages}
         onMessageSend={this.onMessageSend}
+        onMessageDelete={this.onMessageDelete}
+        onClearChat={this.onClearChat}
         classform={classform}
         classlist={classlist}
         classchattitle={classchattitle}
@@ -69,6 +85,8 @@ const mapDispatchToProps = (dispatch) => {
     chatsLoadAction: () => dispatch(chatsLoadAction()),
     chatsMessageSendAction: (message) =>
       dispatch(chatsMessageSendAction(message)),
+    messageDeleteAction: (message) => dispatch(messageDeleteAction(message)),
+    clearChatAction: (chatId) => dispatch(clearChatAction(chatId)),
   };
 };
 

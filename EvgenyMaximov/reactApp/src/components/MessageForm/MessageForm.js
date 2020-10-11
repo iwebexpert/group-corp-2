@@ -30,6 +30,14 @@ export class MessageForm extends React.Component {
       return;
     }
 
+    if (author === "Бот") {
+      Swal.fire({
+        text: "Недопустимое имя пользователя",
+        icon: "error",
+      });
+      return;
+    }
+
     if (!text || !textRegExp.test(text)) {
       Swal.fire({
         text: "Введите текст сообщения",

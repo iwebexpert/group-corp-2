@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import './MessengerScreen.css'
 
-import { chatsLoad, messageSend, addChat } from '../../store/messenger/actions';
+import { chatsLoad, messageSend, addChat, changeUnreadMessage } from '../../store/messenger/actions';
 
 import Navbar from '../../component/Navbar/Navbar';
 import Container from '../../component/Container/Container';
@@ -15,6 +15,7 @@ import ChatList from '../../component/ChatList/ChatList';
 import Card from '@material-ui/core/Card';
 
 class MessengerScreen extends Component {
+
   handleMessageSend = (message) => {
     const chatId = this.props.id;
     message.id = nanoid();
@@ -30,10 +31,17 @@ class MessengerScreen extends Component {
       this.props.chatsLoad();
   }
 
-  render() {
-    const { id, chats, messages, profile } = this.props;
+  componentDidUpdate(prevProps) {
+    // есть проблема с тем, что тк изменяется содержимое массива, то redux не считает, что изменился сам массив
+    // => компонент не перерендеривается до какого-то действия пользователя
+    if (prevProps.id !== this.props.id && this.props.unreadMessage.indexOf(this.props.id) != -1) {
+        this.props.changeUnreadMessage(this.props.id, 'remove');
+    }
+  }
 
-    console.log(chats);
+  render() {
+    const { id, chats, messages, profile, unreadMessage } = this.props;
+
     return(
       <>
         <Container modifiers="container_theme_chat">
@@ -41,7 +49,8 @@ class MessengerScreen extends Component {
           <Content modifiers="content_theme_chat">
             <ChatList chats={chats}
                       currentChat={id}
-                      handleAdd={this.handleChatAdd} />
+                      handleAdd={this.handleChatAdd}
+                      unreadMessage={unreadMessage} />
             { messages ?
                           <Chat modifiers="chat_theme_chat"
                                 messages={messages}
@@ -62,7 +71,6 @@ class MessengerScreen extends Component {
 }
 
 function mapStateToProps(state, ownProps){
-  console.log(state, ownProps);
   const chats = state.chats.entries;
   const match = ownProps;
 
@@ -77,7 +85,8 @@ function mapStateToProps(state, ownProps){
       chats,
       messages,
       chatId: match ? match.id: null,
-      profile: state.profile.profiles[0]
+      profile: state.profile.profiles[0],
+      unreadMessage: state.chats.unreadMessage,
   };
 }
 
@@ -86,6 +95,7 @@ function mapDispatchToProps(dispatch){
     chatsLoad: () => dispatch(chatsLoad()),
     messageSend: (message) => dispatch(messageSend(message)),
     addChat: (title) => dispatch(addChat(title)),
+    changeUnreadMessage: (chatId, command) => dispatch(changeUnreadMessage(chatId, command)),
   }
 }
 

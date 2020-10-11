@@ -3,6 +3,7 @@ import * as types from './actionTypes';
 
 const initialState = {
     entries: [],
+    unreadMessage: [1, 5, 3],
     loading: false
 };
 
@@ -36,6 +37,12 @@ export default function chatsReduce(state = initialState, action = {}) {
                 ...state,
                 entries: [...state.entries, {id: state.entries[state.entries.length - 1].id + 1, title: action.payload, messages: []}]
             }
+
+        case types.CHANGE_UNREAD_MESSAGE:
+            return {
+                ...state,
+                unreadMessage: action.unreadMessage,
+            };
 
 
         default:

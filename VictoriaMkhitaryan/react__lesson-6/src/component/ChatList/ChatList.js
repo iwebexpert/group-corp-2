@@ -13,7 +13,6 @@ export default function ChatList(props) {
   const [searchInput, setSearchInput] = useState('');
   const [searchArray, setSearchArray] = useState([]);
   const [searchClick, setSearchClick] = useState(false);
-  const [unreadMessage, seUnreadMessage] = useState([]);
 
   const handleOnInputSearch = (e) => {
     setSearchInput(e.target.value);
@@ -36,31 +35,30 @@ export default function ChatList(props) {
   }
 
   const renderChatItem = () => {
-    console.log(props.chats);
     return props.chats[0] ? props.chats.map(data => {
-      // let unread = unreadMessage.filter(item => item.chat_id == data.chat_id).length;
-      let unread = false;
+      let unread = props.unreadMessage.indexOf(data.id) != -1 ? true : false;
 
       return(
         <ChatItem chats={data} 
                   unread={unread} 
                   key={nanoid()}
-                  currentChat={props.currentChat}/>
+                  currentChat={props.currentChat} />
       );
     }) : null;
   }
 
   const renderChatItemSearch = (data) => {
-    // let unread = unreadMessage.filter(item => item.chat_id == data.chat_id).length;
-    let unread = false;
+    let unread = props.unreadMessage.indexOf(data.id) != -1 ? true : false;
 
     return(
-      <ChatItem chats={data} unread={unread} key={nanoid()}/>
+      <ChatItem chats={data} 
+                unread={unread} 
+                key={nanoid()}
+                currentChat={props.currentChat} />
     );
   };
 
   const handleCreateChat = (title) => {
-    // console.log('!!!!!!');
     const { handleAdd } = props;
     if (title) {
       if (typeof (handleAdd) === 'function')

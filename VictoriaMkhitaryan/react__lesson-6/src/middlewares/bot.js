@@ -1,5 +1,5 @@
 import { SEND_MESSAGE } from '../store/messenger/actionTypes';
-import { messageSend } from '../store/messenger/actions';
+import { messageSend, changeUnreadMessage } from '../store/messenger/actions';
 import { nanoid } from 'nanoid';
 
 export const botMiddleware = store => next => action => {
@@ -8,7 +8,17 @@ export const botMiddleware = store => next => action => {
 
     if (author !== 'Robot') {
       setTimeout(() => {
-        store.dispatch(messageSend({ id: nanoid(), chatId, message: `${author}, it's time for you to sleep`, author: 'Robot' }));
+        store.dispatch(messageSend({ id: nanoid(), chatId, message: `${author}, пора спатки`, author: 'Robot' }));
+
+        const currentURL = window.location.href.split('/');
+
+        if (currentURL[3] === 'chats' && chatId != currentURL[4]) {
+          store.dispatch(changeUnreadMessage(chatId, 'add'));
+        } else if (currentURL[3] === 'chats' && chatId == currentURL[4]) {
+          store.dispatch(changeUnreadMessage(chatId, 'remove'));
+        }
+
+        console.log('!!!!!!!!!');
       }, 1000);
     }
   }

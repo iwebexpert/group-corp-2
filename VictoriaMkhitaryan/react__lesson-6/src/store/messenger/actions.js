@@ -15,3 +15,19 @@ export function addChat(title) {
     dispatch({type: types.ADD_CHAT, payload: title});
   };
 }
+
+export function changeUnreadMessage(chatId, command) {
+  return (dispatch, getState) => {
+    let unreadMessage = getState().chats.unreadMessage;
+
+    if (command == 'add' && !unreadMessage.includes(chatId)) {
+      unreadMessage.push(chatId);
+    }
+    else {
+      unreadMessage = unreadMessage.filter(item => item !== chatId);
+    }
+    
+    // console.log(unreadMessage);
+    dispatch({type: types.CHANGE_UNREAD_MESSAGE, unreadMessage});
+  }
+}

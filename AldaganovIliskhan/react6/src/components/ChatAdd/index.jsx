@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import { Button, TextField } from '@material-ui/core';
 import './ChatAdd.scss'
 import axios from 'axios';
-import { nanoid } from 'nanoid';
-export const ChatAdd = ({ addChat }) => {
+export const ChatAdd = ({ addChat, chats }) => {
     const [inputValue, setInputValue] = useState('');
     const onAdd = (inputValue) => {
         if (!inputValue) {
@@ -14,7 +13,8 @@ export const ChatAdd = ({ addChat }) => {
         const newChat = {
             title: inputValue,
             messages: [],
-            id: nanoid()
+            fire: false,
+            id: chats && chats.length + 1
         };
         axios.post('http://localhost:3001/chats',
             newChat

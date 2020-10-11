@@ -10,16 +10,19 @@ import { setProfile, fetchProfile } from "./actions/profile";
 import { Profile } from "./components/Profile";
 import { addChat } from "./actions/chats";
 import { removeChat } from "./actions/chats";
+import { sendMessage } from "./actions/chats";
+import { editChat } from "./actions/chats";
 
 const App = (props) => {
   const {
+    fetchChats,
     chats,
-    setChats,
     addChat,
     removeChat,
-    fetchChats,
+    editChat,
     fetchProfile,
     profileData,
+    sendMessage,
     pathname,
   } = props;
   const [activeChat, setActiveChat] = useState(null);
@@ -30,37 +33,14 @@ const App = (props) => {
   }, [fetchChats, fetchProfile]);
   useEffect(() => {
     const chatId = pathname.split("/chats/")[1];
-    if (pathname === "/") {
-      return;
-    }
     if (chats) {
       const chat = chats.find((chat, i) => i + 1 === Number(chatId));
       setActiveChat(chat);
     }
   }, [pathname, chats]);
 
-  const onEditChat = (newTitle, chatId) => {
-    const newChats =
-      chats &&
-      chats.map((chat) => {
-        if (chat.id === chatId) {
-          chat.title = newTitle;
-        }
-        return chat;
-      });
-    setChats(newChats);
-  };
   const onClickChat = (chat) => {
     setActiveChat(chat);
-  };
-  const onAddMessage = (obj, chatId) => {
-    const newMessage = chats.map((chat) => {
-      if (chatId === chat.id) {
-        chat.messages = [...chat.messages, obj];
-      }
-      return chat;
-    });
-    setChats(newMessage);
   };
 
   return (
@@ -79,9 +59,9 @@ const App = (props) => {
             chats={chats}
             onClickChat={onClickChat}
             activeChat={activeChat}
-            onAddMessage={onAddMessage}
+            sendMessage={sendMessage}
             chat={activeChat}
-            onEditChat={onEditChat}
+            editChat={editChat}
             addChat={addChat}
             removeChat={removeChat}
           />
@@ -97,9 +77,11 @@ const mapStateToProps = ({ chats, profile, router }) => ({
 });
 export default connect(mapStateToProps, {
   setChats,
-  setProfile,
+  editChat,
   addChat,
   removeChat,
   fetchChats,
+  sendMessage,
   fetchProfile,
+  setProfile,
 })(App);

@@ -5,10 +5,11 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
+import { botMiddleware } from "./middlewares/bot";
 
 import { createRootReducer } from "./reducers";
 export const history = createBrowserHistory();
-const middleWares = [thunk, routerMiddleware(history)];
+const middleWares = [botMiddleware, thunk, routerMiddleware(history)];
 const persistConfig = {
   key: "app",
   storage,

@@ -9,28 +9,27 @@ import { ChatAdd } from './../ChatAdd';
 import './ChatList.scss'
 import removeSvg from '../../assets/img/remove.svg'
 import editSvg from '../../assets/img/edit.svg'
-const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onEditChat, addChat, removeChat, push, pathname }) => {
+const ChatList = ({ chats, onAddChat, onClickChat, activeChat, addChat, removeChat, push, pathname, editChat }) => {
 
   const onClick = (i, chat) => {
-    push(`/chats/${i + 1}`);
+    push(`/chats/${chat.id}`);
     onClickChat(chat);
   }
   const onRemove = (chatId, i) => {
     if (window.confirm('Вы действительно хотите удалить чат?')) {
-      i += 1;
       axios.delete(`http://localhost:3001/chats/${chatId}`).then(() => {
         removeChat(chatId);
       });
       if (pathname !== '/') {
         let currentChat = pathname.split('/chats/')[1];
         currentChat = Number(currentChat);
-        if (currentChat < i) {
+        if (currentChat < chatId) {
           push(`/chats/${currentChat}`);
         }
         else if (currentChat === 1) {
           push('/');
         }
-        else if (currentChat >= i) {
+        else if (currentChat >= chatId) {
           currentChat -= 1;
           push(`/chats/${currentChat}`);
         };
@@ -43,7 +42,7 @@ const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onEditChat, addCh
       axios.patch(`http://localhost:3001/chats/${chatId}`, {
         "title": newTitle
       }).then(() => {
-        onEditChat(newTitle, chatId);
+        editChat(newTitle, chatId);
       })
     }
   }
@@ -56,6 +55,7 @@ const ChatList = ({ chats, onAddChat, onClickChat, activeChat, onEditChat, addCh
               <p onClick={() => onClick(i, chat)}>{chat.title}</p>
               <img src={removeSvg} alt="remove-btn" className='remove-btn' onClick={() => onRemove(chat.id, i)} />
               <img src={editSvg} alt="edit-btn" className='edit-btn' onClick={() => onEdit(chat.id)} />
+              <small>{chat.fire === true ? '(+1)' : null}</small>
             </li>)
           }
         </List> : <div style={{ padding: '40px' }}>Создайте чат</div>

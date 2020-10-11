@@ -1,0 +1,104 @@
+* {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+}
+
+.blockForFlex {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.commonBlock {
+  display: flex;
+  width: 100%;
+  flex-grow: 3;
+}
+
+.chatsListBlock {
+  padding: 38px;
+  flex-grow: 0;
+  background-color: rgba(0, 0, 0, 0.83);
+}
+
+.chatsMessenger {
+  padding: 38px;
+  flex-grow: 5;
+}
+
+h2 {
+  color: white;
+}
+
+.chatLink {
+  text-decoration: none;
+  color: white;
+}
+
+.listItem {
+  margin-top: 18px;
+  width: 200px;
+  height: 55px;
+}
+
+.listItem:hover {
+  border-radius: 14px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.addChatBlock {
+  padding-top: 10px;
+  display: flex;
+}
+
+.chatsList {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+.chatsList::-webkit-scrollbar { 
+  width: 0; 
+}
+
+.chatName {
+  align-self: center;
+  color: white;
+  width: 80%;
+  border-radius: 5px;
+  height: 35px;
+  line-height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 7px;
+  padding-left: 7px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.0001);
+  border: 0.5px solid rgba(255, 255, 255, 0.24);
+}
+
+.addChatButton {
+  align-self: center;
+  margin-left: 10px;
+  height: 35px;
+  width: 35px;
+  background: rgba(0, 0, 0, 0.0);
+  border: none;
+  font-size: 35px;
+  line-height: 35px;
+  color: white;
+}
+
+.addChatButton:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 1.0);
+  color: black; 
+}

@@ -1,0 +1,85 @@
+.headerBlock {
+  padding: 38px;
+  padding-left: 18px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  color:white;
+  height: 116px;
+  width: 100%;
+  background-color:black;
+  opacity: 0.83;
+}
+
+.chatHeader {
+  display: flex;
+}
+
+.searchBlock {
+  display: flex;
+  justify-content: space-around;
+}
+
+.starIcon {
+  margin-left: 6px;
+}
+
+.inputSearch {
+  margin-top: -5px;
+  color: white;
+  width: 280px;
+  border-radius: 5px;
+  height: 35px;
+  line-height: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 40px;
+  padding-left: 7px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.0001);
+  border: 0.5px solid rgba(255, 255, 255, 0.24);
+}
+
+.searchIcon {
+  margin-left: -35px;
+}
+
+.searchIcon:hover {
+  cursor: pointer;
+}
+
+.personIcon {
+  margin-right: 5px;
+}
+
+.notificationIcon, .searchIcon, .usersOnline {
+  margin-right: 24px;
+}
+
+.notificationIcon {
+  margin-left: 11px;
+}
+
+.usersOnline {
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.chatHeader:hover {
+  height: 50px;
+  cursor: pointer;
+  border-radius: 14px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.chatHeader h2 {
+  margin-left: 20px;
+  margin-right: 20px;
+  line-height: 50px;
+}
+
+.linkItemProfile {
+  text-decoration: none;
+  color: white;
+}

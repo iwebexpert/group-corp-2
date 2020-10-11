@@ -1,35 +1,29 @@
-import React, {useCallback, useEffect, useMemo, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {checkMessagesForSelectorInfo} from "./checkMessagesForSelectorInfo";
 import classNames from "classnames";
 import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import {setForwardMessage, setSelectedChat} from "../../../redux/actions";
 import Divider from "@material-ui/core/Divider";
 import ChatRemoveDialog from "./ChatRemoveDialog";
-import { useHistory } from 'react-router-dom';
+import {push} from 'connected-react-router';
 import Badge from "@material-ui/core/Badge";
 import MailIcon from '@material-ui/icons/Mail';
+import {messageTypes} from "../../../configs/statuses";
 
 
 export default function ({chat}) {
-    const [message, setMessage] = useState(null);
-    const [unReadCount, setUnReadCount] = useState(0);
     const [isDeleteCandidate, setIsDeleteCandidate] = useState(false);
-    const {curUser, selectedChat} = useSelector(s => s.app);
+    const { selectedChat} = useSelector(s => s.app);
     const {forwardMessage} = useSelector(s => s.system);
     const dispatch = useDispatch();
-    useEffect(() => {
-        checkMessagesForSelectorInfo(chat._id, setMessage,setUnReadCount,curUser);
-    }, [chat]);
-    const chatClass = classNames('chatSelector', {chatSelectorSelected: selectedChat === chat._id});
-    const history = useHistory();
+    const chatClass = classNames('chatSelector', {chatSelectorSelected: selectedChat === chat._id, chatUnread: chat.unReadCount});
     const selectChat = useCallback(() => {
         dispatch(setSelectedChat(chat._id));
         if (forwardMessage && !forwardMessage.chat){
             dispatch(setForwardMessage({...forwardMessage, chat}));
         }
-        history.push(`/messenger/chats/${chat._id}`);
+        dispatch(push(`/messenger/chats/${chat._id}`));
     }, [chat, forwardMessage]);
     return (
         <>
@@ -43,10 +37,10 @@ export default function ({chat}) {
                 <Grid onClick={selectChat} spacing={3} container alignItems='center' justify='space-between'>
                     <Grid item container xs={3} justify={'space-around'} direction={'column'} alignItems={'center'}>
                         <div className={'avatar'}>
-                            {message ? message.authorName.slice(0,2) : ''}
+                            {chat.lastMessage ? chat.lastMessage.authorName.slice(0,2) : '?'}
                         </div>
-                        <span className={'primaryText primaryTextEllipsis'}>{message ? message.authorName : ''}</span>
-                        <Badge badgeContent={unReadCount} color="primary">
+                        <span className={'primaryText primaryTextEllipsis'}>{chat.lastMessage ? chat.lastMessage.authorName : ''}</span>
+                        <Badge badgeContent={chat.unReadCount} color="primary">
                             <MailIcon />
                         </Badge>
                     </Grid>
@@ -55,11 +49,11 @@ export default function ({chat}) {
                             {'Чат: ' + chat.title}
                         </div>
                         <div className={'chatSelectorMessage'}>
-                            {   message
-                                ?  message.forwardMessages
+                            {   chat.lastMessage
+                                ?  chat.lastMessage.forwardMessages.length || chat.lastMessage.type === messageTypes.IMAGE || chat.lastMessage.type === messageTypes.AUDIO
                                     ? <div className={'EmptyChatPlaceholder'}>Вложение</div>
-                                    : message.text.length>30
-                                        ? message.text.slice(0,30) + '...' : message.text
+                                    : chat.lastMessage.text.length>30
+                                        ? chat.lastMessage.text.slice(0,30) + '...' : chat.lastMessage.text
                                         : <div className={'EmptyChatPlaceholder'}>Нет сообщений</div>
                             }
                         </div>

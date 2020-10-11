@@ -1,14 +1,17 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import classNames from 'classnames';
 import Popover from "@material-ui/core/Popover";
-import {DbWorker} from "../../../utils/DbWorker";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import ReactAudioPlayer from "react-audio-player";
+import {messageTypes} from "../../../configs/statuses";
+import {setCommonViewImages} from "../../../redux/actions";
 
 
 
-const Message = ({message, chat,selectMessagesMode, selectedMessages = [],setSelectMessagesMode = false, setSelectedMessages}) => {
+const Message = ({message,selectMessagesMode, selectedMessages = [],setSelectMessagesMode = false, setSelectedMessages}) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const dispatch = useDispatch();
     const curUser = useSelector(s => s.app.curUser) || {_id: null};
     const messageClass = classNames('Message', {
             MyMessage: curUser._id === message.author && !message.isForward,
@@ -30,15 +33,16 @@ const Message = ({message, chat,selectMessagesMode, selectedMessages = [],setSel
             });
         }
     };
-    const msgClick = () => {
-        if (!message.isForward && !selectMessagesMode){
+    const msgClick = (e) => {
+        if (!message.isForward && !selectMessagesMode && !e.target.classList.contains('messageImage')){
             setIsPopoverOpen(true);
         }
     };
     const closePopover = () => setIsPopoverOpen(false);
     const deleteHandler = useCallback(() => {
+        setSelectMessagesMode(true);
         closePopover();
-        DbWorker.deleteMessage(chat._id,message._id);
+        setSelectedMessages([message]);
     },[]);
     const forwardMsgBtnHandler = () =>{
         setSelectMessagesMode(true);
@@ -53,12 +57,27 @@ const Message = ({message, chat,selectMessagesMode, selectedMessages = [],setSel
                         ? message.isPending
                             ? <CircularProgress />
                             : message.isRead
-                                ? <img className={'StatusSign'} src="https://img.icons8.com/color/48/000000/double-tick.png"/>
-                                : <img className={'StatusSign'} src="https://img.icons8.com/color/48/000000/checkmark.png"/>
+                                ? <img alt={'StatusSign'} className={'StatusSign'} src="https://img.icons8.com/color/48/000000/double-tick.png"/>
+                                : <img alt={'StatusSign'} className={'StatusSign'} src="https://img.icons8.com/color/48/000000/checkmark.png"/>
                                         :null
                 }
                 <div className={authorClass}>{message.authorName.slice(0, 2)}</div>
                 <div className={'MessageText'}>{message.text}</div>
+                {
+                    message.type === messageTypes.AUDIO
+                        ? <ReactAudioPlayer
+                            src={message.content}
+                            controls
+                        /> :null
+                }
+                {
+                    message.type === messageTypes.IMAGE
+                        ? message.content.map((img, i) =>
+                            <div key={i} className={'messageImageWrapper'}
+                                 onClick={(e) => {e.stopPropagation(); dispatch(setCommonViewImages(message.content));}}>
+                                <img alt={'messageImage'} className={'messageImage'} src={img}/>
+                            </div>) :null
+                }
                 {
                     message.forwardMessages ? message.forwardMessages.map(msg =>
                         <Message key={msg._id} message={msg} />
@@ -79,8 +98,8 @@ const Message = ({message, chat,selectMessagesMode, selectedMessages = [],setSel
                 }}
             >
                 <div className={'PanelMessageActions'}>
-                    <img onClick={deleteHandler} className={'PanelMessageActionsButton'} src="https://img.icons8.com/color/48/000000/delete.png"/>
-                    <img onClick={forwardMsgBtnHandler} className={'PanelMessageActionsButton'} src="https://img.icons8.com/color/100/000000/forward-message.png"/>
+                    <img onClick={deleteHandler} alt={'PanelMessageActionsButton'}  className={'PanelMessageActionsButton'} src="https://img.icons8.com/color/48/000000/delete.png"/>
+                    <img onClick={forwardMsgBtnHandler} alt={'PanelMessageActionsButton'} className={'PanelMessageActionsButton'} src="https://img.icons8.com/color/100/000000/forward-message.png"/>
                 </div>
             </Popover>
         </div>

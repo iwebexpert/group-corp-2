@@ -3,6 +3,7 @@ import {openUserProfile, setCurrentUser} from "../redux/actions";
 import swal from "sweetalert";
 import {store} from "../redux/StorageRedux";
 import uniqid from 'uniqid';
+import {messageTypes} from "../configs/statuses";
 
 export class DbWorker {
     static dispatch = store.dispatch;
@@ -76,7 +77,7 @@ export class DbWorker {
             return null;
         }
     };
-    static createMessage = (text, forwardMessageRaw=null) => {
+    static createMessage = (text, forwardMessageRaw=null, {messageType, content} ={messageType: messageTypes.TEXT, content: null}) => {
         const { curUser } = store.getState().app;
         const forwardMessages = forwardMessageRaw
             ? forwardMessageRaw.messages.map(x =>  ({
@@ -84,7 +85,9 @@ export class DbWorker {
                 dateSend: x.dateSend,
                 author: x.author,
                 authorName: x.authorName,
-                forwardMessages: x.forwardMessages,
+                type: x.type,
+                content: x.content,
+                forwardMessages: x.forwardMessages || [],
                 isForward: true,
                 _id: uniqid()
             }))
@@ -94,14 +97,16 @@ export class DbWorker {
             dateSend: Date.now(),
             author: curUser._id,
             authorName: curUser.name,
+            type:messageType,
+            content,
             forwardMessages,
             isForward: false
         };
     };
-    static sendMessage = async (text, forwardMessageRaw = null) => {
+    static sendMessage = async (text, forwardMessageRaw = null, {messageType, content}) => {
         const { selectedChat, chats } = store.getState().app;
         const selChatObj = chats.find(x => x._id === selectedChat);
-        const message = DbWorker.createMessage(text,forwardMessageRaw);
+        const message = DbWorker.createMessage(text,forwardMessageRaw, {messageType, content});
         return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/${selChatObj.sharedId}/message`, message);
     };
     static createChat = async (user) => {
@@ -119,6 +124,9 @@ export class DbWorker {
     };
     static deleteMessage = async (chatId, messageId) => {
         return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/chat/message/${chatId}/message`, {messageId}, true,'DELETE');
+    };
+    static deleteManyMessages = async (chatId, messageIdsArr) => {
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/chat/message/many/${chatId}/message`, {messageIdsArr}, true,'DELETE');
     };
     static addFriend = async (friend) =>{
         const {curUser} = store.getState().app;
@@ -154,6 +162,21 @@ export class DbWorker {
                 return [];
             }
             return msgs;
+        } catch (e) {
+            swal('Ошибка', e.message, 'error');
+            return [];
+        }
+    };
+    static getUnreadMessages = async (chatId) => {
+        try {
+            const curUser = store.getState().app.curUser;
+            const msgRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/chats/messages/unreadmessages/chatid/${chatId}`, curUser);
+            const msg = await msgRes.json();
+            if (!msgRes.ok) {
+                swal('Ошибка', msg.message, 'error');
+                return null;
+            }
+            return msg;
         } catch (e) {
             swal('Ошибка', e.message, 'error');
             return [];

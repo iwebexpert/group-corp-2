@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {openUserProfile, setCurrentUser} from "../../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
-import {useHistory} from "react-router-dom";
+import {push} from 'connected-react-router';
 import routesPaths from "../../../configs/routesPaths";
 import RadialMenu from "react-radial-menu";
 
@@ -18,11 +18,10 @@ export default function () {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const curUser = useSelector(s => s.app.curUser);
-    const history = useHistory();
     const unAuthorize = useCallback((e) => {
         e.preventDefault();
         dispatch(setCurrentUser(null));
-        history.push(routesPaths.AUTH);
+        dispatch(push(routesPaths.AUTH));
     });
     useEffect(() => {
         //вынужденный императивный подход, так как готовый компонент RadialMenu не поддерживает добавление обработчиков через пропсы

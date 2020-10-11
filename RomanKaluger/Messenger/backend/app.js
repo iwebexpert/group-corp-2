@@ -4,6 +4,7 @@ const config = require('./config/serverConfig');
 const uniqid = require('uniqid');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -24,6 +25,7 @@ async function start() {
     const app = express();
     app.use(cors());
     app.use(express.urlencoded({extended: false}));
+    app.use(bodyParser.json({ 'type': '*/*',limit: '20mb' }));
     app.use(express.json());
     app.use(cookieParser());
 
@@ -63,6 +65,7 @@ async function start() {
             if (client.readyState === WebSocket.OPEN && condition(client)) {
                 client.send(JSON.stringify({
                     type: actionType,
+                    body
                 }));
             }
         });
@@ -101,6 +104,17 @@ async function start() {
             res.status(400).json({message: 'Ошибка при поиске сообщений'});
         }
     });
+    app.get('/chats/messages/unreadmessages/chatid/:chatid', async (req, res) => {
+        try {
+            const chatid = req.params.chatid;
+            const chat = await chatModel.findById({_id: chatid}).lean();
+            const messages = await messageModel.find({_id: { $in: chat.messages}, isRead: false }).lean();
+            res.status(200).json(messages);
+        } catch (e) {
+            res.status(400).json({message: 'Ошибка при поиске сообщений'});
+        }
+    });
+
     app.post('/chats', async (req, res) => {
         const {title, members, creator} = req.body;
         try {
@@ -151,50 +165,31 @@ async function start() {
 
     });
 
-    const petyaTimeOut = {};
-    function PetyaTalks(chat, authorName) {
-        ////////Петя-бот
-        clearTimeout(petyaTimeOut[chat._id]);
-        petyaTimeOut[chat._id] = setTimeout(async () => {
-            let petya = await userModel.findOne({name: 'Петя'}).lean();
-            if (chat.members.includes(petya._id)) {
-                const petyaMessage = new messageModel({
-                    text: `Привет, ${authorName}, я Петя-бот`,
-                    dateSend: Date.now(),
-                    author: petya._id,
-                    authorName: petya.name
-                });
-                await petyaMessage.save();
-                chat.messages.push(petyaMessage._id);
-                await chat.save();
-                broadCast(wsTypes.MESSAGE, null, () => true);
-            }
-        },3000);
-        ///////Петя-бот
-    }
     app.post('/chats/shared/:sharedid/message', async (req, res) => {
         try {
             const sharedid = req.params.sharedid;
-            const {author, authorName, text, dateSend,forwardMessages, isForward} = req.body;
+            const {author, authorName, text, dateSend,forwardMessages, isForward, type, content} = req.body;
             if(!author && (!forwardMessages && !text)){
                 res.status(400).json({message: 'Не передан текст сообщения (text) или имя автора (author)'});
                 return;
             }
-            const message = new messageModel({text: text || ' ', dateSend, author, authorName, isForward, forwardMessages});
+            const message = new messageModel({text: text || ' ', dateSend, author, authorName, content, isForward, type: type || statuses.messageTypes.TEXT, forwardMessages: forwardMessages || []});
             await message.save();
             const sharedChats = await chatModel.find({sharedId: sharedid});
             for (const chat of sharedChats) {
                 chat.messages.push(message._id);
-                PetyaTalks(chat, authorName);
                 await chat.save();
             }
-            broadCast(wsTypes.MESSAGE, null, () => true);
+            broadCast(wsTypes.MESSAGE, {
+                sharedId: sharedid
+            }, () => true);
             res.status(200).json(message);
         } catch (e) {
             console.log(e.message);
             res.status(500).json({error: 'Не удалось сохранить сообщение в БД'});
         }
     });
+
     app.post('/chats/shared/message/updateStatus/', async (req, res) => {
         try {
             const user = req.user;
@@ -212,7 +207,9 @@ async function start() {
                     await mes.save();
                 }
             }
-            broadCast(wsTypes.MESSAGE, null, () => true);
+            broadCast(wsTypes.MESSAGE, {
+                sharedId
+            }, () => true);
             res.status(200).json({message: 'Данные обновлены'});
         } catch (e) {
             console.log(e.message);
@@ -228,19 +225,36 @@ async function start() {
                 res.status(400).json({message: 'Не передан messageId'});
                 return;
             }
-            await chatModel.findOneAndUpdate(
-                {_id: chatid},
-                {$pull: {messages: messageId}},
-                (err, doc) => {
-                    if(err){
-                        res.status(500).json({error: 'Не удалось удалить сообщение из БД'});
-                        return;
-                    }
-                    res.status(200).json(doc);
-                });
-            broadCast(wsTypes.MESSAGE, null, () => true);
+            const chat = await chatModel.findOne({_id: chatid});
+            chat.messages = chat.messages.filter(m => !m.equals(messageId));
+            await chat.save();
+            res.status(200).json({message: 'Удалено'});
+            broadCast(wsTypes.MESSAGE, {
+                sharedId: chat.sharedId
+            }, () => true);
         } catch (e) {
+            console.log(e.message);
             res.status(500).json({error: 'Не удалось удалить сообщение из БД'});
+        }
+    });
+    app.delete('/chats/chat/message/many/:chatid/message', async (req, res) => {
+        try {
+            const {chatid} = req.params;
+            const {messageIdsArr} = req.body;
+            if(!messageIdsArr){
+                res.status(400).json({message: 'Не передан messageIds'});
+                return;
+            }
+            const chat = await chatModel.findOne({_id: chatid});
+            chat.messages = chat.messages.filter(m => !messageIdsArr.find(m1=>m.equals(m1)));
+            await chat.save();
+            res.status(200).json({message: 'Удалено'});
+            broadCast(wsTypes.MESSAGE, {
+                sharedId: chat.sharedId
+            }, () => true);
+        } catch (e) {
+            console.log(e.message);
+            res.status(500).json({error: 'Не удалось удалить сообщения из БД'});
         }
     });
 
@@ -361,7 +375,7 @@ async function start() {
             potentialFriend.subscribers =  potentialFriend.subscribers.filter(x => !x.equals(userId));
             await user.save();
             await potentialFriend.save();
-            broadCast(wsTypes.FRIENDS, null, (client) => client.userId === userId || client.userId === friendId);
+            broadCast(wsTypes.CONTACTS, null, (client) => client.userId === userId || client.userId === friendId);
             res.status(200).json(user);
         } catch (e) {
             res.status(200).json({message: e.message});

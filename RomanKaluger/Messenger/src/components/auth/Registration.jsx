@@ -1,28 +1,28 @@
 import React, {useCallback, useRef, useState} from 'react';
-import {NavLink} from "react-router-dom";
 import routesPaths from "../../configs/routesPaths";
 import {DbWorker} from "../../utils/DbWorker";
 import {activateBtn, disableBtn} from "../../utils/helpers";
-import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
-import Backdrop from "@material-ui/core/Backdrop/Backdrop";
+import {useDispatch} from "react-redux";
+import {setLoading} from "../../redux/actions";
+import {push} from "connected-react-router";
 
 const emailRegexp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 export default () => {
-    const [isLoad, setIsLoad] = useState(false);
     const signBtnRef = useRef();
     const formRef = useRef();
     const password1Ref = useRef();
     const password2Ref = useRef();
     const nameRef = useRef();
     const emailRef = useRef();
+    const dispatch = useDispatch();
     const signHandler = useCallback(async (e) => {
-           setIsLoad(true);
+           dispatch(setLoading(true));
            const formData = formRef.current.elements;
            disableBtn(signBtnRef.current);
            await DbWorker.register(formData);
            activateBtn(signBtnRef.current);
-           setIsLoad(false);
+           dispatch(setLoading(false));
     },[]);
     const onRequiredChange = (e) => {
         if (password1Ref.current.value !== password2Ref.current.value){
@@ -51,9 +51,6 @@ export default () => {
     };
     return (
         <div className={'AuthContainer'}>
-            <Backdrop open={isLoad}>
-                <CircularProgress/>
-            </Backdrop>
             <form ref={formRef} className={'AuthArea'}>
                 <div className={'AuthAreaSection'}>
                     <input className={'AuthInput'} name={'regAge'} id={'regAge'} type={'text'} placeholder={'Возраст'}/>
@@ -76,7 +73,7 @@ export default () => {
                     </select>
                 </div>
                 <div ref={signBtnRef} onClick={signHandler} className={'button'}>Зарегистрироваться</div>
-                <NavLink to={routesPaths.AUTH} >Авторизация</NavLink>
+                <div className={'Link'} onClick={() => dispatch(push(routesPaths.AUTH))} >Авторизация</div>
             </form>
         </div>
     );

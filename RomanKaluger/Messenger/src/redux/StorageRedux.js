@@ -1,16 +1,32 @@
 import CreateSagaMiddleware from "redux-saga";
-import {applyMiddleware, compose, createStore} from "redux";
-import {rootReducer} from "./Reducers/rootReducer";
+import {applyMiddleware, createStore} from "redux";
+import {createRootReducer} from "./Reducers/rootReducer";
+import {createBrowserHistory} from 'history';
+import { routerMiddleware } from 'connected-react-router';
+import storage from 'redux-persist/lib/storage'
+import {persistStore, persistReducer} from 'redux-persist'
 import {sagaWatcher} from "./SAGA/sagas";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import {loggerMiddleware} from "./middlewares/logger";
+import {botMiddleware} from "./middlewares/bot";
+import {getChatSelectorInfo} from "./middlewares/getChatSelectorInfo";
 
-const saga=CreateSagaMiddleware();
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();//process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : null;
-export const store = createStore(rootReducer, compose(
-    applyMiddleware(
-        saga,
-    )
-    //, devTools
-));
 
-saga.run(sagaWatcher);
+export const history = createBrowserHistory();
+const persistConfig = {
+    key: 'app',
+    storage
+};
+const sagaMiddleware = CreateSagaMiddleware();
+const middleware = [sagaMiddleware, routerMiddleware(history), loggerMiddleware, botMiddleware,  getChatSelectorInfo];
+const enhancers = [];
+enhancers.push(applyMiddleware(...middleware));
+const persistedReducer = persistReducer(persistConfig, createRootReducer(history));
+export const store = createStore(persistedReducer, composeWithDevTools(...enhancers));
+export const persistor = persistStore(store);
+sagaMiddleware.run(sagaWatcher);
+
+
+
+
 

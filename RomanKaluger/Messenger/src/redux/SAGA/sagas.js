@@ -1,13 +1,12 @@
-import {takeEvery} from "@redux-saga/core/effects";
+import {takeEvery, call} from "@redux-saga/core/effects";
 import actionTypes from "../actionTypes";
+import {DbWorker} from "../../utils/DbWorker";
 
 export function* sagaWatcher() {
-    yield takeEvery(actionTypes.SET_CURRENT_USER, currentUserSet);
+    yield takeEvery(actionTypes.SEND_MESSAGE, sendMessage);
 }
-function* currentUserSet(action) {
-    if (action.payload === null) {
-        localStorage.curUser = '';
-        return;
-    }
-    localStorage.curUser = JSON.stringify(action.payload);
+function* sendMessage(action) {
+    const {msg, forwardMessage, type, content} = action.payload;
+    yield call(DbWorker.sendMessage, msg, forwardMessage, {messageType: type, content});
 }
+

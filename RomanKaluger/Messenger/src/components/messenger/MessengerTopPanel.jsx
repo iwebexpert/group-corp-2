@@ -17,6 +17,8 @@ export default ({chat}) => {
     useEffect(() => {
         if (chat) {
             getMembers(chat.members, setMembers, curUser);
+        } else {
+            setMembers([]);
         }
     }, [chat]);
     const showUserProfile = useCallback((e)=>{

@@ -46,3 +46,13 @@
     }
   }
 }
+.Link{
+  color: $primary;
+  font-size: 16px;
+  text-decoration: underline;
+  min-width: 70vw;
+  text-align: center;
+  &:hover{
+    color: $primary2;
+  }
+}

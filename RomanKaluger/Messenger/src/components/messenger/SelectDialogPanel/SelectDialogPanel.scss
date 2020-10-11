@@ -1,7 +1,7 @@
 @import "./../../../../scss/common/commonMixinsApp";
 @import "./../../../../scss/common/globalVariables";
 
-.selectChatBackdropContainer{
+.selectChatBackdropContainer {
   @include --border(all, $primary2, true);
   @include center-content;
   @include --padding;
@@ -9,7 +9,8 @@
   max-height: 70vh;
   background-color: transparentize($light, 0.6);
 }
-.ChatsSectionDlgPn{
+
+.ChatsSectionDlgPn {
   @include --padding;
   @include --border(top bottom, $primary, false);
   text-align: center;
@@ -21,10 +22,12 @@
   overflow-y: auto;
   overflow-x: hidden;
   background-color: transparentize($bgPrimaryLight, 0.5);
-  &:first-child{
+
+  &:first-child {
     background-color: transparentize($bgPrimaryLight2, 0.5);
   }
-  .ChatsSectionHeaderDlgPn{
+
+  .ChatsSectionHeaderDlgPn {
     @include --padding;
     @include center-content;
     @include --border(bottom, $bgPrimaryLight3, false);
@@ -33,18 +36,21 @@
     font-size: 40px;
 
   }
-  .chatSelector{
-    &Selected{
+
+  .chatSelector {
+    &Selected {
       @include --border(bottom top, $primary, false);
       background-color: transparentize($primary, 0.5) !important;
     }
+
     @include --border(top bottom, $bgPrimaryLight3, false);
     @include center-content;
     width: 100%;
     height: 11vh;
     background-color: $bgPrimaryLight;
     cursor: pointer;
-    .DeleteChatBtnSelector{
+
+    .DeleteChatBtnSelector {
       @include button-click;
       position: absolute;
       width: 30px;
@@ -52,7 +58,8 @@
       top: 10px;
       left: calc(100% - 40px);
     }
-    .chatSelectorTitle{
+
+    .chatSelectorTitle {
       text-align: center;
       color: $primary;
       font-size: 27px;
@@ -64,7 +71,8 @@
       width: 100%;
       margin-bottom: 2px;
     }
-    .chatSelectorMessage{
+
+    .chatSelectorMessage {
       @include center-content;
       font-size: 15px;
       text-align: center;
@@ -73,7 +81,8 @@
       width: 100%;
       height: 60px;
       word-break: break-all;
-      .EmptyChatPlaceholder{
+
+      .EmptyChatPlaceholder {
         @include --padding;
         background-color: transparentize($primary2, 0.5);
         border-radius: $border;
@@ -82,7 +91,8 @@
         width: 100%;
       }
     }
-    .chatSelectorPeopleBtn{
+
+    .chatSelectorPeopleBtn {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
@@ -92,7 +102,8 @@
       box-sizing: border-box;
       width: 100%;
       height: 90%;
-      .--localBtn{
+
+      .--localBtn {
         @include --border('all', $light, true);
         @include button-click;
         height: 35px;
@@ -101,15 +112,18 @@
         background-size: contain;
         background-color: $bgPrimary;
       }
-      .startChatUserBtn{
+
+      .startChatUserBtn {
         @extend .--localBtn;
         background-image: url("https://img.icons8.com/color/100/000000/speech-bubble-with-dots.png");
       }
-      .addFriendUserBtn{
+
+      .addFriendUserBtn {
         @extend .--localBtn;
         background-image: url("https://img.icons8.com/color/100/000000/checked-user-male--v1.png");
       }
-      .removeFriendUserBtn{
+
+      .removeFriendUserBtn {
         @extend .--localBtn;
         background-image: url("https://img.icons8.com/color/100/000000/remove-user-male--v1.png");
       }
@@ -117,3 +131,23 @@
   }
 }
 
+.chatUnread {
+  animation: blink 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    background-color: transparentize($primary2, 0.7);
+  }
+  to {
+    background-color: transparentize($bgPrimary, 0.5);
+  }
+}
+
+.selectDialogPanel {
+  .MuiCircularProgress-root {
+    position: absolute;
+    left: calc(50% - 5vh);
+    top: calc(50% - 10vh);
+  }
+}

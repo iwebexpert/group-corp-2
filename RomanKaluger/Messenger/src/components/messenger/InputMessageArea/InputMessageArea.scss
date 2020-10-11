@@ -3,11 +3,37 @@
 .ForwardMessageNotification{
   @include center-content;
   @include --padding;
+  flex-direction: row;
   border-radius: $border;
   flex-grow: 1;
   background-color: transparentize($bgPrimary, 0.5);
   color: $light;
   font-size: 20px;
-  margin: 3px;
   position: relative;
+  flex-basis: 100%;
+  margin: 10px;
 }
+.sound-wave{
+  @include --border(all, $light, false);
+  border-radius: $border;
+  flex-basis: 100%;
+  margin: 10px;
+  &:focus{
+    outline: none;
+  }
+}
+.imageSendPreviewMini{
+  position: relative;
+  margin: 10px;
+  &:hover::after{
+    opacity: 0.8;
+    content: '';
+    background-image: url("https://img.icons8.com/color/50/000000/zoom-in.png");
+    width: 50px;
+    height: 50px;
+    left: calc(50% - 25px);
+    top: calc(50% - 25px);;
+    position: absolute;
+  }
+}
+

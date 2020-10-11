@@ -1,28 +1,17 @@
 {
   "chats": [
     {
-      "title": "dsadsaads",
+      "title": "sdadsaasddasdasdasasd",
       "messages": [],
-      "id": "bFVos9iJQyHInhBG9pAOB"
-    },
-    {
-      "title": "dsadasdsa",
-      "messages": [],
-      "id": "x1-NkBF9cH342sxmYukWv"
+      "id": "2Y99ct8A4ekPKEEHC9qF_"
     }
   ],
   "messages": [
     {
-      "chatId": "bFVos9iJQyHInhBG9pAOB",
-      "message": "adssda",
-      "author": "sdadas",
+      "chatId": "2Y99ct8A4ekPKEEHC9qF_",
+      "message": "aasdasd",
+      "author": "dassadds",
       "id": 1
-    },
-    {
-      "chatId": "bFVos9iJQyHInhBG9pAOB",
-      "message": "dsaadsdas",
-      "author": "sda",
-      "id": 2
     }
   ],
   "profile": {

@@ -32,6 +32,7 @@ export const MessangerForm = ({ onAddMessage, chat, chats }) => {
         });
     };
     const botAnswer = () => {
+        console.log(chat.id)
         timeout = setTimeout(() => {
             onAddMessage({
                 "author": "Bot",

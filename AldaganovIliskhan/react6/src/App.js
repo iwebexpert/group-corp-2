@@ -8,8 +8,8 @@ import { MessangerField } from "./components/MessangerField";
 import { setChats, fetchChats } from "./actions/chats";
 import { setProfile, fetchProfile } from "./actions/profile";
 import { Profile } from "./components/Profile";
-import { addChat } from "./actions/addChat";
-import { removeChat } from "./actions/removeChat";
+import { addChat } from "./actions/chats";
+import { removeChat } from "./actions/chats";
 
 const App = (props) => {
   const {

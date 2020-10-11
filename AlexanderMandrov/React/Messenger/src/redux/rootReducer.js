@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 import chatsReducer from './ducks/chats';
 import profileReducer from './ducks/profile';
 
-const rootReducer = combineReducers({
+const createRootReducer = (history) => combineReducers({
+  router: connectRouter(history),
   chatsReducer,
   profileReducer
 });
 
-export default rootReducer;
+export default createRootReducer;

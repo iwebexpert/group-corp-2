@@ -39,12 +39,6 @@ const findChatIndexByReceiver = (chats, receiver) => {
   return index;
 };
 
-const setDelay = (sender, receiver, dispatch, setSendBotMessage, editIdx = 0) => {
-  setTimeout(() => {
-    dispatch(setSendBotMessage(sender, receiver, editIdx));
-  }, 2000);
-};
-
 const createProfileInfo = (profileInfo) => {
   return {
     ...profileInfo,
@@ -53,4 +47,5 @@ const createProfileInfo = (profileInfo) => {
   };
 };
 
-export { createMessage, createBotMessage, validateInput, messageShorter, findChatByReceiver, findChatIndexByReceiver, setDelay, createProfileInfo };
+export { createMessage, createBotMessage, validateInput, messageShorter, 
+  findChatByReceiver, findChatIndexByReceiver, createProfileInfo };

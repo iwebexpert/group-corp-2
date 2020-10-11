@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 import './Header.scss';
 import Spinner from '../Spinner';
 import { makeStyles } from '@material-ui/core/styles';
@@ -44,7 +45,7 @@ const Header = () => {
       <AppBar position="static" className={appBar}>
         <Toolbar>
           <Typography variant="h6" className={title}>
-            <Link to="/" className="Header-link__reset">Messenger</Link>
+            <div onClick={() => dispatch(push('/'))}>Messenger</div>
           </Typography>
           <Typography variant="h6" className={title}>
               {data === null ?  <Spinner size={40} color="white" /> : `${data.username} ${sticker === null ? '' : sticker}`}

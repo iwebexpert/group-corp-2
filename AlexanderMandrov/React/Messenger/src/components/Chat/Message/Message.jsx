@@ -36,7 +36,8 @@ const Message = ({ message, deleteMessage, isBot, user }) => {
   const { text, username, id, date } = message;
 
   const alignStyles = isBot ? 'left' : 'right';
-  const time = isBot ? new Date(date.getTime() + 1000) : date;
+  const dateFromStr = new Date(date);
+  const time = isBot ? new Date(dateFromStr.getTime() + 2000) : new Date(dateFromStr);
 
   const btn = (
     <Box pt={1}>

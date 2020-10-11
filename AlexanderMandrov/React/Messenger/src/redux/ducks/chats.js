@@ -5,7 +5,9 @@ import { createMessage, createBotMessage } from '../../utils/utils';
 const SET_CHATS = 'chats/SET_CHATS',
   SET_SEND_MESSAGE = 'chats/SET_SEND_MESSAGE',
   SET_SEND_BOT_MESSAGE = 'chats/SET_SEND_BOT_MESSAGE',
-  SET_NEW_CHAT = 'chats/SET_NEW_CHAT';
+  SET_NEW_CHAT = 'chats/SET_NEW_CHAT',
+  SET_FIRE_CHAT = 'chats/SET_FIRE_CHAT',
+  SET_RECEIVER = 'chats/SET_RECEIVER';
 
 const initialState = {
   chats: null,
@@ -17,12 +19,13 @@ const setChats = (chats) => ({
   chats
 });
 
-const setSendMessage = (messageText, sender, chatId) => ({
+const setSendMessage = (messageText, sender, chatId, receiver) => ({
   type: SET_SEND_MESSAGE,
   payload: {
     text: messageText,
     username: sender,
-    chatId
+    chatId,
+    receiver
   }
 });
 
@@ -38,6 +41,19 @@ const setSendBotMessage = (sender, receiver, chatId) => ({
 const setNewChat = (chat) => ({
   type: SET_NEW_CHAT,
   chat
+});
+
+const setFireChat = (fire, chatId) => ({
+  type: SET_FIRE_CHAT,
+  payload: {
+    fired: fire,
+    chatId
+  }
+});
+
+const setReceiver = (receiver) => ({
+  type: SET_RECEIVER,
+  receiver
 });
 
 const fetchChats = (usernames) => {
@@ -81,10 +97,23 @@ const chatsReducer = (state = initialState, action) => {
         ...state,
         chats: [action.chat, ...state.chats]
       }
+    case SET_FIRE_CHAT:
+      return {
+        ...state,
+        chats: state.chats.map((chat, idx) => {
+          if (idx === action.payload.chatId) chat.fired = action.payload.fired;
+          return chat
+        })
+      }
+    case SET_RECEIVER:
+      return {
+        ...state,
+        receiver: action.receiver
+      }
     default:
       return state;    
   }
 };
 
 export default chatsReducer;
-export { fetchChats, setSendMessage, setNewChat, setChats, setSendBotMessage };
+export { fetchChats, setSendMessage, setNewChat, setChats, setSendBotMessage, SET_SEND_MESSAGE, SET_SEND_BOT_MESSAGE, setFireChat, setReceiver };

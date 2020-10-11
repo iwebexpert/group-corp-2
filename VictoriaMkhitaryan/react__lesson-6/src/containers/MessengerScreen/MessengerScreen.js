@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import './MessengerScreen.css'
 
@@ -32,9 +31,12 @@ class MessengerScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // есть проблема с тем, что тк изменяется содержимое массива, то redux не считает, что изменился сам массив
+    // сначала сделала заполняесый массив, но была проблема с тем
+    // что тк изменяется содержимое массива, то redux не считает, что изменился сам массив
     // => компонент не перерендеривается до какого-то действия пользователя
-    if (prevProps.id !== this.props.id && this.props.unreadMessage.indexOf(this.props.id) != -1) {
+    // скорее всего это было из-за того что в reducer не использовала update, а просто заменяла старый массив на новый
+    // до того как поняла это уже полностью переделала)
+    if (prevProps.id !== this.props.id) {
         this.props.changeUnreadMessage(this.props.id, 'remove');
     }
   }

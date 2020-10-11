@@ -17,8 +17,6 @@ export const botMiddleware = store => next => action => {
         } else if (currentURL[3] === 'chats' && chatId == currentURL[4]) {
           store.dispatch(changeUnreadMessage(chatId, 'remove'));
         }
-
-        console.log('!!!!!!!!!');
       }, 1000);
     }
   }

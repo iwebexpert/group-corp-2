@@ -21,13 +21,10 @@ export function changeUnreadMessage(chatId, command) {
     let unreadMessage = getState().chats.unreadMessage;
 
     if (command == 'add' && !unreadMessage.includes(chatId)) {
-      unreadMessage.push(chatId);
+      dispatch({type: types.ADD_UNREAD_MESSAGE, chatId});
     }
     else {
-      unreadMessage = unreadMessage.filter(item => item !== chatId);
+      dispatch({type: types.REMOVE_UNREAD_MESSAGE, chatId});
     }
-    
-    // console.log(unreadMessage);
-    dispatch({type: types.CHANGE_UNREAD_MESSAGE, unreadMessage});
   }
 }

@@ -3,7 +3,7 @@ import * as types from './actionTypes';
 
 const initialState = {
     entries: [],
-    unreadMessage: [1, 5, 3],
+    unreadMessage: [],
     loading: false
 };
 
@@ -15,6 +15,7 @@ export default function chatsReduce(state = initialState, action = {}) {
             return {
                 ...state,
                 entries: chats,
+                unreadMessage: Array(chats.length).fill(false),
             }
 
         case types.SEND_MESSAGE:
@@ -38,11 +39,19 @@ export default function chatsReduce(state = initialState, action = {}) {
                 entries: [...state.entries, {id: state.entries[state.entries.length - 1].id + 1, title: action.payload, messages: []}]
             }
 
-        case types.CHANGE_UNREAD_MESSAGE:
-            return {
-                ...state,
-                unreadMessage: action.unreadMessage,
-            };
+        case types.ADD_UNREAD_MESSAGE:
+            return update(state, {
+                unreadMessage: {
+                    [+action.chatId] : {$set: true},
+                }
+            });
+
+        case types.REMOVE_UNREAD_MESSAGE: 
+            return update(state, {
+                unreadMessage: {
+                    [+action.chatId] : {$set: false},
+                }
+            });
 
 
         default:

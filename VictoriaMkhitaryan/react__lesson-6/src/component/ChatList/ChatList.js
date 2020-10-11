@@ -36,11 +36,9 @@ export default function ChatList(props) {
 
   const renderChatItem = () => {
     return props.chats[0] ? props.chats.map(data => {
-      let unread = props.unreadMessage.indexOf(data.id) != -1 ? true : false;
-
       return(
         <ChatItem chats={data} 
-                  unread={unread} 
+                  unread={props.unreadMessage[data.id]} 
                   key={nanoid()}
                   currentChat={props.currentChat} />
       );
@@ -48,11 +46,9 @@ export default function ChatList(props) {
   }
 
   const renderChatItemSearch = (data) => {
-    let unread = props.unreadMessage.indexOf(data.id) != -1 ? true : false;
-
     return(
       <ChatItem chats={data} 
-                unread={unread} 
+                unread={props.unreadMessage[data.id]} 
                 key={nanoid()}
                 currentChat={props.currentChat} />
     );

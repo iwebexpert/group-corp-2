@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 import { Route, Switch } from "react-router-dom";
 
 import { Header } from "./components/Header";
 import "./App.scss";
 import { MessangerField } from "./components/MessangerField";
-import { setChats } from "./actions/setChats";
-import { setProfile } from "./actions/setProfile";
+import { setChats, fetchChats } from "./actions/chats";
+import { setProfile, fetchProfile } from "./actions/profile";
 import { Profile } from "./components/Profile";
 import { addChat } from "./actions/addChat";
 import { removeChat } from "./actions/removeChat";
 
-const App = ({
-  chats,
-  setChats,
-  setProfile,
-  profileData,
-  addChat,
-  removeChat,
-  pathname,
-}) => {
+const App = (props) => {
+  const {
+    chats,
+    setChats,
+    addChat,
+    removeChat,
+    fetchChats,
+    fetchProfile,
+    profileData,
+    pathname,
+  } = props;
   const [activeChat, setActiveChat] = useState(null);
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/chats?_embed=messages")
-      .then(({ data }) => {
-        setChats(data);
-      });
-    axios.get("http://localhost:3001/profile").then(({ data }) => {
-      setProfile(data);
-    });
-  }, [setChats, setProfile]);
+    fetchChats();
+    fetchProfile();
+  }, [fetchChats, fetchProfile]);
   useEffect(() => {
     const chatId = pathname.split("/chats/")[1];
+    if (pathname === "/") {
+      return;
+    }
     if (chats) {
       const chat = chats.find((chat, i) => i + 1 === Number(chatId));
       setActiveChat(chat);
@@ -101,4 +100,6 @@ export default connect(mapStateToProps, {
   setProfile,
   addChat,
   removeChat,
+  fetchChats,
+  fetchProfile,
 })(App);

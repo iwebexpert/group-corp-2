@@ -1,0 +1,22 @@
+:root {
+  background-color: #E5E5E5;
+
+  --text-color: white;
+  --text-color-secondary: black;
+  --button-color: #EB5757;
+  --button-color-hovered: #EB7D7D;
+  --bg-color: #EB5757;
+  --bg-color-card: #FCEAEA;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: sans-serif;
+}
+
+h1 {
+  color: rgb(241, 241, 241);
+}

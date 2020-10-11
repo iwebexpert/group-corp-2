@@ -1,0 +1,17 @@
+.MuiAvatar-root.MuiAvatar-circle.avatar {
+height: 260px;
+width: 260px;
+margin-bottom: 25px;
+}
+
+.profile-card {
+margin: 0 auto;
+}
+
+.profile-button.MuiButton-text {
+color: #303f9f;
+}
+
+.profile-name {
+    color: #303f9f;
+}

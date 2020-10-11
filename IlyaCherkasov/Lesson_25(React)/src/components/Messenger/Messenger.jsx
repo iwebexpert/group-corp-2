@@ -1,19 +1,13 @@
 import React, { memo } from 'react';
-import { useSelector } from 'react-redux';
 import Messege from '../Messege/Messege';
-import MessageForm from '../MessageForm';
+import MessageFormContainer from '../../redux/containers/MessageFormContainer';
 
-const Messenger = memo(({ chatID }) => {
-  const chats = useSelector((state) => state.chats.entries);
-  let messages;
-  if (chats[chatID] !== undefined) {
-    messages = chats[chatID].messages;
-  }
-  if (messages !== undefined) {
+const Messenger = memo((props) => {
+  if (props.messages !== undefined) {
     return (
       <div className="messanger">
         <div className="Messanger_field">
-          {messages.map((message) => (
+          {props.messages.map((message) => (
             <Messege
               author={message.author}
               text={message.text}
@@ -22,7 +16,7 @@ const Messenger = memo(({ chatID }) => {
             />
           ))}
         </div>
-        <MessageForm chatID={chatID} classN="Messanger_form" />
+        <MessageFormContainer classN="Messanger_form" />
       </div>
     );
   }
@@ -31,7 +25,7 @@ const Messenger = memo(({ chatID }) => {
       <div className="Messanger_field_full">
         <h2>Выберите чат</h2>
       </div>
-      <MessageForm classN="Messanger_form_No" />
+      <MessageFormContainer classN="Messanger_form_No" />
     </div>
   );
 });

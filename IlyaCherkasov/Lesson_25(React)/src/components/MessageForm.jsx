@@ -1,46 +1,17 @@
-import React, { memo, useState } from 'react';
-import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo } from 'react';
 
 import url from '../img/sandButtn.png';
-import { setMessage } from '../redux/actions/chatActions';
 
-const MessageForm = memo(({ chatID, classN }) => {
-  const author = useSelector((state) => state.profile.profileEntries.author);
-  const [text, setText] = useState('');
-
-  const dispatch = useDispatch();
-
-  const handleSetMessage = () => {
-    if (text !== '') {
-      dispatch(
-        setMessage({
-          chatID: +chatID,
-          id: nanoid(),
-          author: author,
-          text: text,
-          user: 'human',
-        })
-      );
-      setText('');
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.which === 13) {
-      handleSetMessage();
-    }
-  };
-
+const MessageForm = memo((props) => {
   return (
-    <div className={classN} onKeyDown={handleKeyDown}>
+    <div className={props.classN} onKeyDown={props.handleKeyDown}>
       <input
         name="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={props.text}
+        onChange={(e) => props.setText(e.target.value)}
         placeholder="Введите сообщение"
       />
-      <img src={url} alt="Отправить" onClick={handleSetMessage} />
+      <img src={url} alt="Отправить" onClick={props.handleSetMessage} />
     </div>
   );
 });

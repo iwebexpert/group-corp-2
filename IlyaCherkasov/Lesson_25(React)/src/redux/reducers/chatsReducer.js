@@ -6,6 +6,7 @@ import {
   NEW_CHAT_ADD,
   CHAT_FIRE,
   CHAT_UNFIRE,
+  DELETE_CHAT,
 } from '../actions/chatActions';
 
 const initialState = {
@@ -26,7 +27,6 @@ export const chatsReducer = (state = initialState, action) => {
         entries: {
           $push: [
             {
-              id: action.payload.id,
               title: action.payload.title,
               messages: [],
             },
@@ -40,10 +40,10 @@ export const chatsReducer = (state = initialState, action) => {
             messages: {
               $push: [
                 {
+                  id: action.payload.id,
                   text: action.payload.text,
                   author: action.payload.author,
                   user: action.payload.user,
-                  id: action.payload.id,
                 },
               ],
             },
@@ -68,6 +68,12 @@ export const chatsReducer = (state = initialState, action) => {
               fire: false,
             },
           },
+        },
+      });
+    case DELETE_CHAT:
+      return update(state, {
+        entries: {
+          $splice: [[[action.payload.chatID], 1]],
         },
       });
     default:

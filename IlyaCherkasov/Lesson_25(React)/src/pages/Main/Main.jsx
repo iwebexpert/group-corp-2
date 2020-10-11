@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Messenger from '../../components/Messenger/Messenger';
-import ChatList from '../../components/ChatList/ChatList';
+import MessengerContainer from '../../redux/containers/MessengerContainer';
+import ChatListContainer from '../../redux/containers/ChatListContainer';
 import Footer from '../../components/Footer/Footer';
 
-const Main = ({ chatID }) => {
+const Main = () => {
   return (
     <>
       <main className="main">
-        <ChatList />
-        <Messenger chatID={chatID} />
+        <ChatListContainer />
+        <MessengerContainer />
       </main>
       <Footer />
     </>

@@ -1,6 +1,5 @@
 export const chats = [
   {
-    id: 0,
     title: 'Текстовый чат',
     fire: false,
     messages: [
@@ -13,7 +12,6 @@ export const chats = [
     ],
   },
   {
-    id: 1,
     title: 'Рабочий чат',
     fire: true,
     messages: [
@@ -32,7 +30,6 @@ export const chats = [
     ],
   },
   {
-    id: 2,
     title: 'Друзья',
     fire: false,
     messages: [

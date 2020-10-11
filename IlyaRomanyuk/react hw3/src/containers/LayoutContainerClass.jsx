@@ -1,20 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Layout } from '../components/Layout';
-import { loadChatsAC, addMessageAC } from '../actions/addChatAC';
+import { loadChatsAC, addMessageAC, cleanAllMessagesAC, deleteMessageAC } from '../actions/addChatAC';
 
 class LayoutContainerClass extends React.Component {
     componentDidMount = () => {
-        this.props.chatsLoadAction();
+        if (!Object.values(this.props.chats).length) {
+            this.props.chatsLoadAction();
+        }
     }
 
     handleMessageSend = (message) => {
-        const { chatId } = this.props;
-        this.props.addMessageAction({ ...message, chatId });
+        const { chatId, addMessageAction } = this.props;
+        addMessageAction({ ...message, chatId });
     };
 
     render() {
-        return <Layout chats={this.props.messages} handleMessageSend={this.handleMessageSend} />;
+        const { messages, cleanAllMessagesAction, deleteMessageAction } = this.props;
+        return <Layout cleanAllMessagesAction={cleanAllMessagesAction}
+            deleteMessageAction={deleteMessageAction}
+            toggleIsFetching={this.toggleIsFetching}
+            chats={messages}
+            handleMessageSend={this.handleMessageSend} />;
     }
 }
 
@@ -29,14 +36,17 @@ const mapStateToProps = (state, ownProps) => {
     }
 
     return {
+        chats,
         messages,
-        chatId: match ? match.params.id : null,
+        chatId: match ? match.params.id : null
     };
 }
 
 const mapDispatchToProps = (dispatch) => ({
     chatsLoadAction: () => dispatch(loadChatsAC()),
-    addMessageAction: (message) => dispatch(addMessageAC(message))
+    addMessageAction: (message) => dispatch(addMessageAC(message)),
+    cleanAllMessagesAction: (chatId) => dispatch(cleanAllMessagesAC(chatId)),
+    deleteMessageAction: (chatId, messageId) => dispatch(deleteMessageAC(chatId, messageId))
 })
 
 export const LayoutContainer = connect(mapStateToProps, mapDispatchToProps)(LayoutContainerClass);

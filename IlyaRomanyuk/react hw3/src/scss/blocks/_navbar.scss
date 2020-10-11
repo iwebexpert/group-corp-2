@@ -4,9 +4,34 @@
 
     background-color: $navbarBackColor;
 
+    &__block {
+        position: relative;
+    }
+
+    &__myLink {
+        color: #fff;
+        cursor: pointer;
+        margin-right: 5px;
+        text-transform: uppercase
+    }
+
     &__list {
         height: 400px;
         overflow-y: scroll;
+    }
+
+    &__delete {
+        transform: rotate(-45deg);
+        color: #fff;
+
+        position: absolute;
+        right: 10px;
+        top: 0;
+        z-index: 5;
+
+        &:hover {
+            cursor: pointer
+        }
     }
 
     &__links {

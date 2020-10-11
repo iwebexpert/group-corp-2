@@ -1,0 +1,21 @@
+.state {
+  display: flex;
+  align-items: center;
+  color: $secondaryText;
+  font-size: 14px;
+
+  svg {
+    display: block;
+    margin-right: 2px;
+    width: 10px;
+    height: 10px;
+  }
+
+  &_online svg {
+    color: $active;
+  }
+
+  &_offline svg {
+    color: $secondaryText;
+  }
+}

@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.message {
+  background-color: rgb(94, 55, 55);
+  padding: 10px;
+  font-size: 15px;
+
+  color: white;
+  margin: 3px;
+
+  &-author {
+    color: rgb(160, 114, 114);
+    font-size: 14px;
+  }
+
+  &-bot {
+    align-self: flex-start;
+    border-radius: 15px 15px 15px 0;
+  }
+
+  &-sender {
+    align-self: flex-end;
+    border-radius: 15px 15px 0 15px;
+  }
+}

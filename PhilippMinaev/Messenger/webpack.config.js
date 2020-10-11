@@ -1,50 +1,69 @@
 const path = require("path");
-const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  watch: true,
-  entry: {
-    app: "./index.jsx",
-  },
-  context: path.join(__dirname, "static_src"),
+  entry: path.join(__dirname, "src", "index.js"),
   output: {
-    path: path.join(__dirname, "static", "build"),
-    filename: "app.js",
+    path: path.join(__dirname, "dist"),
+    filename: "bundle.js",
   },
   resolve: {
-    modules: [`${__dirname}/static_src`, "node_modules"],
     extensions: [".js", ".jsx"],
+    alias: {
+      components: path.join(__dirname, "src", "components"),
+      pages: path.join(__dirname, "src", "pages"),
+      actions: path.join(__dirname, "src", "actions"),
+      containers: path.join(__dirname, "src", "containers"),
+      reducers: path.join(__dirname, "src", "reducers"),
+      mapForConnect: path.join(__dirname, "src", "mapForConnect"),
+      middlewares: path.join(__dirname, "src", "middlewares"),
+    },
   },
+
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        include: path.join(__dirname, "static_src"),
-        loader: "babel-loader",
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        options: {
-          presets: ["@babel/env", "@babel/react"],
-          plugins: [
-            [
-              "@babel/plugin-proposal-class-properties",
-              {
-                loose: true,
-              },
-            ],
-          ],
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: [["transform-class-properties", { spec: true }]],
+          },
         },
       },
       {
-        test: /\.css$/,
-        loader: "style-loader!css-loader",
+        test: /\.s?css$/i,
+        use: [
+          "style-loader",
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
       },
     ],
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "src", "index.html"),
+      filename: "index.html",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "main.css",
+    }),
+  ],
   devServer: {
-    port: 8080,
-    historyApiFallback: {
-      index: "index.html",
-    },
+    historyApiFallback: true,
   },
-  devtool: "cheap-inline-module-source-map",
 };

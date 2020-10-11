@@ -26,7 +26,7 @@ export const AppReducer = (state = initialState, action)=>{
         case types.OPENED_USER_PROFILE: return {...state, userProfileToShow: action.payload};
         case types.LOCATION_CHANGE: {
             const path = action.payload.location.pathname;
-            const matchRes = path.match(/^\/messenger\/chats\/(.*)/);
+            const matchRes = path ? path.match(/^\/messenger\/chats\/(.*)/) : null;
             return !matchRes || !state.chats.find(ch => ch._id === matchRes[1]) ? {...state, selectedChat: null} : state;
         }
         default: return state;

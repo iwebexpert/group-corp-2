@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Avatar} from '@material-ui/core';
 import bot from '../../../assets/img/bot.png';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = makeStyles(theme => ({
 	root: {
@@ -59,16 +60,23 @@ const styles = makeStyles(theme => ({
 	}
 }));
 
-const Message = (props) => {
+const Message = ({author, photoUrl, text, deleteMessage, id}) => {
 	const classes = styles();
+	const [deleteMode, setDeleteMode] = useState(false);
+	const deleteHandler = () => {
+		deleteMessage(id);
+	};
+
 	return (
-		<div className={`${classes.root} ${props.isBot ? classes.bot : classes.author}`}>
-			{props.isBot && <Avatar className={classes.botAvatar} src={bot}/>}
+		<div onMouseEnter={() => {setDeleteMode(true)}} onMouseLeave={() => {setDeleteMode(false)}} className={`${classes.root} ${author === 'Bot' ? classes.bot : classes.author}`}>
+			{author !== 'Bot' && deleteMode && <DeleteIcon onClick={deleteHandler} color='primary'/>}
+			{author === 'Bot' && <Avatar className={classes.botAvatar} src={bot}/>}
 			<div className={classes.message}>
-				<div className={`${!props.isBot ? classes.authorText: classes.botText}`}>{props.author}</div>
-				<div className={`${classes.messageText} ${props.isBot && classes.messageTextBot}`} contentEditable>{props.text}</div>
+				<div className={`${author !== 'bot'? classes.authorText: classes.botText}`}>{author}</div>
+				<div className={`${classes.messageText} ${author === 'Bot' && classes.messageTextBot}`} contentEditable suppressContentEditableWarning={true}>{text}</div>
 			</div>
-			{!props.isBot && <Avatar className={classes.userAvatar} src={props.photoUrl}/>}
+			{author === 'Bot' && deleteMode && <DeleteIcon onClick={deleteHandler} color='primary'/>}
+			{author !== 'Bot' && <Avatar className={classes.userAvatar} src={photoUrl}/>}
 		</div>
 	);
 };

@@ -62,28 +62,17 @@ class MessageField extends React.Component {
 		});
 	};
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		let botName = this.props.chat.name;
-		if (this.props.chat.messages.length !== 0 && this.props.chat.messages[this.props.chat.messages.length - 1].author !== botName) {
-			clearInterval(this.timer);
-			let botText = getBotMessage(this.props.author);
-			this.timer = setTimeout(() => {
-				this.props.addMessage(botName, this.props.chat.id, botText, true);
-			}, 1500);
-		}
-	};
-
-
 	render() {
 		const {classes} = this.props;
-		const {author, photoUrl, chat} = this.props;
+		const {author, photoUrl, chat, deleteMessage} = this.props;
 		return (
 			<div className={classes.root}>
 				<Grid container direction='column' justify='center' align='center'>
 					<Grid item xs={12} className={`${classes.messages} ${scrollbar.scroll}`}>
 						<Messages author={author}
 								  photoUrl={photoUrl}
-								  messages={chat.messages}/>
+								  messages={chat.messages}
+								  deleteMessage={deleteMessage}/>
 					</Grid>
 					<Grid item container justify='center'>
 						<div className={inputArea.container}>

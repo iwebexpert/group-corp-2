@@ -1,0 +1,19 @@
+.icon_template {
+  display: block;
+  font-size: 26px;
+  color: $secondaryText;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: .3s;
+  background: transparent;
+  border: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: $active;
+  }
+}

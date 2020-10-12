@@ -1,20 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 
 import { LeftSider } from 'components/LeftSider'
 import { addChatAction, chatsLoadAction } from '../actions/chats'
 
 export class LeftSiderContainerClass extends React.Component {
   componentDidMount() {
-    this.props.chatsLoadAction();
+    if (!this.props.chats.entries.length) {
+      this.props.chatsLoadAction();
+    }
   }
 
   createRoom = (name) => {
+    if (name === '') return
+
     this.props.addChatAction({
       id: this.props.chats.entries.length,
       name,
       messages: []
     })
+
+    this.props.redirect(this.props.chats.entries.length)
   }
 
   onChangeHandler = (event) => this.setState({ newRoomName: event.target.value })
@@ -29,7 +36,6 @@ export class LeftSiderContainerClass extends React.Component {
 
 function mapStateToProps(state) {
   const chats = state
-
   return {
     ...chats
   }
@@ -38,7 +44,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     chatsLoadAction: () => dispatch(chatsLoadAction()),
-    addChatAction: (chat) => dispatch(addChatAction(chat))
+    addChatAction: (chat) => dispatch(addChatAction(chat)),
+    redirect: (chatId) => dispatch(push(`/chats/${chatId}`))
   }
 }
 

@@ -4,5 +4,4 @@ import { chatsReducer } from './chats'
 
 export const rootReducer = combineReducers({
   chats: chatsReducer,
-  //profile: profileReducer
 }) 

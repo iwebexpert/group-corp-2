@@ -34,7 +34,7 @@ export const LeftSider = (props) => {
             key={chat.id}
             style={index === 0 && { marginTop: 0 }}
           >
-            <Link to={`/chats/${chat.id}`}>{chat.name}</Link>
+            <Link to={`/chats/${chat.id}`}>{chat.name} {chat.fire ? '*' : ''}</Link>
           </Menu.Item>
         })
       }

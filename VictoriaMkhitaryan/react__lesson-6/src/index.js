@@ -3,28 +3,47 @@ import ReactDom from 'react-dom';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
-import { routerReducer } from 'react-router-redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import {PersistGate} from 'redux-persist/integration/react';
 import './index.css';
 
 import { botMiddleware } from './middlewares/bot';
 import { reducers } from './store/reducers';
 
-
 import Root from './containers/Root/Root';
-
 
 export const history = createBrowserHistory();
 
-const store = createStore(reducers(history), applyMiddleware(thunk, botMiddleware, routerMiddleware(history),));
+const persistConfig = {
+      key: 'app',
+      storage,
+};
+
+const initStore = () => {
+      const initialStore = {};
+
+      const store = createStore(
+            persistReducer(persistConfig, reducers(history)),
+            initialStore,
+            applyMiddleware(thunk, botMiddleware, routerMiddleware(history)));
+
+      const persistor = persistStore(store);
+      return {store, persistor};
+}
+
+const { store, persistor } = initStore();
+
 
 ReactDom.render(
       <Provider store={store}>
-            <Router history={history}>
-                  <Root />
-            </Router>
+            <PersistGate persistor={persistor}>
+                  <Router history={history}>
+                        <Root />
+                  </Router>
+            </PersistGate>
       </Provider>
 , document.getElementById('root'));

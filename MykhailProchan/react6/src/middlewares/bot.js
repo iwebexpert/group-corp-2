@@ -4,7 +4,6 @@ import React from 'react'
 let timer
 
 export const botMiddleware = store => next => action => {
-
   if (action.type === CHATS_MESSAGE_SEND) {
     //console.log(action.payload);
     const { author, chatId } = action.payload

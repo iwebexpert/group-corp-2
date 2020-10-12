@@ -45,10 +45,22 @@ export const chatsReducer = (state = initialState, action) => {
       })
 
     case CHATS_FIRE:
-      return
+      return update(state, {
+        entries: {
+          [action.payload.chatId]: {
+            fire: true
+          }
+        }
+      })
 
     case CHATS_UNFIRE:
-      return
+      return update(state, {
+        entries: {
+          [action.payload.chatId]: {
+            fire: false
+          }
+        }
+      })
 
     default:
       return state

@@ -73,7 +73,6 @@ function Header(props) {
   );
 }
 const mapStateToProps = (state) => {
-  console.log('new', state)
   return {
     profile: state.profile
   }

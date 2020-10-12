@@ -41,7 +41,6 @@ const MessagesList = (props) => {
     setActiveChat(chatId);
   }, [chatId]);
   if (props.chatToRender) {
-    console.log("я рендерю сообщения");
     return (
       <>
         <div className={classes.messagesList}>
@@ -50,7 +49,7 @@ const MessagesList = (props) => {
               <Message
                 backCol={classes.messagesContent}
                 styles={
-                  item.author === "Бот"
+                  item.author === "Bot"
                     ? classes.messagesListItemLeft
                     : classes.messagesListItemRight
                 }

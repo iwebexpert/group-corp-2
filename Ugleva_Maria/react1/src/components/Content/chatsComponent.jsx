@@ -15,7 +15,7 @@ const ChatsComponent = () => {
           </Grid>
           <Grid item xs={8}>
             <Paper>
-                <Route path="/:id" component={MessagesList} />
+                <Route path="/chats/:id" component={MessagesList} />
             </Paper>
           </Grid>
         </Grid>

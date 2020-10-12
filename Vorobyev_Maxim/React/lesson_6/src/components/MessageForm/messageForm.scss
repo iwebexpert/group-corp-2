@@ -1,0 +1,32 @@
+.typeMesageTextArea {
+  border-radius: 5px;
+  resize: none;
+  height: 35px;
+  font-size: 16px;
+  line-height: 25px;
+  width: 75%;
+  margin-right: 24px;
+  box-sizing: border-box;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+.typeAuthorName {
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-right: 24px;
+  width: 25%;
+  height: 35px;
+  font-size: 16px;
+  line-height: 25px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+.sendMessageIcon:hover {
+  cursor: pointer;
+}

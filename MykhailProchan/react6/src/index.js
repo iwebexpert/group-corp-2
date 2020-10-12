@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import 'antd/dist/antd.css'
 import { ConnectedRouter } from 'connected-react-router'
 import { PersistGate } from 'redux-persist/integration/react'
-import { Wrap } from 'components/Wrap'
 
 import { routes } from './routes'
 import { initStore, history } from './store'

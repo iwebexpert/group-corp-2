@@ -15,9 +15,7 @@ export const botMiddleware = store => next => action => {
             chatId,
             author: 'BattleMech'
           }));
-          store.dispatch(chatFireAction({
-            chatId
-          }))
+          store.dispatch(chatFireAction({ chatId }))
         }, 3000)
     }
   }

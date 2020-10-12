@@ -45,7 +45,6 @@ export const chatsReducer = (state = initialState, action) => {
       })
 
     case CHATS_FIRE:
-      console.log('hello')
       return update(state, {
         entries: {
           [action.payload.chatId]: {
@@ -58,7 +57,7 @@ export const chatsReducer = (state = initialState, action) => {
       return update(state, {
         entries: {
           [action.payload.chatId]: {
-            fire: false
+            fire: { $set: false }
           }
         }
       })

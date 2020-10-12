@@ -1,15 +1,39 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./components/App";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from './reducers/reducer';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { botAnswerMiddware } from './middlewares/bot';
+import { routerMiddleware } from 'connected-react-router';
+import createRootReducer from './reducers/reducer';
+import { createBrowserHistory } from 'history';
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const store = createStore(reducer);
-
+export const history = createBrowserHistory();
+const persistConfig = {
+	key: 'Chats',
+	storage,
+};
+const initStore = () => {
+	const initialStore = {};
+	const store = createStore(
+		persistReducer(persistConfig, createRootReducer(history)),
+		initialStore,
+		composeWithDevTools(applyMiddleware(logger, botAnswerMiddware, routerMiddleware(history)))
+	);
+	const persistor = persistStore(store);
+	return { store, persistor };
+};
+const {store, persistor} = initStore();
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+	<Provider store={store}>
+		<PersistGate persistor={persistor}>
+			<App />
+		</PersistGate>
+	</Provider>,
+	document.getElementById('root')
 );

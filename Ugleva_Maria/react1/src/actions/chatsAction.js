@@ -1,13 +1,18 @@
 export const addChatsToState = (data) => ({
-    type: 'ADD_CHATS_TO_STATE',
-    data: data
+	type: 'ADD_CHATS_TO_STATE',
+	data: data,
 });
 export const addNewMessageToChat = (data, id) => ({
-    type: 'ADD_MESSAGE_TO_CHAT',
-    data: data,
-    id: id
+	type: 'ADD_MESSAGE_TO_CHAT',
+	data: data,
+	id: id,
 });
 export const addNewChat = (data) => ({
-    type: 'ADD_NEW_CHAT',
-    data: data
-})
+	type: 'ADD_NEW_CHAT',
+	data: data,
+});
+
+export const highlightChat = (chatId) => ({
+	type: 'HIGHLIGHT_CHAT',
+	chatId
+});

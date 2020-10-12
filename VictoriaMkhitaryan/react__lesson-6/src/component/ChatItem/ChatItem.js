@@ -11,16 +11,17 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 
 export default function ChatItem(props) {
   return(
-    <Link className = "chat__link" to={`/chats/${props.chats.id}`}>
-      <ListItem button className={props.currentChat==props.chats.id ? "chat__current-chat" : (props.unread ? "chat__unreadMessage" : null)}>
+      <ListItem button 
+                className={props.currentChat==props.chats.id ? "chat__current-chat" : (props.unread ? "chat__unreadMessage" : null)}
+                id={props.chats.id} 
+                onClick={props.handleClickChat} >
         <ListItemAvatar>
           <AccountCircleOutlinedIcon className ="chat__userAvatar" />
         </ListItemAvatar>
-        <h4 className = "chat__username">{props.chats.title}</h4>
+        <h4 className="chat__username">{props.chats.title}</h4>
         <ListItemSecondaryAction>
           <p className="chat__unreadMessage_text">{props.unread ? props.unread : null}</p>
         </ListItemSecondaryAction>
       </ListItem>
-    </Link>
   );
 }

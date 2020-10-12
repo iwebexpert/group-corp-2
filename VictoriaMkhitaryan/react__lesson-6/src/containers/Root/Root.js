@@ -10,8 +10,8 @@ export default class Root extends Component {
     return (
       <>
         <Switch>
-        <Route exact path="/chats" render={ 
-          (props) => <MessengerScreen id={ Number(props.match.params.id) } />
+          <Route exact path="/chats" render={ 
+            (props) => <MessengerScreen />
           } />
           <Route exact path="/chats/:id" render={ 
             (props) => <MessengerScreen  id={ Number(props.match.params.id) } />

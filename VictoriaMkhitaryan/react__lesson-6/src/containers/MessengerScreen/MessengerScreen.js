@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { nanoid } from 'nanoid';
+import { push } from 'connected-react-router';
 import './MessengerScreen.css'
 
 import { chatsLoad, messageSend, addChat, changeUnreadMessage } from '../../store/messenger/actions';
@@ -14,6 +15,11 @@ import ChatList from '../../component/ChatList/ChatList';
 import Card from '@material-ui/core/Card';
 
 class MessengerScreen extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.handleClickChat = this.handleClickChat.bind(this, chatId);
+  //   this.handleClickChat = this.handleClickChat.bind(this, true);
+  // }
 
   handleMessageSend = (message) => {
     const chatId = this.props.id;
@@ -23,6 +29,10 @@ class MessengerScreen extends Component {
 
   handleChatAdd = (title) => {
     this.props.addChat(title);
+  }
+
+  handleClickChat = (e) =>{
+    this.props.redirect(Number(e.target.id));
   }
 
   componentDidMount() {
@@ -52,7 +62,8 @@ class MessengerScreen extends Component {
             <ChatList chats={chats}
                       currentChat={id}
                       handleAdd={this.handleChatAdd}
-                      unreadMessage={unreadMessage} />
+                      unreadMessage={unreadMessage}
+                      handleClickChat={this.handleClickChat.bind(this)} />
             { messages ?
                           <Chat modifiers="chat_theme_chat"
                                 messages={messages}
@@ -98,6 +109,7 @@ function mapDispatchToProps(dispatch){
     messageSend: (message) => dispatch(messageSend(message)),
     addChat: (title) => dispatch(addChat(title)),
     changeUnreadMessage: (chatId, command) => dispatch(changeUnreadMessage(chatId, command)),
+    redirect: (chatId) => dispatch(push(`/chats/${chatId}`)),
   }
 }
 

@@ -40,7 +40,8 @@ export default function ChatList(props) {
         <ChatItem chats={data} 
                   unread={props.unreadMessage[data.id]} 
                   key={nanoid()}
-                  currentChat={props.currentChat} />
+                  currentChat={props.currentChat}
+                  handleClickChat={props.handleClickChat} />
       );
     }) : null;
   }

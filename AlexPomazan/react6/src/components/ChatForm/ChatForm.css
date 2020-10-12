@@ -1,0 +1,13 @@
+.add-chat {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.input-title {
+    width: 210px;
+}
+
+.btn-add {
+    margin-left: 10px !important;
+}

@@ -1,0 +1,35 @@
+.message-content {
+    display: flex;
+}
+
+.message-bot,
+.message-sender {
+    display: flex;
+}
+
+.message {
+    margin-left: 10px;
+}
+
+.message-sender {
+    margin-bottom: 5px;
+    margin-right: 70px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.message-bot {
+    margin-left: 70px;
+    margin-bottom: 5px;
+    justify-content: flex-start;
+
+}
+
+.img-author {
+    width: 36px;
+    border-radius: 50%;
+}
+
+.message__author {
+    color: #2A5885;
+}

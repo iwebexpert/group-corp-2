@@ -16,6 +16,17 @@ export function addChat(title) {
   };
 }
 
+export function deleteChat(chatId) {
+  return (dispatch, getState) => {
+    const chats = getState().chats.entries;
+    console.log(chats);
+
+    const index = chats.findIndex(item => item.id == chatId);
+
+    dispatch({type: types.DELETE_CHAT, index});
+  }
+}
+
 export function changeUnreadMessage(chatId, command) {
   return (dispatch, getState) => {
     let unreadMessage = getState().chats.unreadMessage;

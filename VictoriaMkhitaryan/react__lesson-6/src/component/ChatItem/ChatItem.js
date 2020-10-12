@@ -20,7 +20,9 @@ export default function ChatItem(props) {
         </ListItemAvatar>
         <h4 className="chat__username">{props.chats.title}</h4>
         <ListItemSecondaryAction>
-          <p className="chat__unreadMessage_text">{props.unread ? props.unread : null}</p>
+          <button id={props.chats.id}  
+                  onClick={props.handleOnClickDelete} 
+                  className="chat__delete">X</button>
         </ListItemSecondaryAction>
       </ListItem>
   );

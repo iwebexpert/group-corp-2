@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import { push } from 'connected-react-router';
 import './MessengerScreen.css'
 
-import { chatsLoad, messageSend, addChat, changeUnreadMessage } from '../../store/messenger/actions';
+import { chatsLoad, messageSend, addChat, changeUnreadMessage, deleteChat } from '../../store/messenger/actions';
 
 import Navbar from '../../component/Navbar/Navbar';
 import Container from '../../component/Container/Container';
@@ -15,12 +15,6 @@ import ChatList from '../../component/ChatList/ChatList';
 import Card from '@material-ui/core/Card';
 
 class MessengerScreen extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.handleClickChat = this.handleClickChat.bind(this, chatId);
-  //   this.handleClickChat = this.handleClickChat.bind(this, true);
-  // }
-
   handleMessageSend = (message) => {
     const chatId = this.props.id;
     message.id = nanoid();
@@ -33,8 +27,12 @@ class MessengerScreen extends Component {
     this.props.redirect(this.props.chats[this.props.chats.length - 1].id + 1);
   }
 
-  handleClickChat = (e) =>{
+  handleClickChat = (e) => {
     this.props.redirect(Number(e.target.id));
+  }
+
+  handleOnClickDelete = (e) => {
+    this.props.deleteChat(e.target.id);
   }
 
   componentDidMount() {
@@ -65,7 +63,8 @@ class MessengerScreen extends Component {
                       currentChat={id}
                       handleAdd={this.handleChatAdd}
                       unreadMessage={unreadMessage}
-                      handleClickChat={this.handleClickChat.bind(this)} />
+                      handleClickChat={this.handleClickChat.bind(this)}
+                      handleOnClickDelete={this.handleOnClickDelete.bind(this)} />
             { messages ?
                           <Chat modifiers="chat_theme_chat"
                                 messages={messages}
@@ -110,6 +109,7 @@ function mapDispatchToProps(dispatch){
     chatsLoad: () => dispatch(chatsLoad()),
     messageSend: (message) => dispatch(messageSend(message)),
     addChat: (title) => dispatch(addChat(title)),
+    deleteChat: (chatId) => dispatch(deleteChat(chatId)),
     changeUnreadMessage: (chatId, command) => dispatch(changeUnreadMessage(chatId, command)),
     redirect: (chatId) => dispatch(push(`/chats/${chatId}`)),
   }

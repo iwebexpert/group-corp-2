@@ -24,3 +24,13 @@
 .chat__unreadMessage_text{
   color: grey;
 }
+
+.chat__delete {
+  margin: 0 15px;
+  border: none;
+  border-radius: 6px;
+}
+
+.chat__delete:hover {
+  background-color: #eb7d7d61;
+}

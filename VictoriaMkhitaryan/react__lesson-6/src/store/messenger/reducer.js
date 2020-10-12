@@ -38,6 +38,13 @@ export default function chatsReduce(state = initialState, action = {}) {
                 ...state,
                 entries: [...state.entries, {id: state.entries[state.entries.length - 1].id + 1, title: action.payload, messages: []}]
             }
+            
+        case types.DELETE_CHAT:
+            return update(state, {
+                entries: {
+                    $splice: [[action.index, 1]]
+                }
+            });
 
         case types.ADD_UNREAD_MESSAGE:
             return update(state, {

@@ -49,7 +49,7 @@ export const chatsReducer = (state = initialState, action) => {
       return update(state, {
         entries: {
           [action.payload.chatId]: {
-            fire: true
+            fire: { $set: true }
           }
         }
       })

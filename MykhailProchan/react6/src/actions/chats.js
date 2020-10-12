@@ -18,12 +18,12 @@ export const addChatAction = (chat) => ({
   payload: chat
 })
 
-export const chatFireAction = (chat) => ({
+export const chatFireAction = (chatId) => ({
   type: CHATS_FIRE,
-  payload: chat
+  payload: chatId
 })
 
-export const chatUnfireAction = (chat) => ({
+export const chatUnfireAction = (chatId) => ({
   type: CHATS_UNFIRE,
-  payload: chat
+  payload: chatId
 })

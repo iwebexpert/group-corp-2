@@ -28,7 +28,7 @@ export const fireChat = (chatId) => ({
   type: "FIRE_CHAT",
   chatId: chatId,
 });
-export const unfireChat = (pathname, chatId) => ({
+export const unfireChat = (chatId) => ({
   type: "UNFIRE_CHAT",
-  payload: { pathname, chatId },
+  payload: chatId,
 });

@@ -6,28 +6,25 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-import {useHistory} from 'react-router-dom';
+import {push} from 'connected-react-router';
 import routesPaths from "../../../configs/routesPaths";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import {setLoading} from "../../../redux/actions";
+import {useDispatch} from "react-redux";
+
 
 export default function ({isDeleteCandidate, setIsDeleteCandidate, chat}) {
-    const history = useHistory();
-    const [isLoad, setIsLoad] = useState(false);
     const cancelDelete = () => setIsDeleteCandidate(false);
+    const dispatch = useDispatch();
     const acceptDelete = useCallback(async () => {
         setIsDeleteCandidate(false);
-        setIsLoad(true);
+        dispatch(setLoading(true));
         await DbWorker.deleteChat(chat._id);
-        setIsLoad(false);
-        history.push(routesPaths.MESSENGER);
+        dispatch(setLoading(false));
+        dispatch(push(routesPaths.MESSENGER));
     }, [chat]);
 
     return (
         <>
-            <Backdrop open={isLoad}>
-                <CircularProgress/>
-            </Backdrop>
             <Dialog
                 open={isDeleteCandidate}
                 onClose={cancelDelete}

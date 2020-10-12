@@ -42,4 +42,21 @@ export function setContacts(payload) {
         payload: payload
     }
 }
-
+export function sendMessage(payload) {
+    return {
+        type: types.SEND_MESSAGE,
+        payload: payload
+    }
+}
+export function setLoading(payload) {
+    return {
+        type: types.LOADING,
+        payload: payload
+    }
+}
+export function setCommonViewImages(payload) {
+    return {
+        type: types.SET_COMMON_VIEW_IMAGES,
+        payload: payload
+    }
+}

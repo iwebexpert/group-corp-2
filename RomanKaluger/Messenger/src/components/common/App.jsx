@@ -9,8 +9,13 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import Authorization from "../auth/Authorization";
 import Registration from "../auth/Registration";
 import UserProfile from "../messenger/UserProfile/UserProfile";
+import {ConnectedRouter} from 'connected-react-router';
+import {history} from "../../redux/StorageRedux";
+import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop/Backdrop";
 export default () => {
-    const curUser = useSelector(s => s.app.curUser);
+    const {curUser} = useSelector(s => s.app);
+    const {loading} = useSelector(s => s.system);
     const id = curUser ? curUser._id : null;
     useEffect(() => {
         if (curUser){
@@ -20,8 +25,11 @@ export default () => {
         },[id]);
     return (
         <>
+            <Backdrop open={loading || false}>
+                <CircularProgress/>
+            </Backdrop>
             <UserProfile/>
-            <Router>
+            <ConnectedRouter history={history}>
                 <div className={'appContainer'}>
                     <Switch>
                         <Route path={routesPaths.MESSENGER}>
@@ -38,7 +46,7 @@ export default () => {
                         </Route>
                     </Switch>
                 </div>
-            </Router>
+            </ConnectedRouter>
         </>
     );
 }

@@ -28,4 +28,13 @@ export function getUserNote(type, user) {
     }
     return str;
 }
+export function convertBlobToBase64(blob){
+    return new Promise(resolve => {
+        const fileReader = new FileReader();
+        fileReader.onload = function () {
+            resolve(this.result);
+        };
+        fileReader.readAsDataURL(blob);
+    });
+}
 

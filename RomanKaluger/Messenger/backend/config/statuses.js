@@ -5,4 +5,9 @@ module.exports={
         REMEMBER_ME:'REMEMBER_ME',
         CONTACTS: 'CONTACTS'
     },
+    messageTypes: {
+        TEXT: 'TEXT',
+        AUDIO:'AUDIO',
+        IMAGE:'IMAGE'
+    }
 };

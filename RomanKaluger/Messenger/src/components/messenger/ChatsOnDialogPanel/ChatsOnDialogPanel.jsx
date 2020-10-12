@@ -4,13 +4,15 @@ import ChatSelector from "./ChatSelector";
 import {useSelector} from "react-redux";
 import './ChatsOnDialogPanel.scss';
 
-export default () => {
+export default ({searchInput}) => {
     const {chats} = useSelector(s => s.app);
+    const regexp = searchInput ? new RegExp(`.*${searchInput}.*`, 'i'): /.*/;
+    const findChats = chats.filter(ch => regexp.test(ch.title)).map(ch => <ChatSelector key={ch._id} chat={ch}/>);
     return (
         <div className={'ChatsSectionDlgPn'}>
             <List>
 {
-    chats.length ? chats.map(ch => <ChatSelector key={ch._id} chat={ch}/>) : 'Чатов нет'
+    findChats.length ? findChats : 'Чаты не найдены'
 }
             </List>
         </div>

@@ -4,61 +4,151 @@ import {useDispatch, useSelector} from "react-redux";
 import {DbWorker} from "../../../utils/DbWorker";
 import Fab from '@material-ui/core/Fab'
 import SendIcon from '@material-ui/icons/Send';
-import {wsStatuses} from "../../../configs/statuses";
+import {messageTypes, wsStatuses} from "../../../configs/statuses";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import {openUserProfile, setChats, setForwardMessage, setPendingMessages} from "../../../redux/actions";
+import {
+    openUserProfile,
+    sendMessage,
+    setForwardMessage,
+} from "../../../redux/actions";
 import './InputMessageArea.scss';
 import uniqid from 'uniqid';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
+import {MicRecorder} from "./MicRecorder";
+import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
+import {convertBlobToBase64} from "../../../utils/helpers";
+import {Picker} from 'emoji-mart'
+import 'emoji-mart/css/emoji-mart.css'
+import Popover from "@material-ui/core/Popover/Popover";
+import classNames from 'classnames';
+import swal from "sweetalert";
+import {AttachFileNotification} from "./AttachFilesNotification";
 
 export default ({setPendingMessages, pendingMessages}) => {
     const [mes, setMes] = useState('');
+    const [recordedAudio, setRecordedAudio] = useState(null);
+    const [attachedImage, setAttachedImage] = useState(null);
+    const [isRecord, setIsRecord] = useState(false);
+    const [isEmojiShown, setIsEmojiShown] = useState(false);
     const dispatch = useDispatch();
     const textArea = useRef();
+    const emojiPickerBtn = useRef();
     const {wsStatus, curUser, chats} = useSelector(s => s.app);
-
     const {forwardMessage} = useSelector(s => s.system);
     const onChangeHandler = useCallback((e) => {
         const msg = e.target.value;
         setMes(msg);
     }, []);
+    const onAttachImageHandler = useCallback(async (e) => {
+        const files = Array.from(e.target.files);
+        if (!files.length) {
+            return;
+        }
+        if (files.length > 10) {
+            await swal('Ошибка', 'Количество файлов не должно превышать 10', 'error');
+            return;
+        }
+        if (files.reduce((acc, x) => acc + x.size, 0) > 2e+7) {
+            await swal('Ошибка', 'Размер вложения не может превышать 20мб', 'error');
+            return;
+        }
+        let base64Files = [];
+        for (let file of files) {
+            const base64 = await convertBlobToBase64(file);
+            base64Files.push(base64);
+        }
+        setAttachedImage(base64Files);
+    },[setAttachedImage]);
     const sendMessageHandler = useCallback(async (msg) => {
-        if (msg || forwardMessage){
+        if (msg || forwardMessage || recordedAudio || attachedImage) {
             const message = DbWorker.createMessage(msg, forwardMessage);
             message.isPending = true;
             message._id = uniqid();
             setPendingMessages(prev => [...prev, message]);
-            dispatch(setForwardMessage(null));
+            if (forwardMessage) {
+                dispatch(setForwardMessage(null));
+            }
+            const type = recordedAudio ? messageTypes.AUDIO : attachedImage ? messageTypes.IMAGE : messageTypes.TEXT;
+            let recordBase64;
+            if (recordedAudio) {
+                recordBase64 = await convertBlobToBase64(recordedAudio.blob);
+            } else if (attachedImage) {
+                recordBase64 = attachedImage;
+                setAttachedImage(null);
+            }
+            dispatch(sendMessage({msg, forwardMessage, type, content: recordBase64}));
+            setRecordedAudio(null);
             setMes('');
-            await DbWorker.sendMessage(msg, forwardMessage);
         }
-    }, [wsStatus, setMes, forwardMessage, chats, pendingMessages]);
+    }, [wsStatus, setMes, forwardMessage, chats, pendingMessages, recordedAudio, attachedImage]);
     const submitHandler = useCallback((e) => {
         if (e.key === 'Enter' && e.ctrlKey) {
             sendMessageHandler(mes);
         }
     }, [sendMessageHandler, mes]);
-    const avatarContent = curUser ?  (curUser.avatarUrl ? <img src={curUser.avatarUrl} alt={'Аватар'}/> : curUser.name.slice(0,2)) : null;
+    const avatarContent = curUser ? (curUser.avatarUrl ?
+        <img src={curUser.avatarUrl} alt={'Аватар'}/> : curUser.name.slice(0, 2)) : null;
+    const onPasteHandler = useCallback(async (e) => {
+        if (!e.clipboardData || !e.clipboardData.items) {
+            return;
+        }
+        const items = e.clipboardData.items;
+        const base64Arr = [];
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf("image") === -1) continue;
+            const base64 = await convertBlobToBase64(items[i].getAsFile());
+            base64Arr.push(base64);
+        }
+        setAttachedImage(prev => [...(prev ? prev : []), ...base64Arr]);
+    }, [setAttachedImage]);
     return (
         <div className={'InputMessageArea'}>
             <div onClick={() => dispatch(openUserProfile(curUser))} className="avatarBig">{avatarContent}</div>
+            <div className={classNames('inputFileMessageContainer', {disabled: !!recordedAudio})}>
+                <label htmlFor={'inputFileMessage'}>
+                    <AttachFileIcon fontSize={'large'}/>
+                </label>
+            </div>
+            <input multiple onChange={onAttachImageHandler} style={{display: 'none'}} id={'inputFileMessage'}
+                   name={'inputFileMessage'} type={'file'}/>
             <TextareaAutosize
-                ref={textArea} rowsMax={8} rowsMin={3}
+                ref={textArea} rowsMax={8} rowsMin={3} onPaste={onPasteHandler}
                 value={mes} className={'InputMessageTextArea'} onKeyDown={submitHandler}
                 onChange={onChangeHandler} placeholder={'Введите сообщение'}/>
             <Fab
-                onClick={() => sendMessageHandler(textArea.current.value)}
-                size={'large'} disabled={wsStatus === wsStatuses.CLOSED || (!mes && !forwardMessage) || Boolean(pendingMessages.length)}
-                color="primary" aria-label="add">
-                <SendIcon />
+                ref={emojiPickerBtn}
+                onClick={() => setIsEmojiShown(true)}
+                size={'large'}
+                color="primary">
+                <SentimentVerySatisfiedIcon/>
             </Fab>
-            {
-                forwardMessage && forwardMessage.chat ?
-                    <div className={'ForwardMessageNotification'}>
-                        <b>Вложение: {forwardMessage.messages.length} пересланных сообщений</b>
-                        <img onClick={() => dispatch(setForwardMessage(null))} className={'DeleteSign'} src="https://img.icons8.com/color/48/000000/delete-sign.png"/>
-                    </div>
-                    : null
-            }
+            <Popover
+                open={isEmojiShown}
+                onClose={() => setIsEmojiShown(false)}
+                anchorEl={emojiPickerBtn.current}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+            >
+                <Picker theme={'dark'} native={true} color={'orange'}
+                        onClick={(emoji) => setMes((prev) => prev + emoji.native)} showPreview={false} title={''}/>
+            </Popover>
+            <Fab
+                onClick={() => sendMessageHandler(textArea.current.value)}
+                size={'large'}
+                disabled={wsStatus === wsStatuses.CLOSED || (!mes && !forwardMessage && !recordedAudio && !attachedImage) || Boolean(pendingMessages.length) || isRecord}
+                color="primary" aria-label="add">
+                <SendIcon/>
+            </Fab>
+            <MicRecorder isRecord={isRecord} setIsRecord={setIsRecord} setRecordedAudio={setRecordedAudio}
+                         recordedAudio={recordedAudio} isDisabled={!!attachedImage || !!recordedAudio}/>
+           <AttachFileNotification forwardMessage={forwardMessage} recordedAudio={recordedAudio }
+                                   setRecordedAudio={setRecordedAudio} setAttachedImage={setAttachedImage} attachedImage={attachedImage}/>
         </div>
     );
 }

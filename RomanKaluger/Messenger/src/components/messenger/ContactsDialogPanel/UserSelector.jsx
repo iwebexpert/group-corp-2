@@ -5,17 +5,16 @@ import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import {userTypes} from "./userTypes";
-import {useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {setSelectedChat} from "../../../redux/actions";
 import {getUserNote} from "../../../utils/helpers";
+import {push} from 'connected-react-router';
 
 export default function ({user, type, clearInput}) {
     const startChatRef = useRef();
     const addFriendRef = useRef();
     const removeFriendRef = useRef();
     const dispatch = useDispatch();
-    const history = useHistory();
     const {chats} = useSelector(s=> s.app);
     const contactsActionHandler = useCallback(async (e) => {
         e.stopPropagation();
@@ -25,14 +24,14 @@ export default function ({user, type, clearInput}) {
                 disableBtn(startChatRef.current);
                 const existedChat = chats.find(x => x.members.length ===2 && x.members.includes(user._id));
                 if (existedChat){
+                    dispatch(push(`/messenger/chats/${existedChat._id}`));
                     dispatch(setSelectedChat(existedChat._id));
-                    history.push(`/messenger/chats/${existedChat._id}`);
                     activateBtn(startChatRef.current);
                     return;
                 }
                 const createdChat = await DbWorker.createChat(user);
+                dispatch(push(`/messenger/chats/${createdChat._id}`));
                 dispatch(setSelectedChat(createdChat._id));
-                history.push(`/messenger/chats/${createdChat._id}`);
                 activateBtn(startChatRef.current);
                 break;
             }

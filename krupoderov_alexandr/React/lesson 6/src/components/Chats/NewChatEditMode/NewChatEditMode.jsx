@@ -22,7 +22,7 @@ class NewChatEditMode extends React.Component {
 	}
 
 	onClickHandler = (event) => {
-		if (event.target.tagName === 'TEXTAREA' || event.target.tagName === 'BUTTON'){
+		if (event.target.tagName === 'TEXTAREA' || event.target.tagName !== 'BUTTON'){
 			this.props.changeEditMode(false)
 		}
 	};

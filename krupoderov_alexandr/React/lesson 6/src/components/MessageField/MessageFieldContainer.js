@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import MessageField from './MessageField';
-import {addMessage} from '../../store/ChatsReducer';
+import {addMessage, deleteMessage} from '../../store/ChatsReducer';
 
 class MessageFieldContainer extends React.Component{
 	getChat = (chats, id) =>{
@@ -15,7 +15,7 @@ class MessageFieldContainer extends React.Component{
 
 	render() {
 		let chat = this.getChat(this.props.chats, this.props.match.params.id);
-		return <MessageField chat={chat} author={this.props.author} photoUrl={this.props.photoUrl} addMessage={this.props.addMessage}/>
+		return <MessageField chat={chat} author={this.props.author} photoUrl={this.props.photoUrl} addMessage={this.props.addMessage} deleteMessage={this.props.deleteMessage}/>
 	};
 }
 
@@ -28,5 +28,5 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-	connect(mapStateToProps, {addMessage})
+	connect(mapStateToProps, {addMessage, deleteMessage})
 )(MessageFieldContainer);

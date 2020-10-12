@@ -87,7 +87,7 @@ class Profile extends React.Component {
 			<div className={classes.container}>
 				<h1 className={classes.header}>Редактирование профиля</h1>
 				<div className={classes.root}>
-					<TextField className={importClasses.input} color='palette.success.light' name='author' label='Введите автора' value={this.state.author} onChange={this.changeTextHandler}/>
+					<TextField className={importClasses.input} name='author' label='Введите автора' value={this.state.author} onChange={this.changeTextHandler}/>
 					<TextField className={importClasses.input} name='url' label='Введите URL аватарки' value={this.state.imgUrl} onChange={this.changeTextHandler}/>
 					<Button className={classes.btn} variant='contained' color='secondary' onClick={this.saveSettings}>Save</Button>
 					{this.state.isAuthorError && <Alert className={classes.alert} severity='warning'>Пожалуйста, укажите автора!</Alert>}

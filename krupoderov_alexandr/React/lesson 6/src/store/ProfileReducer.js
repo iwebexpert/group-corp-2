@@ -2,7 +2,7 @@ const SET_AUTHOR = 'SET_AUTHOR';
 const SET_PHOTO_URL = 'SET_PHOTO_URL';
 
 let initialState = {
-	author: '',
+	author: 'sdadasd',
 	photoUrl: ''
 };
 

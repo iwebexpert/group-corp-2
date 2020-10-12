@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Button } from '@material-ui/core'
 import m1 from './../../../img/mans/m1.png';
+import { nanoid } from 'nanoid';
 
 export const ChatForm = ({ onMessageSend }) => {
     const mess = useRef(null);
@@ -11,7 +12,7 @@ export const ChatForm = ({ onMessageSend }) => {
             let message = mess.current.value;
             let author = person.current.value;
 
-            onMessageSend({ author, message, image: m1 })
+            onMessageSend({ id: nanoid(), author, message, image: m1 })
 
             mess.current.value = '';
             person.current.value = '';

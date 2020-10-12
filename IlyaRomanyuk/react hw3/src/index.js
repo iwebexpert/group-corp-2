@@ -3,14 +3,20 @@ import ReactDom from 'react-dom';
 import './scss/style.scss';
 import Messenger from './components/Messenger.jsx';
 import { Provider } from 'react-redux';
-import { store } from './store';
-import { BrowserRouter as Router } from "react-router-dom";
+import { initStore, history } from './store';
+import { ConnectedRouter } from 'connected-react-router'
+import { PersistGate } from 'redux-persist/integration/react';
 
+const { store, persistor } = initStore();
 
 ReactDom.render(
     <Provider store={store}>
-        <Router>
-            <Messenger />
-        </Router>
+        <PersistGate persistor={persistor}>
+            <ConnectedRouter history={history}>
+                <Messenger />
+            </ConnectedRouter>
+        </PersistGate>
     </Provider>
     , document.getElementById('root'));
+
+window.store = store

@@ -29,6 +29,8 @@ class MessengerScreen extends Component {
 
   handleChatAdd = (title) => {
     this.props.addChat(title);
+    
+    this.props.redirect(this.props.chats[this.props.chats.length - 1].id + 1);
   }
 
   handleClickChat = (e) =>{

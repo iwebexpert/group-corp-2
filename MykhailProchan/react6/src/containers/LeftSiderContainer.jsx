@@ -7,13 +7,12 @@ import { addChatAction, chatsLoadAction } from '../actions/chats'
 
 export class LeftSiderContainerClass extends React.Component {
   componentDidMount() {
-    if (!this.props.chats.length) {
+    if (!this.props.chats.entries.length) {
       this.props.chatsLoadAction();
     }
   }
 
   createRoom = (name) => {
-    console.log(this.props)
     if (name === '') return
 
     this.props.addChatAction({

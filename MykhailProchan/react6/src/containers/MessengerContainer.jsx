@@ -5,10 +5,6 @@ import { Messenger } from 'components/Messenger'
 import { chatsLoadAction, chatsMessageSendAction } from '../actions/chats'
 
 class MessengerContainerClass extends React.Component {
-  componentDidMount() {
-    this.props.chatsLoadAction();
-  }
-
   handleMessageSend = (message) => {
     const chatId = this.props.match.params.id
     this.props.chatsMessageSendAction({

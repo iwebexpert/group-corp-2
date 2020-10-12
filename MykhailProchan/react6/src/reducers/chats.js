@@ -4,6 +4,8 @@ import {
   CHATS_LOAD,
   CHATS_MESSAGE_SEND,
   ADD_CHAT,
+  CHATS_FIRE,
+  CHATS_UNFIRE
 } from '../actions/chats'
 
 const initialState = {
@@ -36,10 +38,17 @@ export const chatsReducer = (state = initialState, action) => {
           $push: [{
             id: action.payload.id,
             name: action.payload.name,
+            fire: false,
             messages: action.payload.messages
           }]
         }
       })
+
+    case CHATS_FIRE:
+      return
+
+    case CHATS_UNFIRE:
+      return
 
     default:
       return state

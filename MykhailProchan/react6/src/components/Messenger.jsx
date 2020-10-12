@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
 
 const { Header, Content } = Layout
-let timer
 
 export class Messenger extends Component {
 	render() {
@@ -19,7 +18,7 @@ export class Messenger extends Component {
 							level={3}
 							style={style.contentLayout.contentHeader}
 						>{this.props.name}</Typography.Title>
-						<Link to="/profile" exact style={{ color: 'white' }}><Typography.Title level={3} style={style.contentLayout.contentHeader}><UserOutlined /></Typography.Title></Link>
+						<Link to="/profile" style={{ color: 'white' }}><Typography.Title level={3} style={style.contentLayout.contentHeader}><UserOutlined /></Typography.Title></Link>
 					</Header>
 					<div style={style.contentLayout.messageList}>
 						{this.props.messages != null && <MessagesList items={this.props.messages} />}

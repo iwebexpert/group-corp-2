@@ -1,0 +1,20 @@
+@import './scssDep/resetCss.scss';
+@import './scssDep/functions.scss';
+@import '../src/components/Header/Header.scss';
+@import '../src/pages/Main/Main.scss';
+@import '../src/components/ChatList/ChatList.scss';
+@import '../src/components/Messenger/Messenger.scss';
+@import '../src/components/Messege/Messege.scss';
+@import '../src/components/Footer/Footer.scss';
+@import '../src/pages/About/About.scss';
+@import '../src/pages/Profile/Profile.scss';
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #3A3A3A;
+}
+
+.wrapper {
+  max-width: 1520px;
+  margin: 0 auto;
+}

@@ -17,9 +17,17 @@ export const chats = (state = initialState, action) => {
       return {
         ...state,
         items: state.items.map((chat) => {
-          if (chat.id === action.payload.chatId) {
+          if (chat.id === action.chatId) {
             chat.fire = true;
           }
+          return chat;
+        }),
+      };
+    case "UNFIRE_CHAT":
+      return {
+        ...state,
+        items: state.items.map((chat) => {
+          chat.fire = false;
           return chat;
         }),
       };

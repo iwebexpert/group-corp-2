@@ -1,5 +1,4 @@
 import axios from "axios";
-export const CHATS_MESSAGE_SEND = "CHATS_MESSAGE_SEND";
 export const fetchChats = () => (dispatch) => {
   axios.get("http://localhost:3001/chats?_embed=messages").then(({ data }) => {
     dispatch(setChats(data));
@@ -25,9 +24,11 @@ export const sendMessage = (obj, chatId, author, pathname) => ({
   type: "SEND_MESSAGE",
   payload: { obj, chatId, author, pathname },
 });
-export const fireChat = (pathname, chatId) => {
-  return {
-    type: "FIRE_CHAT",
-    payload: { pathname, chatId },
-  };
-};
+export const fireChat = (chatId) => ({
+  type: "FIRE_CHAT",
+  chatId: chatId,
+});
+export const unfireChat = (pathname, chatId) => ({
+  type: "UNFIRE_CHAT",
+  payload: { pathname, chatId },
+});

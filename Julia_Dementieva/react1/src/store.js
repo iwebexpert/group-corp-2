@@ -2,6 +2,7 @@ import {createStore, applyMiddleware} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import {botMiddlewares} from './middlewares/bot';
+import {chatAddDeleteMiddlewares} from './middlewares/chatAddDelete';
 import {createBrowserHistory} from 'history';
 import {routerMiddleware} from 'connected-react-router';
 import storage from 'redux-persist/lib/storage';
@@ -26,7 +27,7 @@ export const initStore = () => {
         persistReducer(persistConfig, createRootReducer(history)),
         initialStore,
         composeWithDevTools(
-            applyMiddleware(logger, botMiddlewares, routerMiddleware(history),apiMiddleware,
+            applyMiddleware(logger, botMiddlewares, routerMiddleware(history),apiMiddleware,chatAddDeleteMiddlewares,
             )));
 
     const persistor = persistStore(store);

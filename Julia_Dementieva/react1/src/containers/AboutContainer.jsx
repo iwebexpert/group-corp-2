@@ -18,7 +18,7 @@ class AboutContainerClass extends React.Component {
     }
 
     render(){
-        return <About {...this.props} />
+        return <About {...this.props} isLoading={this.props.isLoading} />
     }
 }
 

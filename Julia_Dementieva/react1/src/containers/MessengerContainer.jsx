@@ -19,6 +19,7 @@ class MessengerContainerClass extends React.Component {
 
     handleMessageSend = (message) => {
         const {chatId, chatsMessageSendAction} = this.props;
+        console.log('click')
         chatsMessageSendAction({
             ...message,
             id: nanoid(),

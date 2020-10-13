@@ -18,8 +18,6 @@ const initialState = {
     fireChatsId: [],
 };
 
-import {chats} from '../helper/chatsData';
-
 export const chatsReducer = (state = initialState, action) => {
     switch(action.type){
         case CHATS_LOAD_REQUEST:
@@ -48,7 +46,6 @@ export const chatsReducer = (state = initialState, action) => {
             };
         case CHATS_MESSAGE_SEND:
             //react-addons-update
-            console.log('send', state.fireChatsId)
             return update(state, {
                 entries: {
                     [action.payload.chatId]: {

@@ -1,21 +1,39 @@
 import {
-    ABOUT_LOAD,
+    ABOUT_LOAD_REQUEST,
+    ABOUT_LOAD_FAILURE,
+    ABOUT_LOAD_SUCCESS,
 } from '../actions/about';
 
 const initialState = {
     entries: {},
     loading: false,
+    error: false,
+    ready: false,
 };
-
-import {person} from '../helper/personData';
 
 export const aboutReducer = (state = initialState, action) => {
     switch(action.type){
-        case ABOUT_LOAD:
+        case ABOUT_LOAD_REQUEST:
+            console.log('success',action.payload)
             return {
                 ...state,
-                entries: person,
                 loading: true,
+                error: false,
+            };
+    
+        case ABOUT_LOAD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                ready: true,
+                entries: action.payload,
+            };
+            
+        case ABOUT_LOAD_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true,
             };
 
         default:

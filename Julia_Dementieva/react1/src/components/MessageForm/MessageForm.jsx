@@ -30,6 +30,7 @@ class MessageFormClass extends Component {
     };
     // Проверка введенных данных
     isEmpty(str) {
+        console.log("empty", this.state.author)
         return (!str || /^\s*$/.test(str));
     }
 

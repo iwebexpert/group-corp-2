@@ -25,14 +25,6 @@ const usernames = [
     'thoroughforemast'
 ];
 
-const rawProfileInfo = {
-  firstname: 'Wispy',
-  lastname: 'Briskpress',
-  BIO: '23 y.o. designer from San Fransisco',
-  username: 'yellso',
-  number: '+7 953 932-58-23'
-};
-
 const stickers = [
   '❤',
   '😏',
@@ -126,22 +118,22 @@ usernames.forEach(() => {
   messages.push(rawMessages[Math.floor(Math.random() * 5)]);
 });
 
-const createPrimaryChats = (usernames, sender = null) => {
-  return usernames.map((user, id) => {
-    return {
-      id: nanoid(),
-      fired: true,
-      username: user,
-      messages: sender ? [] : [
-        {
-          id: nanoid(),
-          username: sender ? sender : user,
-          date: (new Date()),
-          text: messages[id]
-        }
-      ]
-    }
-  });
+const createPrimaryChat = (user, sender = null) => {
+  return {
+    id: nanoid(),
+    fired: sender ? false : true,
+    username: user,
+    messages: sender ? [] : [
+      {
+        id: nanoid(),
+        username: sender ? sender : user,
+        date: (new Date()),
+        text: messages[id]
+      }
+    ]
+  };
 };
 
-export { usernames, createPrimaryChats, rawProfileInfo, stickers };
+const API_URL = 'http://localhost:3000/'; 
+
+export { createPrimaryChat, stickers, API_URL };

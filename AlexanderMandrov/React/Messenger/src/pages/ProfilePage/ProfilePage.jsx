@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './ProfilePage.scss';
 import Spinner from '../../components/Spinner';
+import Error from '../../components/Error';
 import { Typography, Card, CardContent, CardMedia, Hidden, makeStyles, IconButton, Box } from '@material-ui/core';
 import { fetchProfileInfo, setProfileSticker } from '../../redux/ducks/profile';
-import { rawProfileInfo, stickers } from '../../constants/constants';
+import { stickers } from '../../constants/constants';
 
 const useStyles = makeStyles({
   card: {
@@ -25,20 +26,21 @@ const ProfilePage = () => {
 
   const dispatch = useDispatch();
   const { profileReducer } = useSelector((state) => state);
-  const { data } = profileReducer;
+  const { data, error } = profileReducer;
+
+  useEffect(() => {
+    if (!data) {
+      dispatch(fetchProfileInfo('yellso'));
+    }
+  }, []);
 
   const handleStickerClick = (idx) => {
     dispatch(setProfileSticker(stickers[idx]));
   };
 
-  useEffect(() => {
-    if (!data) {
-      dispatch(fetchProfileInfo(rawProfileInfo));
-    }
-  }, []);
-
   const renderProfileCard = () => {
-    const { firstname, lastname, username, BIO, number, date, image } = data;
+    const { firstname, lastname, username, BIO, number } = data;
+    const date = new Date().toLocaleString();
     return (
       <>
         <Typography component="h2" variant="h5">
@@ -66,6 +68,7 @@ const ProfilePage = () => {
   return (
     <>
     <Card className={card}>
+      {!error ? null : <Error />}
       {data === null ? <Spinner /> : (
         <>
           <div className={cardDetails}>
@@ -74,7 +77,7 @@ const ProfilePage = () => {
             </CardContent>
           </div>
           <Hidden xsDown>
-            <CardMedia className={cardMedia} image={data.image} />
+            <CardMedia className={cardMedia} image='https://source.unsplash.com/random' />
           </Hidden>
         </>
       )}

@@ -3,7 +3,7 @@ import './Chat.scss';
 import Message from './Message';
 import { List, ListItem } from '@material-ui/core';
 
-const Chat = ({ getMessageList, user, deleteMessage }) => {
+const Chat = ({ user, deleteMessage, getMessageList }) => {
   const list = createRef();
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from "@emotion/core";
 import RingLoader from "react-spinners/RingLoader";
+import './Spinner.scss';
 
 const Spinner = ({ size, color }) => {
   const override = css`
@@ -20,8 +21,7 @@ const Spinner = ({ size, color }) => {
 
 Spinner.defaultProps = {
   size: 150,
-  color: '#123abc',
-  mt: 0
+  color: '#123abc'
 };
 
 export default Spinner;

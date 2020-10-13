@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { routerMiddleware } from 'connected-react-router';
+import { apiMiddleware } from 'redux-api-middleware';
 import { fireMiddleware } from './middlewares/fire';
 import { messageMiddleware } from './middlewares/message';
 import createRootReducer from './rootReducer';
@@ -15,9 +16,11 @@ export const history = createBrowserHistory();
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['chatsReducer', 'profileReducer']
 };
 
 const middlewares = [
+  apiMiddleware,
   thunk,
   logger,
   fireMiddleware,

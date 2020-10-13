@@ -16,16 +16,18 @@ export const mapStateToProps = (component) => {
 
         case 'ChatsListContainer': {
             return function (state, ownProps){
-                const {entries, loading, fireChatsId} = state.chats;
-
-                let chatsLoad = (loading) ? entries : null;
-                let lastChatId = (loading) ? Object.keys(chatsLoad).length : null;
-                let fireListId = (loading) ? fireChatsId : null;
+                const {ready, entries, loading, fireChatsId} = state.chats;
+                console.log('list100',state)
+                let chatsLoad = (ready) ? entries : null;
+                let lastChatId = (ready) ? Object.keys(chatsLoad).length : null;
+                let fireListId = (ready) ? fireChatsId : null;
+                console.log('list45',chatsLoad)
 
                 return {
                     chatsLoad,
                     lastChatId,
-                    fireListId
+                    fireListId,
+                    isLoading: state.chats.loading,
                 };
             };
         };
@@ -57,6 +59,7 @@ export const mapStateToProps = (component) => {
                     namePerson,
                     nameRobot,
                     answerRobot,
+                    isLoading: state.chats.loading,
                 };
             };
         };

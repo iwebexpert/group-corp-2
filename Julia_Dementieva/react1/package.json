@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
     "dev-server": "webpack-dev-server --mode development --port 4000 --open",
-    "build": "webpack --mode production"
+    "json-server": "json-server --port 3000 --watch db.json --delay 1000",
+    "build": "webpack --modeoduction",
+    "start": "concurrently \"npm:dev-server\" \"npm:json-server\""
   },
   "keywords": [],
   "author": "",
@@ -18,11 +20,13 @@
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "concurrently": "^5.3.0",
     "connected-react-router": "^6.8.0",
     "css-loader": "^4.3.0",
     "file-loader": "^6.1.0",
     "history": "^4.10.1",
     "html-webpack-plugin": "^4.5.0",
+    "json-server": "^0.16.2",
     "mini-css-extract-plugin": "^0.11.2",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
@@ -43,6 +47,7 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
+    "redux-api-middleware": "^3.2.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0"

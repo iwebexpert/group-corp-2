@@ -1,0 +1,19 @@
+{
+  "chats": [
+      {"id": 0, "author": "Текстовый чат", "avatar": "https://i.pinimg.com/736x/47/50/cb/4750cb647f221c4ebe51c33cc33c95df.jpg"},
+      {"id": 1, "author": "Рабочий чат", "avatar": "https://www.justthedesign.com/wp-content/uploads/2013/05/28.jpg"},
+      {"id": 2, "author": "Друзья)", "avatar": "https://i.pinimg.com/736x/fa/38/c3/fa38c3354e3795ea11c09e3df408a880.jpg"}
+  ],
+  "messages": [
+      {"id": 0, "author": "Web", "text": "Hi!", "chatId": 0},
+      {"id": 1, "author": "Web", "text": "Test!", "chatId": 0},
+      {"id": 2, "author": "Web", "text": "Hi!", "chatId": 1},
+      {"id": 3, "author": "Web", "text": "Какие есть задачи на сегодня?", "chatId": 1},
+      {"id": 4, "author": "Web", "text": "Привет!", "chatId": 2},
+      {"id": 5, "author": "Web", "text": "Что нового?)", "chatId": 2}
+  ],
+  "profiles": [
+      {"id": 0, "name": "Web", "age": 28, "city": "Москва", "mainChat": "Тестовый чат",
+      "avatar": "https://images.squarespace-cdn.com/content/v1/55c8e052e4b01bd89f02a45e/1452208562614-J8AFSSTSMN3DJ6Q798XX/ke17ZwdGBToddI8pDm48kE7xzgWkeVHhMSpwGz7q3y4UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2du1iGr6rVFVouDCrC-EYDz_rjS4LofYkqCp0pRSzPi5Jm7cT0R_dexc_UL_zbpz6JQ/image-asset.jpeg?format=1000w"}
+  ]
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
+import {ListItem, ListItemText, ListItemAvatar, Avatar, CircularProgress } from '@material-ui/core';
 import {MessageList} from '../MessageList';
 import {MessageForm} from '../MessageForm';
 import {Error} from '../../pages/Error';
@@ -16,7 +16,10 @@ export class Messenger extends Component {
     };
     
     render() {
-        const {authorChat, namePerson, avatarChat, messages } = this.props;
+        const {authorChat, namePerson, avatarChat, messages, isLoading } = this.props;
+        if(isLoading) {
+            return(<div className={"loading"}><CircularProgress /></div>)
+        }
         return (
             (messages) ?
             (<div className="messenger">

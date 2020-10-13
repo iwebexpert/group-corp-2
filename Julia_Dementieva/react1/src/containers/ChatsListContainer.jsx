@@ -33,8 +33,8 @@ class ChatsListContainerClass extends React.Component {
     }
 
     render(){
-        const {chatsLoad, fireListId} = this.props;
-        return( <ChatsList chats={chatsLoad} fireChats={fireListId} onAdd={this.chatAddHandler} onClick={this.chatClickHandler}/>)
+        const {chatsLoad, fireListId, isLoading} = this.props;
+        return( <ChatsList chats={chatsLoad} fireChats={fireListId} onAdd={this.chatAddHandler} isLoading={isLoading} onClick={this.chatClickHandler}/>)
     }
 }
 export const ChatsListContainer = connect(mapStateToProps('ChatsListContainer'), mapDispatchToProps('ChatsListContainer'))(ChatsListContainerClass);

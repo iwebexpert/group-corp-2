@@ -9,14 +9,15 @@ import Radio from "@material-ui/core/Radio";
 import {activateBtn, disableBtn} from "../../../utils/helpers";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import Backdrop from "@material-ui/core/Backdrop/Backdrop";
+import {useDispatch} from "react-redux";
+import {updateUser} from "../../../redux/actions";
 
 
 export default function ({user}) {
     const [editorMode, setEditorMode] = useState(false);
-    const [isLoad, setIsLoad] = useState(false);
     const editorBtnClass = classNames('button', {'disabled': editorMode});
     const cancelSaveBtnClass = classNames('button', {'disabled': !editorMode});
-
+    const dispatch = useDispatch();
     const formRef = useRef();
     const [selectedSex, setSelectedSex] = useState(user.sex);
     const [selectedFamilyStatus, setSelectedFamilyStatus] = useState(user.familyStatus);
@@ -28,17 +29,11 @@ export default function ({user}) {
         setEditorMode(false);
         const form = formRef.current;
         if (form){
-            setIsLoad(true);
-            await DbWorker.updateUser(form.elements);
-            setIsLoad(false);
+            dispatch(updateUser(form.elements));
         }
     };
     return (
-
         <div>
-            <Backdrop open={isLoad}>
-                <CircularProgress/>
-            </Backdrop>
             {
                 user ?
                     <div className="PreferencesWindowCard">

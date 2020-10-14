@@ -10,6 +10,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {loggerMiddleware} from "./middlewares/logger";
 import {botMiddleware} from "./middlewares/bot";
 import {getChatSelectorInfo} from "./middlewares/getChatSelectorInfo";
+import {sortChatsMiddleware} from "./middlewares/chatSorter";
 
 
 export const history = createBrowserHistory();
@@ -18,7 +19,7 @@ const persistConfig = {
     storage
 };
 const sagaMiddleware = CreateSagaMiddleware();
-const middleware = [sagaMiddleware, routerMiddleware(history), loggerMiddleware, botMiddleware,  getChatSelectorInfo];
+const middleware = [sagaMiddleware, routerMiddleware(history), /*loggerMiddleware,*/ botMiddleware,  getChatSelectorInfo, sortChatsMiddleware];
 const enhancers = [];
 enhancers.push(applyMiddleware(...middleware));
 const persistedReducer = persistReducer(persistConfig, createRootReducer(history));

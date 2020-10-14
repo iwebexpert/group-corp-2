@@ -1,14 +1,14 @@
 import React from "react";
 import { throttle } from 'throttle-debounce';
 import connectionConfig from "../../../configs/connectionConfig";
-import {UpdaterMessenger} from "./UpdaterMessenger";
+import {loadContacts} from "../../../redux/actions";
+import {useDispatch} from "react-redux";
 
-export default ({ input, setInput,setLoading}) => {
+export default ({ input, setInput}) => {
+    const dispatch = useDispatch();
     const onInputHandler = throttle(connectionConfig.throttleTime, false, async (name) => {
         setInput(name);
-        setLoading(true);
-        await UpdaterMessenger.updateContacts(name);
-        setLoading(false);
+        dispatch(loadContacts(name));
     });
     return (
         <div className={'searchMessPanel'}>

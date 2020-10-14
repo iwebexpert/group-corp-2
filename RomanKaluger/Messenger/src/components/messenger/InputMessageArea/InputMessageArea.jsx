@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useCallback, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {DbWorker} from "../../../utils/DbWorker";
@@ -23,6 +23,8 @@ import Popover from "@material-ui/core/Popover/Popover";
 import classNames from 'classnames';
 import swal from "sweetalert";
 import {AttachFileNotification} from "./AttachFilesNotification";
+import CreateIcon from '@material-ui/icons/Create';
+import {HandTextPanel} from "./HandTextPanel";
 
 export default ({setPendingMessages, pendingMessages}) => {
     const [mes, setMes] = useState('');
@@ -30,15 +32,17 @@ export default ({setPendingMessages, pendingMessages}) => {
     const [attachedImage, setAttachedImage] = useState(null);
     const [isRecord, setIsRecord] = useState(false);
     const [isEmojiShown, setIsEmojiShown] = useState(false);
+    const [handText, setHandText] = useState(false);
     const dispatch = useDispatch();
     const textArea = useRef();
     const emojiPickerBtn = useRef();
-    const {wsStatus, curUser, chats} = useSelector(s => s.app);
+    const {wsStatus, curUser, chats, selectedChat} = useSelector(s => s.app);
     const {forwardMessage} = useSelector(s => s.system);
     const onChangeHandler = useCallback((e) => {
         const msg = e.target.value;
         setMes(msg);
     }, []);
+    useEffect(() => setMes(''),[selectedChat]);
     const onAttachImageHandler = useCallback(async (e) => {
         const files = Array.from(e.target.files);
         if (!files.length) {
@@ -58,7 +62,7 @@ export default ({setPendingMessages, pendingMessages}) => {
             base64Files.push(base64);
         }
         setAttachedImage(base64Files);
-    },[setAttachedImage]);
+    }, [setAttachedImage]);
     const sendMessageHandler = useCallback(async (msg) => {
         if (msg || forwardMessage || recordedAudio || attachedImage) {
             const message = DbWorker.createMessage(msg, forwardMessage);
@@ -101,54 +105,67 @@ export default ({setPendingMessages, pendingMessages}) => {
         }
         setAttachedImage(prev => [...(prev ? prev : []), ...base64Arr]);
     }, [setAttachedImage]);
+    const isSendDisabled = wsStatus === wsStatuses.CLOSED || (!mes && !forwardMessage && !recordedAudio && !attachedImage) || Boolean(pendingMessages.length) || isRecord;
     return (
-        <div className={'InputMessageArea'}>
-            <div onClick={() => dispatch(openUserProfile(curUser))} className="avatarBig">{avatarContent}</div>
-            <div className={classNames('inputFileMessageContainer', {disabled: !!recordedAudio})}>
-                <label htmlFor={'inputFileMessage'}>
-                    <AttachFileIcon fontSize={'large'}/>
-                </label>
+        <>
+            <HandTextPanel handText={handText} setHandText={setHandText} setAttachedImage={setAttachedImage}/>
+
+            <div className={'InputMessageArea'}>
+                <div onClick={() => dispatch(openUserProfile(curUser))} className="avatarBig">{avatarContent}</div>
+                <div className={classNames('inputFileMessageContainer', {disabled: !!recordedAudio})}>
+                    <label htmlFor={'inputFileMessage'}>
+                        <AttachFileIcon fontSize={'large'}/>
+                    </label>
+                </div>
+                <input multiple onChange={onAttachImageHandler} style={{display: 'none'}} id={'inputFileMessage'}
+                       name={'inputFileMessage'} type={'file'}/>
+                <TextareaAutosize
+                    ref={textArea} rowsMax={8} rowsMin={3} onPaste={onPasteHandler}
+                    value={mes} className={'InputMessageTextArea'} onKeyDown={submitHandler}
+                    onChange={onChangeHandler} placeholder={'Введите сообщение'}/>
+                <Fab
+                    ref={emojiPickerBtn}
+                    onClick={() => setIsEmojiShown(true)}
+                    size={'large'}
+                    color="primary">
+                    <SentimentVerySatisfiedIcon/>
+                </Fab>
+                <Popover
+                    open={isEmojiShown}
+                    onClose={() => setIsEmojiShown(false)}
+                    anchorEl={emojiPickerBtn.current}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                >
+                    <Picker theme={'dark'} native={true} color={'orange'}
+                            onClick={(emoji) => setMes((prev) => prev + emoji.native)} showPreview={false} title={''}/>
+                </Popover>
+                <Fab
+                    onClick={() => sendMessageHandler(textArea.current.value)}
+                    size={'large'}
+                    disabled={isSendDisabled}
+                    color="primary" aria-label="add">
+                    <SendIcon/>
+                </Fab>
+                <Fab
+                    onClick={() => setHandText(true)}
+                    size={'large'}
+                    disabled={!!attachedImage}
+                    color="primary" aria-label="add">
+                    <CreateIcon/>
+                </Fab>
+                <MicRecorder isRecord={isRecord} setIsRecord={setIsRecord} setRecordedAudio={setRecordedAudio}
+                             recordedAudio={recordedAudio} isDisabled={!!attachedImage || !!recordedAudio}/>
+                <AttachFileNotification forwardMessage={forwardMessage} recordedAudio={recordedAudio}
+                                        setRecordedAudio={setRecordedAudio} setAttachedImage={setAttachedImage}
+                                        attachedImage={attachedImage}/>
             </div>
-            <input multiple onChange={onAttachImageHandler} style={{display: 'none'}} id={'inputFileMessage'}
-                   name={'inputFileMessage'} type={'file'}/>
-            <TextareaAutosize
-                ref={textArea} rowsMax={8} rowsMin={3} onPaste={onPasteHandler}
-                value={mes} className={'InputMessageTextArea'} onKeyDown={submitHandler}
-                onChange={onChangeHandler} placeholder={'Введите сообщение'}/>
-            <Fab
-                ref={emojiPickerBtn}
-                onClick={() => setIsEmojiShown(true)}
-                size={'large'}
-                color="primary">
-                <SentimentVerySatisfiedIcon/>
-            </Fab>
-            <Popover
-                open={isEmojiShown}
-                onClose={() => setIsEmojiShown(false)}
-                anchorEl={emojiPickerBtn.current}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-            >
-                <Picker theme={'dark'} native={true} color={'orange'}
-                        onClick={(emoji) => setMes((prev) => prev + emoji.native)} showPreview={false} title={''}/>
-            </Popover>
-            <Fab
-                onClick={() => sendMessageHandler(textArea.current.value)}
-                size={'large'}
-                disabled={wsStatus === wsStatuses.CLOSED || (!mes && !forwardMessage && !recordedAudio && !attachedImage) || Boolean(pendingMessages.length) || isRecord}
-                color="primary" aria-label="add">
-                <SendIcon/>
-            </Fab>
-            <MicRecorder isRecord={isRecord} setIsRecord={setIsRecord} setRecordedAudio={setRecordedAudio}
-                         recordedAudio={recordedAudio} isDisabled={!!attachedImage || !!recordedAudio}/>
-           <AttachFileNotification forwardMessage={forwardMessage} recordedAudio={recordedAudio }
-                                   setRecordedAudio={setRecordedAudio} setAttachedImage={setAttachedImage} attachedImage={attachedImage}/>
-        </div>
+        </>
     );
 }

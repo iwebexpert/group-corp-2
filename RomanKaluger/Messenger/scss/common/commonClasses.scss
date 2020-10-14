@@ -84,6 +84,11 @@
     font-size: 48px;
     text-align: center;
 }
+.secondaryHeader{
+    color: $primary;
+    font-size: 36px;
+    text-align: center;
+}
 .NoteText{
     margin: auto;
     color: transparentize($bgPrimary, 0.5);

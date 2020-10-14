@@ -5,7 +5,7 @@ import {activateBtn, disableBtn} from "../../utils/helpers";
 import {DbWorker} from "../../utils/DbWorker";
 import {push} from 'connected-react-router';
 import {useDispatch} from "react-redux";
-import {setLoading} from "../../redux/actions";
+import {auth, setLoading} from "../../redux/actions";
 
 export default () => {
     const dispatch = useDispatch();
@@ -14,11 +14,7 @@ export default () => {
     const formRef = useRef();
     const signInHandler = useCallback(async (e) => {
             const formData = formRef.current.elements;
-            dispatch(setLoading(true));
-            disableBtn(sigInBtnRef.current);
-            await DbWorker.auth(formData);
-            activateBtn(sigInBtnRef.current);
-            dispatch(setLoading(false));
+            dispatch(auth(formData));
     },[]);
     return (
         <div className={'AuthContainer'}>

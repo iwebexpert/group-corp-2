@@ -38,7 +38,7 @@ body, html{
 }
 .MuiBackdrop-root{
   background-color: transparentize($bgPrimary, 0.1)!important;
-  z-index: 0!important;
+  z-index: 1!important;
 }
 .MuiCircularProgress-root{
   color: $primary!important;
@@ -64,6 +64,7 @@ button{
   }
 }
 div[class^=AutoRotatingCarousel-content] {
+  z-index: 4;
   div[class^=Slide-text]{
     display: none;
   }
@@ -74,4 +75,9 @@ div[class^=AutoRotatingCarousel-content] {
   height: 80vh;
   max-height: 100vh!important;
   max-width: 100vw!important;
+}
+.mainBackDropCont{
+  .MuiBackdrop-root{
+    z-index: 100!important;
+  }
 }

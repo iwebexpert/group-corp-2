@@ -1,5 +1,5 @@
 import connectionConfig from "../configs/connectionConfig";
-import {openUserProfile, setCurrentUser} from "../redux/actions";
+import {openUserProfile, setChats, setCurrentUser} from "../redux/actions";
 import swal from "sweetalert";
 import {store} from "../redux/StorageRedux";
 import uniqid from 'uniqid';
@@ -12,11 +12,7 @@ export class DbWorker {
             email: formData.authEmail.value,
             password: formData.authPassword.value,
         };
-        const json = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/auth`, body, false);
-        if (json) {
-            DbWorker.dispatch(setCurrentUser(json));
-        }
-        return json;
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/auth`, body, false);
     };
     static register = async (formData) => {
         const body = {
@@ -48,8 +44,6 @@ export class DbWorker {
             familyStatus: formData.familyStatus.value,
         };
         const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/update/user/`, body, true);
-        DbWorker.dispatch(setCurrentUser(res));
-        DbWorker.dispatch(openUserProfile(res));
         if (res) {
             swal("Успешно", 'Данные обновлены', "success");
         }
@@ -201,6 +195,52 @@ export class DbWorker {
         return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/message/updateStatus/`,
             {isRead: true, sharedId: chat.sharedId});
     };
-
+    static updateChats = async () => {
+        const curUser = store.getState().app.curUser;
+        if (curUser) {
+            const defaultChatsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/chats/owner/${curUser._id}`, curUser);
+            const defaultChats = await defaultChatsRes.json();
+            DbWorker.dispatch(setChats(defaultChats));
+        }
+    };
+    static updateChat = async (sharedId) => {
+        try {
+            const {curUser, chats} = store.getState().app;
+            if (curUser) {
+                const needChat = chats.find(ch => ch.sharedId === sharedId);
+                const chatRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/chats/chat/${needChat._id}`, curUser);
+                return await chatRes.json();
+            }
+        } catch (e) {
+            swal('Ошибка', e.message, 'error');
+            return null;
+        }
+    };
+    static updateContacts = async (input) => {
+        try {
+            const curUser = store.getState().app.curUser;
+            if (curUser) {
+                let friendsRes, subscribersRes, subscriptionsRes, othersRes, friends, subscribers,
+                    subscriptions, others;
+                friendsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/user/friends/ownerid/${curUser._id}`, curUser);
+                subscribersRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/user/subscribers/ownerid/${curUser._id}`, curUser);
+                subscriptionsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/user/subscriptions/ownerid/${curUser._id}`, curUser);
+                friends = await friendsRes.json();
+                subscribers = await subscribersRes.json();
+                subscriptions = await subscriptionsRes.json();
+                if (!input) {
+                    others = [];
+                } else {
+                    othersRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/name/${input}`, curUser);
+                    others = await othersRes.json();
+                    others = others.filter(x => x._id !== curUser._id);
+                }
+                return { friends, subscriptions, subscribers, others}
+            }
+        } catch (e) {
+            swal('Ошибка', e.message, 'error');
+            return null;
+        }
+    };
 
 }

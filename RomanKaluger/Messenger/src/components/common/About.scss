@@ -1,0 +1,22 @@
+@import "./../../../scss/common/globalVariables";
+@import "./../../../scss/common/commonMixinsApp";
+.AboutContainer {
+  @include --padding;
+  @include --border(all, $primary, true);
+  @include center-content;
+  position: relative;
+  align-items: center;
+  justify-content: space-around;
+  width: 60vw;
+  height: 95vh;
+  background-color: $bgPrimary;
+  flex-wrap: wrap;
+  ul{
+    margin-top: 80px;
+  }
+  li{
+    margin: 10px;
+    font-size: 18px;
+    color: $light;
+  }
+}

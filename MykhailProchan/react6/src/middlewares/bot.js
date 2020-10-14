@@ -11,7 +11,7 @@ export const botMiddleware = store => next => action => {
       timer = setTimeout(
         () => {
           store.dispatch(chatsMessageSendAction({
-            text: <div>Привет, {author}!</div>,
+            text: `Привет, ${author}!`,
             chatId,
             author: 'BattleMech'
           }));

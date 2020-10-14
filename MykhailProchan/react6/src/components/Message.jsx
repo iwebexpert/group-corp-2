@@ -12,10 +12,7 @@ const style = {
 }
 
 export const messageType = {
-	text: PropTypes.oneOfType([
-		PropTypes.arrayOf(PropTypes.shape(Fragment)),
-		PropTypes.shape(Fragment)
-	]).isRequired
+	text: PropTypes.string
 }
 
 
@@ -26,8 +23,9 @@ export const Message = (props) => {
 		style={Object.assign({}, style,
 			{ alignSelf: author === 'BattleMech' ? 'flex-start' : 'flex-end' })}
 	>
-		<b>{author}</b>: {text}
-	</div>)
+		<b>{author}</b>: {text.split('\n').map((item, key) => { //чтобы перенос строки в textarea работал
+			return <div key={key}>{item}</div>
+		})}	</div>)
 }
 
 Message.propTypes = messageType

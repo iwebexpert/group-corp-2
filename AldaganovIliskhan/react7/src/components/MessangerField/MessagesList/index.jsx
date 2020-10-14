@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import './MessagesList.scss'
 const MessagesList = ({ messages, isMessagesError, isMessagesLoading }) => {
     if (isMessagesError) {
-        return <div>Error...</div>
+        return <div style={{ textAlign: 'center' }}>Error...</div>
     }
     if (isMessagesLoading) {
-        return <div>Loading...</div>
+        return <div style={{ textAlign: 'center' }}>Loading...</div>
     }
     return (
         <ul className="messages__list">

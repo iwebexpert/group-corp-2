@@ -7,12 +7,13 @@
     align-items: center;
     padding: 20px;
     color: #000;
-    span {
+    &-btn {
         cursor: pointer;
         padding: 10px;
         border-radius: 15px;
         width: 100px;
         text-align: center;
+        text-decoration: none;
         &:hover {
             background: rgba(238, 214, 214, 0.259);
         }

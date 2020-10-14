@@ -8,7 +8,7 @@ import { ChatAdd } from './../ChatAdd';
 import './ChatList.scss'
 import removeSvg from '../../assets/img/remove.svg'
 import editSvg from '../../assets/img/edit.svg'
-const ChatList = ({ chats, onAddChat, onClickChat, activeChat, addChat, removeChatAction, push, pathname, editChat, isChatsLoading, addChatAction, isChatsError, editChatAction }) => {
+const ChatList = ({ chats, onAddChat, onClickChat, activeChat, addChat, removeChatAction, push, pathname, isChatsLoading, addChatAction, isChatsError, editChatAction }) => {
 
   const onClick = (chat) => {
     push(`/chats/${chat.id}`);

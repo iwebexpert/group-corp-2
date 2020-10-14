@@ -7,11 +7,11 @@ import {createAction} from 'redux-api-middleware'
 //   };
 // }
 
-export function addChat(title) {
-  return dispatch => {
-    dispatch({type: types.ADD_CHAT, payload: title});
-  };
-}
+// export function addChat(title) {
+//   return dispatch => {
+//     dispatch({type: types.ADD_CHAT, payload: title});
+//   };
+// }
 
 export function deleteChat(chatId) {
   return (dispatch, getState) => {
@@ -106,22 +106,29 @@ export const messageSend = (message) => {
 
 
 
-export const messageAddServerAction = (newmessage) => createAction({
-  endpoint: 'http://localhost:3000/messages',
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-          ...newmessage
-      }),
-  types: [
-      {
-          type: MESSAGE_ADD_REQUEST,
-          payload: { ...newmessage}
-      },
-      {
-          type: MESSAGE_ADD_SUCCESS,
-          payload: async (res) => await res.json()
-      },
-      MESSAGE_ADD_FAILURE
-      ]
-});
+export const addChat = (title) => {
+  return async (dispatch, getState) => {
+    const chats = getState().chats;
+    const id = chats.entries[chats.entries.length - 1].id + 1;
+    try {
+      dispatch(chatsLoadRequestAction());
+      const result = await fetch('/api/chats', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: id,
+          title,
+          type: 1,
+          onFire: false,
+          messages: [],
+        })
+      });
+      dispatch({type: types.ISLOADING, loading: false});
+      dispatch({type: types.ADD_CHAT, payload: title});
+    } catch (error) {
+      dispatch(chatsLoadFailureAction(error));
+    }
+  }
+}

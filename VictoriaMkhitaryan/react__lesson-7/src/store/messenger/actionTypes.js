@@ -11,3 +11,4 @@ export const CHATS_LOAD_SUCCESS = 'chats.CHATS_LOAD_SUCCESS';
 export const CHATS_LOAD_FAILURE = 'chats.CHATS_LOAD_FAILURE';
 
 export const SEND_MESSAGE_SUCCESS = 'chats.SEND_MESSAGE_SUCCESS';
+export const ISLOADING = 'chats.ISLOADING';

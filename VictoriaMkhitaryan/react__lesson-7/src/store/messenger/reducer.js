@@ -100,6 +100,9 @@ export default function chatsReduce(state = initialState, action = {}) {
                 }
             });
 
+        case types.ISLOADING:
+            return { ...state, loading: action.loading };
+
 
         default:
             return state;

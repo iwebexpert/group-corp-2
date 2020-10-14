@@ -1,8 +1,5 @@
 import * as types from './actionTypes';
-
-export function chatsLoad() {
-  return dispatch => { dispatch({type: types.CHATS_LOAD}) };
-}
+import {createAction} from 'redux-api-middleware'
 
 export function messageSend(message) {
   return dispatch => {
@@ -50,3 +47,31 @@ export function changeUnreadMessage(chatId, command) {
     }
   }
 }
+
+//Fetch
+export const chatsLoadRequestAction = () => ({
+  type: types.CHATS_LOAD_REQUEST,
+});
+
+export const chatsLoadSuccessAction = (data) => ({
+  type: types.CHATS_LOAD_SUCCESS,
+  payload: data,
+});
+
+export const chatsLoadFailureAction = (error) => ({
+  type: types.CHATS_LOAD_FAILURE,
+  payload: error,
+});
+
+// переделать на ф-ию
+export const chatsLoad = () => {
+  return async (dispatch) => {
+      try {
+          dispatch(chatsLoadRequestAction());
+          const result = await fetch('/api/chats?_embed=messages');
+          dispatch(chatsLoadSuccessAction(await result.json()));
+      } catch (error) {
+          dispatch(chatsLoadFailureAction(error));
+      }
+  }
+};

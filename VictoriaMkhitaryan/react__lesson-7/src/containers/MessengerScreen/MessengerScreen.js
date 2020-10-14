@@ -36,8 +36,12 @@ class MessengerScreen extends Component {
   }
 
   deleteMessage = (e) => {
-    this.props.deleteMessage(chthis.props.idatId, e.target.id);
+    this.props.deleteMessage(this.props.chatId, e.target.id);
   };
+
+  handleChatsReload = () => {
+    this.props.chatsLoadAction();
+}
 
   componentDidMount() {
     if (!this.props.chats[0])
@@ -51,7 +55,13 @@ class MessengerScreen extends Component {
   }
 
   render() {
-    const { id, chats, messages, profile, unreadMessage } = this.props;
+    const { id, chats, messages, profile, unreadMessage, isError, isLoading} = this.props;
+
+    if (isError) {
+      return(<div>Error... <button onClick={this.handleChatsReload}>Обновить чаты</button></div>);
+    } else if (isLoading) {
+      return(<div>Loading...</div>);
+    }
 
     return(
       <>
@@ -101,6 +111,8 @@ function mapStateToProps(state, ownProps){
       chatId: match ? match.id: null,
       profile: state.profile.profiles[0],
       unreadMessage: state.chats.unreadMessage,
+      isError: state.chats.error,
+      isLoading: state.chats.loading,
   };
 }
 

@@ -1,0 +1,18 @@
+{
+    "chats": [
+        {"id": 0, "title": "Текстовый чат"},
+        {"id": 1, "title": "Рабочий чат"},
+        {"id": 2, "title": "Друзья)"}
+    ],
+    "messages": [
+        {"id": 0, "author": "WebDev", "message": "Hi!", "chatId": 0},
+        {"id": 1, "author": "WebDev", "message": "Test!", "chatId": 0},
+        {"id": 2, "author": "WebDev", "message": "Hi!", "chatId": 1},
+        {"id": 3, "author": "WebDev", "message": "Какие есть задачи на сегодня?", "chatId": 1},
+        {"id": 4, "author": "WebDev", "message": "Привет!", "chatId": 2},
+        {"id": 5, "author": "WebDev", "message": "Что нового?)", "chatId": 2}
+    ],
+    "profiles": [
+        {"id": 0, "name": "WebDev", "email": "1@2.ru", "age": 22, "gender": true, "city": "Moscow"}
+    ]
+}

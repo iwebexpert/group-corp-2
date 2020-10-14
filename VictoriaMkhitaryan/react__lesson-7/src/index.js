@@ -12,6 +12,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import './index.css';
 
 import { botMiddleware } from './middlewares/bot';
+import { apiMiddleware } from 'redux-api-middleware';
 import { reducers } from './store/reducers';
 
 import Root from './containers/Root/Root';
@@ -21,6 +22,7 @@ export const history = createBrowserHistory();
 const persistConfig = {
       key: 'app',
       storage,
+      blacklist: ['chats'],
 };
 
 const initStore = () => {
@@ -29,7 +31,7 @@ const initStore = () => {
       const store = createStore(
             persistReducer(persistConfig, reducers(history)),
             initialStore,
-            applyMiddleware(thunk, botMiddleware, routerMiddleware(history)));
+            applyMiddleware(thunk, botMiddleware, apiMiddleware, routerMiddleware(history)));
 
       const persistor = persistStore(store);
       return {store, persistor};

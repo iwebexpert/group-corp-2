@@ -4,7 +4,8 @@ import * as types from './actionTypes';
 const initialState = {
     entries: [],
     unreadMessage: [],
-    loading: false
+    loading: false,
+    error: false,
 };
 
 import { chats } from '../../helpers/chats';
@@ -17,6 +18,27 @@ export default function chatsReduce(state = initialState, action = {}) {
                 entries: chats,
                 unreadMessage: Array(chats.length).fill(false),
             }
+
+        case types.CHATS_LOAD_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+            };
+    
+        case types.CHATS_LOAD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                entries: action.payload,
+            };
+    
+        case types.CHATS_LOAD_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            };
 
         case types.SEND_MESSAGE:
             return update(state, {

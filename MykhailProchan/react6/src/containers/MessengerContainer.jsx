@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 
 import { Messenger } from 'components/Messenger'
 import { chatsLoadAction, chatsMessageSendAction } from '../actions/chats'
@@ -14,7 +15,7 @@ class MessengerContainerClass extends React.Component {
   }
 
   render() {
-    return <Messenger messages={this.props.messages} name={this.props.name} onSend={this.handleMessageSend} />
+    return <Messenger messages={this.props.messages} name={this.props.name} redirect={this.props.redirect} onSend={this.handleMessageSend} />
   }
 }
 
@@ -42,7 +43,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     chatsLoadAction: () => dispatch(chatsLoadAction()),
-    chatsMessageSendAction: (message) => dispatch(chatsMessageSendAction(message))
+    chatsMessageSendAction: (message) => dispatch(chatsMessageSendAction(message)),
+    redirect: () => dispatch(push('/profile'))
   }
 }
 

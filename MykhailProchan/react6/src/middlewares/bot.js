@@ -15,7 +15,7 @@ export const botMiddleware = store => next => action => {
             chatId,
             author: 'BattleMech'
           }));
-          store.dispatch(chatFireAction({ chatId }))
+          if (store.getState().router.location.pathname.match(/[0-9]+/)[0] != action.payload.chatId) store.dispatch(chatFireAction({ chatId }))
         }, 3000)
     }
   }

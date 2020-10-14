@@ -18,7 +18,7 @@ export class Messenger extends Component {
 							level={3}
 							style={style.contentLayout.contentHeader}
 						>{this.props.name}</Typography.Title>
-						<Link to="/profile" style={{ color: 'white' }}><Typography.Title level={3} style={style.contentLayout.contentHeader}><UserOutlined /></Typography.Title></Link>
+						<Typography.Title level={3} style={style.contentLayout.contentHeader} onClick={this.props.redirect} ><UserOutlined /></Typography.Title>
 					</Header>
 					<div style={style.contentLayout.messageList}>
 						{this.props.messages != null && <MessagesList items={this.props.messages} />}

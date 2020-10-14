@@ -13,6 +13,7 @@ import Content from '../../component/Content/Content';
 import Chat from '../../component/Chat/Chat';
 import ChatList from '../../component/ChatList/ChatList';
 import Card from '@material-ui/core/Card';
+import Loader from '../../component/Loader/Loader';
 
 class MessengerScreen extends Component {
   handleMessageSend = (message) => {
@@ -60,7 +61,7 @@ class MessengerScreen extends Component {
     if (isError) {
       return(<div>Error... <button onClick={this.handleChatsReload}>Обновить чаты</button></div>);
     } else if (isLoading) {
-      return(<div>Loading...</div>);
+      return(<Loader isLoading={isLoading} />);
     }
 
     return(

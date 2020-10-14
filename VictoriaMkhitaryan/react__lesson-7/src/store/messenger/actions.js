@@ -1,11 +1,11 @@
 import * as types from './actionTypes';
 import {createAction} from 'redux-api-middleware'
 
-export function messageSend(message) {
-  return dispatch => {
-    dispatch({type: types.SEND_MESSAGE, payload: message});
-  };
-}
+// export function messageSend(message) {
+//   return dispatch => {
+//     dispatch({type: types.SEND_MESSAGE, payload: message});
+//   };
+// }
 
 export function addChat(title) {
   return dispatch => {
@@ -63,7 +63,6 @@ export const chatsLoadFailureAction = (error) => ({
   payload: error,
 });
 
-// переделать на ф-ию
 export const chatsLoad = () => {
   return async (dispatch) => {
       try {
@@ -75,3 +74,54 @@ export const chatsLoad = () => {
       }
   }
 };
+
+
+
+
+export const sendMessageSuccess = (error) => ({
+  type: types.SEND_MESSAGE_SUCCESS,
+  payload: error,
+})
+
+export const messageSend = (message) => {
+  return async (dispatch) => {
+      try {
+          dispatch(chatsLoadRequestAction());
+          const result = await fetch('/api/messages', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(message)
+          });
+
+          dispatch(sendMessageSuccess(await result.json()));
+          // добавление новогоо сообщения в массив (локально)
+          dispatch({type: types.SEND_MESSAGE, payload: message});
+      } catch (error) {
+          dispatch(chatsLoadFailureAction(error));
+      }
+  }
+}
+
+
+
+export const messageAddServerAction = (newmessage) => createAction({
+  endpoint: 'http://localhost:3000/messages',
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+          ...newmessage
+      }),
+  types: [
+      {
+          type: MESSAGE_ADD_REQUEST,
+          payload: { ...newmessage}
+      },
+      {
+          type: MESSAGE_ADD_SUCCESS,
+          payload: async (res) => await res.json()
+      },
+      MESSAGE_ADD_FAILURE
+      ]
+});

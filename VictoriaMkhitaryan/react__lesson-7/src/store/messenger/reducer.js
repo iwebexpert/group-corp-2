@@ -40,6 +40,13 @@ export default function chatsReduce(state = initialState, action = {}) {
                 error: true,
             };
 
+        case types.SEND_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: false,
+            };
+
         case types.SEND_MESSAGE:
             return update(state, {
                 entries: {
@@ -53,7 +60,7 @@ export default function chatsReduce(state = initialState, action = {}) {
                         }
                     }
                 }
-            })
+            });
 
         case types.ADD_CHAT:
             return {

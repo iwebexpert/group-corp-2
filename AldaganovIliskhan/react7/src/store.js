@@ -6,10 +6,11 @@ import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import { botMiddleware } from "./middlewares/bot";
-import { fire } from "./middlewares/fire";
-import { unfire } from "./middlewares/unfire";
+import { apiMiddleware } from "redux-api-middleware";
 
 import { createRootReducer } from "./reducers";
+import { fire } from "./middlewares/fire";
+import { unfire } from "./middlewares/unfire";
 export const history = createBrowserHistory();
 const middleWares = [
   botMiddleware,
@@ -17,6 +18,7 @@ const middleWares = [
   unfire,
   thunk,
   routerMiddleware(history),
+  apiMiddleware,
 ];
 const persistConfig = {
   key: "app",

@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
@@ -16,7 +17,6 @@ const useStyles = makeStyles({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginLeft: '300px'
-        // marginLeft: '1000px',
     },
     bullet: {
         display: 'inline-block',
@@ -30,26 +30,43 @@ const useStyles = makeStyles({
         marginBottom: 12,
     },
 });
-export const Profile = ({ profileData }) => {
+const Profile = ({ profileData, isProfileLoading, isProfileError }) => {
     const classes = useStyles();
+    if (isProfileError) {
+        return <div style={{ color: '#000' }}>Error...</div>
+    }
+    if (isProfileLoading) {
+        return <div style={{ color: '#000' }}>Loading...</div>
+    }
     return (
-        <Card className={classes.root} variant="outlined">
-            <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {profileData ? profileData.name : 'Ivanov Ivan'}
+        <>
+            {
+                profileData && <Card className={classes.root} variant="outlined" >
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            {profileData.name}
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            {profileData.nickname}
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            {profileData.age} years old
                 </Typography>
-                <Typography variant="h5" component="h2">
-                    {profileData ? profileData.nickname : 'gagskaya'}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    {profileData ? profileData.age : '100'} years old
-                </Typography>
-                <Typography variant="body2" component="p">
-                    well meaning and kindly.
+                        <Typography variant="body2" component="p">
+                            well meaning and kindly.
             <br />
-                    {'"a benevolent smile"'}
-                </Typography>
-            </CardContent>
-        </Card>
+                            {'"a benevolent smile"'}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            }
+        </>
+
     )
 }
+const mapStateToProps = ({ profile }) => ({
+    isProfileLoading: profile.isProfileLoading,
+    isProfileError: profile.isProfileError,
+    profileData: profile.profileData
+})
+export default connect(mapStateToProps)(Profile);

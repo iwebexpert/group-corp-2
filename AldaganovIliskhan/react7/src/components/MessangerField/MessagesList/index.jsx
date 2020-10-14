@@ -1,6 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './MessagesList.scss'
-export const MessagesList = ({ messages }) => {
+const MessagesList = ({ messages, isMessagesError, isMessagesLoading }) => {
+    if (isMessagesError) {
+        return <div>Error...</div>
+    }
+    if (isMessagesLoading) {
+        return <div>Loading...</div>
+    }
     return (
         <ul className="messages__list">
             {
@@ -9,3 +16,8 @@ export const MessagesList = ({ messages }) => {
         </ul>
     )
 }
+const mapStateToProps = ({ chats }) => ({
+    isMessagesError: chats.isMessagesError,
+    isMessagesLoading: chats.isMessagesLoading
+})
+export default connect(mapStateToProps)(MessagesList);

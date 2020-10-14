@@ -5,10 +5,8 @@ import { Send } from '@material-ui/icons';
 import { Fab } from '@material-ui/core'
 
 import './MessangerForm.scss'
-import axios from 'axios';
-import { connect } from 'react-redux';
-// import { fireChat } from '../../../actions/chats'
-const MessangerForm = ({ chat, sendMessage, fireChat, pathname }) => {
+
+export const MessangerForm = ({ chat, sendMessageAction }) => {
     const [author, setAuthor] = useState('');
     const [message, setMessage] = useState('');
     const onAdd = (message) => {
@@ -20,18 +18,9 @@ const MessangerForm = ({ chat, sendMessage, fireChat, pathname }) => {
             alert('Введите имя');
             return;
         };
-        axios.post('http://localhost:3001/messages', {
-            "chatId": chat.id,
-            "message": message,
-            "author": author,
-        }).then(({ data }) => {
-            sendMessage(data, chat.id, author, pathname);
-            setAuthor('');
-            setMessage('');
-            // fireChat(pathname);
-        });
-
-
+        sendMessageAction(chat.id, author, message);
+        setAuthor('');
+        setMessage('');
     };
 
     const onKeyDownEnter = (e, message) => {
@@ -53,7 +42,3 @@ const MessangerForm = ({ chat, sendMessage, fireChat, pathname }) => {
         </div>
     )
 }
-const mapStateToProps = state => ({
-    pathname: state.router.location.pathname.split('/chats/')[1],
-})
-export default connect(mapStateToProps)(MessangerForm);

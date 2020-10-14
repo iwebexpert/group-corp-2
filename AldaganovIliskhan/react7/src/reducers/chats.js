@@ -1,7 +1,9 @@
 const initialState = {
   items: null,
-  isLoading: false,
-  isError: false,
+  isChatsLoading: false,
+  isChatsError: false,
+  isMessagesError: false,
+  isMessagesLoading: false,
 };
 export const chats = (state = initialState, action) => {
   switch (action.type) {
@@ -15,16 +17,27 @@ export const chats = (state = initialState, action) => {
         ...state,
         items: [...state.items, action.payload],
       };
-    case "SET_LOADING":
+    case "SET_CHATS_LOADING":
       return {
         ...state,
-        isLoaded: action.payload,
+        isChatsLoading: action.payload,
       };
-    case "SET_ERROR":
+    case "SET_CHATS_ERROR":
       return {
         ...state,
-        isError: action.payload,
+        isChatsError: action.payload,
       };
+    case "SET_MESSAGES_ERROR":
+      return {
+        ...state,
+        isMessagesError: action.payload,
+      };
+    case "SET_MESSAGES_LOADING":
+      return {
+        ...state,
+        isMessagesLoading: action.payload,
+      };
+
     case "FIRE_CHAT":
       return {
         ...state,

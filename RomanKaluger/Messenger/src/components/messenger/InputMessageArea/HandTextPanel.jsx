@@ -112,7 +112,7 @@ export const HandTextPanel = ({handText, setHandText, setAttachedImage}) => {
     }, []);
     const handleChangeColor = (color, event) => {
         setDrawConfig(prev => ({...prev, color}));
-        strokeStyle$.next(color.hex);
+        strokeStyle$.next(drawConfig.clearInstrument ? 'TRANSPARENT' : color.hex);
     };
     const handleChangeWidth = (_, width) => {
         setDrawConfig(prev => ({...prev, width}));

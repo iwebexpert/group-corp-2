@@ -199,9 +199,9 @@ export class DbWorker {
         const curUser = store.getState().app.curUser;
         if (curUser) {
             const defaultChatsRes = await DbWorker.authGet(`${connectionConfig.hostHttp}/chats/owner/${curUser._id}`, curUser);
-            const defaultChats = await defaultChatsRes.json();
-            DbWorker.dispatch(setChats(defaultChats));
+            return await defaultChatsRes.json();
         }
+        return null;
     };
     static updateChat = async (sharedId) => {
         try {

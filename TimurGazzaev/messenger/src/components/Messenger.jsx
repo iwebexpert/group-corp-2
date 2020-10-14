@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './messenger.css'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {Container} from '@material-ui/core'
@@ -10,6 +10,7 @@ import ProfileContainer from "./Profile/ProfileContainer"
 import {connect} from "react-redux"
 
 const Messenger = ({pathname}) => {
+
     return (
         <Container>
             <HeaderContainer/>
@@ -24,5 +25,6 @@ const Messenger = ({pathname}) => {
 const mapStateToProps = state => ({
     pathname: state.router.location.pathname,
 })
+
 
 export default connect(mapStateToProps, null)(Messenger)

@@ -4,6 +4,7 @@ import {MessageForm} from './MessageForm'
 import {Grid, Divider} from "@material-ui/core"
 import clsx from "clsx"
 import {makeStyles} from "@material-ui/core/styles"
+import {Preloader} from "../Preloader/Preloader";
 
 export const useStyles = makeStyles((theme) => ({
     content: {
@@ -43,9 +44,13 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const MessagesBlock = ({messages, addMessage, open, handleDeleteMessage}) => {
+export const MessagesBlock = ({isLoading, messages, addMessage, open, handleDeleteMessage}) => {
 
     const classes = useStyles()
+
+    if(isLoading) {
+        return <Preloader/>
+    }
 
     return (
         <Grid container spacing={2}>

@@ -5,18 +5,24 @@ import {deleteMessage, sendMessage} from '../../actions/chats'
 import {MessagesBlock} from "./MessagesBlock"
 import {createMatchSelector} from "connected-react-router";
 
-const MessagesBlockContainer = ({chatId, messages, sendMessage, isDrawerOpen, deleteMessage}) =>  {
+const MessagesBlockContainer = ({chatId, messages, sendMessage, isDrawerOpen, deleteMessage, isLoading}) =>  {
 
     const addMessage = (message) => {
         message.id = nanoid()
-        sendMessage({...message, chatId})
+        let tmpId = + chatId
+        sendMessage({...message, chatId: tmpId})
     }
 
     const handleDeleteMessage = (messageId) => {
         deleteMessage(chatId, messageId)
     }
 
-    return <MessagesBlock messages={messages} addMessage={addMessage} open={isDrawerOpen} handleDeleteMessage={handleDeleteMessage}/>
+    return <MessagesBlock messages={messages}
+                          addMessage={addMessage}
+                          open={isDrawerOpen}
+                          handleDeleteMessage={handleDeleteMessage}
+                          isLoading={isLoading}
+    />
 }
 
 function mapStateToProps(state){
@@ -35,6 +41,7 @@ function mapStateToProps(state){
         messages,
         chatId,
         isDrawerOpen: state.settings.isDrawerOpen,
+        isLoading: state.chats.loading
     }
 }
 

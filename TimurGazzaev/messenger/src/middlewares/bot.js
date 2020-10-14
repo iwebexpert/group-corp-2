@@ -2,7 +2,7 @@ import {sendMessage, toggleIsFetching} from '../actions/chats'
 import {nanoid} from 'nanoid'
 
 export const botMiddleware = store => next => action => {
-    if (action.type === 'SEND_MESSAGE') {
+    if (action.type === 'SEND_MESSAGE_LOAD_SUCCESS') {
         const {author, time, chatId} = action.payload
         if (author !== 'Bot' && !store.getState().chats.isFetching) {
             store.dispatch(toggleIsFetching())

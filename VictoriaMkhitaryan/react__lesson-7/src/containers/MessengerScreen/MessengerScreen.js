@@ -36,12 +36,7 @@ class MessengerScreen extends Component {
   }
 
   deleteMessage = (e) => {
-    const chatId = this.props.id;
-    const messageId = e.target.id;
-
-    console.log(chatId, messageId);
-
-    this.props.deleteMessage(chatId, messageId);
+    this.props.deleteMessage(chthis.props.idatId, e.target.id);
   };
 
   componentDidMount() {
@@ -50,11 +45,6 @@ class MessengerScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // сначала сделала заполняесый массив, но была проблема с тем
-    // что тк изменяется содержимое массива, то redux не считает, что изменился сам массив
-    // => компонент не перерендеривается до какого-то действия пользователя
-    // скорее всего это было из-за того что в reducer не использовала update, а просто заменяла старый массив на новый
-    // до того как поняла это уже полностью переделала)
     if (prevProps.id !== this.props.id) {
         this.props.changeUnreadMessage(this.props.id, 'remove');
     }
@@ -80,7 +70,7 @@ class MessengerScreen extends Component {
                                 title={chats[id].title}
                                 author={profile.name}
                                 handleMessageSend={this.handleMessageSend}
-                                deleteMessage={this.deleteMessage.bind(this)} />
+                                deleteMessage={this.deleteMessage.bind(this)}  />
                       : 
                           <Card className="chat__card-warn">
                             <h4 className="chat__warn">Выбери чат</h4>

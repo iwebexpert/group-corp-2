@@ -51,7 +51,7 @@ export default function chatsReduce(state = initialState, action = {}) {
                 entries: {
                     [action.chatId]: {
                         messages: {
-                            $splice: [[action.index, 1]]
+                            $splice: [[action.findMessage, 1]]
                         }
                     }
                 }

@@ -8,7 +8,8 @@ export default function MessagesList(props) {
   return(
     props.messages.map(item => {
       return(
-        <ListItem key={item.id} className={(item.author != "Robot") ? "chat__list-item-come" : "chat__list-item-me"}>
+        <ListItem key={item.id}
+                  className={(item.author != "Robot") ? "chat__list-item-come" : "chat__list-item-me"} >
           <div><h4 className="chat__user-text">{item.author}</h4></div>
           <div>
             <Chip label={item.message} className={(item.author != "Robot") ? "chat__chip-me" : null}/>

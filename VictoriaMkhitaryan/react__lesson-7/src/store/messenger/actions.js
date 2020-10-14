@@ -19,7 +19,6 @@ export function addChat(title) {
 export function deleteChat(chatId) {
   return (dispatch, getState) => {
     const chats = getState().chats.entries;
-    console.log(chats);
 
     const index = chats.findIndex(item => item.id == chatId);
 
@@ -35,11 +34,7 @@ export function deleteMessage(chatId, messageId) {
           .messages
           .findIndex(item => item.id == messageId);
 
-    console.log(chats, findMessage);
-
-    const index = chats.findIndex(item => item.id == chatId);
-
-    dispatch({type: types.DELETE_MESSAGE, index, chatId});
+    dispatch({type: types.DELETE_MESSAGE, findMessage, chatId});
   }
 }
 

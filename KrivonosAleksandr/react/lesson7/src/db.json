@@ -1,0 +1,131 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "name": "Father Bot",
+      "lastMessage": "Привет!\n Давай немного пообщаемся с тобой)",
+      "answerCount": 0,
+      "fire": false,
+      "userName": "",
+      "botMessages": [
+        "Как тебя зовут?",
+        "Приятно познакомиться)\nСколько тебе лет?",
+        "А чем увлекаешься?)",
+        "Вау, это очень круто!\nПриятно было пообщаться!)"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Mother Bot",
+      "lastMessage": "Привет!\n Я тоже хочу пообщаться с тобой)",
+      "answerCount": 0,
+      "fire": false,
+      "userName": "",
+      "botMessages": [
+        "Как тебя зовут?",
+        "Приятно познакомиться)\nСколько тебе лет?",
+        "А чем увлекаешься?)",
+        "Вау, это очень круто!\nПриятно было пообщаться!)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Евгений Иванов",
+      "lastMessage": "Hello, my friend",
+      "answerCount": 0,
+      "fire": false,
+      "userName": ""
+    },
+    {
+      "id": 3,
+      "name": "Александр Котов",
+      "lastMessage": "Dolor sit amet elit.",
+      "answerCount": 0,
+      "fire": false,
+      "userName": ""
+    }
+  ],
+  "messages": [
+    {
+      "text": "Привет!\n Давай немного пообщаемся с тобой)",
+      "type": "botMsg",
+      "time": "It's first message",
+      "id": 0,
+      "chatId": 0
+    },
+    {
+      "text": "Привет!\n Я тоже хочу пообщаться с тобой)",
+      "type": "botMsg",
+      "time": "It's first message",
+      "id": 0,
+      "chatId": 1
+    },
+    {
+      "text": "Hello, my friend",
+      "type": "botMsg",
+      "time": "It's first message",
+      "id": 0,
+      "chatId": 2
+    },
+    {
+      "text": "Dolor sit amet elit.",
+      "type": "botMsg",
+      "time": "It's first message",
+      "id": 0,
+      "chatId": 3
+    }
+  ],
+  "profile": [
+    {
+      "id": 0,
+      "name": "New User",
+      "birthDate": "01.04.1989",
+      "city": "Moscow",
+      "education": "МГУ",
+      "webSite": "https://some-site",
+      "friends": 234,
+      "subscribers": 53,
+      "photos": 5,
+      "marks": 3,
+      "videos": 3
+    }
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Антон Антонович"
+    },
+    {
+      "id": 1,
+      "name": "Игорь Антонович"
+    },
+    {
+      "id": 2,
+      "name": "Андрей Антонович"
+    },
+    {
+      "id": 3,
+      "name": "Анатолий Георгиевич"
+    },
+    {
+      "id": 4,
+      "name": "Тимур Иванович"
+    },
+    {
+      "id": 5,
+      "name": "Иван Иванович"
+    },
+    {
+      "id": 6,
+      "name": "Анатолий Георгиевич"
+    },
+    {
+      "id": 7,
+      "name": "Тимур Иванович"
+    },
+    {
+      "id": 8,
+      "name": "Иван Иванович"
+    }
+  ]
+}

@@ -1,6 +1,9 @@
 import update from 'react-addons-update';
 
 import {
+    CHATS_LOAD_REQUEST,
+    CHATS_LOAD_SUCCESS,
+    CHATS_LOAD_FAILURE,
     CHATS_ADD_DIALOG,
     CHATS_DELETE_DIALOG,
     SHOW_DELETE_BTNS,
@@ -14,25 +17,39 @@ import {
 const initialState = {
     entries: {},
     loading: false,
+    error: false,
 };
 
-import {chats} from '../helpers/chatsData';
 import {activateDelete} from '../helpers/showDeleteBtns';
-import {friends} from '../helpers/chatFriends';
 
 export const chatsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "@@INIT":
+        case CHATS_LOAD_REQUEST:
             return {
                 ...state,
-                entries: chats,
-                friends: friends,
+                loading: true,
+                error: false,
+            };
+
+        case CHATS_LOAD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                entries: action.payload,
                 activateDelete: activateDelete,
+                friends: action.friends,
+            };
+
+        case CHATS_LOAD_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true,
             };
         case SHOW_DELETE_BTNS:
             return update(state, {
                 activateDelete: {
-                    $set: action.payload.show
+                    $set: action.payload.activateDelete
                 }
             });
         case CHATS_MESSAGE_SEND:

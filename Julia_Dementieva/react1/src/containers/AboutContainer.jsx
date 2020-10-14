@@ -13,8 +13,6 @@ class AboutContainerClass extends React.Component {
         if(this.props.infoPerson == null){
             this.props.aboutLoadAction();
         }
-        console.log('about',this.props.infoPerson);
-        
     }
 
     render(){

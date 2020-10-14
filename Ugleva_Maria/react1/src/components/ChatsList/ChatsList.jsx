@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addNewChat } from '../../actions/chatsAction';
+import { fetchNewChat } from '../../actions/chatsAction';
 import { nanoid } from 'nanoid';
 import { push } from 'connected-react-router';
 
@@ -47,10 +47,9 @@ const ChatsList = (props) => {
 			const newChatStructure = {
 				id: nanoid(),
 				title: newChat,
-				highlight: false,
-				messages: [],
+				highlight: false
 			};
-			props.addNewChat(newChatStructure);
+			props.fetchNewChat(newChatStructure);
 			props.redirect(newChatStructure.id);
 			setValNewChat('');
 		}
@@ -85,14 +84,18 @@ const ChatsList = (props) => {
 	);
 };
 const mapStateToProps = (state) => {
+	let chats = [];
+	for (let key in state.allChats.entries) {
+		chats.push(state.allChats.entries[key]);
+	}
 	return {
 		activeChat: state.activeChat,
-		allChats: state.allChats,
+		allChats: chats,
 	};
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addNewChat: (data) => dispatch(addNewChat(data)),
+		fetchNewChat: (data) => dispatch(fetchNewChat(data)),
 		redirect: (id) => dispatch(push(`/chats/${id}`)),
 	};
 };

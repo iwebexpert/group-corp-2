@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
-import  profileLoadAction  from "../../actions/profileAction";
+import  {fetchProfile}  from "../../actions/profileAction";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,9 +40,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
   const classes = useStyles();
-
   useEffect(() => {
-    props.profileLoadAction();
+   props.fetchProfile();
   }, []);
   return (
     <div className={classes.root}>
@@ -64,7 +63,7 @@ function Header(props) {
           <Link className={classes.profileLink} to="/profile">
             <Avatar alt="Remy Sharp" src="./img/ivan.jpg" />
             <span className={classes.profileUser} color="inherit">
-              {props.profile.entries.name}
+              {props.profile.name}
             </span>
           </Link>
         </Toolbar>
@@ -74,12 +73,12 @@ function Header(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    profile: state.profile
+    profile: state.profile.entries
   }
 }
 const mapDispatchToPTops = (dispatch) => {
   return {
-    profileLoadAction: () => dispatch(profileLoadAction()),
+    fetchProfile: () => dispatch(fetchProfile()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToPTops)(Header);

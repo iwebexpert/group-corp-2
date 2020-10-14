@@ -1,0 +1,22 @@
+{
+  "chats": [
+    {
+      "id": "0Zpk3sIcnbNKSvsO2y91N",
+      "title": "xcn",
+      "highlight": false
+    }
+  ],
+  "messages": [
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "Ivan",
+      "email": "1@2.ru",
+      "surname": "Ivanov",
+      "age": 27,
+      "country": "Russia",
+      "city": "Moscow"
+    }
+  ]
+}

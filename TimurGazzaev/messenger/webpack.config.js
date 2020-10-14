@@ -42,7 +42,7 @@ module.exports = {
                     'sass-loader'],
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|svg)$/i,
                 use: [
                     {
                         loader: 'file-loader',
@@ -65,5 +65,11 @@ module.exports = {
     devtool: 'eval-source-map',
     devServer: {
         historyApiFallback: true,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000',
+                pathRewrite: {'^/api' : ''}
+            },
+        },
     },
 }

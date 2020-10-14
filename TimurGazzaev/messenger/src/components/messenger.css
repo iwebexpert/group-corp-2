@@ -113,3 +113,9 @@ a {
   color: var(--main-font-color);
   opacity: 0.5;
 }
+
+.preloader {
+  position: absolute;
+  left: 50%;
+  top: 300px
+}

@@ -2,12 +2,10 @@ import {CHATSLISTS_SEND, chatAddServerAction, CHATS_MESSAGE_SEND, messageAddServ
 
 export const chatAddDeleteMiddlewares = store => next => action => {
     if(action.type === CHATSLISTS_SEND){
-        console.log("SendApiChat",action.payload )
         store.dispatch(chatAddServerAction(action.payload))
     }
 
     if(action.type === CHATS_MESSAGE_SEND){
-        console.log("SendApi",action.payload )
         store.dispatch(messageAddServerAction(action.payload))
     }
 

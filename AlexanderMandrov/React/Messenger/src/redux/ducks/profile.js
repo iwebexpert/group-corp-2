@@ -1,38 +1,67 @@
-import { createProfileInfo } from '../../utils/utils';
+import { API_URL } from '../../constants/constants';
 
-const SET_PROFILE_INFO = 'profile/SET_PROFILE_INFO',
+const FETCH_PROFILE_REQUEST = 'profile/FETCH_PROFILE_REQUEST',
+  FETCH_PROFILE_SUCCESS = 'profile/FETCH_PROFILE_SUCCESS',
+  FETCH_PROFILE_FAILURE = 'profile/FETCH_PROFILE_FAILURE',
   SET_PROFILE_STICKER = 'prpfile/SET_PROFILE_STICKER';
 
 const initialState = {
   data: null,
-  sticker: null
+  sticker: null,
+  loading: false,
+  error: false
 };
 
-const setProfileInfo = (data) => ({
-  type: SET_PROFILE_INFO,
-  data
-});
-
-const setProfileSticker = (sticker) => ({
+export const setProfileSticker = (sticker) => ({
   type: SET_PROFILE_STICKER,
   sticker
 });
 
-const fetchProfileInfo = (rawProfileInfo) => {
+export const fetchProfileRequest = () => ({
+  type: FETCH_PROFILE_REQUEST,
+});
+
+export const fetchProfileSuccess = (data) => ({
+  type: FETCH_PROFILE_SUCCESS,
+  payload: data
+});
+
+export const fetchProfileFailure = (error) => ({
+  type: FETCH_PROFILE_FAILURE,
+  payload: error
+});
+
+export const fetchProfileInfo = (user) => {
   return async (dispatch) => {
-    const rawAccount = await createProfileInfo(rawProfileInfo);
-    if (rawAccount) {
-      dispatch(setProfileInfo(rawAccount));
+    try {
+      dispatch(fetchProfileRequest());
+      const result = await fetch(`${API_URL}profiles/${user}`);
+      dispatch(fetchProfileSuccess(await result.json()));
+    } catch (error) {
+      dispatch(fetchProfileFailure(error));
     }
   }
 };
 
 const profileReducer = (state = initialState, action) => {
   switch(action.type) {
-    case SET_PROFILE_INFO:
+    case FETCH_PROFILE_REQUEST:
       return {
         ...state,
-        data: action.data
+        error: false,
+        loading: true
+      }
+    case FETCH_PROFILE_SUCCESS:
+      return {
+        ...state,
+        data: action.payload,
+        loading: false
+      }
+    case FETCH_PROFILE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true
       }
     case SET_PROFILE_STICKER:
       return {
@@ -45,4 +74,3 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export default profileReducer;
-export { fetchProfileInfo, setProfileSticker };

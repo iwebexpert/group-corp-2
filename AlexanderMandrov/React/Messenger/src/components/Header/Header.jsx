@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import './Header.scss';
 import Spinner from '../Spinner';
+import Error from '../Error';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { fetchProfileInfo } from '../../redux/ducks/profile';
-import { rawProfileInfo } from '../../constants/constants';
 
 const drawerWidth = 240;
 
@@ -29,15 +29,13 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const dispatch = useDispatch();
   const { profileReducer } = useSelector((state) => state);
-  const { data, sticker } = profileReducer;
+  const { data, sticker, error } = profileReducer;
 
   const classes = useStyles();
   const { root, menuButton, title, appBar } = classes;
 
   useEffect(() => {
-    if (!data) {
-      dispatch(fetchProfileInfo(rawProfileInfo));
-    }
+    if (!data) dispatch(fetchProfileInfo('yellso'));
   }, []);
 
   return (
@@ -47,6 +45,7 @@ const Header = () => {
           <Typography variant="h6" className={title}>
             <div onClick={() => dispatch(push('/'))}>Messenger</div>
           </Typography>
+          {error ? <Error /> : null}
           <Typography variant="h6" className={title}>
               {data === null ?  <Spinner size={40} color="white" /> : `${data.username} ${sticker === null ? '' : sticker}`}
           </Typography>

@@ -1,51 +1,46 @@
 import { nanoid } from 'nanoid';
 
-const createMessage = (text, username) => {
+export const createMessage = (text, username, chatId) => {
   return {
     text,
     username,
     id: nanoid(),
-    date: new Date()
+    date: new Date(),
+    chatId: chatId
   }
 };
 
-const createBotMessage = (sender, receiver) => {
+export const createBotMessage = (sender, receiver, chatId) => {
   return {
     text: `⊂(✾◕ ‿ ◕✾)つ•٠· Hello, ${sender}! ${receiver} is offline, he/she will reply you soon!`,
     username: 'Bot',
     id: nanoid(),
-    date: new Date()
+    date: new Date(),
+    chatId: chatId
   }
 };
 
-const validateInput = (text) => {
+export const validateInput = (text) => {
   const regExp = /\S|(^\w$)/gi;
   return regExp.test(text);
 };
 
-const messageShorter = (message) => {
+export const validateNewChat = (chats, newReceiver) => {
+  return findChatIdByReceiver(chats, newReceiver) === -1 ? true : false;
+}
+
+export const messageShorter = (message) => {
   return message.length < 39 ? message : `${message.slice(0, 36)}...`;
 };
 
-const findChatByReceiver = (chats, receiver) => {
+export const findChatByReceiver = (chats, receiver) => {
   return chats.filter(chat => chat.username === receiver)[0];
 };
 
-const findChatIndexByReceiver = (chats, receiver) => {
-  let index = -1;
-  chats.forEach((chat, idx) => {
-    if (chat.username === receiver) index = idx;
+export const findChatIdByReceiver = (chats, receiver) => {
+  let id = -1;
+  chats.forEach((chat) => {
+    if (chat.username === receiver) id = chat.id;
   });
-  return index;
+  return id;
 };
-
-const createProfileInfo = (profileInfo) => {
-  return {
-    ...profileInfo,
-    date: new Date().toLocaleString(),
-    image: 'https://source.unsplash.com/random',
-  };
-};
-
-export { createMessage, createBotMessage, validateInput, messageShorter, 
-  findChatByReceiver, findChatIndexByReceiver, createProfileInfo };

@@ -5,14 +5,15 @@ import { push } from 'connected-react-router';
 import { nanoid } from 'nanoid';
 import './Sidebar.scss';
 import Spinner from '../Spinner';
+import Error from '../Error';
 import { Drawer, List, ListItem, ListItemText, 
         ListItemAvatar, Avatar, Divider, Badge, 
         makeStyles, Box, IconButton, TextField } from '@material-ui/core';
 import { deepOrange, deepPurple, green, blue, indigo, teal, cyan, lime } from '@material-ui/core/colors';
 import { AddCircleOutline } from '@material-ui/icons';
-import { fetchChats, setNewChat, setReceiver } from '../../redux/ducks/chats';
-import { usernames, createPrimaryChats } from '../../constants/constants';
-import { messageShorter, validateInput } from '../../utils/utils';
+import { sendNewChat, setReceiver, fetchChats } from '../../redux/ducks/chats';
+import { createPrimaryChat } from '../../constants/constants';
+import { messageShorter, validateNewChat } from '../../utils/utils';
 
 const useStyles = makeStyles((theme) => ({
   green: {
@@ -43,30 +44,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Sidebar = ({ user, onChatClick, activeChat }) => {
+const Sidebar = ({ user, onChatClick }) => {
   const dispatch = useDispatch();
   const { chatsReducer } = useSelector((state) => state);
-  const { chats } = chatsReducer;
+  const { chats, error, receiver, loading } = chatsReducer;
 
   const classes = useStyles();
   const { green, orange, purple, blue, indigo, teal, cyan, lime } = classes;
 
   const [newReceiver, setNewReceiver] = useState('');
+  const [isValidReceiver, setIsValidReceiver] = useState(true);
   const palette = [purple, orange, green, blue, indigo, teal, cyan, lime];
 
   useEffect(() => {
-    if (!chats) dispatch(fetchChats(usernames));
+    if (!chats) dispatch(fetchChats());
   }, []);
 
-  const handleClick = () => {
-    if (validateInput(newReceiver)) {
-      const chat = createPrimaryChats([newReceiver], user)[0];
-      dispatch(setNewChat(chat));
+  useEffect(() => {
+    if (chats) {
+      if (validateNewChat(chats, newReceiver)) {
+        setIsValidReceiver(true);
+      } else {
+        setIsValidReceiver(false);
+      }
+    }
+  }, [newReceiver]);
+
+  const handleChatClick = () => {
+    if (validateNewChat(chats, newReceiver)) {
+      const chat = createPrimaryChat(newReceiver, user);
+      dispatch(sendNewChat(chat));
       dispatch(push(`/chats/${newReceiver}`));
       dispatch(setReceiver(newReceiver));
       setNewReceiver('');
     }
   };
+  
+  const handleReloadChatsClick = () => dispatch(fetchChats());
+
+  const handleChange = (event) => setNewReceiver(event.target.value);
 
   return (
     <Drawer variant="persistent" open>
@@ -75,22 +91,24 @@ const Sidebar = ({ user, onChatClick, activeChat }) => {
           variant="outlined"
           size="small"
           placeholder="Create new chat"
+          error={!isValidReceiver}
           value={newReceiver}
           fullWidth
-          onChange={(event) => setNewReceiver(event.target.value)}
+          onChange={handleChange}
         />
         <Box ml={1} mb={0} mt={-0.5}>
           <IconButton
               color="primary"
               variant="contained"
               size="medium"
-              onClick={handleClick}>
+              onClick={handleChatClick}>
             <AddCircleOutline/>
           </IconButton>
         </Box>
       </Box>
       <Divider />
       <List className="Sidebar-list" disablePadding>
+        {!error ? null : <Error mx={2} handleClick={handleReloadChatsClick} />}
         {chats === null ? <Spinner color="teal"/> : chats.map(({ username, messages, fired }, idx) => {
           const lastMessage = messages.length ? messages[messages.length - 1] : '';
           const lastMessageText =  messages.length ? 
@@ -106,7 +124,7 @@ const Sidebar = ({ user, onChatClick, activeChat }) => {
               <ListItem 
                 button 
                 divider
-                selected={activeChat === username}
+                selected={username === receiver}
               >
                 <ListItemAvatar>
                   <Badge color="secondary" variant="dot" invisible={!fired}>
@@ -124,6 +142,7 @@ const Sidebar = ({ user, onChatClick, activeChat }) => {
             </Link>
           );
         })}
+        {chats !== null && loading ? <Spinner size={80} color="#9013FE" /> : null}
       </List>
     </Drawer>
   );

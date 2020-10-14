@@ -16,7 +16,7 @@ export const LayoutHeader = ({ chat, cleanAllMessagesAction }) => {
                         <span className="navbar__info-mess">Available for freelance work.</span>
                     </div>
                 </div>
-                {chat.messages.length ? <button onClick={() => cleanAllMessages(chat.id)} className="wrapper__clean">Очистить все</button> : ''}
+                {chat.messages ? <button onClick={() => cleanAllMessages(chat.id)} className="wrapper__clean">Очистить все</button> : ''}
             </div>}
         </>
     )

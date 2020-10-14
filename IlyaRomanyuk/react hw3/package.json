@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
     "dev-server": "webpack-dev-server --mode development --port 4000 --open",
+    "json-server": "json-server --port 3000 --watch db.json --delay 1000",
     "build": "webpack --mode production"
   },
   "keywords": [],
@@ -15,7 +16,9 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
+    "@babel/preset-es2017": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "connected-react-router": "^6.8.0",
@@ -23,6 +26,7 @@
     "file-loader": "^6.1.0",
     "history": "^4.10.1",
     "html-webpack-plugin": "^4.4.1",
+    "json-server": "^0.16.2",
     "prop-types": "^15.7.2",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
@@ -33,6 +37,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "axios": "^0.20.0",
     "classnames": "^2.2.6",
     "nanoid": "^3.1.12",
     "react": "^16.13.1",
@@ -43,6 +48,7 @@
     "react-router-redux": "^4.0.8",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
   }
 }

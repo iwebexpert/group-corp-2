@@ -1,15 +1,38 @@
-import { ADD_NEW_CHAT, LOAD_CHATS, ADD_NEW_MESSAGE, IS_FETCHING, CHAT_FIRE, CHAT_UNFIRE, DELETE_CHAT, CLEAN_ALL_MESSAGES, DELETE_MESSAGE } from "../actions/addChatAC";
-import { chats } from "../helpers/chatData";
+import {
+    ADD_NEW_CHAT, ADD_NEW_MESSAGE, IS_FETCHING, CHAT_FIRE, CHAT_UNFIRE, DELETE_CHAT,
+    CLEAN_ALL_MESSAGES, DELETE_MESSAGE, CHATS_LOAD_REQUEST, CHATS_LOAD_SUCCESS, CHATS_LOAD_FAILURE
+} from "../actions/addChatAC";
+import * as axios from "axios";
 
-const initialState = { data: [], isFetching: false };
+const initialState = {
+    data: [],
+    isFetching: false,
+    loadingData: false,
+    error: false,
+};
 
 export const addChatReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOAD_CHATS:
+        case CHATS_LOAD_REQUEST:
             return {
                 ...state,
-                data: chats
-            }
+                loadingData: true,
+                error: false,
+            };
+
+        case CHATS_LOAD_SUCCESS:
+            return {
+                ...state,
+                loadingData: false,
+                data: action.payload,
+            };
+
+        case CHATS_LOAD_FAILURE:
+            return {
+                ...state,
+                loadingData: false,
+                error: true,
+            };
 
         case IS_FETCHING:
             return {

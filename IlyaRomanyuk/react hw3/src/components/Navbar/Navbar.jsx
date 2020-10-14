@@ -6,7 +6,7 @@ import { NavbarMenu } from './NavbarMenu';
 import { NavbarForm } from './NavbarForm'
 
 
-export const Navbar = ({ chats, addNewChat, person, redirectOnHome, deleteChatAction }) => {
+export const Navbar = ({ chats, addNewChat, person, deleteChatAction, loading, loadingData }) => {
     const [list, setList] = useState(chats);
 
     useEffect(() => {
@@ -25,10 +25,10 @@ export const Navbar = ({ chats, addNewChat, person, redirectOnHome, deleteChatAc
 
     return (
         <>
-            <NavbarMenu redirectOnHome={redirectOnHome} />
-            <NavbarAbout person={person} />
+            <NavbarMenu />
+            <NavbarAbout person={person} loading={loading} />
             <NavbarSearch findNeedChat={findNeedChat} />
-            <NavbarList deleteChatAction={deleteChatAction} list={list} person={person} />
+            <NavbarList loadingData={loadingData} deleteChatAction={deleteChatAction} list={list} person={person} />
             <NavbarForm addNewChat={addNewChat} />
         </>
     )

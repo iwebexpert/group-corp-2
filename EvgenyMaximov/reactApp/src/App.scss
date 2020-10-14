@@ -92,6 +92,9 @@ body {
 }
 
 .profile-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   text-align: center;
   top: 15px;
@@ -141,6 +144,7 @@ body {
 }
 
 .chat-title {
+  min-height: 45px;
   display: flex;
   align-items: center;
   padding: 10px 30px;
@@ -169,15 +173,6 @@ body {
   justify-content: center;
 }
 
-.scroll-arrow {
-  position: absolute;
-  top: 70px;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 5px 30px;
-  border-radius: 5px;
-}
-
 /*-----------empty-list-------------*/
 .empty-list {
   padding-top: 30%;
@@ -196,7 +191,7 @@ body {
 /*-----------.message-form-------------*/
 .message-form {
   width: 100%;
-  padding: 20px;
+  padding: 20px 30px;
   margin: 10px 0;
   border-radius: 5px;
 
@@ -224,5 +219,130 @@ body {
     background-color: $dark2;
     border-top: 1px solid $light;
     color: $light;
+  }
+}
+
+/*---------LOADERS----------*/
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  align-self: center;
+  margin-top: 40%;
+
+  &:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #115293;
+    border-color: #115293 transparent #115293 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+
+  &-header {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+
+    &:after {
+      content: " ";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 3px solid #115293;
+      border-color: #115293 transparent #115293 transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+  }
+
+  &-profile {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    margin-top: 50%;
+
+    &:after {
+      content: " ";
+      display: block;
+      width: 80px;
+      height: 80px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 8px solid #115293;
+      border-color: #115293 transparent #115293 transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+  }
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 10px;
+  height: 10px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $dark2;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
   }
 }

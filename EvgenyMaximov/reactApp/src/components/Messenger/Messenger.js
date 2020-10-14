@@ -35,12 +35,14 @@ export class Messenger extends React.Component {
       onMessageDelete,
       chatTitle,
       classchattitle,
+      isLoading,
+      isPending,
     } = this.props;
 
     return (
       <div className="chat">
         <div className={classchattitle}>
-          {chatTitle}{" "}
+          {chatTitle ? chatTitle : <span>Waiting...</span>}
           {messages.length ? (
             <div className="clear-icon" onClick={this.clearChat}>
               <ClearAllIcon fontSize="small" color="secondary" />
@@ -48,14 +50,22 @@ export class Messenger extends React.Component {
           ) : null}
         </div>
         <div className="messages-list" ref={this.list}>
-          <MessagesList
-            messages={messages}
-            class={classlist}
-            onDelete={onMessageDelete}
-          />
+          {isLoading && !chatTitle ? (
+            <div className="lds-dual-ring"></div>
+          ) : (
+            <MessagesList
+              messages={messages}
+              class={classlist}
+              onDelete={onMessageDelete}
+            />
+          )}
         </div>
         <div className="form">
-          <MessageForm onSend={onMessageSend} class={classform} />
+          <MessageForm
+            onSend={onMessageSend}
+            class={classform}
+            isPending={isPending}
+          />
         </div>
       </div>
     );

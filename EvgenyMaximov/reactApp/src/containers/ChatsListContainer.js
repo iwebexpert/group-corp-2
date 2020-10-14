@@ -18,17 +18,20 @@ class ChatsListContainerClass extends React.Component {
   }
 
   addChat = (chat) => {
-    const { chats, addChatAction, redirect } = this.props;
+    console.log(this.props);
+    const { chats, addChatAction, chatsLoadAction, redirect } = this.props;
     chat.chatId = chats.length;
     chat.messages = [];
     chat.fire = false;
-    addChatAction({ chat });
+    addChatAction(chat);
+    chatsLoadAction();
     redirect(chat.chatId);
   };
 
   unfireChat = (chatId) => {
-    const { chatUnfireAction } = this.props;
+    const { chatUnfireAction, chatsLoadAction } = this.props;
     chatUnfireAction(chatId);
+    chatsLoadAction();
   };
 
   deleteChat = (chatId) => {
@@ -38,7 +41,7 @@ class ChatsListContainerClass extends React.Component {
       redirect,
       redirectToHomePage,
     } = this.props;
-    chatDeleteAction({ chatId });
+    chatDeleteAction(chatId);
     if (chats.length > 1) {
       redirect(chats.length - 2);
     } else redirectToHomePage();

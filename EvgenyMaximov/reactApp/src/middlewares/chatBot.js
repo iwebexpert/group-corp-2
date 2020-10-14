@@ -1,16 +1,18 @@
 import {
   chatsMessageSendAction,
-  CHATS_MESSAGE_SEND,
   chatFireAction,
+  chatsLoadAction,
 } from "../actions/chats";
 import { nanoid } from "nanoid";
 
 let timer = null;
 
 export const chatBotMiddware = (store) => (next) => (action) => {
-  if (action.type === CHATS_MESSAGE_SEND) {
-    const { author, chatId } = action.payload;
+  if (Object.values(action)[0].method == "POST") {
     const { router } = store.getState();
+    const body = JSON.parse(Object.values(action)[0].body);
+
+    const { author, chatId } = body;
 
     const botAnswers = [
       `Привет, ${author}! Я чат-бот...`,
@@ -41,18 +43,17 @@ export const chatBotMiddware = (store) => (next) => (action) => {
     };
 
     if (author !== "Бот") {
+      clearTimeout(timer);
       timer = setTimeout(() => {
         store.dispatch(chatsMessageSendAction(botText));
+        store.dispatch(chatsLoadAction());
       }, 1500);
-    }
-
-    if (action.type === CHATS_MESSAGE_SEND && author === "Бот") {
-      clearTimeout(timer);
     }
 
     if (router.location.pathname !== `/chats/${chatId}`) {
       setTimeout(() => {
         store.dispatch(chatFireAction(chatId));
+        store.dispatch(chatsLoadAction());
       }, 0);
     }
   }

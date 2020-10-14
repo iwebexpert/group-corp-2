@@ -85,6 +85,14 @@ export class MessageForm extends React.Component {
         >
           <Send />
         </Fab>
+        {this.props.isPending ? (
+          <div className="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        ) : null}
       </div>
     );
   }

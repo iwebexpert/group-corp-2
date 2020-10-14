@@ -3,6 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createBrowserHistory } from "history";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
+import { apiMiddleware } from "redux-api-middleware";
 
 import { createRootReducer } from "./reducers/index";
 import { routerMiddleware } from "connected-react-router";
@@ -14,6 +15,7 @@ export const history = createBrowserHistory();
 const persistConfig = {
   key: "app",
   storage,
+  blacklist: ["chats", "profile"],
 };
 
 export const initStore = () => {
@@ -23,7 +25,12 @@ export const initStore = () => {
     persistReducer(persistConfig, createRootReducer(history)),
     initialStore,
     composeWithDevTools(
-      applyMiddleware(routerMiddleware(history), chatBotMiddware, logger)
+      applyMiddleware(
+        routerMiddleware(history),
+        chatBotMiddware,
+        logger,
+        apiMiddleware
+      )
     )
   );
 

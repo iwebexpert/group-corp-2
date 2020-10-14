@@ -16,7 +16,7 @@ export const history = createBrowserHistory();
 const persistConfig = {
     key: 'app',
     storage,
-    blacklist: ['chats'],
+    blacklist: ['chats', 'messages'],
 };
 
 // export const store = createStore(createRootReducer(history), composeWithDevTools(applyMiddleware(logger, botMiddlewares, routerMiddleware(history))));

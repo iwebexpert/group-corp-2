@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import { nanoid } from 'nanoid';
 import {ChatsList} from '../components/ChatsList';
 import {mapStateToProps} from '../mapForConnect/mapStateToProps';
 import {mapDispatchToProps} from '../mapForConnect/mapDispatchToProps';
@@ -19,6 +19,7 @@ class ChatsListContainerClass extends React.Component {
     chatAddHandler = (newchat) => {
         const {chatsListSendAction, redirect, lastChatId} = this.props;
         chatsListSendAction({
+            id: lastChatId.toString(),
             author: newchat,
             avatar: 'https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif',
         });

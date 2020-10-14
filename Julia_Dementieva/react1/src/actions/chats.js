@@ -66,7 +66,7 @@ export const messageAddServerAction = (newmessage) => createAction({
     types: [
         {
             type: MESSAGE_ADD_REQUEST,
-            payload: { ...newmessage }
+            payload: { ...newmessage}
         },
         {
             type: MESSAGE_ADD_SUCCESS,

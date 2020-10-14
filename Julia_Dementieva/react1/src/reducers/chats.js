@@ -54,9 +54,9 @@ export const chatsReducer = (state = initialState, action) => {
                 },
             });
         case CHATSLISTS_SEND:
-            const newId = Object.keys(state.entries).length;
+            const newId = Object.keys(state.entries).length.toString();
             return update(state, {
-                entries: {$push: [{id: newId, author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
+                entries: {$push: [{author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
             });
 
         case MESSAGE_FIRE:

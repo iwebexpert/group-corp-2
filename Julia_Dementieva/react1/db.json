@@ -19,6 +19,11 @@
       "id": "3",
       "author": "Тест",
       "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
+    },
+    {
+      "id": "4",
+      "author": "Чат №5",
+      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
     }
   ],
   "messages": [
@@ -78,6 +83,18 @@
     },
     {
       "id": "e7FipqOMfL8rLBKGYq8sP",
+      "chatId": "0",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Как дела?",
+      "id": "gU6YcA-2xhtcvjjyt7aBO",
+      "chatId": "0"
+    },
+    {
+      "id": "izWO_HOYaWH-99DbK1lLc",
       "chatId": "0",
       "text": "Hi, Web",
       "author": "Robot"

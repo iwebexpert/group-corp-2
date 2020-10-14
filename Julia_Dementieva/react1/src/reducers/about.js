@@ -14,7 +14,6 @@ const initialState = {
 export const aboutReducer = (state = initialState, action) => {
     switch(action.type){
         case ABOUT_LOAD_REQUEST:
-            console.log('success',action.payload)
             return {
                 ...state,
                 loading: true,

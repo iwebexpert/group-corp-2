@@ -21,7 +21,6 @@ export const mapStateToProps = (component) => {
                 let chatsLoad = (ready) ? entries : null;
                 let lastChatId = (ready) ? Object.keys(chatsLoad).length : null;
                 let fireListId = (ready) ? fireChatsId : null;
-                console.log('list45',chatsLoad)
 
                 return {
                     chatsLoad,

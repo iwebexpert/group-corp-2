@@ -24,39 +24,14 @@
       "id": "4",
       "author": "Чат №5",
       "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
+    },
+    {
+      "id": "5",
+      "author": "Семья",
+      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
     }
   ],
   "messages": [
-    {
-      "id": 0,
-      "author": "Web",
-      "text": "H!",
-      "chatId": "0"
-    },
-    {
-      "id": 1,
-      "author": "Web",
-      "text": "Test!",
-      "chatId": "0"
-    },
-    {
-      "id": 2,
-      "author": "Web",
-      "text": "Hi!",
-      "chatId": "1"
-    },
-    {
-      "id": 3,
-      "author": "Web",
-      "text": "Какие есть задачи на сегодня?",
-      "chatId": "1"
-    },
-    {
-      "id": 4,
-      "author": "Web",
-      "text": "Привет!",
-      "chatId": "2"
-    },
     {
       "author": "Web",
       "text": "Как дела?",
@@ -96,6 +71,66 @@
     {
       "id": "izWO_HOYaWH-99DbK1lLc",
       "chatId": "0",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Hello!",
+      "id": "_nBMuAvqtREH9gS2g_VG4",
+      "chatId": "4"
+    },
+    {
+      "id": "VUlEIIb5g1Am53ZiqKn81",
+      "chatId": "4",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Доброе утро!",
+      "id": "ezqNM-jCUjwecsGh-6eOR",
+      "chatId": "3"
+    },
+    {
+      "id": "e-Q2tB0sS59ozDg9pU1T2",
+      "chatId": "3",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Доброе утро!",
+      "id": "ucOpJusYJnOKwFulxfANF",
+      "chatId": "5"
+    },
+    {
+      "id": "mKAAYx5XiFL0ZY9Y-_Il4",
+      "chatId": "5",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Старт",
+      "id": "7eeOIv2D9VCX755xFCaSv",
+      "chatId": "1"
+    },
+    {
+      "id": "GsBKb7kur6IV8sQ9r0RcL",
+      "chatId": "1",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "В",
+      "id": "kbEd4a9wuizTiOJzov0UX",
+      "chatId": "1"
+    },
+    {
+      "id": "T2YSvXfLuNwh2ni3WLTTD",
+      "chatId": "1",
       "text": "Hi, Web",
       "author": "Robot"
     }

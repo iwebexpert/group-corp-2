@@ -1,0 +1,33 @@
+.chat-list {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fire {
+  position: relative;
+}
+
+.fire::after {
+  position: absolute;
+  font-size: 20px;
+  top: 10px;
+  right: 20px;
+  color: #2ebf91;
+}
+
+.current {
+  border: #ebeaea solid 3px;
+  border-right: none;
+  box-sizing: border-box;
+}
+
+.add-chat-btn {
+  align-self: center;
+  margin-top: 20px !important;
+}

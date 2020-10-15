@@ -30,7 +30,6 @@ const useStyles = makeStyles({
 export function ProfileCard(props) {
     const classes = useStyles();
     const { profile, isError, isLoading, handleProfileReload } = props;
-    console.log("ProfileCard", isError, isLoading)
     if (isError) {
         return <>
             <div className="error-wrapper error-profile-wrapper">

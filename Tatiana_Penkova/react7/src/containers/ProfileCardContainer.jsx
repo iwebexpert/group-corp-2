@@ -11,7 +11,7 @@ class ProfileCardContainerClass extends React.Component {
     };
     handleProfileReload = () => {
         this.props.profileInfoAction();
-    }
+    };
 
     render() {
         const { profile, isError, isLoading, handleProfileReload } = this.props;

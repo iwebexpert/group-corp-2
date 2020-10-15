@@ -56,7 +56,6 @@ export const chatsReducer = (state = initialState, action) => {
             };
 
         case ADD_CHAT_SUCCESS:
-
             return update(state,
                 {
                     loading: {

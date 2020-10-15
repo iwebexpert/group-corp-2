@@ -11,6 +11,10 @@
     {
       "title": "Чат с семьей",
       "id": 2
+    },
+    {
+      "title": "Test",
+      "id": 3
     }
   ],
   "messages": [
@@ -72,6 +76,18 @@
       "id": "djZyhp8T-BGkYe1UN64em",
       "chatId": 2,
       "text": "Лёпа, повтори, пожалуйста.",
+      "author": "Bot"
+    },
+    {
+      "text": "Пишу первое сообщение!",
+      "author": "Лёпа",
+      "id": "HQbVPpltEVxcOV1FSHtwk",
+      "chatId": 3
+    },
+    {
+      "id": "kns5tEjTvptwZhe8Qn872",
+      "chatId": 3,
+      "text": "Очень интересная история, Лёпа",
       "author": "Bot"
     }
   ],

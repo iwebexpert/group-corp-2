@@ -26,19 +26,15 @@ export class ChatForm extends React.Component {
             onSend(this.state);
             this.setState({ title: "" });
         }
-
     };
 
     keydownHandler = (event) => {
         if (event.keyCode === 13 && event.ctrlKey) {
             this.onSubmitForm();
         }
-
     }
 
-
     render() {
-
         const { title } = this.state;
         return (
             <div className="form-wrapper">

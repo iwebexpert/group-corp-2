@@ -13,9 +13,9 @@ import { botMiddware } from "../middlewares/bot";
 export const history = createBrowserHistory();
 
 const persistConfig = {
-    key: 'app',
+    key: "app",
     storage,
-    blacklist: ['chats', "profile"],
+    blacklist: ["chats", "profile"],
 };
 
 export const initStore = () => {

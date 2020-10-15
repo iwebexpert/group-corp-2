@@ -9,7 +9,6 @@ import "./Header.css";
 export class Header extends Component {
     render() {
         const { profile, handleClick, isError, isLoading } = this.props;
-        console.log("PROFILW", profile)
         return (
             <div className="header">
                 <List>

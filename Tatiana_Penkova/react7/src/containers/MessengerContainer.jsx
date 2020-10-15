@@ -37,7 +37,7 @@ class MessengerContainerClass extends React.Component {
         );
         redirect(123);
         this.props.chatsLoadAction();
-    }
+    };
 
     handleDeleteMessage = (id) => {
         this.props.deleteMessageAction(id);
@@ -46,7 +46,7 @@ class MessengerContainerClass extends React.Component {
 
     handleChatsReload = () => {
         this.props.chatsLoadAction();
-    }
+    };
 
     render() {
         const { messages, chats, isLoading, isError } = this.props;

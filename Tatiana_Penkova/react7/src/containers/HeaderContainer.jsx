@@ -35,7 +35,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         profileInfoAction: () => dispatch(profileInfoAction()),
-    }
+    };
 };
 
 export const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderContainerClass);

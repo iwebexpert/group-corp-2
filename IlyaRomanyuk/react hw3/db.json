@@ -1,0 +1,84 @@
+{
+  "chats": [
+    {
+      "id": "0",
+      "title": "Manuel Preuß",
+      "fire": false,
+      "image": "src/img/mans/m2.png"
+    },
+    {
+      "id": "1",
+      "title": "Yakov Minaev",
+      "fire": false,
+      "image": "src/img/mans/m3.png"
+    },
+    {
+      "id": "2",
+      "title": "Helga Källström",
+      "fire": false,
+      "image": "src/img/mans/m4.png"
+    },
+    {
+      "id": "3",
+      "title": "Kevin Sertcin",
+      "fire": false,
+      "image": "src/img/mans/m5.png"
+    },
+    {
+      "id": "4",
+      "title": "пукрпрекрке",
+      "image": "src/img/mans/bot.png",
+      "fire": false,
+      "messages": []
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "Rafael Ramaisen",
+      "message": "How are you ?",
+      "image": "src/img/mans/m1.png",
+      "chatId": "0"
+    },
+    {
+      "id": 1,
+      "author": "Rafael Ramaisen",
+      "message": "How are you ?",
+      "image": "src/img/mans/m1.png",
+      "chatId": "0"
+    },
+    {
+      "id": 2,
+      "author": "Manuel Preuß",
+      "message": "Hey Rafael! Can we talk about last",
+      "image": "src/img/mans/m2.png",
+      "chatId": "0"
+    },
+    {
+      "id": 5,
+      "author": "Helga Källström",
+      "message": "I’m very happy to introduce it!",
+      "image": "src/img/mans/m4.png",
+      "chatId": "2"
+    },
+    {
+      "id": "KY7kVsrIZdFqfz2LVRPGd",
+      "author": "пкер",
+      "message": "екрке",
+      "image": "m1.png",
+      "chatId": "4"
+    },
+    {
+      "chatId": "4",
+      "message": "Hi, пкер! Бот на связи...",
+      "author": "пукрпрекрке",
+      "image": "src/img/mans/bot.png",
+      "id": "vJBcYSnNly0xayHfz-aeF"
+    }
+  ],
+  "person": {
+    "name": "Romanyuk Ilya",
+    "status": "Available for freelance work.",
+    "image": "src/img/mans/m1.png"
+  }
+}

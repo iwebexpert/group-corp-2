@@ -10,10 +10,19 @@ export const botMiddware = store => next => action => {
 
         if (author !== title && !store.getState().chats.isFetching) {
             store.dispatch(isFetchingAC(true))
-            setTimeout(() => {
-                store.dispatch(addMessageAC(
-                    { chatId, message: `Hi, ${author}! Бот на связи...`, author: title, image, id: nanoid() }
-                ));
+            setTimeout(async () => {
+
+                const response = await fetch(`http://localhost:3000/chats/${chatId}/messages`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ chatId, message: `Hi, ${author}! Бот на связи...`, author: title, image, id: nanoid() })
+                });
+                if (response.ok) {
+                    const data = await response.json()
+                    store.dispatch(addMessageAC({ ...data, chatId }));
+                }
 
                 let arrUrl = store.getState().router.location.pathname.split('/');
 

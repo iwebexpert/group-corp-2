@@ -11,7 +11,7 @@ export const ChatList = ({ chats, deleteMessageAction }) => {
     }
 
     useEffect(() => {
-        if (chats && chats.messages.length) {
+        if (chats && chats.messages) {
             scrollDown()
         }
     }, [chats])
@@ -19,8 +19,8 @@ export const ChatList = ({ chats, deleteMessageAction }) => {
     return (
         <>
             {chats && <div ref={wrapper} className="wrapper">
-                {chats.messages.length ?
-                    chats.messages.map((obj, index) => <ChatItem key={index} {...obj} chatsId={chats.id} title={chats.title} deleteMessageAction={deleteMessageAction} />) :
+                {chats.messages &&
+                    chats.messages.length ? chats.messages.map((obj, index) => <ChatItem key={index} {...obj} chatsId={chats.id} title={chats.title} deleteMessageAction={deleteMessageAction} />) :
                     <p>Начните беседу первым:)</p>}
             </div>}
         </>

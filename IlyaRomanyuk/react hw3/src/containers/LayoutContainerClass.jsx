@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Layout } from '../components/Layout';
-import { loadChatsAC, addMessageAC, cleanAllMessagesAC, deleteMessageAC } from '../actions/addChatAC';
+import { addMessageTC, cleanAllMessagesAC, deleteMessageTC, chatsLoadTC } from '../actions/addChatAC';
 
 class LayoutContainerClass extends React.Component {
     componentDidMount = () => {
-        if (!Object.values(this.props.chats).length) {
-            this.props.chatsLoadAction();
-        }
+        this.props.chatsLoadAction();
     }
 
-    handleMessageSend = (message) => {
+    handleMessageSend = async (message) => {
         const { chatId, addMessageAction } = this.props;
-        addMessageAction({ ...message, chatId });
+        addMessageAction(chatId, message)
     };
 
     render() {
@@ -43,10 +41,10 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    chatsLoadAction: () => dispatch(loadChatsAC()),
-    addMessageAction: (message) => dispatch(addMessageAC(message)),
+    chatsLoadAction: () => dispatch(chatsLoadTC()),
+    addMessageAction: (chatId, message) => dispatch(addMessageTC(chatId, message)),
     cleanAllMessagesAction: (chatId) => dispatch(cleanAllMessagesAC(chatId)),
-    deleteMessageAction: (chatId, messageId) => dispatch(deleteMessageAC(chatId, messageId))
+    deleteMessageAction: (chatId, messageId) => dispatch(deleteMessageTC(chatId, messageId))
 })
 
 export const LayoutContainer = connect(mapStateToProps, mapDispatchToProps)(LayoutContainerClass);

@@ -4,6 +4,7 @@ export const NavbarForm = ({ addNewChat }) => {
     const chat = useRef(null)
 
     const addChat = () => {
+
         if (chat.current.value) {
             addNewChat(chat.current.value);
             chat.current.value = '';

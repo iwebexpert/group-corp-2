@@ -17,6 +17,7 @@ export const chats = (state = initialState, action) => {
         ...state,
         items: [...state.items, action.payload],
       };
+
     case "SET_CHATS_LOADING":
       return {
         ...state,

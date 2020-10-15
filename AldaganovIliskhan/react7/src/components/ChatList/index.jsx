@@ -11,27 +11,16 @@ import editSvg from '../../assets/img/edit.svg'
 const ChatList = ({ chats, onAddChat, onClickChat, activeChat, addChat, removeChatAction, push, pathname, isChatsLoading, addChatAction, isChatsError, editChatAction }) => {
 
   const onClick = (chat, i) => {
-    i += 1;
-    push(`/chats/${i}`);
-    onClickChat(chat);
+    if (chat.id) {
+      push(`/chats/${chat.id}`);
+      onClickChat(chat);
+    }
+
   }
   const onRemove = (chatId) => {
     if (window.confirm('Вы действительно хотите удалить чат?')) {
       removeChatAction(chatId);
-      if (pathname !== '/') {
-        let currentChat = pathname.split('/chats/')[1];
-        currentChat = Number(currentChat);
-        if (currentChat < chatId) {
-          push(`/chats/${currentChat}`);
-        }
-        else if (currentChat === 1) {
-          push('/');
-        }
-        else if (currentChat >= chatId) {
-          currentChat -= 1;
-          push(`/chats/${currentChat}`);
-        };
-      };
+      push('/');
     };
   }
   const onEdit = (chatId) => {

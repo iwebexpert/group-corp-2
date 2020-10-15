@@ -32,13 +32,15 @@ const App = (props) => {
   useEffect(() => {
     const chatId = pathname.split("/chats/")[1];
     if (chats) {
-      const chat = chats.find((chat, i) => i + 1 === Number(chatId));
+      const chat = chats.find((chat, i) => chat.id === Number(chatId));
       setActiveChat(chat);
     }
   }, [pathname, chats]);
 
   const onClickChat = (chat) => {
-    setActiveChat(chat);
+    if (chat.id) {
+      setActiveChat(chat);
+    }
   };
 
   return (

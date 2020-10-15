@@ -14,8 +14,9 @@ export const ChatAdd = ({ chats, addChatAction }) => {
             title: inputValue,
             messages: [],
             fire: false,
-            id: chats && chats.length + 1
+            id: chats.length === 0 ? 1 : chats[chats.length - 1].id + 1
         };
+
         addChatAction(newChat);
         setInputValue('');
     };

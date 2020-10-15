@@ -19,5 +19,6 @@
 }
 
 .chat__delete-message {
+  cursor: pointer;
   margin-left: 10px;
 }

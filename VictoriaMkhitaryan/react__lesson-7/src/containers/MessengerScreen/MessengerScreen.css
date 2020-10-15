@@ -1,0 +1,27 @@
+.content_theme_chat {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: '2%';
+}
+
+.chat_theme_chat {
+  width:68%;
+  margin: 20px auto;
+}
+
+.chat__card-warn {
+  width: 68%;
+  margin: 20px auto;
+  height: 564px;
+}
+
+.chat__warn {
+  color: grey;
+  text-align: center;
+}
+
+.chat__image {
+  height: 80%;
+  margin-left: 20%;
+}

@@ -4,19 +4,39 @@ import * as types from './actionTypes';
 const initialState = {
     entries: [],
     unreadMessage: [],
-    loading: false
+    loading: false,
+    error: false,
 };
-
-import { chats } from '../../helpers/chats';
 
 export default function chatsReduce(state = initialState, action = {}) {
     switch (action.type) {
-        case types.CHATS_LOAD:
+        case types.CHATS_LOAD_REQUEST:
             return {
                 ...state,
-                entries: chats,
-                unreadMessage: Array(chats.length).fill(false),
-            }
+                loading: true,
+                error: false,
+            };
+    
+        case types.CHATS_LOAD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                entries: action.payload,
+            };
+    
+        case types.CHATS_LOAD_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            };
+
+        case types.SEND_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: false,
+            };
 
         case types.SEND_MESSAGE:
             return update(state, {
@@ -31,7 +51,7 @@ export default function chatsReduce(state = initialState, action = {}) {
                         }
                     }
                 }
-            })
+            });
 
         case types.ADD_CHAT:
             return {
@@ -51,7 +71,7 @@ export default function chatsReduce(state = initialState, action = {}) {
                 entries: {
                     [action.chatId]: {
                         messages: {
-                            $splice: [[action.index, 1]]
+                            $splice: [[action.findMessage, 1]]
                         }
                     }
                 }
@@ -70,6 +90,9 @@ export default function chatsReduce(state = initialState, action = {}) {
                     [+action.chatId] : {$set: false},
                 }
             });
+
+        case types.ISLOADING:
+            return { ...state, loading: action.loading };
 
 
         default:

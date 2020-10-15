@@ -4,7 +4,7 @@ import { Send } from "@material-ui/icons";
 import "./MessageField.scss";
 import { nanoid } from "nanoid";
 import { connect } from "react-redux";
-import { addNewMessageToChat } from '../../actions/chatsAction';
+import { fetchMesToChat } from '../../actions/chatsAction';
 
 class MessageField extends Component {
   state = {
@@ -20,8 +20,9 @@ class MessageField extends Component {
     if (!(this.state.text && this.state.author)) {
       alert("Заполните все поля");
       return;
-    }
-    this.props.addNewMessageToChat(this.state, this.props.chatId);
+    };
+    this.props.fetchMesToChat(this.state, this.props.chatId);
+
     this.setState({ text: "", author: "", id: nanoid() });
   };
   handleEnter = (e) => {
@@ -63,7 +64,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewMessageToChat: (message, id) => dispatch(addNewMessageToChat(message, id))
+    fetchMesToChat: (message, id) => dispatch(fetchMesToChat(message, id)),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MessageField);

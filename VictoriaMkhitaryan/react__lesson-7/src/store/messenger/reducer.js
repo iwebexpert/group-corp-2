@@ -8,17 +8,8 @@ const initialState = {
     error: false,
 };
 
-import { chats } from '../../helpers/chats';
-
 export default function chatsReduce(state = initialState, action = {}) {
     switch (action.type) {
-        case types.CHATS_LOAD:
-            return {
-                ...state,
-                entries: chats,
-                unreadMessage: Array(chats.length).fill(false),
-            }
-
         case types.CHATS_LOAD_REQUEST:
             return {
                 ...state,

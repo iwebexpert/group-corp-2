@@ -6,6 +6,7 @@ import { push } from 'connected-react-router';
 import './MessengerScreen.css'
 
 import { chatsLoad, messageSend, addChat, changeUnreadMessage, deleteChat, deleteMessage } from '../../store/messenger/actions';
+import { profilesLoad } from '../../store/profile/actions';
 
 import Navbar from '../../component/Navbar/Navbar';
 import Container from '../../component/Container/Container';
@@ -45,8 +46,11 @@ class MessengerScreen extends Component {
 }
 
   componentDidMount() {
-    if (!this.props.chats[0])
+    if(!this.props.chats[0])
       this.props.chatsLoad();
+    
+    if(!this.props.profile)
+      this.props.profilesLoad();
   }
 
   componentDidUpdate(prevProps) {
@@ -75,7 +79,7 @@ class MessengerScreen extends Component {
                       unreadMessage={unreadMessage}
                       handleClickChat={this.handleClickChat.bind(this)}
                       handleOnClickDelete={this.handleOnClickDelete.bind(this)} />
-            { messages ?
+            { messages && profile ?
                           <Chat modifiers="chat_theme_chat"
                                 messages={messages}
                                 title={chats[id].title}
@@ -114,6 +118,8 @@ function mapStateToProps(state, ownProps){
       unreadMessage: state.chats.unreadMessage,
       isError: state.chats.error,
       isLoading: state.chats.loading,
+
+      profile: state.profile.profiles[0],
   };
 }
 
@@ -126,6 +132,8 @@ function mapDispatchToProps(dispatch){
     deleteMessage: (chatId, messageId) => dispatch(deleteMessage(chatId, messageId)),
     changeUnreadMessage: (chatId, command) => dispatch(changeUnreadMessage(chatId, command)),
     redirect: (chatId) => dispatch(push(`/chats/${chatId}`)),
+
+    profilesLoad: () => dispatch(profilesLoad()),
   }
 }
 

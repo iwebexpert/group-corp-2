@@ -18,12 +18,14 @@ export default function Navbar(props) {
             <MessageOutlinedIcon />
           </IconButton>
         </Link>
-        <Link to={`/profile`} className="link-button">
-          <IconButton color="inherit">
-            <Avatar className="navbar__avatar" src="https://sun9-28.userapi.com/1Q5flJTbLsSbAnuUSrkW71BHBwNbc-v7yN4Kmw/7N2suGQ0XNQ.jpg" />
-            <p className="navbar__profile">{props.profile.name}</p>
-          </IconButton>
-        </Link>
+        {props.profile &&
+          <Link to={`/profile`} className="link-button">
+            <IconButton color="inherit">
+              <Avatar className="navbar__avatar" src="https://sun9-28.userapi.com/1Q5flJTbLsSbAnuUSrkW71BHBwNbc-v7yN4Kmw/7N2suGQ0XNQ.jpg" />
+              <p className="navbar__profile">{props.profile.name}</p>
+            </IconButton>
+          </Link>
+        }
       </Toolbar>
     </AppBar>
   );

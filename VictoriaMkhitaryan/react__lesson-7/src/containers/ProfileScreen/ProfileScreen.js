@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import './ProfileScreen.css';
 
 import Navbar from '../../component/Navbar/Navbar';
 import Container from '../../component/Container/Container';
 import Content from '../../component/Content/Content';
 import ProfileInfo from '../../component/ProfileInfo/ProfileInfo';
-import './ProfileScreen.css';
+import Loader from '../../component/Loader/Loader';
+
+import { profilesLoad } from '../../store/profile/actions';
 
 class ProfileScreen extends Component {
+  componentDidMount() {
+    if(!this.props.profile)
+      this.props.profilesLoad();
+  }
   render() {
-    const { profile } = this.props;
+    const { profile, isError, isLoading } = this.props;
+
+    if (isError) {
+      return(<div>Error... <button onClick={this.handleChatsReload}>Обновить чаты</button></div>);
+    } else if (isLoading) {
+      return(<Loader isLoading={isLoading} />);
+    }
     return(
       <>
         <Container>
           <Navbar profile={profile} />
           <Content modifiers="content_theme_user-profile">
-            <ProfileInfo person={profile} />
-            </Content>
+            {profile && <ProfileInfo person={profile} />}
+          </Content>
           </Container>
       </>
     );
@@ -25,8 +38,16 @@ class ProfileScreen extends Component {
 
 function mapStateToProps(state){
   return {
-      profile: state.profile.profiles[0]
+    isError: state.chats.error,
+    isLoading: state.chats.loading,
+    profile: state.profile.profiles[0],
   }
 }
 
-export default connect(mapStateToProps, null)(ProfileScreen)
+function mapDispatchToProps(dispatch){
+  return {
+    profilesLoad: () => dispatch(profilesLoad()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)

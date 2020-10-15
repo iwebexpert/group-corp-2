@@ -1,4 +1,4 @@
-export const CHATS_LOAD = 'chats.CHATS_LOAD';
+// export const CHATS_LOAD = 'chats.CHATS_LOAD';
 export const SEND_MESSAGE = 'chats.SEND_MESSAGE';
 export const ADD_CHAT = 'chats.ADD_CHAT';
 export const DELETE_CHAT = 'chats.DELETE_CHAT';

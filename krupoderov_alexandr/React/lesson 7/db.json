@@ -1,0 +1,21 @@
+{
+  "chats": [
+    {
+      "id": "1",
+      "name": "Alex",
+      "photoUrl": "e492f96c28548af9d72a68b8ed9122e0.png",
+      "isFire": false
+    },
+    {
+      "id": "2",
+      "name": "Igor",
+      "isFire": false,
+      "photoUrl": "e492f96c28548af9d72a68b8ed9122e0.png"
+    }
+  ],
+  "messages": [],
+  "profile": {
+    "name": "Aldrkasd",
+    "photoUrl": "https://avatars0.githubusercontent.com/u/57005695?s=460&u=9fdb775e4217b544968c37575f021931119d291d&v=4"
+  }
+}

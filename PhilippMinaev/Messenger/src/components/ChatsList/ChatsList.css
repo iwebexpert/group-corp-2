@@ -14,3 +14,10 @@
 .add {
   color: red;
 }
+.loading {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  background-color: rgb(43, 43, 43);
+}

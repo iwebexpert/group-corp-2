@@ -20,7 +20,7 @@ export class ChatItem extends Component {
   };
 
   render() {
-    const { avatar, author, id, fire } = this.props;
+    const { avatar, author, id, fire, title } = this.props;
     return (
       <div>
         <Link
@@ -40,7 +40,7 @@ export class ChatItem extends Component {
               <Avatar src={avatar} />
             </ListItemAvatar>
             <ListItemText
-              primary={author}
+              primary={title}
               style={{ fontFamily: "Courier Prime" }}
             />
           </ListItem>

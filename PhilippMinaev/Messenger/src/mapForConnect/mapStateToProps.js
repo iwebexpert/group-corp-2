@@ -3,40 +3,57 @@ export const mapStateToProps = (component) => {
     case "HeaderContainer":
     case "ProfileContainer": {
       return function (state, ownProps) {
-        const { loading, entries } = state.profile;
-
-        let infoProfile = loading ? entries : null;
-
-        return {
-          infoProfile,
-        };
+        const { loadStatus, entries } = state.profile;
+        switch (loadStatus) {
+          case "loaded":
+          case "loading":
+            let infoProfile = entries;
+            return { infoProfile, loadStatus };
+          default:
+            infoProfile = null;
+            return { infoProfile, loadStatus };
+        }
       };
     }
 
-    case "ChatsListContainer": {
+    case "ChatsListContainer":
       return function (state, ownProps) {
-        const { entries, loading, fireChatsId } = state.chats;
-
-        let chatsLoad = loading ? entries : null;
-        let lastChatId = loading ? Object.keys(chatsLoad).length : null;
-        let fireListId = loading ? fireChatsId : null;
-
-        return {
-          chatsLoad,
-          lastChatId,
-          fireListId,
-        };
+        const { entries, loadStatus, fireChatsId } = state.chats;
+        switch (loadStatus) {
+          case "loading":
+          case "loaded":
+            let chatsLoad = entries;
+            let lastChatId = Object.keys(chatsLoad).length;
+            let fireListId = fireChatsId;
+            return {
+              chatsLoad,
+              lastChatId,
+              fireListId,
+              loadStatus,
+            };
+          default:
+            chatsLoad = null;
+            lastChatId = null;
+            fireListId = null;
+            return {
+              chatsLoad,
+              lastChatId,
+              fireListId,
+              loadStatus,
+            };
+        }
       };
-    }
 
     case "MessengerContainer": {
       return function (state, ownProps) {
+        console.log(state);
         const chats = state.chats.entries;
+        const { loadStatus } = state.chats;
         const { match } = ownProps;
         const { loading, entries } = state.profile;
 
         let messages,
-          authorChat,
+          title,
           avatarChat = null;
 
         let nameProfile = loading ? entries.name : null;
@@ -50,18 +67,19 @@ export const mapStateToProps = (component) => {
 
         if (match && chats[match.params.id]) {
           messages = chats[match.params.id].messages;
-          authorChat = chats[match.params.id].author;
+          title = chats[match.params.id].title;
           avatarChat = chats[match.params.id].avatar;
         }
 
         return {
           messages,
           chatId: match ? match.params.id : null,
-          authorChat,
+          title,
           avatarChat,
           nameProfile,
           nameRobot,
           answerRobot,
+          loadStatus,
         };
       };
     }

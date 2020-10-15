@@ -17,31 +17,32 @@ export class ChatsList extends Component {
     }
   };
   render() {
-    const { chats, fireChats, onClick } = this.props;
-    return chats ? (
+    const { loadStatus, chats, fireChats, onClick } = this.props;
+    return loadStatus ? (
       <div className="chats">
         <div className="chatsList">
           <List>
-            {chats ? (
+            {loadStatus == "loaded" ? (
               chats.map((chat) => (
                 <ChatItem
                   avatar={chat.avatar}
-                  author={chat.author}
+                  title={chat.title}
                   id={chat.id}
+                  title={chat.title}
                   fire={fireChats[chat.id]}
                   onClick={onClick}
                   key={chat.id}
                 />
               ))
             ) : (
-              <Error />
+              <div className="loading">Loading...</div>
             )}
           </List>
         </div>
         <ChatForm onSend={this.handleChatAdd} />
       </div>
     ) : (
-      <div>Loading</div>
+      <Error />
     );
   }
 }

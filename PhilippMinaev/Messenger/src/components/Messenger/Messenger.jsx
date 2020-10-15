@@ -20,28 +20,36 @@ export class Messenger extends Component {
   };
 
   render() {
-    const { authorChat, nameProfile, avatarChat, messages } = this.props;
-    return messages ? (
-      <div className="messenger">
-        <div className="messages-info">
-          <ListItem alignItems="center">
-            <ListItemAvatar>
-              <Avatar src={avatarChat} />
-            </ListItemAvatar>
-            <ListItemText primary={authorChat} />
-          </ListItem>
+    const { loadStatus, title, nameProfile, avatarChat, messages } = this.props;
+    console.log(this.props);
+    return loadStatus ? (
+      loadStatus == "loaded" ? (
+        <div className="messenger">
+          <div className="messages-info">
+            <ListItem alignItems="center">
+              <ListItemAvatar>
+                <Avatar src={avatarChat} />
+              </ListItemAvatar>
+              <ListItemText primary={title} />
+            </ListItem>
+          </div>
+          <div className="messages-list">
+            {messages.length > 0 ? (
+              <MessageList items={messages} />
+            ) : (
+              <div>Empty chat.</div>
+            )}
+          </div>
+          <div className="message-form">
+            <MessageForm
+              onSend={this.handleMessageSend}
+              profile={nameProfile}
+            />
+          </div>
         </div>
-        <div className="messages-list">
-          {messages.length > 0 ? (
-            <MessageList items={messages} />
-          ) : (
-            <div>Empty chat.</div>
-          )}
-        </div>
-        <div className="message-form">
-          <MessageForm onSend={this.handleMessageSend} profile={nameProfile} />
-        </div>
-      </div>
+      ) : (
+        <div className="loading">Loading...</div>
+      )
     ) : (
       <Error />
     );

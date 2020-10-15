@@ -1,5 +1,17 @@
-.infoUser{
+.infoUser {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
 
-    text-align: center;
-
+.loading {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(43, 43, 43);
 }

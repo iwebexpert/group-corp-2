@@ -1,0 +1,97 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "Text chat"
+    },
+    {
+      "id": 1,
+      "title": "Work chat"
+    },
+    {
+      "id": 2,
+      "title": "Bruh"
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "WebDev",
+      "text": "Test!",
+      "chatId": 0
+    },
+    {
+      "id": 2,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 1
+    },
+    {
+      "id": 3,
+      "author": "WebDev",
+      "text": "Tasks?",
+      "chatId": 1
+    },
+    {
+      "id": 4,
+      "author": "WebDev",
+      "text": "SUP",
+      "chatId": 2
+    },
+    {
+      "id": 5,
+      "author": "WebDev",
+      "text": "Get some d?",
+      "chatId": 2
+    },
+    {
+      "author": "Philip",
+      "text": "Test",
+      "id": "oPnDywE_5ZG_rayKSVs90",
+      "chatId": "0"
+    },
+    {
+      "id": "iuUmBsm1AQolCv2WURiTB",
+      "chatId": "0",
+      "text": "Hi, Philip",
+      "author": "Robot"
+    },
+    {
+      "author": "Philip",
+      "text": "Test2",
+      "id": "khuEpf8qjCBUP0oupL89m",
+      "chatId": "0"
+    },
+    {
+      "id": "6QcaGvGTqYtWjY6DJO-Ag",
+      "chatId": "0",
+      "text": "Hi, Philip",
+      "author": "Robot"
+    },
+    {
+      "author": "Philip",
+      "text": "Test3",
+      "id": "Vx6TJwtUQwgDXpWRlTuny",
+      "chatId": "0"
+    },
+    {
+      "id": "Im3vuIKmjA-AhHjCTDKHZ",
+      "chatId": "0",
+      "text": "Hi, Philip",
+      "author": "Robot"
+    }
+  ],
+  "profiles": {
+    "name": "Philip",
+    "age": 22,
+    "city": "Khimki",
+    "mainChat": "Test chat",
+    "avatar": "https://f4.bcbits.com/img/0021680973_10.jpgs"
+  }
+}

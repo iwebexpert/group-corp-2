@@ -45,7 +45,6 @@ class MessageFormClass extends Component {
 
     if (typeof onSend === "function") {
       onSend(this.state);
-      console.log("Form", onSend);
       this.setState({
         text: "",
       });

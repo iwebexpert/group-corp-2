@@ -1,7 +1,13 @@
 import update from "react-addons-update";
 
 import {
-  CHATS_LOAD,
+  // CHATS_LOAD,
+  CHAT_LOAD_REQUEST,
+  CHAT_LOAD_SUCCESS,
+  CHAT_LOAD_FAILURE,
+  CHATS_MESSAGE_SEND_REQUEST,
+  CHATS_MESSAGE_SEND_SUCCESS,
+  CHATS_MESSAGE_SEND_FAILURE,
   CHATS_MESSAGE_SEND,
   CHATSLISTS_SEND,
   MESSAGE_FIRE,
@@ -18,16 +24,27 @@ import { chats } from "../helpers/chatsData";
 
 export const chatsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHATS_LOAD:
+    case CHAT_LOAD_REQUEST:
       return {
         ...state,
-        entries: chats,
-        loading: true,
-        fireChatsId: Array(chats.length).fill(false),
+        loadStatus: "loading",
       };
+    case CHAT_LOAD_SUCCESS:
+      return {
+        ...state,
+        loadStatus: "loaded",
+        entries: action.payload,
+        fireChatsId: Array(action.payload.length).fill(false),
+      };
+
+    case CHAT_LOAD_FAILURE:
+      return {
+        ...state,
+        loadStatus: null,
+      };
+
     case CHATS_MESSAGE_SEND:
       //react-addons-update
-      console.log("send", state.fireChatsId);
       return update(state, {
         entries: {
           [action.payload.chatId]: {

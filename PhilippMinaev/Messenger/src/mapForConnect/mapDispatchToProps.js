@@ -41,7 +41,7 @@ export const mapDispatchToProps = (component) => {
     case "MessengerContainer": {
       return function (dispatch) {
         return {
-          chatsLoadAction: () => dispatch(chatsLoadAction()),
+          chatsLoadAction: () => dispatch(chatsLoadAction()()),
           profileLoadAction: () => dispatch(profileLoadAction()),
           robotLoadAction: () => dispatch(robotLoadAction()),
           chatsMessageSendAction: (message) =>

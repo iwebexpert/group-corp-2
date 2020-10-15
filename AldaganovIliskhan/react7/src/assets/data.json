@@ -1,12 +1,5 @@
 {
-  "chats": [
-    {
-      "title": "asdasd",
-      "messages": [],
-      "fire": false,
-      "id": 1
-    }
-  ],
+  "chats": [],
   "messages": [],
   "profile": {
     "id": 1,

@@ -66,8 +66,9 @@ export const chatsReducer = (state = initialState, action) => {
         entries: {
           $push: [
             {
+              loadStatus:"loaded",
               id: newId,
-              author: action.payload.author,
+              title: action.payload.title,
               avatar: action.payload.avatar,
               messages: [],
             },

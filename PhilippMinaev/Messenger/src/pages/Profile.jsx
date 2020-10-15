@@ -18,7 +18,6 @@ export class Profile extends Component {
 
   render() {
     const { loadStatus, infoProfile } = this.props;
-    console.log(this.props);
     return loadStatus ? (
       loadStatus == "loaded" ? (
         <div style={this.style}>

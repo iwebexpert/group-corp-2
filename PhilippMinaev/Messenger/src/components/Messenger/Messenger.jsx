@@ -21,7 +21,7 @@ export class Messenger extends Component {
 
   render() {
     const { loadStatus, title, nameProfile, avatarChat, messages } = this.props;
-    console.log(this.props);
+
     return loadStatus ? (
       loadStatus == "loaded" ? (
         <div className="messenger">

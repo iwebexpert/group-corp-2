@@ -1,0 +1,65 @@
+header {
+    padding: 5px;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, black 10%, white);
+
+}
+
+.left-link__item {
+    margin-left: 20px;
+    font-size: 25px;
+    text-decoration: none;
+    color: white;
+}
+
+.left-link__item:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.right-link__item {
+    margin-left: 20px;
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+}
+
+.right-link__item:hover {
+    text-decoration: none;
+    color: black;
+}
+
+nav {
+    display: flex;
+}
+
+li {
+    margin-right: 15px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+
+}
+
+.left-link {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.right-link {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+}
+
+.user-img {
+    border-radius: 50%;
+    width: 40px;
+    margin-right: 5px;
+}

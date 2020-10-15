@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Messenger from './components/Messenger.jsx'
+import {Messenger} from './components/Messenger.jsx'
 import {Provider} from "react-redux"
 import {initStore, history} from "./store"
 import {ConnectedRouter} from 'connected-react-router'

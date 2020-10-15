@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Drawer, Divider, List, ListItem, ListItemText, Menu, TextField, Button} from "@material-ui/core"
+import {useHistory} from 'react-router-dom'
 import IconButton from "@material-ui/core/IconButton"
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
@@ -108,6 +109,7 @@ export const useStyles = makeStyles((theme) => ({
 export const ChatList = ({chats, chatId, addChat, deleteChat, redirect, open, handleDrawerToggle, darkTheme}) => {
     const theme = useTheme()
     const classes = useStyles()
+    const history = useHistory()
 
     const [anchorEl, setAnchorEl] = useState(null)
     const [chatName, setChatName] = useState(null)
@@ -122,10 +124,13 @@ export const ChatList = ({chats, chatId, addChat, deleteChat, redirect, open, ha
     }
 
     const handleChatChoose = (chatId) => {
+        if(!history.location.pathname.includes('/chats/')) {
+            history.push(`/chats/${chatId}`)
+        }
         redirect(chatId)
     }
 
-    const createChart = () => {
+    const createChat = () => {
         let id = nanoid()
         if (chatName) {
             setChatName('')
@@ -146,7 +151,7 @@ export const ChatList = ({chats, chatId, addChat, deleteChat, redirect, open, ha
 
     const onKeyPress = (event) => {
         if (event.keyCode === 13) {
-            createChart()
+            createChat()
         }
     }
 
@@ -215,7 +220,7 @@ export const ChatList = ({chats, chatId, addChat, deleteChat, redirect, open, ha
                         variant="outlined"
                         autoFocus
                     />
-                    <Button onClick={createChart} className={classes.addChartButton} variant="contained"
+                    <Button onClick={createChat} className={classes.addChartButton} variant="contained"
                             color="primary">Create chat</Button>
                 </Menu>
             </List>

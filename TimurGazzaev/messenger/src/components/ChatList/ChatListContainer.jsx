@@ -19,6 +19,7 @@ export const ChatListContainer = ({chatId, chatsLoadAction, chats, isDrawerOpen,
 
 function mapStateToProps(state){
     const matchSelector = createMatchSelector("/chats/:chatId")
+
     const match = matchSelector(state)
     const chatId = match ? match.params.chatId : null
     return {

@@ -49,6 +49,22 @@ export const chatsReducer = (state = initialState, action) => {
                 }
             })
 
+        case 'ADD_CHAT':
+            const {chatId, title} = action.payload
+            return {
+                ...state,
+                entries: [
+                    ...state.entries,
+                    {
+                        id: chatId,
+                        title,
+                        type: 1,
+                        onFire: false,
+                        messages: [],
+                    }
+                ]
+            }
+
         case 'DELETE_CHAT':
             return {
                 ...state,

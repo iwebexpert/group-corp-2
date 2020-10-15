@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux"
 import {setDrawer, setDarkTheme} from "../../actions/settings"
 import {Header} from "./Header"
-import {push} from "connected-react-router"
 
 export const ChatListContainer = ({redirect, isDrawerOpen, setDrawer, profile, darkTheme, setDarkTheme}) => {
 
@@ -10,7 +9,7 @@ export const ChatListContainer = ({redirect, isDrawerOpen, setDrawer, profile, d
         document.documentElement.setAttribute("theme", darkTheme ? 'dark' : 'white')
     }, [])
 
-    return <Header redirect={redirect} open={isDrawerOpen} setOpen={setDrawer} profile={profile}
+    return <Header open={isDrawerOpen} setOpen={setDrawer} profile={profile}
                    darkTheme={darkTheme} setDarkTheme={setDarkTheme}/>
 }
 
@@ -26,7 +25,6 @@ function mapDispatchToProps(dispatch){
     return {
         setDrawer: () => dispatch(setDrawer()),
         setDarkTheme: () => dispatch(setDarkTheme()),
-        redirect: (path) => dispatch(push(path)),
     }
 }
 

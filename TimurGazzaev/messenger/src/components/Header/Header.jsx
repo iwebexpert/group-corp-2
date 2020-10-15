@@ -3,7 +3,7 @@ import {AppBar, Toolbar, IconButton, Typography, Switch} from "@material-ui/core
 import MenuIcon from "@material-ui/icons/Menu"
 import clsx from "clsx"
 import {AccountCircle} from "@material-ui/icons"
-import {Link} from "react-router-dom"
+import {Link, NavLink} from "react-router-dom"
 import {makeStyles} from "@material-ui/core/styles"
 
 export const useStyles = makeStyles((theme) => ({
@@ -52,16 +52,8 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const Header = ({redirect, open, setOpen, profile, darkTheme, setDarkTheme}) => {
+export const Header = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
     const classes = useStyles()
-
-    const handleProfileClick = () => {
-        redirect('/profile')
-    }
-
-    const handleMessengerClick = () => {
-        redirect('/chats/0')
-    }
 
     return (
         <AppBar
@@ -81,12 +73,12 @@ export const Header = ({redirect, open, setOpen, profile, darkTheme, setDarkThem
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" noWrap onClick={handleMessengerClick}>Messenger</Typography>
+                    <Typography variant="h6" noWrap>Messenger</Typography>
                 </div>
                 <div className={classes.rightBlock}>
                     <Switch color="default" checked={darkTheme} onChange={() => setDarkTheme()} />
-                    <div className={classes.profileBlock}>
-                        <div onClick={handleProfileClick} className={classes.profileBlockWrap}>
+                    <NavLink to="/profile" className={classes.profileBlock}>
+                        <div className={classes.profileBlockWrap}>
                             <Typography variant="h6" noWrap>{profile && `${profile.name} ${profile.surName}`}</Typography>
                             <IconButton
                                 aria-label="account of current user"
@@ -97,7 +89,7 @@ export const Header = ({redirect, open, setOpen, profile, darkTheme, setDarkThem
                                 <AccountCircle/>
                             </IconButton>
                         </div>
-                    </div>
+                    </NavLink>
                 </div>
             </Toolbar>
         </AppBar>

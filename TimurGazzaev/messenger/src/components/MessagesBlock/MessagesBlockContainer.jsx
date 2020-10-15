@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {nanoid} from 'nanoid'
 import {deleteMessage, sendMessage} from '../../actions/chats'
 import {MessagesBlock} from "./MessagesBlock"
-import {createMatchSelector} from "connected-react-router";
 
 const MessagesBlockContainer = ({chatId, messages, sendMessage, isDrawerOpen, deleteMessage, isLoading}) =>  {
 
@@ -27,9 +26,8 @@ const MessagesBlockContainer = ({chatId, messages, sendMessage, isDrawerOpen, de
 
 function mapStateToProps(state){
     const chats = state.chats.entries
-    const matchSelector = createMatchSelector("/chats/:chatId")
-    const match = matchSelector(state)
-    const chatId = match ? match.params.chatId : null
+    const pathname = state.router.location.pathname
+    const chatId = pathname.includes('/chats/') ? pathname.replace('/chats/', '') : null
 
     let messages = null
     let chatsTmp = chats.filter(chat => chat.id.toString() === chatId)[0]

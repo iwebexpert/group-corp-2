@@ -21,30 +21,27 @@ export default function ({user, type, clearInput}) {
         switch (e.target.dataset.name) {
             case 'startChat':{
                 clearInput();
-                disableBtn(startChatRef.current);
                 const existedChat = chats.find(x => x.members.length ===2 && x.members.includes(user._id));
                 if (existedChat){
                     dispatch(push(`/messenger/chats/${existedChat._id}`));
                     dispatch(setSelectedChat(existedChat._id));
-                    activateBtn(startChatRef.current);
+                    clearInput();
                     return;
                 }
                 const createdChat = await DbWorker.createChat(user);
                 dispatch(push(`/messenger/chats/${createdChat._id}`));
                 dispatch(setSelectedChat(createdChat._id));
-                activateBtn(startChatRef.current);
+                clearInput();
                 break;
             }
             case 'addFriend':{
-                disableBtn(addFriendRef.current);
                 await DbWorker.addFriend(user);
-                activateBtn(addFriendRef.current);
+                clearInput();
                 break;
             }
             case 'removeFriend':{
-                disableBtn(removeFriendRef.current);
                 await DbWorker.removeFriend(user);
-                activateBtn(removeFriendRef.current);
+                clearInput();
                 break;
             }
             default: throw new Error('Кнопка не найдена');

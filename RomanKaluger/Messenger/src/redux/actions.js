@@ -42,6 +42,12 @@ export function setContacts(payload) {
         payload: payload
     }
 }
+export function setCommonViewImages(payload) {
+    return {
+        type: types.SET_COMMON_VIEW_IMAGES,
+        payload: payload
+    }
+}
 export function sendMessage(payload) {
     return {
         type: types.SEND_MESSAGE,
@@ -54,9 +60,65 @@ export function setLoading(payload) {
         payload: payload
     }
 }
-export function setCommonViewImages(payload) {
+export function setContactsLoading(payload) {
     return {
-        type: types.SET_COMMON_VIEW_IMAGES,
+        type: types.CONTACTS_LOADING,
         payload: payload
     }
 }
+
+export function setError(payload) {
+    return {
+        type: types.ERROR,
+        payload: payload
+    }
+}
+export function loadChats(payload) {
+    return {
+        type: types.LOAD_CHATS,
+    }
+}
+export function loadChatMessages(payload) {
+    return {
+        type: types.LOAD_CHAT_MESSAGES,
+        payload: payload
+    }
+}
+export function loadContacts(payload) {
+    return {
+        type: types.LOAD_CONTACTS,
+        payload: payload
+    }
+}
+export function auth(payload) {
+    return {
+        type: types.AUTH,
+        payload: payload
+    }
+}
+export function register(payload) {
+    return {
+        type: types.REGISTER,
+        payload: payload
+    }
+}
+export function updateUser(payload) {
+    return {
+        type: types.UPDATE_USER,
+        payload: payload
+    }
+}
+export function deleteChat(payload) {
+    return {
+        type: types.DELETE_CHAT,
+        payload: payload
+    }
+}
+export function setAboutPageOpen(payload) {
+    return {
+        type: types.SET_ABOUT_PAGE_OPEN,
+        payload: payload
+    }
+}
+
+

@@ -8,7 +8,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import {push} from 'connected-react-router';
 import routesPaths from "../../../configs/routesPaths";
-import {setLoading} from "../../../redux/actions";
+import {deleteChat, setLoading} from "../../../redux/actions";
 import {useDispatch} from "react-redux";
 
 
@@ -17,9 +17,7 @@ export default function ({isDeleteCandidate, setIsDeleteCandidate, chat}) {
     const dispatch = useDispatch();
     const acceptDelete = useCallback(async () => {
         setIsDeleteCandidate(false);
-        dispatch(setLoading(true));
-        await DbWorker.deleteChat(chat._id);
-        dispatch(setLoading(false));
+        dispatch(deleteChat(chat._id));
         dispatch(push(routesPaths.MESSENGER));
     }, [chat]);
 

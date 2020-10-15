@@ -6,11 +6,10 @@ import ChatsOnDialogPanel from "../ChatsOnDialogPanel/ChatsOnDialogPanel";
 import ContactsOnDialogPanel from "../ContactsDialogPanel/ContactsOnDialogPanel";
 import ShortMenu from "./ShortMenu";
 import classNames from 'classnames';
-import {UpdaterMessenger} from "./UpdaterMessenger";
 import {categories} from "./categories";
 import Backdrop from "@material-ui/core/Backdrop";
 import './SelectDialogPanel.scss';
-import {setForwardMessage} from "../../../redux/actions";
+import {loadChatMessages, loadChats, loadContacts, setForwardMessage} from "../../../redux/actions";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const initialState = {
@@ -21,17 +20,16 @@ const initialState = {
 
 export default () => {
     const [dialogs, setDialogs] = useState(initialState);
-    const [loading, setLoading] = useState(false);
     const {curUser} = useSelector(s => s.app);
-    const {forwardMessage} = useSelector(s => s.system);
+    const {forwardMessage, contactsLoading} = useSelector(s => s.system);
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
     useEffect(() => {
         search();
     }, []);
     const search = useCallback((input) => {
-        UpdaterMessenger.updateChats();
-        UpdaterMessenger.updateContacts(input);
+        dispatch(loadChats());
+        dispatch(loadContacts(input));
         }, [curUser]);
     useEffect(() => {
         if (connectionConfig.ws) {
@@ -39,15 +37,15 @@ export default () => {
                 const msg = JSON.parse(e.data);
                 switch (msg.type) {
                     case 'CHATS': {
-                        UpdaterMessenger.updateChats();
+                        dispatch(loadChats());
                         break;
                     }
                     case 'MESSAGE': {
-                        UpdaterMessenger.updateChat(msg.body.sharedId);
+                        dispatch(loadChatMessages(msg.body.sharedId));
                         break;
                     }
                     case 'CONTACTS': {
-                        UpdaterMessenger.updateContacts(input);
+                        dispatch(loadContacts(input));
                         break;
                     }
                     default: throw new Error('unknown action')
@@ -69,7 +67,7 @@ export default () => {
                 </div>
             </Backdrop>
             <div className={'selectDialogPanel'}>
-                <SearchMessPanel setLoading={setLoading} input={input} setInput={setInput}/>
+                <SearchMessPanel input={input} setInput={setInput}/>
                 <div className={'CategorySelectorDlgPnCont'}>
                     <div
                         onClick={() => setDialogs(prev => ({...prev, category: categories.CHATS}))}
@@ -82,7 +80,7 @@ export default () => {
                     </div>
                 </div>
                 {
-                    loading
+                    contactsLoading
                         ? <CircularProgress/>
                         :   dialogs.category === categories.CHATS
                              ? <ChatsOnDialogPanel searchInput={input}/>

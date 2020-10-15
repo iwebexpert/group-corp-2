@@ -1,40 +1,70 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from "redux";
 import {connect} from 'react-redux';
-import PropTypes from "prop-types";
 import {chatsLoadAction, chatsMessageSendAction, chatsAddFormAction} from '../actions/chats';
 import {ChatAddForm} from "../components/ChatForm/ChatForm"
 
-class ChatAddFormClass extends Component {
-    constructor(props) {
-        super(props);
-        this.maxId = 3;
-        this.addItem = this.addItem.bind(this);
-    }
 
-    addItem = (title)=> {
-        this.props.chatsAddFormAction({title});
+class ChatAddFormContainer extends Component {
+constructor(props) {
+    super(props);
+
+    this.maxId = 3;
+    this.userId = 451;
+}
+
+
+    addItem = (body) => {
+        const newItem = {
+            id: this.maxId++,
+            title: body,
+            messages: [
+                {
+                    id: 0,
+                    author: 'NewUser',
+                    text: 'Привет!'
+                },
+                {
+                    id: 1,
+                    author: 'NewUser',
+                    text: 'Что нового?'
+                },
+            ],
+            info: [
+                {
+                    userId: this.userId++,
+                    firstName: 'Это новый пользователь',
+                    lastName: 'Я пока не знаю как внести инф',
+                    age: 25,
+                    photo: 'none'
+                }
+                ]
+        };
+        console.log(newItem);
+        this.props.chatsAddFormAction({
+                title: body,
+            ...newItem
+        })
     }
 
     render() {
         return (
-            <ChatAddForm onAdd={this.addItem}/>
+            <ChatAddForm
+            addNewChat = {this.addItem}
+            />
         )
     }
 }
 
-function mapStateProps(state, ownProps) {
-    const chats = state.chats.entries;
-    return{
-        chats: state
-    }
+const mapStateProps = state =>{
+ return {
+     ...state
+ }
 }
-
 
 function mapDispatchToProps(dispatch) {
     return {
-        chatsAddFormAction: (title) => dispatch(chatsAddFormAction(title)),
+        chatsLoadAction: () => dispatch(chatsLoadAction()),
+        chatsAddFormAction: (newItem) => dispatch(chatsAddFormAction(newItem)),
     }
 }
-
-export const ChatAddFormContainer = connect(mapStateProps, mapDispatchToProps)(ChatAddFormClass);
+export default connect(mapStateProps, mapDispatchToProps)(ChatAddFormContainer);

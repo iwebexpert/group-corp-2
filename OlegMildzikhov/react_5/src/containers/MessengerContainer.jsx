@@ -5,16 +5,18 @@ import {Messenger} from "../components/Messenger/index";
 
 class MessageContainerClass extends React.Component {
 
-    componentDidMount() {
-        this.props.chatsLoadAction();
-    }
+    // componentDidMount() {
+    //     this.props.chatsLoadAction();
+    // }
+
+
 
     handleMessageSend = (message) => {
         console.log(message)
         const {chatId} = this.props;
         this.props.chatsMessageSendAction({
-            ...message,
-            chatId,
+                ...message,
+                chatId,
         })
     }
 

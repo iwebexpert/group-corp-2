@@ -10,25 +10,31 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import {Star} from "@material-ui/icons";
 import SaveIcon from '@material-ui/icons/Save';
-import {chats} from '../Chats-data/ChatData';
+
 
 export class ChatList extends React.Component {
-constructor(props) {
-    super(props);
-}
+    constructor(props) {
+        super(props);
+    }
+
+
+
     render() {
-        const chatsList = this.props.nameOfChats;
+        console.log(this.props.chatNames.chats.entries);
+        const chatsList = this.props.chatNames.chats.entries;
+        console.log(chatsList);
+
         return (
             <div className={'chatNmess'}>
-                    <List>
-                        {chatsList.map((chat) => (
-                            <ListItem  key={chat.id}>
-                                <Link   to={`/chats/${chat.id}`}>
-                                    <span className={"chat__item"} >{chat.title}</span>
-                                </Link>
-                            </ListItem>
-                        ))}
-                    </List>
+                <List>
+                 {chatsList.map((chat) => (
+                        <ListItem  key={chat.id}>
+                            <Link   to={`/chats/${chat.id}`}>
+                                <span className={"chat__item"} >{chat.title}</span>
+                            </Link>
+                        </ListItem>
+                    ))}
+                </List>
             </div>
         );
     }

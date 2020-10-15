@@ -18,8 +18,12 @@ export class ChatAddForm extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+        if(this.state.text.length===0){
+            alert('Введите название чата');
+            return;
+        }
         console.log(this.state.text);
-        this.props.onAdd(this.state.text);
+        this.props.addNewChat(this.state.text);
 
         this.setState({
             text: ''

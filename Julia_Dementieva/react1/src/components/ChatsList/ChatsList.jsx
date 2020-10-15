@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {List } from '@material-ui/core';
+import {List, CircularProgress } from '@material-ui/core';
 
 import {ChatItem} from '../ChatItem';
 import {ChatForm} from '../ChatForm';
@@ -18,7 +18,10 @@ export class ChatsList extends Component {
         }
     }
     render() {
-        const {chats, fireChats, onClick} = this.props;
+        const {chats, fireChats, onClick, isLoading} = this.props;
+        if(isLoading) {
+            return(<div className={"loading"}><CircularProgress color="secondary"/></div>)
+        }
         return (
             (chats) ?
             (<div className='chats'>

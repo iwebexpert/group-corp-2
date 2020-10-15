@@ -1,7 +1,9 @@
 import update from 'react-addons-update';
 
 import {
-    CHATS_LOAD,
+    CHATS_LOAD_REQUEST,
+    CHATS_LOAD_FAILURE,
+    CHATS_LOAD_SUCCESS,
     CHATS_MESSAGE_SEND,
     CHATSLISTS_SEND,
     MESSAGE_FIRE,
@@ -10,24 +12,40 @@ import {
 
 const initialState = {
     entries: {},
-    loading: null,
+    loading: false,
+    ready: false,
+    error: false,
     fireChatsId: [],
 };
 
-import {chats} from '../helper/chatsData';
-
 export const chatsReducer = (state = initialState, action) => {
     switch(action.type){
-        case CHATS_LOAD:
+        case CHATS_LOAD_REQUEST:
+            console.log('success',action.payload)
             return {
                 ...state,
-                entries: chats,
                 loading: true,
-                fireChatsId: Array(chats.length).fill(false),
+                error: false,
+                
+            };
+        case CHATS_LOAD_SUCCESS:
+            console.log('success',action.payload)
+            return {
+                ...state,
+                loading: false,
+                ready: true,
+                entries: action.payload,
+                fireChatsId: Array(action.payload.length).fill(false),
+            };
+    
+        case CHATS_LOAD_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: true,
             };
         case CHATS_MESSAGE_SEND:
             //react-addons-update
-            console.log('send', state.fireChatsId)
             return update(state, {
                 entries: {
                     [action.payload.chatId]: {
@@ -36,9 +54,8 @@ export const chatsReducer = (state = initialState, action) => {
                 },
             });
         case CHATSLISTS_SEND:
-            const newId = Object.keys(state.entries).length;
             return update(state, {
-                entries: {$push: [{id: newId, author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
+                entries: {$push: [{author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
             });
 
         case MESSAGE_FIRE:

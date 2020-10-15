@@ -27,7 +27,8 @@ class MessengerContainerClass extends React.Component {
     };
 
     render(){
-        return(<Messenger {...this.props}  onAdd={this.handleMessageSend} />)
+        const {isLoading} = this.props;
+        return(<Messenger {...this.props} isLoading={isLoading} onAdd={this.handleMessageSend} />)
     }
 }
 

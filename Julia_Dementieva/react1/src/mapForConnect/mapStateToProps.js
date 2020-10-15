@@ -4,28 +4,29 @@ export const mapStateToProps = (component) => {
         case 'HeaderContainer':
         case 'AboutContainer': {
             return function (state, ownProps){
-                const {loading, entries} = state.about;
+                const {loading, entries, ready} = state.about;
 
-                let infoPerson = (loading) ? entries : null;
+                let infoPerson = (ready) ? entries : null;
                 
                 return {
-                    infoPerson
+                    infoPerson,
+                    isLoading: loading,
                 };
             };
         };
 
         case 'ChatsListContainer': {
             return function (state, ownProps){
-                const {entries, loading, fireChatsId} = state.chats;
-
-                let chatsLoad = (loading) ? entries : null;
-                let lastChatId = (loading) ? Object.keys(chatsLoad).length : null;
-                let fireListId = (loading) ? fireChatsId : null;
+                const {ready, entries, loading, fireChatsId} = state.chats;
+                let chatsLoad = (ready) ? entries : null;
+                let lastChatId = (ready) ? Object.keys(chatsLoad).length : null;
+                let fireListId = (ready) ? fireChatsId : null;
 
                 return {
                     chatsLoad,
                     lastChatId,
-                    fireListId
+                    fireListId,
+                    isLoading: loading,
                 };
             };
         };
@@ -34,11 +35,11 @@ export const mapStateToProps = (component) => {
             return function (state, ownProps){
                 const chats = state.chats.entries;
                 const {match} = ownProps;
-                const {loading, entries} = state.about;
+                const {ready, entries} = state.about;
 
                 let messages, authorChat, avatarChat = null;
 
-                let namePerson = (loading) ? entries.name : null;
+                let namePerson = (ready) ? entries.name : null;
 
                 let nameRobot = (state.robot.loading) ? state.robot.entries.nameRobot : null;
                 let answerRobot = (state.robot.loading) ? state.robot.entries.answerRobot : null;
@@ -57,6 +58,7 @@ export const mapStateToProps = (component) => {
                     namePerson,
                     nameRobot,
                     answerRobot,
+                    isLoading: state.chats.loading,
                 };
             };
         };

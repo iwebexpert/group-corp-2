@@ -16,7 +16,10 @@ export class About extends Component {
     }
 
     render() {
-        const {infoPerson} = this.props;
+        const {infoPerson, isLoading} = this.props;
+        if(isLoading){
+            return(<div>ЗАгрузка</div>)
+        }
         return (
             (infoPerson) ? 
                 (<div style={this.style}>  
@@ -33,7 +36,7 @@ export class About extends Component {
 
                         </div>
                     </Paper>
-                </div>) : <div>Данные загружаются</div>
+                </div>) : <div>Данные не загрузились</div>
         
         )
     }

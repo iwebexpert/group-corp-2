@@ -1,6 +1,50 @@
 {
-  "chats": [],
-  "messages": [],
+  "chats": [
+    {
+      "title": "sdaaaaaaaaaaaaaa",
+      "messages": [],
+      "fire": false,
+      "id": 4
+    },
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 5
+    },
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 6
+    },
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 7
+    }
+  ],
+  "messages": [
+    {
+      "chatId": 4,
+      "message": "sdaasdasdasdadsasd",
+      "author": "asdadssadsad",
+      "id": 1
+    },
+    {
+      "chatId": 4,
+      "message": "asd",
+      "author": "sad",
+      "id": 2
+    },
+    {
+      "chatId": 6,
+      "message": "a",
+      "author": "a",
+      "id": 3
+    }
+  ],
   "profile": {
     "id": 1,
     "name": "Ivan Ivanov",

@@ -2,15 +2,19 @@ import axios from "axios";
 
 export const fetchChats = () => (dispatch) => {
   dispatch(setChatsLoading(true));
+  dispatch(setMessagesLoading(true));
   dispatch(setChatsError(false));
+  dispatch(setMessagesError(false));
   axios
     .get("http://localhost:3001/chats?_embed=messages")
     .then(({ data }) => {
       dispatch(setChats(data));
       dispatch(setChatsLoading(false));
+      dispatch(setMessagesLoading(false));
     })
     .catch(() => {
       dispatch(setChatsError(true));
+      dispatch(setMessagesError(true));
     });
 };
 

@@ -1,0 +1,30 @@
+.header {
+    height: 100px;
+    background: rgb(255, 242, 232);
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: #000;
+    &-btn {
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 15px;
+        width: 100px;
+        text-align: center;
+        text-decoration: none;
+        &:hover {
+            background: rgba(238, 214, 214, 0.259);
+        }
+        &.active {
+            background: rgb(238, 214, 214);
+        }
+    }
+    svg {
+        cursor: pointer;
+        &:hover {
+            color: rgb(202, 54, 28);
+        }
+    }
+}

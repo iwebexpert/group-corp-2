@@ -1,0 +1,10 @@
+{
+  "chats": [],
+  "messages": [],
+  "profile": {
+    "id": 1,
+    "name": "Ivan Ivanov",
+    "nickname": "Crucial",
+    "age": "22"
+  }
+}

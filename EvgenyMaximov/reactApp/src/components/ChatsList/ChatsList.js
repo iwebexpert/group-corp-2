@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Swal from "sweetalert2";
-import { Divider } from "@material-ui/core";
-import { TextField, Fab } from "@material-ui/core";
+import { TextField, Fab, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -48,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "flex-end",
     alignContent: "flex-start",
     zIndex: "10",
+  },
+
+  renewBtn: {
+    alignSelf: "center",
+    marginTop: "5px",
   },
 }));
 

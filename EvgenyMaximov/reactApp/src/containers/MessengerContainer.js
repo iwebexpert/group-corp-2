@@ -25,16 +25,19 @@ class MessengerContainerClass extends React.Component {
       ...message,
       chatId,
     });
+    this.props.chatsLoadAction();
   };
 
   onMessageDelete = (id) => {
-    const { messageDeleteAction, chatId } = this.props;
+    const { messageDeleteAction, chatsLoadAction } = this.props;
 
-    messageDeleteAction({ chatId, id });
+    messageDeleteAction(id);
+    chatsLoadAction();
   };
 
   onClearChat = (chatId) => {
-    this.props.clearChatAction(chatId);
+    const { clearChatAction } = this.props;
+    clearChatAction(chatId);
   };
 
   render() {
@@ -44,6 +47,9 @@ class MessengerContainerClass extends React.Component {
       classlist,
       chatTitle,
       classchattitle,
+      isLoading,
+      isError,
+      isPending,
     } = this.props;
 
     return (
@@ -56,6 +62,9 @@ class MessengerContainerClass extends React.Component {
         classform={classform}
         classlist={classlist}
         classchattitle={classchattitle}
+        isLoading={isLoading}
+        isError={isError}
+        isPending={isPending}
       />
     );
   }
@@ -63,6 +72,7 @@ class MessengerContainerClass extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const chats = state.chats.entries;
+
   const { match } = ownProps;
 
   let messages = [];
@@ -75,8 +85,11 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     messages,
-    chatId: match ? match.params.id : null,
+    chatId: match ? +match.params.id : null,
     chatTitle,
+    isLoading: state.chats.loading,
+    isError: state.chats.error,
+    isPending: state.chats.pending,
   };
 };
 

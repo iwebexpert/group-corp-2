@@ -1,48 +1,95 @@
-export const CHATS_LOAD = "CHATS_LOAD";
-export const ADD_CHAT = "ADD_CHAT";
+import { createAction } from "redux-api-middleware";
+
+export const CHATS_LOAD_REQUEST = "CHATS_LOAD_REQUEST";
+export const CHATS_LOAD_SUCCESS = "CHATS_LOAD_SUCCESS";
+export const CHATS_LOAD_FAILURE = "CHATS_LOAD_FAILURE";
+
+export const ADD_CHAT_REQUEST = "ADD_CHAT_REQUEST";
+export const ADD_CHAT_SUCCESS = "ADD_CHAT_SUCCESS";
+export const ADD_CHAT_FAILURE = "ADD_CHAT_FAILURE";
+
 export const CHAT_DELETE = "CHAT_DELETE";
-export const CHAT_FIRE = "CHAT_FIRE";
-export const CHAT_UNFIRE = "CHAT_UNFIRE";
+
+export const CHAT_FIRE_REQUEST = "CHAT_FIRE_REQUEST";
+export const CHAT_FIRE_SUCCESS = "CHAT_FIRE_SUCCESS";
+export const CHAT_FIRE_FAILURE = "CHAT_FIRE_FAILURE";
+
+export const CHAT_UNFIRE_REQUEST = "CHAT_UNFIRE_REQUEST";
+export const CHAT_UNFIRE_SUCCESS = "CHAT_UNFIRE_SUCCESS";
+export const CHAT_UNFIRE_FAILURE = "CHAT_UNFIRE_FAILURE";
+
 export const CLEAR_CHAT = "CLEAR_CHAT";
 
-export const CHATS_MESSAGE_SEND = "CHATS_MESSAGE_SEND";
-export const MESSAGE_DELETE = "MESSAGE_DELETE";
+export const MESSAGE_SEND_REQUEST = "MESSAGE_SEND_REQUEST";
+export const MESSAGE_SEND_SUCCESS = "MESSAGE_SEND_SUCCESS";
+export const MESSAGE_SEND_FAILURE = "MESSAGE_SEND_FAILURE";
 
-export const chatsLoadAction = () => ({
-  type: CHATS_LOAD,
-});
+export const MESSAGE_DELETE_REQUEST = "MESSAGE_DELETE_REQUEST";
+export const MESSAGE_DELETE_SUCCESS = "MESSAGE_DELETE_SUCCESS";
+export const MESSAGE_DELETE_FAILURE = "MESSAGE_DELETE_FAILURE";
 
-export const chatsMessageSendAction = (message) => ({
-  type: CHATS_MESSAGE_SEND,
-  payload: message,
-});
+export const chatsLoadAction = () =>
+  createAction({
+    endpoint: "/api/chats?_embed=messages",
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    types: [CHATS_LOAD_REQUEST, CHATS_LOAD_SUCCESS, CHATS_LOAD_FAILURE],
+  });
 
-export const addChatAction = (chat) => ({
-  type: ADD_CHAT,
-  payload: chat,
-});
+export const addChatAction = (chat) =>
+  createAction({
+    endpoint: "/api/chats",
+    method: "POST",
+    body: JSON.stringify(chat),
+    headers: { "Content-Type": "application/json" },
+    types: [ADD_CHAT_REQUEST, ADD_CHAT_SUCCESS, ADD_CHAT_FAILURE],
+  });
 
-export const chatFireAction = (chatId) => ({
-  type: CHAT_FIRE,
+export const chatDeleteAction = (chatId) => ({
+  type: CHAT_DELETE,
   payload: chatId,
 });
 
-export const chatUnfireAction = (chatId) => ({
-  type: CHAT_UNFIRE,
-  payload: chatId,
-});
+export const chatFireAction = (chatId) =>
+  createAction({
+    endpoint: `/api/chats/${chatId}`,
+    method: "PATCH",
+    body: JSON.stringify({ fire: true }),
+    headers: { "Content-Type": "application/json" },
+    types: [CHAT_FIRE_REQUEST, CHAT_FIRE_SUCCESS, CHAT_FIRE_FAILURE],
+  });
 
-export const messageDeleteAction = (ids) => ({
-  type: MESSAGE_DELETE,
-  payload: ids,
-});
+export const chatUnfireAction = (chatId) =>
+  createAction({
+    endpoint: `/api/chats/${chatId}`,
+    method: "PATCH",
+    body: JSON.stringify({ fire: false }),
+    headers: { "Content-Type": "application/json" },
+    types: [CHAT_UNFIRE_REQUEST, CHAT_UNFIRE_SUCCESS, CHAT_UNFIRE_FAILURE],
+  });
 
 export const clearChatAction = (chatId) => ({
   type: CLEAR_CHAT,
   payload: chatId,
 });
 
-export const chatDeleteAction = (chatId) => ({
-  type: CHAT_DELETE,
-  payload: chatId,
-});
+export const chatsMessageSendAction = (message) =>
+  createAction({
+    endpoint: "/api/messages",
+    method: "POST",
+    body: JSON.stringify(message),
+    headers: { "Content-Type": "application/json" },
+    types: [MESSAGE_SEND_REQUEST, MESSAGE_SEND_SUCCESS, MESSAGE_SEND_FAILURE],
+  });
+
+export const messageDeleteAction = (id) =>
+  createAction({
+    endpoint: `/api/messages/${id}`,
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    types: [
+      MESSAGE_DELETE_REQUEST,
+      MESSAGE_DELETE_SUCCESS,
+      MESSAGE_DELETE_FAILURE,
+    ],
+  });

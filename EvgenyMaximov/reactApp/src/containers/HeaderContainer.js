@@ -9,9 +9,21 @@ class HeaderContainerClass extends React.Component {
     this.props.profileLoadAction();
   }
 
+  reloadProfile = () => {
+    this.props.profileLoadAction();
+  };
+
   render() {
-    const { classheader, profile } = this.props;
-    return <Header classheader={classheader} profile={profile} />;
+    const { classheader, profile, isLoading, isError } = this.props;
+    return (
+      <Header
+        classheader={classheader}
+        profile={profile}
+        isLoading={isLoading}
+        isError={isError}
+        reloadProfile={this.reloadProfile}
+      />
+    );
   }
 }
 
@@ -21,6 +33,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     profile,
     classheader,
+    isLoading: state.profile.loading,
+    isError: state.profile.error,
   };
 };
 

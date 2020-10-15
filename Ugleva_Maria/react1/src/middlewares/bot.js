@@ -20,9 +20,9 @@ export const botAnswerMiddware = (store) => (next) => (action) => {
 			clearTimeout(interval);
 		}
 	}
-	// if (action.type === 'UPDATE_ACTIVE_CHAT') {
-	// 	store.dispatch(highlightChat(action.id, false));
-	// }
+	if (action.type === 'UPDATE_ACTIVE_CHAT') {
+		setTimeout(()=>store.dispatch(highlightChat(action.id, false)), 0);
+	}
 
 	return next(action);
 };

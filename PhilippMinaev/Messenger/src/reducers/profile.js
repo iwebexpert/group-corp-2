@@ -1,19 +1,32 @@
-import { PROFILE_LOAD } from "../actions/profile";
+import {
+  PROFILE_LOAD_REQUEST,
+  PROFILE_LOAD_SUCCESS,
+  PROFILE_LOAD_FAILURE,
+} from "../actions/profile";
 
 const initialState = {
   entries: {},
-  loading: false,
+  loadStatus: null,
 };
-
-import { profile } from "../helpers/profileData";
 
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case PROFILE_LOAD:
+    case PROFILE_LOAD_REQUEST:
       return {
         ...state,
-        entries: profile,
-        loading: true,
+        loadStatus: "loading",
+      };
+    case PROFILE_LOAD_SUCCESS:
+      return {
+        ...state,
+        loadStatus: "loaded",
+        entries: action.payload,
+      };
+
+    case PROFILE_LOAD_FAILURE:
+      return {
+        ...state,
+        loadStatus: null,
       };
 
     default:

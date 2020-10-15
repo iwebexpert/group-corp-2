@@ -22,7 +22,7 @@ export class Layout extends Component {
       justifyContent: "space-between",
       height: "500px",
       fontFamily: "Courier Prime",
-      backgroundColor:"black"
+      backgroundColor: "black",
     };
   }
 

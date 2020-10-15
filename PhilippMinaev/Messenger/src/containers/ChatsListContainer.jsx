@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { ChatsList } from "../components/ChatsList";
 import { mapStateToProps } from "../mapForConnect/mapStateToProps";
 import { mapDispatchToProps } from "../mapForConnect/mapDispatchToProps";
+import { chats } from "../helpers/chatsData";
 
 class ChatsListContainerClass extends React.Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class ChatsListContainerClass extends React.Component {
   chatAddHandler = (newchat) => {
     const { chatsListSendAction, redirect, lastChatId } = this.props;
     chatsListSendAction({
-      author: newchat,
+      title: newchat,
       avatar:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTk0936CmLeNxPOJFyot8uCx1kU27hoqS5CbA&usqp=CAU",
     });
@@ -30,9 +31,10 @@ class ChatsListContainerClass extends React.Component {
   };
 
   render() {
-    const { chatsLoad, fireListId } = this.props;
+    const { loadStatus, chatsLoad, fireListId } = this.props;
     return (
       <ChatsList
+        loadStatus={loadStatus}
         chats={chatsLoad}
         fireChats={fireListId}
         onAdd={this.chatAddHandler}

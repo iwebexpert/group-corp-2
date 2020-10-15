@@ -8,10 +8,8 @@ import { mapDispatchToProps } from "../mapForConnect/mapDispatchToProps";
 
 class ProfileContainerClass extends React.Component {
   componentDidMount() {
-    if (this.props.infoProfile == null) {
-      this.props.profileLoadAction();
-    }
-    console.log("profile", this.props.infoProfile);
+    console.log(this.props);
+    this.props.profileLoadAction();
   }
 
   render() {

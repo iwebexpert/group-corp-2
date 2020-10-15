@@ -10,7 +10,6 @@ class HeaderContainerClass extends React.Component {
     if (this.props.infoProfile == null) {
       this.props.profileLoadAction();
     }
-    console.log("header", this.props.infoProfile);
   }
 
   render() {

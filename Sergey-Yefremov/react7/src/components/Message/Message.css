@@ -1,0 +1,19 @@
+.message {
+    border-radius: 10px;
+}
+
+.message__bot {
+    border-top-left-radius: 0;
+    background-color: #006A4E;
+    color: white;
+    align-self: flex-start;
+    padding: 10px 15px;
+}
+
+.message__user {
+    border-top-right-radius: 0;
+    background-color: #4FFFB0;
+    color: black;
+    align-self: flex-end;
+    padding: 10px 15px;
+}

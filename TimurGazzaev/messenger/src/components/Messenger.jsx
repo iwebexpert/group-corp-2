@@ -3,10 +3,10 @@ import './messenger.css'
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {Container} from '@material-ui/core'
 import {Error} from "./Error/Error"
-import MessagesBlockContainer from "./MessagesBlock/MessagesBlockContainer"
-import ChatListContainer from "./ChatList/ChatListContainer"
-import HeaderContainer from "./Header/HeaderContainer"
-import ProfileContainer from "./Profile/ProfileContainer"
+import {MessagesBlockContainer} from "./MessagesBlock/MessagesBlockContainer"
+import {ChatListContainer} from "./ChatList/ChatListContainer"
+import {HeaderContainer} from "./Header/HeaderContainer"
+import {ProfileContainer} from "./Profile/ProfileContainer"
 
 export const Messenger = () => {
 

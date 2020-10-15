@@ -17,9 +17,6 @@ export const MessageForm = (props) => {
 		if (val.text) {
 			if (!val.text.trim()) return
 			const text = val.text.trim()
-			/*const text = val.text.trim().split('\n').map((item, key) => { //чтобы перенос строки в textarea работал
-				return <Fragment key={key}><br />{item}</Fragment>
-			})*/
 			props.onSend({ author, text })
 			form.resetFields()
 		}

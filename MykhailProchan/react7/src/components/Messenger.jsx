@@ -10,6 +10,16 @@ const { Header, Content } = Layout
 
 export class Messenger extends Component {
 	render() {
+
+		if (this.props.error) {
+			return <div>Error</div>
+		}
+
+		if (this.props.isLoading) {
+			return <div>Loading</div>
+		}
+		if (this.props.locationTest == '/') return <div>Создайте или выберите чат</div>
+
 		return (
 			<>
 				<Content style={style.contentLayout}>

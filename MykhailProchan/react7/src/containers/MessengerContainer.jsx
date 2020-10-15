@@ -15,7 +15,16 @@ class MessengerContainerClass extends React.Component {
   }
 
   render() {
-    return <Messenger messages={this.props.messages} name={this.props.name} redirect={this.props.redirect} onSend={this.handleMessageSend} />
+    const { isLoading } = this.props
+    return <Messenger
+      error={this.props.error}
+      isLoading={isLoading}
+      messages={this.props.messages}
+      name={this.props.name}
+      redirect={this.props.redirect}
+      onSend={this.handleMessageSend}
+      locationTest={this.props.location.pathname}
+    />
   }
 }
 
@@ -36,7 +45,9 @@ function mapStateToProps(state, ownProps) {
 
   return {
     messages,
-    name
+    name,
+    isLoading: state.chats.loading,
+    error: state.chats.error
   }
 }
 

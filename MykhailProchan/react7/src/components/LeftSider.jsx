@@ -20,6 +20,14 @@ export const LeftSider = (props) => {
 
   const onChangeHandler = (event) => setNewRoomName(event.target.value)
 
+  if (props.error) {
+    return <div>Error</div>
+  }
+
+  if (props.isLoading) {
+    return <div>Loading</div>
+  }
+
   return <Sider>
     <div style={style.siderLayout}>
       <Typography.Title

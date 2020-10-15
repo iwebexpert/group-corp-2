@@ -1,0 +1,104 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "Текстовый чат"
+    },
+    {
+      "id": 1,
+      "title": "Рабочий чат"
+    },
+    {
+      "title": "Чат с семьей",
+      "id": 2
+    },
+    {
+      "title": "Test",
+      "id": 3
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "Лёпа",
+      "text": "Привет!",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "Лёпа",
+      "text": "Новое сообщение",
+      "chatId": 0
+    },
+    {
+      "id": 2,
+      "author": "Лёпа",
+      "text": "Как дела?",
+      "chatId": 1
+    },
+    {
+      "id": 3,
+      "author": "Лёпа",
+      "text": "Быстрее бы отпуск",
+      "chatId": 1
+    },
+    {
+      "text": "Как твои дела, бот?",
+      "author": "Лёпа",
+      "id": "OmCnwpyfgoREAjLxj4yPG",
+      "chatId": 0
+    },
+    {
+      "id": "sojX6MR6AxbNFJP8RdcDS",
+      "chatId": 0,
+      "text": "Не согласен с тобой, Лёпа.",
+      "author": "Bot"
+    },
+    {
+      "text": "Всем привет!",
+      "author": "Лёпа",
+      "id": "mw9x5H7DAhbUbaO2S_Krz",
+      "chatId": 2
+    },
+    {
+      "id": "8otYVo0q0rGGyasBpod69",
+      "chatId": 2,
+      "text": "Лёпа, пока!",
+      "author": "Bot"
+    },
+    {
+      "text": "как дела?\n",
+      "author": "Лёпа",
+      "id": "126ORkCOrJaDyA_x1dPCR",
+      "chatId": 2
+    },
+    {
+      "id": "djZyhp8T-BGkYe1UN64em",
+      "chatId": 2,
+      "text": "Лёпа, повтори, пожалуйста.",
+      "author": "Bot"
+    },
+    {
+      "text": "Пишу первое сообщение!",
+      "author": "Лёпа",
+      "id": "HQbVPpltEVxcOV1FSHtwk",
+      "chatId": 3
+    },
+    {
+      "id": "kns5tEjTvptwZhe8Qn872",
+      "chatId": 3,
+      "text": "Очень интересная история, Лёпа",
+      "author": "Bot"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "Леопольд Пермяков",
+      "age": 12,
+      "nickname": "Лёпа",
+      "tel": "+7-(989)-989-989-989",
+      "lastVisit": "Recently"
+    }
+  ]
+}

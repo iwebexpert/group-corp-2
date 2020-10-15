@@ -1,0 +1,22 @@
+import React from "react";
+import { HeaderContainer } from "../../containers/HeaderContainer";
+import { Footer } from "../Footer";
+import "./ChatsLoading.css";
+
+export class ChatsLoading extends React.Component {
+    render() {
+        return <>
+            < HeaderContainer />
+            <div className="loading-container">
+                <div className="loadingWrap">
+                    <div className="loadingBoxes loadingBoxColour1"></div>
+                    <div className="loadingBoxes loadingBoxColour2"></div>
+                    <div className="loadingBoxes loadingBoxColour3"></div>
+                    <div className="loadingBoxes loadingBoxColour4"></div>
+                    <div className="loadingBoxes loadingBoxColour5"></div>
+                </div>
+            </div>
+            <Footer />
+        </>
+    }
+}

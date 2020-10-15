@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
-import { TextField, FloatingActionButton } from 'material-ui';
-import SendIcon from 'material-ui/svg-icons/content/send';
-import CircularProgress from 'material-ui/CircularProgress';
+import { TextField } from '@material-ui/core';
+// import FloatingActionButton from '@material-ui/icons';
+import SendIcon from '@material-ui/icons/Send';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Message from './Message';
 import { sendMessage } from '../actions/messageActions';
 import { loadChats } from '../actions/chatActions';
@@ -35,9 +36,9 @@ class MessageField extends React.Component {
     }
 
     sendMessage = (message, sender) => {
-       const { chatId, messages } = this.props;
-       const messageId = Object.keys(messages).length + 1;
-       this.props.sendMessage(messageId, message, sender, chatId);
+        const { chatId, messages } = this.props;
+        const messageId = Object.keys(messages).length + 1;
+        this.props.sendMessage(messageId, message, sender, chatId);
     };
 
     handleChange = (event) => {
@@ -51,12 +52,12 @@ class MessageField extends React.Component {
     };
 
     handleSendMessage = (message, sender) => {
-       if (message.length > 0 || sender === 'bot') {
-           this.sendMessage(message, sender);
-       }
-       if (sender === 'me') {
-           this.setState({ input: '' })
-       }
+        if (message.length > 0 || sender === 'bot') {
+            this.sendMessage(message, sender);
+        }
+        if (sender === 'me') {
+            this.setState({ input: '' })
+        }
     };
 
     render() {
@@ -68,27 +69,27 @@ class MessageField extends React.Component {
 
         const messageElements = chats[chatId].messageList.map(messageId => (
             <Message
-                key={ messageId }
-                text={ messages[messageId].text }
-                sender={ messages[messageId].sender }
+                key={messageId}
+                text={messages[messageId].text}
+                sender={messages[messageId].sender}
             />
         ));
 
         return [
             <div key='message-field' className="message-field">
-                { messageElements }
+                {messageElements}
             </div>,
-            <div key='text-field' style={ { width: '100%', display: 'flex' } }>
+            <div key='text-field' style={{ width: '100%', display: 'flex' }}>
                 <TextField
                     name="input"
-                    fullWidth={ true }
+                    fullWidth={true}
                     hintText="Введите сообщение"
-                    style={ { fontSize: '22px' } }
-                    onChange={ this.handleChange }
-                    value={ this.state.input }
-                    onKeyUp={ (event) => this.handleKeyUp(event, this.state.input) }
+                    style={{ fontSize: '22px' }}
+                    onChange={this.handleChange}
+                    value={this.state.input}
+                    onKeyUp={(event) => this.handleKeyUp(event, this.state.input)}
                 />
-                <FloatingActionButton onClick={ () => this.handleSendMessage(this.state.input, 'me') }>
+                <FloatingActionButton onClick={() => this.handleSendMessage(this.state.input, 'me')}>
                     <SendIcon />
                 </FloatingActionButton>
             </div>

@@ -30,14 +30,19 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/styles": "^4.10.0",
     "connected-react-router": "^6.8.0",
     "connected-react-router-immutable": "^2.0.0-alpha.6",
+    "gendts-material-ui-svg-icons": "^1.0.2",
     "history": "^4.7.2",
     "history-reducer": "^1.4.0",
+    "material-ui": "^1.0.0-beta.47",
     "material-ui-svg-icons-fix": "^0.19.6-svg-icons-fix",
     "middleware-params": "^1.0.8",
     "middlewares": "^0.1.1",
     "normalizr": "^3.6.0",
+    "persist-reducer": "^2.0.1",
     "react": "^16.13.1",
     "react-addons-update": "^15.6.2",
     "react-devtools": "^4.8.2",
@@ -47,9 +52,12 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-api-middleware": "^3.2.1",
+    "redux-devtools": "^3.7.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-dynamic-middlewares": "^2.0.0",
     "redux-middlewares": "^0.2.1",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "redux-toolkit": "^1.1.2"
   }
 }

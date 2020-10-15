@@ -8,29 +8,29 @@ import initReducers from './../reducers';
 import middlewares from '../middlewares';
 
 const persistConfig = {
-   key: 'geekmessanger',
-   storage,
-   stateReconciler: autoMergeLevel2,
-   whitelist: [],
+    key: 'geekmessanger',
+    storage,
+    stateReconciler: autoMergeLevel2,
+    whitelist: [],
 };
 
 export const history = createBrowserHistory();
 
 function initStore() {
-   const innitialStore = {};
+    const innitialStore = {};
 
-   const store = createStore(
-       persistReducer(persistConfig, initReducers(history)),
-       innitialStore,
-       compose(
-           applyMiddleware(routerMiddleware(history), ...middlewares),
-           window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
-       ),
-   );
+    const store = createStore(
+        persistReducer(persistConfig, initReducers(history)),
+        innitialStore,
+        compose(
+            applyMiddleware(routerMiddleware(history), ...middlewares),
+            window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => { },
+        ),
+    );
 
-   const persistor = persistStore(store);
+    const persistor = persistStore(store);
 
-   return { store, persistor };
+    return { store, persistor };
 }
 
 export default initStore;

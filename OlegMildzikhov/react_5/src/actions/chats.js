@@ -11,7 +11,7 @@ export const chatsMessageSendAction= (message) => ({
     payload: message,
    });
 
-export const chatsAddFormAction = (title) => ({
+export const chatsAddFormAction = (newItem) => ({
    type: CHATS_ADD,
-    payload: title,
+    payload: newItem,
 });

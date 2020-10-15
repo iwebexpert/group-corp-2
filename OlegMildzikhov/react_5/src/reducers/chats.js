@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-
+import {chats} from '../helpers/Chats-data/ChatData';
 import {
     CHATS_LOAD,
     CHATS_MESSAGE_SEND,
@@ -7,18 +7,18 @@ import {
 } from '../actions/chats';
 
 const initialState = {
-    entries: {},
+    entries: [...chats],
     loading: false
 };
 
-import {chats} from '../components/Chats-data/ChatData';
+
 
 export const chatsReducer = (state = initialState, action) => {
+    console.log('REDUCER REDUCER REDUCER',state);
     switch (action.type) {
         case CHATS_LOAD:
             return {
-                ...state,
-                entries: chats,
+                ...state
             };
         case CHATS_MESSAGE_SEND:
             return update(state, {
@@ -35,21 +35,10 @@ export const chatsReducer = (state = initialState, action) => {
                 }
             });
         case CHATS_ADD:
+            console.log('it was update', state);
             return update(state, {
                 entries: {
-                    $push: [
-                        {title: action.payload.chats.title,
-                            messages: [{
-                                id: 0,
-                                author: 'WebDev',
-                                text: 'Привет!'
-                            },
-                                {
-                                    id: 1,
-                                    author: 'WebDev',
-                                    text: 'Что нового?'
-                                },],
-                            id: state.entries.length - 1}]
+                    $push: [action.payload]
                 }
             });
         default:

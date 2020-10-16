@@ -49,6 +49,30 @@
       "chatId": 2,
       "text": "Лёпа, повтори, пожалуйста.",
       "author": "Bot"
+    },
+    {
+      "author": "Лёпа",
+      "text": "Тест",
+      "id": "jdVFMKAmkWBlKNjEbFguK",
+      "chatId": 2
+    },
+    {
+      "id": "CrehnEd7flF6o4445Zus4",
+      "chatId": 2,
+      "text": "Лёпа, пока!",
+      "author": "Bot"
+    },
+    {
+      "author": "Лёпа",
+      "text": "Пока, бот!",
+      "id": "gIsoevuSaXgKHCtxRM1W-",
+      "chatId": 2
+    },
+    {
+      "id": "grHZsY1imkf6drtykbuHT",
+      "chatId": 2,
+      "text": "Привет, Лёпа, чем я могу тебе помочь?",
+      "author": "Bot"
     }
   ],
   "profiles": [

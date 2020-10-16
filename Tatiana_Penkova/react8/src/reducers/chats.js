@@ -53,10 +53,11 @@ export const chatsReducer = (state = initialState, action) => {
             return state;
 
         case CHATS_MESSAGE_SEND_SUCCESS:
+
             return update(state, {
                 entries: {
                     [action.payload.chatId]: {
-                        messages: { $push: [{ id: action.payload.id, text: action.payload.text, author: action.payload.author }] },
+                        messages: { $push: [{ id: nanoid(), text: action.payload.text, author: action.payload.author }] },
                     },
                 },
             });
@@ -72,7 +73,6 @@ export const chatsReducer = (state = initialState, action) => {
             };
 
         case ADD_CHAT_SUCCESS:
-            console.log("&&&", state)
             return update(state,
                 {
                     loading: {

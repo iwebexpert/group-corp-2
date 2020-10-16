@@ -11,10 +11,24 @@ import {
   clearChatAction,
 } from "../actions/chats";
 
+import Swal from "sweetalert2";
+
 export const MessengerContainer = (props) => {
   useEffect(() => {
-    dispatch(chatsLoadAction());
+    if (!chats) {
+      dispatch(chatsLoadAction());
+    }
   }, []);
+
+  useEffect(() => {
+    if (messageSendError) {
+      Swal.fire({
+        text:
+          "Не удалось отправить сообщение. Отсутствует соединение с сервером.",
+        icon: "error",
+      });
+    }
+  });
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -24,9 +38,10 @@ export const MessengerContainer = (props) => {
   const chatTitle = chats[id] ? chats[id].title : null;
   const chatId = +id;
 
-  const [isLoading, isPending] = useSelector((state) => [
+  const [isLoading, isPending, messageSendError] = useSelector((state) => [
     state.chats.loading,
     state.chats.pending,
+    state.chats.messageSendError,
   ]);
 
   const onMessageSend = (message) => {

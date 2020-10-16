@@ -6,6 +6,7 @@ import {
   CHATS_LOAD_FAILURE,
   ADD_CHAT_REQUEST,
   ADD_CHAT_SUCCESS,
+  ADD_CHAT_FAILURE,
   CLEAR_CHAT,
   CHAT_DELETE,
   MESSAGE_SEND_REQUEST,
@@ -20,8 +21,10 @@ const initialState = {
   loading: false,
   error: false,
   pending: false,
+  messageSendError: false,
   chatAddWaiting: false,
   chatAdd: false,
+  chatAddError: false,
 };
 
 export const chatsReducer = (state = initialState, action) => {
@@ -51,6 +54,7 @@ export const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         pending: true,
+        messageSendError: false,
       };
 
     case MESSAGE_SEND_SUCCESS:
@@ -64,6 +68,7 @@ export const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         pending: false,
+        messageSendError: true,
       };
 
     case MESSAGE_DELETE_REQUEST:
@@ -83,6 +88,7 @@ export const chatsReducer = (state = initialState, action) => {
         ...state,
         chatAddWaiting: true,
         addChat: false,
+        chatAddError: false,
       };
 
     case ADD_CHAT_SUCCESS:
@@ -90,6 +96,12 @@ export const chatsReducer = (state = initialState, action) => {
         ...state,
         chatAddWaiting: false,
         addChat: true,
+      };
+
+    case ADD_CHAT_FAILURE:
+      return {
+        ...state,
+        chatAddError: true,
       };
 
     case CHAT_DELETE:

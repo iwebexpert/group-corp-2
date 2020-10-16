@@ -10,6 +10,8 @@ import {
   chatDeleteAction,
 } from "../actions/chats";
 
+import Swal from "sweetalert2";
+
 export const ChatsListContainer = () => {
   useEffect(() => {
     if (!chats.length) {
@@ -17,10 +19,24 @@ export const ChatsListContainer = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (chatAddError) {
+      Swal.fire({
+        text:
+          "Не удалось добавить новый чат. Отсутствует соединение с сервером.",
+        icon: "error",
+      });
+    }
+  });
+
   const dispatch = useDispatch();
 
   const chats = useSelector((state) => state.chats.entries);
   const { location } = useSelector((state) => state.router);
+  const [chatAddError, isError] = useSelector((state) => [
+    state.chats.chatAddError,
+    state.chats.error,
+  ]);
 
   const addChat = (chat) => {
     chat.chatId = chats.length;
@@ -43,13 +59,19 @@ export const ChatsListContainer = () => {
     } else dispatch(push("/"));
   };
 
+  const refreshChats = () => {
+    dispatch(chatsLoadAction());
+  };
+
   return (
     <ChatsList
       chats={chats}
       location={location}
+      isError={isError}
       onAdd={addChat}
       onDelete={deleteChat}
       unfireChat={unfireChat}
+      refreshChats={refreshChats}
     />
   );
 };

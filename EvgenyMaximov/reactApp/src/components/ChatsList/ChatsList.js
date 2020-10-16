@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Swal from "sweetalert2";
-import { TextField, Fab, Divider } from "@material-ui/core";
+import { TextField, Fab, Divider, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -63,6 +64,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const ChatsList = (props) => {
   const classes = useStyles();
+
+  const isLoading = useSelector((state) => state.chats.loading);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -126,46 +129,60 @@ export const ChatsList = (props) => {
         </Fab>
       </div>
       <Divider />
-      <List className={classes.chatList}>
-        {props.chats.length ? (
-          props.chats.map((c) => {
-            return (
-              <ListItem
-                className={classes.chatLabel}
-                key={c.chatId}
-                button
-                selected={selectedIndex === c.chatId}
-                onClick={() => handleListItemClick(c.chatId)}
-              >
-                <Link to={`/chats/${c.chatId}`} className="chat-label">
-                  <ListItemIcon>
-                    <ChatIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={c.title}
-                    className={classes.chatTitle}
-                  />
-                </Link>
-                {c.fire ? (
-                  <FiberManualRecordIcon fontSize="small" color="primary" />
-                ) : null}
-                <div
-                  className={classes.deleteIcon}
-                  onClick={() => deleteChat(c.chatId)}
+      {props.isError ? (
+        <div className={classes.renewBtn}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={props.refreshChats}
+          >
+            Обновить чаты
+          </Button>
+        </div>
+      ) : (
+        <List className={classes.chatList}>
+          {isLoading && !props.chats.length ? (
+            <div className="lds-dual-ring-header"></div>
+          ) : props.chats.length ? (
+            props.chats.map((c) => {
+              return (
+                <ListItem
+                  className={classes.chatLabel}
+                  key={c.chatId}
+                  button
+                  selected={selectedIndex === c.chatId}
+                  onClick={() => handleListItemClick(c.chatId)}
                 >
-                  <DeleteIcon fontSize="small" color="secondary" />
-                </div>
-              </ListItem>
-            );
-          })
-        ) : (
-          <div className={classes.emptyList}>
-            <p>Чатов нет</p>
-          </div>
-        )}
-
-        <Divider />
-      </List>
+                  <Link to={`/chats/${c.chatId}`} className="chat-label">
+                    <ListItemIcon>
+                      <ChatIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={c.title}
+                      className={classes.chatTitle}
+                    />
+                  </Link>
+                  {c.fire ? (
+                    <FiberManualRecordIcon fontSize="small" color="primary" />
+                  ) : null}
+                  <div
+                    className={classes.deleteIcon}
+                    onClick={() => deleteChat(c.chatId)}
+                  >
+                    <DeleteIcon fontSize="small" color="secondary" />
+                  </div>
+                </ListItem>
+              );
+            })
+          ) : (
+            <div className={classes.emptyList}>
+              <p>Чатов нет</p>
+            </div>
+          )}
+          <Divider />
+        </List>
+      )}
     </div>
   );
 };

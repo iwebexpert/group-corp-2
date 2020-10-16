@@ -33,6 +33,7 @@ export const profileReducer = (state = initialState, action) => {
         error: true,
       };
     }
+
     default:
       return state;
   }

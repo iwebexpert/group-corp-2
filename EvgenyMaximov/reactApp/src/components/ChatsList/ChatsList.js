@@ -27,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
     flex: "1 1 auto",
   },
 
+  emptyList: {
+    textAlign: "center",
+    fontSize: "20px",
+    color: "rgb(110, 105, 105)",
+  },
+
   addChatForm: {
     display: "flex",
     justifyContent: "center",
@@ -121,33 +127,43 @@ export const ChatsList = (props) => {
       </div>
       <Divider />
       <List className={classes.chatList}>
-        {props.chats.map((c) => {
-          return (
-            <ListItem
-              className={classes.chatLabel}
-              key={c.chatId}
-              button
-              selected={selectedIndex === c.chatId}
-              onClick={() => handleListItemClick(c.chatId)}
-            >
-              <Link to={`/chats/${c.chatId}`} className="chat-label">
-                <ListItemIcon>
-                  <ChatIcon />
-                </ListItemIcon>
-                <ListItemText primary={c.title} className={classes.chatTitle} />
-              </Link>
-              {c.fire ? (
-                <FiberManualRecordIcon fontSize="small" color="primary" />
-              ) : null}
-              <div
-                className={classes.deleteIcon}
-                onClick={() => deleteChat(c.chatId)}
+        {props.chats.length ? (
+          props.chats.map((c) => {
+            return (
+              <ListItem
+                className={classes.chatLabel}
+                key={c.chatId}
+                button
+                selected={selectedIndex === c.chatId}
+                onClick={() => handleListItemClick(c.chatId)}
               >
-                <DeleteIcon fontSize="small" color="secondary" />
-              </div>
-            </ListItem>
-          );
-        })}
+                <Link to={`/chats/${c.chatId}`} className="chat-label">
+                  <ListItemIcon>
+                    <ChatIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={c.title}
+                    className={classes.chatTitle}
+                  />
+                </Link>
+                {c.fire ? (
+                  <FiberManualRecordIcon fontSize="small" color="primary" />
+                ) : null}
+                <div
+                  className={classes.deleteIcon}
+                  onClick={() => deleteChat(c.chatId)}
+                >
+                  <DeleteIcon fontSize="small" color="secondary" />
+                </div>
+              </ListItem>
+            );
+          })
+        ) : (
+          <div className={classes.emptyList}>
+            <p>Чатов нет</p>
+          </div>
+        )}
+
         <Divider />
       </List>
     </div>

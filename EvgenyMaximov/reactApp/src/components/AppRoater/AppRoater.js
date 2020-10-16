@@ -7,7 +7,7 @@ import { Error } from "../../pages/Error";
 import { MessengerContainer } from "../../containers/MessengerContainer";
 
 export const AppRoater = (props) => {
-  const { classform, classlist, classchattitle, classclearchat } = props;
+  const { classform, classlist, classchattitle } = props;
 
   return (
     <Switch>

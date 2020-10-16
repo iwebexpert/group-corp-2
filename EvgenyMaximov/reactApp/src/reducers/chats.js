@@ -17,7 +17,6 @@ import {
 
 const initialState = {
   entries: [],
-  messages: [],
   loading: false,
   error: false,
   pending: false,
@@ -55,7 +54,11 @@ export const chatsReducer = (state = initialState, action) => {
       };
 
     case MESSAGE_SEND_SUCCESS:
-      return { ...state, pending: false, messageSend: true };
+      return {
+        ...state,
+        pending: false,
+        messageSend: true,
+      };
 
     case MESSAGE_SEND_FAILURE:
       return {

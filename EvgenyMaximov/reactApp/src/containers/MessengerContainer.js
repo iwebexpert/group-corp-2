@@ -1,5 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { nanoid } from "nanoid";
 
 import { Messenger } from "../components/Messenger";
@@ -10,10 +11,26 @@ import {
   clearChatAction,
 } from "../actions/chats";
 
-class MessengerContainerClass extends React.Component {
-  onMessageSend = (message) => {
+export const MessengerContainer = (props) => {
+  useEffect(() => {
+    dispatch(chatsLoadAction());
+  }, []);
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const chats = useSelector((state) => state.chats.entries);
+  const messages = chats[id] ? chats[id].messages : [];
+  const chatTitle = chats[id] ? chats[id].title : null;
+  const chatId = +id;
+
+  const [isLoading, isPending] = useSelector((state) => [
+    state.chats.loading,
+    state.chats.pending,
+  ]);
+
+  const onMessageSend = (message) => {
     message.id = nanoid();
-    const { chatId } = this.props;
     const time = new Date();
     message.time = time.toLocaleString("en-US", {
       hour: "numeric",
@@ -21,89 +38,38 @@ class MessengerContainerClass extends React.Component {
       hour24: true,
     });
 
-    this.props.chatsMessageSendAction({
-      ...message,
-      chatId,
-    });
-    this.props.chatsLoadAction();
-  };
-
-  onMessageDelete = (id) => {
-    const { messageDeleteAction, chatsLoadAction } = this.props;
-
-    messageDeleteAction(id);
-    chatsLoadAction();
-  };
-
-  onClearChat = (chatId) => {
-    const { clearChatAction } = this.props;
-    clearChatAction(chatId);
-  };
-
-  render() {
-    const {
-      messages,
-      classform,
-      classlist,
-      chatTitle,
-      classchattitle,
-      isLoading,
-      isError,
-      isPending,
-    } = this.props;
-
-    return (
-      <Messenger
-        chatTitle={chatTitle}
-        messages={messages}
-        onMessageSend={this.onMessageSend}
-        onMessageDelete={this.onMessageDelete}
-        onClearChat={this.onClearChat}
-        classform={classform}
-        classlist={classlist}
-        classchattitle={classchattitle}
-        isLoading={isLoading}
-        isError={isError}
-        isPending={isPending}
-      />
+    dispatch(
+      chatsMessageSendAction({
+        ...message,
+        chatId,
+      })
     );
-  }
-}
-
-const mapStateToProps = (state, ownProps) => {
-  const chats = state.chats.entries;
-
-  const { match } = ownProps;
-
-  let messages = [];
-  let chatTitle = null;
-
-  if (match && chats[match.params.id]) {
-    messages = chats[match.params.id].messages;
-    chatTitle = chats[match.params.id].title;
-  }
-
-  return {
-    messages,
-    chatId: match ? +match.params.id : null,
-    chatTitle,
-    isLoading: state.chats.loading,
-    isError: state.chats.error,
-    isPending: state.chats.pending,
+    dispatch(chatsLoadAction());
   };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    chatsLoadAction: () => dispatch(chatsLoadAction()),
-    chatsMessageSendAction: (message) =>
-      dispatch(chatsMessageSendAction(message)),
-    messageDeleteAction: (message) => dispatch(messageDeleteAction(message)),
-    clearChatAction: (chatId) => dispatch(clearChatAction(chatId)),
+  const onMessageDelete = (id) => {
+    dispatch(messageDeleteAction(id));
+    dispatch(chatsLoadAction());
   };
-};
 
-export const MessengerContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MessengerContainerClass);
+  const onClearChat = (chatId) => {
+    dispatch(clearChatAction(chatId));
+  };
+
+  const { classform, classlist, classchattitle } = props;
+
+  return (
+    <Messenger
+      chatTitle={chatTitle}
+      messages={messages}
+      onMessageSend={onMessageSend}
+      onMessageDelete={onMessageDelete}
+      onClearChat={onClearChat}
+      classform={classform}
+      classlist={classlist}
+      classchattitle={classchattitle}
+      isLoading={isLoading}
+      isPending={isPending}
+    />
+  );
+};

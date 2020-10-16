@@ -12,21 +12,14 @@ const useStyles = makeStyles({
       },
 });
 
-export const Header = ({infoPerson, classes, push}) => {
+export const Header = ({infoPerson}) => {
 
     const classes = useStyles();
 
-    const dispatch = useDispatch();
-
-    const handleRedirect = () => {
-        push('/');
-    }
-
     return (
-        (infoPerson) ?
+        (infoPerson.name) ?
         (<div className="header">
-            {/* <Link to="/" style={{ textDecoration: 'none' }}><div className="header-logo">VChats</div></Link> */}
-            <div button="true" onClick={handleRedirect} style={{ cursor: 'pointer' }} className="header-logo">VChats</div>
+            <Link to="/" style={{ textDecoration: 'none' }}><div className="header-logo">VChats</div></Link>
             <Link to="/About" style={{ textDecoration: 'none' }}>
                 <div className="header-avatar">
                     <Avatar className={classes.root} src={infoPerson.avatar} />

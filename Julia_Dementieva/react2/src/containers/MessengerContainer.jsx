@@ -29,7 +29,6 @@ export const MessengerContainer = (props) => {
         if(!chatId) {
             dispatch(chatsLoadAction());
             dispatch(aboutLoadAction());
-            dispatch(robotLoadAction());
         }
     }, []);
 

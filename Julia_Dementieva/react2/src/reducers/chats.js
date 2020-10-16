@@ -55,7 +55,7 @@ export const chatsReducer = (state = initialState, action) => {
             });
         case CHATSLISTS_SEND:
             return update(state, {
-                entries: {$push: [{author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
+                entries: {$push: [{id: action.payload.id, author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
             });
 
         case MESSAGE_FIRE:

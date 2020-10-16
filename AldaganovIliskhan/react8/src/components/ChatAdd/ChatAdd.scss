@@ -1,0 +1,11 @@
+.chat_add {
+    display: flex;
+    flex-direction: column;
+}
+button {
+    position: relative;
+    top: 7px;
+    left: 15px;
+    text-transform: capitalize;
+    align-self: flex-start;
+}

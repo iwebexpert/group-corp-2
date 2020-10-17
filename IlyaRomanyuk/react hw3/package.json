@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
     "dev-server": "webpack-dev-server --mode development --port 4000 --open",
-    "json-server": "json-server --port 3000 --watch db.json --delay 1000",
+    "json-server": "json-server --port 3000 --watch db.json",
     "build": "webpack --mode production"
   },
   "keywords": [],

@@ -1,50 +1,35 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Header } from "../components/Header";
 import { profileLoadAction } from "../actions/profile";
 
-class HeaderContainerClass extends React.Component {
-  componentDidMount() {
-    this.props.profileLoadAction();
-  }
+export const HeaderContainer = ({ classheader }) => {
+  const dispatch = useDispatch();
 
-  reloadProfile = () => {
-    this.props.profileLoadAction();
+  const profile = useSelector((state) => state.profile.entries);
+  const [isLoading, isError] = useSelector((state) => [
+    state.profile.loading,
+    state.profile.error,
+  ]);
+
+  useEffect(() => {
+    if (profile) {
+      dispatch(profileLoadAction());
+    }
+  }, []);
+
+  const reloadProfile = () => {
+    dispatch(profileLoadAction());
   };
 
-  render() {
-    const { classheader, profile, isLoading, isError } = this.props;
-    return (
-      <Header
-        classheader={classheader}
-        profile={profile}
-        isLoading={isLoading}
-        isError={isError}
-        reloadProfile={this.reloadProfile}
-      />
-    );
-  }
-}
-
-const mapStateToProps = (state, ownProps) => {
-  const profile = state.profile.entries;
-  const { classheader } = ownProps;
-  return {
-    profile,
-    classheader,
-    isLoading: state.profile.loading,
-    isError: state.profile.error,
-  };
+  return (
+    <Header
+      classheader={classheader}
+      profile={profile}
+      isLoading={isLoading}
+      isError={isError}
+      reloadProfile={reloadProfile}
+    />
+  );
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    profileLoadAction: () => dispatch(profileLoadAction()),
-  };
-};
-
-export const HeaderContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HeaderContainerClass);

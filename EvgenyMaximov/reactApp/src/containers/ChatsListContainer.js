@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
 
 import { ChatsList } from "../components/ChatsList";
@@ -10,81 +10,68 @@ import {
   chatDeleteAction,
 } from "../actions/chats";
 
-class ChatsListContainerClass extends React.Component {
-  componentDidMount() {
-    if (!this.props.chats.length) {
-      this.props.chatsLoadAction();
-    }
-  }
+import Swal from "sweetalert2";
 
-  addChat = (chat) => {
-    console.log(this.props);
-    const { chats, addChatAction, chatsLoadAction, redirect } = this.props;
+export const ChatsListContainer = () => {
+  useEffect(() => {
+    if (!chats.length) {
+      dispatch(chatsLoadAction());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (chatAddError) {
+      Swal.fire({
+        text:
+          "Не удалось добавить новый чат. Отсутствует соединение с сервером.",
+        icon: "error",
+      });
+    }
+  });
+
+  const dispatch = useDispatch();
+
+  const chats = useSelector((state) => state.chats.entries);
+  const { location } = useSelector((state) => state.router);
+  const [chatAddError, isError] = useSelector((state) => [
+    state.chats.chatAddError,
+    state.chats.error,
+  ]);
+
+  const addChat = (chat) => {
     chat.chatId = chats.length;
     chat.messages = [];
     chat.fire = false;
-    addChatAction(chat);
-    chatsLoadAction();
-    redirect(chat.chatId);
+    dispatch(addChatAction(chat));
+    dispatch(chatsLoadAction());
+    dispatch(push(`/chats/${chat.chatId}`));
   };
 
-  unfireChat = (chatId) => {
-    const { chatUnfireAction, chatsLoadAction } = this.props;
-    chatUnfireAction(chatId);
-    chatsLoadAction();
+  const unfireChat = (chatId) => {
+    dispatch(chatUnfireAction(chatId));
+    dispatch(chatsLoadAction());
   };
 
-  deleteChat = (chatId) => {
-    const {
-      chats,
-      chatDeleteAction,
-      redirect,
-      redirectToHomePage,
-    } = this.props;
-    chatDeleteAction(chatId);
+  const deleteChat = (chatId) => {
+    dispatch(chatDeleteAction(chatId));
     if (chats.length > 1) {
-      redirect(chats.length - 2);
-    } else redirectToHomePage();
+      dispatch(push(`/chats/${chats.length - 2}`));
+    } else dispatch(push("/"));
   };
 
-  render() {
-    const { chats, location } = this.props;
-    return (
-      <ChatsList
-        chats={chats}
-        onAdd={this.addChat}
-        onDelete={this.deleteChat}
-        unfireChat={this.unfireChat}
-        location={location}
-      />
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  const chats = state.chats.entries;
-
-  const { location } = state.router;
-
-  return {
-    chats,
-    lastChatId: chats.length,
-    location: location.pathname,
+  const refreshChats = () => {
+    dispatch(chatsLoadAction());
   };
+
+  return (
+    <ChatsList
+      chats={chats}
+      location={location}
+      isError={isError}
+      onAdd={addChat}
+      onDelete={deleteChat}
+      unfireChat={unfireChat}
+      refreshChats={refreshChats}
+    />
+  );
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    chatsLoadAction: () => dispatch(chatsLoadAction()),
-    addChatAction: (chat) => dispatch(addChatAction(chat)),
-    redirect: (chatId) => dispatch(push(`/chats/${chatId}`)),
-    redirectToHomePage: () => dispatch(push("/")),
-    chatUnfireAction: (chatId) => dispatch(chatUnfireAction(chatId)),
-    chatDeleteAction: (chatId) => dispatch(chatDeleteAction(chatId)),
-  };
-};
-
-export const ChatsListContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ChatsListContainerClass);

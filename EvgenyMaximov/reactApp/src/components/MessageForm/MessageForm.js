@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { TextField, Fab } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
 import "../../App.scss";
 
-export class MessageForm extends React.Component {
-  state = {
+export const MessageForm = ({ onSend, classform, isPending }) => {
+  const [formData, setFormData] = useState({
     text: "",
     author: "",
+  });
+
+  const onInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  onInputChange = (event) => {
-    const inputField = event.target.name;
-    this.setState({ [inputField]: event.target.value });
-  };
-
-  sendMessage = () => {
-    const { onSend } = this.props;
-    const { text, author } = this.state;
+  const sendMessage = () => {
+    const { text, author } = formData;
 
     const textRegExp = /\S|(^\w$)/gi;
 
@@ -47,53 +45,45 @@ export class MessageForm extends React.Component {
     }
 
     if (typeof onSend === "function") {
-      onSend(this.state);
+      onSend(formData);
 
-      this.setState({ text: "" });
+      setFormData({ ...formData, text: "" });
     }
   };
 
-  keyDownHandler = (e) => {
-    if (e.keyCode === 13 && e.ctrlKey) this.sendMessage();
+  const keyDownHandler = (e) => {
+    if (e.keyCode === 13 && e.ctrlKey) sendMessage();
   };
 
-  render() {
-    const { text, author } = this.state;
-    return (
-      <div className={this.props.class}>
-        <TextField
-          label="Введите имя автора"
-          name="author"
-          type="text"
-          value={author}
-          onChange={this.onInputChange}
-          autoFocus
-        />
-        <TextField
-          label="Введите сообщение"
-          name="text"
-          value={text}
-          onChange={this.onInputChange}
-          onKeyDown={this.keyDownHandler}
-          multiline
-        />
-        <Fab
-          variant="round"
-          color="primary"
-          size="medium"
-          onClick={this.sendMessage}
-        >
-          <Send />
-        </Fab>
-        {this.props.isPending ? (
-          <div className="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        ) : null}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={classform}>
+      <TextField
+        label="Введите имя автора"
+        name="author"
+        type="text"
+        value={formData.author}
+        onChange={onInputChange}
+        autoFocus
+      />
+      <TextField
+        label="Введите сообщение"
+        name="text"
+        value={formData.text}
+        onChange={onInputChange}
+        onKeyDown={keyDownHandler}
+        multiline
+      />
+      <Fab variant="round" color="primary" size="medium" onClick={sendMessage}>
+        <Send />
+      </Fab>
+      {isPending ? (
+        <div className="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      ) : null}
+    </div>
+  );
+};

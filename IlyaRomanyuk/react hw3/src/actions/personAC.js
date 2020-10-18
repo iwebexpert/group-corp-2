@@ -1,4 +1,5 @@
-import * as axios from 'axios';
+//DAL
+import { profileAPI } from '../dal/api';
 
 //Constants
 export const PERSON_LOAD_REQUEST = 'PERSON_LOAD_REQUEST';
@@ -15,7 +16,7 @@ export const personLoadFailureAction = (error) => ({ type: PERSON_LOAD_FAILURE, 
 export const personLoadTC = () => async (dispatch) => {
     try {
         dispatch(personLoadRequestAction());
-        const result = await axios.get('http://localhost:3000/person')
+        const result = await profileAPI.getProfile();
         dispatch(personLoadSuccessAction(result.data));
     } catch (error) {
         dispatch(personLoadFailureAction(error));

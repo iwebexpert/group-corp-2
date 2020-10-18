@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { ChatItem } from './ChatItem';
-import { Preloader } from './../../Preloader';
 
 export const ChatList = ({ chats, deleteMessageAction }) => {
     const wrapper = useRef(null)

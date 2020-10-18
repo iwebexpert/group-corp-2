@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const LayoutHeader = ({ chat, cleanAllMessagesAction }) => {
+
     const cleanAllMessages = (id) => {
         cleanAllMessagesAction(id)
     }

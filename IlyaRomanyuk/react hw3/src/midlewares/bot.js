@@ -12,7 +12,7 @@ export const botMiddware = store => next => action => {
             store.dispatch(isFetchingAC(true))
             setTimeout(async () => {
 
-                const response = await fetch(`http://localhost:3000/chats/${chatId}/messages`, {
+                const response = await fetch(`http://localhost:3000/messages`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export const botMiddware = store => next => action => {
                 let arrUrl = store.getState().router.location.pathname.split('/');
 
                 let idURL = arrUrl[arrUrl.length - 1];
-                if (idURL !== chatId) {
+                if (idURL != chatId) {
                     store.dispatch(fireChatAC(chatId))
                 }
 

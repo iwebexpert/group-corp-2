@@ -1,8 +1,7 @@
 import {
     ADD_NEW_CHAT, ADD_NEW_MESSAGE, IS_FETCHING, CHAT_FIRE, CHAT_UNFIRE, DELETE_CHAT,
-    CLEAN_ALL_MESSAGES, DELETE_MESSAGE, CHATS_LOAD_REQUEST, CHATS_LOAD_SUCCESS, CHATS_LOAD_FAILURE
+    DELETE_MESSAGE, CHATS_LOAD_REQUEST, CHATS_LOAD_SUCCESS, CHATS_LOAD_FAILURE
 } from "../actions/addChatAC";
-import * as axios from "axios";
 
 const initialState = {
     data: [],
@@ -12,6 +11,7 @@ const initialState = {
 };
 
 export const addChatReducer = (state = initialState, action) => {
+    let id = Object.values(state.data).findIndex(el => el.id == action.chatId)
     switch (action.type) {
         case CHATS_LOAD_REQUEST:
             return {
@@ -41,17 +41,14 @@ export const addChatReducer = (state = initialState, action) => {
             }
 
         case ADD_NEW_CHAT:
+            let idChat = +Object.keys(state.data).pop() + 1
             return {
                 ...state,
-                data: { ...state.data, [action.chat.id]: { ...action.chat } }
+                data: { ...state.data, [idChat]: { ...action.chat } }
             }
 
         case DELETE_CHAT:
             let filterArr = Object.values(state.data).filter(el => el.id != action.chatId);
-            for (let i = 0; i <= filterArr.length - 1; i++) {
-                filterArr[i].id = i
-            }
-
             return {
                 ...state,
                 data: { ...filterArr }
@@ -64,34 +61,20 @@ export const addChatReducer = (state = initialState, action) => {
                 ...state,
                 data: {
                     ...state.data,
-                    [action.chatId]: {
-                        ...state.data[action.chatId],
+                    [id]: {
+                        ...state.data[id],
                         messages: [...newMessages]
                     }
                 }
             }
-
-        case CLEAN_ALL_MESSAGES:
-            return {
-                ...state,
-                data: {
-                    ...state.data,
-                    [action.chatId]: {
-                        ...state.data[action.chatId],
-                        messages: []
-                    }
-                }
-            }
-
-
 
         case CHAT_FIRE:
             return {
                 ...state,
                 data: {
                     ...state.data,
-                    [action.chatId]: {
-                        ...state.data[action.chatId],
+                    [id]: {
+                        ...state.data[id],
                         fire: true
                     }
                 }
@@ -102,22 +85,23 @@ export const addChatReducer = (state = initialState, action) => {
                 ...state,
                 data: {
                     ...state.data,
-                    [action.chatId]: {
-                        ...state.data[action.chatId],
+                    [id]: {
+                        ...state.data[id],
                         fire: false
                     }
                 }
             }
 
         case ADD_NEW_MESSAGE:
+            let index = Object.values(state.data).findIndex(el => el.id == action.payload.chatId)
             return {
                 ...state,
                 data: {
                     ...state.data,
-                    [action.payload.chatId]: {
-                        ...state.data[action.payload.chatId],
+                    [index]: {
+                        ...state.data[index],
                         messages: [
-                            ...state.data[action.payload.chatId].messages,
+                            ...state.data[index].messages,
                             { id: action.payload.id, image: action.payload.image, message: action.payload.message, author: action.payload.author },
                         ],
                     }

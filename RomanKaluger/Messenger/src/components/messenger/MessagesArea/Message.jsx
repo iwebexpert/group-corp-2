@@ -1,28 +1,29 @@
-import React, {useCallback, useRef, useState} from "react";
+import React, {useCallback, useMemo, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import classNames from 'classnames';
 import Popover from "@material-ui/core/Popover";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ReactAudioPlayer from "react-audio-player";
-import {messageTypes} from "../../../configs/statuses";
-import {setCommonViewImages} from "../../../redux/actions";
+import {avatarSizeCls, messageTypes} from "../../../configs/statuses";
+import {openUserProfile, setCommonViewImages} from "../../../redux/actions";
+import {AvatarUser} from "../../common/Avatar";
 
 
 
 const Message = ({message,selectMessagesMode, selectedMessages = [],setSelectMessagesMode = false, setSelectedMessages}) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
     const dispatch = useDispatch();
-    const curUser = useSelector(s => s.app.curUser) || {_id: null};
+    const {curUser, contacts} = useSelector(s => s.app);
+    const author = curUser && message.author === curUser._id ? curUser : Object.values(contacts).flat().concat([curUser]).find(x => x && x._id === message.author);
     const messageClass = classNames('Message', {
-            MyMessage: curUser._id === message.author && !message.isForward,
+            MyMessage: curUser && curUser._id === message.author && !message.isForward,
             ForwardMessage: message.isForward,
         });
-    const authorClass = classNames('avatar', {MyIconAuthor: curUser._id === message.author});
     const messageContainerClass = classNames('messageContainer', {
             messageContainerSelected: selectedMessages.find(x => x._id === message._id),
-            messageContainerUnread: message.isRead === false
+            messageContainerUnread: !message.isRead
         });
-    const msgContainerClick = () => {
+    const msgContainerClick = (e) => {
         if (selectMessagesMode){
             setSelectedMessages(prev=>{
                const isSelected = prev.find(x => x._id === message._id);
@@ -53,7 +54,7 @@ const Message = ({message,selectMessagesMode, selectedMessages = [],setSelectMes
     return (
         <div onClick={msgContainerClick} className={messageContainerClass}>
             <div ref={msgRef} className={messageClass} onClick={msgClick}>
-                {   !message.isForward &&  curUser._id === message.author
+                {   !message.isForward &&  curUser && curUser._id === message.author
                         ? message.isPending
                             ? <CircularProgress />
                             : message.isRead
@@ -61,7 +62,7 @@ const Message = ({message,selectMessagesMode, selectedMessages = [],setSelectMes
                                 : <img alt={'StatusSign'} className={'StatusSign'} src="https://img.icons8.com/color/48/000000/checkmark.png"/>
                                         :null
                 }
-                <div className={authorClass}>{message.authorName.slice(0, 2)}</div>
+                <AvatarUser user={author} classType={avatarSizeCls.normal} needFind={author ? author : message.author}/>
                 <div className={'MessageText'}>{message.text}</div>
                 {
                     message.type === messageTypes.AUDIO

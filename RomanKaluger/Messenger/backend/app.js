@@ -1,3 +1,4 @@
+const {chatTypes, messageTypes} = require('./config/statuses');
 const statuses = require("./config/statuses");
 const WebSocket = require('ws');
 const config = require('./config/serverConfig');
@@ -98,7 +99,11 @@ async function start() {
         try {
             const chatid = req.params.chatid;
             const chat = await chatModel.findById({_id: chatid}).lean();
-            const messages = await messageModel.find({_id: { $in: chat.messages} }).lean();
+            const isUserMember = chat.members.find(x => x.equals(req.user._id));
+            const messages = await messageModel.find({
+                _id: {$in: chat.messages},
+                author: {$in: isUserMember ? chat.members : [req.user._id]},
+                type: isUserMember ? {$in: Object.values(messageTypes).filter(x => x !== messageTypes.SYSTEM_TEXT_PRIVATE)} : messageTypes.SYSTEM_TEXT_PRIVATE  }).lean();
             res.status(200).json(messages);
         } catch (e) {
             res.status(400).json({message: 'Ошибка при поиске сообщений'});
@@ -106,9 +111,11 @@ async function start() {
     });
     app.get('/chats/messages/unreadmessages/chatid/:chatid', async (req, res) => {
         try {
+            const user = req.user;
             const chatid = req.params.chatid;
             const chat = await chatModel.findById({_id: chatid}).lean();
-            const messages = await messageModel.find({_id: { $in: chat.messages}, isRead: false }).lean();
+            let messages = await messageModel.find({_id: { $in: chat.messages} }).lean();
+            messages = messages.filter(x => !x.whoRead.includes(user._id));
             res.status(200).json(messages);
         } catch (e) {
             res.status(400).json({message: 'Ошибка при поиске сообщений'});
@@ -116,7 +123,7 @@ async function start() {
     });
 
     app.post('/chats', async (req, res) => {
-        const {title, members, creator} = req.body;
+        const {title, members, creator, type} = req.body;
         try {
             if(!title){
                 res.status(400).json({error: 'Некорректные данные'});
@@ -128,9 +135,9 @@ async function start() {
             members.forEach(member => {
                 let newChat;
                 if (members.length === 2 && member !== creator) {
-                    newChat = new chatModel({title: creatorObj[0].name, members, owner: member, messages: [], sharedId});
+                    newChat = new chatModel({title: type === chatTypes.dialog ? creatorObj[0].name : title, members, owner: member, messages: [], sharedId, type, creator});
                 } else {
-                    newChat = new chatModel({title, members, owner: member, messages: [], sharedId});
+                    newChat = new chatModel({title, members, owner: member, messages: [], sharedId, type, creator});
                 }
                 newChat.save();
                 if (creator === member) {
@@ -156,7 +163,11 @@ async function start() {
                     res.status(400).json({error: 'Не удалось удалить чат'});
                     return;
                 }
-                res.json(doc);
+                if (!doc){
+                    res.status(400).json({message: 'чат не существует'});
+                    return;
+                }
+                res.status(200).json(doc);
             });
             broadCast(wsTypes.CHATS, null, (client) => client.userId === ownerid);
         } catch (e) {
@@ -173,7 +184,18 @@ async function start() {
                 res.status(400).json({message: 'Не передан текст сообщения (text) или имя автора (author)'});
                 return;
             }
-            const message = new messageModel({text: text || ' ', dateSend, author, authorName, content, isForward, type: type || statuses.messageTypes.TEXT, forwardMessages: forwardMessages || []});
+            const message = new messageModel(
+                {
+                    text: text || ' ',
+                    dateSend,
+                    author,
+                    authorName,
+                    content,
+                    isForward,
+                    type: type || statuses.messageTypes.TEXT,
+                    forwardMessages: forwardMessages || [],
+                    whoRead: [author]
+                });
             await message.save();
             const sharedChats = await chatModel.find({sharedId: sharedid});
             for (const chat of sharedChats) {
@@ -193,7 +215,7 @@ async function start() {
     app.post('/chats/shared/message/updateStatus/', async (req, res) => {
         try {
             const user = req.user;
-            const {sharedId, isRead} = req.body;
+            const {sharedId, isRead} = req.body;//оставим isread вместо whoread для совместимости
             if(!sharedId){
                 res.status(400).json({message: 'Не передан статус'});
                 return;
@@ -202,8 +224,8 @@ async function start() {
             const messagesIds = Array.from(new Set(sharedChats.map(ch => ch.messages).flat()));
             const messages = await messageModel.find({_id: {$in: messagesIds}});
             for (const mes of messages) {
-                if (mes.author !== user._id && mes.isRead !== isRead){
-                    mes.isRead = isRead;
+                if (mes.author !== user._id && isRead && !mes.whoRead.includes(user._id)){
+                    mes.whoRead = [...mes.whoRead, user._id];
                     await mes.save();
                 }
             }
@@ -403,6 +425,32 @@ async function start() {
             res.status(400).json({message: 'Ошибка при обновлении данных'});
         }
     });
+    app.post('/update/chat/', async (req, res) => {
+        const {newParams, sharedChatId} = req.body;
+        try {
+            if(!sharedChatId || ! newParams){
+                res.status(400).json({error: 'Некорректные данные'});
+                return;
+            }
+            const chats = await chatModel.find({sharedId: sharedChatId});
+            Object.keys(newParams).forEach(key => {
+                chats.forEach(ch => {
+                    ch[key] = newParams[key];
+                });
+            });
+            for (let ch of chats){
+                await ch.save();
+            }
+            const allMembers = Array.from(new Set(chats.map(x => x.members).flat()));
+
+
+            broadCast(wsTypes.CHATS, null, (client) => allMembers.find(x => x.equals(client.userId)));
+            res.status(200).json(chats.find(ch => ch.owner = req.user._id));
+        } catch (e) {
+            res.status(400).json({message: 'Ошибка при обновлении данных'});
+        }
+    });
+
     const genders = ['Мужской', 'Женский'];
     const familyStatuses = ['Женат(Замужем)','Свободен(а)'];
     app.post('/register', async (req, res) => {

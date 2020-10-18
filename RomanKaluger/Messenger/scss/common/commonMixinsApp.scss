@@ -43,8 +43,10 @@
 @mixin button-click {
   &:hover{
     transform: scale(1.1);
+    transition-duration: 0.5s;
   }
   &:active{
     transform: scale(0.9);
+    transition-duration: 0s;
   }
 }

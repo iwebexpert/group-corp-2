@@ -2,7 +2,7 @@ const {Schema, model} = require ('mongoose');
 const {messageTypes} = require('./../config/statuses');
 const messageSchema = new Schema({
     text: {type: String, required: true},
-    isRead: {type: Boolean, required: true, default: false},
+    whoRead: [{type: Schema.Types.ObjectId, ref: 'User', required: true}],
     dateSend: {type: Number, required: true},
     dateDelivered: {type: Number},
     dateRead: {type: Number},

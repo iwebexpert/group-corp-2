@@ -4,11 +4,13 @@ import {DbWorker} from "../../../utils/DbWorker";
 import {useDispatch, useSelector} from "react-redux";
 import ActionsPanel from "./ActionsPanel";
 import './MessagesArea.scss';
+import {ConversationManager} from "../Conversation/ConversationManager";
 
 export default ({setPendingMessages, pendingMessages}) => {
     const [selectMessagesMode, setSelectMessagesMode] = useState(false);
     const [selectedMessages, setSelectedMessages] = useState([]);
     const {chats, curUser, selectedChat} = useSelector(x => x.app);
+    const {conversationManagerOpen} = useSelector(x => x.system);
     const dispatch = useDispatch();
     const mesAreaRef = useRef();
     const curChat = chats.find(x => x._id === selectedChat);
@@ -21,7 +23,7 @@ export default ({setPendingMessages, pendingMessages}) => {
     }, [curChat, pendingMessages]);
     useEffect(() => {
         setPendingMessages([]);
-        if (curChat && curChat.activeMessages.find(m => m.author !== curUser._id && !m.isRead)){
+        if (curChat && curChat.activeMessages.find(m => m.author !== curUser._id && !m.whoRead.includes(curUser._id))){
             DbWorker.tickMessagesAsRead(curChat);
         }
     }, [curChat]);
@@ -29,6 +31,11 @@ export default ({setPendingMessages, pendingMessages}) => {
     const messages = (curChat && curChat.activeMessages ? curChat.activeMessages : []).concat(pendingMessages);
     return (
         <>
+            {
+                conversationManagerOpen
+                    ? <ConversationManager chat={curChat}/>
+                    : null
+            }
             <div ref={mesAreaRef} className={'MessagesArea'}>
                 <div className={'MessagesContainer'}>
                     {messages.length

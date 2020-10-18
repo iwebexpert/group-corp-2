@@ -9,6 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setSelectedChat} from "../../../redux/actions";
 import {getUserNote} from "../../../utils/helpers";
 import {push} from 'connected-react-router';
+import {avatarSizeCls} from "../../../configs/statuses";
+import {AvatarUser} from "../../common/Avatar";
 
 export default function ({user, type, clearInput}) {
     const startChatRef = useRef();
@@ -53,9 +55,7 @@ export default function ({user, type, clearInput}) {
             <ListItem id={user._id} className={'chatSelector'}>
                 <Grid spacing={1} container alignItems='center' justify='space-between'>
                     <Grid item container xs={4} justify={'space-around'} direction={'column'} alignItems={'center'}>
-                        <div className={'avatarBig'}>
-                            {user.avatarUrl ? <img src={user.avatarUrl}/> : user.name.slice(0,2)}
-                        </div>
+                        <AvatarUser user={user} classType={avatarSizeCls.big}/>
                     </Grid>
                     <Grid container item p={3} xs={8} justify={'space-between'} direction={'column'} alignItems={'center'}>
                         <div className={'chatSelectorTitle'}>

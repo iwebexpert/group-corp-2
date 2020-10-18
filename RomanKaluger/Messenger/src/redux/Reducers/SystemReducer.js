@@ -1,21 +1,28 @@
-import types from "../actionTypes";
+import {handleActions} from "redux-actions";
+import {
+    openConversationManager,
+    openCreateConversation,
+    setAboutPageOpen, setCommonViewImages, setContactsLoading, setError, setForwardMessage, setLoading,
+} from "../actions";
 
-const initialState={
+const initialState = {
     forwardMessage: null,
     loading: false,
     error: null,
     contactsLoading: false,
     commonViewImages: null,
     aboutPageOpen: false,
+    createConversationOpen: false,
+    conversationManagerOpen: false
 };
-export const SystemReducer = (state = initialState, action)=>{
-    switch (action.type) {
-        case types.SET_FORWARD_MESSAGE: return {...state, forwardMessage: action.payload};
-        case types.LOADING: return {...state, loading: action.payload};
-        case types.ERROR: return {...state, error: action.payload};
-        case types.CONTACTS_LOADING: return {...state, contactsLoading: action.payload};
-        case types.SET_COMMON_VIEW_IMAGES: return {...state, commonViewImages: action.payload};
-        case types.SET_ABOUT_PAGE_OPEN: return {...state, aboutPageOpen: action.payload};
-        default: return state;
-    }
-};
+export const SystemReducer = handleActions({
+    [setForwardMessage]: (state, action) => ({...state, forwardMessage: action.payload}),
+    [setLoading]: (state, action) => ({...state, loading: action.payload}),
+    [setError]: (state, action) => ({...state, error: action.payload}),
+    [setContactsLoading]: (state, action) => ({...state, contactsLoading: action.payload}),
+    [setCommonViewImages]: (state, action) => ({...state, commonViewImages: action.payload}),
+    [setAboutPageOpen]: (state, action) => ({...state, aboutPageOpen: action.payload}),
+    [openCreateConversation]: (state, action) => ({...state, createConversationOpen: action.payload}),
+    [openConversationManager]: (state, action) => ({...state, conversationManagerOpen: action.payload}),
+}, initialState);
+

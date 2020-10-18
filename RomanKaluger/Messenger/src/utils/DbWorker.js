@@ -3,7 +3,7 @@ import {openUserProfile, setChats, setCurrentUser} from "../redux/actions";
 import swal from "sweetalert";
 import {store} from "../redux/StorageRedux";
 import uniqid from 'uniqid';
-import {messageTypes} from "../configs/statuses";
+import {chatTypes, messageTypes, systemMessages} from "../configs/statuses";
 
 export class DbWorker {
     static dispatch = store.dispatch;
@@ -83,25 +83,39 @@ export class DbWorker {
                 content: x.content,
                 forwardMessages: x.forwardMessages || [],
                 isForward: true,
-                _id: uniqid()
+                _id: uniqid(),
+                whoRead: [curUser._id]
             }))
             : null;
         return {
             text,
             dateSend: Date.now(),
             author: curUser._id,
-            authorName: curUser.name,
+            authorName:  Object.values(systemMessages).includes(messageType)? '?' :curUser.name ,
             type:messageType,
             content,
             forwardMessages,
-            isForward: false
+            isForward: false,
+            whoRead: [curUser._id]
         };
     };
     static sendMessage = async (text, forwardMessageRaw = null, {messageType, content}) => {
-        const { selectedChat, chats } = store.getState().app;
+        const { selectedChat, chats,curUser } = store.getState().app;
         const selChatObj = chats.find(x => x._id === selectedChat);
-        const message = DbWorker.createMessage(text,forwardMessageRaw, {messageType, content});
+        const message = selChatObj.members.includes(curUser._id)
+        ? DbWorker.createMessage(text,forwardMessageRaw, {messageType, content})
+        : DbWorker.createMessage('Вы были исключены из этой беседы, ваши сообщения никто не увидит',null, {messageType: messageTypes.SYSTEM_TEXT_PRIVATE, content: null});
         return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/${selChatObj.sharedId}/message`, message);
+    };
+    static createConversation = async ({members, title}) => {
+        const {curUser} = store.getState().app;
+        const newChat = {
+            title,
+            members: [...members, curUser._id],
+            creator: curUser._id,
+            type: chatTypes.conversation
+        };
+        return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats`, newChat);
     };
     static createChat = async (user) => {
         const {curUser} = store.getState().app;
@@ -109,6 +123,7 @@ export class DbWorker {
             title: user.name,
             members: [user._id, curUser._id],
             creator: curUser._id,
+            type: chatTypes.dialog
         };
         return await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats`, newChat);
     };
@@ -242,5 +257,17 @@ export class DbWorker {
             return null;
         }
     };
-
+    static getUserIdRange = async (stringRange) => {
+        const curUser = store.getState().app.curUser;
+        const res = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/idrange/${stringRange}`, curUser);
+        return await res.json();
+    };
+    static pushChatData = async ({sharedChatId, newParams}) => {
+        const body = {sharedChatId, newParams};
+        const res = await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/update/chat/`, body, true);
+        if (res) {
+            swal("Успешно", 'Данные обновлены', "success");
+        }
+        return res;
+    };
 }

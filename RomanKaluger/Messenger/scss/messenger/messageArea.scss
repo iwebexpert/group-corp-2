@@ -51,9 +51,10 @@
         @include center-content;
         @include text-standard(30px);
         @include --border('bottom', $primary, false);
+        flex-direction: row;
+        justify-content: space-between;
         height: 5vh;
         width: 50%;
-
         &:hover {
           background-color: $primary2;
           color: $deepDark;
@@ -116,7 +117,11 @@
       height: 5vh;
       background-color: $bgPrimaryLight;
       flex-direction: row;
-
+      .button{
+        height: 4vh;
+        margin-right: 70px;
+        margin-left: 30px;
+      }
       .chatTitleTopPn {
         @include --padding;
         color: $primary;

@@ -9,7 +9,11 @@
   max-height: 70vh;
   background-color: transparentize($light, 0.6);
 }
-
+.selectDialogPanelSelectorsCont{
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 72.5vh;
+}
 .ChatsSectionDlgPn {
   @include --padding;
   @include --border(top bottom, $primary, false);
@@ -38,6 +42,7 @@
   }
 
   .chatSelector {
+    user-select: none;
     &Selected {
       @include --border(bottom top, $primary, false);
       background-color: transparentize($primary, 0.5) !important;

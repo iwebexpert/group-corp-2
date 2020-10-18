@@ -1,124 +1,32 @@
-import types from "./actionTypes";
+import {createAction} from "redux-actions";
+export const changeWsStatus = createAction('UPDATE_WS_CONNECTION_STATUS');
+export const setCurrentUser = createAction('SET_CURRENT_USER');
+export const openUserProfile = createAction('OPENED_USER_PROFILE');
+export const setSelectedChat = createAction('SET_SELECTED_CHAT');
+export const setChats = createAction('SET_CHATS');
+export const setForwardMessage = createAction('SET_FORWARD_MESSAGE');
+export const setContacts = createAction('SET_CONTACTS');
+export const setCommonViewImages = createAction('SET_COMMON_VIEW_IMAGES');
+export const sendMessage = createAction('SEND_MESSAGE');
+export const setLoading = createAction('LOADING');
+export const setContactsLoading = createAction('CONTACTS_LOADING');
+export const setError = createAction('ERROR');
+export const loadChats = createAction('LOAD_CHATS');
+export const loadChatMessages = createAction('LOAD_CHAT_MESSAGES');
+export const loadContacts = createAction('LOAD_CONTACTS');
+export const auth = createAction('AUTH');
+export const register = createAction('REGISTER');
+export const updateUser = createAction('UPDATE_USER');
+export const deleteChat = createAction('DELETE_CHAT');
+export const setAboutPageOpen = createAction('SET_ABOUT_PAGE_OPEN');
+export const locationChanged = createAction('@@router/LOCATION_CHANGE');
+export const openCreateConversation = createAction('OPEN_CREATE_CONVERSATION');
+export const createConversation = createAction('CREATE_CONVERSATION');
+export const openConversationManager = createAction('OPEN_CONVERSATION_MANAGER');
+export const changeChatData = createAction('CHANGE_CHAT_DATA');
 
-export function changeWsStatus(payload) {
-    return {
-        type: types.UPDATE_WS_CONNECTION_STATUS,
-        payload: payload
-    }
-}
-export function setCurrentUser(payload) {
-    return {
-        type: types.SET_CURRENT_USER,
-        payload: payload
-    }
-}
-export function openUserProfile(payload) {
-    return {
-        type: types.OPENED_USER_PROFILE,
-        payload: payload
-    }
-}
-export function setSelectedChat(payload) {
-    return {
-        type: types.SET_SELECTED_CHAT,
-        payload: payload
-    }
-}
-export function setChats(payload) {
-    return {
-        type: types.SET_CHATS,
-        payload: payload
-    }
-}
-export function setForwardMessage(payload) {
-    return {
-        type: types.SET_FORWARD_MESSAGE,
-        payload: payload
-    }
-}
-export function setContacts(payload) {
-    return {
-        type: types.SET_CONTACTS,
-        payload: payload
-    }
-}
-export function setCommonViewImages(payload) {
-    return {
-        type: types.SET_COMMON_VIEW_IMAGES,
-        payload: payload
-    }
-}
-export function sendMessage(payload) {
-    return {
-        type: types.SEND_MESSAGE,
-        payload: payload
-    }
-}
-export function setLoading(payload) {
-    return {
-        type: types.LOADING,
-        payload: payload
-    }
-}
-export function setContactsLoading(payload) {
-    return {
-        type: types.CONTACTS_LOADING,
-        payload: payload
-    }
-}
 
-export function setError(payload) {
-    return {
-        type: types.ERROR,
-        payload: payload
-    }
-}
-export function loadChats(payload) {
-    return {
-        type: types.LOAD_CHATS,
-    }
-}
-export function loadChatMessages(payload) {
-    return {
-        type: types.LOAD_CHAT_MESSAGES,
-        payload: payload
-    }
-}
-export function loadContacts(payload) {
-    return {
-        type: types.LOAD_CONTACTS,
-        payload: payload
-    }
-}
-export function auth(payload) {
-    return {
-        type: types.AUTH,
-        payload: payload
-    }
-}
-export function register(payload) {
-    return {
-        type: types.REGISTER,
-        payload: payload
-    }
-}
-export function updateUser(payload) {
-    return {
-        type: types.UPDATE_USER,
-        payload: payload
-    }
-}
-export function deleteChat(payload) {
-    return {
-        type: types.DELETE_CHAT,
-        payload: payload
-    }
-}
-export function setAboutPageOpen(payload) {
-    return {
-        type: types.SET_ABOUT_PAGE_OPEN,
-        payload: payload
-    }
-}
+
+
 
 

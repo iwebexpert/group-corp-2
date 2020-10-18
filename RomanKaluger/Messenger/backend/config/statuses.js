@@ -8,6 +8,13 @@ module.exports={
     messageTypes: {
         TEXT: 'TEXT',
         AUDIO:'AUDIO',
-        IMAGE:'IMAGE'
+        IMAGE:'IMAGE',
+        SYSTEM_TEXT_PUBLIC: 'SYSTEM_TEXT_PUBLIC',
+        SYSTEM_TEXT_PRIVATE: 'SYSTEM_TEXT_PRIVATE',
+        SYSTEM_TEXT_INNER: 'SYSTEM_TEXT_INNER'
+    },
+    chatTypes: {
+        dialog : 'DIALOG',
+        conversation: 'CONVERSATION'
     }
 };

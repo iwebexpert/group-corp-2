@@ -1,10 +1,10 @@
-import actionTypes from "../actionTypes";
 import connectionConfig from "../../configs/connectionConfig";
 import {DbWorker} from "../../utils/DbWorker";
+import {sendMessage} from "../actions";
 
 const petyaTimeOut = {};
 export const botMiddleware = store => next => action => {
-    if(action.type === actionTypes.SEND_MESSAGE){
+    if(action.type === sendMessage().type){
         const {msg} = action.payload;
         const {chats, selectedChat, curUser} = store.getState().app;
         const chat = chats.find(ch => ch._id === selectedChat);

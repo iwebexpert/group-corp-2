@@ -1,0 +1,88 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "Текстовый чат"
+    },
+    {
+      "id": 1,
+      "title": "Рабочий чат"
+    },
+    {
+      "title": "New Chat",
+      "id": 2
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "Лёпа",
+      "text": "Привет!",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "Лёпа",
+      "text": "Новое сообщение",
+      "chatId": 0
+    },
+    {
+      "id": 2,
+      "author": "Лёпа",
+      "text": "Как дела?",
+      "chatId": 1
+    },
+    {
+      "author": "Лёпа",
+      "text": "Первое сообщение!",
+      "id": "lhuZKnZJDAbChgkJ3MkU-",
+      "chatId": 2
+    },
+    {
+      "author": "Лёпа",
+      "text": "Тестовое сообщение",
+      "id": "5_CYv9k74YVFtN5mAt_Jc",
+      "chatId": 2
+    },
+    {
+      "id": "A0zdNfj26EZkbQCmTrLcO",
+      "chatId": 2,
+      "text": "Лёпа, повтори, пожалуйста.",
+      "author": "Bot"
+    },
+    {
+      "author": "Лёпа",
+      "text": "Тест",
+      "id": "jdVFMKAmkWBlKNjEbFguK",
+      "chatId": 2
+    },
+    {
+      "id": "CrehnEd7flF6o4445Zus4",
+      "chatId": 2,
+      "text": "Лёпа, пока!",
+      "author": "Bot"
+    },
+    {
+      "author": "Лёпа",
+      "text": "Пока, бот!",
+      "id": "gIsoevuSaXgKHCtxRM1W-",
+      "chatId": 2
+    },
+    {
+      "id": "grHZsY1imkf6drtykbuHT",
+      "chatId": 2,
+      "text": "Привет, Лёпа, чем я могу тебе помочь?",
+      "author": "Bot"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "Леопольд Пермяков",
+      "age": 12,
+      "nickname": "Лёпа",
+      "tel": "+7-(989)-989-989-989",
+      "lastVisit": "Recently"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+.header {
+    height: 12vh;
+    background-color: #e6ee9c;
+}
+
+.home-img {
+    display: block;
+    margin-top: -2vh;
+    height: 10vh;
+}
+
+.header-text {
+    display: block;
+    padding-top: 2%;
+    color: #00affe;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bolder;
+    letter-spacing: 10px;
+}
+
+.header > .MuiList-root.MuiList-padding {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.MuiListItem-root.MuiListItem-gutters {
+    width: auto;
+}
+
+.nav-link, .about{
+    text-decoration: none;
+    color: #303f9f;
+    font-size: 20px;
+}
+
+.flex-link {
+    display: flex;
+    color: #00affe;
+}
+
+.avatar-small {
+    margin-top: -7px;
+    margin-left: 15px;  
+}
+
+.about:hover {
+    text-decoration: underline green;
+}

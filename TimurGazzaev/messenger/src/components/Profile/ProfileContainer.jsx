@@ -1,22 +1,16 @@
 import React, {useEffect} from 'react'
-import {connect} from "react-redux"
+import {useSelector, useDispatch} from 'react-redux'
 import {Profile} from "./Profile"
-import {profilesLoadAction} from "../../actions/profile";
+import {profilesLoadAction} from '../../actions/profile'
 
-export const ProfileContainer = ({data, profilesLoadAction, isLoading}) => {
+export const ProfileContainer = () => {
+    const dispatch = useDispatch()
+    const data = useSelector((state) => state.profile.profiles[0])
+    const isLoading = useSelector((state) => state.profile.loading)
 
     useEffect(() => {
-        profilesLoadAction()
+        dispatch(profilesLoadAction())
     }, [])
 
     return <Profile data={data} isLoading={isLoading}/>
 }
-
-function mapStateToProps(state){
-    return {
-        data: state.profile.profiles[0],
-        isLoading: state.profile.loading
-    }
-}
-
-export default connect(mapStateToProps, {profilesLoadAction})(ProfileContainer)

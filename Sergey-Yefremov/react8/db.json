@@ -1,0 +1,26 @@
+{
+  "chats": [
+    { "id": 0, "title": "Test Chat 1", "fire": false },
+    { "id": 1, "title": "Family", "fire": false },
+    { "id": 2, "title": "Test42", "fire": false }
+  ],
+
+  "messages": [
+    { "id": 0, "author": "User", "text": "Hi!", "chatId": 0 },
+    { "id": 1, "author": "Admin", "text": "Hey!", "chatId": 0 },
+    { "id": 2, "author": "Admin", "text": "Test message", "chatId": 1 },
+    { "id": 3, "author": "Serg", "text": "What's up?", "chatId": 1 },
+    { "id": 4, "author": "User", "text": "Fine!", "chatId": 1 },
+    { "id": 5, "author": "User", "text": "Something new?", "chatId": 2 }
+  ],
+
+  "profile": [
+    {
+      "id": 0,
+      "name": "Serg",
+      "age": 19,
+      "town": "Moscow",
+      "email": "test@gmail.com"
+    }
+  ]
+}

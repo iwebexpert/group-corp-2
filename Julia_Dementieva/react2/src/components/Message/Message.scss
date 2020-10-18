@@ -1,0 +1,20 @@
+.message {
+    background-color: white;
+    padding-right: 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    margin: 3px;
+
+    &-author {
+        color: blueviolet;
+        font-size: 14px;
+    }
+
+    &-bot {
+        align-self: flex-start;
+    }
+
+    &-sender {
+        align-self: flex-end;
+    }
+}

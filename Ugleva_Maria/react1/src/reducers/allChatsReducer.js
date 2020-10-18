@@ -31,15 +31,14 @@ const allChatsReducer = (state = initialState, action) => {
 
 		case 'CHATS_LOAD_SUCCESS':
 			const newObj = {};
-			console.log('payload', action.payload)
-			action.payload.forEach(element => {
-				newObj[element.id] = element
+			console.log('payload', action.payload);
+			action.payload.forEach((element) => {
+				newObj[element.id] = element;
 			});
-			console.log('new', newObj)
 			return {
 				...state,
 				loading: false,
-				entries: newObj
+				entries: newObj,
 			};
 
 		case 'CHATS_LOAD_FAILURE':
@@ -66,14 +65,19 @@ const allChatsReducer = (state = initialState, action) => {
 			return update(state, {
 				entries: {
 					[action.chatId]: {
-					highlight:{$set: action.highlight} 
-				}						
-				
-			}})
+						highlight: { $set: action.highlight },
+					},
+				},
+			});
+		case 'DELETE_CHAT':
+			const newState = {...state};
+			delete newState.entries[action.chatId]
+			return {
+				...newState
+			}
 		default:
 			return state;
 	}
 };
-
 
 export default allChatsReducer;

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Message from '../Message';
 import { withStyles } from '@material-ui/core';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setActiveChat } from '../../actions/changeActiveChat';
 import MessageField from '../MessageField';
+import { useParams } from 'react-router-dom';
 
 const styles = {
 	messagesList: {
@@ -34,16 +35,30 @@ const styles = {
 	},
 };
 
-const MessagesList = (props) => {
-	let { classes, chatId, setActiveChat } = props;
+const MessagesList = ({classes}) => {
+	const dispatch = useDispatch();
+	let { id } = useParams();
+	let chatId = id.toString();
+	let chatToRender = useSelector((state) => {
+		let chats = [];
+		for (let key in state.allChats.entries) {
+			chats.push(state.allChats.entries[key]);
+		}
+		const chat =
+			chats.length &&
+			chats.find((item) => {
+				return chatId === item.id;
+			});
+		return chat;
+	});
 	useEffect(() => {
-		setActiveChat(chatId);
+		dispatch(setActiveChat(chatId))
 	}, [chatId]);
-	if (props.chatToRender) {
+	if (chatToRender) {
 		return (
 			<>
 				<div className={classes.messagesList}>
-					{props.chatToRender.messages.map((item) => {
+					{chatToRender.messages.map((item) => {
 						return (
 							<Message
 								backCol={classes.messagesContent}
@@ -61,25 +76,5 @@ const MessagesList = (props) => {
 	}
 	return null;
 };
-const mapStateToProps = (state, ownProps) => {
-	let chats = [];
-	for (let key in state.allChats.entries) {
-		chats.push(state.allChats.entries[key]);
-	}
-	const id = ownProps.match.params.id;
-	const chat =
-		chats.length &&
-		chats.find((item) => {
-			return id === item.id;
-		});
-	return {
-		chatToRender: chat,
-		chatId: id.toString(),
-	};
-};
-const mapDispatchToPtops = (dispatch) => {
-	return {
-		setActiveChat: (id) => dispatch(setActiveChat(id)),
-	};
-};
-export default connect(mapStateToProps, mapDispatchToPtops)(withStyles(styles)(MessagesList));
+
+export default withStyles(styles)(MessagesList);

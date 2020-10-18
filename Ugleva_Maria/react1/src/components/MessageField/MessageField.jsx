@@ -1,70 +1,63 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { TextField, Fab } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import "./MessageField.scss";
 import { nanoid } from "nanoid";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchMesToChat } from '../../actions/chatsAction';
 
-class MessageField extends Component {
-  state = {
+const  MessageField = () => {
+  const dispatch = useDispatch();
+  const [dataField, setdataField] = useState({
     text: "",
     author: "",
     id: nanoid(),
+  });
+  const chatId = useSelector((state) => state.activeChat);
+  
+  const handleChange = (e) => {
+    setdataField({
+      ...dataField,
+      [e.target.name]: e.target.value });
   };
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  handleSend = (e) => {
+  const handleSend = (e) => {
     e.preventDefault();
-    if (!(this.state.text && this.state.author)) {
+    if (!(dataField.text && dataField.author)) {
       alert("Заполните все поля");
       return;
     };
-    this.props.fetchMesToChat(this.state, this.props.chatId);
-
-    this.setState({ text: "", author: "", id: nanoid() });
+    dispatch(fetchMesToChat(dataField, chatId));
+    setdataField({ text: "", author: "", id: nanoid() });
   };
-  handleEnter = (e) => {
+  const handleEnter = (e) => {
     if (e.keyCode === 13) {
-      this.handleSend(e);
+      handleSend(e);
     }
   };
-  render() {
     return (
       <>
-        <form className="fields-inputs" onKeyDown={this.handleEnter}>
+        <form className="fields-inputs" onKeyDown={handleEnter}>
           <TextField
             label="Автор"
             name="author"
-            value={this.state.author}
+            value={dataField.author}
             type="text"
-            onChange={this.handleChange}
+            onChange={handleChange}
           />
           <TextField
             id="standard-basic"
             label="Введите сообщение"
             name="text"
-            value={this.state.text}
-            onChange={this.handleChange}
+            value={dataField.text}
+            onChange={handleChange}
             multiline
           />
-          <Fab variant="round" color="primary" onClick={this.handleSend}>
+          <Fab variant="round" color="primary" onClick={handleSend}>
             <Send />
           </Fab>
         </form>
       </>
     );
-  }
 }
-const mapStateToProps = (state) => {
-  return {
-    chatId: state.activeChat,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchMesToChat: (message, id) => dispatch(fetchMesToChat(message, id)),
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
+
+export default MessageField;

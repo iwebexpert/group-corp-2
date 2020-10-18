@@ -11,42 +11,38 @@ import { Link } from "react-router-dom";
 
 import "./ChatItem.css";
 
-export class ChatItem extends Component {
-  chatClickHandler = () => {
-    const { onClick, id } = this.props;
+export const ChatItem = ({ avatar, title, id, fire, onClick }) => {
+  const chatClickHandler = () => {
     if (typeof onClick === "function") {
       onClick(id);
     }
   };
 
-  render() {
-    const { avatar, author, id, fire, title } = this.props;
-    return (
-      <div>
-        <Link
-          to={`/chats/${id}`}
-          style={{
-            textDecoration: "none",
-            color: "white",
-          }}
+  return (
+    <div>
+      <Link
+        to={`/chats/${id}`}
+        style={{
+          textDecoration: "none",
+          color: "white",
+        }}
+      >
+        <ListItem
+          alignItems="center"
+          className={classNames({ fire: fire })}
+          key={id}
+          onClick={chatClickHandler}
         >
-          <ListItem
-            alignItems="center"
-            className={classNames({ fire: fire })}
-            key={id}
-            onClick={this.chatClickHandler}
-          >
-            <ListItemAvatar>
-              <Avatar src={avatar} />
-            </ListItemAvatar>
-            <ListItemText
-              primary={title}
-              style={{ fontFamily: "Courier Prime" }}
-            />
-          </ListItem>
-        </Link>
-        <Divider variant="inset" component="li" />
-      </div>
-    );
-  }
-}
+          <ListItemAvatar>
+            <Avatar src={avatar} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={title}
+            style={{ fontFamily: "Courier Prime" }}
+          />
+        </ListItem>
+      </Link>
+      <Divider variant="inset" component="li" />
+    </div>
+  );
+};

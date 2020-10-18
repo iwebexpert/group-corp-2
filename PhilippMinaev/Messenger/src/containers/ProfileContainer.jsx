@@ -1,23 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Profile } from "../pages/Profile";
+import { profileLoadAction } from "../actions/profile";
 
-import { mapStateToProps } from "../mapForConnect/mapStateToProps";
-import { mapDispatchToProps } from "../mapForConnect/mapDispatchToProps";
+export const ProfileContainer = (props) => {
+  const dispatch = useDispatch();
+  const [infoProfile, loadStatus] = useSelector((state) => {
+    console.log(state);
+    return [state.profile.entries, state.profile.loadStatus];
+  });
 
-class ProfileContainerClass extends React.Component {
-  componentDidMount() {
-    console.log(this.props);
-    this.props.profileLoadAction();
-  }
+  useEffect(() => {
+    if (!infoProfile) dispatch(profileLoadAction());
+  });
 
-  render() {
-    return <Profile {...this.props} />;
-  }
-}
-
-export const ProfileContainer = connect(
-  mapStateToProps("ProfileContainer"),
-  mapDispatchToProps("ProfileContainer")
-)(ProfileContainerClass);
+  return <Profile infoProfile={infoProfile} loadStatus={loadStatus} />;
+};

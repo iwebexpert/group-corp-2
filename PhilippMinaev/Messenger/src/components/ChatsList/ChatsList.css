@@ -9,7 +9,9 @@
 }
 .chats {
   height: 100%;
+  width: 100%;
   background-color: rgb(43, 43, 43);
+  margin-right: 16px;
 }
 .add {
   color: red;

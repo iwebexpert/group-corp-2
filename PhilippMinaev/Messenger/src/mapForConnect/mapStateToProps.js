@@ -49,6 +49,7 @@ export const mapStateToProps = (component) => {
         const chats = state.chats.entries;
         const { loadStatus } = state.chats;
         const { match } = ownProps;
+        console.log(state);
         const { loading, entries } = state.profile;
 
         let messages,
@@ -88,32 +89,6 @@ export const mapStateToProps = (component) => {
               loadStatus,
             };
         }
-
-        // let nameProfile = loading ? entries.name : null;
-
-        // let nameRobot = state.robot.loading
-        //   ? state.robot.entries.nameRobot
-        //   : null;
-        // let answerRobot = state.robot.loading
-        //   ? state.robot.entries.answerRobot
-        //   : null;
-
-        // if (match && chats[match.params.id]) {
-        //   messages = chats[match.params.id].messages;
-        //   title = chats[match.params.id].title;
-        //   avatarChat = chats[match.params.id].avatar;
-        // }
-
-        // return {
-        //   messages,
-        //   chatId: match ? match.params.id : null,
-        //   title,
-        //   avatarChat,
-        //   nameProfile,
-        //   nameRobot,
-        //   answerRobot,
-        //   loadStatus,
-        // };
       };
     }
 

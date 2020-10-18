@@ -1,5 +1,8 @@
 @import "./../../../../scss/common/globalVariables";
 @import "./../../../../scss/common/commonMixinsApp";
+.userProfileContainer{
+  position: relative;
+}
 .PreferencesWindowCard{
   @include center-content;
   .profileCardInfo{
@@ -68,4 +71,7 @@
     flex-wrap: nowrap!important;
     flex-direction: row!important;
   }
+}
+#UserProfile{
+  z-index: 10!important;
 }

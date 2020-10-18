@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {DbWorker} from "../../../utils/DbWorker";
 import Fab from '@material-ui/core/Fab'
 import SendIcon from '@material-ui/icons/Send';
-import {messageTypes, wsStatuses} from "../../../configs/statuses";
+import {avatarSizeCls, messageTypes, wsStatuses} from "../../../configs/statuses";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import {
     openUserProfile,
@@ -25,6 +25,7 @@ import swal from "sweetalert";
 import {AttachFileNotification} from "./AttachFilesNotification";
 import CreateIcon from '@material-ui/icons/Create';
 import {HandTextPanel} from "./HandTextPanel";
+import {AvatarUser} from "../../common/Avatar";
 
 export default ({setPendingMessages, pendingMessages}) => {
     const [mes, setMes] = useState('');
@@ -90,8 +91,6 @@ export default ({setPendingMessages, pendingMessages}) => {
             sendMessageHandler(mes);
         }
     }, [sendMessageHandler, mes]);
-    const avatarContent = curUser ? (curUser.avatarUrl ?
-        <img src={curUser.avatarUrl} alt={'Аватар'}/> : curUser.name.slice(0, 2)) : null;
     const onPasteHandler = useCallback(async (e) => {
         if (!e.clipboardData || !e.clipboardData.items) {
             return;
@@ -111,7 +110,7 @@ export default ({setPendingMessages, pendingMessages}) => {
             <HandTextPanel handText={handText} setHandText={setHandText} setAttachedImage={setAttachedImage}/>
 
             <div className={'InputMessageArea'}>
-                <div onClick={() => dispatch(openUserProfile(curUser))} className="avatarBig">{avatarContent}</div>
+                <AvatarUser user={curUser} classType={avatarSizeCls.big}/>
                 <div className={classNames('inputFileMessageContainer', {disabled: !!recordedAudio})}>
                     <label htmlFor={'inputFileMessage'}>
                         <AttachFileIcon fontSize={'large'}/>

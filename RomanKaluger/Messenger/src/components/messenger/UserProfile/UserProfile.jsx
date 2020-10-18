@@ -6,6 +6,7 @@ import OtherUserProfile from "./OtherUserProfile";
 import './UserProfile.scss'
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import {openUserProfile} from "../../../redux/actions";
+import {CloseWindow} from "../../common/CloseWindow";
 
 export default function () {
     const {userProfileToShow, curUser,contacts} = useSelector(s => s.app);
@@ -22,14 +23,15 @@ export default function () {
         <>
         {
             userProfileToShow ?
-                    <Backdrop open={!!userProfileToShow}>
+                    <Backdrop id={'UserProfile'} open={!!userProfileToShow}>
                         <ClickAwayListener onClickAway={() => dispatch(openUserProfile(null))}>
-                        <div>
+                        <div className={'userProfileContainer'}>
                             {
                                 userProfileToShow === curUser
                                     ? <MyUserProfile user={userProfileToShow}/>
                                     : <OtherUserProfile user={userProfileToShow}/>
                             }
+                            <CloseWindow actionClose={() => dispatch(openUserProfile(null))}/>
                         </div>
                         </ClickAwayListener>
                     </Backdrop>

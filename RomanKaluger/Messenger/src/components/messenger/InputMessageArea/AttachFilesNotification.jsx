@@ -1,6 +1,7 @@
 import React from "react";
 import {setCommonViewImages, setForwardMessage} from "../../../redux/actions";
 import {useDispatch} from "react-redux";
+import {CloseWindow} from "../../common/CloseWindow";
 
 export const AttachFileNotification = ({forwardMessage, recordedAudio,setRecordedAudio, setAttachedImage, attachedImage}) => {
     const dispatch = useDispatch();
@@ -45,8 +46,7 @@ export const AttachFileNotification = ({forwardMessage, recordedAudio,setRecorde
                                 </div>
                             )
                         }
-                        <img onClick={() => setAttachedImage(null)} className={'DeleteSign'} alt={'DeleteSign'}
-                             src="https://img.icons8.com/color/48/000000/delete-sign.png"/>
+                        <CloseWindow actionClose={() => setAttachedImage(null)}/>
                     </div>
                     : null
             }

@@ -11,7 +11,7 @@ export const About = () => {
         dispatch(setAboutPageOpen(false));
     };
     return(
-        <Backdrop open={aboutPageOpen}>
+        <Backdrop open={!!aboutPageOpen}>
             <div className={'AboutContainer'}>
                 <div className={'primaryHeader'}>О программе</div>
                 <span className={'secondaryHeader'}>Мессенджер Калугера Романа (MasterKufa)</span>

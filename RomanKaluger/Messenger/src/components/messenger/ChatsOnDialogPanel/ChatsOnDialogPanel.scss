@@ -1,5 +1,16 @@
+@import "./../../../../scss/common/globalVariables";
+@import "./../../../../scss/common/commonMixinsApp";
+
 .ChatsSectionDlgPn{
   .primaryText{
     margin-bottom: 10px;
   }
+}
+.lastMessagePreview{
+  @include --padding;
+  @include --border(all, transparent, true);
+  border-radius: $border;
+  background-color: transparentize($primary2, 0.8);
+  width: 100%;
+  text-align: center;
 }

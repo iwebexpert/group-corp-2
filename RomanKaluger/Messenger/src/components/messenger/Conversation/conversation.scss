@@ -1,0 +1,137 @@
+@import "./../../../../scss/common/globalVariables";
+@import "./../../../../scss/common/commonMixinsApp";
+@import "./../../common/About.scss";
+
+.createConversationContainer, .manageConversationContainer {
+  @extend .AboutContainer;
+  @include --padding;
+  .button{
+    width: 50%;
+  }
+  .MuiTextField-root {
+    color: $primary;
+    width: 80% !important;
+  }
+
+  .MuiFilledInput-underline:after {
+    border: none !important;
+  }
+
+  .MuiFilledInput-underline:before {
+    border: none !important;
+  }
+
+  .MuiFilledInput-root {
+    background-color: transparentize($light, 0.8);
+    height: 10vh !important;
+    font-size: 4vh !important;
+    text-align: center !important;
+    border-radius: $border !important;
+  }
+
+  .MuiFormControl-root {
+    border-radius: $border !important;
+  }
+
+  .MuiFilledInput-input {
+    color: $primary;
+    text-align: center !important;
+  }
+
+  .MuiFormLabel-root {
+    color: $primary2 !important;
+    text-align: center !important;
+  }
+
+  .MuiInputLabel-formControl {
+    left: 45% !important;
+  }
+
+  .MuiInputLabel {
+    color: $primary2 !important;
+
+  }
+
+  .MuiFormGroup-root {
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+  }
+
+  .controlBtnsContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .button {
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  }
+
+  .memberSelectorContainer {
+    @include --border(all, $light, true);
+    @include --padding;
+    @include center-content;
+    background-color: $bgPrimaryLight;
+    height: 70%;
+    width: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .secondaryHeader {
+      margin-bottom: auto;
+    }
+  }
+  .chatSelector {
+    @include center-content;
+    @include --padding;
+    flex-direction: row;
+    min-height: 15vh !important;
+    background-color: transparentize($bgPrimary, 0.5) !important;
+    width: 100%;
+    margin-bottom: auto;
+    user-select: none;
+    position: relative;
+    &:hover {
+      background-color: transparentize($primary2, 0.5) !important;
+    }
+    &Selected:hover {
+      background-color: transparentize($primary, 0.5) !important;
+    }
+    &Selected {
+      background-color: transparentize($primary, 0.5) !important;
+    }
+    .button{
+      right: 10px;
+      position: absolute;
+      width: 15vw;
+    }
+    .NoteContainer{
+      right: 10px;
+      width: 15vw;
+      position: absolute;
+      @include center-content;
+    }
+    .groupInfoChatSelector{
+      @include center-content;
+    }
+    .chatSelectorTitle{
+      text-align: center;
+      color: $primary;
+      font-size: 27px;
+      font-weight: bold;
+      height: 35px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      margin-bottom: 2px;
+    }
+  }
+}
+.titleContainer{
+  @include center-content;
+  flex-direction: row;
+  justify-content: space-around;
+  .button{
+    width: 5vw;
+  }
+}

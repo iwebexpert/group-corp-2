@@ -1,8 +1,9 @@
 import {AutoRotatingCarousel} from 'material-auto-rotating-carousel';
 import { Slide } from 'material-auto-rotating-carousel';
 import {useDispatch, useSelector} from "react-redux";
-import {setCommonViewImages} from "../../redux/actions";
+import {openUserProfile, setCommonViewImages} from "../../redux/actions";
 import React from "react";
+import {CloseWindow} from "../common/CloseWindow";
 
 export const ImageCarousel = () => {
     const {commonViewImages} = useSelector(s => s.system);

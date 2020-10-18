@@ -1,32 +1,100 @@
-import {takeEvery, call, put, select} from "@redux-saga/core/effects";
-import actionTypes from "../actionTypes";
+import {takeEvery, call, put, select, delay} from "@redux-saga/core/effects";
 import {DbWorker} from "../../utils/DbWorker";
 import {
-    openUserProfile,
+    auth, deleteChat,
+    loadChatMessages,
+    loadChats, loadContacts,
+    openUserProfile, sendMessage,
     setChats,
     setContacts,
     setContactsLoading,
     setCurrentUser,
     setError,
-    setLoading
+    setLoading,
+    register,
+    updateUser, createConversation, changeChatData, setSelectedChat
 } from "../actions";
+import {changeChatTypes, messageTypes} from "../../configs/statuses";
+import {push} from "connected-react-router";
 
 export function* sagaWatcher() {
-    yield takeEvery(actionTypes.SEND_MESSAGE, sendMessage);
-    yield takeEvery(actionTypes.LOAD_CHATS, loadChats);
-    yield takeEvery(actionTypes.LOAD_CONTACTS, loadContacts);
-    yield takeEvery(actionTypes.LOAD_CHAT_MESSAGES, loadChatMessages);
-    yield takeEvery(actionTypes.AUTH, auth);
-    yield takeEvery(actionTypes.REGISTER, register);
-    yield takeEvery(actionTypes.UPDATE_USER, updateUser);
-    yield takeEvery(actionTypes.DELETE_CHAT, deleteChat);
-
+    yield takeEvery(sendMessage, sendMessageSaga);
+    yield takeEvery(loadChats, loadChatsSaga);
+    yield takeEvery(loadContacts, loadContactsSaga);
+    yield takeEvery(loadChatMessages, loadChatMessagesSaga);
+    yield takeEvery(auth, authSaga);
+    yield takeEvery(register, registerSaga);
+    yield takeEvery(updateUser, updateUserSaga);
+    yield takeEvery(deleteChat, deleteChatSaga);
+    yield takeEvery(createConversation, createConversationSaga);
+    yield takeEvery(changeChatData, changeChatDataSaga);
 }
-function* sendMessage(action) {
+
+function* changeChatDataSaga(action) {
+    try {
+        const {newParams, sharedChatId} = action.payload;
+        yield put(setLoading(true));
+        yield call(DbWorker.pushChatData, {newParams, sharedChatId});
+        yield put(setLoading(false));
+        const {curUser} = yield select(s => s.app);
+        switch (action.payload.typeChange) {
+            case changeChatTypes.deleteUser: {
+                const user = yield call(DbWorker.getUserIdRange, action.payload.signalPayload);
+                yield put(sendMessage({
+                    msg: `Пользователь ${curUser.name} исключил из беседы ${user[0].name}, теперь его сообщения не будут сюда приходить, а он не будет их получать`,
+                    forwardMessage: null,
+                    type: messageTypes.SYSTEM_TEXT_PUBLIC,
+                    content: null
+                }));
+                break;
+            }
+            case changeChatTypes.addUser: {
+                const user = yield call(DbWorker.getUserIdRange, action.payload.signalPayload);
+                yield put(sendMessage({
+                    msg: `Пользователь ${curUser.name} добавил ${user[0].name}. Добро пожаловать!!!`,
+                    forwardMessage: null,
+                    type: messageTypes.SYSTEM_TEXT_PUBLIC,
+                    content: null
+                }));
+                break;
+            }
+            case changeChatTypes.rename: {
+                yield put(sendMessage({
+                    msg: `Пользователь ${curUser.name} переименовал беседу в "${action.payload.signalPayload}"`,
+                    forwardMessage: null,
+                    type: messageTypes.SYSTEM_TEXT_PUBLIC,
+                    content: null
+                }));
+                break;
+            }
+        }
+    } catch
+        (e) {
+        yield put(setLoading(false));
+        yield put(setError({message: e.message}));
+    }
+}
+
+function* createConversationSaga(action) {
+    try {
+        const {members, title} = action.payload;
+        yield put(setLoading(true));
+        const chat = yield call(DbWorker.createConversation, {members, title});
+        yield put(setLoading(false));
+        yield put(push(`/messenger/chats/${chat._id}`));
+        yield put(setSelectedChat(chat._id));
+    } catch (e) {
+        yield put(setLoading(false));
+        yield put(setError({message: e.message}));
+    }
+}
+
+function* sendMessageSaga(action) {
     const {msg, forwardMessage, type, content} = action.payload;
     yield call(DbWorker.sendMessage, msg, forwardMessage, {messageType: type, content});
 }
-function* loadChatMessages(action) {
+
+function* loadChatMessagesSaga(action) {
     try {
         const sharedId = action.payload;
         yield put(setLoading(true));
@@ -39,10 +107,12 @@ function* loadChatMessages(action) {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }
     } catch (e) {
+        yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }
-function* loadContacts(action) {
+
+function* loadContactsSaga(action) {
     try {
         const input = action.payload;
         yield put(setContactsLoading(true));
@@ -54,10 +124,12 @@ function* loadContacts(action) {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }
     } catch (e) {
+        yield put(setContactsLoading(false));
         yield put(setError({message: e.message}));
     }
 }
-function* loadChats() {
+
+function* loadChatsSaga() {
     try {
         yield put(setLoading(true));
         const chats = yield call(DbWorker.updateChats);
@@ -68,10 +140,12 @@ function* loadChats() {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }
     } catch (e) {
+        yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }
-function* auth(action) {
+
+function* authSaga(action) {
     try {
         const formData = action.payload;
         yield put(setLoading(true));
@@ -83,10 +157,12 @@ function* auth(action) {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }
     } catch (e) {
+        yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }
-function* register(action) {
+
+function* registerSaga(action) {
     try {
         const formData = action.payload;
         yield put(setLoading(true));
@@ -96,10 +172,12 @@ function* register(action) {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }
     } catch (e) {
+        yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }
-function* updateUser(action) {
+
+function* updateUserSaga(action) {
     try {
         const formData = action.payload;
         yield put(setLoading(true));
@@ -112,10 +190,12 @@ function* updateUser(action) {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }
     } catch (e) {
+        yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }
-function* deleteChat(action) {
+
+function* deleteChatSaga(action) {
     try {
         const id = action.payload;
         yield put(setLoading(true));
@@ -125,6 +205,7 @@ function* deleteChat(action) {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }
     } catch (e) {
+        yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }

@@ -15,6 +15,7 @@ import {CirclePicker} from 'react-color';
 import "react-number-picker/dist/style.css";
 import Slider from "@material-ui/core/Slider";
 import classNames from 'classnames';
+import {CloseWindow} from "../../common/CloseWindow";
 
 const defaultConfig = {color: '#2196f3', width: 15};
 const lineWidth$ = new Subject();
@@ -155,8 +156,7 @@ export const HandTextPanel = ({handText, setHandText, setAttachedImage}) => {
                     <div onClick={SaveHandler} className={'button'}>Сохранить</div>
                     <div onClick={CancelHandler} className={'button'}>Отмена</div>
                 </div>
-                <img onClick={CancelHandler} className={'DeleteSign'} alt={'DeleteSign'}
-                     src="https://img.icons8.com/color/48/000000/delete-sign.png"/>
+                <CloseWindow actionClose={CancelHandler}/>
             </div>
         </Backdrop>
     );

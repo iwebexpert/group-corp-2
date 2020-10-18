@@ -8,7 +8,7 @@ export const botMiddleware = store => next => action => {
         const {msg} = action.payload;
         const {chats, selectedChat, curUser} = store.getState().app;
         const chat = chats.find(ch => ch._id === selectedChat);
-        if (msg.author !== '5f79fd1a432d496ad47f39d1' && chat.members.includes('5f79fd1a432d496ad47f39d1')){
+        if (chat &&  msg.author !== '5f79fd1a432d496ad47f39d1' && chat.members.includes('5f79fd1a432d496ad47f39d1')){
             clearTimeout(petyaTimeOut[chat._id]);
             petyaTimeOut[chat._id] = setTimeout(async () => {
                     DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/shared/${chat.sharedId}/message`, {

@@ -4,11 +4,12 @@ import {useDispatch, useSelector} from "react-redux";
 import TextField from "@material-ui/core/TextField/TextField";
 import classNames from 'classnames';
 import './conversation.scss';
-import {createConversation, openCreateConversation, openUserProfile} from "../../../redux/actions";
+import {createConversation, openCreateConversation, openUserProfile, setSelectedChat} from "../../../redux/actions";
 import swal from "sweetalert";
 import {CloseWindow} from "../../common/CloseWindow";
 import {AvatarUser} from "../../common/Avatar";
 import {avatarSizeCls} from "../../../configs/statuses";
+import {push} from "connected-react-router";
 
 export const CreateConversationWindow = () => {
     const {curUser, contacts} = useSelector(s => s.app);

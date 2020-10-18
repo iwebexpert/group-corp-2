@@ -17,14 +17,13 @@
 .ChatsSectionDlgPn {
   @include --padding;
   @include --border(top bottom, $primary, false);
+  overflow: hidden;
   text-align: center;
   font-size: 25px;
   width: 96%;
   max-height: 75vh;
   margin: 10px auto 10px auto;
   color: $primary2;
-  overflow-y: auto;
-  overflow-x: hidden;
   background-color: transparentize($bgPrimaryLight, 0.5);
 
   &:first-child {

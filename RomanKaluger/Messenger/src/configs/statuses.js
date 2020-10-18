@@ -27,6 +27,7 @@ export const avatarSizeCls = {
     absolute: 'avatarAbsolute'
 };
 export const changeChatTypes = {
+    create: 'CREATE',
     deleteUser:'DELETE_USER',
     addUser:'ADD_USER',
     rename: 'RENAME'

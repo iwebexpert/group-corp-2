@@ -1,4 +1,4 @@
-import {takeEvery, call, put, select} from "@redux-saga/core/effects";
+import {takeEvery, call, put, select, delay} from "@redux-saga/core/effects";
 import {DbWorker} from "../../utils/DbWorker";
 import {
     auth, deleteChat,
@@ -12,9 +12,10 @@ import {
     setError,
     setLoading,
     register,
-    updateUser, createConversation, changeChatData
+    updateUser, createConversation, changeChatData, setSelectedChat
 } from "../actions";
 import {changeChatTypes, messageTypes} from "../../configs/statuses";
+import {push} from "connected-react-router";
 
 export function* sagaWatcher() {
     yield takeEvery(sendMessage, sendMessageSaga);
@@ -28,30 +29,33 @@ export function* sagaWatcher() {
     yield takeEvery(createConversation, createConversationSaga);
     yield takeEvery(changeChatData, changeChatDataSaga);
 }
+
 function* changeChatDataSaga(action) {
     try {
         const {newParams, sharedChatId} = action.payload;
         yield put(setLoading(true));
         yield call(DbWorker.pushChatData, {newParams, sharedChatId});
         yield put(setLoading(false));
-        const { curUser } = yield select(s => s.app);
+        const {curUser} = yield select(s => s.app);
         switch (action.payload.typeChange) {
             case changeChatTypes.deleteUser: {
-                const user = yield call(DbWorker.getUserIdRange,action.payload.signalPayload);
+                const user = yield call(DbWorker.getUserIdRange, action.payload.signalPayload);
                 yield put(sendMessage({
                     msg: `Пользователь ${curUser.name} исключил из беседы ${user[0].name}, теперь его сообщения не будут сюда приходить, а он не будет их получать`,
                     forwardMessage: null,
                     type: messageTypes.SYSTEM_TEXT_PUBLIC,
-                    content: null}));
+                    content: null
+                }));
                 break;
             }
             case changeChatTypes.addUser: {
-                const user = yield call(DbWorker.getUserIdRange,action.payload.signalPayload);
+                const user = yield call(DbWorker.getUserIdRange, action.payload.signalPayload);
                 yield put(sendMessage({
                     msg: `Пользователь ${curUser.name} добавил ${user[0].name}. Добро пожаловать!!!`,
                     forwardMessage: null,
                     type: messageTypes.SYSTEM_TEXT_PUBLIC,
-                    content: null}));
+                    content: null
+                }));
                 break;
             }
             case changeChatTypes.rename: {
@@ -59,30 +63,37 @@ function* changeChatDataSaga(action) {
                     msg: `Пользователь ${curUser.name} переименовал беседу в "${action.payload.signalPayload}"`,
                     forwardMessage: null,
                     type: messageTypes.SYSTEM_TEXT_PUBLIC,
-                    content: null}));
+                    content: null
+                }));
                 break;
             }
         }
-    } catch (e) {
+    } catch
+        (e) {
         yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }
+
 function* createConversationSaga(action) {
     try {
         const {members, title} = action.payload;
         yield put(setLoading(true));
-        yield call(DbWorker.createConversation, {members, title});
+        const chat = yield call(DbWorker.createConversation, {members, title});
         yield put(setLoading(false));
+        yield put(push(`/messenger/chats/${chat._id}`));
+        yield put(setSelectedChat(chat._id));
     } catch (e) {
         yield put(setLoading(false));
         yield put(setError({message: e.message}));
     }
 }
+
 function* sendMessageSaga(action) {
     const {msg, forwardMessage, type, content} = action.payload;
     yield call(DbWorker.sendMessage, msg, forwardMessage, {messageType: type, content});
 }
+
 function* loadChatMessagesSaga(action) {
     try {
         const sharedId = action.payload;
@@ -100,6 +111,7 @@ function* loadChatMessagesSaga(action) {
         yield put(setError({message: e.message}));
     }
 }
+
 function* loadContactsSaga(action) {
     try {
         const input = action.payload;
@@ -116,6 +128,7 @@ function* loadContactsSaga(action) {
         yield put(setError({message: e.message}));
     }
 }
+
 function* loadChatsSaga() {
     try {
         yield put(setLoading(true));
@@ -131,6 +144,7 @@ function* loadChatsSaga() {
         yield put(setError({message: e.message}));
     }
 }
+
 function* authSaga(action) {
     try {
         const formData = action.payload;
@@ -147,6 +161,7 @@ function* authSaga(action) {
         yield put(setError({message: e.message}));
     }
 }
+
 function* registerSaga(action) {
     try {
         const formData = action.payload;
@@ -161,6 +176,7 @@ function* registerSaga(action) {
         yield put(setError({message: e.message}));
     }
 }
+
 function* updateUserSaga(action) {
     try {
         const formData = action.payload;
@@ -178,6 +194,7 @@ function* updateUserSaga(action) {
         yield put(setError({message: e.message}));
     }
 }
+
 function* deleteChatSaga(action) {
     try {
         const id = action.payload;

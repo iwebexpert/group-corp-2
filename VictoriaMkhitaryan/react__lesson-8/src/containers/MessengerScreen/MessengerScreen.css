@@ -1,0 +1,42 @@
+.content_theme_chat {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: '2%';
+}
+
+.chat_theme_chat {
+  width:68%;
+  margin: 20px auto;
+}
+
+.chat__card-warn {
+  width: 68%;
+  margin: 20px auto;
+  height: 564px;
+}
+
+.chat__warn {
+  color: grey;
+  text-align: center;
+}
+
+.chat__image {
+  height: 80%;
+  margin-left: 20%;
+}
+
+.loader {
+  /* фиксируем, растягиваем на весь доступный экран */
+  position: fixed;
+  bottom: 0; left: 0; top: 0; right: 0;
+  
+  /* если в модальном окне много содержимого, показываем скроллбар */
+  overflow: auto;
+  
+  background: rgba(0,0,0,0.5) !important;
+  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000,endColorstr=#7F000000); /* IE6–IE8 */
+  zoom: 1;
+  z-index: 10;
+}

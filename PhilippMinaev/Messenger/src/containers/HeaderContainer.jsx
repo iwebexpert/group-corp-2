@@ -1,23 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { profileLoadAction } from "../actions/profile";
 import { Header } from "../components/Header";
-import { mapStateToProps } from "../mapForConnect/mapStateToProps";
-import { mapDispatchToProps } from "../mapForConnect/mapDispatchToProps";
 
-class HeaderContainerClass extends React.Component {
-  componentDidMount() {
-    if (this.props.infoProfile == null) {
-      this.props.profileLoadAction();
+export const HeaderContainer = () => {
+  const dispatch = useDispatch();
+  const [infoProfile, loadStatus] = useSelector((state) => [
+    state.profile.entries,
+    state.profile.loadStatus,
+  ]);
+  useEffect(() => {
+    if (loadStatus == null) {
+      dispatch(profileLoadAction());
     }
-  }
+  });
 
-  render() {
-    return <Header {...this.props} />;
-  }
-}
-
-export const HeaderContainer = connect(
-  mapStateToProps("HeaderContainer"),
-  mapDispatchToProps("HeaderContainer")
-)(HeaderContainerClass);
+  return <Header infoProfile={infoProfile} loadStatus={loadStatus} push />;
+};

@@ -11,19 +11,23 @@ import { Error } from "../../pages/Error";
 
 import "./Messenger.css";
 
-export class Messenger extends Component {
-  handleMessageSend = (message) => {
-    const { onAdd } = this.props;
+export const Messenger = ({
+  title,
+  nameProfile,
+  avatarChat,
+  messages,
+  loadStatus,
+  onAdd,
+}) => {
+  const handleMessageSend = (message) => {
     if (typeof onAdd === "function") {
       onAdd(message);
     }
   };
 
-  render() {
-    const { loadStatus, title, nameProfile, avatarChat, messages } = this.props;
-    console.log(this.props);
-    return loadStatus ? (
-      loadStatus == "loaded" ? (
+  switch (loadStatus) {
+    case "loaded":
+      return (
         <div className="messenger">
           <div className="messages-info">
             <ListItem alignItems="center">
@@ -34,24 +38,20 @@ export class Messenger extends Component {
             </ListItem>
           </div>
           <div className="messages-list">
-            {messages.length > 0 ? (
-              <MessageList items={messages} />
+            {messages.length ? (
+              <MessageList messages={messages} />
             ) : (
               <div>Empty chat.</div>
             )}
           </div>
           <div className="message-form">
-            <MessageForm
-              onSend={this.handleMessageSend}
-              profile={nameProfile}
-            />
+            <MessageForm onSend={handleMessageSend} profile={nameProfile} />
           </div>
         </div>
-      ) : (
-        <div className="loading">Loading...</div>
-      )
-    ) : (
-      <Error />
-    );
+      );
+    case "loading":
+      return <div className="loading">Loading...</div>;
+    default:
+      return <Error />;
   }
-}
+};

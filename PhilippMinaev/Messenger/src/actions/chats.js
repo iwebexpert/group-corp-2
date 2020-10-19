@@ -1,7 +1,5 @@
 import { createAction } from "redux-api-middleware";
 
-// export const CHATS_LOAD = "CHATS_LOAD";
-
 export const CHAT_LOAD_REQUEST = "CHAT_LOAD_REQUEST";
 export const CHAT_LOAD_SUCCESS = "CHAT_LOAD_SUCCESS";
 export const CHAT_LOAD_FAILURE = "CHAT_LOAD_FAILURE";
@@ -24,11 +22,6 @@ export const chatsListSendAction = (chat) => ({
   type: CHATSLISTS_SEND,
   payload: chat,
 });
-
-// export const chatsMessageSendAction = (message) => ({
-//   type: CHATS_MESSAGE_SEND,
-//   payload: message,
-// });
 
 export const messageFireAction = (chatId) => ({
   type: MESSAGE_FIRE,

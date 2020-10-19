@@ -1,7 +1,6 @@
 import update from "react-addons-update";
 
 import {
-  // CHATS_LOAD,
   CHAT_LOAD_REQUEST,
   CHAT_LOAD_SUCCESS,
   CHAT_LOAD_FAILURE,
@@ -19,8 +18,6 @@ const initialState = {
   loading: null,
   fireChatsId: [],
 };
-
-import { chats } from "../helpers/chatsData";
 
 export const chatsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -66,8 +63,9 @@ export const chatsReducer = (state = initialState, action) => {
         entries: {
           $push: [
             {
+              loadStatus: "loaded",
               id: newId,
-              author: action.payload.author,
+              title: action.payload.title,
               avatar: action.payload.avatar,
               messages: [],
             },

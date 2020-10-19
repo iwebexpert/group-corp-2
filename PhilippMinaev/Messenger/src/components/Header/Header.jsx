@@ -1,48 +1,42 @@
-import React, { Component } from "react";
-import { Avatar, withStyles } from "@material-ui/core";
-import { deepOrange } from "@material-ui/core/colors";
+import React from "react";
+import { Avatar } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { Error } from "../../pages/Error";
 
 import "./Header.css";
 
-const styles = {
-  root: {
-    backgroundColor: deepOrange[500],
-  },
-  large: {
-    width: "7px",
-    height: "7px",
-  },
-};
-
-class HeaderClass extends Component {
-  handleRedirect = () => {
-    this.props.push("/");
-  };
-
-  render() {
-    const { infoProfile, classes } = this.props;
-    return infoProfile ? (
-      <div className="header">
-        <div
-          button="true"
-          onClick={this.handleRedirect}
-          style={{ cursor: "pointer", fontFamily: "Courier Prime" }}
-          className="header-logo"
-        >
-          Messenger App
+export const Header = ({ infoProfile, loadStatus }) => {
+  switch (loadStatus) {
+    case "loaded":
+      return (
+        <div className="header">
+          <Link
+            button="true"
+            style={{
+              textDecoration: "none",
+              cursor: "pointer",
+              fontFamily: "Courier Prime",
+            }}
+            className="header-logo"
+            to={"/"}
+          >
+            Messenger App
+          </Link>
+          <Link
+            to="/profile"
+            style={{ color: "#bc1d1d", textDecoration: "none" }}
+          >
+            <div className="header-avatar">
+              <Avatar src={infoProfile.avatar} />
+              {infoProfile.name}
+            </div>
+          </Link>
         </div>
-        <Link to="/profile" style={{ textDecoration: "none" }}>
-          <div className="header-avatar">
-            <Avatar className={classes.root} src={infoProfile.avatar} />
-            {infoProfile.name}
-          </div>
-        </Link>
-      </div>
-    ) : (
-      <div>Loading</div>
-    );
-  }
-}
+      );
+    case "loading":
+      return <div>Loading</div>;
 
-export const Header = withStyles(styles)(HeaderClass);
+    default:
+      return <Error />;
+  }
+};

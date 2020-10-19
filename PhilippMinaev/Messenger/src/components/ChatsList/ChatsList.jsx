@@ -7,23 +7,22 @@ import { Error } from "../../pages/Error";
 
 import "./ChatsList.css";
 
-export class ChatsList extends Component {
-  handleChatAdd = (newchat) => {
-    const { onAdd } = this.props;
+export const ChatsList = ({ loadStatus, chats, fireChats, onAdd, onClick }) => {
+  const handleChatAdd = (newchat) => {
     if (newchat) {
       if (typeof onAdd === "function") {
         onAdd(newchat);
       }
     }
   };
-  render() {
-    const { loadStatus, chats, fireChats, onClick } = this.props;
-    return loadStatus ? (
-      <div className="chats">
-        <div className="chatsList">
-          <List>
-            {loadStatus == "loaded" ? (
-              chats.map((chat) => (
+
+  switch (loadStatus) {
+    case "loaded":
+      return (
+        <div className="chats">
+          <div className="chatsList">
+            <List>
+              {chats.map((chat) => (
                 <ChatItem
                   avatar={chat.avatar}
                   title={chat.title}
@@ -33,16 +32,15 @@ export class ChatsList extends Component {
                   onClick={onClick}
                   key={chat.id}
                 />
-              ))
-            ) : (
-              <div className="loading">Loading...</div>
-            )}
-          </List>
+              ))}
+            </List>
+          </div>
+          <ChatForm onSend={handleChatAdd} />
         </div>
-        <ChatForm onSend={this.handleChatAdd} />
-      </div>
-    ) : (
-      <Error />
-    );
+      );
+    case "loading":
+      return <div className="loading">Loading...</div>;
+    default:
+      return <Error />;
   }
-}
+};

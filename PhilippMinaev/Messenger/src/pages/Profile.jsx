@@ -1,52 +1,27 @@
-import React, { Component } from "react";
-import { Paper } from "@material-ui/core";
+import React from "react";
 import { Error } from "./Error";
 import "./Profile.css";
-export class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.style = {
-      fontFamily: "Courier Prime",
-      width: "100%",
-      marginTop: "25px",
-      display: "flex",
-      justifyContent: "space-around",
-      flexDirectiom: "colomn",
-      height: "500px",
-    };
-  }
 
-  render() {
-    const { loadStatus, infoProfile } = this.props;
-    console.log(this.props);
-    return loadStatus ? (
-      loadStatus == "loaded" ? (
-        <div style={this.style}>
-          <Paper
-            elevation={3}
-            style={{
-              width: "35%",
-              height: "50%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center center",
-              backgroundImage:
-                "url('https://f4.bcbits.com/img/0021680973_10.jpg')",
-            }}
-          ></Paper>
-          <Paper elevation={3} style={{ width: "56%", height: "80%" }}>
-            <div className="infoUser">
-              <h1>Login: {infoProfile.name}</h1>
-              <h1>Age: {infoProfile.age}</h1>
-              <h1>City: {infoProfile.city}</h1>
-              <h1>Main chat: {infoProfile.mainChat}</h1>
-            </div>
-          </Paper>
+export const Profile = ({ loadStatus, infoProfile }) => {
+  switch (loadStatus) {
+    case "loaded":
+      return (
+        <div className="info">
+          <div className="picContainer">
+            <img className="pic" src={infoProfile.avatar} />
+          </div>
+          <div className="infoUser">
+            <h1>Login: {infoProfile.name}</h1>
+            <h1>Age: {infoProfile.age}</h1>
+            <h1>City: {infoProfile.city}</h1>
+            <h1>Main chat: {infoProfile.mainChat}</h1>
+          </div>
         </div>
-      ) : (
-        <div className="loading">Loading...</div>
-      )
-    ) : (
-      <Error />
-    );
+      );
+    case "loading":
+      return <div className="loading">Loading...</div>;
+
+    default:
+      return <Error />;
   }
-}
+};

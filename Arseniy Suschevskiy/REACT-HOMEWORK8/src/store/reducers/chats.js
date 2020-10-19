@@ -65,7 +65,7 @@ export const chatsReducer = (state = initialState, action) => {
 		case ADD_CHAT_REQUEST:
 			return {
 				...state,
-				chatLoading: true,
+				loading: true,
 				error: false
 			}
 
@@ -74,7 +74,7 @@ export const chatsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				chatsList: [...state.chatsList, action.data],
-				chatLoading: false,
+				loading: false,
 			}
 
 		case ADD_CHAT_ERROR:

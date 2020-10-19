@@ -21,9 +21,13 @@ export const ProfileScreen = () => {
       dispatch(profilesLoad());
   }, []);
 
+  const handleChatsReload = () => {
+    dispatch(profilesLoad());
+  }
+
+  if(isError) return <div>Error... <button onClick={handleChatsReload}>Обновить чаты</button></div>;
   return(
     <>
-      { isError && <div>Error... <button onClick={handleChatsReload}>Обновить чаты</button></div> }
       { isLoading && 
           <div className="loader">
             <BlockLoading size="large" />

@@ -64,12 +64,13 @@ export const MessengerScreen = (props) => {
   };
 
   const handleChatsReload = () => {
-    dispatch(chatsLoad);
-}
+    dispatch(chatsLoad());
+  }
 
+  if(isError) return <div>Error... <button onClick={handleChatsReload}>Обновить чаты</button></div>;
   return(
     <> 
-      { isError && <div>Error... <button onClick={handleChatsReload}>Обновить чаты</button></div> }
+      
       { isLoading && 
           <div className="loader">
             <BlockLoading size="large" />

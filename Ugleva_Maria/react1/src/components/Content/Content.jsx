@@ -4,8 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import ChatsComponent from "./chatsComponent";
 import Profile from "./Profile";
 
-class Content extends Component {
-  render() {
+const Content = () => {
     return (
       <div className="content">
         <Switch>
@@ -14,6 +13,5 @@ class Content extends Component {
         </Switch>
       </div>
     );
-  }
 }
 export default Content;

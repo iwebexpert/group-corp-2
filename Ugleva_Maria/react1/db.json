@@ -1,9 +1,61 @@
 {
   "chats": [
-   
+    {
+      "id": "PvYuVKfkBP-Fg3wUomPGp",
+      "title": "Sed ut lorem cillum ",
+      "highlight": false,
+      "avatar": ""
+    },
+    {
+      "id": "eWdkPH5rweFrgfoG9VnuJ",
+      "title": "Vel veritatis perfer",
+      "highlight": false,
+      "avatar": ""
+    },
+    {
+      "id": "bqzB4uRTrgdDqU2LgTa-w",
+      "title": "Officia officia elig",
+      "highlight": false,
+      "avatar": ""
+    }
   ],
   "messages": [
-    
+    {
+      "text": "Quaerat blanditiis v",
+      "author": "Possimus voluptatem",
+      "id": "gL0xyctaIYYt9WZgqXeDw",
+      "chatId": "PvYuVKfkBP-Fg3wUomPGp"
+    },
+    {
+      "id": "BqAaJRdD5WB8LHxSWvM1H",
+      "text": "Hi Possimus voluptatem! Погуляем?",
+      "author": "Bot",
+      "chatId": "PvYuVKfkBP-Fg3wUomPGp"
+    },
+    {
+      "text": "Sed aut voluptate de",
+      "author": "Pariatur Inventore ",
+      "id": "eMkj2TUHI2GV28HmMq2Gi",
+      "chatId": "bqzB4uRTrgdDqU2LgTa-w"
+    },
+    {
+      "id": "BHiSIGqwBoReM-tYIrA_G",
+      "text": "Hi Pariatur Inventore ! Погуляем?",
+      "author": "Bot",
+      "chatId": "bqzB4uRTrgdDqU2LgTa-w"
+    },
+    {
+      "text": "Dignissimos unde cor",
+      "author": "Et voluptatem Ipsum",
+      "id": "Ag1LxLN4fFY5azzUgUu6m",
+      "chatId": "bqzB4uRTrgdDqU2LgTa-w"
+    },
+    {
+      "id": "9P5no1X1omtM_N8cIDDPb",
+      "text": "Hi Et voluptatem Ipsum! Погуляем?",
+      "author": "Bot",
+      "chatId": "bqzB4uRTrgdDqU2LgTa-w"
+    }
   ],
   "profiles": [
     {
@@ -13,7 +65,8 @@
       "surname": "Ivanov",
       "age": 27,
       "country": "Russia",
-      "city": "Moscow"
+      "city": "Moscow",
+      "avatar": "https://wallpapertag.com/wallpaper/full/1/d/2/579482-damon-salvatore-wallpaper-1920x1280-windows-7.jpg"
     }
   ]
 }

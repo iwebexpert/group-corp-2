@@ -17,7 +17,7 @@ export const addNewChat = (data) => ({
 export const highlightChat = (chatId, highlight) => ({
 	type: 'HIGHLIGHT_CHAT',
 	chatId,
-	highlight
+	highlight,
 });
 export const chatsLoadRequestAction = () => ({
 	type: 'CHATS_LOAD_REQUEST',
@@ -32,6 +32,10 @@ export const chatsLoadFailureAction = (error) => ({
 	type: 'CHATS_LOAD_FAILURE',
 	payload: error,
 });
+export const deleteChat = (chatId) => ({
+	type: 'DELETE_CHAT',
+	chatId,
+});
 export const chatsLoadAction = () =>
 	createAction({
 		endpoint: 'http://localhost:3000/chats?_embed=messages',
@@ -40,7 +44,7 @@ export const chatsLoadAction = () =>
 		types: ['CHATS_LOAD_REQUEST', 'CHATS_LOAD_SUCCESS', 'CHATS_LOAD_FAILURE'],
 	});
 
-export const fetchMesToChat = (data, id) => {	
+export const fetchMesToChat = (data, id) => {
 	return async (dispatch) => {
 		try {
 			const result = await fetch('http://localhost:3000/messages', {
@@ -64,11 +68,26 @@ export const fetchNewChat = (data) => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({...data}),
+				body: JSON.stringify({ ...data }),
 			});
 			if (await result.ok) dispatch(addNewChat(data));
 		} catch (error) {
 			console.log(error);
 		}
 	};
-}
+};
+export const fetchDeleteChat = (chatId) => {
+	return async (dispatch) => {
+		try {
+			const result = await fetch(`http://localhost:3000/chats/${chatId}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+			if (await result.ok) dispatch(deleteChat(chatId));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};

@@ -1,0 +1,38 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1190px;
+  margin: 0 auto;
+}
+
+button {
+  background: rgb(11, 144, 144);
+  padding: 10px 20px;
+  border-style: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 18px;
+}
+
+.chessBoard {
+  margin-top: 10px;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chessCell {
+  width: 38px;
+  height: 38px;
+  border: solid 1px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15;
+}
+
+.black {
+  background-color: black;
+}

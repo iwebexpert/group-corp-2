@@ -73,7 +73,6 @@ const ChatList = props => {
 								</ListItemIcon>
 
 								<ListItemText
-									disabled = { showDeleteIcon }
 									onClick = { () => handleListItemClick(chat.id) }
 									primary = { chat.title }
 									className={ listItemClasses.join(' ') }
@@ -82,7 +81,6 @@ const ChatList = props => {
 									showDeleteIcon
 									&&
 									(<IconButton
-										disabled = { false }
 										edge="end"
 										aria-label="delete"
 										onClick = { () => deleteIconClick(chat.id) }

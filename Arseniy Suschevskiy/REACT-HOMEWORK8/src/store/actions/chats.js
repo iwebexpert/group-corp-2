@@ -5,7 +5,7 @@ import {
 	ADD_NEW_MESSAGE_ERROR, ADD_NEW_MESSAGE_REQUEST, ADD_NEW_MESSAGE_SUCCESS,
 	CHAT_FIRE, CHAT_UNFIRE,
 	CHATS_LOAD_ERROR, CHATS_LOAD_REQUEST, CHATS_LOAD_SUCCESS,
-	DELETE_CHAT, DELETE_CHAT_ERROR, DELETE_CHAT_REQUEST, DELETE_CHAT_SUCCESS
+	DELETE_CHAT_ERROR, DELETE_CHAT_REQUEST, DELETE_CHAT_SUCCESS
 } from './actionTypes'
 import {nanoid} from 'nanoid'
 
@@ -41,14 +41,6 @@ export function addNewChatError(error) {
 	}
 }
 
-
-//deleteChat
-// export function deleteChat(chatId) {
-// 	return {
-// 		type: DELETE_CHAT,
-// 		chatId
-// 	}
-// }
 export function deleteChat(chatId) {
 	return async dispatch => {
 		try	{

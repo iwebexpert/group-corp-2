@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import Messenger from '../Messenger/Messenger'
 import ChatList from '../../components/ChatList/ChatList'
 import { Grid } from '@material-ui/core'

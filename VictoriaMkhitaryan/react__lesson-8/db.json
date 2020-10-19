@@ -1,0 +1,507 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "Текстовый чат"
+    },
+    {
+      "id": 1,
+      "title": "Рабочий чат"
+    },
+    {
+      "id": 2,
+      "title": "Друзья)"
+    },
+    {
+      "id": 3,
+      "title": "req",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 4,
+      "title": "few",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 5,
+      "title": "ge",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 6,
+      "title": "m",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 7,
+      "title": "n",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 8,
+      "title": "m",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 9,
+      "title": "f",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 10,
+      "title": "f",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 11,
+      "title": "f",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 12,
+      "title": "r",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    },
+    {
+      "id": 13,
+      "title": "fd",
+      "type": 1,
+      "onFire": false,
+      "messages": []
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "WebDev",
+      "message": "Hi!",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "WebDev",
+      "message": "Test!",
+      "chatId": 0
+    },
+    {
+      "id": 2,
+      "author": "WebDev",
+      "message": "Hi!",
+      "chatId": 1
+    },
+    {
+      "id": 3,
+      "author": "WebDev",
+      "message": "Какие есть задачи на сегодня?",
+      "chatId": 1
+    },
+    {
+      "id": 4,
+      "author": "WebDev",
+      "message": "Привет!",
+      "chatId": 2
+    },
+    {
+      "id": 5,
+      "author": "WebDev",
+      "message": "Что нового?)",
+      "chatId": 2
+    },
+    {
+      "message": "tr",
+      "author": "Vika",
+      "id": "180odIlzZ0cIKzGtonhbk",
+      "chatId": 0
+    },
+    {
+      "id": "SA3ECfluYKetix0gkS6y4",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "y",
+      "author": "Vika",
+      "id": "PB0yrtX24UZwIczeq3A7I",
+      "chatId": 0
+    },
+    {
+      "id": "KdOa6hg_Cz0Ll-6V5Wm6I",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "t",
+      "author": "Vika",
+      "id": "tj8AVjujZvghAIRkNnOJG",
+      "chatId": 0
+    },
+    {
+      "id": "VYz4rtcUYEmzjFWkEh3bE",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "t",
+      "author": "Vika",
+      "id": "p7r_y3ZwwTE2JKLX72qsJ",
+      "chatId": 0
+    },
+    {
+      "id": "EjKVGMRNh1JwGRTJHxxFl",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "y",
+      "author": "Vika",
+      "id": "2Rvy1msoVTAsqtVrfz9LT",
+      "chatId": 0
+    },
+    {
+      "id": "BhReiZH2LmzMxjwrnVyfZ",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "tr",
+      "author": "Vika",
+      "id": "loNSMh2QXELDvSgSzV7H_",
+      "chatId": 0
+    },
+    {
+      "id": "hGsQ1984SncY_lBct_TfX",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": ",",
+      "author": "Vika",
+      "id": "U6RIwfUIoLFrd2e7wFK0F",
+      "chatId": 0
+    },
+    {
+      "id": "bQMwZaTaRGEvdnnsnys15",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": ",",
+      "author": "Vika",
+      "id": "chnplTWXkdi7BTHjyhsWX",
+      "chatId": 0
+    },
+    {
+      "id": "9O9-NTUTVEypQsCpjtYoo",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "ve",
+      "author": "Vika",
+      "id": "3GGy8i9HF-krmy4iHLOqw",
+      "chatId": 0
+    },
+    {
+      "message": "vfd",
+      "author": "Vika",
+      "id": "nhTKuA0rUuBYjVsD7kwo-",
+      "chatId": 0
+    },
+    {
+      "id": "2Zv5r9SnelvoCzAZwsJhj",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "sdf",
+      "author": "Vika",
+      "id": "yChjPEGBbTF1Qght5kOqt",
+      "chatId": 0
+    },
+    {
+      "id": "s2kDYHSpGqrB1FGJrDxUv",
+      "chatId": 0,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "erw",
+      "author": "Vika",
+      "id": "005pH5g7Ms7Z-CMof2w7J",
+      "chatId": 4
+    },
+    {
+      "id": "p3qlB3DCyB6vCtqBCb6G4",
+      "chatId": 4,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "few",
+      "author": "Vika",
+      "id": "2AR9t_YDOppwcihPytMm0",
+      "chatId": 3
+    },
+    {
+      "id": "x_CqaWdEWSNzx7YBG0KgR",
+      "chatId": 3,
+      "message": "Vika, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "te",
+      "author": "WebDev",
+      "id": "6E4DewxPQFpfWTj95-ydP",
+      "chatId": 5
+    },
+    {
+      "id": "YHeknqs4mrkCr_FuPtX4b",
+      "chatId": 5,
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "v er",
+      "author": "WebDev",
+      "id": "7H7NyRZ1wzyUywb5QVCX8",
+      "chatId": 5
+    },
+    {
+      "id": "sLk-o4XaNYUUBF-lfC08o",
+      "chatId": 5,
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "vfe",
+      "author": "",
+      "id": "hfvJtYdp03Zd_Nz2-WYpb",
+      "chatId": 0
+    },
+    {
+      "id": "Bm0mB8mz_3mnS65QTwxzh",
+      "chatId": 0,
+      "message": ", пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "knl",
+      "author": "WebDev",
+      "id": "N15eiBAGinLT_G1XIisVE",
+      "chatId": 0
+    },
+    {
+      "id": "uv9TCaz57FjEpA1YXr_ft",
+      "chatId": 0,
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "n",
+      "author": "WebDev",
+      "id": "qn5KzzE37eIwsFx7ccgwV",
+      "chatId": 2
+    },
+    {
+      "id": "De62fmAlMipU0b3gqTaUQ",
+      "chatId": 2,
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "vrt",
+      "author": "WebDev",
+      "id": "2mztVvia-JQrU9Qe5lruT",
+      "chatId": 0
+    },
+    {
+      "id": "Cgu3Wc_c7L9YuZ9tJUV8I",
+      "chatId": 0,
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "brt",
+      "author": "WebDev",
+      "id": "T12C5aI4PTqWY2XTM5JOK",
+      "chatId": 0
+    },
+    {
+      "id": "NcVEMGSZy2W3n4HgTwPcs",
+      "chatId": 0,
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "t",
+      "author": "WebDev",
+      "id": "FIu6axKNXAeIbKctxCzI0",
+      "chatId": 0
+    },
+    {
+      "id": "n17tExrvde9NPgVsJvKjw",
+      "chatId": 0,
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "bre",
+      "author": "WebDev",
+      "id": "om4UY8MB0o_C6m9HwZ9Cg",
+      "chatId": "1"
+    },
+    {
+      "id": "haRB-2NPn3R6z5qsJKDqA",
+      "chatId": "1",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "vde",
+      "author": "WebDev",
+      "id": "UG8sarm7WEsskQOkHP00I",
+      "chatId": "1"
+    },
+    {
+      "id": "O1ZR3jNK616W5Sa8DjLsB",
+      "chatId": "1",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "vfd",
+      "author": "WebDev",
+      "id": "7zVnVx5JEI0P0BAvw3Wd2",
+      "chatId": "3"
+    },
+    {
+      "id": "1d4anlXIqJjRWcdZ6DCWq",
+      "chatId": "3",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "mkl",
+      "author": "WebDev",
+      "id": "OezK3fklkNhI2StIrlQ4T",
+      "chatId": "2"
+    },
+    {
+      "id": "eu_2VpzbYeyICemtv8Fzm",
+      "chatId": "2",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "grw",
+      "author": "WebDev",
+      "id": "Kt-jSqHwm34a8x9RFliq3",
+      "chatId": "3"
+    },
+    {
+      "id": "SfwDhJKBeZU79ke-WHALF",
+      "chatId": "3",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "d",
+      "author": "WebDev",
+      "id": "7U1Co8k_74lQMb7CusKK2",
+      "chatId": "2"
+    },
+    {
+      "id": "hI3ePPaabWOdPzjjpej1C",
+      "chatId": "2",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "fe",
+      "author": "WebDev",
+      "id": "0ZlBInE0zjk53R-7WyxmY",
+      "chatId": "13"
+    },
+    {
+      "id": "JKA7ybAwtfT38ooqZ7vwD",
+      "chatId": "13",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "fe",
+      "author": "WebDev",
+      "id": "yRR96oU-HdnkseP-trn_k",
+      "chatId": "13"
+    },
+    {
+      "id": "6smz0X798J8NyyG3kLSWu",
+      "chatId": "13",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "fre",
+      "author": "WebDev",
+      "id": "8SEwcKLzcc29MWxKwJjup",
+      "chatId": "0"
+    },
+    {
+      "id": "y2DhSBI9VFfzjwlJPSt2X",
+      "chatId": "0",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    },
+    {
+      "message": "rew",
+      "author": "WebDev",
+      "id": "bMEnjKHo05D-r75vlvgPs",
+      "chatId": "5"
+    },
+    {
+      "id": "XOZs2hOu30xIUI4MPwVMT",
+      "chatId": "5",
+      "message": "WebDev, пора спатки",
+      "author": "Robot"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "WebDev",
+      "email": "1@2.ru",
+      "age": 22,
+      "gender": true,
+      "city": "Moscow"
+    }
+  ]
+}

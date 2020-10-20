@@ -1,194 +1,170 @@
 import './style.css';
-class Product {
-            constructor(name, price, quantity){
-                this.name = name;
-                this.price = price;
-                this.quantity = quantity;
-            }
 
-            showProduct(){
-                return `Название ${this.name} Цена ${this.price}руб. Количество ${this.quantity}`;
-            }
-            
-        }
+const catalog: HTMLElement | null = document.getElementById('catalog');
+const basket: HTMLElement | null = document.getElementById('basket');
+
 interface Product {
     name: string;
-    price: Number;
+    price: number;
+    quantity: number;
+}
+
+let productsList: Array<Product> = [];
+let product1: Product = {name: 'Table', price: 10000, quantity: 1};
+let product2: Product = {name: 'Armchair', price: 4570, quantity: 1};
+let product3: Product = {name: 'Picture "Summer"', price: 1390, quantity: 1};
+let product4: Product = {name: 'Picture "Winter"', price: 1600, quantity: 1};
+
+productsList.push(product1, product2, product3, product4);
+
+let basketList: Array<Product> = [];
+let basket1: Product = {name: 'Table', price: 10000, quantity: 1};
+let basket2: Product = {name: 'Armchair', price: 4570, quantity: 1};
+basketList.push(basket1, basket2);
+
+//false - выводит продукт из каталог, true - выводит из корзина
+function showProduct(index: number, type: boolean): string{
+    try{
+        return (!type) ? `Название ${productsList[index].name} Цена ${productsList[index].price}руб. Количество ${productsList[index].quantity}`
+        : `Название ${basketList[index].name} Цена ${basketList[index].price}руб. Количество ${basketList[index].quantity}`;     
+    } catch(e){
+        return "Неправильный индекс";
+    }
     
 }
-class Basket{
-    constructor(productsList){
-        this.productsList = productsList;
-    }
 
-    countBasketPrice(){
-        let sum = 0;
-        for (let i = 0; i < this.productsList.length; i++){
-            sum += this.productsList[i].price * this.productsList[i].quantity;
-        }
-        return sum;
+function countBasketPrice(): number{
+    let sum: number = 0;
+    for (let i = 0; i < basketList.length; i++){
+        sum += basketList[i].price * basketList[i].quantity;
     }
+    return sum;
+}
 
-    add(product){
-        if (product instanceof Product) {
-            this.productsList.push(product);
-        } else { 
-            console.log('Товар не может быть вставлен');
-        }
-        
-    }
-
-    delete(idProduct){
-        if(idProduct>=0 && idProduct < this.productsList.length){
-            // Не знаю, как по-другому сделать, без этой строчки
-            // количество при измении в корзине,меняется и в каталоге
-            this.productsList[idProduct].quantity = 1;
-            // Удаляет продукт из корзины
-            this.productsList.splice(idProduct, 1);
-        } else {
-            console.log('Удалить нельзя - неверный индекс');
-        }
-    }
-
-    changeQuality(index){
-        this.productsList[index].quantity = this.productsList[index].quantity + 1;
-        return true;
-    }
-
-    showNameProduct(index){
-        if(index>=0 && index < this.productsList.length){
-            return this.productsList[index].name;
-        }
-        return -1;
-    }
-
-    showProducts(){
-        for (let i = 0; i < this.productsList.length; i++){
-            this.productsList[i].showProduct();
-        }
-    }
-    showProduct(product){
-        
-        return this.productsList[product].showProduct();
-        
-    }
-    show_sum(){
-        console.log(`Общая сумма: ${this.countBasketPrice()}`);
-    }
-    showSumProducts(){
-        let qualities = 0;
-        for (let i = 0; i < this.productsList.length; i++){
-            qualities += this.productsList[i].quantity;
-        }
-        return qualities;
-    }
-
-    length(){
-        return this.productsList.length;
+function delProduct(idProduct: number): void {
+    if(idProduct>=0 && idProduct < basketList.length){
+        basketList[idProduct].quantity = 1;
+        // Удаляет продукт из корзины
+        basketList.splice(idProduct, 1);
     }
 }
 
-const catalog = document.getElementById('catalog');
-let catalogPrd = 
-[ 
-    new Product('Table', 10000, 1),
-    new Product('Armchair', 4570, 1),
-    new Product('Picture "Summer"', 1390, 1),
-    new Product('Picture "Winter"', 1600, 1)
-]
-
-function showCatalog(){
-    const titleCatalog = document.createElement('h2');
-    titleCatalog.innerHTML =`Каталог`;
-    catalog.appendChild(titleCatalog);
-
-    for(let i = 0; i<catalogPrd.length; i++){
-        const product = document.createElement('div');
-        product.classList.add('prd');
-        const prd_text = document.createElement('p');
-        prd_text.innerHTML =`${catalogPrd[i].showProduct()}`;
-        product.appendChild(prd_text);
-        const prd_btn = document.createElement('button');
-        prd_btn.className='btn btn-primary';
-        prd_btn.id = `${i}`;
-        prd_btn.onclick = addBasket;
-        prd_btn.innerHTML =`Добавить в корзину`;
-        product.appendChild(prd_text);
-        product.appendChild(prd_btn);
-        catalog.appendChild(product);
-        const hr = document.createElement('hr');
-        catalog.appendChild(hr);
-    }
-
+function changeQuality(index: number): boolean{
+    basketList[index].quantity = basketList[index].quantity + 1;
+    return true;
 }
-let basket1 = new Basket ([
-             new Product('Table', 10000, 1),
-             new Product('Picture "Winter"', 1600, 1)
-        ]);
+
+function showNameProduct(index: number): string | number {
+    if(index>=0 && index < basketList.length){
+        return basketList[index].name;
+    }
+    return -1;
+}
+
+function showSumProducts(): number{
+    let qualities: number = 0;
+    for (let i = 0; i < basketList.length; i++){
+        qualities += basketList[i].quantity;
+    }
+    return qualities;
+}
+
+
+function showCatalog(): void{
+    if(catalog){
+        const titleCatalog: HTMLHeadingElement = document.createElement('h2');
+        titleCatalog.innerHTML =`Каталог`;
+        catalog.appendChild(titleCatalog);
+
+        for(let i = 0; i < productsList.length; i++){
+            const product: HTMLDivElement = document.createElement('div');
+            product.classList.add('prd');
+            const prd_text: HTMLParagraphElement = document.createElement('p');
+            prd_text.innerHTML =`${showProduct(i, false)}`;
+            product.appendChild(prd_text);
+            const prd_btn: HTMLButtonElement = document.createElement('button');
+            prd_btn.className='btn btn-primary';
+            prd_btn.id = `${i}`;
+            prd_btn.addEventListener('click', (): void => addBasket(i));
+            prd_btn.innerHTML =`Добавить в корзину`;
+            product.appendChild(prd_text);
+            product.appendChild(prd_btn);
+            catalog.appendChild(product);
+            const hr: HTMLHRElement = document.createElement('hr');
+            catalog.appendChild(hr);
+        }
+    }
+}
+
 // Возвращает индекс продукта,если он уже есть в корзине - поиск по имени
-function findName(productName){
-    for(let i = 0; i < basket1.length(); i++){
-        if(basket1.showNameProduct(i) === productName){
+function findName(productName: string): number{
+    for(let i = 0; i < basketList.length; i++){
+        if(showNameProduct(i) === productName){
             return i;
         }
     }
     return -1;
 }
 
-function addBasket(){
-    let findProductIndex = findName(catalogPrd[this.id].name);
+function addBasket(id: number): void{
+    let findProductIndex: number = findName(productsList[id].name);
     if(findProductIndex>=0){
-        basket1.changeQuality(findProductIndex);
+        changeQuality(findProductIndex);
     } else {
-        basket1.add(catalogPrd[this.id]);
+        basketList.push(productsList[id])
     }
-    document.getElementById('basket').innerHTML = '';
+
+    if(basket) basket.innerHTML = '';
     showBasket();
 }
 
-const basket = document.getElementById('basket');
-function deleteProduct(){
-    basket1.delete(this.id);
-    document.getElementById('basket').innerHTML = '';
-    showBasket();
+function deleteProduct(index: number): void{
+    if(basket){
+        delProduct(index);
+        basket.innerHTML = '';
+        showBasket();
+    }
 }
-function showBasket(){
-    const titleBasket = document.createElement('h2');
-    titleBasket.innerHTML =`Корзина`;
-    basket.appendChild(titleBasket);
 
-    
-    if(basket1.length() === 0){
-        const error = document.createElement('span');
-        error.innerHTML =`Корзина пуста`;
-        error.classList.add('error-basket');
-        basket.appendChild(error);
-        document.getElementsByName('sumPrice').innerHTML = '' ;
-    } else {
-        for (let i = 0; i < basket1.length(); i++){
-            const product = document.createElement('div');
-            product.classList.add('prd');
-            const prd_text = document.createElement('p');
-            prd_text.innerHTML =`${basket1.showProduct(i)}`;
-            product.appendChild(prd_text);
-            const prd_btn = document.createElement('button');
-            prd_btn.className='btn btn-danger';
-            prd_btn.id=`${i}`;
-            prd_btn.onclick = deleteProduct;
-            prd_btn.innerHTML =`Удалить из корзины`;
-            product.appendChild(prd_text);
-            product.appendChild(prd_btn);
-            basket.appendChild(product);
-            const hr = document.createElement('hr');
-            basket.appendChild(hr);
+function showBasket(): void{
+    if(basket){
+        const titleBasket: HTMLHeadingElement = document.createElement('h2');
+        titleBasket.innerHTML =`Корзина`;
+        basket.appendChild(titleBasket);
+        
+        if(basketList.length === 0){
+            const error: HTMLSpanElement = document.createElement('span');
+            error.innerHTML =`Корзина пуста`;
+            error.classList.add('error-basket');
+            basket.appendChild(error);
+            // const sumPriceSpan: HTMLSpanElement | null = document.getElementsByName('sumPrice') ;
+            // sumPriceSpan.innerHTML = '';
+            
+        } else {
+            for (let i = 0; i < basketList.length; i++){
+                const product: HTMLDivElement = document.createElement('div');
+                product.classList.add('prd');
+                const prd_text: HTMLParagraphElement = document.createElement('p');
+                prd_text.innerHTML =`${showProduct(i, true)}`;
+                product.appendChild(prd_text);
+                const prd_btn: HTMLButtonElement = document.createElement('button');
+                prd_btn.className='btn btn-danger';
+                prd_btn.id=`${i}`;
+                prd_btn.addEventListener('click', ():void =>  deleteProduct(i));
+                prd_btn.innerHTML =`Удалить из корзины`;
+                product.appendChild(prd_text);
+                product.appendChild(prd_btn);
+                basket.appendChild(product);
+                const hr: HTMLHRElement = document.createElement('hr');
+                basket.appendChild(hr);
+            }
+            const sumPrice: HTMLSpanElement = document.createElement('span');
+            sumPrice.classList.add('sumPrice');
+            sumPrice.innerHTML =`В корзине: ${showSumProducts()} товара на сумму 
+            ${countBasketPrice()} рублей`;
+            basket.appendChild(sumPrice);
         }
-        const sumPrice = document.createElement('span');
-        sumPrice.classList.add('sumPrice');
-        sumPrice.innerHTML =`В корзине: ${basket1.showSumProducts()} товара на сумму 
-        ${basket1.countBasketPrice()} рублей`;
-        basket.appendChild(sumPrice);
     }
-
 }
 
 showCatalog();

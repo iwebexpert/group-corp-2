@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.chessTable{
+    padding-top: 150px;
+    margin: 30px auto;
+    max-width: 468px;
+    max-height: 416px;
+    display: flex;
+}
+
+
+.chess{
+    width: 50px;
+    min-height: 50px;
+    float: left;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 48px;
+    
+}
+
+.white{
+    background-color: whitesmoke;
+}
+
+.black {
+    background-color: black;
+}
+.chessLet__Wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.chessLet__Wrapper .chess:first-child{
+    border:none;
+}

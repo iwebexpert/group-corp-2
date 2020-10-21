@@ -137,8 +137,6 @@ function showBasket(): void{
             error.innerHTML =`Корзина пуста`;
             error.classList.add('error-basket');
             basket.appendChild(error);
-            // const sumPriceSpan: HTMLSpanElement | null = document.getElementsByName('sumPrice') ;
-            // sumPriceSpan.innerHTML = '';
             
         } else {
             for (let i = 0; i < basketList.length; i++){

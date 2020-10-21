@@ -8,22 +8,13 @@ type TSale  =  {
 
 document.addEventListener("DOMContentLoaded", () => {
      axios.get("http://localhost:3001/sales").then(({data}) => {
-       const salesData : TSale[] = data.map((item : TSale) => {
-         const obj : TSale = {
-          month : item.month,
-          sale  : item.sale,
-          price : item.price,
-          color : item.color
-         };
-         return obj;
-       });
-      render(salesData);
+      render(data);
     });
   });
 const render = (sales : TSale[]) => {
   // Гистограмма
   const container : HTMLDivElement | null = document.querySelector('.container');
-  const histogramTitle : HTMLHeadingElement = document.createElement('h2');
+  const histogramTitle : HTMLElement = document.createElement('h2');
   histogramTitle.textContent = 'Гистограмма';
   const histogramText  : HTMLParagraphElement  = document.createElement('p');
   histogramText.textContent = "Прирос продаж за год";
@@ -59,7 +50,7 @@ const render = (sales : TSale[]) => {
   const diagramCtx : any  = diagram.getContext("2d");
   diagram.width = 800;
   diagram.height = 800;
-  const diagramTitle : HTMLHeadingElement = document.createElement('h2');
+  const diagramTitle : HTMLElement = document.createElement('h2');
   diagramTitle.textContent = 'Диаграмма';
   const diagramText : HTMLParagraphElement = document.createElement('p');
   diagramText.textContent = 'Общая стоимость продаж';

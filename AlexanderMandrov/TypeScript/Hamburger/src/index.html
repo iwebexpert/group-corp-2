@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burger</title>
+    <link rel="stylesheet" href="./burger.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="hamburger-wrapper">
+      <div class="title title-main">Гамбургер</div>
+      <div class="size-wrapper">
+        <div class="title">Размер</div>
+        <hr />
+        <label>
+          <span class="checkbox-text">Маленький</span>
+          <input type="checkbox" class="check-custom-toggle toggle-switch" />
+          <span class="check-toggle"></span>
+          <span class="checkbox-text">Большой</span>
+          <div class="checkbox-text" style="margin-top: 5px">
+            Маленький (50 рублей, 20 калорий)
+          </div>
+          <div class="checkbox-text">Большой (100 рублей, 40 калорий)</div>
+        </label>
+      </div>
+      <div class="additive-wrapper">
+        <div class="title">Добавки</div>
+        <hr />
+      </div>
+      <div class="topping-wrapper">
+        <div class="title">Топпинг</div>
+        <hr />
+      </div>
+      <div class="title title-amount"></div>
+      <button type="button" class="submit">Рассчитать</button>
+    </div>
+    <div class="waveWrapper waveAnimation">
+      <div class="waveWrapperInner bgTop">
+        <div
+          class="wave waveTop"
+          style="
+            background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png');
+          "
+        ></div>
+      </div>
+      <div class="waveWrapperInner bgMiddle">
+        <div
+          class="wave waveMiddle"
+          style="
+            background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png');
+          "
+        ></div>
+      </div>
+      <div class="waveWrapperInner bgBottom">
+        <div
+          class="wave waveBottom"
+          style="
+            background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png');
+          "
+        ></div>
+      </div>
+    </div>
+  </body>
+</html>

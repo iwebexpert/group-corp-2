@@ -25,10 +25,9 @@ export const ChatList = (props) => {
                         </div>
                         <div className="message">
                             <b className="message__author">
-                              {item.messages[item.messages.length - 1] ? item.messages[item.messages.length - 1].author : null}
-                            </b>
+                                {item.messages[item.messages.length - 1] && item.messages[item.messages.length - 1].author}                            </b>
                             <p className="message__text">
-                              {item.messages[item.messages.length - 1] ? item.messages[item.messages.length - 1].text : "Чат пуст!"}
+                                 {item.messages[item.messages.length - 1] ? item.messages[item.messages.length - 1].text : "Чат пуст!"}
                             </p>
                         </div>
                     </div>

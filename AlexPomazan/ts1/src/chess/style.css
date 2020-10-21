@@ -1,0 +1,33 @@
+h1 {
+  text-align: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.letters {
+  display: flex;
+}
+  .chess {
+  border: 1px solid black;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  flex-flow: row wrap;
+}
+.letter,
+.number {
+  text-align: center;
+  height: 20px;
+  width: 20px;
+}
+.black-cell {
+  height: 20px;
+  width: 20px;
+  background-color: black;
+}
+.white-cell {
+  height: 20px;
+  width: 20px;
+  background-color: white;
+}

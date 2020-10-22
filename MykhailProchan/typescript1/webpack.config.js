@@ -29,6 +29,7 @@ module.exports = {
         test: /\.s?css$/i,
         use: [
           'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
         ],
       },
@@ -39,7 +40,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.html'),
       filename: 'index.html',
-    })
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
+    }),
   ],
 
   devtool: 'eval-source-map',

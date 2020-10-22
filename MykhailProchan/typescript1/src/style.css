@@ -1,0 +1,34 @@
+		:not(head) {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		#catalog,
+		#cart {
+			margin-bottom: 50px;
+		}
+
+		.catalog-entry,
+		.catalog-top-row {
+			display: grid;
+			grid-template-columns: 50px 200px 50px;
+		}
+
+		.catalog-entry>div,
+		.catalog-top-row>div {
+			border: 1px solid #ababab;
+		}
+
+		.catalog-entry {
+			cursor: pointer;
+		}
+
+		.cart-entry {
+			display: grid;
+			grid-template-columns: 200px 50px 50px;
+		}
+
+		.cart-entry>div {
+			border: 1px solid #ababab;
+		}

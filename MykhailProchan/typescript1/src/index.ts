@@ -15,10 +15,10 @@ const cart = {
 }
 
 interface itemInterface {
-	id: number,
-	name: string,
-	price: number
-	amount: number
+	id: number;
+	name: string;
+	price: number;
+	amount: number;
 }
 
 const catalog = [{ id: 1, name: 'Мышка', price: 1000, amount: 0 }, { id: 2, name: 'Клавиатура', price: 2000, amount: 0 }, { id: 3, name: 'Ещё что-то', price: 300, amount: 0 }];

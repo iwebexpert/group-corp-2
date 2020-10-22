@@ -1,0 +1,80 @@
+body {
+    font-size: 18px;
+    font-family: 'Dosis', sans-serif;
+    color: #333;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.title {
+    margin-top: 40px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding: 0 10%;
+    margin: 0 auto;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(33,47,62,1) 100%);
+    min-height: 500px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info {
+    margin-bottom: 80px;
+}
+
+#catalog {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart__item {
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 10px 0;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+    max-width: 280px;
+    width: 100%;
+    min-height: 320px;
+}
+
+.btn {
+    margin: 0 auto;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 5px;
+    background: #5A98D0;
+    color: #fff;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: red;
+}
+
+.btn-clear {
+    background: orangered;
+    width: 300px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.btn-clear:hover{
+    background: red;
+}
+
+.img {
+    max-width: 100px;
+}

@@ -10,7 +10,7 @@ export const ProfileContainer = (props) => {
   const [isLoading, isError] = useSelector((state) => [state.profile.loading, state.profile.error]);
 
   useEffect(() => {
-    if (profile.firstName === undefined) {
+    if (profile.firstName === null) {
         dispatch(profileInfoAction());
     }
 }, []);

@@ -1,0 +1,161 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  font-family: 'Cabin Sketch', cursive;
+}
+
+body {
+  background-color: black;
+}
+
+button {
+  font-family: 'Cabin Sketch', cursive;
+  width: 170px;
+  padding: 12px;
+  margin: 12px;
+  color: white;
+  background-image: linear-gradient(
+    to top,
+    #1e3c72 0%,
+    #1e3c72 1%,
+    #2a5298 100%
+  );
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
+  }
+}
+
+#game td {
+  border-collapse: collapse;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+}
+
+.food {
+  background-image: linear-gradient(
+    to right,
+    #ff8177 0%,
+    #ff867a 0%,
+    #ff8c7f 21%,
+    #f99185 52%,
+    #cf556c 78%,
+    #b12a5b 100%
+  );
+}
+
+.snake {
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}
+
+#message {
+  text-align: center;
+  font-size: 28px;
+  color: red;
+}
+
+@keyframes move_wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.55);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+.waveWrapper {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+
+  &Inner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  }
+}
+.bg {
+  &Top {
+    z-index: 15;
+    opacity: 0.5;
+  }
+
+  &Middle {
+    z-index: 10;
+    opacity: 0.75;
+  }
+
+  &Bottom {
+    z-index: 5;
+  }
+}
+.wave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
+  &Top {
+    background-size: 50% 100px;
+  }
+  &Animation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+  }
+
+  &Middle {
+    background-size: 50% 120px;
+  }
+
+  &Animation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+  }
+
+  &Bottom {
+    background-size: 50% 100px;
+  }
+
+  &Animation .waveBottom {
+    animation: move_wave 15s linear infinite;
+  }
+}
+
+.game-wrapper {
+  position: absolute;
+  z-index: 1000;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -20%);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  & button {
+    border-radius: 10px;
+    outline: 0;
+    &:active {
+      box-shadow: 2px 2px 5px #999;
+      cursor: pointer;
+    }
+  }
+}

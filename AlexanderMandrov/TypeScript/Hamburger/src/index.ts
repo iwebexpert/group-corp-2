@@ -62,7 +62,7 @@ class Topping {
     let toppingText: string = '';
     switch (this.type) {
       case 'species':
-        toppingText = 'Посыпать преправой';
+        toppingText = 'Посыпать приправой';
         break;
       case 'mayonese':
         toppingText = 'Полить майонезом';
@@ -257,7 +257,7 @@ const sizeElement: HTMLInputElement = document.querySelector(
 
 const getIndex = (smth: string, arr: string[]): number => {
   let j: number = -1;
-  [...arr].forEach((item, i) => {
+  [...arr].forEach((item: string, i: number): void => {
     if (item === smth) j = i;
   });
   return j;

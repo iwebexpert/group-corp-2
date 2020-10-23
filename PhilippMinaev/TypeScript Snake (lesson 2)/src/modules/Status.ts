@@ -1,22 +1,6 @@
-export default class Status {
-  condition: string | undefined;
+import StatusAbstract from "./StatusAbstract";
+export default class Status extends StatusAbstract {
   constructor() {
-    this.setPaused();
-  }
-
-  setPaused(): void {
-    this.condition = "pause";
-  }
-
-  setPlaying(): void {
-    this.condition = "play";
-  }
-
-  isPlaying(): boolean {
-    return this.condition === "play";
-  }
-
-  isPaused(): boolean {
-    return this.condition === "pause";
+    super();
   }
 }

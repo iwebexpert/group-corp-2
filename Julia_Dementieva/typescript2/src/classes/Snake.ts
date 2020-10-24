@@ -1,7 +1,7 @@
 import {ICoordinates, ISnake} from '../interface/ShakeInterface';
 
 export class Snake implements ISnake{
-    // если бы наследовала от абстрактного класса, сделала бы possibleDirection и direction private
+    // если бы наследовал от абстрактного класса, был бы possibleDirection и direction private
     readonly possibleDirection: [string, string, string, string];
     readonly body: Array<ICoordinates>;
     direction: string;
@@ -50,7 +50,7 @@ export class Snake implements ISnake{
     }
 
     //Следующий шаг змейки
-    public performStep(){
+    public performStep(): void{
         let currentHeadCoords: ICoordinates = this.body[0]; //Head
         let newHeadCoords: ICoordinates  = {
             x: currentHeadCoords.x,

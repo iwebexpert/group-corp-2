@@ -1,9 +1,10 @@
 export class Status {
 
-    private _condition: string = 'pause';
+    private _condition: string;
 
     public constructor(){
         this.setPaused();
+        this._condition = 'pause';
     }
 
     public setPaused(): void{

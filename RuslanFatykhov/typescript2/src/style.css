@@ -1,0 +1,66 @@
+body {
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  margin: 80px auto;
+}
+
+button {
+  width: 170px;
+  padding: 12px;
+  margin: 12px;
+  color: white;
+  background-color: green;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(0, 90, 0);
+}
+
+button:active {
+  background-color: rgb(0, 233, 0);
+  color: black;
+}
+
+#pause-btn {
+  background-color: rgb(201, 201, 36);
+  color: black;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#game td {
+  border-collapse: collapse;
+  width: 20px;
+  height: 20px;
+  border: 1px solid grey;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.food {
+  background-color: rgb(223, 98, 98);
+}
+
+.snake {
+  background-color: rgb(85, 85, 182);
+}
+
+#message {
+  font-size: 28px;
+  color: red;
+  text-align: center;
+}

@@ -1,0 +1,51 @@
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.buttons {
+    display: flex;
+}
+
+button {
+    width: 170px;
+    padding: 12px;
+    margin: 12px;
+    color: white;
+    background-color: green;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(0, 90, 0);
+}
+
+button:active {
+    background-color: rgb(0, 233, 0);
+    color: black;
+}
+
+#game td {
+    border-collapse: collapse;
+    width: 20px;
+    height: 20px;
+    border: 1px solid grey;
+}
+
+/* Вспомогательные элементы */
+.food {
+    background-color: lightseagreen;
+}
+
+.snake {
+    background-color: grey;
+}
+
+#message {
+    font-size: 28px;
+    color: red;
+}

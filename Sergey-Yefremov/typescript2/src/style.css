@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Comfortaa', cursive;
+}
+body {
+  background-color: forestgreen;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 405px;
+  margin: 10% auto;
+}
+
+table {
+  border-collapse: collapse;
+  border: 5px dotted black;
+}
+
+#game td {
+  border-collapse: collapse;
+  width: 20px;
+  height: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+button {
+  width: 170px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  color: white;
+  background: rgb(0,119,255);
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background: rgb(0,149,255);
+}
+
+button:active {
+  background: rgb(6,0,255);
+  color: white;
+}
+#pause-btn {
+  background: rgb(255,0,63);
+  color: white;
+}
+#pause-btn:hover {
+  background: rgb(255,83,0);
+}
+#pause-btn:active {
+  background: rgb(255,0,0);
+}
+
+.food {
+  background-color: red;
+}
+
+.snake {
+  background-color: black;
+}
+
+#message {
+  margin-top: 25px;
+  font-size: 25px;
+  color: rgb(41,28,28);
+  text-align: center;
+}

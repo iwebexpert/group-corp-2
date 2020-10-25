@@ -1,0 +1,43 @@
+{
+  "name": "romankaluger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "sweetalert": "^2.1.2",
+    "throttle-debounce": "^2.3.0",
+    "uniqid": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/polyfill": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.12.1",
+    "@types/node": "^14.11.10",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-expo": "^8.3.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^0.11.1",
+    "style-loader": "^1.2.1",
+    "typescript": "^4.0.3",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "webdev": "webpack --mode development",
+    "webbuild": "webpack --mode production",
+    "webwatch": "webpack --mode development --watch",
+    "startdevserv": "webpack-dev-server --mode development --open",
+    "startdevservproduction": "webpack-dev-server --mode production --open"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -8,11 +8,11 @@ export default abstract class Food {
     }
 
     //Получение координат новой ячейки и отрисовка на поле
-    protected setNewItem() { }
+    protected setNewItem(): void { }
 
     //Возвращает случайные координаты
-    protected randomCoords() { }
+    protected randomCoords(): void { }
 
     //Размещение на игровом поле
-    protected setItem() { }
+    protected setItem(): void { }
 } 

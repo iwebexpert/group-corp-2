@@ -13,11 +13,11 @@
       "image": "src/img/mans/m5.png"
     },
     {
-      "title": "gregre",
+      "title": "кау4цаукцпацыу",
       "image": "src/img/mans/bot.png",
       "fire": false,
       "messages": [],
-      "id": 9
+      "id": 14
     }
   ],
   "messages": [
@@ -50,11 +50,18 @@
       "id": "G2lvNmbddLIJ2_JIpmh5c"
     },
     {
-      "id": "6IRRBfdMWORLjlZPZKFBr",
-      "author": "trh",
-      "message": "hrt",
+      "id": "jKHVu7APekpV3vOZm9h0L",
+      "author": "рен",
+      "message": "рнерне",
       "image": "m1.png",
-      "chatId": 9
+      "chatId": 2
+    },
+    {
+      "chatId": 2,
+      "message": "Hi, рен! Бот на связи...",
+      "author": "Helga Källström",
+      "image": "src/img/mans/m4.png",
+      "id": "6R0n8urgIVDd7Eh-aIyKE"
     }
   ],
   "person": {

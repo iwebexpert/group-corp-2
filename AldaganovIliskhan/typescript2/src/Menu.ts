@@ -1,14 +1,14 @@
 export class Menu {
-  private startBtn : HTMLElement | null;
-  private pauseBtn : HTMLElement | null;
+  private startBtn: HTMLElement | null
+  private pauseBtn: HTMLElement | null
   constructor() {
-    this.startBtn = document.querySelector("#start-btn");
-    this.pauseBtn = document.querySelector("#pause-btn");
+    this.startBtn = document.querySelector("#start-btn")
+    this.pauseBtn = document.querySelector("#pause-btn")
   }
-  addButtonsClickListeners(startBtn : any, pauseBtn : any) : void {
-    if(this.startBtn && this.pauseBtn ) {
-      this.startBtn.addEventListener("click", startBtn);
-      this.pauseBtn.addEventListener("click", pauseBtn);
-    } 
+  public addButtonsClickListeners(startBtn: any, pauseBtn: any): void {
+    if (this.startBtn && this.pauseBtn) {
+      this.startBtn.addEventListener("click", startBtn)
+      this.pauseBtn.addEventListener("click", pauseBtn)
+    }
   }
 }

@@ -5,8 +5,8 @@ import { Board } from './Board';
 export class Food extends Base implements IPoint {
   public constructor(
     protected board: Board,
-    public x?: number | null,
-    public y?: number | null
+    public x: number | null,
+    public y: number | null
   ) {
     super();
     this.x = null;

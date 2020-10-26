@@ -1,17 +1,14 @@
 import { Settings } from 'classes/Settings';
-import { Snake } from 'classes/Snake';
 import { Board } from 'classes/Board';
 
 export class Food {
     private settings: Settings;
-    private snake: Snake
     private board: Board;
     private x: number;
     private y: number;
 
-    constructor(settings: Settings, snake: Snake, board: Board) {
+    constructor(settings: Settings, board: Board) {
         this.settings = settings;
-        this.snake = snake;
         this.board = board;
         this.x = 0;
         this.y = 0;

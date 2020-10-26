@@ -2,9 +2,9 @@ import { Settings } from './Settings'
 import { Snake, coords } from './Snake'
 
 export class Board {
-    private boardElement: HTMLElement | null
-    private settings: any
-    private snake: Snake
+    private boardElement: HTMLElement | null;
+    private settings: any;
+    private snake: Snake;
 
     constructor(settings: Settings, snake: any) {
         this.settings = settings;
@@ -13,7 +13,7 @@ export class Board {
     }
 
     renderBoard(): void {
-        if (!this.boardElement) return
+        if (!this.boardElement) return;
 
         this.boardElement.innerHTML = '';
         for (let row = 0; row < this.settings.rowsCount; row++) {
@@ -28,12 +28,11 @@ export class Board {
     }
 
     renderSnake(): void {
-        if (!this.snake) return
-
+        if (!this.snake) return;
         const snakeElements = this.getSnakeBodyElements(this.snake.body);
         if (snakeElements) {
             snakeElements.forEach(function (td) {
-                if (!td) return
+                if (!td) return;
                 td.classList.add('snake');
             });
         }
@@ -41,7 +40,7 @@ export class Board {
 
     //Получение 1 ячейки по координатам
     getCell(x: number, y: number): HTMLElement | null {
-        if (!this.boardElement) return null
+        if (!this.boardElement) return null;
         return this.boardElement.querySelector(`tr:nth-child(${y}) td:nth-child(${x})`);
     }
 

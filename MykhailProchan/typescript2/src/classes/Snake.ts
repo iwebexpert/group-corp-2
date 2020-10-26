@@ -4,9 +4,9 @@ export type coords = {
 }
 
 export class Snake {
-    private possibleDirection: string[]
-    readonly body: coords[]
-    private direction: string
+    private possibleDirection: string[];
+    readonly body: coords[];
+    private direction: string;
 
     constructor() {
         this.possibleDirection = ['up', 'down', 'left', 'right'];

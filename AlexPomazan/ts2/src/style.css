@@ -1,0 +1,51 @@
+body {
+    background-color: #263445;
+}
+
+button {
+    width: 170px;
+    padding: 12px;
+    margin: 12px;
+    color: white;
+    background-color: green;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(0, 90, 0);
+}
+
+button:active {
+    background-color: rgb(0, 233, 0);
+    color: black;
+}
+.conteiner{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#game td {
+    border-collapse: collapse;
+    width: 20px;
+    height: 20px;
+    border: 1px solid grey;
+}
+
+/* Вспомогательные элементы */
+.food {
+    background: center url(img/food.png)
+}
+
+.snake {
+    background: radial-gradient(circle closest-corner at 50% 50%, rgb(187,240,81) 50%, transparent 50%);
+}
+.snake-head{
+    background: center url(/src/img/snakehead.png);
+}
+
+#message {
+    font-size: 28px;
+    color: red;
+}

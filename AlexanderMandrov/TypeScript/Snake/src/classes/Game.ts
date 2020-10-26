@@ -6,7 +6,7 @@ import { Status } from './Status';
 import { Base } from './Base';
 
 export class Game extends Base {
-  protected timer: null | NodeJS.Timeout;
+  private timer: null | NodeJS.Timeout;
   protected messageElement: null | HTMLElement;
   protected status: Status;
   protected snake: Snake;

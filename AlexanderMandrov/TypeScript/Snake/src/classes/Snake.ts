@@ -1,7 +1,7 @@
 import { IPoint } from '../types/interfaces';
 
 export class Snake {
-  protected possibleDirection: string[];
+  protected possibleDirection: [string, string, string, string];
   public body: IPoint[]; //protected
   protected direction: string;
 

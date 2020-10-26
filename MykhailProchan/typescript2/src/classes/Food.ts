@@ -31,7 +31,7 @@ export class Food {
             let cell: HTMLElement | null = this.board.getCell(this.x, this.y);
 
             if (cell) {
-                if (cell.classList.contains('snake')) continue
+                if (cell.classList.contains('snake')) continue;
                 return this;
             }
         }

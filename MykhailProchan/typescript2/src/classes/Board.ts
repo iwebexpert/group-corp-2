@@ -3,10 +3,10 @@ import { Snake, coords } from './Snake'
 
 export class Board {
     private boardElement: HTMLElement | null;
-    private settings: any;
+    private settings: Settings;
     private snake: Snake;
 
-    constructor(settings: Settings, snake: any) {
+    constructor(settings: Settings, snake: Snake) {
         this.settings = settings;
         this.snake = snake;
         this.boardElement = document.getElementById('game');

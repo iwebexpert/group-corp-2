@@ -7,7 +7,7 @@ export class Menu {
         this.pauseBtn = document.querySelector('#pause-btn');
     }
 
-    addButtonsClickListeners(startBtn: any, pauseBtn: any): void {
+    addButtonsClickListeners(startBtn: () => void, pauseBtn: () => void): void {
         if (!(this.startBtn && this.pauseBtn)) return;
         this.startBtn.addEventListener('click', startBtn);
         this.pauseBtn.addEventListener('click', pauseBtn);

@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
-    "json-server": "^0.16.1",
+    "json-server": "^0.16.2",
     "mongoose": "^5.10.5"
   }
 }

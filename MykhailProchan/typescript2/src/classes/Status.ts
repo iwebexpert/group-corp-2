@@ -1,8 +1,23 @@
-export class Status {
-    private condition: string;
+abstract class AbstractStatus {
+    protected condition: string
 
     constructor() {
-        this.condition = 'pause'
+        this.condition = 'pause';
+    }
+
+    abstract setPaused(): void
+
+    abstract setPlaying(): void
+
+    abstract isPlaying(): boolean
+
+    abstract isPaused(): boolean
+}
+
+export class Status extends AbstractStatus {
+
+    constructor() {
+        super();
     }
 
     setPaused(): void {

@@ -43,17 +43,17 @@ export class Game {
     }
 
     //1 шаг игры
-    private doTick(): void{
+    private doTick(): void {
         this.snake.performStep();
-        if(this.isGameLost()){
+        if(this.isGameLost()) {
             return;
         }
 
-        if(this.isGameWin()){
+        if(this.isGameWin()) {
             return;
         }
 
-        if(this.board.isHeadOnFoodSnake()){
+        if(this.board.isHeadOnFoodSnake()) {
             this.snake.increaseBody();
             this.food.setNewFood();
         }
@@ -64,8 +64,8 @@ export class Game {
     }
 
     //Проверка, окончена ли игра (победа)
-    private isGameWin(): boolean{
-        if(this.timer && this.snake.body.length === this.settings.currentParams.winLength){
+    private isGameWin(): boolean {
+        if(this.timer && this.snake.body.length === this.settings.currentParams.winLength) {
             clearInterval(this.timer);
             this.setMessage('Победа!');
             return true;
@@ -74,8 +74,8 @@ export class Game {
     }
 
     //Проверка, окончена ли игра (проигрыш)
-    private isGameLost(): boolean{
-        if(this.timer && this.board.isNextStepWall(this.snake.body[0])){
+    private isGameLost(): boolean {
+        if(this.timer && this.board.isNextStepWall(this.snake.body[0])) {
             clearInterval(this.timer);
             this.setMessage('Поражение!');
             return true;
@@ -83,13 +83,13 @@ export class Game {
         return false;
     }
 
-    private setMessage(message: string): void{
+    private setMessage(message: string): void {
         if(this.messageElement) this.messageElement.textContent = message;
     }
 
     //Смена направления движения змейки
-    private pressKeyHandler(event: KeyboardEvent): void{
-        switch(event.key){
+    private pressKeyHandler(event: KeyboardEvent): void {
+        switch(event.key) {
             case 'ArrowUp':
                 this.snake.changeDirection('up');
                 break;
@@ -106,7 +106,7 @@ export class Game {
     }
 
     //Запуск игры
-    run(): void{
+    run(): void {
         this.menu.addButtonsClickListeners(this.start.bind(this), this.pause.bind(this));
         document.addEventListener('keydown', this.pressKeyHandler.bind(this));
     }

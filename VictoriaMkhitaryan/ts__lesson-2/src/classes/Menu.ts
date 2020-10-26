@@ -5,7 +5,7 @@ export class Menu extends AMenu {
         super();
     }
 
-    addButtonsClickListeners(startBtn: () => void, pauseBtn: () => void){
+    addButtonsClickListeners(startBtn: () => void, pauseBtn: () => void) {
         // if (this.startBtn && this.pauseBtn) { 
         this.startBtn.addEventListener('click', startBtn);
         this.pauseBtn.addEventListener('click', pauseBtn);

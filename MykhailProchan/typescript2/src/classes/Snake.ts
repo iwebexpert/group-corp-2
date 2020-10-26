@@ -79,7 +79,7 @@ export class Snake {
     }
 
     //Увеличение тела змейки
-    increaseBody() {
+    increaseBody(): void {
         let bodyLastCell: coords = this.body[this.body.length - 1];
         let newBodyLastCell: coords = {
             x: bodyLastCell.x,

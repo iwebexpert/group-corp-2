@@ -72,14 +72,13 @@ export class Board {
         foodCell.classList.add('food');
     }
 
-    isHeadOnFoodSnake() {
-        if (!this.boardElement) return
-        let food = this.boardElement.querySelector('.food')
+    isHeadOnFoodSnake(): boolean | null {
+        if (!this.boardElement) return null
         return this.boardElement.querySelector('.food')!.classList.contains('snake');
     }
 
     //Очистка поля
-    clear() {
+    clear(): void {
         const tdAll = document.querySelectorAll('td');
         tdAll.forEach(function (td) {
             td.className = '';

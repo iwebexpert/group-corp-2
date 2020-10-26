@@ -1,21 +1,23 @@
 export class Status {
+    private condition: string;
+
     constructor() {
-        this.setPaused();
+        this.condition = 'pause'
     }
 
-    setPaused() {
+    setPaused(): void {
         this.condition = 'pause';
     }
 
-    setPlaying() {
+    setPlaying(): void {
         this.condition = 'play';
     }
 
-    isPlaying() {
+    isPlaying(): boolean {
         return this.condition === 'play';
     }
 
-    isPaused() {
+    isPaused(): boolean {
         return this.condition === 'pause';
     }
 }

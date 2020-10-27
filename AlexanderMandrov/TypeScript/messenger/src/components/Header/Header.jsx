@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import './Header.scss';
-import Spinner from '../Spinner';
-import Error from '../Error';
+import { Spinner } from '../Spinner';
+import { Error } from '../Error';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+export const Header = () => {
   const dispatch = useDispatch();
   const { profileReducer } = useSelector((state) => state);
   const { data, sticker, error } = profileReducer;
@@ -47,7 +47,11 @@ const Header = () => {
           </Typography>
           {error ? <Error /> : null}
           <Typography variant="h6" className={title}>
-              {data === null ?  <Spinner size={40} color="white" /> : `${data.username} ${sticker === null ? '' : sticker}`}
+            {data === null ? (
+              <Spinner size={40} color="white" />
+            ) : (
+              `${data.username} ${sticker === null ? '' : sticker}`
+            )}
           </Typography>
           <Link to="/profile" className="Header-link__reset">
             <IconButton edge="start" className={menuButton} color="inherit">
@@ -59,5 +63,3 @@ const Header = () => {
     </div>
   );
 };
-
-export default Header;

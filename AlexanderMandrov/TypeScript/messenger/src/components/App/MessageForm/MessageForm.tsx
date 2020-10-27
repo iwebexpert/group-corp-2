@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import './MessageForm.scss';
 import { Button, TextField, Box } from '@material-ui/core';
 import { Send } from '@material-ui/icons';
-import { validateInput } from '../../utils/utils';
+import { validateInput } from '../../../utils/utils';
 
 type MessageFormType = {
   pushMessage: (message: string) => void;
 };
 
-const MessageForm: React.FC<MessageFormType> = ({ pushMessage }) => {
+export const MessageForm: React.FC<MessageFormType> = ({ pushMessage }) => {
   const [message, setMessage] = useState<string>('');
 
   const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -56,5 +56,3 @@ const MessageForm: React.FC<MessageFormType> = ({ pushMessage }) => {
     </div>
   );
 };
-
-export { MessageForm };

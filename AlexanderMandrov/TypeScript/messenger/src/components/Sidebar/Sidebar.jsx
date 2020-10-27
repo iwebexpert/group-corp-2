@@ -4,12 +4,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
 import { nanoid } from 'nanoid';
 import './Sidebar.scss';
-import Spinner from '../Spinner';
-import Error from '../Error';
-import { Drawer, List, ListItem, ListItemText, 
-        ListItemAvatar, Avatar, Divider, Badge, 
-        makeStyles, Box, IconButton, TextField } from '@material-ui/core';
-import { deepOrange, deepPurple, green, blue, indigo, teal, cyan, lime } from '@material-ui/core/colors';
+import { Spinner } from '../Spinner';
+import { Error } from '../Error';
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Divider,
+  Badge,
+  makeStyles,
+  Box,
+  IconButton,
+  TextField,
+} from '@material-ui/core';
+import {
+  deepOrange,
+  deepPurple,
+  green,
+  blue,
+  indigo,
+  teal,
+  cyan,
+  lime,
+} from '@material-ui/core/colors';
 import { AddCircleOutline } from '@material-ui/icons';
 import { sendNewChat, setReceiver, fetchChats } from '../../redux/ducks/chats';
 import { createPrimaryChat } from '../../constants/constants';
@@ -79,14 +99,20 @@ const Sidebar = ({ user, onChatClick }) => {
       setNewReceiver('');
     }
   };
-  
+
   const handleReloadChatsClick = () => dispatch(fetchChats());
 
   const handleChange = (event) => setNewReceiver(event.target.value);
 
   return (
     <Drawer variant="persistent" open>
-      <Box display="flex" justifyContent="space-between" className="Sidebar-add__chat" px={1} pt={1.2}>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        className="Sidebar-add__chat"
+        px={1}
+        pt={1.2}
+      >
         <TextField
           variant="outlined"
           size="small"
@@ -98,51 +124,60 @@ const Sidebar = ({ user, onChatClick }) => {
         />
         <Box ml={1} mb={0} mt={-0.5}>
           <IconButton
-              color="primary"
-              variant="contained"
-              size="medium"
-              onClick={handleChatClick}>
-            <AddCircleOutline/>
+            color="primary"
+            variant="contained"
+            size="medium"
+            onClick={handleChatClick}
+          >
+            <AddCircleOutline />
           </IconButton>
         </Box>
       </Box>
       <Divider />
       <List className="Sidebar-list" disablePadding>
         {!error ? null : <Error mx={2} handleClick={handleReloadChatsClick} />}
-        {chats === null ? <Spinner color="teal"/> : chats.map(({ username, messages, fired }, idx) => {
-          const lastMessage = messages.length ? messages[messages.length - 1] : '';
-          const lastMessageText =  messages.length ? 
-            messageShorter(messages[messages.length - 1].text) : 
-            'No messages here yet';
-          return (
-            <Link 
-              to={`/chats/${username}`} 
-              className="Sidebar-link__reset"
-              key={nanoid()} 
-              onClick={onChatClick.bind(this, username)}
-            >
-              <ListItem 
-                button 
-                divider
-                selected={username === receiver}
+        {chats === null ? (
+          <Spinner color="teal" />
+        ) : (
+          chats.map(({ username, messages, fired }, idx) => {
+            const lastMessage = messages.length
+              ? messages[messages.length - 1]
+              : '';
+            const lastMessageText = messages.length
+              ? messageShorter(messages[messages.length - 1].text)
+              : 'No messages here yet';
+            return (
+              <Link
+                to={`/chats/${username}`}
+                className="Sidebar-link__reset"
+                key={nanoid()}
+                onClick={onChatClick.bind(this, username)}
               >
-                <ListItemAvatar>
-                  <Badge color="secondary" variant="dot" invisible={!fired}>
-                    <Avatar className={palette[idx % 8]}>
-                      {username.slice(0, 1).toUpperCase()}
-                    </Avatar>
-                  </Badge>
-                </ListItemAvatar>
-                <ListItemText 
-                  classes={{ secondary: 'Sidebar-last__message' }} 
-                  primary={username} 
-                  secondary={lastMessage.username === user ? `You: ${lastMessageText}` : `${lastMessageText}`}
-                />
-              </ListItem>
-            </Link>
-          );
-        })}
-        {chats !== null && loading ? <Spinner size={80} color="#9013FE" /> : null}
+                <ListItem button divider selected={username === receiver}>
+                  <ListItemAvatar>
+                    <Badge color="secondary" variant="dot" invisible={!fired}>
+                      <Avatar className={palette[idx % 8]}>
+                        {username.slice(0, 1).toUpperCase()}
+                      </Avatar>
+                    </Badge>
+                  </ListItemAvatar>
+                  <ListItemText
+                    classes={{ secondary: 'Sidebar-last__message' }}
+                    primary={username}
+                    secondary={
+                      lastMessage.username === user
+                        ? `You: ${lastMessageText}`
+                        : `${lastMessageText}`
+                    }
+                  />
+                </ListItem>
+              </Link>
+            );
+          })
+        )}
+        {chats !== null && loading ? (
+          <Spinner size={80} color="#9013FE" />
+        ) : null}
       </List>
     </Drawer>
   );

@@ -1,9 +1,18 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './ProfilePage.scss';
-import Spinner from '../../components/Spinner';
-import Error from '../../components/Error';
-import { Typography, Card, CardContent, CardMedia, Hidden, makeStyles, IconButton, Box } from '@material-ui/core';
+import { Spinner } from '../../components/Spinner';
+import { Error } from '../../components/Error';
+import {
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Hidden,
+  makeStyles,
+  IconButton,
+  Box,
+} from '@material-ui/core';
 import { fetchProfileInfo, setProfileSticker } from '../../redux/ducks/profile';
 import { stickers } from '../../constants/constants';
 
@@ -67,42 +76,48 @@ const ProfilePage = () => {
 
   return (
     <>
-    <Card className={card}>
-      {!error ? null : <Error />}
-      {data === null ? <Spinner /> : (
-        <>
-          <div className={cardDetails}>
-            <CardContent>
-              {renderProfileCard()} 
-            </CardContent>
-          </div>
-          <Hidden xsDown>
-            <CardMedia className={cardMedia} image='https://source.unsplash.com/random' />
-          </Hidden>
-        </>
-      )}
-    </Card>
-    <Card className={card}>
-      <div className={cardDetails}>
-        <CardContent>
-          <Typography component="h2" variant="h5">
-            Change profile sticker
-          </Typography>
-          {stickers.map((sticker, idx) => {
-            return (
-              <IconButton 
+      <Card className={card}>
+        {!error ? null : <Error />}
+        {data === null ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className={cardDetails}>
+              <CardContent>{renderProfileCard()}</CardContent>
+            </div>
+            <Hidden xsDown>
+              <CardMedia
+                className={cardMedia}
+                image="https://source.unsplash.com/random"
+              />
+            </Hidden>
+          </>
+        )}
+      </Card>
+      <Card className={card}>
+        <div className={cardDetails}>
+          <CardContent>
+            <Typography component="h2" variant="h5">
+              Change profile sticker
+            </Typography>
+            {stickers.map((sticker, idx) => {
+              return (
+                <IconButton
                   color="primary"
                   variant="contained"
                   size="small"
                   key={`sticker-${idx}`}
-                  onClick={handleStickerClick.bind(this, idx)}>
-                <Box mx={1} my={.5}>{sticker}</Box>
-              </IconButton>
-            );
-          })}
-        </CardContent>
-      </div>
-    </Card>
+                  onClick={handleStickerClick.bind(this, idx)}
+                >
+                  <Box mx={1} my={0.5}>
+                    {sticker}
+                  </Box>
+                </IconButton>
+              );
+            })}
+          </CardContent>
+        </div>
+      </Card>
     </>
   );
 };

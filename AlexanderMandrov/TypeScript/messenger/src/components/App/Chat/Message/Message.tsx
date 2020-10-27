@@ -3,20 +3,16 @@ import classNames from 'classnames';
 import './Message.scss';
 import { Fab, Box, Typography, makeStyles } from '@material-ui/core';
 import { DeleteForever } from '@material-ui/icons';
+import { IMessage } from '../../../../types/interfaces';
 
-type MessageType = {
-  message: {
-    text: string;
-    username: string;
-    id: string;
-    date: Date;
-  };
+type MessageComponentType = {
+  message: IMessage;
+  user?: string;
+  isBot?: boolean;
   deleteMessage: (id: string) => void;
-  isBot: boolean;
-  user: string;
 };
 
-const useStyles = makeStyles({
+const useStyles: () => Record<string, string> = makeStyles({
   usernameStyle: {
     fontSize: 12,
   },
@@ -41,13 +37,13 @@ const useStyles = makeStyles({
   },
 });
 
-const Message: React.FC<MessageType> = ({
+export const Message: React.FC<MessageComponentType> = ({
   message,
   deleteMessage,
   isBot,
   user,
 }) => {
-  const classes = useStyles();
+  const classes: Record<string, string> = useStyles();
   const {
     textPrimary,
     textSecondary,
@@ -55,16 +51,16 @@ const Message: React.FC<MessageType> = ({
     messageInner,
     usernameStyle,
     timeStyle,
-  } = classes;
-  const { text, username, id, date } = message;
+  }: Record<string, string> = classes;
+  const { text, username, id, date }: IMessage = message;
 
-  const alignStyles = isBot ? 'left' : 'right';
-  const dateFromStr = new Date(date);
-  const time = isBot
+  const alignStyles: 'left' | 'right' = isBot ? 'left' : 'right';
+  const dateFromStr: Date = new Date(date);
+  const time: Date = isBot
     ? new Date(dateFromStr.getTime() + 2000)
     : new Date(dateFromStr);
 
-  const btn = (
+  const btn: JSX.Element = (
     <Box pt={1}>
       <Fab color="secondary" size="small" onClick={() => deleteMessage(id)}>
         <DeleteForever />
@@ -98,10 +94,8 @@ const Message: React.FC<MessageType> = ({
             })}
           </Typography>
         </Box>
-        {isBot ? null : btn}
+        {isBot && btn}
       </Box>
     </Box>
   );
 };
-
-export { Message };

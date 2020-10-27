@@ -1,0 +1,107 @@
+import React from 'react';
+import classNames from 'classnames';
+import './Message.scss';
+import { Fab, Box, Typography, makeStyles } from '@material-ui/core';
+import { DeleteForever } from '@material-ui/icons';
+
+type MessageType = {
+  message: {
+    text: string;
+    username: string;
+    id: string;
+    date: Date;
+  };
+  deleteMessage: (id: string) => void;
+  isBot: boolean;
+  user: string;
+};
+
+const useStyles = makeStyles({
+  usernameStyle: {
+    fontSize: 12,
+  },
+  timeStyle: {
+    fontSize: 10,
+  },
+  textPrimary: {
+    fontSize: 16,
+    color: '#0d47a1',
+  },
+  messageInner: {
+    backgroundColor: '#bbdefb',
+    borderRadius: 15,
+    minWidth: 250,
+    maxWidth: '75%',
+  },
+  textWarning: {
+    color: '#4527a0',
+  },
+  textSecondary: {
+    color: '#00acc1',
+  },
+});
+
+const Message: React.FC<MessageType> = ({
+  message,
+  deleteMessage,
+  isBot,
+  user,
+}) => {
+  const classes = useStyles();
+  const {
+    textPrimary,
+    textSecondary,
+    textWarning,
+    messageInner,
+    usernameStyle,
+    timeStyle,
+  } = classes;
+  const { text, username, id, date } = message;
+
+  const alignStyles = isBot ? 'left' : 'right';
+  const dateFromStr = new Date(date);
+  const time = isBot
+    ? new Date(dateFromStr.getTime() + 2000)
+    : new Date(dateFromStr);
+
+  const btn = (
+    <Box pt={1}>
+      <Fab color="secondary" size="small" onClick={() => deleteMessage(id)}>
+        <DeleteForever />
+      </Fab>
+    </Box>
+  );
+
+  return (
+    <Box width={1}>
+      <Box
+        display="flex"
+        justifyContent={isBot ? 'flex-start' : 'flex-end'}
+        mr={2}
+      >
+        <Box className={messageInner} mr={1} px={2} mb={1}>
+          <Typography
+            className={classNames(textWarning, usernameStyle)}
+            align={alignStyles}
+          >
+            {isBot ? username : user}
+          </Typography>
+          <Typography className={textPrimary}>{text}</Typography>
+          <Typography
+            className={classNames(textSecondary, timeStyle)}
+            align={alignStyles}
+          >
+            {time.toLocaleString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            })}
+          </Typography>
+        </Box>
+        {isBot ? null : btn}
+      </Box>
+    </Box>
+  );
+};
+
+export { Message };

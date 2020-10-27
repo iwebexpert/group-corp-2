@@ -1,0 +1,9 @@
+@import '../../css/variables';
+
+.MessageForm {
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - #{$drawerWidth + 30});
+    max-height: calc(100vh - #{$offsetHeight}/2);
+}

@@ -1,0 +1,7 @@
+@import '../../css/variables';
+
+.App {
+    &-main {
+        margin-left: $drawerWidth;
+    }
+}

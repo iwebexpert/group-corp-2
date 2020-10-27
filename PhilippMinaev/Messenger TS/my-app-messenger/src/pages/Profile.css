@@ -1,0 +1,42 @@
+.loading {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(43, 43, 43);
+}
+
+.info {
+  font-family: "Courier Prime";
+  width: 100%;
+  padding-top: 24px;
+  display: "flex";
+  flex-direction: row;
+  justify-content: "space-around";
+  height: 500px;
+  background-color: black;
+}
+
+.infoUser {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  border: 1px solid #bc1d1d;
+  color: #bc1d1d;
+  border-radius: 12px;
+}
+.picContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.pic {
+  width: 240px;
+  border-radius: 24px;
+  border: 1px solid #bc1d1d;
+}

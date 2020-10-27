@@ -1,0 +1,25 @@
+.btnAddChat {
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  height: 10%;
+}
+.chatsList {
+  height: 80%;
+}
+.chats {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(43, 43, 43);
+  margin-right: 16px;
+}
+.add {
+  color: red;
+}
+.loading {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  background-color: rgb(43, 43, 43);
+}

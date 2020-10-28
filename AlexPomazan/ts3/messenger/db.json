@@ -1,0 +1,82 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "Чат с Владом",
+      "fire": false
+    },
+    {
+      "id": 1,
+      "title": "Чат с мамой",
+      "fire": false
+    },
+    {
+      "id": 2,
+      "title": "Чат с Андреем",
+      "fire": false
+    },
+    {
+      "id": 3,
+      "title": "Чат с деканатом",
+      "fire": false
+    },
+    {
+      "title": "Новый чат",
+      "fire": false,
+      "id": 4
+    },
+    {
+      "title": "Курсовая работа по предмету \"Базы данных\"",
+      "fire": false,
+      "id": 5
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "Влад",
+      "img": "./src/img/vlad.png",
+      "text": "Привет, нам завтра ко скольки?",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "Мама",
+      "img": "./src/img/mama.jpg",
+      "text": "Как ты себя чувствуешь? Поправился?",
+      "chatId": 1
+    },
+    {
+      "id": 2,
+      "author": "Андрей",
+      "img": "./src/img/andrey.png",
+      "text": "Привет, идешь завтра на пары?",
+      "chatId": 2
+    },
+    {
+      "id": 3,
+      "author": "Андрей",
+      "img": "./src/img/andrey.png",
+      "text": "Я не приду, если что",
+      "chatId": 2
+    },
+    {
+      "id": 4,
+      "author": "Деканат",
+      "img": "./src/img/bmstu.png",
+      "text": "Отчислим, если не будешь ходить!!",
+      "chatId": 3
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "img": "./src/img/myphoto.png",
+      "firstName": "Alex",
+      "lastName": "Pomazan",
+      "age": 21,
+      "city": "Москва",
+      "gender": "M"
+    }
+  ]
+}

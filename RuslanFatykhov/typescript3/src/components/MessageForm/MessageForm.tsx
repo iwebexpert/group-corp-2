@@ -19,11 +19,10 @@ const useStyles = makeStyles({
 
 type MessageFormType = {
   onSend: (message: MesageType) => void;
-  clearValue: ()=>void;
 };
 
 
-export const MessageForm: React.FC<MessageFormType> = ({ onSend, clearValue }) => {
+export const MessageForm: React.FC<MessageFormType> = ({ onSend }) => {
   const authorField = useFormField();
   const textField = useFormField();
   const errorText = useFormField();

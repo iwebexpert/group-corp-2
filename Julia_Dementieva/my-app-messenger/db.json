@@ -1,0 +1,225 @@
+{
+  "chats": [
+    {
+      "id": "0",
+      "author": "Текстовый чат",
+      "avatar": "https://i.pinimg.com/736x/47/50/cb/4750cb647f221c4ebe51c33cc33c95df.jpg"
+    },
+    {
+      "id": "1",
+      "author": "Рабочий чат",
+      "avatar": "https://www.justthedesign.com/wp-content/uploads/2013/05/28.jpg"
+    },
+    {
+      "id": "2",
+      "author": "Друзья",
+      "avatar": "https://i.pinimg.com/736x/fa/38/c3/fa38c3354e3795ea11c09e3df408a880.jpg"
+    },
+    {
+      "id": "3",
+      "author": "Тест",
+      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
+    },
+    {
+      "id": "4",
+      "author": "Чат №5",
+      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
+    },
+    {
+      "id": "5",
+      "author": "d",
+      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
+    },
+    {
+      "id": "6",
+      "author": "Тест 2",
+      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
+    }
+  ],
+  "messages": [
+    {
+      "author": "Web",
+      "text": "Как дела?",
+      "id": "XUIfusnJ961P37nDYamjT",
+      "chatId": "2"
+    },
+    {
+      "author": "Web",
+      "text": "hgfhg",
+      "id": "ooH68EUwuowj4RLtSBXlI",
+      "chatId": "0"
+    },
+    {
+      "id": "gq3u0O_ZU_RQOcIt6F6bR",
+      "chatId": "0",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Привет!",
+      "id": "Arf-by0QU_4eTNJm4H4p9",
+      "chatId": "0"
+    },
+    {
+      "id": "e7FipqOMfL8rLBKGYq8sP",
+      "chatId": "0",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Как дела?",
+      "id": "gU6YcA-2xhtcvjjyt7aBO",
+      "chatId": "0"
+    },
+    {
+      "id": "izWO_HOYaWH-99DbK1lLc",
+      "chatId": "0",
+      "text": "Hi, Web",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Привет",
+      "id": "I935vcnhe7baro37L15lc",
+      "chatId": "2"
+    },
+    {
+      "id": "YGsSx24-MAlid3c8g_QQe",
+      "chatId": "2",
+      "text": "Web, Hi",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Как дела?",
+      "id": "Cx7EQCoPJ8d4x8l1BvwLM",
+      "chatId": "2"
+    },
+    {
+      "id": "FI5ZzuUXRyKLBWWrPS1tR",
+      "chatId": "2",
+      "text": "Web, Добрый день!",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Привет",
+      "id": "zN2MJfLRY2p-BWRAg2ctm",
+      "chatId": "1"
+    },
+    {
+      "id": "EOICpMD2VGYi4HkRe4sBh",
+      "chatId": "1",
+      "text": "Web, Hi",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": ")",
+      "id": "l8bbU8iIynbmuRAlLCN9f",
+      "chatId": "5"
+    },
+    {
+      "id": "64A_s4PQS75jZL6SpAmFm",
+      "chatId": "5",
+      "text": "Web, Hi",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "))",
+      "id": "A_ThDHLIbivXv6OmFg3p1",
+      "chatId": "5"
+    },
+    {
+      "id": "2UmsSX7Wx05w7Wf526QoC",
+      "chatId": "5",
+      "text": "Web, Привет, какая хорошая погода!",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Как дела?",
+      "id": "1YbaLd3tACJ4UgMU_N9RD",
+      "chatId": "1"
+    },
+    {
+      "id": "pT4sEZvkfFNm8P6bDqTQb",
+      "chatId": "1",
+      "text": "Web, Добрый день!",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "dfgfdg",
+      "id": "kAPgTygAtq6W-RTOqn3Em",
+      "chatId": "3"
+    },
+    {
+      "id": "sZYLa2Zktcr1Yn8FcMAyS",
+      "chatId": "3",
+      "text": "Web, Привет, какая хорошая погода!",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "f",
+      "id": "84XtztBoez0Tu-PFh9hks",
+      "chatId": "0"
+    },
+    {
+      "id": "kLWrXnQ5K_ExihEJpSUyj",
+      "chatId": "0",
+      "text": "Web, Привет, какая хорошая погода!",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "g",
+      "id": "AXQqb_6UrgVxVn6qT28KN",
+      "chatId": "0"
+    },
+    {
+      "id": "YR-teLLrBwRmthellfCQI",
+      "chatId": "0",
+      "text": "Web, Добрый день!",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "ДОброе утро!",
+      "id": "XhRCAakoL2whmRdVyHYRf",
+      "chatId": "0"
+    },
+    {
+      "id": "BtLjhvQmAr2hfJpN0YgiD",
+      "chatId": "0",
+      "text": "Web, Привет, какая хорошая погода!",
+      "author": "Robot"
+    },
+    {
+      "author": "Web",
+      "text": "Первое сообщение",
+      "id": "U1JVaXvk8OZvg88r_FsyW",
+      "chatId": "6"
+    },
+    {
+      "id": "mrsbV2v8VtR-i8Xo6gQcw",
+      "chatId": "6",
+      "text": "Web, Привет, какая хорошая погода!",
+      "author": "Robot"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "Web",
+      "age": 28,
+      "city": "Москва",
+      "mainChat": "Тестовый чат",
+      "avatar": "https://images.squarespace-cdn.com/content/v1/55c8e052e4b01bd89f02a45e/1452208562614-J8AFSSTSMN3DJ6Q798XX/ke17ZwdGBToddI8pDm48kE7xzgWkeVHhMSpwGz7q3y4UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2du1iGr6rVFVouDCrC-EYDz_rjS4LofYkqCp0pRSzPi5Jm7cT0R_dexc_UL_zbpz6JQ/image-asset.jpeg?format=1000w"
+    }
+  ]
+}

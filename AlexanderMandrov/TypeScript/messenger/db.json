@@ -1,0 +1,90 @@
+{
+  "chats": [
+    {
+      "id": "JzeFVjH3BOb_QJY4ZQpgN",
+      "fired": false,
+      "username": "methodicalmanrope"
+    },
+    {
+      "id": "QsM6ePAFTFqUAzJECmG4N",
+      "fired": false,
+      "username": "hedgehogpalm"
+    },
+    {
+      "id": "pE4CX2jn3IVVol38TozlS",
+      "fired": false,
+      "username": "exuberantwarlike"
+    },
+    {
+      "id": "BBWgDN_MQn_3b7kcy-KTS",
+      "fired": false,
+      "username": "diamondsshadowfax"
+    },
+    {
+      "id": "ihbeZSddCPWsrTFcS2RoZ",
+      "fired": false,
+      "username": "finnishmalfoy"
+    }
+  ],
+  "messages": [
+    {
+      "id": "v0QHVReHt6um2r-EICWKq",
+      "username": "methodicalmanrope",
+      "date": "2020-10-12T20:38:05.716Z",
+      "text": "When I grow up I want to be you!",
+      "chatId": "JzeFVjH3BOb_QJY4ZQpgN"
+    },
+    {
+      "id": "jJalxe3ev-Obvrbr1ZPNT",
+      "username": "hedgehogpalm",
+      "date": "2020-10-12T20:38:05.716Z",
+      "text": "I was just thinking about you!",
+      "chatId": "QsM6ePAFTFqUAzJECmG4N"
+    },
+    {
+      "id": "cozrraw99ogu2bj37YUIW",
+      "username": "exuberantwarlike",
+      "date": "2020-10-12T20:38:05.716Z",
+      "text": "You are a great example for others.",
+      "chatId": "pE4CX2jn3IVVol38TozlS"
+    },
+    {
+      "id": "OmAi_YnsLHQ7m30k4S4iQ",
+      "username": "diamondsshadowfax",
+      "date": "2020-10-12T20:38:05.716Z",
+      "text": "You have great ideas.",
+      "chatId": "BBWgDN_MQn_3b7kcy-KTS"
+    },
+    {
+      "id": "douEiuRCKnZvJXGV0zTQQ",
+      "username": "finnishmalfoy",
+      "date": "2020-10-12T20:38:05.716Z",
+      "text": "You have great ideas.",
+      "chatId": "ihbeZSddCPWsrTFcS2RoZ"
+    },
+    {
+      "text": "1",
+      "username": "yellso",
+      "id": "4z50Wt1-tnNexJ_TPRB2i",
+      "date": "2020-10-26T20:51:34.553Z",
+      "chatId": "ihbeZSddCPWsrTFcS2RoZ"
+    },
+    {
+      "text": "⊂(✾◕ ‿ ◕✾)つ•٠· Hello, yellso! finnishmalfoy is offline, he/she will reply you soon!",
+      "username": "Bot",
+      "id": "6ILS4E5ZUB2g5_ULgafxE",
+      "date": "2020-10-26T20:51:36.908Z",
+      "chatId": "ihbeZSddCPWsrTFcS2RoZ"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "yellso",
+      "firstname": "Wispy",
+      "lastname": "Briskpress",
+      "BIO": "23 y.o. designer from San Fransisco",
+      "username": "yellso",
+      "number": "+7 953 932-58-23"
+    }
+  ]
+}

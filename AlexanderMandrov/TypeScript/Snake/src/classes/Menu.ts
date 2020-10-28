@@ -1,9 +1,11 @@
 export class Menu {
-  private startBtn: HTMLButtonElement | null;
-  private pauseBtn: HTMLButtonElement | null;
+  private startBtn: HTMLButtonElement;
+  private pauseBtn: HTMLButtonElement;
   public constructor() {
-    this.startBtn = document.querySelector('#start-btn');
-    this.pauseBtn = document.querySelector('#pause-btn');
+    if (document.querySelector('#start-btn'))
+      this.startBtn = document.querySelector('#start-btn');
+    if (document.querySelector('#pause-btn'))
+      this.pauseBtn = document.querySelector('#pause-btn');
   }
 
   public addButtonsClickListeners(

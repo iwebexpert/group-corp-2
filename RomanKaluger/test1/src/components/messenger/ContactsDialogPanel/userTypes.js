@@ -1,0 +1,6 @@
+export const userTypes = {
+    FRIEND: 'FRIEND',
+    SUBSCRIBERS:'SUBSCRIBERS',
+    SUBSCRIPTIONS:'SUBSCRIPTIONS',
+    OTHER: 'OTHER'
+};

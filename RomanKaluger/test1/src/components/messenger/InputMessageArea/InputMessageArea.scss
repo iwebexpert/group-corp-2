@@ -1,0 +1,120 @@
+@import "../../../scss/common/globalVariables";
+@import "../../../scss/common/commonMixinsApp";
+.ForwardMessageNotification{
+  @include center-content;
+  @include --padding;
+  flex-direction: row;
+  border-radius: $border;
+  flex-grow: 1;
+  background-color: transparentize($bgPrimary, 0.5);
+  color: $light;
+  font-size: 20px;
+  position: relative;
+  flex-basis: 100%;
+  margin: 10px;
+}
+.sound-wave{
+  @include --border(all, $light, false);
+  border-radius: $border;
+  flex-basis: 100%;
+  margin: 10px;
+  &:focus{
+    outline: none;
+  }
+}
+.imageSendPreviewMini{
+  position: relative;
+  margin: 10px;
+  &:hover::after{
+    opacity: 0.8;
+    content: '';
+    background-image: url("https://img.icons8.com/color/50/000000/zoom-in.png");
+    width: 50px;
+    height: 50px;
+    left: calc(50% - 25px);
+    top: calc(50% - 25px);;
+    position: absolute;
+  }
+}
+.HandTextPanelContainer{
+  @include --padding;
+  @include --border(all, $primary, true);
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60vw;
+  height: 95vh;
+  background-color: $bgPrimary;
+  flex-wrap: wrap;
+  .primaryHeader{
+    flex-basis: 100%;
+  }
+  .HandTextCanvas{
+    @include --border(all, $light, true);
+    margin: 20px;
+    width: 90%;
+    background-color: $bgPrimaryLight2;
+    flex-basis: 100%;
+    cursor: none;
+  }
+  .MuiSlider-root{
+    flex-basis: 40%;
+    flex-shrink: 1;
+    margin: auto;
+  }
+  .MuiSlider-rail, .MuiSlider-track {
+    height: 10px!important;
+    border-radius: 20px!important;
+    background-color: $primary!important;
+  }
+  .PrivateValueLabel-circle-4 {
+    background-color: $primary!important;
+    border: 1px solid $light;
+  }
+  .MuiSlider-thumb{
+    background-color: $primary!important;
+    height: 20px;
+    border: 1px solid $light;
+  }
+  .MuiSlider-valueLabel {
+    left: calc(-50% - 7px) !important;
+  }
+  .ClearInstrumentCanvas{
+    @include center-content;
+    @include button-click;
+    @include --padding;
+    margin: 10px 10px 10px 50px;
+    flex-basis: 20%;
+    flex-shrink: 1;
+    &Selected{
+      background-color: transparentize($primary2, 0.5);
+      border-radius: 50%;
+      transition-duration: 0.5s;
+    }
+  }
+  .canvasControlsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100%;
+    margin: 10px;
+  }
+  .buttonContainerCanvas{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-basis: 100%;
+    margin: 10px;
+  }
+  .canvasCircle{
+    border-radius: 50%;
+    border: 1px solid $light;
+    position: fixed;
+    visibility: hidden;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+}
+

@@ -1,0 +1,77 @@
+@import "../../../scss/common/globalVariables";
+@import "../../../scss/common/commonMixinsApp";
+.userProfileContainer{
+  position: relative;
+}
+.PreferencesWindowCard{
+  @include center-content;
+  .profileCardInfo{
+    width: 50vw;
+    height: 70vh;
+    display: grid;
+    grid-template-rows: repeat(35, 2vh);
+    grid-template-columns: repeat(25, 2vw);
+    justify-items: center;
+    align-items: center;
+  }
+  .editorField{
+    color: $primary!important;
+  }
+  .editorField1{
+    @extend .editorField;
+    grid-area: 2 / 20 / 4 / 25;
+  }
+  .editorField2{
+    @extend .editorField;
+    grid-area: 5 / 20 / 7 / 25;
+  }
+  .editorField3{
+    @extend .editorField;
+    grid-area: 8 / 20 / 10 / 25;
+  }
+  .editorField5{
+    @extend .editorField;
+    grid-area: 11 / 20 / 13 / 25;
+  }
+  .editorField6{
+    @extend .editorField;
+    grid-area: 14 / 20 / 16 / 25;
+  }
+  .editorField4{
+    @extend .editorField;
+    grid-area: 14 / 2 / 16 / 10;
+    .MuiTextField-root{
+      width: 16vw;
+    }
+  }
+  .editorField7{
+    @extend .editorField;
+    grid-area: 17 / 20 / 19 / 25;
+    .MuiTextField-root{
+      width: 16vw;
+    }
+  }
+  .MuiTextField-root{
+    color: $primary;
+    width: 10vw;
+  }
+  .MuiFilledInput-root{
+    background-color: transparentize($light, 0.8);
+  }
+  .MuiFilledInput-input{
+    color: $primary;
+  }
+  .MuiFormLabel-root{
+    color: $primary2!important;
+  }
+  .MuiInputLabel{
+    color: $primary2!important;
+  }
+  .MuiFormGroup-root{
+    flex-wrap: nowrap!important;
+    flex-direction: row!important;
+  }
+}
+#UserProfile{
+  z-index: 10!important;
+}

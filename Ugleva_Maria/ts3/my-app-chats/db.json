@@ -1,0 +1,42 @@
+{
+  "chats": [
+    {
+      "id": "eWdkPH5rweFrgfoG9VnuJ",
+      "title": "Vel veritatis perfer",
+      "highlight": false,
+      "avatar": ""
+    },
+    {
+      "id": "DaAqet_Htj2JhX1rdwUJu",
+      "title": "Quasi dolore in sed ",
+      "highlight": false,
+      "avatar": ""
+    }
+  ],
+  "messages": [
+    {
+      "text": "Fugiat aut eaque ea",
+      "author": "Harum minim suscipit",
+      "id": "3IZsaFnyxX9JfJTsxaoF3",
+      "chatId": "DaAqet_Htj2JhX1rdwUJu"
+    },
+    {
+      "id": "kTGhp-6hSmyTQSKmy839U",
+      "text": "Hi Harum minim suscipit! Погуляем?",
+      "author": "Bot",
+      "chatId": "DaAqet_Htj2JhX1rdwUJu"
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "Ivan",
+      "email": "1@2.ru",
+      "surname": "Ivanov",
+      "age": 27,
+      "country": "Russia",
+      "city": "Moscow",
+      "avatar": "https://wallpapertag.com/wallpaper/full/1/d/2/579482-damon-salvatore-wallpaper-1920x1280-windows-7.jpg"
+    }
+  ]
+}

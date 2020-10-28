@@ -1,0 +1,16 @@
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h2 {
+        margin-top: 50px;
+        color: #fff;
+        font-size: 36px;
+        font-weight: bold;
+        padding: 50px 200px;
+        border-radius: 20px;
+        box-shadow: 5px 5px 13px 0px rgba(50, 50, 50, 0.7);;
+        background-color: rgba(136, 161, 167, 0.8);
+        border: 1px solid rgba(136, 161, 167, 0.8);
+    }
+}

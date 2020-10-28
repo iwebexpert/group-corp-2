@@ -6,7 +6,7 @@ import { Menu } from "./components/Menu";
 import { Food } from "./components/Food";
 import { Game } from "./components/Game";
 
-const settings = new Settings();
+const settings = new Settings({speed: 10, winLength: 12});
 const gameStatus = new Status();
 const snake = new Snake();
 const board = new Board(settings, snake);

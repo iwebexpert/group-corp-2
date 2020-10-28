@@ -1,5 +1,5 @@
 export class Status {
-	public condition: string = ""
+	public condition: string = "pause"
   public constructor() {
     this.setPaused();
   }

@@ -18,13 +18,13 @@ export class Food  {
   }
 
   //Получение координат новой ячейки и отрисовка на поле
- public setNewFood(): void{
+  public setNewFood(): void{
     const food:Food = this.randomCoords();
     this.board.renderFood(food);
   }
 
   //Возвращает случайные координаты
-  public randomCoords(): Food {
+  protected randomCoords(): Food {
     while (true) {
       this.x = Math.floor(Math.random() * this.settings.colsCount) + 1;
       this.y = Math.floor(Math.random() * this.settings.rowsCount) + 1;

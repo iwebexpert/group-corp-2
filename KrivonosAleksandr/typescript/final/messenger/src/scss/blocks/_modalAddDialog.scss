@@ -1,0 +1,32 @@
+.popup-overlay {
+  background: rgba(255, 255, 255, 0.5);
+}
+.popup-content{
+  width: 400px;
+  height: 535px;
+  @include border;
+  padding: 17px 23px;
+  background: white;
+}
+.modal {
+  .header {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+    padding: 10px 0 20px 0;
+  }
+
+  .content {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: -1px;
+    top: -1px;
+    line-height: unset;
+  }
+}

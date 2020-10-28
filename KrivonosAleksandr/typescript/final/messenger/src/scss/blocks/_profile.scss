@@ -1,0 +1,64 @@
+.main-info {
+  margin: 0 auto;
+  padding: 17px 0 0 0;
+  display: flex;
+  justify-content: center;
+  width: 986px; }
+.main-info hr {
+  margin: 19px 0;
+  color: $mainText; }
+.main-info--content {
+  width: 683px;
+  margin-left: 17px;
+  padding: 17px 23px;
+  @include border;
+  box-sizing: border-box; }
+.main-info--top {
+  display: flex;
+  justify-content: space-between; }
+.main-info--name {
+  color: $mainText;
+  font-size: 24px;
+  line-height: 30px; }
+.main-info--status {
+  text-decoration: none;
+  font-size: 16px;
+  color: $secondaryText;
+  transition: .3s; }
+.main-info--status:hover {
+  color: $mainText; }
+.main-info .user-info {
+  width: 100%; }
+.main-info .user-info--content {
+  width: 65%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; }
+.main-info .user-info--text, .main-info .user-info--value {
+  color: $mainText;
+  font-size: 17px;
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+  transition: .3s; }
+.main-info .user-info--text {
+  width: 40%; }
+.main-info .user-info--value:hover {
+  border-bottom: 1px solid $mainText; }
+.main-info .user-info--link {
+  width: 60%; }
+.main-info .user-stats {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+.main-info .user-stats--item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+.main-info .user-stats--item:hover .user-stats--value {
+  color: $active; }
+.main-info .user-stats--value {
+  font-size: 20px;
+  text-decoration: none;
+  color: $mainText;
+  transition: .3s; }

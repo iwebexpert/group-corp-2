@@ -1,0 +1,18 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__rules {
+        text-align: left;
+    }
+
+    h3 {
+        margin-top: 20px;
+    }
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+}

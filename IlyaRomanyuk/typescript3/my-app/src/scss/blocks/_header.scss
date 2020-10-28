@@ -1,0 +1,19 @@
+.header {
+    padding: 10px 20px;
+    background-color: $fontColor;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    -webkit-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.75);
+}

@@ -1,0 +1,19 @@
+export enum wsTypes {
+    CHATS = 'CHATS',
+    MESSAGE = 'MESSAGE',
+    REMEMBER_ME = 'REMEMBER_ME',
+    CONTACTS = 'CONTACTS'
+}
+export enum messageTypes {
+    TEXT = 'TEXT',
+    AUDIO = 'AUDIO',
+    IMAGE = 'IMAGE',
+    SYSTEM_TEXT_PUBLIC = 'SYSTEM_TEXT_PUBLIC',
+    SYSTEM_TEXT_PRIVATE = 'SYSTEM_TEXT_PRIVATE',
+    SYSTEM_TEXT_INNER = 'SYSTEM_TEXT_INNER'
+}
+export enum chatTypes {
+    DIALOG = 'DIALOG',
+    CONVERSATION = 'CONVERSATION'
+}
+

@@ -1,0 +1,307 @@
+@import "../common/globalVariables";
+@import "../common/commonMixinsApp";
+
+@keyframes shadow {
+  from {
+    text-shadow: 1px 1px 2px $deepDark, 0 0 1em $primary, 0 0 0.2em $light;
+  }
+  to {
+    text-shadow: 1px 1px 2px $light, 0 0 1em $primary, 0 0 0.2em $deepDark;
+  }
+}
+
+.MessagesPage {
+  display: flex;
+
+  .selectDialogPanel {
+    width: 25vw;
+    height: 100vh;
+    background-color: $bgPrimary;
+    cursor: pointer;
+    position: relative;
+    @include --border('right', $primary1, false);
+
+    .searchMessPanel {
+      @include center-content;
+      height: 5vh;
+      width: 100%;
+      background-color: $bgPrimaryLight;
+
+      .searchMessPanelInput {
+        @include --border('all', $bgPrimary, true);
+        @include --padding;
+        @include text-standard(1.5vh);
+        width: 90%;
+        height: 4vh;
+        background-color: $light;
+        color: $bgPrimaryLight;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .CategorySelectorDlgPnCont {
+      width: 100%;
+      display: flex;
+
+      .CategorySelectorDlgPn {
+        @include --padding;
+        @include center-content;
+        @include text-standard(30px);
+        @include --border('bottom', $primary, false);
+        flex-direction: row;
+        justify-content: space-between;
+        height: 5vh;
+        width: 50%;
+        &:hover {
+          background-color: $primary2;
+          color: $deepDark;
+        }
+      }
+    }
+
+    .ShortMenuContainer {
+      @include center-content;
+      @include --padding;
+      @include --border(top, $primary, false);
+      display: flex;
+      justify-content: center;
+      height: 17.5vh;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: calc(100% - 17.5vh);
+
+      .shortMenuGreeting {
+        @include center-content;
+        color: $primary;
+        font-size: 2vh;
+        margin: 10px;
+        font-weight: bold;
+      }
+
+      .UnAuthorizeBtn {
+        @include --border('all', $light, true);
+        @include --padding;
+        @include button-click;
+        @include center-content;
+        background-color: $primary;
+        color: $light;
+        height: 6vh;
+        font-weight: bold;
+        width: 60%;
+      }
+    }
+  }
+
+  .MessengerArea {
+    width: 75vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .emptyMessengerArea {
+      @include center-content;
+      width: 100%;
+      height: 100%;
+      font-weight: bold;
+      font-size: 5vh;
+      color: $primary;
+      background-color: $bgPrimaryLight;
+    }
+
+    .MessengerTopPanel {
+      @include center-content;
+      width: 100%;
+      height: 5vh;
+      background-color: $bgPrimaryLight;
+      flex-direction: row;
+      .button{
+        height: 4vh;
+        margin-right: 70px;
+        margin-left: 30px;
+      }
+      .chatTitleTopPn {
+        @include --padding;
+        color: $primary;
+        font-weight: bold;
+        font-size: 4vh;
+      }
+    }
+
+    .MessagesArea {
+      @include --padding;
+      width: 100%;
+      flex-grow: 1;
+      background-color: $bgPrimaryLight3;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: auto;
+
+      .MessagesContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      .messageContainer {
+        @include center-content;
+        width: 100%;
+        flex-grow: 1;
+
+        &Selected {
+          background-color: transparentize($light, 0.5);
+        }
+
+        .MuiCircularProgress-root {
+          color: $primary !important;
+          width: 3vh !important;
+          height: 3vh !important;
+          align-self: center !important;
+        }
+      }
+
+      .Message {
+        @include --padding;
+        @include --border('all', $primary, true);
+
+        .messageContainer {
+          display: table-column-group !important;
+        }
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: transparentize($bgPrimary, 0.5);
+        font-size: 20px;
+        max-width: 70%;
+        word-break: break-all;
+        margin: 10px;
+        align-self: flex-start;
+        position: relative;
+
+        .avatar {
+          margin-right: auto;
+          order: 2;
+          align-self: center;
+        }
+
+        .MessageText {
+          align-self: center;
+          justify-self: center;
+          order: 5;
+          flex-grow: 1;
+          text-align: center;
+        }
+
+        .MyIconAuthor {
+          margin-left: auto;
+          margin-right: 0;
+          order: 7;
+          align-self: center;
+        }
+      }
+
+      .ForwardMessage {
+        @extend .Message;
+        background-color: transparentize($light, 0.4) !important;
+        order: 1;
+
+        &:before {
+          content: ' ';
+          display: block;
+          height: 100%;
+          width: 3px;
+          background-color: $bgPrimaryLight;
+        }
+      }
+
+      .MyMessage {
+        @extend .Message;
+        background-color: transparentize($primary, 0.5);
+        align-self: flex-end;
+      }
+
+      .MessageText {
+        margin: 15px;
+      }
+    }
+
+    .InputMessageArea {
+      @include --padding;
+      width: 100%;
+      background-color: $bgPrimaryLight2;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+
+      .inputFileMessageContainer {
+        @include button-click;
+        margin: 5px;
+        border-radius: $border;
+        padding: 5px;
+        &:hover {
+          background-color: $primary;
+          transition-duration: 0.5s;
+        }
+      }
+
+      .InputMessageTextArea {
+        @include --border('all', $primary2, true);
+        @include --padding;
+        flex-grow: 1;
+        resize: none;
+        font-size: 22px;
+        overflow: auto;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .SendMsgBtn {
+        @include --padding;
+        @include button-click;
+        background-color: $bgPrimaryLight2;
+        background-image: url("https://img.icons8.com/clouds/100/000000/cloud-mail.png");
+        background-size: contain;
+        height: 6vh;
+        width: 6vh;
+        margin: 5px;
+      }
+    }
+  }
+}
+
+.PanelMessageActions {
+  @include center-content;
+  flex-direction: row;
+  background-color: $bgPrimary;
+  color: $light;
+  width: 10vw;
+  height: 4vh;
+  overflow: hidden;
+  border-radius: $border;
+
+  &Button {
+    @include button-click;
+    height: 4vh;
+    width: 4vh;
+
+    &:hover {
+      background-color: transparentize($primary2, 0.5);
+      border-radius: $border;
+      transition-duration: 1s;
+    }
+  }
+}
+.carouselImage{
+  @include --border(all, $light, true);
+  margin: 20px;
+}

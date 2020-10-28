@@ -1,9 +1,7 @@
 import {wsStatus} from "../configs/statuses";
 import {IChat, IContacts, IUser} from "../configs/globalTypes";
 import {connectRouter, RouterState} from "connected-react-router";
-import {AppReducer} from "./Reducers/AppReducer";
-import {SystemReducer} from "./Reducers/SystemReducer";
-import {Reducer} from "redux";
+
 
 export interface IAppState {
     wsStatus: wsStatus;
@@ -13,7 +11,7 @@ export interface IAppState {
     contacts: IContacts;
     userProfileToShow: IUser | null;
 }
-export interface ISystemState {//toDO
+export interface ISystemState {
     forwardMessage: any;
     loading: boolean;
     error: {message: string} | null;

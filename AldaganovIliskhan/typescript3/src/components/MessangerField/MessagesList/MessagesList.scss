@@ -1,0 +1,20 @@
+.messages__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    li {
+        background-color: lightcoral;
+        padding: 5px 12px;
+        border-radius: 12px;
+        font-size: 20px;
+        margin: 5px;
+        color: #fff;
+    }
+    .sender {
+        align-self: flex-end;
+    }
+    .bot {
+        align-self: flex-start;
+
+    }
+}

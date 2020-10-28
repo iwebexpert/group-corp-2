@@ -1,0 +1,220 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "Favorite chat",
+      "fire": false
+    },
+    {
+      "id": 1,
+      "title": "Work chat",
+      "fire": false
+    },
+    {
+      "id": 2,
+      "title": "Friends",
+      "fire": false
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "WebDev",
+      "text": "Test!",
+      "chatId": 0
+    },
+    {
+      "id": 2,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 1
+    },
+    {
+      "id": 3,
+      "author": "WebDev",
+      "text": "Какие есть задачи на сегодня?",
+      "chatId": 1
+    },
+    {
+      "id": 4,
+      "author": "WebDev",
+      "text": "Привет!",
+      "chatId": 2
+    },
+    {
+      "id": 5,
+      "author": "WebDev",
+      "text": "Что нового?)",
+      "chatId": 2
+    },
+    {
+      "author": "ars",
+      "text": "42",
+      "id": "I3H8XymByynHuuzlJFGf7",
+      "chatId": 0
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "UNad87hp4vKnCEXp1OBZa",
+      "chatId": 0
+    },
+    {
+      "author": "ars",
+      "text": "42",
+      "id": "ff0jB3JOMDZRWr5URSH6w",
+      "chatId": 0
+    },
+    {
+      "text": "42",
+      "author": "ars",
+      "id": "YuUx233P6WGmVQqbNDJ4R",
+      "chatId": 0
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "ouhKT6rMlhwcKTORyqFug",
+      "chatId": 0
+    },
+    {
+      "text": "42",
+      "author": "ars",
+      "id": "7r42Rg04Tapa6QVxkm9nt",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "cmQVLZTeCf4SLY_d3C6T-",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "ars",
+      "id": "cj2RDUx2nMFstITdRNgZa",
+      "chatId": 0
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "9q5XnhiHkeHX0N8BInF8p",
+      "chatId": 0
+    },
+    {
+      "text": "42",
+      "author": "ars",
+      "id": "5drE82gLkD7Pb2UfZSR9s",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "-LDNbql6Nff2ZCbZjnZua",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "ars",
+      "id": "PB00sZ3LTKsxbdXColTUP",
+      "chatId": 0
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "_sYMX3MuPzPmNjY7z6435",
+      "chatId": 0
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "9bzxAV1elh9xYGsX2CylH",
+      "chatId": 2
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "B_rgR7oKgE25UaXfWsjtf",
+      "chatId": 2
+    },
+    {
+      "text": "42",
+      "author": "arseniy",
+      "id": "ByN31ums8YBEX0fwJ714d",
+      "chatId": 0
+    },
+    {
+      "text": "42",
+      "author": "arseniy",
+      "id": "scdsuHKu2xCtzv4swhTVb",
+      "chatId": 0
+    },
+    {
+      "text": "Hi, arseniy, im Robot!",
+      "author": "Robot",
+      "id": "Dc1LCNAyF2vxbN-7dsr0X",
+      "chatId": 0
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "tWBLLxbgunqhLCHOsn2ug",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "Ht7EAAZT6SQxbI7ZmR3iw",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "ecN7gIwywwPy-dn9rrtNV",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "R3CdZpPxk5khn6wAs1K9R",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "2QY42KxK-FlFD5gc-8kmR",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, 42, im Robot!",
+      "author": "Robot",
+      "id": "glWtHubbNv6nwqdveCDiG",
+      "chatId": 1
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "aiLHU-clbpSSelYbZofQ9",
+      "chatId": 0
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "56K7NaHyOjev_MjBq8FRw",
+      "chatId": 0
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "WebDev",
+      "email": "1@2.ru"
+    }
+  ]
+}

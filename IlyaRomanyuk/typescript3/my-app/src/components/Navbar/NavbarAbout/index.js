@@ -1,0 +1,1 @@
+export { NavbarAbout } from './NavbarAbout.tsx';

@@ -4,20 +4,20 @@
       "id": 2,
       "title": "Helga Källström",
       "fire": false,
-      "image": "src/img/mans/m4.png"
+      "image": "img/mans/m4.png"
     },
     {
       "id": 3,
       "title": "Kevin Sertcin",
       "fire": false,
-      "image": "src/img/mans/m5.png"
+      "image": "img/mans/m5.png"
     },
     {
-      "title": "fgregergre",
-      "image": "src/img/mans/bot.png",
+      "title": "gregrege",
+      "image": "img/mans/bot.png",
       "fire": false,
       "messages": [],
-      "id": 15
+      "id": 4
     }
   ],
   "messages": [
@@ -25,48 +25,41 @@
       "id": 5,
       "author": "Helga Källström",
       "message": "I’m very happy to introduce it!",
-      "image": "src/img/mans/m4.png",
-      "chatId": 2
-    },
-    {
-      "id": "ge5dULnqtl3JfY0RRbeLe",
-      "author": "43g34h",
-      "message": "g5",
-      "image": "m1.png",
+      "image": "img/mans/m4.png",
       "chatId": 2
     },
     {
       "id": "AukypFHasmzh79kiTjiju",
       "author": "Romanyuk",
       "message": "Hello ~~",
-      "image": "m1.png",
+      "image": "img/mans/m1.png",
       "chatId": 3
     },
     {
       "chatId": 3,
       "message": "Hi, Romanyuk! Бот на связи...",
       "author": "Kevin Sertcin",
-      "image": "src/img/mans/m5.png",
+      "image": "img/mans/m5.png",
       "id": "G2lvNmbddLIJ2_JIpmh5c"
     },
     {
-      "id": "jKHVu7APekpV3vOZm9h0L",
-      "author": "рен",
-      "message": "рнерне",
-      "image": "m1.png",
+      "id": "6pr5Z4mVCcFJZFYGs_pao",
+      "author": "vre",
+      "message": "vrevre",
+      "image": "img/mans/m1.png",
       "chatId": 2
     },
     {
       "chatId": 2,
-      "message": "Hi, рен! Бот на связи...",
+      "message": "Hi, vre! Бот на связи...",
       "author": "Helga Källström",
-      "image": "src/img/mans/m4.png",
-      "id": "6R0n8urgIVDd7Eh-aIyKE"
+      "image": "img/mans/m4.png",
+      "id": "r1fnkhOxgMQDf_A_8kHRz"
     }
   ],
   "person": {
     "name": "Romanyuk Ilya",
     "status": "Available for freelance work.",
-    "image": "src/img/mans/m1.png"
+    "image": "img/mans/m1.png"
   }
 }

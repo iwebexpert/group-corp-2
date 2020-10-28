@@ -29,7 +29,8 @@ const useStyles = makeStyles({
 });
 export const Profile = () => {
     const classes = useStyles();
-    const { profileData, isProfileError, isProfileLoading } = useSelector(({ profile }) => profile);
+    const {profileData} = useSelector(({profile}) => profile);
+    const { isProfileError, isProfileLoading } = useSelector(({ profile }) => profile);
     if (isProfileError) {
         return <div style={{ color: '#000' }}>Error...</div>
     }

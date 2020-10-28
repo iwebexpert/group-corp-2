@@ -7,18 +7,21 @@ export interface Coords {
 }
 
 export class Board {
-	public boardElement: HTMLElement| null;
-	public settings: Settings;
-	public snake: Snake;
+	protected boardElement: HTMLElement;
+	protected settings: Settings;
+	protected snake: Snake;
 
 	public constructor(settings: Settings, snake:Snake){
-		  this.boardElement = document.getElementById('game');
-		  this.settings = settings;
-        this.snake = snake;
-    }
+		const elem:HTMLElement|null = document.getElementById('game')
+		if(elem){
+			this.boardElement = elem
+		}else throw new Error('error')
 
+		this.settings = settings;
+		this.snake = snake;
+		 }
+	
     public renderBoard():void {
-		 if(this.boardElement){
 			this.boardElement.innerHTML = '';
 			for(let row = 0; row < this.settings.rowsCount; row++){
 				 let tr:HTMLTableRowElement = document.createElement('tr');
@@ -29,7 +32,6 @@ export class Board {
 					  tr.appendChild(td);
 				 }
 			}
-		 } 
     }
 
     public renderSnake():void{
@@ -76,11 +78,8 @@ export class Board {
     }
 
     public isHeadOnFoodSnake():boolean{
-		if (this.boardElement) {
 			let foodElement: HTMLTableDataCellElement | null = this.boardElement.querySelector('.food');
 			return foodElement ? foodElement.classList.contains('snake'): false;
-		}
-		return false
 	}
 
     //Очистка поля

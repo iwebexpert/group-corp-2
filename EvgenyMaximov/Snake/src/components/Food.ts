@@ -5,9 +5,9 @@ import { Snake } from "./Snake";
 export class Food  {
 	public x: number;
 	public y: number;
-	public settings: Settings;
-	public snake: Snake;
-	public board: Board;
+	protected settings: Settings;
+	protected snake: Snake;
+	protected board: Board;
 
 	public constructor(settings:Settings, snake:Snake, board:Board) {
     this.x = 0;
@@ -18,13 +18,13 @@ export class Food  {
   }
 
   //Получение координат новой ячейки и отрисовка на поле
- public setNewFood(): void{
+  public setNewFood(): void{
     const food:Food = this.randomCoords();
     this.board.renderFood(food);
   }
 
   //Возвращает случайные координаты
-  public randomCoords(): Food {
+  protected randomCoords(): Food {
     while (true) {
       this.x = Math.floor(Math.random() * this.settings.colsCount) + 1;
       this.y = Math.floor(Math.random() * this.settings.rowsCount) + 1;

@@ -1,0 +1,19 @@
+.ChatBox{
+    padding: 10px;
+    height: 78vh;
+    width: 708px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    background: rgba(102, 73, 184, .5);
+    margin-top:93px;
+}
+.ChatBox::-webkit-scrollbar {
+    width: .25rem;
+}
+.ChatBox::-webkit-scrollbar-thumb {
+    background: #6649b8;
+}
+.ChatBox::-webkit-scrollbar-track {
+    background: #1e1e24;
+}

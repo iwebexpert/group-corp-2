@@ -4,18 +4,15 @@ import {IBoard} from "./Board";
 
 export interface IFood {
     coords: Cords;
-    settings: ISettings;
-    snake: ISnake;
-    board: IBoard;
     setNewFood(): void;
     setFood(): void
 }
 
 export default class Food implements IFood{
     public coords: Cords;
-    public settings: ISettings;
-    public snake: ISnake;
-    public board: IBoard;
+    protected settings: ISettings;
+    protected snake: ISnake;
+    protected board: IBoard;
     constructor(settings: ISettings, snake: ISnake, board: IBoard){
         this.coords = {x: null, y: null};
         this.settings = settings;

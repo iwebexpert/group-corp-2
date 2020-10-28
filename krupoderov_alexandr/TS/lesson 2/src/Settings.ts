@@ -7,10 +7,10 @@ export interface ISettings {
 }
 
 export default class Settings implements ISettings{
-    readonly rowsCount: number
-    readonly colsCount: number
-    readonly speed: number
-    readonly winLength: number
+    readonly rowsCount: number;
+    readonly colsCount: number;
+    readonly speed: number;
+    readonly winLength: number;
 
     constructor({rowsCount = 20, colsCount = 20, speed = 4, winLength = 5}) {
 

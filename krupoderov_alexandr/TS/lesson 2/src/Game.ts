@@ -52,7 +52,7 @@ export default class Game extends Status implements IGame{
     }
 
     //1 шаг игры
-    public doTick(){
+    protected doTick(){
         this.snake.performStep();
         if(this.isGameLost()){
             return;
@@ -97,7 +97,7 @@ export default class Game extends Status implements IGame{
     }
 
     //Смена направления движения змейки
-    public pressKeyHandler(event: { key: any; }){
+    protected pressKeyHandler(event: KeyboardEvent){
         switch(event.key){
             case 'ArrowUp':
                 this.snake.changeDirection(Directions.Up);

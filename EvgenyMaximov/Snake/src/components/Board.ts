@@ -7,16 +7,17 @@ export interface Coords {
 }
 
 export class Board {
-	public boardElement: HTMLElement| null;
+	public boardElement: HTMLElement|null;
 	public settings: Settings;
 	public snake: Snake;
 
 	public constructor(settings: Settings, snake:Snake){
-		  this.boardElement = document.getElementById('game');
-		  this.settings = settings;
-        this.snake = snake;
-    }
 
+		this.boardElement = document.getElementById('game')
+		this.settings = settings;
+		this.snake = snake;
+		 }
+	
     public renderBoard():void {
 		 if(this.boardElement){
 			this.boardElement.innerHTML = '';

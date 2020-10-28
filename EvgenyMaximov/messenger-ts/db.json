@@ -1,0 +1,32 @@
+{
+  "chats": [
+    {
+      "title": "Домашний чат",
+      "chatId": 0,
+      "messages": [],
+      "fire": false,
+      "id": 0
+    },
+    {
+      "title": "Рабочий чат",
+      "chatId": 1,
+      "messages": [],
+      "fire": false,
+      "id": 1
+    },
+    {
+      "title": "Друзья",
+      "chatId": 2,
+      "messages": [],
+      "fire": false,
+      "id": 2
+    }
+  ],
+  "messages": [],
+  "profile": {
+    "firstName": "Евгений",
+    "secondName": "Максимов",
+    "age": 26,
+    "nickName": "Areukiddin"
+  }
+}

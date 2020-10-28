@@ -1,13 +1,13 @@
 export class Menu {
-	protected startBtn: HTMLButtonElement|null;
-	protected pauseBtn: HTMLButtonElement|null;
-	protected refreshBtn: HTMLButtonElement|null;
+	protected startBtn: HTMLButtonElement|null = document.querySelector("#start-btn");
+	protected pauseBtn: HTMLButtonElement|null = document.querySelector("#pause-btn");
+	protected refreshBtn: HTMLButtonElement|null = document.querySelector("#refresh-btn");
 
   public constructor() {
-    this.startBtn = document.querySelector("#start-btn");
-    this.pauseBtn = document.querySelector("#pause-btn");
-    this.refreshBtn = document.querySelector("#refresh-btn");
-  }
+	 this.startBtn;
+    this.pauseBtn;
+	 this.refreshBtn;
+	}
 
   public addButtonsClickListeners(
 	startBtnHandler: () => void,

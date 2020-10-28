@@ -5,9 +5,9 @@ import { Snake } from "./Snake";
 export class Food  {
 	public x: number;
 	public y: number;
-	public settings: Settings;
-	public snake: Snake;
-	public board: Board;
+	protected settings: Settings;
+	protected snake: Snake;
+	protected board: Board;
 
 	public constructor(settings:Settings, snake:Snake, board:Board) {
     this.x = 0;

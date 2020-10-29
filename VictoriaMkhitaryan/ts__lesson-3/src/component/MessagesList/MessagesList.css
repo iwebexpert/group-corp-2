@@ -1,0 +1,24 @@
+.chat__list-item-come {
+  flex-direction: column;
+  align-items: flex-end !important;
+}
+
+.chat__list-item-me {
+  flex-direction: column;
+  align-items: start !important;
+}
+
+.chat__user-text {
+  margin: 2px;
+  padding-left: 4px;
+  font-size: 14px;
+}
+
+.chat__chip-me {
+  background-color: var(--bg-color-card) !important;
+}
+
+.chat__delete-message {
+  cursor: pointer;
+  margin-left: 10px;
+}

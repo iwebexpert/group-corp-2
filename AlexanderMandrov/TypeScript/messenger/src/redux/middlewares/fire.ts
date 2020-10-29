@@ -1,12 +1,15 @@
 import { LOCATION_CHANGE, push } from 'connected-react-router';
+import { Middleware, MiddlewareAPI, Dispatch, AnyAction } from 'redux';
 import { findChatIdByReceiver, findChatByReceiver } from '../../utils/utils';
-import { sendChatFired, SEND_FIRE_SUCCESS, fetchChats } from '../ducks/chats';
+import { sendChatFired, ChatsActionTypes, fetchChats } from '../ducks/chats';
 
 let flg = true;
 
-export const fireMiddleware = store => next => action => {
+export const fireMiddleware: Middleware = (store: MiddlewareAPI) => (
+  next: Dispatch
+) => (action: AnyAction) => {
   if (action.type === LOCATION_CHANGE) {
-    const { pathname } = action.payload.location
+    const { pathname } = action.payload.location;
     const receiver = pathname.split('/')[2];
     const { chatsReducer } = store.getState();
     const { chats } = chatsReducer;
@@ -19,13 +22,16 @@ export const fireMiddleware = store => next => action => {
 
     if (chats && receiver) {
       const chat = findChatByReceiver(chats, receiver);
-      if (chat && chat.fired) dispatch(sendChatFired(!chat.fired, findChatIdByReceiver(chats, receiver)));
+      if (chat && chat.fired)
+        dispatch(
+          sendChatFired(!chat.fired, findChatIdByReceiver(chats, receiver))
+        );
     }
   }
 
-  if (action.type === SEND_FIRE_SUCCESS) {
+  if (action.type === ChatsActionTypes.SEND_FIRE_SUCCESS) {
     store.dispatch(fetchChats());
   }
-  
+
   return next(action);
 };

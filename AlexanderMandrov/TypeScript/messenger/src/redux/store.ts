@@ -1,7 +1,12 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { createBrowserHistory } from 'history';
-import { persistStore, persistReducer } from 'redux-persist';
+import { createBrowserHistory, History } from 'history';
+import {
+  persistStore,
+  persistReducer,
+  Persistor,
+  WebStorage,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -9,14 +14,18 @@ import { routerMiddleware } from 'connected-react-router';
 import { apiMiddleware } from 'redux-api-middleware';
 import { fireMiddleware } from './middlewares/fire';
 import { messageMiddleware } from './middlewares/message';
-import createRootReducer from './rootReducer';
+import { createRootReducer } from './rootReducer';
 
-export const history = createBrowserHistory();
+export const history: History = createBrowserHistory();
 
-const persistConfig = {
+const persistConfig: {
+  key: string;
+  storage: WebStorage;
+  blacklist: string[];
+} = {
   key: 'root',
   storage,
-  blacklist: ['chatsReducer', 'profileReducer']
+  blacklist: ['chatsReducer', 'profileReducer'],
 };
 
 const middlewares = [
@@ -25,18 +34,18 @@ const middlewares = [
   logger,
   fireMiddleware,
   messageMiddleware,
-  routerMiddleware(history)
+  routerMiddleware(history),
 ];
 
-export const initStore = () => {
+export const initStore = (): { store: Store; persistor: Persistor } => {
   const initialStore = {};
 
-  const store = createStore(
+  const store: Store = createStore(
     persistReducer(persistConfig, createRootReducer(history)),
     initialStore,
     composeWithDevTools(applyMiddleware(...middlewares))
   );
 
-  const persistor = persistStore(store);
+  const persistor: Persistor = persistStore(store);
   return { store, persistor };
 };

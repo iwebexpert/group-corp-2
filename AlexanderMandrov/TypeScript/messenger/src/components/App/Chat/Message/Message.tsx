@@ -3,14 +3,6 @@ import classNames from 'classnames';
 import './Message.scss';
 import { Fab, Box, Typography, makeStyles } from '@material-ui/core';
 import { DeleteForever } from '@material-ui/icons';
-import { IMessage } from '../../../../types/interfaces';
-
-type MessageComponentType = {
-  message: IMessage;
-  user?: string;
-  isBot?: boolean;
-  deleteMessage: (id: string) => void;
-};
 
 const useStyles: () => Record<string, string> = makeStyles({
   usernameStyle: {
@@ -37,7 +29,7 @@ const useStyles: () => Record<string, string> = makeStyles({
   },
 });
 
-export const Message: React.FC<MessageComponentType> = ({
+export const Message: React.FC<MessageType> = ({
   message,
   deleteMessage,
   isBot,

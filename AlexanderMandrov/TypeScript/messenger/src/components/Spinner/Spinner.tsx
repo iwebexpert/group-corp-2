@@ -3,11 +3,6 @@ import { css, SerializedStyles } from '@emotion/core';
 import RingLoader from 'react-spinners/RingLoader';
 import './Spinner.scss';
 
-type SpinnerType = {
-  size: number;
-  color: string;
-};
-
 const Spinner: React.FC<SpinnerType> = ({ size, color }) => {
   const override: SerializedStyles = css`
     display: block;

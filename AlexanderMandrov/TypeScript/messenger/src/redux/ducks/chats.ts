@@ -1,13 +1,12 @@
-import {
-  createAction,
-  RSAARequestTypeDescriptor,
-  RSAASuccessTypeDescriptor,
-  RSAAFailureTypeDescriptor,
-} from 'redux-api-middleware';
+import { createAction } from 'redux-api-middleware';
 import { ActionCreator, Reducer } from 'redux';
 import { createMessage, createBotMessage } from '../../utils/utils';
 import { API_URL } from '../../constants/constants';
-import { IMessage, IChat } from '../../types/interfaces';
+import {
+  RSAAFailureTypeDescriptor,
+  RSAARequestTypeDescriptor,
+  RSAASuccessTypeDescriptor,
+} from 'redux-api-middleware';
 
 export enum ChatsActionTypes {
   FETCH_CHATS_REQUEST = 'chats/FETCH_CHATS_REQUEST',
@@ -135,10 +134,16 @@ export const deleteMessage = (messageId: string) =>
     ],
   });
 
-export type setReceiverAction = {
+type setReceiverAction = {
   type: ChatsActionTypes.SET_RECEIVER;
   payload: string;
 };
+
+type ChatsActions =
+  | setReceiverAction
+  | RSAAFailureTypeDescriptor
+  | RSAASuccessTypeDescriptor
+  | RSAARequestTypeDescriptor;
 
 export const setReceiver: ActionCreator<setReceiverAction> = (
   receiver: string
@@ -146,12 +151,6 @@ export const setReceiver: ActionCreator<setReceiverAction> = (
   type: ChatsActionTypes.SET_RECEIVER,
   payload: receiver,
 });
-
-type ChatsActions =
-  | setReceiverAction
-  | RSAASuccessTypeDescriptor
-  | RSAAFailureTypeDescriptor
-  | RSAARequestTypeDescriptor;
 
 export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (
   state = initialState,

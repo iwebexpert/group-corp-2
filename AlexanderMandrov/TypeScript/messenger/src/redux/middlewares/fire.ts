@@ -1,9 +1,12 @@
 import { LOCATION_CHANGE, push } from 'connected-react-router';
 import { Middleware, MiddlewareAPI, Dispatch, AnyAction } from 'redux';
 import { findChatIdByReceiver, findChatByReceiver } from '../../utils/utils';
-import { sendChatFired, ChatsActionTypes, fetchChats } from '../ducks/chats';
-import { IChat } from '../../types/interfaces';
-import { ChatsReducerState } from '../ducks/chats';
+import {
+  sendChatFired,
+  fetchChats,
+  ChatsReducerState,
+  ChatsActionTypes,
+} from '../ducks/chats';
 
 let flg: boolean = true;
 

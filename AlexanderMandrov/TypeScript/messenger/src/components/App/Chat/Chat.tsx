@@ -1,14 +1,7 @@
 import React, { createRef, useEffect } from 'react';
 import './Chat.scss';
 import { Message } from './Message';
-import { IMessage } from '../../../types/interfaces';
 import { List, ListItem } from '@material-ui/core';
-
-type ChatType = {
-  user: string;
-  deleteMessage: (id: string) => void;
-  getMessageList: () => Array<IMessage>;
-};
 
 export const Chat: React.FC<ChatType> = ({
   user,

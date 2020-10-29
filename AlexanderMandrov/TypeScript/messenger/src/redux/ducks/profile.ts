@@ -1,9 +1,8 @@
 import { API_URL } from '../../constants/constants';
 import { ActionCreator, Dispatch, Reducer } from 'redux';
 import { RequestError } from 'redux-api-middleware';
-import { IProfile } from '../../types/interfaces';
 
-export enum ProfilesActionTypes {
+enum ProfilesActionTypes {
   FETCH_PROFILE_REQUEST = 'profile/FETCH_PROFILE_REQUEST',
   FETCH_PROFILE_SUCCESS = 'profile/FETCH_PROFILE_SUCCESS',
   FETCH_PROFILE_FAILURE = 'profile/FETCH_PROFILE_FAILURE',
@@ -24,31 +23,11 @@ const initialState: ProfileReducerState = {
   error: false,
 };
 
-type setProfileStickerAction = {
-  type: ProfilesActionTypes.SET_PROFILE_STICKER;
-  payload: string;
-};
-
-type fetchProfileRequestAction = {
-  type: ProfilesActionTypes.FETCH_PROFILE_REQUEST;
-};
-
-type fetchProfileSuccessAction = {
-  type: ProfilesActionTypes.FETCH_PROFILE_SUCCESS;
-  payload: IProfile;
-};
-
 type fetchProfileFailureAction = {
   type: ProfilesActionTypes.FETCH_PROFILE_FAILURE;
   payload: RequestError;
   error: boolean;
 };
-
-type ProfileActions =
-  | setProfileStickerAction
-  | fetchProfileRequestAction
-  | fetchProfileSuccessAction
-  | fetchProfileFailureAction;
 
 export const setProfileSticker: ActionCreator<setProfileStickerAction> = (
   sticker: string
@@ -57,9 +36,18 @@ export const setProfileSticker: ActionCreator<setProfileStickerAction> = (
   payload: sticker,
 });
 
+type fetchProfileRequestAction = {
+  type: ProfilesActionTypes.FETCH_PROFILE_REQUEST;
+};
+
 export const fetchProfileRequest: ActionCreator<fetchProfileRequestAction> = () => ({
   type: ProfilesActionTypes.FETCH_PROFILE_REQUEST,
 });
+
+type fetchProfileSuccessAction = {
+  type: ProfilesActionTypes.FETCH_PROFILE_SUCCESS;
+  payload: IProfile;
+};
 
 export const fetchProfileSuccess: ActionCreator<fetchProfileSuccessAction> = (
   data: IProfile
@@ -67,6 +55,11 @@ export const fetchProfileSuccess: ActionCreator<fetchProfileSuccessAction> = (
   type: ProfilesActionTypes.FETCH_PROFILE_SUCCESS,
   payload: data,
 });
+
+type setProfileStickerAction = {
+  type: ProfilesActionTypes.SET_PROFILE_STICKER;
+  payload: string;
+};
 
 export const fetchProfileFailure: ActionCreator<fetchProfileFailureAction> = (
   error: RequestError
@@ -87,6 +80,12 @@ export const fetchProfileInfo = (user: string) => {
     }
   };
 };
+
+type ProfileActions =
+  | setProfileStickerAction
+  | fetchProfileRequestAction
+  | fetchProfileSuccessAction
+  | fetchProfileFailureAction;
 
 export const profileReducer: Reducer<ProfileReducerState, ProfileActions> = (
   state = initialState,

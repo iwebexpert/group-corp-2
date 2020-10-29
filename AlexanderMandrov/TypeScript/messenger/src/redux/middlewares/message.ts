@@ -1,10 +1,10 @@
 import { Middleware, MiddlewareAPI, Dispatch, AnyAction } from 'redux';
 import { RouterState } from 'connected-react-router';
 import {
-  ChatsActionTypes,
   sendChatFired,
   sendBotMessage,
   fetchChats,
+  ChatsActionTypes,
   ChatsReducerState,
 } from '../ducks/chats';
 

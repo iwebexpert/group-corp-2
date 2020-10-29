@@ -1,4 +1,4 @@
-export interface IMessage {
+interface IMessage {
   text: string;
   username: string;
   id: string;
@@ -6,7 +6,7 @@ export interface IMessage {
   chatId: string;
 }
 
-export interface IProfile {
+interface IProfile {
   id: string;
   firstname: string;
   lastname: string;
@@ -15,7 +15,7 @@ export interface IProfile {
   number: string;
 }
 
-export interface IChat {
+interface IChat {
   id: string;
   fired: boolean;
   username: string;

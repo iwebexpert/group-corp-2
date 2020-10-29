@@ -1,11 +1,6 @@
 import { nanoid } from 'nanoid';
-import { IMessage, IChat } from '../types/interfaces';
 
-export const createMessage: (
-  text: IMessage['text'],
-  username: IMessage['username'],
-  chatId: IMessage['chatId']
-) => IMessage = (text, username, chatId) => {
+export const createMessage: CreateMessage = (text, username, chatId) => {
   return {
     text: text,
     username: username,
@@ -15,11 +10,11 @@ export const createMessage: (
   };
 };
 
-export const createBotMessage: (
-  sender: IMessage['username'],
-  receiver: string,
-  chatId: IMessage['chatId']
-) => IMessage = (sender, receiver, chatId) => {
+export const createBotMessage: CreateBotMessage = (
+  sender,
+  receiver,
+  chatId
+) => {
   return {
     text: `⊂(✾◕ ‿ ◕✾)つ•٠· Hello, ${sender}! ${receiver} is offline, he/she will reply you soon!`,
     username: 'Bot',
@@ -29,35 +24,24 @@ export const createBotMessage: (
   };
 };
 
-export const validateInput: (text: string) => boolean = (text) => {
+export const validateInput: ValidateInput = (text) => {
   const regExp: RegExp = /\S|(^\w$)/gi;
   return regExp.test(text);
 };
 
-export const validateNewChat: (
-  chats: Array<IChat>,
-  newReceiver: string
-) => boolean = (chats, newReceiver) => {
+export const validateNewChat: ValidateNewChat = (chats, newReceiver) => {
   return findChatIdByReceiver(chats, newReceiver) === '' ? true : false;
 };
 
-export const messageShorter: (message: IMessage['text']) => string = (
-  message
-) => {
+export const messageShorter: MessageShorter = (message) => {
   return message.length < 39 ? message : `${message.slice(0, 36)}...`;
 };
 
-export const findChatByReceiver: (
-  chats: Array<IChat>,
-  receiver: string
-) => IChat = (chats, receiver) => {
+export const findChatByReceiver: FindChatByReceiver = (chats, receiver) => {
   return chats.filter((chat: IChat) => chat.username === receiver)[0];
 };
 
-export const findChatIdByReceiver: (
-  chats: Array<IChat>,
-  receiver: string
-) => string = (chats, receiver) => {
+export const findChatIdByReceiver: FindChatIdByReceiver = (chats, receiver) => {
   let id: string = '';
   chats.forEach((chat: IChat) => {
     if (chat.username === receiver) id = chat.id;

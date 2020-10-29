@@ -15,12 +15,7 @@ type MessageFormType = {
   pushMessage: (message: string) => void;
 };
 
-type ErrorProps = {
-  handleClick?: (dispatch: React.Dispatch<any>) => void;
-  mx?: string;
-};
-
 type SpinnerType = {
-  size: number;
-  color: string;
+  size?: number;
+  color?: string;
 };

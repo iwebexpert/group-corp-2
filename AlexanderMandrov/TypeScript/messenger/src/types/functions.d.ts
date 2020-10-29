@@ -1,3 +1,4 @@
+/** Utils */
 type CreateMessage = (
   text: IMessage['text'],
   username: IMessage['username'],
@@ -19,3 +20,6 @@ type MessageShorter = (message: IMessage['text']) => string;
 type FindChatByReceiver = (chats: Array<IChat>, receiver: string) => IChat;
 
 type FindChatIdByReceiver = (chats: Array<IChat>, receiver: string) => string;
+
+/** Constants */
+type CreatePrimaryChat = (user: string, sender?: string | null = null) => IChat;

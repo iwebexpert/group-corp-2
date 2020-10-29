@@ -35,7 +35,7 @@ export const Message: React.FC<MessageType> = ({
   isBot,
   user,
 }) => {
-  const classes: Record<string, string> = useStyles();
+  const classes = useStyles();
   const {
     textPrimary,
     textSecondary,
@@ -43,8 +43,8 @@ export const Message: React.FC<MessageType> = ({
     messageInner,
     usernameStyle,
     timeStyle,
-  }: Record<string, string> = classes;
-  const { text, username, id, date }: IMessage = message;
+  } = classes;
+  const { text, username, id, date } = message;
 
   const alignStyles: 'left' | 'right' = isBot ? 'left' : 'right';
   const dateFromStr: Date = new Date(date);

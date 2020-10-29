@@ -38,12 +38,12 @@ export const messageShorter: MessageShorter = (message) => {
 };
 
 export const findChatByReceiver: FindChatByReceiver = (chats, receiver) => {
-  return chats.filter((chat: IChat) => chat.username === receiver)[0];
+  return chats.filter((chat: IChat): boolean => chat.username === receiver)[0];
 };
 
 export const findChatIdByReceiver: FindChatIdByReceiver = (chats, receiver) => {
   let id: string = '';
-  chats.forEach((chat: IChat) => {
+  chats.forEach((chat: IChat): void => {
     if (chat.username === receiver) id = chat.id;
   });
   return id;

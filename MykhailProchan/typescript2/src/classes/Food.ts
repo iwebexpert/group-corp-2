@@ -21,7 +21,7 @@ export class Food {
     }
 
     //Возвращает случайные координаты
-    randomCoords(): this {
+    private randomCoords(): this {
         while (true) {
             this.x = Math.floor(Math.random() * this.settings.colsCount) + 1;
             this.y = Math.floor(Math.random() * this.settings.rowsCount) + 1;

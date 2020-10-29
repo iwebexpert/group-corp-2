@@ -6,7 +6,7 @@ import { Menu } from 'classes/Menu';
 import { Food } from 'classes/Food';
 
 export class Game {
-    private timer: any;
+    private timer: NodeJS.Timeout | null;
     private messageElement: HTMLElement | null;
     private settings: Settings;
     private board: Board;
@@ -36,14 +36,14 @@ export class Game {
 
     //Остановка игры (пауза)
     pause(): void {
-        if (this.status.isPlaying()) {
+        if (this.status.isPlaying() && this.timer) {
             this.status.setPaused();
             clearInterval(this.timer);
         }
     }
 
     //1 шаг игры
-    doTick(): void {
+    private doTick(): void {
         this.snake.performStep();
         if (this.isGameLost()) {
             return;
@@ -65,7 +65,7 @@ export class Game {
 
     //Проверка, окончена ли игра (победа)
     isGameWin(): boolean {
-        if (this.snake.body.length === this.settings.winLength) {
+        if (this.snake.body.length === this.settings.winLength && this.timer) {
             clearInterval(this.timer);
             this.setMessage('Победа!');
             return true;
@@ -75,7 +75,7 @@ export class Game {
 
     //Проверка, окончена ли игра (проигрыш)
     isGameLost(): boolean {
-        if (this.board.isNextStepWall(this.snake.body[0])) {
+        if (this.board.isNextStepWall(this.snake.body[0]) && this.timer) {
             clearInterval(this.timer);
             this.setMessage('Поражение!');
             return true;
@@ -89,7 +89,7 @@ export class Game {
     }
 
     //Смена направления движения змейки
-    pressKeyHandler(event: any): void {
+    private pressKeyHandler(event: KeyboardEvent): void {
         switch (event.key) {
             case 'ArrowUp':
                 this.snake.changeDirection('up');

@@ -42,7 +42,6 @@ export const Message: React.FC<MessageType> = ({
   isBot,
   user,
 }) => {
-  const classes = useStyles();
   const {
     textPrimary,
     textSecondary,
@@ -50,7 +49,7 @@ export const Message: React.FC<MessageType> = ({
     messageInner,
     usernameStyle,
     timeStyle,
-  } = classes;
+  } = useStyles();
   const { text, username, id, date } = message;
 
   const alignStyles: 'left' | 'right' = isBot ? 'left' : 'right';

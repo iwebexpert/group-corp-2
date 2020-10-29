@@ -22,7 +22,7 @@ export const messageMiddleware: Middleware = (store: MiddlewareAPI) => (
     const {
       chatsReducer,
     }: { chatsReducer: ChatsReducerState } = store.getState();
-    const { receiver }: { receiver: string | null } = chatsReducer;
+    const { receiver } = chatsReducer;
 
     if (timeout) clearTimeout(timeout);
 

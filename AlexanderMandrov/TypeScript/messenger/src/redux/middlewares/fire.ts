@@ -20,7 +20,7 @@ export const fireMiddleware: Middleware = (store: MiddlewareAPI) => (
       chatsReducer,
     }: { chatsReducer: ChatsReducerState } = store.getState();
     const { chats } = chatsReducer;
-    const { dispatch }: { dispatch: Dispatch } = store;
+    const { dispatch } = store;
 
     if (chats === null && flg && pathname !== '/') {
       flg = false;

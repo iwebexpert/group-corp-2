@@ -26,7 +26,7 @@ const useStyles: () => Record<string, string> = makeStyles(() => ({
   },
 }));
 
-export const Header: React.FC<{}> = () => {
+export const Header: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { profileReducer } = useSelector((state: AppState) => state);
   const { data, sticker, error } = profileReducer;

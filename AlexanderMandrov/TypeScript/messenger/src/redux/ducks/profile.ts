@@ -1,6 +1,7 @@
 import { API_URL } from '../../constants/constants';
-import { ActionCreator, Dispatch, Reducer } from 'redux';
+import { ActionCreator, Reducer } from 'redux';
 import { RequestError } from 'redux-api-middleware';
+import { AppDispatch } from '../rootReducer';
 
 enum ProfilesActionTypes {
   FETCH_PROFILE_REQUEST = 'profile/FETCH_PROFILE_REQUEST',
@@ -70,7 +71,7 @@ export const fetchProfileFailure: ActionCreator<fetchProfileFailureAction> = (
 });
 
 export const fetchProfileInfo = (user: string) => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     try {
       dispatch(fetchProfileRequest());
       const result = await fetch(`${API_URL}profiles/${user}`);

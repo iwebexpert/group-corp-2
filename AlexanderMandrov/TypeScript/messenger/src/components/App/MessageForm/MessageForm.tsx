@@ -4,6 +4,10 @@ import { Button, TextField, Box } from '@material-ui/core';
 import { Send } from '@material-ui/icons';
 import { validateInput } from '../../../utils/utils';
 
+type MessageFormType = {
+  pushMessage: (message: string) => void;
+};
+
 export const MessageForm: React.FC<MessageFormType> = ({ pushMessage }) => {
   const [message, setMessage] = useState<string>('');
 

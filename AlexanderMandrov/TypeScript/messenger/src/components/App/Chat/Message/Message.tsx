@@ -29,6 +29,13 @@ const useStyles: () => Record<string, string> = makeStyles({
   },
 });
 
+type MessageType = {
+  message: IMessage;
+  user?: string;
+  isBot?: boolean;
+  deleteMessage: (id: string) => void;
+};
+
 export const Message: React.FC<MessageType> = ({
   message,
   deleteMessage,

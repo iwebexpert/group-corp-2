@@ -1,0 +1,78 @@
+{
+  "chats": [
+    {
+      "id": "1",
+      "name": "Alex",
+      "photoUrl": "e492f96c28548af9d72a68b8ed9122e0.png",
+      "isFire": false
+    },
+    {
+      "id": "2",
+      "name": "Igor",
+      "isFire": false,
+      "photoUrl": "e492f96c28548af9d72a68b8ed9122e0.png"
+    }
+  ],
+  "messages": [
+    {
+      "chatId": "1",
+      "author": "Aldrk",
+      "text": "sdasdasd",
+      "isFire": false,
+      "id": 1
+    },
+    {
+      "chatId": "1",
+      "author": "Bot",
+      "text": "Aldrk, Если ты увидел это сообщение, то зная выпала цифра 3",
+      "isFire": false,
+      "id": 2
+    },
+    {
+      "chatId": "2",
+      "author": "Aldrk",
+      "text": "fdgdfgfdg",
+      "isFire": false,
+      "id": 3
+    },
+    {
+      "chatId": "2",
+      "author": "Bot",
+      "text": "Aldrk, Я устал",
+      "isFire": false,
+      "id": 4
+    },
+    {
+      "chatId": "2",
+      "author": "Aldrk",
+      "text": "dasdsa",
+      "isFire": false,
+      "id": 5
+    },
+    {
+      "chatId": "2",
+      "author": "Bot",
+      "text": "Aldrk, Я устал",
+      "isFire": false,
+      "id": 6
+    },
+    {
+      "chatId": "2",
+      "author": "Aldrk",
+      "text": "gdfg",
+      "isFire": false,
+      "id": 7
+    },
+    {
+      "chatId": "2",
+      "author": "Bot",
+      "text": "Aldrk, Я устал",
+      "isFire": false,
+      "id": 8
+    }
+  ],
+  "profile": {
+    "name": "Aldrk",
+    "photoUrl": "https://avatars0.githubusercontent.com/u/57005695?s=460&u=9fdb775e4217b544968c37575f021931119d291d&v=4"
+  }
+}

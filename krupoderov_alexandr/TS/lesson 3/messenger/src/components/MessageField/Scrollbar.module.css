@@ -1,0 +1,50 @@
+.scroll::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #1a2236;
+    border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: #1a2236;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+    border-radius: 15px;
+    background-image: -webkit-gradient(linear,
+    left bottom,
+    left top,
+    color-stop(0.44, #44c4b8),
+    color-stop(0.86, #78eae1),
+    color-stop(0.86, #088c82),
+    color-stop(0.72, #8de5de),
+    color-stop(0.86, #78eae1));
+}
+
+.scrollInput::-webkit-scrollbar-track
+{
+    background-color: #2e364a;
+    border-radius: 20px;
+}
+
+.scrollInput::-webkit-scrollbar
+{
+    width: 8px;
+    background-color: #2e364a;
+}
+
+.scrollInput::-webkit-scrollbar-thumb
+{
+    border-radius: 20px;
+    background-image: -webkit-gradient(linear,
+    left bottom,
+    left top,
+    color-stop(0.44, #44c4b8),
+    color-stop(0.86, #78eae1),
+    color-stop(0.86, #088c82),
+    color-stop(0.72, #8de5de),
+    color-stop(0.86, #78eae1));
+}

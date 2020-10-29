@@ -94,7 +94,7 @@ export const Message: React.FC<MessageComponentType> = ({
             })}
           </Typography>
         </Box>
-        {isBot && btn}
+        {!isBot && btn}
       </Box>
     </Box>
   );

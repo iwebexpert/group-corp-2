@@ -7,7 +7,7 @@ import {
 import { ActionCreator, Reducer } from 'redux';
 import { createMessage, createBotMessage } from '../../utils/utils';
 import { API_URL } from '../../constants/constants';
-import { IMessage } from '../../types/interfaces';
+import { IMessage, IChat } from '../../types/interfaces';
 
 export enum ChatsActionTypes {
   FETCH_CHATS_REQUEST = 'chats/FETCH_CHATS_REQUEST',
@@ -38,8 +38,8 @@ export enum ChatsActionTypes {
 }
 
 export type ChatsReducerState = {
-  chats: null | Array<Chat>;
-  receiver: null;
+  chats: null | Array<IChat>;
+  receiver: null | string;
   loading: boolean;
   error: boolean;
 };
@@ -97,14 +97,7 @@ export const sendBotMessage = (
     ],
   });
 
-type Chat = {
-  id: string;
-  fired: boolean;
-  username: string;
-  messages: IMessage[];
-};
-
-export const sendNewChat = (chat: Chat) =>
+export const sendNewChat = (chat: IChat) =>
   createAction({
     endpoint: `${API_URL}chats`,
     method: 'POST',
@@ -117,9 +110,9 @@ export const sendNewChat = (chat: Chat) =>
     ],
   });
 
-export const sendChatFired = (fire: boolean, chatIdx: number) =>
+export const sendChatFired = (fire: boolean, chatId: string) =>
   createAction({
-    endpoint: `${API_URL}chats/${chatIdx}`,
+    endpoint: `${API_URL}chats/${chatId}`,
     method: 'PATCH',
     body: JSON.stringify({ fired: fire }),
     headers: { 'Content-Type': 'application/json' },

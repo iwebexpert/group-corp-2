@@ -47,7 +47,7 @@ export const ProfilePage: React.FC = () => {
     dispatch(setProfileSticker(stickers[idx]));
   };
 
-  const renderProfileCard = () => {
+  const renderProfileCard: () => JSX.Element | undefined = () => {
     if (data) {
       const { firstname, lastname, username, BIO, number } = data;
       const date = new Date().toLocaleString();

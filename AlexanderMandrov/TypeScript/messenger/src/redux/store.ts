@@ -1,12 +1,6 @@
 import { createStore, applyMiddleware, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createBrowserHistory, History } from 'history';
-import {
-  persistStore,
-  persistReducer,
-  Persistor,
-  WebStorage,
-} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -15,6 +9,12 @@ import { apiMiddleware } from 'redux-api-middleware';
 import { fireMiddleware } from './middlewares/fire';
 import { messageMiddleware } from './middlewares/message';
 import { createRootReducer } from './rootReducer';
+import {
+  persistStore,
+  persistReducer,
+  Persistor,
+  WebStorage,
+} from 'redux-persist';
 
 export const history: History = createBrowserHistory();
 

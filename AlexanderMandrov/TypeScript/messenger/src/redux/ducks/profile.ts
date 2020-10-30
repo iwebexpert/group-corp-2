@@ -24,10 +24,9 @@ const initialState: ProfileReducerState = {
   error: false,
 };
 
-type fetchProfileFailureAction = {
-  type: ProfilesActionTypes.FETCH_PROFILE_FAILURE;
-  payload: RequestError;
-  error: boolean;
+type setProfileStickerAction = {
+  type: ProfilesActionTypes.SET_PROFILE_STICKER;
+  payload: string;
 };
 
 export const setProfileSticker: ActionCreator<setProfileStickerAction> = (
@@ -57,9 +56,10 @@ export const fetchProfileSuccess: ActionCreator<fetchProfileSuccessAction> = (
   payload: data,
 });
 
-type setProfileStickerAction = {
-  type: ProfilesActionTypes.SET_PROFILE_STICKER;
-  payload: string;
+type fetchProfileFailureAction = {
+  type: ProfilesActionTypes.FETCH_PROFILE_FAILURE;
+  payload: RequestError;
+  error: boolean;
 };
 
 export const fetchProfileFailure: ActionCreator<fetchProfileFailureAction> = (

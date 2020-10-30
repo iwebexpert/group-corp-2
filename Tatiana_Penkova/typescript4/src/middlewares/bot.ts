@@ -3,12 +3,11 @@ import { MessageActionTypes } from "../actions/messages";
 import { chatsMessageSendAction } from "../actions/messages";
 import { nanoid } from "nanoid";
 import { Middleware } from "redux";
-import { RootState } from "../reducers/index";
 import { ActionType } from "../types";
 
 let timer: NodeJS.Timeout | null = null;
 
-export const botMiddware: Middleware<{}, RootState> = store => next => (action: ActionType) => {
+export const botMiddware: Middleware = store => next => (action: ActionType) => {
     if (action.type === MessageActionTypes.CHATS_MESSAGE_SEND_SUCCESS) {
         if (timer) {
             clearTimeout(timer);
@@ -28,7 +27,6 @@ export const botMiddware: Middleware<{}, RootState> = store => next => (action: 
             }, 2000);
         }
     }
-
     return next(action);
 };
 

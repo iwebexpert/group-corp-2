@@ -12,46 +12,50 @@ import { AppRouter } from "./components/AppRouter/AppRouter";
 
 import "./App.scss";
 
-export const App = () => {
-  const [state, setState] = useState({
+type ThemeStateType = {
+	isDark: boolean,
+};
+
+export const App:React.FC<{}> = () => {
+  const [state, setState] = useState<ThemeStateType>({
     isDark: false,
   });
 
-  const handleChange = (event) => {
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>):void => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const classHeader = classNames("header", {
+  const classHeader:string = classNames("header", {
     "header-light": state.isDark === false,
     "header-dark": state.isDark === true,
   });
 
-  const classHomePage = classNames("home-page", {
+  const classHomePage:string = classNames("home-page", {
     "home-page-light": state.isDark === false,
     "home-page-dark": state.isDark === true,
   });
 
-  const classMessenger = classNames("messenger", {
+  const classMessenger:string = classNames("messenger", {
     "messenger-light": state.isDark === false,
     "messenger-dark": state.isDark === true,
   });
 
-  const classChatTitle = classNames("chat-title", {
+  const classChatTitle:string = classNames("chat-title", {
     "chat-title-light": state.isDark === false,
     "chat-title-dark": state.isDark === true,
   });
 
-  const classEmptyList = classNames("empty-list", {
+  const classEmptyList:string = classNames("empty-list", {
     "empty-list-light": state.isDark === false,
     "empty-list-dark": state.isDark === true,
   });
 
-  const classMessageForm = classNames("message-form", {
+  const classMessageForm:string = classNames("message-form", {
     "message-form-light": state.isDark === false,
     "message-form-dark": state.isDark === true,
   });
-
-  const classFooter = classNames("footer", {
+  
+  const classFooter:string = classNames("footer", {
     "footer-light": state.isDark === false,
     "footer-dark": state.isDark === true,
   });
@@ -80,7 +84,6 @@ export const App = () => {
           <AppRouter
             classform={classMessageForm}
             classlist={classEmptyList}
-            classmessenger={classMessenger}
             classhomepage={classHomePage}
             classchattitle={classChatTitle}
           />

@@ -6,7 +6,6 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Button } from "@material-ui/core";
 
 import "../../App.scss";
-import { ProfileType } from "../../containers/ProfileContainer";
 
 type HeaderType = {
 	classheader: string,
@@ -14,9 +13,9 @@ type HeaderType = {
 	isLoading: boolean,
 	isError: boolean,
 	reloadProfile: () => void,
-}
+};
 
-export const Header:React.FC<HeaderType> = ({classheader, profile, isLoading, isError, reloadProfile}) => {
+export const Header:React.FC<HeaderType> = ({ classheader, profile, isLoading, isError, reloadProfile }) => {
   return (
     <div className="header-area">
       <Link to="/profile" className="profile-icon">
@@ -35,9 +34,9 @@ export const Header:React.FC<HeaderType> = ({classheader, profile, isLoading, is
             Обновить профиль
           </Button>
         ) : null}
-        <p>
+		  <p>
           {profile.firstName} {profile.secondName}
-        </p>
+        </p> 
       </Link>
       <Link to="/" className={classheader}>
         <h1>

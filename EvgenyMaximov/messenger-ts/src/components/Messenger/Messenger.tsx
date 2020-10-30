@@ -6,8 +6,32 @@ import { MessagesList } from "../MessageList";
 
 import "../../App.scss";
 
-export const Messenger = (props) => {
-  const list = React.createRef();
+type MessengerPropsType = {
+chatTitle: string|null,
+classchattitle: string,
+classform: string,
+classlist: string,
+isLoading: boolean,
+isPending: boolean,
+messages: MessageType[]
+onClearChat: (chatId:number) => void,
+onMessageDelete: (id:string) => void,
+onMessageSend: (message: MessageType) => void,
+};
+
+export const Messenger:React.FC<MessengerPropsType> = ({ 
+	messages,
+	classlist,
+	classform,
+	onMessageSend,
+	onMessageDelete,
+	onClearChat,
+	chatTitle,
+	classchattitle,
+	isLoading,
+	isPending }) => {
+
+  const list:React.RefObject<HTMLDivElement> = React.createRef();
 
   useEffect(() => {
     if (list.current) {
@@ -15,27 +39,16 @@ export const Messenger = (props) => {
     }
   });
 
-  const scrollChat = () => {
-    const listItem = list.current;
+  const scrollChat = ():void => {
+	 const listItem:HTMLDivElement|null = list.current;
+	 if(listItem)
     listItem.scrollTop = Number.MAX_SAFE_INTEGER;
   };
 
-  const clearChat = () => {
-    const chatId = props.messages[0].chatId;
-    props.onClearChat(chatId);
+  const clearChat = ():void => {
+    const chatId:number = messages[0].chatId;
+	 onClearChat(chatId);
   };
-
-  const {
-    messages,
-    classlist,
-    classform,
-    onMessageSend,
-    onMessageDelete,
-    chatTitle,
-    classchattitle,
-    isLoading,
-    isPending,
-  } = props;
 
   return (
     <div className="chat">

@@ -8,7 +8,11 @@ import {
   Divider,
 } from "@material-ui/core";
 
-import {ProfilePropsType} from "../containers/ProfileContainer"
+type ProfilePropsType = {
+	profile: ProfileType,
+	isLoading: boolean,
+	isError: boolean,
+};
 
 const useStyles = makeStyles({
   root: {
@@ -33,7 +37,7 @@ const useStyles = makeStyles({
 
 
 
-export const Profile: React.FC<ProfilePropsType> = ({profile, isError, isLoading}) => {
+export const Profile: React.FC<ProfilePropsType> = ({ profile, isError, isLoading }) => {
   const classes = useStyles();
   const { firstName, secondName, nickName, age } = profile;
 

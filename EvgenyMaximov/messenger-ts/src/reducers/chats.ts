@@ -1,22 +1,20 @@
 import update from "react-addons-update";
+import {Reducer} from 'redux';
 
-import {
-  CHATS_LOAD_REQUEST,
-  CHATS_LOAD_SUCCESS,
-  CHATS_LOAD_FAILURE,
-  ADD_CHAT_REQUEST,
-  ADD_CHAT_SUCCESS,
-  ADD_CHAT_FAILURE,
-  CLEAR_CHAT,
-  CHAT_DELETE,
-  MESSAGE_SEND_REQUEST,
-  MESSAGE_SEND_SUCCESS,
-  MESSAGE_SEND_FAILURE,
-  MESSAGE_DELETE_REQUEST,
-  MESSAGE_DELETE_SUCCESS,
-} from "../actions/chats";
+import {ChatsActionTypes} from "../actions/chatsActionTypes";
 
-const initialState = {
+export type ChatsReducerState = {
+	entries: ChatType[],
+	loading: boolean,
+	error: boolean,
+	pending: boolean,
+	messageSendError: boolean,
+	chatAddWaiting: boolean,
+	chatAdd: boolean,
+	chatAddError: boolean,
+};
+
+const initialState: ChatsReducerState = {
   entries: [],
   loading: false,
   error: false,
@@ -27,63 +25,63 @@ const initialState = {
   chatAddError: false,
 };
 
-export const chatsReducer = (state = initialState, action) => {
+export const chatsReducer:Reducer<ChatsReducerState> = (state = initialState, action) => {
   switch (action.type) {
-    case CHATS_LOAD_REQUEST:
+    case ChatsActionTypes.CHATS_LOAD_REQUEST:
       return {
         ...state,
         loading: true,
         error: false,
       };
 
-    case CHATS_LOAD_SUCCESS:
+    case ChatsActionTypes.CHATS_LOAD_SUCCESS:
       return {
         ...state,
         loading: false,
         entries: action.payload,
       };
 
-    case CHATS_LOAD_FAILURE:
+    case ChatsActionTypes.CHATS_LOAD_FAILURE:
       return {
         ...state,
         loading: false,
         error: true,
       };
 
-    case MESSAGE_SEND_REQUEST:
+    case ChatsActionTypes.MESSAGE_SEND_REQUEST:
       return {
         ...state,
         pending: true,
         messageSendError: false,
       };
 
-    case MESSAGE_SEND_SUCCESS:
+    case ChatsActionTypes.MESSAGE_SEND_SUCCESS:
       return {
         ...state,
         pending: false,
         messageSend: true,
       };
 
-    case MESSAGE_SEND_FAILURE:
+    case ChatsActionTypes.MESSAGE_SEND_FAILURE:
       return {
         ...state,
         pending: false,
         messageSendError: true,
       };
 
-    case MESSAGE_DELETE_REQUEST:
+    case ChatsActionTypes.MESSAGE_DELETE_REQUEST:
       return {
         ...state,
         pending: true,
       };
 
-    case MESSAGE_DELETE_SUCCESS:
+    case ChatsActionTypes.MESSAGE_DELETE_SUCCESS:
       return {
         ...state,
         pending: false,
       };
 
-    case ADD_CHAT_REQUEST:
+    case ChatsActionTypes.ADD_CHAT_REQUEST:
       return {
         ...state,
         chatAddWaiting: true,
@@ -91,22 +89,22 @@ export const chatsReducer = (state = initialState, action) => {
         chatAddError: false,
       };
 
-    case ADD_CHAT_SUCCESS:
+    case ChatsActionTypes.ADD_CHAT_SUCCESS:
       return {
         ...state,
         chatAddWaiting: false,
         addChat: true,
       };
 
-    case ADD_CHAT_FAILURE:
+    case ChatsActionTypes.ADD_CHAT_FAILURE:
       return {
         ...state,
         chatAddError: true,
       };
 
-    case CHAT_DELETE:
-      let chatIndex = state.entries.findIndex(
-        (chat) => chat.chatId === action.payload
+    case ChatsActionTypes.CHAT_DELETE:
+      let chatIndex:number = state.entries.findIndex(
+        (chat:ChatType) => chat.chatId === action.payload
       );
       return update(state, {
         entries: {
@@ -114,7 +112,7 @@ export const chatsReducer = (state = initialState, action) => {
         },
       });
 
-    case CLEAR_CHAT:
+    case ChatsActionTypes.CLEAR_CHAT:
       return update(state, {
         entries: {
           [action.payload]: {

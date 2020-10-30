@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Header } from "../components/Header";
 import { profileLoadAction } from "../actions/profile";
-import { ProfileType } from "./ProfileContainer";
+import { AppState } from "../reducers/index";
 
 type HeaderPropsType = {
-	classheader:string
-}
+	classheader:string,
+};
 
 export const HeaderContainer:React.FC<HeaderPropsType> = ({ classheader }) => {
   const dispatch = useDispatch();
 
-  const profile:ProfileType = useSelector((state:any) => state.profile.entries);
-  const [isLoading, isError]: boolean[] = useSelector((state:any) => [
+  const profile = useSelector((state:AppState) => state.profile.entries);
+  const [isLoading, isError] = useSelector((state:AppState) => [
     state.profile.loading,
     state.profile.error,
   ]);
@@ -28,13 +28,13 @@ export const HeaderContainer:React.FC<HeaderPropsType> = ({ classheader }) => {
     dispatch(profileLoadAction());
   };
 
-  return (
-    <Header
-      classheader={classheader}
-      profile={profile}
-      isLoading={isLoading}
-      isError={isError}
-      reloadProfile={reloadProfile}
-    />
-  );
+	return (
+		<Header
+		  classheader={classheader}
+		  profile={profile}
+		  isLoading={isLoading}
+		  isError={isError}
+		  reloadProfile={reloadProfile}
+		/>
+	 );
 };

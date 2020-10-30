@@ -12,9 +12,9 @@ export type MessagePropsType = {
 	chatId : number,
 	key: string,
 	onDelete: (id:string) => void,
-}
+};
 
-export const Message:React.FC<MessagePropsType> = ({text, author, time, onDelete, id}) => {
+export const Message:React.FC<MessagePropsType> = ({ text, author, time, onDelete, id }) => {
   const classes:string = classNames("message", {
     "message-user": author !== "Бот",
     "message-bot": author === "Бот",

@@ -17,7 +17,7 @@ export const Chat: React.FC<ChatType> = ({
   const list: React.RefObject<HTMLUListElement> = createRef<HTMLUListElement>();
 
   useEffect(() => {
-    if (list.current) list.current.scrollTop = Number.MAX_SAFE_INTEGER;
+    if (list.current) list.current.scrollTop = 999999999;
   }, [getMessageList]);
 
   return (

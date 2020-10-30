@@ -1,0 +1,72 @@
+{
+  "chats": [
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 1
+    },
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 3
+    },
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 4
+    }
+  ],
+  "messages": [
+    {
+      "chatId": 1,
+      "message": "asd",
+      "author": "asd",
+      "id": 1
+    },
+    {
+      "chatId": 1,
+      "message": "asd",
+      "author": "asd",
+      "id": 2
+    },
+    {
+      "chatId": 1,
+      "message": "asd",
+      "author": "asd",
+      "id": 3
+    },
+    {
+      "chatId": 3,
+      "message": "asd",
+      "author": "asd",
+      "id": 8
+    },
+    {
+      "chatId": 3,
+      "message": "a",
+      "author": "a",
+      "id": 9
+    },
+    {
+      "chatId": 3,
+      "message": "asd",
+      "author": "asd",
+      "id": 10
+    },
+    {
+      "chatId": 4,
+      "message": "asd",
+      "author": "asd",
+      "id": 11
+    }
+  ],
+  "profile": {
+    "id": 1,
+    "name": "Ivan Ivanov",
+    "nickname": "Crucial",
+    "age": 22
+  }
+}

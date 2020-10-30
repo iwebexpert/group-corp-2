@@ -12,7 +12,7 @@ export const Header = ({ active, setActiveChat, profileData }) => {
     return (
         <header className="header">
             <span className={!active ? 'active' : ''} onClick={() => onActive()}>Главная</span>
-            <h1>{profileData && profileData.name}</h1>
+            <h1>{profileData ? profileData.name : 'Ivan Ivanov'}</h1>
             <PersonIcon onClick={() => history.push('/profile')} />
         </header>
     )

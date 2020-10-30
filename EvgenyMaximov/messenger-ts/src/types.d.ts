@@ -17,6 +17,6 @@ type ChatType = {
 type ProfileType = {
 	firstName: string,
    secondName: string,
-   age: number,
+   age: number| undefined,
    nickName: string,
 };

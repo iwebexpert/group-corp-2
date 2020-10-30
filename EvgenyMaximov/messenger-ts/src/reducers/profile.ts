@@ -2,13 +2,18 @@ import { ProfileActionTypes } from "../actions/profile";
 import { Reducer } from 'redux';
 
 export type ProfileReducerState = {
-	entries: any,
+	entries: ProfileType,
 	loading: boolean,
 	error: boolean,
 };
 
 const initialState:ProfileReducerState = {
-  entries: {},
+  entries: {
+	  firstName: "",
+	  secondName: "",
+	  age: undefined,
+	  nickName: "",
+  },
   loading: false,
   error: false,
 };

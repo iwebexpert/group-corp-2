@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100vh; 
+}
+
+.main {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.chats-container {
+  width: 30%;
+}
+
+.chats {
+  
+  height: 78.2vh;
+  overflow-y: auto;
+}
+
+.profile {
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  background-color: #c2f5ff;
+  
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #c2f5ff;
+  min-height: 78.2vh;
+}
+
+.about-title, .about-text {
+  color: #303f9f;
+  margin-top: 20px;
+}
+
+.about-title {
+  font-size: 30px;
+}
+
+.about-text {
+  font-size: 24px;
+}
+
+.about-img {
+  margin-top: 20px;
+  width: 500px;
+  height: auto;
+}
+
+.MuiSvgIcon-root.error-page, .MuiSvgIcon-root.home-icon {
+  width: 300px;
+  height: 300px;
+  color: #303f9f;
+  margin-top: 20px;
+}
+
+.delete-chat {
+  color: rgb(196, 60, 60);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.delete-chat-icon.MuiSvgIcon-root {
+  opacity: 0.2;
+}
+
+.delete-chat-icon.MuiSvgIcon-root:hover {
+  font-size: 1.7rem;
+  opacity: 1;
+}
+.new-message {
+  background-color:rgb(252, 156, 156);
+}

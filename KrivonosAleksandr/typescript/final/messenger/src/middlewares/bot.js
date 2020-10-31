@@ -9,7 +9,12 @@ export const botMiddleware = store => next => action => {
             const chat = chats[chatId];
             setTimeout(() => {
                 if (chat.answerCount < chat.botMessages.length) {
-                    let message = {};
+                    let message= {
+                        id:'',
+                        type:'',
+                        time:'',
+                        text:'',
+                    };
 
                     message.id = nanoid();
                     message.type = 'botMsg';
@@ -21,9 +26,9 @@ export const botMiddleware = store => next => action => {
                     store.dispatch(chatsMessageSendAction({...message, chatId}, chats, numAnswers));
                     let pathname= store.getState().router.location.pathname.replace('/chats/', '');
                     if(chatId === parseInt(pathname)){
-                        store.dispatch(messageFireAction({chatId}));
+                        store.dispatch(messageFireAction(chatId));
                     } else {
-                        store.dispatch(messageUnfireAction({chatId}));
+                        store.dispatch(messageUnfireAction(chatId));
                     }
                 }
             }, 2000);

@@ -5,13 +5,17 @@ import {faPaperclip} from "@fortawesome/free-solid-svg-icons";
 import {faImage, faPaperPlane, faSmileWink} from "@fortawesome/free-regular-svg-icons";
 import {Link} from "react-router-dom";
 
-export const InputArea = ({onSend}) => {
+type InputAreaType = {
+    onSend: (message: string) => void;
+}
+
+export const InputArea: React.FC<InputAreaType> = ({onSend}) => {
 
     const [dataForm, setDataForm] = useState({
         text: '',
     });
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
         setDataForm({
             ...dataForm,
             text: event.target.value
@@ -31,7 +35,7 @@ export const InputArea = ({onSend}) => {
         }
     }
 
-    const onHandleKeyDown = (event) => {
+    const onHandleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
         if (event.ctrlKey && event.keyCode === 13) {
             handleInputSend();
         }

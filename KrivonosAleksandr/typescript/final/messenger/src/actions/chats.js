@@ -145,7 +145,7 @@ export const addFriendListDialog = (friendItem) => ({
 });
 
 //FIRE ACTIONS
-export const messageFire = (chatId) => ({
+export const messageFire = ({...chatId}) => ({
     type: MESSAGE_FIRE,
     payload: chatId,
 });

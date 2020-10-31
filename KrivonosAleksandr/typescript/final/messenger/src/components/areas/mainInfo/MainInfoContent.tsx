@@ -6,18 +6,21 @@ import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 //-----------
 
-const MainInfoContent = (props) => {
+type userType = {
+    userInfo: profilePayload[];
+}
 
+const MainInfoContent: React.FC<userType> = (props) => {
     let name = '';
     let birthDate = '';
     let city = '';
     let education = '';
     let webSite = '';
-    let friends = '';
-    let subscribers = '';
-    let photos = '';
-    let marks = '';
-    let videos = '';
+    let friends = 0;
+    let subscribers = 0;
+    let photos = 0;
+    let marks = 0;
+    let videos = 0;
     if(props.userInfo && props.userInfo.length) {
         name = props.userInfo[0].name;
         birthDate = props.userInfo[0].birthDate;

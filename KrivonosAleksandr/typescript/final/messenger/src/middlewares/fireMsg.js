@@ -1,3 +1,4 @@
+// import {Middleware} from "redux";
 import {messageFireAction} from '../actions/chats';
 
 export const fireMiddleware = store => next => action => {

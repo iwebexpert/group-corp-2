@@ -7,11 +7,12 @@ import Avatar from "../components/areas/mainInfo/Avatar";
 import Lottie from "react-lottie";
 import error from "../assets/lottie/error-404.json"
 import loading from "../assets/lottie/loading.json"
+import {AppState} from "../reducers";
 
-export const MainInfoContentContainer = (props) => {
+export const MainInfoContentContainer: React.FC = () => {
     const dispatch = useDispatch();
-    const userInfo = useSelector((state) => state.profile.entries);
-    const [isLoading, isError] = useSelector((state) => [state.profile.loading, state.profile.error]);
+    const userInfo = useSelector((state: AppState) => state.profile.entries);
+    const [isLoading, isError] = useSelector((state: AppState) => [state.profile.loading, state.profile.error]);
 
     useEffect(() => {
         dispatch(userInfoLoadAction());

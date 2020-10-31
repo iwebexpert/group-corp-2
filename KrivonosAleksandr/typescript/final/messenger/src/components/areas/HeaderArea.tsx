@@ -1,21 +1,21 @@
 import React from "react";
-import {DefaultRootState, RootStateOrAny, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
+import {AppState} from "../../reducers";
 
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
 import botImg from "../../img/user.png";
 //FONTAWESOME
-import {faSearch, faComment, faBell, faCog} from '@fortawesome/free-solid-svg-icons';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {faSuperpowers} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircle} from "@fortawesome/free-regular-svg-icons";
 //-----------
 
-export const Header = () => {
+export const Header: React.FC = () => {
 
-    const userInfo = useSelector(state => state.profile.entries);
+    const userInfo = useSelector((state:AppState) => state.profile.entries);
 
-    let name = "Loading...";
+    let name: string = "Loading...";
     if(userInfo.length){
         name = userInfo[0].name;
     }
@@ -50,10 +50,3 @@ export const Header = () => {
         </div>
     </header>
 }
-//
-// function mapStateToProps(state, ownProps) {
-//     const userInfo = state.profile.entries;
-//     return {userInfo};
-// }
-//
-// export const Header = connect(mapStateToProps)(HeaderFunc);

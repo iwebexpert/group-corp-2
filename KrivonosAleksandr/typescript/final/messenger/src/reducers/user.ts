@@ -1,36 +1,38 @@
-import update from 'react-addons-update';
+import {Reducer} from 'redux';
 
-import {
-    USER_INFO_LOAD_REQUEST,
-    USER_INFO_LOAD_SUCCESS,
-    USER_INFO_LOAD_FAILURE,
-} from '../actions/user'
+import {UserActionTypes, ProfileActions} from '../actions/user'
 
 import {userProfile} from "../helpers/userProfile";
 
-const initialState = {
+export type ProfileReducerState = {
+    entries: any;
+    loading: boolean;
+    error: boolean;
+}
+
+const initialState: ProfileReducerState = {
     entries: {},
     loading: false,
     error: false,
 };
 
-export const profileReducer = (state = initialState, action) => {
+export const profileReducer: Reducer<ProfileReducerState, ProfileActions> = (state = initialState, action) => {
     switch (action.type) {
-        case USER_INFO_LOAD_REQUEST:
+        case UserActionTypes.USER_INFO_LOAD_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: false,
             };
 
-        case USER_INFO_LOAD_SUCCESS:
+        case UserActionTypes.USER_INFO_LOAD_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 entries: userProfile,
             };
 
-        case USER_INFO_LOAD_FAILURE:
+        case UserActionTypes.USER_INFO_LOAD_FAILURE:
             return {
                 ...state,
                 loading: false,

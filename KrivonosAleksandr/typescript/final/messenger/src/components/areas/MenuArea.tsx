@@ -1,24 +1,15 @@
 import React from "react";
-import {useSelector, useDispatch} from 'react-redux';
+import {Dispatch} from 'redux';
+import {useDispatch} from 'react-redux';
 import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faHome,
-    faNewspaper,
-    faComment,
-    faUser,
-    faUsers,
-    faMusic,
-    faVideo,
-    faCamera
-} from '@fortawesome/free-solid-svg-icons';
+import {faHome, faComment} from '@fortawesome/free-solid-svg-icons';
 import {push} from "connected-react-router";
-import {connect} from "react-redux";
 import {MainInfoContentContainer} from "../../containers/MainInfoContentContainer";
 import {ChatAreaContainer} from "../../containers/ChatAreaContainer";
 
-export const MenuArea = (props) => {
-    const dispatch = useDispatch();
+export const MenuArea: React.FC = () => {
+    const dispatch: Dispatch = useDispatch();
 
     const redirectHandler = () => {
         dispatch(push('/profile'));
@@ -39,7 +30,7 @@ export const MenuArea = (props) => {
             <Switch>
                 <Route exact path="/" render={() => (<Redirect to="/profile" />)} />
                 <Route path="/profile" exact component={MainInfoContentContainer} />
-                <Route path="/chats/new" exact render={()=><ChatAreaContainer newMsg={true}/>} />
+                <Route path="/chats/new" exact render={()=><ChatAreaContainer id={''} newMsg={true}/>} />
                 <Route path="/chats/:id([0-9]+)" exact render={(obj)=><ChatAreaContainer id={Number(obj.match.params.id)} newMsg={false}/>} />
             </Switch>
         </>

@@ -20,20 +20,20 @@ export enum ChatsActionTypes {
     CHATS_LOAD_FAILURE = "CHATS_LOAD_FAILURE",
 };
 
-export type ChatUnfireType = {
+type ChatUnfireType = {
     id: number;
 };
 
-export type ChatFireType = ChatUnfireType & {
+type ChatFireType = ChatUnfireType & {
     timer?: NodeJS.Timeout;
 };
 
-export type chatFireActionType = {
+type chatFireActionType = {
     type: ChatsActionTypes.CHAT_FIRE;
     payload: ChatFireType;
 };
 
-export type chatUnfireActionType = {
+type chatUnfireActionType = {
     type: ChatsActionTypes.CHAT_UNFIRE;
     payload: ChatUnfireType;
 };

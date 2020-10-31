@@ -6,7 +6,7 @@ import { connectRouter } from "connected-react-router";
 import { History } from "history";
 import { InitailProfileStateType, InitialChatStateType, InitialMessagesType } from "../types";
 
-export type AppState = {
+type AppState = {
     chats: InitialChatStateType;
     profile: InitailProfileStateType;
     messages: InitialMessagesType;

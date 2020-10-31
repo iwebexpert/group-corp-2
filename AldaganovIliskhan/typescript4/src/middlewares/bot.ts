@@ -1,7 +1,7 @@
 import { Middleware } from "redux";
 import { sendMessage } from "../actions/chats";
 
-let timer : null | any = null;
+let timer : NodeJS.Timeout | null = null;
 export const botMiddleware : Middleware= (store) => (next) => (action) => {
   if (action.type === "SEND_MESSAGE") {
     const { author } = action.payload;
@@ -17,8 +17,7 @@ export const botMiddleware : Middleware= (store) => (next) => (action) => {
             chatId
           )
         );
-
-        clearTimeout(timer);
+        timer && clearTimeout(timer);
       }, 1500);
     }
   }

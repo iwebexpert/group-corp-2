@@ -1,6 +1,6 @@
 import axios from "axios";
-import { ActionCreator } from "redux";
-export enum ProfileActionsTypes  {
+import { ActionCreator, Dispatch } from "redux";
+export enum ProfileActionsTypes   {
   SET_PROFILE_ERROR = "SET_PROFILE_ERROR",
   SET_PROFILE_LOADING = "SET_PROFILE_LOADING",
   SET_PROFILE = "SET_PROFILE"
@@ -17,29 +17,35 @@ type setProfile = {
   type : ProfileActionsTypes.SET_PROFILE,
   payload : any
 };
+export type ProfileType = {
+  id: number,
+  name:string 
+  nickname: string
+  age: number
+};
 export type ProfileActions = setProfileError | setProfileLoading | setProfile;
-export const setProfileError : ActionCreator<setProfileError> = (payload : any) => ({
+export const setProfileError : ActionCreator<setProfileError> = (payload : boolean) => ({
   type: ProfileActionsTypes.SET_PROFILE_ERROR,
   payload,
 });
-export const setProfileLoading : ActionCreator<setProfileLoading> = (payload : any) => ({
+export const setProfileLoading : ActionCreator<setProfileLoading> = (payload : boolean) => ({
   type: ProfileActionsTypes.SET_PROFILE_LOADING,
   payload,
 });
-export const setProfile : ActionCreator<setProfile> = (profile : any) => ({
+export const setProfile : ActionCreator<setProfile> = (profile : ProfileType) => ({
   type: ProfileActionsTypes.SET_PROFILE,
   payload: profile,
 });
-export const fetchProfile = () => (dispatch : any) => {
+export const fetchProfile = () => (dispatch : Dispatch) => {
   dispatch(setProfileLoading(true));
   dispatch(setProfileError(false));
   axios
-    .get("http://localhost:3001/profile")
-    .then(({ data }) => {
+    .get<ProfileType>("http://localhost:3001/profile")
+    .then<void>(({ data }) => {
       dispatch(setProfile(data));
       dispatch(setProfileLoading(false));
     })
-    .catch(() => {
+    .catch<void>(() => {
       dispatch(setProfileError(true));
     });
 };

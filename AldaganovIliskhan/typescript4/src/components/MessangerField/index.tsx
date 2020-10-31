@@ -8,16 +8,14 @@ import { ChatsType } from '../../actions/chats'
 type MessangerField = {
     chats : ChatsType[],
     onClickChat : (chat : ChatsType) => void,
-    activeChat : ChatsType,
-    chat : ChatsType
+    activeChat : any,
 }
-export const MessangerField : React.FC<MessangerField>= ({ chats, onClickChat, activeChat, chat }) : JSX.Element => {
-    console.log(activeChat,chat)
+export const MessangerField : React.FC<MessangerField>= ({ chats, onClickChat, activeChat }) : JSX.Element => {
     return (
         <div className="messanger__field">
             <ChatList chats={chats} onClickChat={onClickChat} activeChat={activeChat}  />
             <Route exact path="/chats/:id">
-                <MessagesAdd messages={activeChat && activeChat.messages} chat={chat}  />
+                <MessagesAdd messages={activeChat && activeChat.messages} activeChat={activeChat}  />
             </Route>
         </div>
     )

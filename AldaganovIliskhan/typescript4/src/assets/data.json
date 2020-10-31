@@ -11,19 +11,13 @@
       "messages": [],
       "fire": false,
       "id": 2
-    },
-    {
-      "title": "asdasd",
-      "messages": [],
-      "fire": false,
-      "id": 3
     }
   ],
   "messages": [
     {
       "chatId": 1,
       "message": "asd",
-      "author": "asd",
+      "author": "a",
       "id": 1
     },
     {
@@ -37,12 +31,6 @@
       "message": "asd",
       "author": "asd",
       "id": 3
-    },
-    {
-      "chatId": 2,
-      "message": "asd",
-      "author": "asd",
-      "id": 4
     }
   ],
   "profile": {

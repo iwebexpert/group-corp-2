@@ -10,6 +10,7 @@ import { removeChatAction, editChatAction } from '../../actions/chats'
 import removeSvg from '../../assets/img/remove.svg'
 import editSvg from '../../assets/img/edit.svg'
 import {ChatsType} from '../../actions/chats'
+import { AppState } from '../../reducers'
 type ChatListType = {
   chats : ChatsType[],
   onClickChat : (chat : ChatsType) => void,
@@ -17,7 +18,7 @@ type ChatListType = {
 };
 export const ChatList : React.FC<ChatListType> = ({ chats, onClickChat, activeChat }) => {
   const dispatch = useDispatch();
-  const { isChatsError, isChatsLoading } = useSelector(({ chats } : any) => chats);
+  const { isChatsError, isChatsLoading } = useSelector((state : AppState) => state.chats);
   const onClick = (chat : ChatsType) => {
     if (chat.id) {
       dispatch(push(`/chats/${chat.id}`));

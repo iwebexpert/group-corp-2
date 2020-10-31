@@ -4,9 +4,10 @@ import { profile, ProfileReducerState } from "./profile";
 import { connectRouter } from "connected-react-router";
 import {History} from 'history';
 export type AppState = {
+  [propName : string] : any
   chats : ChatsReducerState,
   profile : ProfileReducerState
-  [propName : string] : any
+ 
 }
 export const createRootReducer = (history : History) =>
   combineReducers<AppState>({

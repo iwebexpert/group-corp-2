@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
-import { ProfileActionsTypes , ProfileActions} from '../actions/profile';
+import { ProfileActionsTypes , ProfileActions,ProfileType} from '../actions/profile';
 export type ProfileReducerState = {
-  profileData : null,
+  profileData : ProfileType | null,
   isProfileError : boolean,
   isProfileLoadig : boolean
 };

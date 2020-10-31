@@ -1,9 +1,10 @@
 import {addNewMessage} from '../store/actions/chats'
-import {ADD_NEW_MESSAGE_SUCCESS} from '../store/actions/actionTypes'
-let timer = null
+import {ChatsActionTypes} from '../store/actions/actionTypes'
+import {ThunkMiddleware} from 'redux-thunk'
+let timer: any = null
 
-export const botMiddleware = store => next => action => {
-	if(action.type === ADD_NEW_MESSAGE_SUCCESS){
+export const botMiddleware: ThunkMiddleware = store => next => action => {
+	if(action.type === ChatsActionTypes.ADD_NEW_MESSAGE_SUCCESS){
 		const {author, chatId} = action.data
 
 		if(author !== 'Robot'){

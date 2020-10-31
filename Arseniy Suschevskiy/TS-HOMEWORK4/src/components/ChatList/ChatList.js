@@ -20,7 +20,8 @@ const ChatList = props => {
 		props.chatRedirect(chatId)
 	}
 
-	const deleteIconClick = chatId => {
+	const deleteIconClick = (event, chatId) => {
+		event.stopPropagation()
 		const locationChatId = location.pathname.slice(6)
 		if (chatId === +locationChatId){
 			props.deleteChat(chatId)
@@ -66,6 +67,7 @@ const ChatList = props => {
 								button
 								key = { chat.id }
 								selected = { selectedIndex === chat.id }
+								onClick = { () => handleListItemClick(chat.id) }
 							>
 
 								<ListItemIcon>
@@ -73,7 +75,6 @@ const ChatList = props => {
 								</ListItemIcon>
 
 								<ListItemText
-									onClick = { () => handleListItemClick(chat.id) }
 									primary = { chat.title }
 									className = { listItemClasses.join(' ') }
 								/>
@@ -83,7 +84,7 @@ const ChatList = props => {
 									(<IconButton
 										edge="end"
 										aria-label="delete"
-										onClick = { () => deleteIconClick(chat.id) }
+										onClick = { event => deleteIconClick(event, chat.id) }
 									>
 										<DeleteIcon style={{ color: 'white' }} />
 									</IconButton>)

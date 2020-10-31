@@ -1,12 +1,14 @@
-import {
-	ADD_CHAT_ERROR,
-	ADD_CHAT_REQUEST, ADD_CHAT_SUCCESS,
-	ADD_NEW_MESSAGE_ERROR, ADD_NEW_MESSAGE_REQUEST, ADD_NEW_MESSAGE_SUCCESS,
-	CHAT_FIRE, CHAT_UNFIRE,
-	CHATS_LOAD_ERROR, CHATS_LOAD_REQUEST, CHATS_LOAD_SUCCESS,
-	DELETE_CHAT_ERROR, DELETE_CHAT_REQUEST, DELETE_CHAT_SUCCESS
-} from '../actions/actionTypes'
+import {ChatsActionTypes} from '../actions/actionTypes'
 import update from 'react-addons-update'
+import {Reducer} from 'redux'
+import {ChatsActions} from '../actions/chats'
+
+export type ChatsReducerState = {
+	chatsList: any,
+	loading: boolean,
+	chatLoading: boolean,
+	messageLoading: boolean
+};
 
 const initialState = {
 	chatsList: [],
@@ -15,24 +17,24 @@ const initialState = {
 	messageLoading: false,
 }
 
-export const chatsReducer = (state = initialState, action) => {
+export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = initialState, action) => {
 	switch (action.type) {
 		//CHATS_LOAD
-		case CHATS_LOAD_REQUEST:
+		case ChatsActionTypes.CHATS_LOAD_REQUEST:
 			return {
 				...state,
 				loading: true,
 				error: false
 			}
 
-		case CHATS_LOAD_SUCCESS:
+		case ChatsActionTypes.CHATS_LOAD_SUCCESS:
 			return {
 				...state,
 				loading: false,
 				chatsList: action.data
 			}
 
-		case CHATS_LOAD_ERROR:
+		case ChatsActionTypes.CHATS_LOAD_ERROR:
 			return {
 				...state,
 				loading: false,
@@ -40,13 +42,13 @@ export const chatsReducer = (state = initialState, action) => {
 			}
 
 		//ADD_NEW_MESSAGE_TO_CHAT
-		case ADD_NEW_MESSAGE_REQUEST:
+		case ChatsActionTypes.ADD_NEW_MESSAGE_REQUEST:
 			return {
 				...state,
 				error: false
 			}
 
-		case ADD_NEW_MESSAGE_SUCCESS:
+		case ChatsActionTypes.ADD_NEW_MESSAGE_SUCCESS:
 			return update(state, {
 				chatsList: {
 					[+action.data.chatId]: {
@@ -55,21 +57,21 @@ export const chatsReducer = (state = initialState, action) => {
 				},
 			})
 
-		case ADD_NEW_MESSAGE_ERROR:
+		case ChatsActionTypes.ADD_NEW_MESSAGE_ERROR:
 			console.log(action.error, 'error')
 			return {
 				...state,
 				error: true
 			}
 
-		case ADD_CHAT_REQUEST:
+		case ChatsActionTypes.ADD_CHAT_REQUEST:
 			return {
 				...state,
 				loading: true,
 				error: false
 			}
 
-		case ADD_CHAT_SUCCESS:
+		case ChatsActionTypes.ADD_CHAT_SUCCESS:
 			action.data.messages = []
 			return {
 				...state,
@@ -77,7 +79,7 @@ export const chatsReducer = (state = initialState, action) => {
 				loading: false,
 			}
 
-		case ADD_CHAT_ERROR:
+		case ChatsActionTypes.ADD_CHAT_ERROR:
 			return {
 				...state,
 				chatLoading: false,
@@ -85,15 +87,15 @@ export const chatsReducer = (state = initialState, action) => {
 			}
 
 		//DELETE_CHAT
-		case DELETE_CHAT_REQUEST:
+		case ChatsActionTypes.DELETE_CHAT_REQUEST:
 			return {
 				...state,
 				loading: true,
 				error: false
 			}
 
-		case DELETE_CHAT_SUCCESS:
-			const newChatList = state.chatsList.filter( chat =>{
+		case ChatsActionTypes.DELETE_CHAT_SUCCESS:
+			const newChatList = state.chatsList.filter( (chat: any) =>{
 				if (chat.id !== action.chatId){
 					return chat
 				}
@@ -105,7 +107,7 @@ export const chatsReducer = (state = initialState, action) => {
 
 			}
 
-		case DELETE_CHAT_ERROR:
+		case ChatsActionTypes.DELETE_CHAT_ERROR:
 			return {
 				...state,
 				loading: false,
@@ -114,7 +116,7 @@ export const chatsReducer = (state = initialState, action) => {
 
 
 		//CHAT_FIRE/UNFIRE
-		case CHAT_FIRE:
+		case ChatsActionTypes.CHAT_FIRE:
 			return update(state, {
 				chatsList: {
 					[action.chatId]: {
@@ -123,7 +125,7 @@ export const chatsReducer = (state = initialState, action) => {
 				}
 			})
 
-		case CHAT_UNFIRE:
+		case ChatsActionTypes.CHAT_UNFIRE:
 			return update(state, {
 				chatsList: {
 					[action.chatId]: {

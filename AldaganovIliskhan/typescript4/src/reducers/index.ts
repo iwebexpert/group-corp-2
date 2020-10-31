@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
 import { chats, ChatsReducerState } from "./chats";
-import { profile } from "./profile";
+import { profile, ProfileReducerState } from "./profile";
 import { connectRouter } from "connected-react-router";
 import {History} from 'history';
 export type AppState = {
   chats : ChatsReducerState,
+  profile : ProfileReducerState
   [propName : string] : any
 }
 export const createRootReducer = (history : History) =>

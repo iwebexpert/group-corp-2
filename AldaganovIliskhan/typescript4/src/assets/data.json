@@ -10,13 +10,13 @@
       "title": "asdasd",
       "messages": [],
       "fire": false,
-      "id": 3
+      "id": 2
     },
     {
       "title": "asdasd",
       "messages": [],
       "fire": false,
-      "id": 4
+      "id": 3
     }
   ],
   "messages": [
@@ -33,46 +33,16 @@
       "id": 2
     },
     {
-      "chatId": 1,
+      "chatId": 2,
       "message": "asd",
       "author": "asd",
       "id": 3
     },
     {
-      "chatId": 3,
+      "chatId": 2,
       "message": "asd",
       "author": "asd",
-      "id": 8
-    },
-    {
-      "chatId": 3,
-      "message": "a",
-      "author": "a",
-      "id": 9
-    },
-    {
-      "chatId": 3,
-      "message": "asd",
-      "author": "asd",
-      "id": 10
-    },
-    {
-      "chatId": 4,
-      "message": "asd",
-      "author": "asd",
-      "id": 11
-    },
-    {
-      "chatId": 3,
-      "message": "asd",
-      "author": "asd",
-      "id": 12
-    },
-    {
-      "chatId": 3,
-      "message": "asd",
-      "author": "asd",
-      "id": 13
+      "id": 4
     }
   ],
   "profile": {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch, ActionCreator } from 'redux'
-export enum Types {
+export enum ChatsActionsTypes {
   SET_CHATS_LOADING = "SET_CHATS_LOADING",
   SET_CHATS_ERROR = "SET_CHATS_ERROR",
   SET_MESSAGES_LOADING = 'SET_MESSAGES_LOADING',
@@ -14,50 +14,50 @@ export enum Types {
   UNFIRE_CHAT = 'UNFIRE_CHAT'
 };
 export type setChatsLoading = {
-  type: Types.SET_CHATS_LOADING;
+  type: ChatsActionsTypes.SET_CHATS_LOADING;
   payload: boolean;
 };
 
 export type setChatsError = {
-  type: Types.SET_CHATS_ERROR;
+  type: ChatsActionsTypes.SET_CHATS_ERROR;
   payload: boolean;
 };
 export type setMessagesLoading = {
-  type: Types.SET_MESSAGES_LOADING;
+  type: ChatsActionsTypes.SET_MESSAGES_LOADING;
   payload: boolean;
 };
 export type setMessagesError = {
-  type: Types.SET_MESSAGES_ERROR;
+  type: ChatsActionsTypes.SET_MESSAGES_ERROR;
   payload: boolean;
 };
 export type setChats = {
-  type : Types.SET_CHATS,
+  type : ChatsActionsTypes.SET_CHATS,
   payload : ChatsType
 }
 export type editChat = {
-  type: Types.EDIT_CHAT;
+  type: ChatsActionsTypes.EDIT_CHAT;
   payload: editChatPayload;
 };
 
 export type removeChat = {
-  type: Types.REMOVE_CHAT;
+  type: ChatsActionsTypes.REMOVE_CHAT;
   payload: number;
 };
 export type fireChat = {
-  type: Types.FIRE_CHAT;
+  type: ChatsActionsTypes.FIRE_CHAT;
   chatId: number;
 };
 export type unfireChat = {
-  type: Types.UNFIRE_CHAT;
+  type: ChatsActionsTypes.UNFIRE_CHAT;
   payload: number;
 };
 export type addChat = {
-  type: Types.ADD_CHAT;
+  type: ChatsActionsTypes.ADD_CHAT;
   payload: ChatsType;
 };
 
 export type sendMessage = {
-  type: Types.SEND_MESSAGE;
+  type: ChatsActionsTypes.SEND_MESSAGE;
   payload: {
     obj: MessagesType;
     chatId: number;
@@ -80,49 +80,49 @@ export type editChatPayload = {
   newTitle: string;
   chatId: number;
 };
-export type Actions = sendMessage | addChat | removeChat | fireChat | unfireChat | editChat | setChatsLoading | setChatsError | setMessagesLoading | setMessagesError | setChats;
+export type ChatsActions = sendMessage | addChat | removeChat | fireChat | unfireChat | editChat | setChatsLoading | setChatsError | setMessagesLoading | setMessagesError | setChats;
 export const setChatsLoading: ActionCreator<setChatsLoading> = (payload: boolean) => ({
-  type: Types.SET_CHATS_LOADING,
+  type: ChatsActionsTypes.SET_CHATS_LOADING,
   payload,
 });
 export const setChatsError: ActionCreator<setChatsError> = (payload: boolean) => ({
-  type: Types.SET_CHATS_ERROR,
+  type: ChatsActionsTypes.SET_CHATS_ERROR,
   payload,
 });
 export const setMessagesLoading: ActionCreator<setMessagesLoading> = (payload: boolean) => ({
-  type: Types.SET_MESSAGES_LOADING,
+  type: ChatsActionsTypes.SET_MESSAGES_LOADING,
   payload,
 });
 export const setMessagesError: ActionCreator<setMessagesError> = (payload: boolean) => ({
-  type: Types.SET_MESSAGES_ERROR,
+  type: ChatsActionsTypes.SET_MESSAGES_ERROR,
   payload,
 });
 export const setChats : ActionCreator<setChats> = (chats: ChatsType) => ({
-  type: Types.SET_CHATS,
+  type: ChatsActionsTypes.SET_CHATS,
   payload: chats,
 });
 export const addChat = (chat: ChatsType) => ({
-  type: Types.ADD_CHAT,
+  type: ChatsActionsTypes.ADD_CHAT,
   payload: chat,
 });
 export const removeChat: ActionCreator<removeChat> = (chatId: number) => ({
-  type: Types.REMOVE_CHAT,
+  type: ChatsActionsTypes.REMOVE_CHAT,
   payload: chatId,
 });
 export const editChat: ActionCreator<editChat> = (newTitle: string, chatId: number) => ({
-  type: Types.EDIT_CHAT,
+  type: ChatsActionsTypes.EDIT_CHAT,
   payload: { newTitle, chatId },
 });
 export const sendMessage: ActionCreator<sendMessage> = (obj: MessagesType, chatId: number, author: string) => ({
-  type: Types.SEND_MESSAGE,
+  type: ChatsActionsTypes.SEND_MESSAGE,
   payload: { obj, chatId, author },
 });
 export const fireChat: ActionCreator<fireChat> = (chatId: number) => ({
-  type: Types.FIRE_CHAT,
+  type: ChatsActionsTypes.FIRE_CHAT,
   chatId: chatId,
 });
 export const unfireChat: ActionCreator<unfireChat> = (chatId: number) => ({
-  type: Types.UNFIRE_CHAT,
+  type: ChatsActionsTypes.UNFIRE_CHAT,
   payload: chatId,
 });
 export const fetchChats = () => (dispatch: Dispatch) => {

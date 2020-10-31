@@ -1,8 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { MessagesType } from '../../../actions/chats'
 import './MessagesList.scss'
-export const MessagesList = ({ messages }) => {
-    const { isMessagesError, isMessagesLoading } = useSelector(({ chats }) => chats)
+type MessagesList = {
+    messages : MessagesType[]
+};
+export const MessagesList : React.FC<MessagesList> = ({ messages }) => {
+    const { isMessagesError, isMessagesLoading } = useSelector(({ chats } : any) => chats)
     return (
         <ul className="messages__list">
             {

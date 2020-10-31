@@ -4,14 +4,16 @@ import { TextField } from '@material-ui/core'
 import { Send } from '@material-ui/icons';
 import { Fab } from '@material-ui/core'
 
-import { sendMessageAction } from '../../../actions/chats'
+import { ChatsType,  sendMessageAction } from '../../../actions/chats'
 import './MessangerForm.scss'
-
-export const MessangerForm = ({ chat }) => {
-    const [author, setAuthor] = useState('');
-    const [message, setMessage] = useState('');
+type MessangerForm = {
+    chat : ChatsType  
+};
+export const MessangerForm : React.FC<MessangerForm> = ({ chat }) => {
+    const [author, setAuthor] = useState<string>('');
+    const [message, setMessage] = useState<string>('');
     const diopatch = useDispatch();
-    const onAdd = (message) => {
+    const onAdd = (message : string) => {
         if (!message) {
             alert('Введите сообщение');
             return;
@@ -25,8 +27,8 @@ export const MessangerForm = ({ chat }) => {
         setMessage('');
     };
 
-    const onKeyDownEnter = (e, message) => {
-        if (e.ctrlKey && e.keyCode === 13) {
+    const onKeyDownEnter = (e : React.KeyboardEvent<HTMLDivElement>, message : string) => {
+        if (e.ctrlKey && e.key ==='Enter') {
             onAdd(message);
         }
     };

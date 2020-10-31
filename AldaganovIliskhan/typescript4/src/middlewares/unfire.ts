@@ -1,6 +1,7 @@
+import { Middleware } from "redux";
 import { unfireChat } from "../actions/chats";
-let timer = null;
-export const unfire = (store) => (next) => (action) => {
+let timer : any = null;
+export const unfire : Middleware = (store) => (next) => (action) => {
   if (action.type === "SEND_MESSAGE") {
     timer = setTimeout(() => {
       if (action.payload.chatId) {

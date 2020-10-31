@@ -1,7 +1,8 @@
+import { Middleware } from "redux";
 import { sendMessage } from "../actions/chats";
 
-let timer = null;
-export const botMiddleware = (store) => (next) => (action) => {
+let timer : null | any = null;
+export const botMiddleware : Middleware= (store) => (next) => (action) => {
   if (action.type === "SEND_MESSAGE") {
     const { author } = action.payload;
     const { chatId } = action.payload;

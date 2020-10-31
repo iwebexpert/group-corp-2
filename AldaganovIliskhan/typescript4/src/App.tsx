@@ -7,11 +7,11 @@ import "./App.scss";
 import { Header } from "./components/Header";
 import { Profile } from "./components/Profile";
 import { MessangerField } from "./components/MessangerField";
-import { fetchChats } from "./actions/chats";
+import { ChatsType, fetchChats } from "./actions/chats";
 import { fetchProfile } from "./actions/profile";
 export const App : React.FC= () : JSX.Element => {
   const dispatch = useDispatch();
-  const [activeChat, setActiveChat] = useState(null);
+  const [activeChat, setActiveChat] = useState<ChatsType | null>(null);
   const chats = useSelector(({ chats } : any) => chats.items);
   const { pathname } = useSelector(({ router } : any) => router.location);
   useEffect(() => {
@@ -21,12 +21,12 @@ export const App : React.FC= () : JSX.Element => {
   useEffect(() => {
     const chatId = pathname.split("/chats/")[1];
     if (chats) {
-      const chat = chats.find((chat : any) => chat.id === Number(chatId));
+      const chat = chats.find((chat : ChatsType) => chat.id === Number(chatId));
       setActiveChat(chat);
     }
   }, [pathname, chats]);
 
-  const onClickChat = (chat : any) => {
+  const onClickChat = (chat : ChatsType) => {
     if (chat.id) {
       setActiveChat(chat);
     }
@@ -39,7 +39,7 @@ export const App : React.FC= () : JSX.Element => {
           <Profile />
         </Route>
         <Route path="/">
-          <Header active={Boolean(activeChat)} setActiveChat={setActiveChat} />
+          <Header active={Boolean(activeChat)}  />
           <MessangerField
             chats={chats}
             onClickChat={onClickChat}

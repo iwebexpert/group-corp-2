@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import {Messenger} from '../components/Messenger';
 import {aboutLoadAction} from '../actions/about';
-import {chatsLoadAction, chatsMessageSendAction} from '../actions/chats2';
+import {chatsLoadAction, chatsMessageSendAction} from '../actions/chats';
 
 import {MessageType} from '../types/types';
 
@@ -50,6 +50,6 @@ export const MessengerContainer: React.FC = () => {
             messages={messages}
             isLoading={isLoadingChat} 
             onAdd={handleMessageSend} />
-        )
+        );
     
 }

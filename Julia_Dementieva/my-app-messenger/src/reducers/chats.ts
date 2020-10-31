@@ -1,16 +1,17 @@
 import update from 'react-addons-update';
+import {Reducer} from 'redux';
 
-import {
-    CHATS_LOAD_REQUEST,
-    CHATS_LOAD_FAILURE,
-    CHATS_LOAD_SUCCESS,
-    CHATS_MESSAGE_SEND,
-    CHATSLISTS_SEND,
-    MESSAGE_FIRE,
-    MESSAGE_UNFIRE,
-} from '../actions/chats';
+import {ChatsActions, ChatsActionTypes} from '../actions/chats';
 
-const initialState = {
+export type ChatsReducerState = {
+    entries: any;
+    loading: boolean;
+    ready: boolean;
+    error: boolean;
+    fireChatsId: Array<boolean>; 
+};
+
+const initialState: ChatsReducerState = {
     entries: {},
     loading: false,
     ready: false,
@@ -18,18 +19,16 @@ const initialState = {
     fireChatsId: [],
 };
 
-export const chatsReducer = (state = initialState, action) => {
+export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = initialState, action) => {
     switch(action.type){
-        case CHATS_LOAD_REQUEST:
-            console.log('CHATS_LOAD_REQUEST',action.payload)
+        case ChatsActionTypes.CHATS_LOAD_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: false,
-                
             };
-        case CHATS_LOAD_SUCCESS:
-            console.log('CHATS_LOAD_SUCCESS',action.payload)
+
+        case ChatsActionTypes.CHATS_LOAD_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -38,15 +37,14 @@ export const chatsReducer = (state = initialState, action) => {
                 fireChatsId: Array(action.payload.length).fill(false),
             };
     
-        case CHATS_LOAD_FAILURE:
-            console.log('CHATS_LOAD_FAILURE',action.payload)
+        case ChatsActionTypes.CHATS_LOAD_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: true,
             };
-        case CHATS_MESSAGE_SEND:
-            console.log('CHATS_MESSAGE_SEND',action.payload)
+
+        case ChatsActionTypes.CHATS_MESSAGE_SEND:
             //react-addons-update
             return update(state, {
                 entries: {
@@ -55,29 +53,31 @@ export const chatsReducer = (state = initialState, action) => {
                     },
                 },
             });
-        case CHATSLISTS_SEND:
-            console.log('CHATSLISTS_SEND', action.payload)
+
+        case ChatsActionTypes.CHATSLISTS_SEND:
+            
             return update(state, {
-                entries: {$push: [{id: action.payload.id, author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
+                entries: {$merge: {
+                [action.payload.id]: {
+                    id: action.payload.id, author: action.payload.author, avatar: action.payload.avatar, messages: []
+                }}}
             });
 
-        case MESSAGE_FIRE:
-            console.log('MESSAGE_FIRE', action.payload)
+        case ChatsActionTypes.MESSAGE_FIRE:
             return update(state, {
                 fireChatsId: {
                     [+action.payload.chatId] : {$set: true},
                 }
-        });
+            });
         
-        case MESSAGE_UNFIRE: 
-        console.log('MESSAGE_UNFIRE', action.payload)
+        case ChatsActionTypes.MESSAGE_UNFIRE: 
             return update(state, {
                 fireChatsId: {
                     [+action.payload.chatId] : {$set: false},
                 }
-        });
+            });
 
         default:
             return state;
-    }
-};
+    };
+};  

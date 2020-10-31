@@ -3,7 +3,7 @@ import {Message} from '../Message';
 import {MessageFullInfoType} from '../../types/types';
 
 type MessageType = {
-    items: Array<MessageFullInfoType>
+    items: Array<MessageFullInfoType>;
 };
 
 export const MessageList: React.FC<MessageType> = ({items}) => {

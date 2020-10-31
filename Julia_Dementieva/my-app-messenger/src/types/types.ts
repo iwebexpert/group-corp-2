@@ -13,7 +13,7 @@ export type MessageType = {
 };
 
 export type MessageFullInfoType = MessageType & {
-    id: number;
+    id: string;
     chatId: number;
 };
 

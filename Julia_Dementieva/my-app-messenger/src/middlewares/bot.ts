@@ -1,6 +1,6 @@
 import {nanoid} from 'nanoid';
 import { Middleware } from 'redux';
-import {ChatsActionTypes, chatsMessageSendAction, messageFireAction, messageUnfireAction} from '../actions/chats2';
+import {ChatsActionTypes, chatsMessageSendAction, messageFireAction, messageUnfireAction} from '../actions/chats';
 
 // массив хранит id чатов, в которых бот уже ответил
 let answerBot: Array<number> = [];

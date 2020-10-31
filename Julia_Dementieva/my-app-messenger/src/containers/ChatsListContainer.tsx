@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {chatsLoadAction, chatsListSendAction, messageUnfireAction} from '../actions/chats2';
+import {chatsLoadAction, chatsListSendAction, messageUnfireAction} from '../actions/chats';
 import {push} from 'connected-react-router';
 
 import {ChatsList} from '../components/ChatsList';

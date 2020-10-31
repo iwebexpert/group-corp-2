@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import {connectRouter} from 'connected-react-router';
 import {History} from 'history';
 
-import {chatsReducer, ChatsReducerState} from './chats2';
+import {chatsReducer, ChatsReducerState} from './chats';
 import {aboutReducer} from './about';
 
 export type AppState = {

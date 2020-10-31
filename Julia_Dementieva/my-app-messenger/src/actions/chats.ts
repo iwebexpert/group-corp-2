@@ -1,7 +1,7 @@
 import {createAction, RequestError} from 'redux-api-middleware';
 import {ActionCreator} from 'redux';
 
-import {MessageFullInfoType} from '../types/types';
+import {MessageFullInfoType, ChatType} from '../types/types';
 
 export enum ChatsActionTypes {
     CHATS_LOAD_REQUEST = 'CHATS_LOAD_REQUEST',
@@ -22,31 +22,31 @@ export enum ChatsActionTypes {
     MESSAGE_FIRE = 'MESSAGE_FIRE',
 };
 
-export type chatsLoadRequestAction = {
+type chatsLoadRequestAction = {
     type: ChatsActionTypes.CHATS_LOAD_REQUEST;
 };
 
-export type chatsLoadSuccessAction = {
+type chatsLoadSuccessAction = {
     type: ChatsActionTypes.CHATS_LOAD_SUCCESS;
     payload: any;
 };
 
-export type chatsLoadFailureAction = {
+type chatsLoadFailureAction = {
     type: ChatsActionTypes.CHATS_LOAD_FAILURE;
     payload: RequestError;
     error: boolean;
 };
 
-export type chatsAddRequestAction = {
+type chatsAddRequestAction = {
     type: ChatsActionTypes.CHAT_ADD_REQUEST;
 };
 
-export type chatsAddSuccessAction = {
+type chatsAddSuccessAction = {
     type: ChatsActionTypes.CHAT_ADD_SUCCESS;
     payload: any;
 };
 
-export type chatsAddFailureAction = {
+type chatsAddFailureAction = {
     type: ChatsActionTypes.CHAT_ADD_FAILURE;
     payload: RequestError;
     error: boolean;
@@ -62,23 +62,22 @@ type MessageFireOrUnfire = {
     chatId: number;
 };
 
-
-export type chatsMessageSendAction = {
+type chatsMessageSendAction = {
     type: ChatsActionTypes.CHATS_MESSAGE_SEND,
     payload: MessageFullInfoType,
 };
 
-export type chatsListSendAction = {
+type chatsListSendAction = {
     type: ChatsActionTypes.CHATSLISTS_SEND,
-    payload: any,
+    payload: ChatType,
 };
 
-export type messageFireAction = {
+type messageFireAction = {
     type: ChatsActionTypes.MESSAGE_FIRE,
     payload: MessageFireOrUnfire,
 };
 
-export type messageUnfireAction = {
+type messageUnfireAction = {
     type: ChatsActionTypes.MESSAGE_UNFIRE,
     payload: MessageFireOrUnfire,
 };
@@ -114,7 +113,7 @@ export const chatsMessageSendAction: ActionCreator<chatsMessageSendAction> = (me
     payload: message,
 });
 
-export const chatsListSendAction: ActionCreator<chatsListSendAction> = (chat: any) => ({
+export const chatsListSendAction: ActionCreator<chatsListSendAction> = (chat: ChatType) => ({
     type: ChatsActionTypes.CHATSLISTS_SEND,
     payload: chat,
 });
@@ -130,7 +129,7 @@ export const chatAddServerAction = (newchat: ChatAdd) => createAction({
           type: ChatsActionTypes.CHAT_ADD_SUCCESS,
           payload: async (res: Response) => await res.json()
         },
-        ChatsActionTypes.CHAT_ADD_FAILURE
+        ChatsActionTypes.CHAT_ADD_FAILURE,
       ]
 });
 
@@ -148,9 +147,9 @@ export const messageAddServerAction = (newmessage: MessageFullInfoType) => creat
         },
         {
             type: ChatsActionTypes.MESSAGE_ADD_SUCCESS,
-            payload: async (res: Response) => await res.json()
+            payload: async (res: Response) => await res.json(),
         },
-        ChatsActionTypes.MESSAGE_ADD_FAILURE
+        ChatsActionTypes.MESSAGE_ADD_FAILURE,
         ]
 });
 

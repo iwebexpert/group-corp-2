@@ -26,7 +26,7 @@ export const ChatsList: React.FC<ChatItemType> = ({onAdd, chats, fireChats, onCl
     };
 
     if(isLoading) {
-        return(<div className={"loading"}><CircularProgress color="secondary"/></div>)
+        return(<div className={"loading"}><CircularProgress color="secondary"/></div>);
     }
     
     return (

@@ -1,5 +1,5 @@
 import { Middleware } from 'redux';
-import {ChatsActionTypes, chatAddServerAction, messageAddServerAction} from '../actions/chats2'
+import {ChatsActionTypes, chatAddServerAction, messageAddServerAction} from '../actions/chats';
 
 export const chatAddDeleteMiddlewares: Middleware = store => next => action => {
     if(action.type === ChatsActionTypes.CHATSLISTS_SEND){

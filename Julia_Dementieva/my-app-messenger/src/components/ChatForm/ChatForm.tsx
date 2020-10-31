@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {IconButton, TextField, makeStyles} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -63,5 +63,5 @@ export const ChatForm: React.FC<ChatFormType> = ({onSend}) => {
                 <AddIcon />
             </IconButton>
         </div>
-    )
+    );
 }

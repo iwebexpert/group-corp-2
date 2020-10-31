@@ -32,7 +32,7 @@ export type setMessagesError = {
 };
 export type setChats = {
   type : Types.SET_CHATS,
-  payload : ChatsPayload
+  payload : ChatsType
 }
 export type editChat = {
   type: Types.EDIT_CHAT;
@@ -53,24 +53,24 @@ export type unfireChat = {
 };
 export type addChat = {
   type: Types.ADD_CHAT;
-  payload: ChatsPayload;
+  payload: ChatsType;
 };
 
 export type sendMessage = {
   type: Types.SEND_MESSAGE;
   payload: {
-    obj: object;
+    obj: MessagesType;
     chatId: number;
     author: string;
   };
 };
-export type ChatsPayload = {
+export type ChatsType = {
   title: string;
-  messages: Array<MessagesPayload>;
+  messages: Array<MessagesType>;
   fire: boolean;
   id: number;
 };
-export type MessagesPayload = {
+export type MessagesType = {
   id: number;
   chatId: number;
   author: string;
@@ -97,11 +97,11 @@ export const setMessagesError: ActionCreator<setMessagesError> = (payload: boole
   type: Types.SET_MESSAGES_ERROR,
   payload,
 });
-export const setChats : ActionCreator<setChats> = (chats: ChatsPayload) => ({
+export const setChats : ActionCreator<setChats> = (chats: ChatsType) => ({
   type: Types.SET_CHATS,
   payload: chats,
 });
-export const addChat = (chat: ChatsPayload) => ({
+export const addChat = (chat: ChatsType) => ({
   type: Types.ADD_CHAT,
   payload: chat,
 });
@@ -113,7 +113,7 @@ export const editChat: ActionCreator<editChat> = (newTitle: string, chatId: numb
   type: Types.EDIT_CHAT,
   payload: { newTitle, chatId },
 });
-export const sendMessage: ActionCreator<sendMessage> = (obj: object, chatId: number, author: string) => ({
+export const sendMessage: ActionCreator<sendMessage> = (obj: MessagesType, chatId: number, author: string) => ({
   type: Types.SEND_MESSAGE,
   payload: { obj, chatId, author },
 });
@@ -131,7 +131,7 @@ export const fetchChats = () => (dispatch: Dispatch) => {
   dispatch(setMessagesLoading(true));
   dispatch(setMessagesError(false));
   axios
-    .get<ChatsPayload>("http://localhost:3001/chats?_embed=messages")
+    .get<ChatsType>("http://localhost:3001/chats?_embed=messages")
     .then<void>(({ data }) => {
       dispatch(setChats(data));
       dispatch(setChatsLoading(false));
@@ -143,7 +143,7 @@ export const fetchChats = () => (dispatch: Dispatch) => {
     });
 };
 
-export const addChatAction = (chat: ChatsPayload) => (dispatch: Dispatch) => {
+export const addChatAction = (chat: ChatsType) => (dispatch: Dispatch) => {
   dispatch(setChatsLoading(true));
   axios.post<void>("http://localhost:3001/chats", chat).then<void>(() => {
     dispatch(addChat(chat));
@@ -154,7 +154,7 @@ export const sendMessageAction = (chatId: number, author: string, message: strin
   dispatch(setMessagesLoading(true));
   dispatch(setMessagesError(false));
   axios
-    .post<MessagesPayload>("http://localhost:3001/messages", {
+    .post<MessagesType>("http://localhost:3001/messages", {
       chatId: chatId,
       message: message,
       author: author,

@@ -1,31 +1,37 @@
 import React from 'react'
-import List from '@material-ui/core/List';
+import List from '@material-ui/core/List'
 import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import { ChatAdd } from './../ChatAdd';
+import { ChatAdd } from '../ChatAdd';
 import './ChatList.scss'
 import { removeChatAction, editChatAction } from '../../actions/chats'
 import removeSvg from '../../assets/img/remove.svg'
 import editSvg from '../../assets/img/edit.svg'
-export const ChatList = ({ chats, onClickChat, activeChat }) => {
+import {ChatsType} from '../../actions/chats'
+type ChatListType = {
+  chats : ChatsType[],
+  onClickChat : (chat : ChatsType) => void,
+  activeChat : ChatsType
+};
+export const ChatList : React.FC<ChatListType> = ({ chats, onClickChat, activeChat }) => {
   const dispatch = useDispatch();
-  const { isChatsError, isChatsLoading } = useSelector(({ chats }) => chats);
-  const onClick = (chat) => {
+  const { isChatsError, isChatsLoading } = useSelector(({ chats } : any) => chats);
+  const onClick = (chat : ChatsType) => {
     if (chat.id) {
       dispatch(push(`/chats/${chat.id}`));
       onClickChat(chat);
     }
 
   }
-  const onRemove = (chatId) => {
+  const onRemove = (chatId : number) => {
     if (window.confirm('Вы действительно хотите удалить чат?')) {
       dispatch(removeChatAction(chatId));
       dispatch(push('/'));
     };
   }
-  const onEdit = (chatId) => {
+  const onEdit = (chatId : number) => {
     const newTitle = window.prompt('Введите название', '');
     if (newTitle) {
       dispatch(editChatAction(newTitle, chatId));

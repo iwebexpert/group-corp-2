@@ -6,8 +6,12 @@ import { useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 import classNames from 'classnames'
-export const Header = ({ active, setActiveChat }) => {
-    const { profileData, isProfileLoading, isProfileError } = useSelector(({ profile }) => profile);
+type HeaderTYpe = {
+    active : boolean,
+    setActiveChat : () => void 
+}
+export const Header  : React.FC<HeaderTYpe> = ({ active, setActiveChat }) => {
+    const { profileData, isProfileLoading, isProfileError } = useSelector(({ profile } : any) => profile);
 
     return (
         <header className="header">

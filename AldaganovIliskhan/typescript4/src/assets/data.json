@@ -61,6 +61,18 @@
       "message": "asd",
       "author": "asd",
       "id": 11
+    },
+    {
+      "chatId": 3,
+      "message": "asd",
+      "author": "asd",
+      "id": 12
+    },
+    {
+      "chatId": 3,
+      "message": "asd",
+      "author": "asd",
+      "id": 13
     }
   ],
   "profile": {

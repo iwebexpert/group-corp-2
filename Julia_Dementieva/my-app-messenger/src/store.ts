@@ -19,7 +19,6 @@ const persistConfig = {
     blacklist: ['chats', 'messages'],
 };
 
-// export const store = createStore(createRootReducer(history), composeWithDevTools(applyMiddleware(logger, botMiddlewares, routerMiddleware(history))));
 export const initStore = (): {store: Store, persistor: Persistor} => {
     //данные до 
     const initialStore = {};

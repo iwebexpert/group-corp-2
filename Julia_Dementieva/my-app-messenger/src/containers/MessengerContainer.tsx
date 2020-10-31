@@ -6,6 +6,8 @@ import {Messenger} from '../components/Messenger';
 import {aboutLoadAction} from '../actions/about';
 import {chatsLoadAction, chatsMessageSendAction} from '../actions/chats2';
 
+import {MessageType} from '../types/types';
+
 import {AppState} from '../reducers';
 
 export const MessengerContainer: React.FC = () => {
@@ -33,7 +35,7 @@ export const MessengerContainer: React.FC = () => {
         }
     }, []);
 
-    const handleMessageSend = (message: {author: string; text: string;}): void => {
+    const handleMessageSend = (message: MessageType): void => {
         dispatch(chatsMessageSendAction({
             ...message,
             id: nanoid(),

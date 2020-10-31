@@ -6,9 +6,9 @@ import {chatsReducer, ChatsReducerState} from './chats2';
 import {aboutReducer} from './about';
 
 export type AppState = {
-    chats: ChatsReducerState;
-    [propName: string]: any;
-  };
+  chats: ChatsReducerState;
+  [propName: string]: any;
+};
 
 export const createRootReducer = (history: History) => combineReducers<AppState>({
     router: connectRouter(history),

@@ -4,7 +4,7 @@ import {MessageList} from '../MessageList';
 import {MessageForm} from '../MessageForm';
 import {Error} from '../../pages/Error';
 
-import {MessageType} from '../Message';
+import {MessageType} from '../../types/types';
 
 import './Messenger.css';
 
@@ -16,7 +16,7 @@ type MessengerType = {
     avatarChat: string;
     messages: Array<MessageType>;
     isLoading: boolean;
-}
+};
 
 export const Messenger: React.FC<MessengerType> = ({ onAdd, authorChat, namePerson, avatarChat, messages, isLoading }) => {
 
@@ -49,6 +49,6 @@ export const Messenger: React.FC<MessengerType> = ({ onAdd, authorChat, namePers
                 <MessageForm onSend={handleMessageSend} person={namePerson}/>
             </div>           
         </div>) : <Error />
-    )
+    );
 }
 

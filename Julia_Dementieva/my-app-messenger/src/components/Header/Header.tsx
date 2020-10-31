@@ -3,7 +3,7 @@ import {Avatar,  makeStyles} from '@material-ui/core';
 import { deepOrange } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
 
-import {InfoPersonType} from '../../pages/About';
+import {InfoPersonType} from '../../types/types';
 
 import './Header.css';
 
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 
 type HeaderType = {
     infoPerson: InfoPersonType;
-}
+};
 
 export const Header: React.FC<HeaderType> = ({infoPerson}) => {
     const classes = useStyles();
@@ -31,5 +31,5 @@ export const Header: React.FC<HeaderType> = ({infoPerson}) => {
                 </div>
             </Link>
         </div>) : <div>Данные загружаются</div>
-    )
+    );
  }

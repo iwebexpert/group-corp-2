@@ -3,7 +3,7 @@ import {IconButton, TextField, makeStyles} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
 import {useFormMess} from '../../hooks/useFormMess';
-import './ChatForm.css'
+import './ChatForm.css';
 
 
 const useStyles = makeStyles({

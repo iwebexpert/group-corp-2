@@ -1,16 +1,10 @@
 import React from 'react';
 import {Message} from '../Message';
-// import {MessageType} from '../Message';
-type Message = {
-    author: string;
-    text: string;
-    id?: string;
-    chatId?: number;
-}
+import {MessageFullInfoType} from '../../types/types';
 
 type MessageType = {
-    items: Array<Message>
-}
+    items: Array<MessageFullInfoType>
+};
 
 export const MessageList: React.FC<MessageType> = ({items}) => {
     return (

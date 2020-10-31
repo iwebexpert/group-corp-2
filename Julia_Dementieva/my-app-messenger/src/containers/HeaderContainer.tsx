@@ -17,7 +17,6 @@ export const HeaderContainer: React.FC = () => {
         }
     }, []);
 
-    
-    return( <Header infoPerson={infoPerson}/>)
+    return( <Header infoPerson={infoPerson}/>);
     
 }

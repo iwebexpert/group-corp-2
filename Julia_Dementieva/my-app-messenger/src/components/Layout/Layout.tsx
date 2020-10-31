@@ -1,15 +1,15 @@
-import React from 'react'
-import {MessengerContainer} from '../../containers/MessengerContainer'
-import {AboutContainer} from '../../containers/AboutContainer'
-import {HeaderContainer} from '../../containers/HeaderContainer'
-import {ChatsListContainer} from '../../containers/ChatsListContainer'
+import React from 'react';
+import {MessengerContainer} from '../../containers/MessengerContainer';
+import {AboutContainer} from '../../containers/AboutContainer';
+import {HeaderContainer} from '../../containers/HeaderContainer';
+import {ChatsListContainer} from '../../containers/ChatsListContainer';
 
 import {Paper} from '@material-ui/core';
 
 import { Route,Switch, Redirect } from 'react-router-dom';
 import {Error} from '../../pages/Error';
 
-import './Layout.css'
+import './Layout.css';
 
 export const Layout: React.FC = () => {
 
@@ -33,5 +33,5 @@ export const Layout: React.FC = () => {
             </div>
         </div>
         </>
-    )
+    );
 }

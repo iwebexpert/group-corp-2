@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {chatsLoadAction, chatsListSendAction, messageUnfireAction} from '../actions/chats2';
 import {push} from 'connected-react-router';
 
-import {ChatsList} from '../components/ChatsList'
+import {ChatsList} from '../components/ChatsList';
 
 import {AppState} from '../reducers';
 
@@ -22,7 +22,7 @@ export const ChatsListContainer: React.FC = () => {
         if(!chatsLoad) dispatch(chatsLoadAction());
     }, []);
 
-    const chatAddHandler = (newchat: string) => {
+    const chatAddHandler = (newchat: string): void => {
         if(lastChatId){
             dispatch(chatsListSendAction({
                 id: lastChatId.toString(),
@@ -31,15 +31,14 @@ export const ChatsListContainer: React.FC = () => {
             }));
             dispatch(push(`/chats/${lastChatId}`));
         }
-        
     };
 
-    const chatClickHandler = (chatId: number) =>{
+    const chatClickHandler = (chatId: number): void => {
         if (chatId >= 0){
             dispatch(messageUnfireAction({chatId}));
         }
-    }
+    };
 
-    return( <ChatsList chats={chatsLoad} fireChats={fireListId} onAdd={chatAddHandler} isLoading={isLoading} onClick={chatClickHandler}/>)
+    return( <ChatsList chats={chatsLoad} fireChats={fireListId} onAdd={chatAddHandler} isLoading={isLoading} onClick={chatClickHandler}/>);
     
 }

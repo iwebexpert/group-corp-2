@@ -1,20 +1,13 @@
-import React from 'react'
+import React from 'react';
 import {Paper} from '@material-ui/core';
 import './About.css';
 
-export type InfoPersonType = {
-    id: number;
-    name: string;
-    age: number;
-    city: string;
-    mainChat: string;
-    avatar: string;
-}
+import {InfoPersonType} from '../types/types';
 
-export type AboutType = {
+type AboutType = {
     infoPerson: InfoPersonType;
     isLoading: boolean;
-}
+};
 
 export const About: React.FC<AboutType> = ({infoPerson, isLoading }) => {
 
@@ -36,6 +29,6 @@ export const About: React.FC<AboutType> = ({infoPerson, isLoading }) => {
                     </div>
                 </Paper>
             </div>) : <div>Данные не загрузились</div>
-    )
+    );
 }
 

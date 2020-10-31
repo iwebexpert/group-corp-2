@@ -1,0 +1,119 @@
+{
+  "chats": [
+    {
+      "id": 1,
+      "title": "Work chat",
+      "fire": false
+    },
+    {
+      "id": 2,
+      "title": "Friends",
+      "fire": false
+    }
+  ],
+  "messages": [
+    {
+      "id": 2,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 1
+    },
+    {
+      "id": 3,
+      "author": "WebDev",
+      "text": "Какие есть задачи на сегодня?",
+      "chatId": 1
+    },
+    {
+      "id": 4,
+      "author": "WebDev",
+      "text": "Привет!",
+      "chatId": 2
+    },
+    {
+      "id": 5,
+      "author": "WebDev",
+      "text": "Что нового?)",
+      "chatId": 2
+    },
+    {
+      "text": "42",
+      "author": "ars",
+      "id": "7r42Rg04Tapa6QVxkm9nt",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "cmQVLZTeCf4SLY_d3C6T-",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "ars",
+      "id": "5drE82gLkD7Pb2UfZSR9s",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "-LDNbql6Nff2ZCbZjnZua",
+      "chatId": 1
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "9bzxAV1elh9xYGsX2CylH",
+      "chatId": 2
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "B_rgR7oKgE25UaXfWsjtf",
+      "chatId": 2
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "tWBLLxbgunqhLCHOsn2ug",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "Ht7EAAZT6SQxbI7ZmR3iw",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "ecN7gIwywwPy-dn9rrtNV",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "R3CdZpPxk5khn6wAs1K9R",
+      "chatId": 1
+    },
+    {
+      "text": "42",
+      "author": "42",
+      "id": "2QY42KxK-FlFD5gc-8kmR",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, 42, im Robot!",
+      "author": "Robot",
+      "id": "glWtHubbNv6nwqdveCDiG",
+      "chatId": 1
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "WebDev",
+      "email": "1@2.ru"
+    }
+  ]
+}

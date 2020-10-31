@@ -5,17 +5,23 @@ import {Scrollbars} from "react-custom-scrollbars";
 import {MessagesCheck} from "./messages/MessagesCheck";
 import {InputArea} from "./InputArea";
 
-export const MessagesText = (props) => {
+type messagesTextType = {
+    messages: messagePayload[] | undefined;
+    chat: chatsPayload;
+    onSend: (message: string) => void
+}
+
+export const MessagesText: React.FC<messagesTextType> = (props) => {
 
     const {messages, chat, onSend} = props;
-    const messagesArr = [];
+    const messagesArr: messagePayload[] = [];
     if (messages) {
         Object.assign(messagesArr, messages);
     }
     return (
         <div className="chat_messages">
             {/********TITLE AREA*******/}
-            <TitleArea dialogInfo={chat}/>
+            <TitleArea dialogInfo={chat.userName}/>
 
             <hr/>
 
@@ -32,5 +38,4 @@ export const MessagesText = (props) => {
             <InputArea onSend={onSend}/>
         </div>
     );
-
 }

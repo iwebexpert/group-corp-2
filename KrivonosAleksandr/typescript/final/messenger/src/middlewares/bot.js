@@ -1,8 +1,9 @@
-import {CHATS_MESSAGE_SEND, chatsMessageSendAction, messageFireAction, messageUnfireAction} from '../actions/chats';
+import {ChatsActionTypes, chatsMessageSendAction, messageFireAction, messageUnfireAction} from '../actions/chats';
 import {nanoid} from 'nanoid';
+// import {Middleware, MiddlewareAPI, Dispatch, AnyAction} from "redux";
 
 export const botMiddleware = store => next => action => {
-    if (action.type === CHATS_MESSAGE_SEND) {
+    if (action.type === ChatsActionTypes.CHATS_MESSAGE_SEND) {
         const {type, chatId} = action.payload;
         if (type !== 'botMsg' && action.chats[chatId].botMessages) {
             const chats = action.chats;

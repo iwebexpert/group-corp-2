@@ -15,7 +15,7 @@ export const InputArea: React.FC<InputAreaType> = ({onSend}) => {
         text: '',
     });
 
-    const handleInputChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDataForm({
             ...dataForm,
             text: event.target.value
@@ -30,12 +30,12 @@ export const InputArea: React.FC<InputAreaType> = ({onSend}) => {
         }
 
         if (typeof onSend === 'function') {
-            onSend(dataForm);
+            onSend(dataForm.text);
             setDataForm({...dataForm, text: ''});
         }
     }
 
-    const onHandleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    const onHandleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>): void => {
         if (event.ctrlKey && event.keyCode === 13) {
             handleInputSend();
         }

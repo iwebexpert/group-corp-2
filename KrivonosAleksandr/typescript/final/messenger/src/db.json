@@ -43,6 +43,16 @@
       "answerCount": 0,
       "fire": false,
       "userName": ""
+    },
+    {
+      "id": 4,
+      "name": "Антон Антонович",
+      "lastMessage": "Начните диалог первым",
+      "fire": false,
+      "answerCount": 0,
+      "userName": "",
+      "botMessages": [],
+      "messages": []
     }
   ],
   "messages": [
@@ -73,6 +83,13 @@
       "time": "It's first message",
       "id": 0,
       "chatId": 3
+    },
+    {
+      "text": "Привет",
+      "type": "myMsg",
+      "time": "23:18:14",
+      "id": "_kdT6lQTY3QP492jnJ57Q",
+      "chatId": 0
     }
   ],
   "profile": [
@@ -91,10 +108,6 @@
     }
   ],
   "friends": [
-    {
-      "id": 0,
-      "name": "Антон Антонович"
-    },
     {
       "id": 1,
       "name": "Игорь Антонович"

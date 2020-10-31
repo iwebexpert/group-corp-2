@@ -11,11 +11,11 @@ const MyMessage = (props) => {
                 <div className="user_account myMessage_account">
                     <Link to="/" className="date myMessage_date">
                         <FontAwesomeIcon icon={faCalendar}/>
-                        {props.msg.msgTime}
+                        {props.msg.time}
                     </Link>
                 </div>
                 <div className="message_text myMessage_text">
-                    <Markup content={props.msg.msgText.replace(/\n/g, '<br/>')}/>
+                    <Markup content={props.msg.text.replace(/\n/g, '<br/>')}/>
                 </div>
             </div>
         </div>

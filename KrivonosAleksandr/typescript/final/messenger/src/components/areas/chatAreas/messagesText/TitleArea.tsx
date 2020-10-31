@@ -8,11 +8,15 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircle} from "@fortawesome/free-regular-svg-icons";
 import {faCogs} from "@fortawesome/free-solid-svg-icons";
 
-export const TitleArea = (props) => {
+type ChatsTitleTypes = {
+    dialogInfo: string;
+}
 
-    let userName = "Loading..."
+export const TitleArea: React.FC<ChatsTitleTypes> = (props) => {
+
+    let userName = 'Loading...'
     if (props.dialogInfo) {
-        userName = props.dialogInfo.name;
+        userName = props.dialogInfo;
     }
 
     return (

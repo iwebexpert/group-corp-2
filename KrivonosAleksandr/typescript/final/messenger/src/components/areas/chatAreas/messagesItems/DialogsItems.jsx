@@ -23,12 +23,12 @@ export const DialogsItems = (props) => {
             <div className="dialogs_names">
                 <div className="dialogs_title">
                     Сообщения
-                    <div className="dialogs_create" onClick={props.showDeleteBtns}><FontAwesomeIcon icon={faEdit}/></div>
+                    <div className="dialogs_create"><FontAwesomeIcon icon={faEdit}/></div>
                 </div>
                 <hr/>
                 <Scrollbars style={{width: 330, height: 470}}>
                     <List>
-                        <DialogsCheck onDeleteDialog={props.onDeleteDialog} items={items}/>
+                        <DialogsCheck items={items}/>
                     </List>
                 </Scrollbars>
                 <div className="dialog_createArea">

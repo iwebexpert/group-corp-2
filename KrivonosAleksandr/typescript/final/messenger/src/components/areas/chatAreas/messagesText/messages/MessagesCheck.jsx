@@ -1,8 +1,15 @@
 import React from 'react';
 
-import {Message} from './Messages.jsx';
+import {Message} from './Messages';
 
-export const MessagesCheck = (props) => {
+// type MessageCheckProps = {
+//     items: messagePayload[]
+// }
 
-    return props.items.map((item) => (<Message msgText={item.text} msgTime={item.time} msgType={item.type} key={item.id} />));
-};
+export const MessagesCheck = ({items}) => {
+    return ( items.map((item) => (<Message message={item} />))
+        // <>
+        //     {items.map((item) => (<Message id={item.id} chatId={item.chatId } text={item.text} time={item.time} type={item.type} key={item.id} />))}
+        // </>
+    );
+}

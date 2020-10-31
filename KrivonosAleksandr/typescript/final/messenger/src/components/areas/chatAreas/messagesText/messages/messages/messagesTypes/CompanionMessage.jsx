@@ -18,12 +18,12 @@ const CompanionMessage = (props) => {
                     <div className="user_wrapper">
                         <Link to="/chats/new" className="date companionMessage_date">
                             <FontAwesomeIcon icon={faCalendar}/>
-                            {props.msg.msgTime}
+                            {props.msg.time}
                         </Link>
                     </div>
                 </div>
                 <div className="message_text companionMessage_text">
-                    <Markup content={props.msg.msgText.replace(/\n/g,'<br/>')}/>
+                    <Markup content={props.msg.text.replace(/\n/g,'<br/>')}/>
                 </div>
             </div>
         </div>

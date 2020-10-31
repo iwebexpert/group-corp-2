@@ -2,12 +2,12 @@ import {combineReducers} from 'redux';
 import { connectRouter } from 'connected-react-router'
 import {History} from 'history';
 
-// import {chatsReducer, ChatsReducerState} from './chats';
-import {chatsReducer} from './chats';
-import {profileReducer} from "./user";
+import {chatsReducer, ChatsReducerState} from './chats';
+import {profileReducer, ProfileReducerState} from "./user";
 
 export type AppState = {
-    chats: any;
+    chats: ChatsReducerState;
+    profile: ProfileReducerState;
     [propName: string]: any;
 };
 

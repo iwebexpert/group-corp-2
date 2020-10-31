@@ -15,16 +15,16 @@ type profilePayload = {
 type chatsPayload = {
     id: string;
     name: string;
-    lastMessage: string[] | undefined;
+    lastMessage: string;
     answerCount: number;
     fire: boolean;
     userName: string;
     botMessages: string[];
-    messages?: string[];
+    messages?: messagePayload[];
 }
 
 type newDialog = {
-    id: string;
+    id: number;
     name: string;
 }
 
@@ -37,8 +37,9 @@ type messagePayload = {
     text: string;
     type: string;
     time: string;
-    id: number;
+    id: string;
     chatId: number;
+    key?: string;
 }
 
 type chatIdPayload = {
@@ -46,17 +47,17 @@ type chatIdPayload = {
 }
 
 type friendsPayload = {
-    id: string;
+    id: number;
     name: string;
     filteredFriends?: [];
 }
 
-type MessageListProps = {
-    msgType: string;
-    msgText: string;
-    msgTime: string;
-    key: number;
-}
+// type MessageListProps = {
+//     msgType: string;
+//     msgText: string;
+//     msgTime: string;
+//     key: number;
+// }
 
 type MsgObject = {
     msg: MessageListProps;

@@ -8,8 +8,8 @@ import {apiMiddleware} from "redux-api-middleware";
 import reduxThunk from 'redux-thunk';
 
 import {createRootReducer} from './reducers';
-import {botMiddleware} from "./middlewares/bot";
-import {fireMiddleware} from "./middlewares/fireMsg";
+import {botMiddleware} from "./middlewares/bot.js";
+import {fireMiddleware} from "./middlewares/fireMsg.js";
 
 export const history: History = createBrowserHistory();
 

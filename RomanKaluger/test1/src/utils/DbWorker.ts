@@ -4,16 +4,17 @@ import {store} from "../redux/StorageRedux";
 import uniqid from 'uniqid';
 import {chatTypes, messageTypes, systemMessages} from "../configs/statuses";
 import {Dispatch} from "redux";
-import {CommonAction, ISetFrowardMessagePayload} from "../redux/rdxActions";
-import {IAuthData, IChat, IContacts, IMessage, IRegisterData, IUpdateData, IUser} from "../configs/globalTypes";
+import {CommonAction, ISetFrowardMessagePayload} from "../redux/reduxTypes/rdxActions";
+import {IAuthData, IChat, IContacts, IMessage, IRegisterData, IUpdateData, IUser} from "../types/globalTypes";
+
 type TStringValued = { value: string };
 
-export interface IInputAuth {
+export interface IInputAuth extends HTMLFormControlsCollection {
     authEmail: TStringValued;
     authPassword: TStringValued;
 }
 
-export interface IInputReg {
+export interface IInputReg extends HTMLFormControlsCollection {
     regEmail: TStringValued;
     regName: TStringValued;
     regPassword: TStringValued;
@@ -25,7 +26,7 @@ export interface IInputReg {
     regStatus: TStringValued;
 }
 
-export interface IInputUpdate {
+export interface IInputUpdate extends HTMLFormControlsCollection {
     Name: TStringValued;
     Age: TStringValued;
     Sex: TStringValued;
@@ -88,7 +89,7 @@ export class DbWorker {
             const res: Response = await fetch(url, {
                 method,
                 headers: {
-                    authorization: isAuth && curUser? curUser.token : '',
+                    authorization: isAuth && curUser ? curUser.token : '',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(body)
@@ -105,7 +106,7 @@ export class DbWorker {
         }
     };
     static createMessage = (text: string, forwardMessageRaw: null | ISetFrowardMessagePayload = null,
-                            {messageType, content}: { messageType: messageTypes, content: string[] | null }
+                            {messageType, content}: { messageType: messageTypes, content: string[] | string | null }
                                 = {messageType: messageTypes.TEXT, content: null}): IMessage => {
         content = content ?? [];
         const {curUser}: { curUser: IUser | null } = store.getState().app;
@@ -140,9 +141,9 @@ export class DbWorker {
         };
     };
     static sendMessage = async (text: string, forwardMessageRaw: ISetFrowardMessagePayload | null = null,
-                                {messageType, content}: { messageType: messageTypes, content?: string[] | null }): Promise<IMessage | null> => {
+                                {messageType, content}: { messageType: messageTypes, content?: string[] | string | null }): Promise<IMessage | null> => {
         const {selectedChat, chats, curUser}: { selectedChat: string | null, chats: IChat[], curUser: IUser | null } = store.getState().app;
-        content = content ?? [];
+        content = content ?? null;
         if (!curUser) {
             throw new Error('Пользователь не найден');
         }
@@ -194,7 +195,7 @@ export class DbWorker {
     static deleteMessage = async (chatId: string, messageId: string): Promise<void> => {
         await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/chat/message/${chatId}/message`, {messageId}, true, HTTPMethods.DELETE);
     };
-    static deleteManyMessages = async (chatId: string, messageIdsArr: string): Promise<void> => {
+    static deleteManyMessages = async (chatId: string, messageIdsArr: string[]): Promise<void> => {
         await DbWorker.reqAuthorized(`${connectionConfig.hostHttp}/chats/chat/message/many/${chatId}/message`, {messageIdsArr}, true, HTTPMethods.DELETE);
     };
     static addFriend = async (friend: IUser): Promise<IUser | null> => {
@@ -352,14 +353,14 @@ export class DbWorker {
     };
     static getUserIdRange = async (stringRange: string): Promise<IUser[]> => {
         const curUser: IUser | null = store.getState().app.curUser;
-        if (!curUser){
+        if (!curUser) {
             return [];
         }
         const res: Response = await DbWorker.authGet(`${connectionConfig.hostHttp}/users/idrange/${stringRange}`, curUser);
         return await res.json();
     };
-    static pushChatData = async ({sharedChatId, newParams}: {sharedChatId: string, newParams: Partial<IChat>}): Promise<IChat | null> => {
-        const body: {sharedChatId: string, newParams: Partial<IChat>} = {sharedChatId, newParams};
+    static pushChatData = async ({sharedChatId, newParams}: { sharedChatId: string, newParams: Partial<IChat> }): Promise<IChat | null> => {
+        const body: { sharedChatId: string, newParams: Partial<IChat> } = {sharedChatId, newParams};
         const res: IChat | null = await DbWorker.reqAuthorized<IChat>(`${connectionConfig.hostHttp}/update/chat/`, body, true);
         if (res) {
             swal("Успешно", 'Данные обновлены', "success");

@@ -3,16 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import Backdrop from "@material-ui/core/Backdrop";
 import {setAboutPageOpen} from "../../redux/actions";
 import './About.scss';
-import {ICombinedState, ISystemState} from "../../redux/rdx";
+import {ICombinedState, ISystemState} from "../../redux/reduxTypes/rdx";
 import {Dispatch} from "redux";
 
 export const About: React.FC = () => {
-    const {aboutPageOpen}: {aboutPageOpen: boolean} = useSelector<ICombinedState, ISystemState>(s => s.system);
+    const {aboutPageOpen}: { aboutPageOpen: boolean } = useSelector<ICombinedState, ISystemState>(s => s.system);
     const dispatch: Dispatch = useDispatch();
     const CancelHandler = (): void => {
         dispatch(setAboutPageOpen(false));
     };
-    return(
+    return (
         <Backdrop open={aboutPageOpen}>
             <div className={'AboutContainer'}>
                 <div className={'primaryHeader'}>О программе</div>
@@ -33,7 +33,9 @@ export const About: React.FC = () => {
                     <li>Удаления сообщения или группы сообщений</li>
                     <li>Пересылка сообщения или группы сообщений с соблюдением вложенности</li>
                     <li>Удаление чата</li>
-                    <li>Создание чата с произвольным пользователем(если чат существовал и был удален, то будет восстановлен)</li>
+                    <li>Создание чата с произвольным пользователем(если чат существовал и был удален, то будет
+                        восстановлен)
+                    </li>
                     <li>Голосовые сообщения</li>
                     <li>Вложение картинок с компьютера, а также по CTRL+C</li>
                     <li>Рисование рукописных посланий с конвертацией в картинку и отправкой</li>
@@ -45,7 +47,9 @@ export const About: React.FC = () => {
                     <li>Сервер с использованием Mongo+Express+Websocket</li>
                     <li>Информация в шапке чата о его участниках</li>
                     <li>Пользователь Петя - бот</li>
-                    <li>Многопользовательские беседы с возможностью приглашения, исключения, редактирования инф. о беседе, уведомлениями в чат</li>
+                    <li>Многопользовательские беседы с возможностью приглашения, исключения, редактирования инф. о
+                        беседе, уведомлениями в чат
+                    </li>
                 </ul>
                 <img onClick={CancelHandler} className={'DeleteSign'} alt={'DeleteSign'}
                      src="https://img.icons8.com/color/48/000000/delete-sign.png"/>

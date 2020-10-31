@@ -17,15 +17,15 @@ import {
 import {changeChatTypes, messageTypes} from "../../configs/statuses";
 import {push} from "connected-react-router";
 import {
-    CommonAction, IAuth,
+    IAuth,
     IChangeChatData,
     ICreateChat, IDeleteChat,
     ILoadChatMessages,
     ILoadContacts, IRegister,
-    ISendMessage, ISetForwardMessage, ISetFrowardMessagePayload, IUpdateUser, IUpdateUserPayload
-} from "../rdxActions";
-import { SagaIterator} from "@redux-saga/types";
-import {IAuthData, IChat, IContacts, IMessage, IRegisterData, IUser} from "../../configs/globalTypes";
+    ISendMessage, ISetFrowardMessagePayload, IUpdateUser
+} from "../reduxTypes/rdxActions";
+import {SagaIterator} from "@redux-saga/types";
+import {IChat, IContacts, IUser} from "../../types/globalTypes";
 
 export function* sagaWatcher(): SagaIterator {
     yield takeEvery(sendMessage, sendMessageSaga);
@@ -42,11 +42,11 @@ export function* sagaWatcher(): SagaIterator {
 
 function* changeChatDataSaga(action: IChangeChatData): SagaIterator {
     try {
-        const {newParams, sharedChatId}: {newParams: Partial<IChat>, sharedChatId: string} = action.payload;
+        const {newParams, sharedChatId}: { newParams: Partial<IChat>, sharedChatId: string } = action.payload;
         yield put(setLoading(true));
         yield call(DbWorker.pushChatData, {newParams, sharedChatId});
         yield put(setLoading(false));
-        const {curUser}: {curUser: IUser} = yield select(s => s.app);
+        const {curUser}: { curUser: IUser } = yield select(s => s.app);
         switch (action.payload.typeChange) {
             case changeChatTypes.DeleteUser: {
                 const user: IUser[] = yield call(DbWorker.getUserIdRange, action.payload.signalPayload);
@@ -86,13 +86,16 @@ function* changeChatDataSaga(action: IChangeChatData): SagaIterator {
 
 function* createConversationSaga(action: ICreateChat): SagaIterator {
     try {
-        const {members, title}: {members?: string[], title?:string} = action.payload;
-        if (!members || !title){
+        const {members, title}: { members?: string[], title?: string } = action.payload;
+        if (!members || !title) {
             yield put(setError({message: 'Неверные данные'}));
             return;
         }
         yield put(setLoading(true));
-        const chat: IChat = yield call<typeof DbWorker.createConversation>(DbWorker.createConversation, {members, title});
+        const chat: IChat = yield call<typeof DbWorker.createConversation>(DbWorker.createConversation, {
+            members,
+            title
+        });
         yield put(setLoading(false));
         yield put(push(`/messenger/chats/${chat._id}`));
         yield put(setSelectedChat(chat._id));
@@ -103,8 +106,8 @@ function* createConversationSaga(action: ICreateChat): SagaIterator {
 }
 
 function* sendMessageSaga(action: ISendMessage): SagaIterator {
-    const {text, forwardMessages, type, content}: {text?: string, forwardMessages?: ISetFrowardMessagePayload | null, type?: messageTypes, content?: string[] | null} = action.payload;
-    if (!type || typeof text ==='undefined'){
+    const {text, forwardMessages, type, content}: { text?: string, forwardMessages?: ISetFrowardMessagePayload | null, type?: messageTypes, content?: string[] | string | null } = action.payload;
+    if (!type || typeof text === 'undefined' || typeof content === 'undefined') {
         yield put(setError({message: 'Неверные данные'}));
         return;
     }
@@ -118,8 +121,8 @@ function* loadChatMessagesSaga(action: ILoadChatMessages): SagaIterator {
         const chat: IChat | null = yield call(DbWorker.updateChat, sharedId);
         yield put(setLoading(false));
         if (chat) {
-            const {chats: oldChats}: {chats: IChat[]} = yield select(s => s.app);
-            yield put(setChats(oldChats.map((ch: IChat):IChat => ch._id === chat._id ? chat : ch)));
+            const {chats: oldChats}: { chats: IChat[] } = yield select(s => s.app);
+            yield put(setChats(oldChats.map((ch: IChat): IChat => ch._id === chat._id ? chat : ch)));
         } else {
             yield put(setError({message: 'Что-то пошло не так...'}));
         }

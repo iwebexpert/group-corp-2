@@ -57,8 +57,15 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
             });
         case ChatsActionTypes.CHATSLISTS_SEND:
             console.log('shatslistsSend',action.payload);
+            // return update(state, {
+            //     entries: {$push: [{id: action.payload.id, author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
+            // });
             return update(state, {
-                entries: {$push: [{id: action.payload.id, author: action.payload.author, avatar: action.payload.avatar, messages: []}]},
+                entries: {
+                    [action.payload.id]: {
+                        messages: {$push: [{id: action.payload.id, text: action.payload.avatar, author: action.payload.author}]},
+                    },
+                },
             });
 
         case ChatsActionTypes.MESSAGE_FIRE:
@@ -80,4 +87,4 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
         default:
             return state;
     }
-}; 
+};  

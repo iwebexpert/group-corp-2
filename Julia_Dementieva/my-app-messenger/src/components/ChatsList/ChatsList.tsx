@@ -7,13 +7,25 @@ import {Error} from '../../pages/Error';
 
 import './ChatsList.css';
 
-export const ChatsList = ({onAdd, chats, fireChats, onClick, isLoading}) => {
+type Chat = {
+    id: number;
+    author: string;
+    avatar: string;
+}
 
-    const handleChatAdd = (newchat) => {
+type ChatItemType = {
+    onClick: (id: number) => void;
+    isLoading: boolean;
+    onAdd: (newchat: string) => void;
+    chats: Array<Chat>;
+    fireChats: Array<boolean>;
+}
+
+export const ChatsList: React.FC<ChatItemType> = ({onAdd, chats, fireChats, onClick, isLoading}) => {
+
+    const handleChatAdd = (newchat: string): void => {
         if (newchat) {
-            if (typeof (onAdd) === 'function'){
-                onAdd(newchat);
-            }
+            onAdd(newchat);
         }
     }
 

@@ -64,6 +64,12 @@ type MessageAdd = {
 
 };
 
+type MessageFire = {
+    chatId: number;
+};
+
+type MessageUnfire = MessageFire;
+
 export type chatsMessageSendAction = {
     type: ChatsActionTypes.CHATS_MESSAGE_SEND,
     payload: MessageAdd,
@@ -71,17 +77,17 @@ export type chatsMessageSendAction = {
 
 export type chatsListSendAction = {
     type: ChatsActionTypes.CHATSLISTS_SEND,
-    payload: ChatAdd,
+    payload: any,
 };
 
 export type messageFireAction = {
     type: ChatsActionTypes.MESSAGE_FIRE,
-    payload: any,
+    payload: MessageFire,
 };
 
 export type messageUnfireAction = {
     type: ChatsActionTypes.MESSAGE_UNFIRE,
-    payload: any,
+    payload: MessageUnfire,
 };
 
 
@@ -115,7 +121,7 @@ export const chatsMessageSendAction: ActionCreator<chatsMessageSendAction> = (me
     payload: message,
 });
 
-export const chatsListSendAction: ActionCreator<chatsListSendAction> = (chat: ChatAdd) => ({
+export const chatsListSendAction: ActionCreator<chatsListSendAction> = (chat: any) => ({
     type: ChatsActionTypes.CHATSLISTS_SEND,
     payload: chat,
 });
@@ -156,12 +162,12 @@ export const messageAddServerAction = (newmessage: MessageAdd) => createAction({
         ]
 });
 
-export const messageFireAction: ActionCreator<messageFireAction> = (chatId: any) => ({
+export const messageFireAction: ActionCreator<messageFireAction> = (chatId: MessageFire) => ({
     type: ChatsActionTypes.MESSAGE_FIRE,
     payload: chatId,
 });
 
-export const messageUnfireAction: ActionCreator<messageUnfireAction> = (chatId: any) => ({
+export const messageUnfireAction: ActionCreator<messageUnfireAction> = (chatId: MessageUnfire) => ({
     type: ChatsActionTypes.MESSAGE_UNFIRE,
     payload: chatId,
-});
+}); 

@@ -11,7 +11,7 @@ import {Error} from '../../pages/Error';
 
 import './Layout.css'
 
-export const Layout = (props) => {
+export const Layout: React.FC = () => {
 
     return (<>
         <div className="container">

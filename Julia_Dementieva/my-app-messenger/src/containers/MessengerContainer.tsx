@@ -4,26 +4,27 @@ import {useParams} from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import {Messenger} from '../components/Messenger';
 import {aboutLoadAction} from '../actions/about';
-import {chatsLoadAction, chatsMessageSendAction} from '../actions/chats';
+import {chatsLoadAction, chatsMessageSendAction} from '../actions/chats2';
 
+import {AppState} from '../reducers';
 
-export const MessengerContainer = (props) => {
+export const MessengerContainer: React.FC = () => {
     
     const dispatch = useDispatch();
 
-    const [readyAbout, entriesAbout] = useSelector((state) => [state.about.ready, state.about.entries]);
+    const [readyAbout, entriesAbout] = useSelector((state: AppState) => [state.about.ready, state.about.entries]);
     let namePerson = (readyAbout) ? entriesAbout.name : null;
 
-    const chats = useSelector((state) => state.chats.entries);
+    const chats = useSelector((state: AppState) => state.chats.entries);
 
-    const {id} = useParams();
+    const {id} = useParams<{id: string}>();
 
     let chatId =  id ? id: null;
     let messages =  (chatId && chats[chatId]) ? chats[chatId].messages: null;
     let authorChat =  (chatId && chats[chatId]) ? chats[chatId].author: null;
     let avatarChat =  (chatId && chats[chatId]) ? chats[chatId].avatar: null;
     
-    const isLoadingChat = useSelector((state) => state.chats.loading);
+    const isLoadingChat = useSelector((state: AppState) => state.chats.loading);
 
     useEffect(() => {
         if(!chatId) {
@@ -32,7 +33,7 @@ export const MessengerContainer = (props) => {
         }
     }, []);
 
-    const handleMessageSend = (message) => {
+    const handleMessageSend = (message: {author: string; text: string;}): void => {
         dispatch(chatsMessageSendAction({
             ...message,
             id: nanoid(),

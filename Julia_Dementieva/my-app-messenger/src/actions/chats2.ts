@@ -1,4 +1,4 @@
-/* import {createAction, RequestError} from 'redux-api-middleware';
+import {createAction, RequestError} from 'redux-api-middleware';
 import {ActionCreator} from 'redux';
 
 export enum ChatsActionTypes {
@@ -50,11 +50,10 @@ export type chatsAddFailureAction = {
     error: boolean;
 };
 
-type ChatAdd = {
-    chatId: number;
+export type ChatAdd = {
     author: string;
     avatar: string;
-    messages: string[];
+    chatId: number;
 };
 
 type MessageAdd = {
@@ -72,7 +71,7 @@ export type chatsMessageSendAction = {
 
 export type chatsListSendAction = {
     type: ChatsActionTypes.CHATSLISTS_SEND,
-    payload: any,
+    payload: ChatAdd,
 };
 
 export type messageFireAction = {
@@ -116,12 +115,12 @@ export const chatsMessageSendAction: ActionCreator<chatsMessageSendAction> = (me
     payload: message,
 });
 
-export const chatsListSendAction: ActionCreator<chatsListSendAction> = (chat: any) => ({
+export const chatsListSendAction: ActionCreator<chatsListSendAction> = (chat: ChatAdd) => ({
     type: ChatsActionTypes.CHATSLISTS_SEND,
     payload: chat,
 });
 
-export const chatAddServerAction = (newchat: any) => createAction({
+export const chatAddServerAction = (newchat: ChatAdd) => createAction({
     endpoint: 'http://localhost:4000/chats',
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -165,4 +164,4 @@ export const messageFireAction: ActionCreator<messageFireAction> = (chatId: any)
 export const messageUnfireAction: ActionCreator<messageUnfireAction> = (chatId: any) => ({
     type: ChatsActionTypes.MESSAGE_UNFIRE,
     payload: chatId,
-}); */
+});

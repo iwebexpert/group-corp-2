@@ -1,7 +1,7 @@
-/* import update from 'react-addons-update';
+import update from 'react-addons-update';
 import {Reducer} from 'redux';
 
-import {ChatsActions, ChatsActionTypes} from '../actions/chats';
+import {ChatsActions, ChatsActionTypes} from '../actions/chats2';
 
 export type ChatsReducerState = {
     entries: any;
@@ -80,4 +80,4 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
         default:
             return state;
     }
-}; */
+}; 

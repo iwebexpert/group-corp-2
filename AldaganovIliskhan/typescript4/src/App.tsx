@@ -9,11 +9,13 @@ import { Profile } from "./components/Profile";
 import { MessangerField } from "./components/MessangerField";
 import { ChatsType, fetchChats } from "./actions/chats";
 import { fetchProfile } from "./actions/profile";
-export const App: React.FC = (): JSX.Element => {
+import { AppState } from "./reducers";
+export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const [activeChat, setActiveChat] = useState<ChatsType | null>(null);
-  const chats = useSelector(({ chats }: any) => chats.items);
-  const { pathname } = useSelector(({ router }: any) => router.location);
+
+  const chats = useSelector(({ chats }: AppState) => chats.items);
+  const [activeChat, setActiveChat] = useState<ChatsType>(chats && chats[0]);
+  const { pathname } = useSelector(({ router }: AppState) => router.location);
   useEffect(() => {
     dispatch(fetchChats());
     dispatch(fetchProfile());

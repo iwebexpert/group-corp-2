@@ -1,42 +1,48 @@
 import axios from "axios";
 import { ActionCreator, Dispatch } from "redux";
-export enum ProfileActionsTypes   {
+export enum ProfileActionsTypes {
   SET_PROFILE_ERROR = "SET_PROFILE_ERROR",
   SET_PROFILE_LOADING = "SET_PROFILE_LOADING",
-  SET_PROFILE = "SET_PROFILE"
-};
+  SET_PROFILE = "SET_PROFILE",
+}
 type setProfileError = {
-  type : ProfileActionsTypes.SET_PROFILE_ERROR,
-  payload : any
+  type: ProfileActionsTypes.SET_PROFILE_ERROR;
+  payload: boolean;
 };
 type setProfileLoading = {
-  type : ProfileActionsTypes.SET_PROFILE_LOADING,
-  payload : any
+  type: ProfileActionsTypes.SET_PROFILE_LOADING;
+  payload: boolean;
 };
 type setProfile = {
-  type : ProfileActionsTypes.SET_PROFILE,
-  payload : any
+  type: ProfileActionsTypes.SET_PROFILE;
+  payload: ProfileType;
 };
 export type ProfileType = {
-  id: number,
-  name:string 
-  nickname: string
-  age: number
+  id: number;
+  name: string;
+  nickname: string;
+  age: number;
 };
 export type ProfileActions = setProfileError | setProfileLoading | setProfile;
-export const setProfileError : ActionCreator<setProfileError> = (payload : boolean) => ({
+export const setProfileError: ActionCreator<setProfileError> = (
+  payload: boolean
+) => ({
   type: ProfileActionsTypes.SET_PROFILE_ERROR,
   payload,
 });
-export const setProfileLoading : ActionCreator<setProfileLoading> = (payload : boolean) => ({
+export const setProfileLoading: ActionCreator<setProfileLoading> = (
+  payload: boolean
+) => ({
   type: ProfileActionsTypes.SET_PROFILE_LOADING,
   payload,
 });
-export const setProfile : ActionCreator<setProfile> = (profile : ProfileType) => ({
+export const setProfile: ActionCreator<setProfile> = (
+  profile: ProfileType
+) => ({
   type: ProfileActionsTypes.SET_PROFILE,
   payload: profile,
 });
-export const fetchProfile = () => (dispatch : Dispatch) => {
+export const fetchProfile = () => (dispatch: Dispatch) => {
   dispatch(setProfileLoading(true));
   dispatch(setProfileError(false));
   axios
@@ -49,4 +55,3 @@ export const fetchProfile = () => (dispatch : Dispatch) => {
       dispatch(setProfileError(true));
     });
 };
-

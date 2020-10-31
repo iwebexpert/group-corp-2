@@ -1,18 +1,18 @@
 import axios from "axios";
-import { Dispatch, ActionCreator } from 'redux'
+import { Dispatch, ActionCreator } from "redux";
 export enum ChatsActionsTypes {
   SET_CHATS_LOADING = "SET_CHATS_LOADING",
   SET_CHATS_ERROR = "SET_CHATS_ERROR",
-  SET_MESSAGES_LOADING = 'SET_MESSAGES_LOADING',
-  SET_MESSAGES_ERROR = 'SET_MESSAGES_ERROR',
-  SET_CHATS = 'SET_CHATS',
-  ADD_CHAT = 'ADD_CHAT',
-  REMOVE_CHAT = 'REMOVE_CHAT',
-  EDIT_CHAT = 'EDIT_CHAT',
-  SEND_MESSAGE = 'SEND_MESSAGE',
-  FIRE_CHAT = 'FIRE_CHAT',
-  UNFIRE_CHAT = 'UNFIRE_CHAT'
-};
+  SET_MESSAGES_LOADING = "SET_MESSAGES_LOADING",
+  SET_MESSAGES_ERROR = "SET_MESSAGES_ERROR",
+  SET_CHATS = "SET_CHATS",
+  ADD_CHAT = "ADD_CHAT",
+  REMOVE_CHAT = "REMOVE_CHAT",
+  EDIT_CHAT = "EDIT_CHAT",
+  SEND_MESSAGE = "SEND_MESSAGE",
+  FIRE_CHAT = "FIRE_CHAT",
+  UNFIRE_CHAT = "UNFIRE_CHAT",
+}
 export type setChatsLoading = {
   type: ChatsActionsTypes.SET_CHATS_LOADING;
   payload: boolean;
@@ -31,9 +31,9 @@ export type setMessagesError = {
   payload: boolean;
 };
 export type setChats = {
-  type : ChatsActionsTypes.SET_CHATS,
-  payload : ChatsType
-}
+  type: ChatsActionsTypes.SET_CHATS;
+  payload: ChatsType;
+};
 export type editChat = {
   type: ChatsActionsTypes.EDIT_CHAT;
   payload: editChatPayload;
@@ -80,24 +80,43 @@ export type editChatPayload = {
   newTitle: string;
   chatId: number;
 };
-export type ChatsActions = sendMessage | addChat | removeChat | fireChat | unfireChat | editChat | setChatsLoading | setChatsError | setMessagesLoading | setMessagesError | setChats;
-export const setChatsLoading: ActionCreator<setChatsLoading> = (payload: boolean) => ({
+export type ChatsActions =
+  | sendMessage
+  | addChat
+  | removeChat
+  | fireChat
+  | unfireChat
+  | editChat
+  | setChatsLoading
+  | setChatsError
+  | setMessagesLoading
+  | setMessagesError
+  | setChats;
+export const setChatsLoading: ActionCreator<setChatsLoading> = (
+  payload: boolean
+) => ({
   type: ChatsActionsTypes.SET_CHATS_LOADING,
   payload,
 });
-export const setChatsError: ActionCreator<setChatsError> = (payload: boolean) => ({
+export const setChatsError: ActionCreator<setChatsError> = (
+  payload: boolean
+) => ({
   type: ChatsActionsTypes.SET_CHATS_ERROR,
   payload,
 });
-export const setMessagesLoading: ActionCreator<setMessagesLoading> = (payload: boolean) => ({
+export const setMessagesLoading: ActionCreator<setMessagesLoading> = (
+  payload: boolean
+) => ({
   type: ChatsActionsTypes.SET_MESSAGES_LOADING,
   payload,
 });
-export const setMessagesError: ActionCreator<setMessagesError> = (payload: boolean) => ({
+export const setMessagesError: ActionCreator<setMessagesError> = (
+  payload: boolean
+) => ({
   type: ChatsActionsTypes.SET_MESSAGES_ERROR,
   payload,
 });
-export const setChats : ActionCreator<setChats> = (chats: ChatsType) => ({
+export const setChats: ActionCreator<setChats> = (chats: ChatsType) => ({
   type: ChatsActionsTypes.SET_CHATS,
   payload: chats,
 });
@@ -109,11 +128,18 @@ export const removeChat: ActionCreator<removeChat> = (chatId: number) => ({
   type: ChatsActionsTypes.REMOVE_CHAT,
   payload: chatId,
 });
-export const editChat: ActionCreator<editChat> = (newTitle: string, chatId: number) => ({
+export const editChat: ActionCreator<editChat> = (
+  newTitle: string,
+  chatId: number
+) => ({
   type: ChatsActionsTypes.EDIT_CHAT,
   payload: { newTitle, chatId },
 });
-export const sendMessage: ActionCreator<sendMessage> = (obj: MessagesType, chatId: number, author: string) => ({
+export const sendMessage: ActionCreator<sendMessage> = (
+  obj: MessagesType,
+  chatId: number,
+  author: string
+) => ({
   type: ChatsActionsTypes.SEND_MESSAGE,
   payload: { obj, chatId, author },
 });
@@ -150,7 +176,11 @@ export const addChatAction = (chat: ChatsType) => (dispatch: Dispatch) => {
     dispatch(setChatsLoading(false));
   });
 };
-export const sendMessageAction = (chatId: number, author: string, message: string) => (dispatch: Dispatch) => {
+export const sendMessageAction = (
+  chatId: number,
+  author: string,
+  message: string
+) => (dispatch: Dispatch) => {
   dispatch(setMessagesLoading(true));
   dispatch(setMessagesError(false));
   axios
@@ -180,7 +210,9 @@ export const removeChatAction = (chatId: number) => (dispatch: Dispatch) => {
       dispatch(setChatsError(true));
     });
 };
-export const editChatAction = (newTitle: string, chatId: number) => (dispatch: Dispatch) => {
+export const editChatAction = (newTitle: string, chatId: number) => (
+  dispatch: Dispatch
+) => {
   dispatch(setChatsError(false));
   dispatch(setChatsLoading(true));
   axios
@@ -195,4 +227,3 @@ export const editChatAction = (newTitle: string, chatId: number) => (dispatch: D
       setChatsError(true);
     });
 };
-

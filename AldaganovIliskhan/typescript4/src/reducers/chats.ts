@@ -1,12 +1,12 @@
-import { Reducer } from 'redux';
-import { ChatsActions, ChatsActionsTypes, ChatsType } from './../actions/chats';
+import { Reducer } from "redux";
+import { ChatsActions, ChatsActionsTypes, ChatsType } from "./../actions/chats";
 
 export type ChatsReducerState = {
-  items: any,
-  isChatsLoading: boolean,
-  isChatsError: boolean,
-  isMessagesError: boolean,
-  isMessagesLoading: boolean
+  items: any;
+  isChatsLoading: boolean;
+  isChatsError: boolean;
+  isMessagesError: boolean;
+  isMessagesLoading: boolean;
 };
 const initialState: ChatsReducerState = {
   items: null,
@@ -16,7 +16,10 @@ const initialState: ChatsReducerState = {
   isMessagesLoading: false,
 };
 
-export const chats: Reducer<ChatsReducerState, ChatsActions> = (state = initialState, action) => {
+export const chats: Reducer<ChatsReducerState, ChatsActions> = (
+  state = initialState,
+  action
+) => {
   switch (action.type) {
     case ChatsActionsTypes.SET_CHATS:
       return {
@@ -28,7 +31,6 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (state = initialS
         ...state,
         items: state.items && [...state.items, action.payload],
       };
-
     case ChatsActionsTypes.SET_CHATS_LOADING:
       return {
         ...state,
@@ -52,45 +54,55 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (state = initialS
     case ChatsActionsTypes.FIRE_CHAT:
       return {
         ...state,
-        items: state.items && state.items.map((chat: ChatsType) => {
-          if (chat.id === action.chatId) {
-            chat.fire = true;
-          }
-          return chat;
-        }),
+        items:
+          state.items &&
+          state.items.map((chat: ChatsType) => {
+            if (chat.id === action.chatId) {
+              chat.fire = true;
+            }
+            return chat;
+          }),
       };
     case ChatsActionsTypes.UNFIRE_CHAT:
       return {
         ...state,
-        items: state.items && state.items.map((chat: ChatsType) => {
-          chat.fire = false;
-          return chat;
-        }),
+        items:
+          state.items &&
+          state.items.map((chat: ChatsType) => {
+            chat.fire = false;
+            return chat;
+          }),
       };
     case ChatsActionsTypes.REMOVE_CHAT:
       return {
         ...state,
-        items: state.items && state.items.filter((item: ChatsType) => item.id !== action.payload),
+        items:
+          state.items &&
+          state.items.filter((item: ChatsType) => item.id !== action.payload),
       };
     case ChatsActionsTypes.SEND_MESSAGE:
       return {
         ...state,
-        items: state.items && state.items.map((item: ChatsType) => {
-          if (item.id === action.payload.chatId) {
-            item.messages = [...item.messages, action.payload.obj];
-          }
-          return item;
-        }),
+        items:
+          state.items &&
+          state.items.map((item: ChatsType) => {
+            if (item.id === action.payload.chatId) {
+              item.messages = [...item.messages, action.payload.obj];
+            }
+            return item;
+          }),
       };
     case ChatsActionsTypes.EDIT_CHAT:
       return {
         ...state,
-        items: state.items && state.items.map((item: ChatsType) => {
-          if (item.id === action.payload.chatId) {
-            item.title = action.payload.newTitle;
-          }
-          return item;
-        }),
+        items:
+          state.items &&
+          state.items.map((item: ChatsType) => {
+            if (item.id === action.payload.chatId) {
+              item.title = action.payload.newTitle;
+            }
+            return item;
+          }),
       };
     default:
       return state;

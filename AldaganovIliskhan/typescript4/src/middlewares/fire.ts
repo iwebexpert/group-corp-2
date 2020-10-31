@@ -1,7 +1,7 @@
 import { Middleware } from "redux";
 import { fireChat } from "../actions/chats";
-let timer : NodeJS.Timeout | null = null;
-export const fire : Middleware = (store) => (next) => (action) => {
+let timer: NodeJS.Timeout | null = null;
+export const fire: Middleware = (store) => (next) => (action) => {
   if (action.type === "SEND_MESSAGE") {
     timer = setTimeout(() => {
       if (action.payload.chatId) {

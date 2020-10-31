@@ -1,17 +1,24 @@
-import { Reducer } from 'redux';
-import { ProfileActionsTypes , ProfileActions,ProfileType} from '../actions/profile';
+import { Reducer } from "redux";
+import {
+  ProfileActionsTypes,
+  ProfileActions,
+  ProfileType,
+} from "../actions/profile";
 export type ProfileReducerState = {
-  profileData : ProfileType | null,
-  isProfileError : boolean,
-  isProfileLoadig : boolean
+  profileData: ProfileType | null;
+  isProfileError: boolean;
+  isProfileLoading: boolean;
 };
 const initialState = {
   profileData: null,
   isProfileError: false,
-  isProfileLoadig: false,
+  isProfileLoading: false,
 };
 
-export const profile : Reducer<ProfileReducerState, ProfileActions>  = (state = initialState, action) => {
+export const profile: Reducer<ProfileReducerState, ProfileActions> = (
+  state = initialState,
+  action
+) => {
   switch (action.type) {
     case ProfileActionsTypes.SET_PROFILE:
       return {

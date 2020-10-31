@@ -1,4 +1,4 @@
-export const categories = {
-    CHATS: 'CHATS',
-    PEOPLE: 'PEOPLE'
-};
+export enum categories {
+    CHATS = 'CHATS',
+    PEOPLE = 'PEOPLE'
+}

@@ -1,1 +1,3 @@
-export SelectDialogPanel from './SelectDialogPanel';
+import SelectDialogPanel from './SelectDialogPanel';
+
+export default SelectDialogPanel;

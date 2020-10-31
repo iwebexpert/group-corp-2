@@ -1,1 +1,3 @@
-export ContactsOnDialogPanel from 'src/components/messenger/ContactsDialogPanel/ContactsOnDialogPanel';
+import ContactsOnDialogPanel from './ContactsOnDialogPanel';
+
+export default ContactsOnDialogPanel;

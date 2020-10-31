@@ -1,1 +1,3 @@
-export InputMessageArea from './InputMessageArea';
+import InputMessageArea from './InputMessageArea';
+
+export default InputMessageArea;

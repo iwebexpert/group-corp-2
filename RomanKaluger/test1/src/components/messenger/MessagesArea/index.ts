@@ -1,1 +1,3 @@
-export MessagesArea from './MessagesArea';
+import MessagesArea from './MessagesArea';
+
+export default MessagesArea;

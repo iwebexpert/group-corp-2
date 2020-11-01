@@ -12,9 +12,12 @@ import { fetchProfile } from "./actions/profile";
 import { AppState } from "./reducers";
 export const App: React.FC = () => {
   const dispatch = useDispatch();
-
-  const chats = useSelector(({ chats }: AppState) => chats.items);
-  const [activeChat, setActiveChat] = useState<ChatsType>(chats && chats[0]);
+  const chats = useSelector(
+    ({ chats }: AppState) => chats.items && chats.items
+  );
+  const [activeChat, setActiveChat] = useState<ChatsType | null | undefined>(
+    null
+  );
   const { pathname } = useSelector(({ router }: AppState) => router.location);
   useEffect(() => {
     dispatch(fetchChats());
@@ -23,7 +26,9 @@ export const App: React.FC = () => {
   useEffect(() => {
     const chatId = pathname.split("/chats/")[1];
     if (chats) {
-      const chat = chats.find((chat: ChatsType) => chat.id === Number(chatId));
+      const chat: ChatsType | undefined = chats.find(
+        (chat: ChatsType) => chat.id === Number(chatId)
+      );
       setActiveChat(chat);
     }
   }, [pathname, chats]);

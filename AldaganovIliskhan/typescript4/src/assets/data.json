@@ -5,6 +5,18 @@
       "messages": [],
       "fire": false,
       "id": 1
+    },
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 2
+    },
+    {
+      "title": "asdasd",
+      "messages": [],
+      "fire": false,
+      "id": 3
     }
   ],
   "messages": [
@@ -13,6 +25,12 @@
       "message": "asd",
       "author": "asd",
       "id": 1
+    },
+    {
+      "chatId": 2,
+      "message": "a",
+      "author": "a",
+      "id": 2
     }
   ],
   "profile": {

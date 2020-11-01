@@ -32,7 +32,7 @@ export type setMessagesError = {
 };
 export type setChats = {
   type: ChatsActionsTypes.SET_CHATS;
-  payload: ChatsType;
+  payload: ChatsType[];
 };
 export type editChat = {
   type: ChatsActionsTypes.EDIT_CHAT;
@@ -116,7 +116,7 @@ export const setMessagesError: ActionCreator<setMessagesError> = (
   type: ChatsActionsTypes.SET_MESSAGES_ERROR,
   payload,
 });
-export const setChats: ActionCreator<setChats> = (chats: ChatsType) => ({
+export const setChats: ActionCreator<setChats> = (chats: ChatsType[]) => ({
   type: ChatsActionsTypes.SET_CHATS,
   payload: chats,
 });
@@ -157,7 +157,7 @@ export const fetchChats = () => (dispatch: Dispatch) => {
   dispatch(setMessagesLoading(true));
   dispatch(setMessagesError(false));
   axios
-    .get<ChatsType>("http://localhost:3001/chats?_embed=messages")
+    .get<ChatsType[]>("http://localhost:3001/chats?_embed=messages")
     .then<void>(({ data }) => {
       dispatch(setChats(data));
       dispatch(setChatsLoading(false));

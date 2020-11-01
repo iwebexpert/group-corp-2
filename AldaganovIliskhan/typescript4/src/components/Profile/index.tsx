@@ -16,27 +16,23 @@ export const Profile = () => {
     return <div style={{ color: "#000" }}>Loading...</div>;
   }
   return (
-    <>
-      {profileData && (
-        <Card variant="outlined">
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              {profileData.name}
-            </Typography>
-            <Typography variant="h5" component="h2">
-              {profileData.nickname}
-            </Typography>
-            <Typography color="textSecondary">
-              {profileData.age} years old
-            </Typography>
-            <Typography variant="body2" component="p">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-            </Typography>
-          </CardContent>
-        </Card>
-      )}
-    </>
+    <Card variant="outlined">
+      <CardContent>
+        <Typography color="textSecondary" gutterBottom>
+          {profileData?.name}
+        </Typography>
+        <Typography variant="h5" component="h2">
+          {profileData?.nickname}
+        </Typography>
+        <Typography color="textSecondary">
+          {profileData?.age} years old
+        </Typography>
+        <Typography variant="body2" component="p">
+          well meaning and kindly.
+          <br />
+          {'"a benevolent smile"'}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };

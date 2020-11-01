@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderTYpe> = ({ active }) => {
       ) : isProfileLoading ? (
         <div>Loading...</div>
       ) : (
-        <h1>{profileData && profileData.nickname}</h1>
+        <h1>{profileData?.nickname}</h1>
       )}
 
       <Link to="/profile">

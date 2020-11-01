@@ -8,7 +8,7 @@ import { ChatsType } from "../../actions/chats";
 type MessangerField = {
   chats: ChatsType[];
   onClickChat: (chat: ChatsType) => void;
-  activeChat: ChatsType;
+  activeChat: ChatsType | null | undefined;
 };
 export const MessangerField: React.FC<MessangerField> = ({
   chats,
@@ -23,10 +23,7 @@ export const MessangerField: React.FC<MessangerField> = ({
         activeChat={activeChat}
       />
       <Route exact path="/chats/:id">
-        <MessagesAdd
-          messages={activeChat && activeChat.messages}
-          activeChat={activeChat}
-        />
+        <MessagesAdd messages={activeChat?.messages} activeChat={activeChat} />
       </Route>
     </div>
   );

@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { MessagesType, ChatsType } from "../../../actions/chats";
 import { AppState } from "../../../reducers";
 type MessagesAdd = {
-  messages: MessagesType[];
-  activeChat: ChatsType;
+  messages: MessagesType[] | undefined;
+  activeChat: ChatsType | null | undefined;
 };
 export const MessagesAdd: React.FC<MessagesAdd> = ({
   messages,

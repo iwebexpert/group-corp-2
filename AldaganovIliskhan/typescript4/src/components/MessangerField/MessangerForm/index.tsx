@@ -7,7 +7,7 @@ import { Fab } from "@material-ui/core";
 import { ChatsType, sendMessageAction } from "../../../actions/chats";
 import "./MessangerForm.scss";
 type MessangerForm = {
-  activeChat: ChatsType;
+  activeChat: ChatsType | null | undefined;
 };
 export const MessangerForm: React.FC<MessangerForm> = ({ activeChat }) => {
   const [author, setAuthor] = useState<string>("");
@@ -22,7 +22,9 @@ export const MessangerForm: React.FC<MessangerForm> = ({ activeChat }) => {
       alert("Введите имя");
       return;
     }
-    diopatch(sendMessageAction(activeChat.id, author, message));
+    if (activeChat) {
+      diopatch(sendMessageAction(activeChat.id, author, message));
+    }
     setAuthor("");
     setMessage("");
   };

@@ -14,7 +14,7 @@ import { AppState } from "../../reducers";
 type ChatListType = {
   chats: ChatsType[];
   onClickChat: (chat: ChatsType) => void;
-  activeChat: ChatsType;
+  activeChat: ChatsType | null | undefined;
 };
 export const ChatList: React.FC<ChatListType> = ({
   chats,
@@ -50,33 +50,32 @@ export const ChatList: React.FC<ChatListType> = ({
         <div>Error...</div>
       ) : isChatsLoading ? (
         <div>Loading...</div>
-      ) : chats && chats.length ? (
+      ) : chats?.length ? (
         <List component="nav" aria-label="secondary mailbox folders">
-          {chats &&
-            chats.map((chat, i) => (
-              <li
-                key={i + 1}
-                className={classNames(
-                  "chat__lists-item",
-                  activeChat && activeChat.id === chat.id ? "active" : ""
-                )}
-              >
-                <p onClick={() => onClick(chat)}>{chat.title}</p>
-                <img
-                  src={removeSvg}
-                  alt="remove-btn"
-                  className="remove-btn"
-                  onClick={() => onRemove(chat.id)}
-                />
-                <img
-                  src={editSvg}
-                  alt="edit-btn"
-                  className="edit-btn"
-                  onClick={() => onEdit(chat.id)}
-                />
-                <small>{chat.fire === true ? "(+1)" : null}</small>
-              </li>
-            ))}
+          {chats?.map((chat, i) => (
+            <li
+              key={i + 1}
+              className={classNames(
+                "chat__lists-item",
+                activeChat?.id === chat.id ? "active" : ""
+              )}
+            >
+              <p onClick={() => onClick(chat)}>{chat.title}</p>
+              <img
+                src={removeSvg}
+                alt="remove-btn"
+                className="remove-btn"
+                onClick={() => onRemove(chat.id)}
+              />
+              <img
+                src={editSvg}
+                alt="edit-btn"
+                className="edit-btn"
+                onClick={() => onEdit(chat.id)}
+              />
+              <small>{chat.fire === true ? "(+1)" : null}</small>
+            </li>
+          ))}
         </List>
       ) : (
         <div style={{ padding: "40px" }}>Создайте чат</div>

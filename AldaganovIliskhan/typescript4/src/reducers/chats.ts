@@ -2,14 +2,14 @@ import { Reducer } from "redux";
 import { ChatsActions, ChatsActionsTypes, ChatsType } from "./../actions/chats";
 
 export type ChatsReducerState = {
-  items: any;
+  items: ChatsType[];
   isChatsLoading: boolean;
   isChatsError: boolean;
   isMessagesError: boolean;
   isMessagesLoading: boolean;
 };
 const initialState: ChatsReducerState = {
-  items: null,
+  items: [],
   isChatsLoading: false,
   isChatsError: false,
   isMessagesError: false,
@@ -19,7 +19,7 @@ const initialState: ChatsReducerState = {
 export const chats: Reducer<ChatsReducerState, ChatsActions> = (
   state = initialState,
   action
-) => {
+): ChatsReducerState => {
   switch (action.type) {
     case ChatsActionsTypes.SET_CHATS:
       return {
@@ -54,55 +54,47 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (
     case ChatsActionsTypes.FIRE_CHAT:
       return {
         ...state,
-        items:
-          state.items &&
-          state.items.map((chat: ChatsType) => {
-            if (chat.id === action.chatId) {
-              chat.fire = true;
-            }
-            return chat;
-          }),
+        items: state.items?.map((chat: ChatsType) => {
+          if (chat.id === action.chatId) {
+            chat.fire = true;
+          }
+          return chat;
+        }),
       };
     case ChatsActionsTypes.UNFIRE_CHAT:
       return {
         ...state,
-        items:
-          state.items &&
-          state.items.map((chat: ChatsType) => {
-            chat.fire = false;
-            return chat;
-          }),
+        items: state.items?.map((chat: ChatsType) => {
+          chat.fire = false;
+          return chat;
+        }),
       };
     case ChatsActionsTypes.REMOVE_CHAT:
       return {
         ...state,
-        items:
-          state.items &&
-          state.items.filter((item: ChatsType) => item.id !== action.payload),
+        items: state.items?.filter(
+          (item: ChatsType) => item.id !== action.payload
+        ),
       };
     case ChatsActionsTypes.SEND_MESSAGE:
       return {
         ...state,
-        items:
-          state.items &&
-          state.items.map((item: ChatsType) => {
-            if (item.id === action.payload.chatId) {
-              item.messages = [...item.messages, action.payload.obj];
-            }
-            return item;
-          }),
+        items: state.items?.map((item: ChatsType) => {
+          if (item.id === action.payload.chatId) {
+            item.messages = [...item.messages, action.payload.obj];
+          }
+          return item;
+        }),
       };
     case ChatsActionsTypes.EDIT_CHAT:
       return {
         ...state,
-        items:
-          state.items &&
-          state.items.map((item: ChatsType) => {
-            if (item.id === action.payload.chatId) {
-              item.title = action.payload.newTitle;
-            }
-            return item;
-          }),
+        items: state.items?.map((item: ChatsType) => {
+          if (item.id === action.payload.chatId) {
+            item.title = action.payload.newTitle;
+          }
+          return item;
+        }),
       };
     default:
       return state;

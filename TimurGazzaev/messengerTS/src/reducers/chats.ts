@@ -2,14 +2,13 @@ import update from 'react-addons-update'
 import {Reducer} from 'redux'
 
 import {ChatsActions} from '../actions/chats'
-import {MessageType} from "../components/MessagesBlock/Message"
 
 export type ChatsReducerState = {
     entries: any;
     isFetching: boolean;
     loading: boolean;
     error: boolean;
-};
+}
 
 const initialState: ChatsReducerState = {
     entries: [],

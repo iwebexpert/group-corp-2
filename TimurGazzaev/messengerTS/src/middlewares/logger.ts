@@ -1,4 +1,4 @@
-import {Middleware, MiddlewareAPI, Dispatch, Action} from 'redux';
+import {Middleware, MiddlewareAPI, Dispatch, Action} from 'redux'
 
 export function loggerMiddware(store: MiddlewareAPI){
     return function wrapDispatch(next: Dispatch){

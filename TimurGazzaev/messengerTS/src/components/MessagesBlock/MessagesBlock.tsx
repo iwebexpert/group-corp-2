@@ -4,7 +4,7 @@ import {MessageForm} from './MessageForm'
 import {Grid, Divider} from "@material-ui/core"
 import clsx from "clsx"
 import {makeStyles} from "@material-ui/core/styles"
-import {MessageType} from "./Message";
+import {MessageType} from "./Message"
 
 export const useStyles = makeStyles((theme) => ({
     content: {

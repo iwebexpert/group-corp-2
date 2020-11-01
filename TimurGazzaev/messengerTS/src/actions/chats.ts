@@ -18,12 +18,6 @@ export type chatsLoadFailureAction = {
     error: boolean;
 }
 
-export type sendMessageLoadSuccessAction = {
-    type: string
-    payload: any;
-    error: boolean;
-}
-
 export type chatsAddAction = {
     type: string
     payload: ChatPayload;
@@ -51,7 +45,7 @@ export type addChat = {
 
 export type deleteMessage = {
     type: string
-    payload: {chatId: string, messageId: string};
+    payload: {chatId: string, messageId: string}
 }
 
 export type toggleIsFetching = {

@@ -12,9 +12,7 @@ import { fetchProfile } from "./actions/profile";
 import { AppState } from "./reducers";
 export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const chats = useSelector(
-    ({ chats }: AppState) => chats.items && chats.items
-  );
+  const chats = useSelector(({ chats }: AppState) => chats.items);
   const [activeChat, setActiveChat] = useState<ChatsType | null | undefined>(
     null
   );

@@ -29,7 +29,7 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (
     case ChatsActionsTypes.ADD_CHAT:
       return {
         ...state,
-        items: state.items && [...state.items, action.payload],
+        items: [...state.items, action.payload],
       };
     case ChatsActionsTypes.SET_CHATS_LOADING:
       return {
@@ -54,7 +54,7 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (
     case ChatsActionsTypes.FIRE_CHAT:
       return {
         ...state,
-        items: state.items?.map((chat: ChatsType) => {
+        items: state.items.map((chat: ChatsType) => {
           if (chat.id === action.chatId) {
             chat.fire = true;
           }
@@ -64,7 +64,7 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (
     case ChatsActionsTypes.UNFIRE_CHAT:
       return {
         ...state,
-        items: state.items?.map((chat: ChatsType) => {
+        items: state.items.map((chat: ChatsType) => {
           chat.fire = false;
           return chat;
         }),
@@ -72,14 +72,14 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (
     case ChatsActionsTypes.REMOVE_CHAT:
       return {
         ...state,
-        items: state.items?.filter(
+        items: state.items.filter(
           (item: ChatsType) => item.id !== action.payload
         ),
       };
     case ChatsActionsTypes.SEND_MESSAGE:
       return {
         ...state,
-        items: state.items?.map((item: ChatsType) => {
+        items: state.items.map((item: ChatsType) => {
           if (item.id === action.payload.chatId) {
             item.messages = [...item.messages, action.payload.obj];
           }
@@ -89,7 +89,7 @@ export const chats: Reducer<ChatsReducerState, ChatsActions> = (
     case ChatsActionsTypes.EDIT_CHAT:
       return {
         ...state,
-        items: state.items?.map((item: ChatsType) => {
+        items: state.items.map((item: ChatsType) => {
           if (item.id === action.payload.chatId) {
             item.title = action.payload.newTitle;
           }

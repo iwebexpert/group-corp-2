@@ -13,11 +13,23 @@
       "image": "img/mans/m5.png"
     },
     {
-      "title": "gregrege",
+      "id": 4,
+      "title": "Fedor Borovik",
+      "fire": false,
+      "image": "img/mans/m3.png"
+    },
+    {
+      "id": 5,
+      "title": "Alexander Luchnik",
+      "fire": false,
+      "image": "img/mans/m2.png"
+    },
+    {
+      "title": "fwewfwe",
       "image": "img/mans/bot.png",
       "fire": false,
       "messages": [],
-      "id": 4
+      "id": 6
     }
   ],
   "messages": [
@@ -29,32 +41,25 @@
       "chatId": 2
     },
     {
-      "id": "AukypFHasmzh79kiTjiju",
-      "author": "Romanyuk",
-      "message": "Hello ~~",
+      "id": "xD-Iv5KEyYSXZSmqIogp7",
+      "author": "few",
+      "message": "few",
       "image": "img/mans/m1.png",
       "chatId": 3
     },
     {
-      "chatId": 3,
-      "message": "Hi, Romanyuk! Бот на связи...",
-      "author": "Kevin Sertcin",
-      "image": "img/mans/m5.png",
-      "id": "G2lvNmbddLIJ2_JIpmh5c"
-    },
-    {
-      "id": "6pr5Z4mVCcFJZFYGs_pao",
-      "author": "vre",
-      "message": "vrevre",
+      "id": "pUv1gn76OdHdLKhBeIiNl",
+      "author": "ger",
+      "message": "gerger",
       "image": "img/mans/m1.png",
-      "chatId": 2
+      "chatId": 4
     },
     {
-      "chatId": 2,
-      "message": "Hi, vre! Бот на связи...",
-      "author": "Helga Källström",
-      "image": "img/mans/m4.png",
-      "id": "r1fnkhOxgMQDf_A_8kHRz"
+      "chatId": 4,
+      "message": "Hi, ger! Бот на связи...",
+      "author": "Fedor Borovik",
+      "image": "img/mans/m3.png",
+      "id": "ph7gT_9qC_hXAY8AmU-fq"
     }
   ],
   "person": {

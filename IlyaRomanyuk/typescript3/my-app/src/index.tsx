@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import './scss/style.scss';
-import Messenger from './components/Messenger.jsx';
+import Messenger from './components/Messenger';
 import { Provider } from 'react-redux';
 import { initStore, history } from './store';
 import { ConnectedRouter } from 'connected-react-router'

@@ -1,5 +1,4 @@
 import React from 'react'
-// import preloader from './../../img/preloader.gif'
 
 export const Preloader: React.FC<{}> = () => {
     return (

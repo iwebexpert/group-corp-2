@@ -1,20 +1,6 @@
 {
-  "chats": [
-    {
-      "title": "asdasd",
-      "messages": [],
-      "fire": false,
-      "id": 1
-    }
-  ],
-  "messages": [
-    {
-      "chatId": 1,
-      "message": "asd",
-      "author": "asd",
-      "id": 1
-    }
-  ],
+  "chats": [],
+  "messages": [],
   "profile": {
     "id": 1,
     "name": "Ivan Ivanov",

@@ -9,6 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import { fetchProfile } from '../../actions/profileAction';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { AppState } from '../../reducers/reducer';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -31,14 +32,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 	chatListHeader: {
 		color: 'white',
-  },
-  loading: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: '20px',
-  }
+	},
+	loading: {
+		width: '100%',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingTop: '20px',
+	},
 }));
 
 function Header() {
@@ -47,8 +48,8 @@ function Header() {
 	useEffect(() => {
 		dispatch(fetchProfile());
 	}, []);
-	const profile = useSelector((state) => state.profile.entries);
-	const isLoading = useSelector((state) => state.allChats.loading);
+	const profile = useSelector((state: AppState) => state.profile.entries);
+	const isLoading = useSelector((state: AppState) => state.allChats.loading);
 
 	return (
 		<>
@@ -69,7 +70,11 @@ function Header() {
 					</Toolbar>
 				</AppBar>
 			</div>
-      {isLoading ? <div className={classes.loading}><CircularProgress /></div> : null}
+			{isLoading ? (
+				<div className={classes.loading}>
+					<CircularProgress />
+				</div>
+			) : null}
 		</>
 	);
 }

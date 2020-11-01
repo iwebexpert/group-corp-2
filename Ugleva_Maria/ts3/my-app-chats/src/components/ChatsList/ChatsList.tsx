@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,28 +7,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchNewChat, fetchDeleteChat } from '../../actions/chatsAction';
 import { nanoid } from 'nanoid';
-import { push } from 'connected-react-router';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import deleteImg from '../../img/delete.svg';
+import { AppState } from '../../reducers/reducer';
+import { withStyles } from '@material-ui/core';
+import {Styles} from '../../type';
 
-const useStyles = makeStyles((theme) => ({
+const styles: { [key: string]: Styles } = {
 	root: {
 		width: '100%',
 		padding: '20px',
 		margin: '0 auto',
 		maxWidth: '360px',
 		boxSizing: 'border-box',
-		backgroundColor: theme.palette.background.paper,
 	},
+	default: {},
 	margin: {
-		margin: theme.spacing(1),
 		marginRight: '0px',
 		backgroundColor: '#3f51b5',
 		color: 'white',
-		'&:hover': {
-			color: '#3f51b5',
-		},
+		// '&:hover': {
+		// 	color: '#3f51b5',
+		// },
 	},
 	chatListItem: {
 		padding: '10px 0',
@@ -51,29 +51,29 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 	},
-}));
-
-const ChatsList = () => {
+};
+type MessagesListType = {
+	classes: Styles;
+};
+const ChatsList: React.FC<MessagesListType> = ({ classes }) => {
 	const dispatch = useDispatch();
-	const classes = useStyles();
-	const allChats = useSelector((state) => {
+	const allChats = useSelector((state: AppState) => {
 		let chats = [];
 		for (let key in state.allChats.entries) {
 			chats.push(state.allChats.entries[key]);
 		}
 		return chats;
 	});
-	const isLoading = useSelector((state) => state.allChats.loading);
-	let activeChat = useSelector((state) => state.activeChat);
+	const isLoading = useSelector((state: AppState) => state.allChats.loading);
+	let activeChat = useSelector((state: AppState) => state.activeChat);
 	const [newChat, setValNewChat] = useState('');
-	const handleChange = (e) => {
+	const handleChange = (e: any) => {
 		setValNewChat(e.target.value);
 	};
-	const onDelete = (e) => {
-		console.log('delete', e.target.id);
+	const onDelete = (e: any) => {
 		dispatch(fetchDeleteChat(e.target.id));
 	};
-	const onCreate = (e) => {
+	const onCreate = (e: any) => {
 		e.preventDefault();
 		if (newChat !== '') {
 			const newChatStructure = {
@@ -83,7 +83,6 @@ const ChatsList = () => {
 				avatar: '',
 			};
 			dispatch(fetchNewChat(newChatStructure));
-			dispatch(push(`/chats/${newChatStructure.id}`));
 			setValNewChat('');
 		}
 	};
@@ -92,7 +91,11 @@ const ChatsList = () => {
 			<List component="nav" aria-label="secondary mailbox folders">
 				{allChats.map((item) => {
 					return (
-						<div className={item.highlight === true && activeChat !== item.id ? classes.highlight : null}>
+						<div
+							className={
+								item.highlight === true && activeChat !== item.id ? classes.highlight : classes.default
+							}
+						>
 							<Link to={`/chats/${item.id}`} key={item.id}>
 								<ListItem className={classes.chatListItem} button>
 									<Avatar alt="Remy Sharp" src={item.avatar} className={classes.avatar} />
@@ -128,4 +131,4 @@ const ChatsList = () => {
 	);
 };
 
-export default ChatsList;
+export default withStyles(styles)(ChatsList);

@@ -2,16 +2,30 @@
   "chats": [
     {
       "id": 1,
-      "title": "Work chat",
-      "fire": false
+      "title": "Test chat"
     },
     {
       "id": 2,
-      "title": "Friends",
-      "fire": false
+      "title": "Work chat"
+    },
+    {
+      "id": 3,
+      "title": "Friends"
     }
   ],
   "messages": [
+    {
+      "id": 0,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "WebDev",
+      "text": "Test!",
+      "chatId": 0
+    },
     {
       "id": 2,
       "author": "WebDev",
@@ -37,75 +51,51 @@
       "chatId": 2
     },
     {
-      "text": "42",
+      "text": "1",
       "author": "ars",
-      "id": "7r42Rg04Tapa6QVxkm9nt",
+      "id": "BIdC0jXcmB76R4q6w8csH",
       "chatId": 1
     },
     {
       "text": "Hi, ars, im Robot!",
       "author": "Robot",
-      "id": "cmQVLZTeCf4SLY_d3C6T-",
-      "chatId": 1
-    },
-    {
-      "text": "42",
-      "author": "ars",
-      "id": "5drE82gLkD7Pb2UfZSR9s",
-      "chatId": 1
-    },
-    {
-      "text": "Hi, ars, im Robot!",
-      "author": "Robot",
-      "id": "-LDNbql6Nff2ZCbZjnZua",
+      "id": "tpdHeM2YkYWLEE9fu_Uoq",
       "chatId": 1
     },
     {
       "text": "1",
       "author": "ars",
-      "id": "9bzxAV1elh9xYGsX2CylH",
-      "chatId": 2
+      "id": "H7_GZ-ovtJAYpfhCT8pfn",
+      "chatId": 1
     },
     {
       "text": "Hi, ars, im Robot!",
       "author": "Robot",
-      "id": "B_rgR7oKgE25UaXfWsjtf",
-      "chatId": 2
-    },
-    {
-      "text": "42",
-      "author": "42",
-      "id": "tWBLLxbgunqhLCHOsn2ug",
+      "id": "KZza_sItJvRjuzy-MJZiL",
       "chatId": 1
     },
     {
-      "text": "42",
-      "author": "42",
-      "id": "Ht7EAAZT6SQxbI7ZmR3iw",
+      "text": "asdasd",
+      "author": "ars",
+      "id": "8gELKzVZ7acgZV0cXk0Bu",
       "chatId": 1
     },
     {
-      "text": "42",
-      "author": "42",
-      "id": "ecN7gIwywwPy-dn9rrtNV",
-      "chatId": 1
-    },
-    {
-      "text": "42",
-      "author": "42",
-      "id": "R3CdZpPxk5khn6wAs1K9R",
-      "chatId": 1
-    },
-    {
-      "text": "42",
-      "author": "42",
-      "id": "2QY42KxK-FlFD5gc-8kmR",
-      "chatId": 1
-    },
-    {
-      "text": "Hi, 42, im Robot!",
+      "text": "Hi, ars, im Robot!",
       "author": "Robot",
-      "id": "glWtHubbNv6nwqdveCDiG",
+      "id": "GYdJya-wlsB3QluLSIwoA",
+      "chatId": 1
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "35-vZPKPI3Q81aHtLQPd7",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "yAA1fnPNgdAI4mFfKUXXN",
       "chatId": 1
     }
   ],
@@ -113,7 +103,8 @@
     {
       "id": 0,
       "name": "WebDev",
-      "email": "1@2.ru"
+      "email": "1@2.ru",
+      "age": 28
     }
   ]
 }

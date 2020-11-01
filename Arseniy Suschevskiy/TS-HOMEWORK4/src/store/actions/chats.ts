@@ -2,6 +2,7 @@ import axios from '../../axios'
 import {ChatsActionTypes} from './actionTypes'
 import {ActionCreator, Dispatch} from 'redux'
 import {nanoid} from 'nanoid'
+import {RequestError} from 'redux-api-middleware'
 
 //types
 export type addNewChatRequest = {
@@ -10,12 +11,13 @@ export type addNewChatRequest = {
 
 export type addNewChatSuccess = {
 	type: ChatsActionTypes.ADD_CHAT_SUCCESS,
-	data: any
+	newChat: chatType
 }
 
 export type addNewChatError = {
 	type: ChatsActionTypes.ADD_CHAT_ERROR,
-	error: any
+	error: boolean
+	payload: RequestError
 }
 
 export type deleteChatRequest = {
@@ -24,13 +26,13 @@ export type deleteChatRequest = {
 
 export type deleteChatSuccess = {
 	type: ChatsActionTypes.DELETE_CHAT_SUCCESS,
-	data: any,
-	chatId: any
+	chatId: number
 }
 
 export type deleteChatError =  {
 	type: ChatsActionTypes.DELETE_CHAT_ERROR,
-	error: any
+	error: boolean
+	payload: RequestError
 }
 
 export type addNewMessageRequest = {
@@ -39,12 +41,13 @@ export type addNewMessageRequest = {
 
 export type addNewMessageSuccess = {
 	type: ChatsActionTypes.ADD_NEW_MESSAGE_SUCCESS,
-	data: any
+	message: messageTypeSuccess
 }
 
 export type addNewMessageError = {
 	type: ChatsActionTypes.ADD_NEW_MESSAGE_ERROR,
-	error: any
+	error: boolean
+	payload: RequestError
 }
 
 export type chatsLoadRequest = {
@@ -53,22 +56,23 @@ export type chatsLoadRequest = {
 
 export type chatsLoadSuccess = {
 	type: ChatsActionTypes.CHATS_LOAD_SUCCESS,
-	data: any
+	chats: chatType[]
 }
 
 export type chatsLoadError = {
 	type: ChatsActionTypes.CHATS_LOAD_ERROR,
-	error: any
+	error: boolean
+	payload: RequestError
 }
 
 export type setChatFire = {
 	type: ChatsActionTypes.CHAT_FIRE,
-	chatId: any
+	chatId: number
 }
 
 export type setChatUnfire = {
 	type: ChatsActionTypes.CHAT_UNFIRE,
-	chatId: any
+	chatId: number
 }
 
 //Все возможные действия
@@ -89,16 +93,13 @@ export type ChatsActions =
 	| setChatUnfire
 
 //actions
-export function addNewChat(chat: any) {
+export function addNewChat(chat: chatType) {
 	return async (dispatch: Dispatch) => {
 		try	{
-			// @ts-ignore
 			dispatch(addNewChatRequest())
 			const response = await axios.post(`/chats`, chat)
-			// @ts-ignore
 			dispatch(addNewChatSuccess(await response.data))
 		} catch (error) {
-			// @ts-ignore
 			dispatch(addNewChatError(error))
 		}
 	}
@@ -109,22 +110,23 @@ export const addNewChatRequest: ActionCreator<addNewChatRequest> = () => ({
 	type: ChatsActionTypes.ADD_CHAT_REQUEST,
 })
 
-export const addNewChatSuccess: ActionCreator<addNewChatSuccess> = (data: any) => ({
+export const addNewChatSuccess: ActionCreator<addNewChatSuccess> = (newChat: chatType) => ({
 	type: ChatsActionTypes.ADD_CHAT_SUCCESS,
-	data
+	newChat
 })
 
-export const addNewChatError: ActionCreator<addNewChatError> = (error: any) => ({
+export const addNewChatError: ActionCreator<addNewChatError> = (error: RequestError) => ({
 	type: ChatsActionTypes.ADD_CHAT_ERROR,
-	error
+	error: true,
+	payload: error
 })
 
-export const deleteChat = (chatId: any) => {
+export const deleteChat = (chatId: number) => {
 	return async (dispatch: Dispatch) => {
 		try	{
 			dispatch(deleteChatRequest())
-			const response = await axios.delete(`/chats/${chatId}`)
-			dispatch(deleteChatSuccess(await response.data, chatId))
+			await axios.delete(`/chats/${chatId}`)
+			dispatch(deleteChatSuccess(chatId))
 		} catch (error) {
 			dispatch(deleteChatError(error))
 		}
@@ -134,26 +136,29 @@ export const deleteChatRequest: ActionCreator<deleteChatRequest> = () => ({
 	type: ChatsActionTypes.DELETE_CHAT_REQUEST,
 })
 
-export const deleteChatSuccess: ActionCreator<deleteChatSuccess> = (data: any, chatId: any) => ({
+export const deleteChatSuccess: ActionCreator<deleteChatSuccess> = (chatId: number) => ({
 	type: ChatsActionTypes.DELETE_CHAT_SUCCESS,
-	data,
 	chatId
 })
 
-export const deleteChatError: ActionCreator<deleteChatError> = (error: any) => ({
+export const deleteChatError: ActionCreator<deleteChatError> = (error: RequestError) => ({
 	type: ChatsActionTypes.DELETE_CHAT_ERROR,
-	error
+	error: true,
+	payload: error
 })
 
 //addNewMessage
-export const addNewMessage = (message: any, chatId: any) => {
+export const addNewMessage = (newMessage: messageTypeRequest, chatId: string | number) => {
 	return async (dispatch: Dispatch)  => {
 		try	{
 			dispatch(addNewMessageRequest())
-			message.id = nanoid()
-			message.chatId = Number(chatId)
-			const response = await axios.post(`/messages`, message)
-			dispatch(addNewMessageSuccess(await response.data))
+			const message: messageTypeSuccess = {
+				...newMessage,
+				id: nanoid(),
+				chatId: +chatId
+			}
+			await axios.post(`/messages`, message)
+			dispatch(addNewMessageSuccess(message))
 		} catch (error) {
 			dispatch(addNewMessageError(error))
 		}
@@ -164,14 +169,15 @@ export const addNewMessageRequest: ActionCreator<addNewMessageRequest> = () => (
 	type: ChatsActionTypes.ADD_NEW_MESSAGE_REQUEST,
 })
 
-export const addNewMessageSuccess: ActionCreator<addNewMessageSuccess> = (data: any) => ({
+export const addNewMessageSuccess: ActionCreator<addNewMessageSuccess> = (message: messageTypeSuccess) => ({
 	type: ChatsActionTypes.ADD_NEW_MESSAGE_SUCCESS,
-	data
+	message
 })
 
-export const addNewMessageError: ActionCreator<addNewMessageError>= (error: any) => ({
+export const addNewMessageError: ActionCreator<addNewMessageError>= (error: RequestError) => ({
 	type: ChatsActionTypes.ADD_NEW_MESSAGE_ERROR,
-	error
+	error: true,
+	payload: error
 })
 
 //chatsLoad
@@ -191,22 +197,23 @@ export const chatsLoadRequest: ActionCreator<chatsLoadRequest> = () => ({
 	type: ChatsActionTypes.CHATS_LOAD_REQUEST,
 })
 
-export const chatsLoadSuccess: ActionCreator<chatsLoadSuccess> = (data: any) => ({
+export const chatsLoadSuccess: ActionCreator<chatsLoadSuccess> = (chats: chatType[]) => ({
 	type: ChatsActionTypes.CHATS_LOAD_SUCCESS,
-	data
+	chats
 })
 
-export const chatsLoadError: ActionCreator<chatsLoadError> = (error: any) => ({
+export const chatsLoadError: ActionCreator<chatsLoadError> = (error: RequestError) => ({
 	type: ChatsActionTypes.CHATS_LOAD_ERROR,
-	error
+	error: true,
+	payload: error
 })
 //ChatFire/Unfire
-export const setChatFire: ActionCreator<setChatFire> = (chatId: any) => ({
+export const setChatFire: ActionCreator<setChatFire> = (chatId: number) => ({
 	type: ChatsActionTypes.CHAT_FIRE,
 	chatId
 })
 
-export const setChatUnfire: ActionCreator<setChatUnfire> = (chatId: any) => ({
+export const setChatUnfire: ActionCreator<setChatUnfire> = (chatId: number) => ({
 	type: ChatsActionTypes.CHAT_UNFIRE,
 	chatId
 })

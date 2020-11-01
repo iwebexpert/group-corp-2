@@ -2,9 +2,14 @@ import React from 'react'
 import classes from './Header.module.css'
 import { Forum, Person, Home } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
-import Loader from '../UI/Loader/Loader.tsx'
+import Loader from '../UI/Loader/Loader'
 
-const Header = props => {
+type HeaderType = {
+	profileInfo: profileInfoType
+	loading: boolean
+}
+
+const Header: React.FunctionComponent<HeaderType> = props => {
 	const [ProfileIcon, setProfileIcon] = React.useState(true)
 
 	const toggleProfileIconHandler = () => {

@@ -2,8 +2,12 @@ import React from 'react'
 import classes from './ChatBox.module.css'
 import Message from './Message/Message'
 
-const ChatBox = ({messages}) => {
-	const scrollToBottom = element => {
+type ChatBoxType = {
+	messages: messageTypeRequest[] | undefined
+}
+
+const ChatBox: React.FunctionComponent<ChatBoxType> = ({messages}) => {
+	const scrollToBottom = (element: HTMLDivElement | null) => {
 		if (element) {
 			element.scrollIntoView({ behavior: "smooth" })
 		}
@@ -12,7 +16,8 @@ const ChatBox = ({messages}) => {
 	return (
 		<main className = { classes.ChatBox }>
 			{
-				messages.map( messageItem => (
+				messages
+				&& messages.map( messageItem => (
 					<Message
 						key = { messageItem.id }
 						text = { messageItem.text }

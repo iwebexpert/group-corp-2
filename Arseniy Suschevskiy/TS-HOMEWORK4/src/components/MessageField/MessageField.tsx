@@ -1,8 +1,18 @@
 import React, { useState } from 'react'
 import classes from './MessageField.module.css'
 import { Send } from '@material-ui/icons'
+import {useRouteMatch} from 'react-router-dom'
 
-const MessageField = props => {
+type MessageFieldType = {
+	onSend: (message: messageTypeRequest, chat: number) => void
+}
+
+export interface MatchParams {
+	id: string
+}
+
+const MessageField: React.FunctionComponent<MessageFieldType> = ({onSend}) => {
+	const match = useRouteMatch<MatchParams>()
 	const initialFormData = {
 		text: '',
 		author: ''
@@ -15,21 +25,19 @@ const MessageField = props => {
 			alert('You need to enter text and author name')
 			return
 		}
-		props.onSend(formData, props.match.params.id)
+		onSend(formData, +match.params.id)
 		setFormData({
 			...formData,
 			text: ''
 		})
 	}
 
-	const inputChangeHandler = event => {
+	const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
 			...formData,
 			[event.target.name]: event.target.value
 		})
 	}
-
-	props.messages === [] && setFormData(initialFormData)
 
 	return (
 		<form onSubmit = { event => event.preventDefault() }
@@ -59,7 +67,6 @@ const MessageField = props => {
 
 		</form>
 	)
-}
+};
 
 export default MessageField
-

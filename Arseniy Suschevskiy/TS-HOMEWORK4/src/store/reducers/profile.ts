@@ -2,14 +2,9 @@ import {profileActionTypes} from '../actions/actionTypes'
 import {ProfileActions} from '../actions/profile'
 import {Reducer} from 'redux'
 
-export type ProfileReducerState = {
-	profileInfo: any,
-	loading: boolean,
-	error: boolean,
-}
 
 const initialState: ProfileReducerState = {
-	profileInfo: {},
+	profileInfo: {name: '', id: 0, age: 0, email: ''},
 	loading: false,
 	error: false,
 }
@@ -27,7 +22,7 @@ export const profileReducer: Reducer<ProfileReducerState, ProfileActions> = (sta
 			return {
 				...state,
 				loading: false,
-				profileInfo: action.data
+				profileInfo: action.profile
 			}
 
 		case profileActionTypes.PROFILE_LOAD_ERROR:

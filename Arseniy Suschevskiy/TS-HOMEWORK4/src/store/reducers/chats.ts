@@ -3,13 +3,6 @@ import update from 'react-addons-update'
 import {Reducer} from 'redux'
 import {ChatsActions} from '../actions/chats'
 
-export type ChatsReducerState = {
-	chatsList: any,
-	loading: boolean,
-	chatLoading: boolean,
-	messageLoading: boolean
-};
-
 const initialState = {
 	chatsList: [],
 	loading: false,
@@ -31,7 +24,7 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
 			return {
 				...state,
 				loading: false,
-				chatsList: action.data
+				chatsList: action.chats
 			}
 
 		case ChatsActionTypes.CHATS_LOAD_ERROR:
@@ -51,14 +44,13 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
 		case ChatsActionTypes.ADD_NEW_MESSAGE_SUCCESS:
 			return update(state, {
 				chatsList: {
-					[+action.data.chatId]: {
-						messages: {$push: [{id: action.data.id, text: action.data.text, author: action.data.author}]},
+					[+action.message.chatId - 1]: {
+						messages: {$push: [{id: action.message.id, text: action.message.text, author: action.message.author}]},
 					}
 				},
 			})
 
 		case ChatsActionTypes.ADD_NEW_MESSAGE_ERROR:
-			console.log(action.error, 'error')
 			return {
 				...state,
 				error: true
@@ -72,10 +64,10 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
 			}
 
 		case ChatsActionTypes.ADD_CHAT_SUCCESS:
-			action.data.messages = []
+			action.newChat.messages = []
 			return {
 				...state,
-				chatsList: [...state.chatsList, action.data],
+				chatsList: [...state.chatsList, action.newChat],
 				loading: false,
 			}
 
@@ -95,7 +87,7 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
 			}
 
 		case ChatsActionTypes.DELETE_CHAT_SUCCESS:
-			const newChatList = state.chatsList.filter( (chat: any) =>{
+			const newChatList = state.chatsList.filter( (chat: chatType) =>{
 				if (chat.id !== action.chatId){
 					return chat
 				}

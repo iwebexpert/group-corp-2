@@ -25,16 +25,23 @@ const useStyles = makeStyles(() => ({
 	}
 }))
 
-const CreateChat = props => {
+type CreateChatType = {
+	addChat:  (chat: chatType) => void
+	handleListItemClick: (chatId: number) => void
+	chatLoading: boolean
+}
+
+const CreateChat: React.FunctionComponent<CreateChatType> = props => {
 	const classes = useStyles()
 	const [listItem, switchListItem] = React.useState( true)
 	const [inputValue, setInputValue] = React.useState('')
 
-	const createNewChatHandler = event => {
+	const createNewChatHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
 		if (event.key === 'Enter'){
-			const newChat = {
-				title: event.target.value,
-				fire: false
+			const newChat: chatType = {
+				title: inputValue,
+				fire: false,
+				messages: []
 			}
 			props.addChat(newChat)
 			toggleListItemHandler()
@@ -42,7 +49,7 @@ const CreateChat = props => {
 	}
 
 
-	const inputChangeHandler = event => {
+	const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value)
 	}
 

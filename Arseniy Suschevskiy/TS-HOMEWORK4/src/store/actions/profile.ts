@@ -1,11 +1,9 @@
 import axios from '../../axios'
 import {profileActionTypes} from '../actions/actionTypes'
 import {ActionCreator, Dispatch} from 'redux'
+import {RequestError} from 'redux-api-middleware'
 
-export type ProfileActions =
-	profileLoadRequest
-	| profileLoadSuccess
-	| profileLoadError
+
 
 export type profileLoadRequest = {
 	type: profileActionTypes.PROFILE_LOAD_REQUEST,
@@ -13,13 +11,19 @@ export type profileLoadRequest = {
 
 export type profileLoadSuccess = {
 	type: profileActionTypes.PROFILE_LOAD_SUCCESS,
-	data: any
+	profile: profileInfoType
 }
 
 export type profileLoadError = {
 	type: profileActionTypes.PROFILE_LOAD_ERROR,
-	error: any
+	error: boolean,
+	payload: RequestError
 }
+
+export type ProfileActions =
+	profileLoadRequest
+	| profileLoadSuccess
+	| profileLoadError
 
 export function profileLoad() {
 	return async (dispatch: Dispatch) => {
@@ -37,12 +41,13 @@ export const profileLoadRequest: ActionCreator<profileLoadRequest> = () => ({
 	type: profileActionTypes.PROFILE_LOAD_REQUEST,
 })
 
-export const profileLoadSuccess: ActionCreator<profileLoadSuccess> = (data: any) => ({
+export const profileLoadSuccess: ActionCreator<profileLoadSuccess> = (profile: profileInfoType) => ({
 	type: profileActionTypes.PROFILE_LOAD_SUCCESS,
-	data
+	profile
 })
 
-export const profileLoadError: ActionCreator<profileLoadError> = (error: any) => ({
+export const profileLoadError: ActionCreator<profileLoadError> = (error: RequestError) => ({
 	type: profileActionTypes.PROFILE_LOAD_ERROR,
-	error
+	error: true,
+	payload: error
 })

@@ -7,20 +7,35 @@ import IconButton from '@material-ui/core/IconButton'
 import CreateChat from './CreateChat/CreateChat'
 import classes from './ChatList.module.css'
 import ListSubheader from '@material-ui/core/ListSubheader'
-import Loader from '../UI/Loader/Loader.tsx'
+import Loader from '../UI/Loader/Loader'
 import {useLocation} from 'react-router-dom'
 
-const ChatList = props => {
+type ChatListType = {
+	addChat: (chat: chatType) => void
+	chats: chatType[]
+	chatRedirect: (chatId: number) => void
+	deleteChat: (chatId: number) => void
+	loading: boolean
+	chatLoading: boolean
+	redirect: () => void
+}
+
+const ChatList: React.FunctionComponent<ChatListType> = props => {
 	const [selectedIndex, setSelectedIndex] = React.useState( -1)
 	const [showDeleteIcon, setShowDeleteIcon] = React.useState( false)
 	const location = useLocation()
 
-	const handleListItemClick = chatId => {
-		setSelectedIndex(chatId)
-		props.chatRedirect(chatId)
+	const handleListItemClick = (chatId: number | undefined) => {
+		if (chatId) {
+			setSelectedIndex(chatId)
+			props.chatRedirect(chatId)
+		}
 	}
 
-	const deleteIconClick = (event, chatId) => {
+	const deleteIconClick = (event: React.MouseEvent, chatId: number | undefined) => {
+		if (!chatId) {
+			return
+		}
 		event.stopPropagation()
 		const locationChatId = location.pathname.slice(6)
 		if (chatId === +locationChatId){

@@ -11,14 +11,6 @@
     {
       "id": 2,
       "title": "Друзья"
-    },
-    {
-      "id": 3,
-      "title": "sdedwe"
-    },
-    {
-      "id": 4,
-      "title": "edwe"
     }
   ],
   "messages": [
@@ -39,18 +31,6 @@
       "author": "Руслан",
       "text": "Привет! Как дела?",
       "chatId": 2
-    },
-    {
-      "text": "wedwe",
-      "author": "edwed",
-      "chatId": 3,
-      "id": 3
-    },
-    {
-      "text": "Привет, edwed! Бот на связи.",
-      "author": "Робот",
-      "chatId": 3,
-      "id": 4
     }
   ],
   "contacts": [

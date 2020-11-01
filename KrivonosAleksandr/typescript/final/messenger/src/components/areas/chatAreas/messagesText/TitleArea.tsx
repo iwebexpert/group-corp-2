@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import {useSelector} from 'react-redux';
+import React from 'react';
 
 import botImg from "../../../../img/user.png";
 import {Link} from "react-router-dom";

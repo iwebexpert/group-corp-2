@@ -1,5 +1,4 @@
-import React, {Component} from "react";
-import {NavLink} from "react-router-dom";
+import React from "react";
 import botImg from "../../../../img/user.png";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircle} from "@fortawesome/free-regular-svg-icons";

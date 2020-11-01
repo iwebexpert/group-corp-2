@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import {NavLink} from "react-router-dom";
 
 import botImg from "../../../../../img/user.png";
@@ -12,13 +12,11 @@ type DialogNameType = {
 }
 
 export const DialogName: React.FC<DialogNameType> = (props) => {
-    // let lastMsg: string = '';
     let lastMsg = {
         text: ""
     }
     if (props.lastMessage && props.lastMessage.length > 0) {
         lastMsg.text = props.lastMessage[props.lastMessage.length - 1].text;
-        // lastMsg = props.lastMessage;
     } else {
         lastMsg.text = 'Начните общение первым';
     }

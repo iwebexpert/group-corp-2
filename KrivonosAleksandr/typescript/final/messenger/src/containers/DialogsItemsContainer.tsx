@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector, useDispatch} from 'react-redux';
 
-import {addFriendListDialog, deleteFriendListDialogAction, showDeleteBtns} from "../actions/chats";
+import {deleteFriendListDialogAction} from "../actions/chats";
 import {DialogsItems} from "../components/areas/chatAreas/messagesItems/DialogsItems";
 import {AppState} from "../reducers";
 

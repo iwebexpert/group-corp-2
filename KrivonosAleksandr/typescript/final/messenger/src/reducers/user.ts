@@ -24,7 +24,6 @@ export const profileReducer: Reducer<ProfileReducerState, ProfileActions> = (sta
             };
 
         case UserActionTypes.USER_INFO_LOAD_SUCCESS:
-            console.log(action);
             return {
                 ...state,
                 loading: false,

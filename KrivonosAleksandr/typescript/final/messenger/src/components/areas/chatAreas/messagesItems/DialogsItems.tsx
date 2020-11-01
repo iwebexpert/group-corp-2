@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import {Scrollbars} from "react-custom-scrollbars";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

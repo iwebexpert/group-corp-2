@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {TitleArea} from "./TitleArea";
 import {Scrollbars} from "react-custom-scrollbars";
@@ -21,7 +21,7 @@ export const MessagesText: React.FC<messagesTextType> = (props) => {
     return (
         <div className="chat_messages">
             {/********TITLE AREA*******/}
-            <TitleArea dialogInfo={chat.userName}/>
+            <TitleArea dialogInfo={chat.name}/>
 
             <hr/>
 

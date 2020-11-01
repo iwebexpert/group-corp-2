@@ -28,11 +28,6 @@ type newDialog = {
     name: string;
 }
 
-type DialogItemCheckTypes = {
-    friendsList: friendsPayload[];
-    onAddDialog: (dialog: newDialog) => void
-}
-
 type messagePayload = {
     text: string;
     type: string;
@@ -50,15 +45,4 @@ type friendsPayload = {
     id: number;
     name: string;
     filteredFriends?: [];
-}
-
-// type MessageListProps = {
-//     msgType: string;
-//     msgText: string;
-//     msgTime: string;
-//     key: number;
-// }
-
-type MsgObject = {
-    msg: MessageListProps;
 }

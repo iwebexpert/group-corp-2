@@ -16,8 +16,8 @@ export const Header: React.FC = () => {
     const userInfo = useSelector((state:AppState) => state.profile.entries);
 
     let name: string = "Loading...";
-    if(userInfo.length){
-        name = userInfo[0].name;
+    if(userInfo){
+        name = userInfo.name;
     }
 
     return <header>

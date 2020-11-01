@@ -2,8 +2,6 @@ import {Reducer} from 'redux';
 
 import {UserActionTypes, ProfileActions} from '../actions/user'
 
-import {userProfile} from "../helpers/userProfile";
-
 export type ProfileReducerState = {
     entries: any;
     loading: boolean;
@@ -26,10 +24,11 @@ export const profileReducer: Reducer<ProfileReducerState, ProfileActions> = (sta
             };
 
         case UserActionTypes.USER_INFO_LOAD_SUCCESS:
+            console.log(action);
             return {
                 ...state,
                 loading: false,
-                entries: userProfile,
+                entries: action.payload,
             };
 
         case UserActionTypes.USER_INFO_LOAD_FAILURE:

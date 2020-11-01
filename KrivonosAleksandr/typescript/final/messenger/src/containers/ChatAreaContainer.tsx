@@ -19,13 +19,8 @@ export const ChatAreaContainer: React.FC<any> = ({id, newMsg}) => {
         dispatch(chatsLoadAction());
     }, []);
 
-    const redirect = (chatId: string): void => {
-        dispatch(push('/chats/' + chatId));
-    }
-
     const onAddDialog = (newChats: chatsPayload): void => {
         dispatch(addDialogAction({...newChats}));
-        redirect(newChats.id);
     }
 
     const errorLottieOptions = {

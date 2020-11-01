@@ -8,8 +8,8 @@ import {apiMiddleware} from "redux-api-middleware";
 import reduxThunk from 'redux-thunk';
 
 import {createRootReducer} from './reducers';
-import {botMiddleware} from "./middlewares/bot.js";
-import {fireMiddleware} from "./middlewares/fireMsg.js";
+import {botMiddleware} from "./middlewares/bot";
+import {fireMiddleware} from "./middlewares/fireMsg";
 
 export const history: History = createBrowserHistory();
 
@@ -24,7 +24,7 @@ export const initStore = (): {store: Store, persistor: Persistor} => {
     const store: Store = createStore(
         persistReducer(persistConfig, createRootReducer(history)),
         initialStore,
-        composeWithDevTools(applyMiddleware(routerMiddleware(history), apiMiddleware, reduxThunk)));
+        composeWithDevTools(applyMiddleware(botMiddleware, fireMiddleware, routerMiddleware(history), apiMiddleware, reduxThunk)));
     const persistor: Persistor = persistStore(store);
     return {store, persistor};
 }

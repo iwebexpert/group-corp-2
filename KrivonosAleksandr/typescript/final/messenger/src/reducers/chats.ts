@@ -3,8 +3,6 @@ import {Reducer} from 'redux';
 
 import {ChatsActions, ChatsActionTypes} from '../actions/chats';
 
-import {activateDelete} from '../helpers/showDeleteBtns';
-
 export type ChatsReducerState = {
     entries: any;
     friends: any;
@@ -33,7 +31,6 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
                 ...state,
                 loading: false,
                 entries: action.payload,
-                activateDelete: activateDelete,
                 friends: action.friends,
             };
 
@@ -66,6 +63,7 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
                 },
             });
         case ChatsActionTypes.MESSAGE_FIRE:
+            console.log(action);
             return update(state, {
                 entries: {
                     [action.payload.chatId]: {
@@ -82,7 +80,9 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
                 },
             });
         case ChatsActionTypes.CHATS_ADD_DIALOG:
-            console.log(action.payload);
+            //merge почему-то не работает (исходя из дебага, который я провел)
+            //так как элемент просто не добавляется и, к примеру,
+            //в ChatAreaContainer показывает не измененный массив чатов
             return update(state, {
                 entries: {
                     $merge: {
@@ -117,7 +117,6 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = i
                 }
             });
         case ChatsActionTypes.DELETE_FRIEND_LIST_DIALOG:
-            console.log(action.payload);
             return update(state, {
                 friends: {
                     $set: action.payload

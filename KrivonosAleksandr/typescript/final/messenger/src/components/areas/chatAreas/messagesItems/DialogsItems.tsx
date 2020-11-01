@@ -7,17 +7,24 @@ import {DialogsCheck} from "./messageItem/DialogsCheck";
 import List from "@material-ui/core/List";
 import {AddDialogModal} from "../addDialog/AddDialog";
 
-export const DialogsItems = (props) => {
+type DialogsItemsTypes = {
+    chats: chatsPayload[];
+    friends: friendsPayload[];
+    onAddDialog: (newDialog: newDialog) => void;
+}
 
-        let items = [];
+export const DialogsItems: React.FC<DialogsItemsTypes> = (props) => {
+
+        let items: chatsPayload[] = [];
         if(props.chats && props.chats.length){
             items = props.chats;
         }
 
-        let friends = [];
+        let friends: friendsPayload[] = [];
         if(props.friends && props.friends.length){
             friends = props.friends;
         }
+
 
         return (
             <div className="dialogs_names">

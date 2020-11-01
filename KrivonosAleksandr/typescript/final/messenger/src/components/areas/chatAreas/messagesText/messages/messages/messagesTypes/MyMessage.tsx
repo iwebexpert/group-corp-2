@@ -4,7 +4,11 @@ import {faCalendar} from "@fortawesome/free-regular-svg-icons";
 import {Markup} from "interweave";
 import {Link} from "react-router-dom";
 
-const MyMessage = (props) => {
+type MyMessageType = {
+    msg: messagePayload;
+}
+
+export const MyMessage: React.FC<MyMessageType> = (props) => {
     return(
         <div className="message_item myMessage">
             <div className="message_wrapper">
@@ -21,5 +25,3 @@ const MyMessage = (props) => {
         </div>
     );
 }
-
-export default MyMessage;

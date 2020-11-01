@@ -6,12 +6,17 @@ import {MessagesText} from "../components/areas/chatAreas/messagesText/MessagesT
 import {nanoid} from "nanoid";
 import {AppState} from "../reducers";
 
-export const MessagesTextContainer: React.FC<any> = (props) => {
+type MessagesTextContainerType = {
+    id: number;
+}
+
+export const MessagesTextContainer: React.FC<MessagesTextContainerType> = (props) => {
 
     const dispatch = useDispatch();
     const chats = useSelector((state: AppState) => state.chats.entries);
 
     const {id} = props;
+
     const chat: chatsPayload = chats[id];
     const messages: messagePayload[] | undefined = chat ? chat.messages : [];
 

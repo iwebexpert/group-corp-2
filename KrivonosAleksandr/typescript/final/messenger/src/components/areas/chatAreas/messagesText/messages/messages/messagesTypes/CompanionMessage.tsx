@@ -5,7 +5,11 @@ import {Markup} from "interweave";
 import botImg from "../../../../../../../img/user.png";
 import {Link} from "react-router-dom";
 
-const CompanionMessage = (props) => {
+type CompanionMessageType = {
+    msg: messagePayload;
+}
+
+export const CompanionMessage: React.FC<CompanionMessageType> = (props) => {
     return(
         <div className="message_item">
             <div className="message_wrapper">
@@ -29,5 +33,3 @@ const CompanionMessage = (props) => {
         </div>
     );
 }
-
-export default CompanionMessage;

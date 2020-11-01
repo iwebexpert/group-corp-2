@@ -4,7 +4,14 @@ import botImg from "../../../../img/user.png";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircle} from "@fortawesome/free-regular-svg-icons";
 
-export const AddDialogItem = (props) => {
+type AddDialogItemType = {
+    id: number;
+    name: string;
+    onAddDialog: (newDialog: newDialog) => void;
+    key: number;
+}
+
+export const AddDialogItem: React.FC<AddDialogItemType> = (props) => {
 
     const addDialog = () => {
         let newDialog = {

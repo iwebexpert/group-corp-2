@@ -1,8 +1,8 @@
 import {ChatsActionTypes, chatsMessageSendAction, messageFireAction, messageUnfireAction} from '../actions/chats';
 import {nanoid} from 'nanoid';
-// import {Middleware, MiddlewareAPI, Dispatch, AnyAction} from "redux";
+import {Middleware} from "redux";
 
-export const botMiddleware = store => next => action => {
+export const botMiddleware: Middleware = store => next => action => {
     if (action.type === ChatsActionTypes.CHATS_MESSAGE_SEND) {
         const {type, chatId} = action.payload;
         if (type !== 'botMsg' && action.chats[chatId].botMessages) {
@@ -24,12 +24,12 @@ export const botMiddleware = store => next => action => {
 
                     let numAnswers = chat.answerCount + 1;
 
-                    store.dispatch(chatsMessageSendAction({...message, chatId}, chats, numAnswers));
+                    store.dispatch(chatsMessageSendAction({...message, chatId}, chats, numAnswers) as any);
                     let pathname= store.getState().router.location.pathname.replace('/chats/', '');
                     if(chatId === parseInt(pathname)){
-                        store.dispatch(messageFireAction(chatId));
+                        store.dispatch(messageFireAction(chatId) as any);
                     } else {
-                        store.dispatch(messageUnfireAction(chatId));
+                        store.dispatch(messageUnfireAction(chatId) as any);
                     }
                 }
             }, 2000);

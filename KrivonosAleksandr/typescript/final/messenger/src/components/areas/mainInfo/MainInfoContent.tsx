@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 //-----------
 
 type userType = {
-    userInfo: profilePayload[];
+    userInfo: profilePayload;
 }
 
 const MainInfoContent: React.FC<userType> = (props) => {
@@ -21,17 +21,17 @@ const MainInfoContent: React.FC<userType> = (props) => {
     let photos = 0;
     let marks = 0;
     let videos = 0;
-    if(props.userInfo && props.userInfo.length) {
-        name = props.userInfo[0].name;
-        birthDate = props.userInfo[0].birthDate;
-        city = props.userInfo[0].city;
-        education = props.userInfo[0].education;
-        webSite = props.userInfo[0].webSite;
-        friends = props.userInfo[0].friends;
-        subscribers = props.userInfo[0].subscribers;
-        photos = props.userInfo[0].photos;
-        marks = props.userInfo[0].marks;
-        videos = props.userInfo[0].videos;
+    if(props.userInfo) {
+        name = props.userInfo.name;
+        birthDate = props.userInfo.birthDate;
+        city = props.userInfo.city;
+        education = props.userInfo.education;
+        webSite = props.userInfo.webSite;
+        friends = props.userInfo.friends;
+        subscribers = props.userInfo.subscribers;
+        photos = props.userInfo.photos;
+        marks = props.userInfo.marks;
+        videos = props.userInfo.videos;
     }
 
     return <div className="main-info--content">

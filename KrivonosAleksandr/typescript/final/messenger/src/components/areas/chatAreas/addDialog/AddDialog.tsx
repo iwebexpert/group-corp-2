@@ -5,7 +5,12 @@ import {faWindowClose} from "@fortawesome/free-regular-svg-icons";
 import {Scrollbars} from "react-custom-scrollbars";
 import {DialogItemCheck} from "./DialogItemCheck";
 
-export const AddDialogModal = (props) => {
+type AddDialogModalTypes = {
+    friendsList: friendsPayload[];
+    onAddDialog: (newDialog: newDialog) => void;
+}
+
+export const AddDialogModal: React.FC<AddDialogModalTypes> = (props) => {
 
     return (
         <Popup
@@ -13,7 +18,7 @@ export const AddDialogModal = (props) => {
             modal
             nested
         >
-            {close => (
+            {(close: any) => (
                 <div className="modal">
                     <button className="icon_template close" onClick={close}><FontAwesomeIcon icon={faWindowClose}/></button>
                     <div className="header">Начать диалог с...</div>

@@ -3,8 +3,9 @@ import {AppBar, Toolbar, IconButton, Typography, Switch} from "@material-ui/core
 import MenuIcon from "@material-ui/icons/Menu"
 import clsx from "clsx"
 import {AccountCircle} from "@material-ui/icons"
-import {Link, NavLink} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import {makeStyles} from "@material-ui/core/styles"
+import {ProfileType} from "../Profile/Profile"
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,7 +53,15 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const Header = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
+type HeaderType = {
+    open: boolean;
+    setOpen: () => void
+    profile: ProfileType;
+    darkTheme: boolean;
+    setDarkTheme: () => void
+}
+
+export const Header: React.FC<HeaderType> = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
     const classes = useStyles()
 
     return (
@@ -67,7 +76,7 @@ export const Header = ({open, setOpen, profile, darkTheme, setDarkTheme}) => {
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={() => setOpen(!open)}
+                        onClick={() => setOpen()}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >

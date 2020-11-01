@@ -17,7 +17,21 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const Profile = ({data, isLoading}) => {
+export type ProfileType = {
+    id: number,
+    name: string;
+    surName: string;
+    age: number,
+    status: string;
+    city: string ;
+}
+
+type ProfileComponentType = {
+    data: ProfileType;
+    isLoading: boolean;
+}
+
+export const Profile: React.FC<ProfileComponentType> = ({data, isLoading}) => {
     const classes = useStyles()
 
     if(isLoading) {

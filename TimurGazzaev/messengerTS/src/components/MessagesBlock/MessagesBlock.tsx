@@ -4,6 +4,7 @@ import {MessageForm} from './MessageForm'
 import {Grid, Divider} from "@material-ui/core"
 import clsx from "clsx"
 import {makeStyles} from "@material-ui/core/styles"
+import {MessageType} from "./Message";
 
 export const useStyles = makeStyles((theme) => ({
     content: {
@@ -43,9 +44,15 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const MessagesBlock = ({ messages, addMessage, open, handleDeleteMessage}) => {
+type MessagesBlockType = {
+    messages: MessageType[];
+    addMessage: (message: MessageType) => void;
+    open: boolean;
+    handleDeleteMessage: (messageId: string) => void;
+}
 
-    const classes = useStyles()
+export const MessagesBlock: React.FC<MessagesBlockType> = ({messages, addMessage, open, handleDeleteMessage}) => {
+    const classes: any = useStyles()
 
     return (
         <Grid container spacing={2}>

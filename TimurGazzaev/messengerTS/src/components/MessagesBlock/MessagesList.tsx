@@ -9,7 +9,6 @@ type MessagesListType = {
 
 export const MessagesList: React.FC<MessagesListType> = ({messages, handleDeleteMessage, classes}) => {
 
-    console.log(messages)
     useEffect(() => {
         // @ts-ignore
         messages && messages.length && document.getElementById((messages[messages.length - 1].id).toString()).scrollIntoView()

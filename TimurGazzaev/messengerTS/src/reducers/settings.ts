@@ -1,9 +1,18 @@
-const initialState = {
+import {Reducer} from 'redux'
+
+import {SettingsActions} from '../actions/settings'
+
+export type SettingsReducerState = {
+    isDrawerOpen: boolean,
+    darkTheme: boolean
+}
+
+const initialState: SettingsReducerState = {
     isDrawerOpen: true,
     darkTheme: false
 }
 
-export const settingsReducer = (state = initialState, action) => {
+export const settingsReducer: Reducer<SettingsReducerState, SettingsActions> = (state = initialState, action: any) => {
     switch (action.type) {
         case 'SET_DRAWER':
             return {

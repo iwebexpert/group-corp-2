@@ -1,13 +1,24 @@
 import update from 'react-addons-update'
+import {Reducer} from 'redux'
 
-const initialState = {
+import {ChatsActions} from '../actions/chats'
+import {MessageType} from "../components/MessagesBlock/Message"
+
+export type ChatsReducerState = {
+    entries: any;
+    isFetching: boolean;
+    loading: boolean;
+    error: boolean;
+};
+
+const initialState: ChatsReducerState = {
     entries: [],
     isFetching: false,
     loading: false,
     error: false
 }
 
-export const chatsReducer = (state = initialState, action) => {
+export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (state = initialState, action: any) => {
     switch (action.type) {
         case 'CHATS_LOAD_REQUEST':
             return {
@@ -30,25 +41,18 @@ export const chatsReducer = (state = initialState, action) => {
                 error: true,
             }
 
-        case 'SEND_MESSAGE_LOAD_SUCCESS':
-            let chatIndexSend = state.entries.findIndex(chat => chat.id.toString() === action.payload.chatId)
+        case 'SEND_MESSAGE':
             return update(state, {
                 entries: {
-                        [chatIndexSend]: {
-                            messages: {
-                                $push: [{
-                                    id: action.payload.id,
-                                    text: action.payload.text,
-                                    author: action.payload.author,
-                                    time: action.payload.time
-                                }]
-                            }
-                        }
-                    }
-                })
+                    [action.payload.chatId]: {
+                        messages: {$push: [{id: action.payload.id, text: action.payload.text, author: action.payload.author}]},
+                    },
+                },
+            });
+
         case 'DELETE_MESSAGE':
-            let chatIndexDelete = state.entries.findIndex(chat => chat.id.toString() === action.payload.chatId)
-            let index = state.entries.filter(chat => chat.id.toString() === action.payload.chatId)[0].messages.findIndex(message => message.id === action.payload.messageId)
+            let chatIndexDelete = state.entries.findIndex((chat: { id: { toString: () => any } }) => chat.id.toString() === action.payload.chatId)
+            let index = state.entries.filter((chat: { id: { toString: () => any } }) => chat.id.toString() === action.payload.chatId)[0].messages.findIndex((message: { id: any }) => message.id === action.payload.messageId)
             return update(state, {
                 entries: {
                     [chatIndexDelete]: {
@@ -78,11 +82,11 @@ export const chatsReducer = (state = initialState, action) => {
         case 'DELETE_CHAT':
             return {
                 ...state,
-                entries: state.entries.filter(chat => chat.id !== action.payload)
+                entries: state.entries.filter((chat: { id: any }) => chat.id !== action.payload)
             }
 
         case 'SET_ON_FIRE':
-            let chatIndexFire = state.entries.findIndex(chat => chat.id.toString() === action.payload.chatId)
+            let chatIndexFire = state.entries.findIndex((chat: { id: { toString: () => any } }) => chat.id.toString() === action.payload.chatId)
             return update(state, {
                 entries: {
                     [chatIndexFire]: {
@@ -100,6 +104,6 @@ export const chatsReducer = (state = initialState, action) => {
             }
 
         default:
-            return state;
+            return state
     }
 }

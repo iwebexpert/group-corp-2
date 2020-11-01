@@ -1,0 +1,53 @@
+{
+  "chats": [
+    {
+      "id": 0,
+      "title": "Текстовый чат",
+      "fire": false
+    },
+    {
+      "id": 1,
+      "title": "Рабочий чат",
+      "fire": false
+    },
+    {
+      "id": 2,
+      "title": "Друзья",
+      "fire": false
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "Робот",
+      "text": "Напиши мне в любом чате, и я отвечу тебе ;)",
+      "chatId": 0,
+      "user": "bot"
+    },
+    {
+      "id": 1,
+      "author": "Человек",
+      "text": "Привет",
+      "chatId": 1,
+      "user": "human"
+    },
+    {
+      "id": 2,
+      "author": "Человек",
+      "text": "Ты в рабочем чате",
+      "chatId": 1,
+      "user": "human"
+    },
+    {
+      "id": 3,
+      "author": "Робот",
+      "text": "Ты мой друг?",
+      "chatId": 2,
+      "user": "bot"
+    }
+  ],
+  "profile": {
+    "author": "Илья",
+    "age": "19"
+  }
+}

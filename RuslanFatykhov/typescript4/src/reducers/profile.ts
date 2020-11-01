@@ -41,5 +41,5 @@ export const profileReducer: Reducer<ProfileReducerState, ProfileActions> = (
 
     default:
       return state;
-  }
+  };
 };

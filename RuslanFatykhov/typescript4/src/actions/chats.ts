@@ -129,7 +129,7 @@ export const chatsLoadAction = () => {
       dispatch(chatsLoadSuccessAction(await result.json()));
     } catch (error) {
       dispatch(chatsLoadFailureAction(error));
-    }
+    };
   };
 };
 
@@ -165,7 +165,7 @@ export const messagesSendAction = (message: MessagePayload) => {
       dispatch(messagesSendSuccessAction(await newMessage.json()));
     } catch (error) {
       dispatch(messagesSendFailureAction(error));
-    }
+    };
   };
 };
 
@@ -205,7 +205,7 @@ export const chatsAddAction = (chatId: number, title: string) => {
       dispatch(chatsAddSuccessAction(await newChat.json()));
     } catch (error) {
       dispatch(chatsAddFailureAction(error));
-    }
+    };
   };
 };
 

@@ -48,13 +48,13 @@ export const MessageForm: React.FC<MessageFormType> = ({ onSend }) => {
     } else {
       onSend({ author, text });
       setDataForm({ ...dataForm, text: "", author: "" });
-    }
+    };
   };
 
   const handleEnter = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     if (e.keyCode === 13 && e.ctrlKey) {
       handleMessageSend();
-    }
+    };
   };
 
   const theme = useTheme<Theme>();

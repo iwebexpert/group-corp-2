@@ -67,6 +67,6 @@ export const profileLoadAction = () => {
       dispatch(profileLoadSuccessAction(await result.json()));
     } catch (error) {
       dispatch(profileLoadFailureAction(error));
-    }
+    };
   };
 };

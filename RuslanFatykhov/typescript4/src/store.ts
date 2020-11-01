@@ -32,8 +32,8 @@ export const initStore = (): { store: Store; persistor: Persistor } => {
         routerMiddleware(history),
         apiMiddleware,
         reduxThunk
-      )
-    )
+      );
+    );
   );
 
   const persistor: Persistor = persistStore(store);

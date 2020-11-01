@@ -14,7 +14,7 @@ export const ChatList: React.FC = () => {
       id: chatsEntries[key].id,
       fire: chatsEntries[key].fire,
     });
-  }
+  };
   return (
     <List>
       {chats.map((chat) => (

@@ -8,7 +8,6 @@ export const NavbarForm: React.FC<NavbarForm> = ({ addNewChat }) => {
     const chat = useRef<HTMLInputElement>(null)
 
     const addChat = () => {
-
         if (chat.current!.value) {
             addNewChat(chat.current!.value);
             chat.current!.value = '';

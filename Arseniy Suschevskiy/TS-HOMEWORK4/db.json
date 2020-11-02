@@ -1,0 +1,110 @@
+{
+  "chats": [
+    {
+      "id": 1,
+      "title": "Test chat"
+    },
+    {
+      "id": 2,
+      "title": "Work chat"
+    },
+    {
+      "id": 3,
+      "title": "Friends"
+    }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 0
+    },
+    {
+      "id": 1,
+      "author": "WebDev",
+      "text": "Test!",
+      "chatId": 0
+    },
+    {
+      "id": 2,
+      "author": "WebDev",
+      "text": "Hi!",
+      "chatId": 1
+    },
+    {
+      "id": 3,
+      "author": "WebDev",
+      "text": "Какие есть задачи на сегодня?",
+      "chatId": 1
+    },
+    {
+      "id": 4,
+      "author": "WebDev",
+      "text": "Привет!",
+      "chatId": 2
+    },
+    {
+      "id": 5,
+      "author": "WebDev",
+      "text": "Что нового?)",
+      "chatId": 2
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "BIdC0jXcmB76R4q6w8csH",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "tpdHeM2YkYWLEE9fu_Uoq",
+      "chatId": 1
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "H7_GZ-ovtJAYpfhCT8pfn",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "KZza_sItJvRjuzy-MJZiL",
+      "chatId": 1
+    },
+    {
+      "text": "asdasd",
+      "author": "ars",
+      "id": "8gELKzVZ7acgZV0cXk0Bu",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "GYdJya-wlsB3QluLSIwoA",
+      "chatId": 1
+    },
+    {
+      "text": "1",
+      "author": "ars",
+      "id": "35-vZPKPI3Q81aHtLQPd7",
+      "chatId": 1
+    },
+    {
+      "text": "Hi, ars, im Robot!",
+      "author": "Robot",
+      "id": "yAA1fnPNgdAI4mFfKUXXN",
+      "chatId": 1
+    }
+  ],
+  "profiles": [
+    {
+      "id": 0,
+      "name": "WebDev",
+      "email": "1@2.ru",
+      "age": 28
+    }
+  ]
+}

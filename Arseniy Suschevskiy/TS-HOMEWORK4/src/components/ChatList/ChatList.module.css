@@ -1,0 +1,36 @@
+.blink {
+    -webkit-animation: blink 1s linear infinite;
+    animation: blink 1s linear infinite;
+}
+@-webkit-keyframes blink {
+    100% { color: rgba(34, 34, 34, 0); }
+}
+@keyframes blink {
+    100% { color: rgba(34, 34, 34, 0); }
+}
+
+.root {
+    width: 100%;
+    max-width: 360px;
+    background-color: rgba(102, 73, 184, .5);
+    margin-top: 93px;
+    border-right: 1px solid #1e1e24;
+}
+.links {
+    color: white;
+    text-decoration: none;
+}
+
+.Mui-focusVisible {
+    background: inherit !important;
+}
+.title{
+    color: white !important;
+    font-size: 1.5rem !important;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.button{
+    padding-left: 100px;
+}

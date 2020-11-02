@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 import './MessageForm.css';
 
 import TextInput from '../TextInput/TextInput';
@@ -7,12 +8,12 @@ import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
 
 import { useFormField } from '../../hooks/useFormField';
-import { NewMessageType } from '../../types/types';
+import { MessageType } from '../../types/types';
 import { ReactReduxContextValue } from 'react-redux';
 
 type MessageFormType = {
   author: string;
-  onMessageSend: (message: NewMessageType) => void;
+  onMessageSend: (message: MessageType) => void;
 };
 
 export const MessageForm: React.FC<MessageFormType> = ({ onMessageSend, author }) => {
@@ -29,7 +30,8 @@ export const MessageForm: React.FC<MessageFormType> = ({ onMessageSend, author }
       }
 
       if(typeof onMessageSend === 'function'){
-        onMessageSend({message: text, author});
+        const id = nanoid();
+        onMessageSend({message: text, author, id, chatId: 0});
 
         textField.clearValue();
       }

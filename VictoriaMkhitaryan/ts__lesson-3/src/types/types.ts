@@ -24,7 +24,7 @@ export type NewMessageType = {
 };
 
 export type MessageType = NewMessageType & {
-  id: number;
+  id: any;
   chatId: number;
 };
 

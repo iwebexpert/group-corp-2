@@ -1,14 +1,8 @@
 import React from 'react';
 
-import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '../Button/Button';
+import CardContent from '@material-ui/core/CardContent'
 import Avatar from '@material-ui/core/Avatar';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import Typography from '@material-ui/core/Typography';
-import MessageOutlinedIcon from '@material-ui/icons/MessageOutlined';
-import EditIcon from '@material-ui/icons/Edit';
 
 import './ProfileInfo.css';
 

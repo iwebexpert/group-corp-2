@@ -1,0 +1,14 @@
+.messenger__wrapper {
+    display: flex;
+    margin: 0 auto;
+    width: 1000px;
+    min-height: 500px;
+}
+
+.messenger__chat-list {
+    background-color: bisque;
+}
+.messenger__window {
+    flex-grow: 1;
+    background-color: antiquewhite;
+}

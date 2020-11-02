@@ -1,0 +1,26 @@
+.link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  background-color: #3498db;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+}
+
+.link:hover {
+  background: #3558db;
+  height: 100%;
+}
+
+.link.fire {
+  background-color: #00fa60;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

@@ -1,18 +1,21 @@
+import {Middleware} from "redux"
+
 import {
   chatsMessageSendAction,
   chatFireAction,
   chatsLoadAction,
-  MESSAGE_SEND_SUCCESS,
 } from "../actions/chats";
+import { ChatsActionTypes } from "../actions/chatsActionTypes";
 import { nanoid } from "nanoid";
 
 const actionShell = "@@redux-api-middleware/RSAA";
+let timer:NodeJS.Timeout|number = 0;
 
-let timer = null;
-
-export const chatBotMiddware = (store) => (next) => (action) => {
+export const chatBotMiddware:Middleware = (store) => (next) => (action) => {
   if (action[actionShell]) {
-    if (action[actionShell].types[1] === MESSAGE_SEND_SUCCESS) {
+    if (
+      action[actionShell].types[1] === ChatsActionTypes.MESSAGE_SEND_SUCCESS
+    ) {
       const { router } = store.getState();
       const body = JSON.parse(action[actionShell].body);
 
@@ -31,10 +34,10 @@ export const chatBotMiddware = (store) => (next) => (action) => {
         `Плохие новости, ${author}, вчера Facebook разработал чат-бота маминой подруги...`,
       ];
 
-      const rnd = () => Math.floor(Math.random() * botAnswers.length);
+      const rnd = ():number => Math.floor(Math.random() * botAnswers.length);
       const time = new Date();
 
-      const botText = {
+      const botText:MessageType = {
         text: `${botAnswers[rnd()]} `,
         author: "Бот",
         chatId,
@@ -42,12 +45,12 @@ export const chatBotMiddware = (store) => (next) => (action) => {
         time: time.toLocaleString("en-US", {
           hour: "numeric",
           minute: "numeric",
-          hour24: true,
+          hour12: false,
         }),
       };
 
       if (author !== "Бот") {
-        clearTimeout(timer);
+			clearTimeout(+timer);
         timer = setTimeout(() => {
           store.dispatch(chatsMessageSendAction(botText));
           store.dispatch(chatsLoadAction());

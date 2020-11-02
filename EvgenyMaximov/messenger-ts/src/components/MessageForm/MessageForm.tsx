@@ -3,24 +3,23 @@ import Swal from "sweetalert2";
 import { TextField, Fab } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import Tooltip from '@material-ui/core/Tooltip';
+import { nanoid } from "nanoid";
 
 import "../../App.scss";
-
-type MessageType = {
-	text: string,
-	author: string,
-}
 
 type MessageFormPropsType = {
 	onSend: (message:MessageType) => void,
 	classform: string,
 	isPending: boolean,
-}
+};
 
 export const MessageForm:React.FC<MessageFormPropsType> = ({ onSend, classform, isPending }) => {
   const [formData, setFormData] = useState<MessageType>({
     text: "",
-    author: "",
+	 author: "",
+	 id: '',
+	 time: '',
+	 chatId: 0,
   });
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>):void => {
@@ -28,7 +27,14 @@ export const MessageForm:React.FC<MessageFormPropsType> = ({ onSend, classform, 
   };
 
   const sendMessage = ():void => {
-    const { text, author }:MessageType = formData;
+	 const { text, author }:MessageType = formData;
+	 formData.id = nanoid()
+	 const time = new Date();
+    formData.time = time.toLocaleString("en-US", {
+      hour: "numeric",
+		minute: "numeric",
+		hour12: false,
+    });
 
     const textRegExp:RegExp = /\S|(^\w$)/gi;
 

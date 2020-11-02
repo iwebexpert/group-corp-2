@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { nanoid } from "nanoid";
+import { AppState } from "../reducers";
 
 import { Messenger } from "../components/Messenger";
 import {
@@ -13,7 +13,14 @@ import {
 
 import Swal from "sweetalert2";
 
-export const MessengerContainer = (props) => {
+
+type MessengerContainerPropsType = {
+	classform: string, 
+	classlist: string, 
+	classchattitle: string,
+};
+
+export const MessengerContainer:React.FC<MessengerContainerPropsType> = ({ classform, classlist, classchattitle }) => {
   useEffect(() => {
     if (!chats) {
       dispatch(chatsLoadAction());
@@ -31,28 +38,20 @@ export const MessengerContainer = (props) => {
   });
 
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { id } = useParams<{id:string}>();
 
-  const chats = useSelector((state) => state.chats.entries);
-  const messages = chats[id] ? chats[id].messages : [];
-  const chatTitle = chats[id] ? chats[id].title : null;
+  const chats = useSelector((state:AppState) => state.chats.entries);
+  const messages = chats[+id] ? chats[+id].messages : [];
+  const chatTitle = chats[+id] ? chats[+id].title : null;
   const chatId = +id;
 
-  const [isLoading, isPending, messageSendError] = useSelector((state) => [
+  const [isLoading, isPending, messageSendError] = useSelector((state:AppState) => [
     state.chats.loading,
     state.chats.pending,
     state.chats.messageSendError,
   ]);
 
-  const onMessageSend = (message) => {
-    message.id = nanoid();
-    const time = new Date();
-    message.time = time.toLocaleString("en-US", {
-      hour: "numeric",
-      minute: "numeric",
-      hour24: true,
-    });
-
+  const onMessageSend = (message:MessageType):void => {
     dispatch(
       chatsMessageSendAction({
         ...message,
@@ -62,16 +61,14 @@ export const MessengerContainer = (props) => {
     dispatch(chatsLoadAction());
   };
 
-  const onMessageDelete = (id) => {
+  const onMessageDelete = (id:string):void => {
     dispatch(messageDeleteAction(id));
     dispatch(chatsLoadAction());
   };
 
-  const onClearChat = (chatId) => {
+  const onClearChat = (chatId:number):void => {
     dispatch(clearChatAction(chatId));
   };
-
-  const { classform, classlist, classchattitle } = props;
 
   return (
     <Messenger

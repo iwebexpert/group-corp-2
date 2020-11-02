@@ -3,19 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Profile } from "../pages/Profile";
 import { profileLoadAction } from "../actions/profile";
+import { AppState } from "../reducers/index";
 
-export type ProfileType = {
-		firstName: string,
-		secondName: string,
-		nickName: string,
-		age: number,
-}
-
-export type ProfilePropsType = {
-	profile: ProfileType,
-	isLoading: boolean,
-	isError: boolean,
-}
 
 export const ProfileContainer:React.FC<{}> = () => {
   const dispatch = useDispatch();
@@ -26,9 +15,9 @@ export const ProfileContainer:React.FC<{}> = () => {
     }
   }, []);
 
-  const profile:ProfileType = useSelector((state:any) => state.profile.entries);
+  const profile:ProfileType = useSelector((state:AppState) => state.profile.entries);
  
-  const [isLoading, isError]:boolean[] = useSelector((state:any) => [
+  const [isLoading, isError] = useSelector((state:AppState) => [
     state.profile.loading,
     state.profile.error,
   ]);

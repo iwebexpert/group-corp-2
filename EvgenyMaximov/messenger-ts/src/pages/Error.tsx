@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import HomeIcon from "@material-ui/icons/Home";
-import {PageType} from "./Home"
+import { PageType } from "./Home";
 
-export const Error: React.FC<PageType> = ({classhomepage}) => {
+export const Error: React.FC<PageType> = ({ classhomepage }) => {
   return (
     <Link to="/" className={classhomepage}>
       <HomeIcon fontSize="large"></HomeIcon>

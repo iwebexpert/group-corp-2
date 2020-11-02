@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Swal from "sweetalert2";
@@ -15,7 +14,21 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles((theme) => ({
+type ClassesType = {
+	[propname:string]: string,
+};
+
+type ChatsListPropsType = {
+	chats: ChatType[],
+	isError: boolean,
+	isLoading: boolean,
+	onAdd: (chat:ChatType)=> void,
+	onDelete: (chatId:number)=> void,
+	unfireChat: (chatId:number)=> void,
+	refreshChats: ()=> void,
+};
+
+const useStyles = makeStyles(():any => ({
   root: {
     width: "20%",
     height: "758px",
@@ -24,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     overflowY: "scroll",
   },
-
   chatList: {
     flex: "1 1 auto",
   },
@@ -63,33 +75,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ChatsList = (props) => {
-  const classes = useStyles();
+export const ChatsList:React.FC<ChatsListPropsType> = ({ 
+	chats,
+	isError,
+	isLoading,
+	onAdd,
+	onDelete,
+	unfireChat,
+	refreshChats }) => {
 
-  const isLoading = useSelector((state) => state.chats.loading);
+  const classes:ClassesType = useStyles();
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const handleListItemClick = (chatId) => {
+  const handleListItemClick = (chatId:number):void => {
     setSelectedIndex(chatId);
-    if (props.chats[chatId].fire) {
-      props.unfireChat(chatId);
+    if (chats[chatId].fire) {
+      unfireChat(chatId);
     }
   };
 
-  const [chat, setChat] = useState({ title: "" });
+  const [chat, setChat] = useState<ChatType>({ title: "", chatId: 0, messages: [], fire: false, id: 0 });
 
-  const onInputChange = (e) => {
-    const inputField = e.target.name;
+  const onInputChange = (e:React.ChangeEvent<HTMLInputElement>):void => {
+    const inputField:string = e.target.name;
     setChat({ ...chat, [inputField]: e.target.value });
   };
 
   const { title } = chat;
 
-  const addChat = () => {
-    const { onAdd } = props;
+  const addChat = ():void => {
+	 chat.chatId = chats.length;
 
-    const titleRegExp = /\S|(^\w$)/gi;
+    const titleRegExp:RegExp = /\S|(^\w$)/gi;
 
     if (!title || !titleRegExp.test(title)) {
       Swal.fire({
@@ -99,18 +117,15 @@ export const ChatsList = (props) => {
       return;
     }
 
-    if (typeof addChat === "function") {
-      onAdd(chat);
-
-      setChat({ title: "" });
-    }
+   	onAdd(chat);
+      setChat({  title: "", chatId: 0, messages: [], fire: false, id: 0 });
   };
 
-  const deleteChat = (chatId) => {
-    props.onDelete(chatId);
+  const deleteChat = (chatId:number):void => {
+    onDelete(chatId);
   };
 
-  const keyDownHandler = (e) => {
+  const keyDownHandler = (e:React.KeyboardEvent<HTMLDivElement>):void => {
     if (e.keyCode === 13 && e.ctrlKey) addChat();
   };
 
@@ -132,23 +147,23 @@ export const ChatsList = (props) => {
 		  </Tooltip>
       </div>
       <Divider />
-      {props.isError ? (
+      {isError ? (
         <div className={classes.renewBtn}>
           <Button
             variant="contained"
             color="primary"
             size="small"
-            onClick={props.refreshChats}
+            onClick={refreshChats}
           >
             Обновить чаты
           </Button>
         </div>
       ) : (
         <List className={classes.chatList}>
-          {isLoading && !props.chats.length ? (
+          {isLoading && !chats.length ? (
             <div className="lds-dual-ring-header"></div>
-          ) : props.chats.length ? (
-            props.chats.map((c) => {
+          ) : chats.length ? (
+            chats.map((c) => {
               return (
                 <ListItem
                   className={classes.chatLabel}

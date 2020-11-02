@@ -11,10 +11,9 @@ export type PagesPropsType = {
 	classlist: string,
 	classhomepage: string,
 	classchattitle: string,
-}
+};
 
 export const AppRouter:React.FC<PagesPropsType> = ({classform, classlist, classchattitle, classhomepage }) => {
-
   return (
     <Switch>
       <Route path="/" exact>

@@ -17,7 +17,7 @@ export enum ChatsActionTypes {
 
   FIRE_CHAT_SUCCESS = "FIRE_CHAT_SUCCESS",
   UNFIRE_CHAT_SUCCESS = "UNFIRE_CHAT_SUCCESS",
-}
+};
 
 export type chatsLoadRequest = {
   type: ChatsActionTypes.CHATS_LOAD_REQUEST;

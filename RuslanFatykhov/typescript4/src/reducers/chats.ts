@@ -135,5 +135,5 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (
 
     default:
       return state;
-  }
+  };
 };

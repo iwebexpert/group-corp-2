@@ -28,7 +28,7 @@ export const botMiddleware: ThunkMiddleware = (store) => (next) => (action) => {
         setTimeout(() => store.dispatch(unfireChatAction(chatId, false)), 2000);
         response = false;
       }, 1000);
-    }
-  }
+    };
+  };
   return next(action);
 };

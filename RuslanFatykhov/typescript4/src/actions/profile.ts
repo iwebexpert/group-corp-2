@@ -1,12 +1,13 @@
 import { RequestError } from "redux-api-middleware";
 import { ActionCreator, Dispatch } from "redux";
 
-//TYPES
+//ТИПЫ
+
 export enum ProfileActionTypes {
   PROFILE_LOAD_REQUEST = "PROFILE_LOAD_REQUEST",
   PROFILE_LOAD_SUCCESS = "PROFILE_LOAD_SUCCESS",
   PROFILE_LOAD_FAILURE = "PROFILE_LOAD_FAILURE",
-}
+};
 
 export type profileLoadRequest = {
   type: ProfileActionTypes.PROFILE_LOAD_REQUEST;
@@ -32,7 +33,8 @@ export type profileLoadFailure = {
   error: boolean;
 };
 
-//Все возможные действия
+//ВСЕ ВОЗМОЖНЫЕ ДЕЙСТВИЯ
+
 export type ProfileActions =
   | profileLoadRequest
   | profileLoadSuccess

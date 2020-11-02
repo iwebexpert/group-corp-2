@@ -59,7 +59,7 @@ export const MessengerContainer: React.FC = () => {
         ...dataForm,
         inputValue: "",
       });
-    };
+    }
   };
 
   return (

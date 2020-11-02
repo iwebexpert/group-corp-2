@@ -73,42 +73,41 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatsActions> = (
       };
 
     case ChatsActionTypes.CHATS_ADD_SUCCESS:
-      //@ts-ignore
-      return update(state, {
-        entries: {
-          $push: [
-            {
-              id: state.entries.length,
-              title: action.payload.title,
-              fire: false,
-              messages: [
-                {
-                  author: "Незнакомец",
-                  text: "Ты кто?",
-                  id: nanoid(),
-                },
-              ],
-              contacts: [
-                {
-                  id: 0,
-                  name: "Подозрительная личность",
-                  online: "был онлайн сегодня 22:23",
-                },
-                {
-                  id: 1,
-                  name: "Какой-то тип",
-                  online: "был онлайн сегодня 07:02",
-                },
-                {
-                  id: 2,
-                  name: "Прохожий",
-                  online: "был онлайн вчера 02:33",
-                },
-              ],
-            },
-          ],
-        },
-      });
+      return {
+        ...state,
+        entries: [
+          ...state.entries,
+          {
+            id: state.entries.length,
+            title: action.payload.title,
+            fire: false,
+            messages: [
+              {
+                author: "Незнакомец",
+                text: "Ты кто?",
+                id: nanoid(),
+              },
+            ],
+            contacts: [
+              {
+                id: 0,
+                name: "Подозрительная личность",
+                online: "был онлайн сегодня 22:23",
+              },
+              {
+                id: 1,
+                name: "Какой-то тип",
+                online: "был онлайн сегодня 07:02",
+              },
+              {
+                id: 2,
+                name: "Прохожий",
+                online: "был онлайн вчера 02:33",
+              },
+            ],
+          },
+        ],
+      };
 
     case ChatsActionTypes.CHATS_ADD_FAILURE:
       return {

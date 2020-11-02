@@ -1,10 +1,20 @@
-const initialState = {
+import {Reducer} from 'redux'
+
+import {ProfileActions} from '../actions/profile'
+
+export type ProfileReducerState = {
+    profiles: any,
+    loading: boolean,
+    error: boolean
+}
+
+const initialState: ProfileReducerState = {
     profiles: [],
     loading: true,
     error: false
 }
 
-export const profileReducer = (state = initialState, action) => {
+export const profileReducer: Reducer<ProfileReducerState, ProfileActions> = (state = initialState, action: any) => {
     switch (action.type) {
         case 'PROFILES_LOAD_REQUEST':
             return {

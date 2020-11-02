@@ -106,24 +106,35 @@ export const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export const ChatList = ({chats, chatId, addChat, deleteChat, redirect, open, handleDrawerToggle, darkTheme}) => {
+type ChatListType = {
+    chats: any[];
+    chatId: string;
+    addChat: (chatId: string, title: string) => void;
+    deleteChat: (chatId: string) => void;
+    redirect: (chatId: string) => void;
+    open: boolean;
+    handleDrawerToggle: () => void;
+    darkTheme: boolean;
+}
+
+export const ChatList: React.FC<ChatListType> = ({chats, chatId, addChat, deleteChat, redirect, open, handleDrawerToggle, darkTheme}) => {
     const theme = useTheme()
     const classes = useStyles()
     const history = useHistory()
 
-    const [anchorEl, setAnchorEl] = useState(null)
-    const [chatName, setChatName] = useState(null)
-    const menuOpen = Boolean(anchorEl);
+    const [anchorEl, setAnchorEl] = useState<EventTarget & Element | null>(null)
+    const [chatName, setChatName] = useState('')
+    const menuOpen = Boolean(anchorEl)
 
-    const handleMenu = (event) => {
+    const handleMenu = (event: React.SyntheticEvent): void => {
         setAnchorEl(event.currentTarget)
     }
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setChatName(event.target.value)
     }
 
-    const handleChatChoose = (chatId) => {
+    const handleChatChoose = (chatId: string): void => {
         if(!history.location.pathname.includes('/chats/')) {
             history.push(`/chats/${chatId}`)
         }
@@ -142,12 +153,12 @@ export const ChatList = ({chats, chatId, addChat, deleteChat, redirect, open, ha
         }
     }
 
-    const handleDeleteChat = (title, chatId) => {
+    const handleDeleteChat = (title: string, chatId: string): void => {
         deleteChat(chatId)
         redirect(chats[0].id)
     }
 
-    const onKeyPress = (event) => {
+    const onKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
         if (event.keyCode === 13) {
             createChat()
         }

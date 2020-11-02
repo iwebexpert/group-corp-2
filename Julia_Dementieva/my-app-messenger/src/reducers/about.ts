@@ -1,26 +1,31 @@
-import {
-    ABOUT_LOAD_REQUEST,
-    ABOUT_LOAD_FAILURE,
-    ABOUT_LOAD_SUCCESS,
-} from '../actions/about';
+import {Reducer} from 'redux';
 
-const initialState = {
+import {AboutActions, AboutActionTypes} from '../actions/about';
+
+export type AboutReducerState = {
+    entries: any;
+    loading: boolean;
+    error: boolean;
+    ready: boolean;
+};
+
+const initialState: AboutReducerState = {
     entries: {},
     loading: false,
     error: false,
     ready: false,
 };
 
-export const aboutReducer = (state = initialState, action) => {
+export const aboutReducer: Reducer<AboutReducerState, AboutActions> = (state = initialState, action) => {
     switch(action.type){
-        case ABOUT_LOAD_REQUEST:
+        case AboutActionTypes.ABOUT_LOAD_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: false,
             };
     
-        case ABOUT_LOAD_SUCCESS:
+        case AboutActionTypes.ABOUT_LOAD_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -28,7 +33,7 @@ export const aboutReducer = (state = initialState, action) => {
                 entries: action.payload,
             };
             
-        case ABOUT_LOAD_FAILURE:
+        case AboutActionTypes.ABOUT_LOAD_FAILURE:
             return {
                 ...state,
                 loading: false,

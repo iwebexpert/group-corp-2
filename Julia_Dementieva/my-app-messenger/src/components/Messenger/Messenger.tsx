@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {ListItem, ListItemText, ListItemAvatar, Avatar, CircularProgress } from '@material-ui/core';
 import {MessageList} from '../MessageList';
 import {MessageForm} from '../MessageForm';
 import {Error} from '../../pages/Error';
 
-import {MessageType} from '../Message';
+import {MessageFullInfoType, MessageType} from '../../types/types';
 
 import './Messenger.css';
 
@@ -14,9 +14,9 @@ type MessengerType = {
     authorChat: string;
     namePerson: string;
     avatarChat: string;
-    messages: Array<MessageType>;
+    messages: Array<MessageFullInfoType>;
     isLoading: boolean;
-}
+};
 
 export const Messenger: React.FC<MessengerType> = ({ onAdd, authorChat, namePerson, avatarChat, messages, isLoading }) => {
 
@@ -49,6 +49,6 @@ export const Messenger: React.FC<MessengerType> = ({ onAdd, authorChat, namePers
                 <MessageForm onSend={handleMessageSend} person={namePerson}/>
             </div>           
         </div>) : <Error />
-    )
+    );
 }
 

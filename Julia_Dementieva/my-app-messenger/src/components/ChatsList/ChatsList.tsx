@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {List, CircularProgress } from '@material-ui/core';
 
 import {ChatItem} from '../ChatItem';
@@ -7,18 +7,26 @@ import {Error} from '../../pages/Error';
 
 import './ChatsList.css';
 
-export const ChatsList = ({onAdd, chats, fireChats, onClick, isLoading}) => {
+import {ChatType} from '../../types/types';
 
-    const handleChatAdd = (newchat) => {
+type ChatItemType = {
+    onClick: (id: number) => void;
+    isLoading: boolean;
+    onAdd: (newchat: string) => void;
+    chats: Array<ChatType>;
+    fireChats: Array<boolean>;
+};
+
+export const ChatsList: React.FC<ChatItemType> = ({onAdd, chats, fireChats, onClick, isLoading}) => {
+
+    const handleChatAdd = (newchat: string): void => {
         if (newchat) {
-            if (typeof (onAdd) === 'function'){
-                onAdd(newchat);
-            }
+            onAdd(newchat);
         }
-    }
+    };
 
     if(isLoading) {
-        return(<div className={"loading"}><CircularProgress color="secondary"/></div>)
+        return(<div className={"loading"}><CircularProgress color="secondary"/></div>);
     }
     
     return (
@@ -34,5 +42,4 @@ export const ChatsList = ({onAdd, chats, fireChats, onClick, isLoading}) => {
             <ChatForm onSend={handleChatAdd}/>
         </div>) : <div>Данные загружаются</div>
     );
-    
 }

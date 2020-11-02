@@ -3,7 +3,7 @@ import {TextField, Fab,  makeStyles} from '@material-ui/core';
 import {Send} from '@material-ui/icons';
 
 import {useFormMess} from '../../hooks/useFormMess';
-import {MessageType} from '../Message';
+import {MessageType} from '../../types/types';
 
 const useStyles = makeStyles({
     root: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 type MessageFormType = {
     person: string;
     onSend: (data: MessageType) => void;
-} 
+};
 
 export const MessageForm: React.FC<MessageFormType> = ({person, onSend}) => {
     const classes = useStyles();
@@ -49,8 +49,7 @@ export const MessageForm: React.FC<MessageFormType> = ({person, onSend}) => {
                 author: person, 
                 text,
             });
-        textField.clearValue();
-        
+        textField.clearValue();   
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -80,6 +79,6 @@ export const MessageForm: React.FC<MessageFormType> = ({person, onSend}) => {
             >
                 <Send />
             </Fab>
-        </div>);
-    
+        </div>
+    );
 }

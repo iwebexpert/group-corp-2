@@ -1,13 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 import classNames from 'classnames';
-
+import {MessageType} from '../../types/types';
 import './Message.scss';
-
-export type MessageType = {
-    text: string;
-    author: string;
-}
 
 export const Message: React.FC<MessageType> = ({text, author}) => {
 
@@ -22,6 +17,5 @@ export const Message: React.FC<MessageType> = ({text, author}) => {
                 <li  key={text} style={{listStyleType: "none"}}>{text} - <b className="message-author">{author}</b></li>
             </ul>
         </div>
-    )
-    
+    );
 }

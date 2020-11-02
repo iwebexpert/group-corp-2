@@ -1,15 +1,16 @@
-import {CHATS_MESSAGE_SEND, chatsMessageSendAction, messageFireAction, messageUnfireAction} from '../actions/chats'
 import {nanoid} from 'nanoid';
+import { Middleware } from 'redux';
+import {ChatsActionTypes, chatsMessageSendAction, messageFireAction, messageUnfireAction} from '../actions/chats';
 
 // массив хранит id чатов, в которых бот уже ответил
-let answerBot = [];
+let answerBot: Array<number> = [];
 
-export const botMiddlewares = store => next => action => {
+export const botMiddlewares: Middleware = store => next => action => {
 
-    if(action.type === CHATS_MESSAGE_SEND){
+    if(action.type === ChatsActionTypes.CHATS_MESSAGE_SEND){
         const {author, chatId} = action.payload;
-        let answerRobot = ['Чем могу помочь?','Привет, какая хорошая погода!','Добрый день!', 'Hi'];
-        const indexAns = Math.floor(Math.random() * answerRobot.length);
+        let answerRobot: Array<String> = ['Чем могу помочь?','Привет, какая хорошая погода!','Добрый день!', 'Hi'];
+        const indexAns: number = Math.floor(Math.random() * answerRobot.length);
 
         if (author !== 'Robot' && !answerBot.includes(chatId)){
             answerBot.push(chatId);
@@ -18,15 +19,13 @@ export const botMiddlewares = store => next => action => {
                         {id: nanoid(), chatId, text: `${author}, ${answerRobot[indexAns]}`, author: 'Robot'}
                         ));
                 
-
-                    const pathname = store.getState().router.location.pathname || '';
-                    const parts = pathname.match(/\/chats\/(.*?)$/) || [];
-                    const currentChat = parts[1] || '';
+                    const pathname: string = store.getState().router.location.pathname || '';
+                    const parts: Array<string> = pathname.match(/\/chats\/(.*?)$/) || [];
+                    const currentChat: string = parts[1] || '';
 
                     if (chatId !== currentChat) {
                             store.dispatch(messageFireAction({chatId}));
                     } else {
-
                         store.dispatch(messageUnfireAction({chatId}));
                     }
                 answerBot = answerBot.filter(i => i !== chatId);

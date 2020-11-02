@@ -22,16 +22,6 @@
     },
     {
       "id": "4",
-      "author": "Чат №5",
-      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
-    },
-    {
-      "id": "5",
-      "author": "d",
-      "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
-    },
-    {
-      "id": "6",
       "author": "Тест 2",
       "avatar": "https://cityblank.ru/upload/iblock/cc4/cc47d6df370960cbe120d01e999abfeb.gif"
     }
@@ -117,98 +107,14 @@
     },
     {
       "author": "Web",
-      "text": ")",
-      "id": "l8bbU8iIynbmuRAlLCN9f",
-      "chatId": "5"
+      "text": "Привет",
+      "id": "8wUZ08hnpIlIHg5XhUGdT",
+      "chatId": "4"
     },
     {
-      "id": "64A_s4PQS75jZL6SpAmFm",
-      "chatId": "5",
+      "id": "WzApLfJZdIHJGSSoFBQaz",
+      "chatId": "4",
       "text": "Web, Hi",
-      "author": "Robot"
-    },
-    {
-      "author": "Web",
-      "text": "))",
-      "id": "A_ThDHLIbivXv6OmFg3p1",
-      "chatId": "5"
-    },
-    {
-      "id": "2UmsSX7Wx05w7Wf526QoC",
-      "chatId": "5",
-      "text": "Web, Привет, какая хорошая погода!",
-      "author": "Robot"
-    },
-    {
-      "author": "Web",
-      "text": "Как дела?",
-      "id": "1YbaLd3tACJ4UgMU_N9RD",
-      "chatId": "1"
-    },
-    {
-      "id": "pT4sEZvkfFNm8P6bDqTQb",
-      "chatId": "1",
-      "text": "Web, Добрый день!",
-      "author": "Robot"
-    },
-    {
-      "author": "Web",
-      "text": "dfgfdg",
-      "id": "kAPgTygAtq6W-RTOqn3Em",
-      "chatId": "3"
-    },
-    {
-      "id": "sZYLa2Zktcr1Yn8FcMAyS",
-      "chatId": "3",
-      "text": "Web, Привет, какая хорошая погода!",
-      "author": "Robot"
-    },
-    {
-      "author": "Web",
-      "text": "f",
-      "id": "84XtztBoez0Tu-PFh9hks",
-      "chatId": "0"
-    },
-    {
-      "id": "kLWrXnQ5K_ExihEJpSUyj",
-      "chatId": "0",
-      "text": "Web, Привет, какая хорошая погода!",
-      "author": "Robot"
-    },
-    {
-      "author": "Web",
-      "text": "g",
-      "id": "AXQqb_6UrgVxVn6qT28KN",
-      "chatId": "0"
-    },
-    {
-      "id": "YR-teLLrBwRmthellfCQI",
-      "chatId": "0",
-      "text": "Web, Добрый день!",
-      "author": "Robot"
-    },
-    {
-      "author": "Web",
-      "text": "ДОброе утро!",
-      "id": "XhRCAakoL2whmRdVyHYRf",
-      "chatId": "0"
-    },
-    {
-      "id": "BtLjhvQmAr2hfJpN0YgiD",
-      "chatId": "0",
-      "text": "Web, Привет, какая хорошая погода!",
-      "author": "Robot"
-    },
-    {
-      "author": "Web",
-      "text": "Первое сообщение",
-      "id": "U1JVaXvk8OZvg88r_FsyW",
-      "chatId": "6"
-    },
-    {
-      "id": "mrsbV2v8VtR-i8Xo6gQcw",
-      "chatId": "6",
-      "text": "Web, Привет, какая хорошая погода!",
       "author": "Robot"
     }
   ],

@@ -1,14 +1,24 @@
 import update from 'react-addons-update';
+import {Reducer} from 'redux';
 
-const initialState = {
+
+import {ChatsActions, ChatsActionTypes, DataChatStructure} from '../actions/chatsAction';
+
+export type ChatsReducerState = {
+    entries: any;
+    loading: boolean;
+    error: boolean;
+};
+
+const initialState: ChatsReducerState = {
 	entries: {},
 	loading: false,
 	error: false,
 };
 
-const allChatsReducer = (state = initialState, action) => {
+const allChatsReducer : Reducer<ChatsReducerState, ChatsActions> = (state = initialState, action) => {
 	switch (action.type) {
-		case 'ADD_MESSAGE_TO_CHAT':
+		case ChatsActionTypes.ADD_MESSAGE_TO_CHAT:
 			return {
 				...state,
 				entries: {
@@ -22,17 +32,17 @@ const allChatsReducer = (state = initialState, action) => {
 					},
 				},
 			};
-		case 'CHATS_LOAD_REQUEST':
+		case ChatsActionTypes.CHATS_LOAD_REQUEST:
 			return {
 				...state,
 				loading: true,
 				error: false,
 			};
 
-		case 'CHATS_LOAD_SUCCESS':
-			const newObj = {};
-			console.log('payload', action.payload);
-			action.payload.forEach((element) => {
+		case ChatsActionTypes.CHATS_LOAD_SUCCESS:
+			const newObj: any = {};
+			
+			action.payload.forEach((element: DataChatStructure) => {
 				newObj[element.id] = element;
 			});
 			return {
@@ -41,13 +51,13 @@ const allChatsReducer = (state = initialState, action) => {
 				entries: newObj,
 			};
 
-		case 'CHATS_LOAD_FAILURE':
+		case ChatsActionTypes.CHATS_LOAD_FAILURE:
 			return {
 				...state,
 				loading: false,
 				error: true,
 			};
-		case 'ADD_NEW_CHAT':
+		case ChatsActionTypes.ADD_NEW_CHAT:
 			const { id, title, highlight } = action.data;
 			return update(state, {
 				entries: {
@@ -61,7 +71,7 @@ const allChatsReducer = (state = initialState, action) => {
 					},
 				},
 			});
-		case 'HIGHLIGHT_CHAT':
+		case ChatsActionTypes.HIGHLIGHT_CHAT:
 			return update(state, {
 				entries: {
 					[action.chatId]: {
@@ -69,7 +79,7 @@ const allChatsReducer = (state = initialState, action) => {
 					},
 				},
 			});
-		case 'DELETE_CHAT':
+		case ChatsActionTypes.DELETE_CHAT:
 			const newState = {...state};
 			delete newState.entries[action.chatId]
 			return {

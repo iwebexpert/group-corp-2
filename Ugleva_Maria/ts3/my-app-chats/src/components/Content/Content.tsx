@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import ChatsComponent from "./chatsComponent";
 import Profile from "./Profile";
 
-const Content = () => {
+const Content : React.FC = () => {
     return (
       <div className="content">
         <Switch>

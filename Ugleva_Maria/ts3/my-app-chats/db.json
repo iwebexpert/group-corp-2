@@ -1,30 +1,36 @@
 {
   "chats": [
     {
-      "id": "eWdkPH5rweFrgfoG9VnuJ",
-      "title": "Vel veritatis perfer",
+      "id": "k1FH5pDylaaBCZKd9wA01",
+      "title": "Inventore est pariat",
       "highlight": false,
       "avatar": ""
     },
     {
-      "id": "DaAqet_Htj2JhX1rdwUJu",
-      "title": "Quasi dolore in sed ",
+      "id": "e_Pvf1gIcXw3UH2OK7g93",
+      "title": "Illum cillum atque ",
+      "highlight": false,
+      "avatar": ""
+    },
+    {
+      "id": "QeCQDE9m9ggmkkqZ_xhQT",
+      "title": "Ipsam quod similique",
       "highlight": false,
       "avatar": ""
     }
   ],
   "messages": [
     {
-      "text": "Fugiat aut eaque ea",
-      "author": "Harum minim suscipit",
-      "id": "3IZsaFnyxX9JfJTsxaoF3",
-      "chatId": "DaAqet_Htj2JhX1rdwUJu"
+      "text": "Tempora et nesciunt",
+      "author": "Aspernatur tempore ",
+      "id": "V9P4w8o2xOniRayQvowN6",
+      "chatId": "k1FH5pDylaaBCZKd9wA01"
     },
     {
-      "id": "kTGhp-6hSmyTQSKmy839U",
-      "text": "Hi Harum minim suscipit! Погуляем?",
+      "id": "dWMKghwOBHdnvUREdI6WR",
+      "text": "Hi Aspernatur tempore ! Погуляем?",
       "author": "Bot",
-      "chatId": "DaAqet_Htj2JhX1rdwUJu"
+      "chatId": "k1FH5pDylaaBCZKd9wA01"
     }
   ],
   "profiles": [

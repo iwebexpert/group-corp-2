@@ -5,8 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setActiveChat } from '../../actions/changeActiveChat';
 import MessageField from '../MessageField';
 import { useParams } from 'react-router-dom';
+import { AppState } from '../../reducers/reducer';
+import {Styles, MessageType} from '../../type';
 
-const styles = {
+const styles: { [key: string]: Styles } = {
 	messagesList: {
 		width: '100%',
 		boxSizing: 'border-box',
@@ -34,16 +36,19 @@ const styles = {
 		flexDirection: 'column',
 	},
 };
-
-const MessagesList = ({classes}) => {
+type MessagesListType = {
+	classes: Styles;
+};
+const MessagesList: React.FC<MessagesListType> = ({ classes }) => {
 	const dispatch = useDispatch();
-	let { id } = useParams();
+	let { id } = useParams<{ id: string }>();
 	let chatId = id.toString();
-	let chatToRender = useSelector((state) => {
+	let chatToRender = useSelector((state: AppState) => {
 		let chats = [];
 		for (let key in state.allChats.entries) {
 			chats.push(state.allChats.entries[key]);
 		}
+
 		const chat =
 			chats.length &&
 			chats.find((item) => {
@@ -52,13 +57,13 @@ const MessagesList = ({classes}) => {
 		return chat;
 	});
 	useEffect(() => {
-		dispatch(setActiveChat(chatId))
+		dispatch(setActiveChat(chatId));
 	}, [chatId]);
 	if (chatToRender) {
 		return (
 			<>
 				<div className={classes.messagesList}>
-					{chatToRender.messages.map((item) => {
+					{chatToRender.messages.map((item: MessageType) => {
 						return (
 							<Message
 								backCol={classes.messagesContent}

@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
 import CardMedia from '@material-ui/core/CardMedia';
+import { AppState } from '../../reducers/reducer';
 
 const useStyles = makeStyles({
 	root: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
 
 function Profile() {
 	const classes = useStyles();
-	const profile = useSelector((state) => state.profile.entries);
+	const profile = useSelector((state: AppState) => state.profile.entries);
 	return (
 		<Card className={classes.root}>
 			<CardContent className={classes.cardContent}>
@@ -65,7 +66,6 @@ function Profile() {
 					image={profile.avatar}
 					title="Contemplative Reptile"
 				/>
-				{/* <img src={profile.avatar} alt=""/> */}
 			</CardContent>
 		</Card>
 	);

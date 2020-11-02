@@ -1,6 +1,6 @@
 import {AnyAction, Dispatch, Middleware, MiddlewareAPI} from "redux";
-import {ICombinedState} from "../rdx";
-import {CommonAction} from "../rdxActions";
+import {ICombinedState} from "../reduxTypes/rdx";
+import {CommonAction} from "../reduxTypes/rdxActions";
 
 export const loggerMiddleware: Middleware = (store: MiddlewareAPI<Dispatch<AnyAction>, ICombinedState>) => (next: Dispatch) => (action: CommonAction) => {
     console.group('---loggerMiddware---');

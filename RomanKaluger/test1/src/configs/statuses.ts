@@ -1,9 +1,11 @@
-export enum wsStatus{
+export enum wsStatus {
     CLOSED = 'CLOSED',
     OPENED = 'OPENED'
 }
+
 export const PAGE_CURRENT = 'PAGE_CURRENT';
-export enum messageTypes{
+
+export enum messageTypes {
     TEXT = 'TEXT',
     AUDIO = 'AUDIO',
     IMAGE = 'IMAGE',
@@ -12,23 +14,27 @@ export enum messageTypes{
     SYSTEM_TEXT_INNER = 'SYSTEM_TEXT_INNER'
 
 }
-export enum systemMessages{
+
+export enum systemMessages {
     SYSTEM_TEXT_PUBLIC = 'SYSTEM_TEXT_PUBLIC',
     SYSTEM_TEXT_PRIVATE = 'SYSTEM_TEXT_PRIVATE',
     SYSTEM_TEXT_INNER = 'SYSTEM_TEXT_INNER'
 }
-export enum chatTypes{
+
+export enum chatTypes {
     DIALOG = 'DIALOG',
     CONVERSATION = 'CONVERSATION'
 }
-export enum avatarSizeCls{
+
+export enum avatarSizeCls {
     Normal = 'avatar',
     Big = 'avatarBig',
     Absolute = 'avatarAbsolute'
 }
-export enum changeChatTypes{
+
+export enum changeChatTypes {
     Create = 'CREATE',
-    DeleteUser ='DELETE_USER',
-    AddUser ='ADD_USER',
+    DeleteUser = 'DELETE_USER',
+    AddUser = 'ADD_USER',
     Rename = 'RENAME'
 }

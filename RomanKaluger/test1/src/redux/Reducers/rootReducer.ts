@@ -1,10 +1,10 @@
-import {AnyAction, CombinedState, combineReducers, Reducer} from 'redux';
+import {combineReducers, Reducer} from 'redux';
 import {AppReducer} from "./AppReducer";
 import {SystemReducer} from "./SystemReducer";
-import {connectRouter, LocationChangeAction} from 'connected-react-router'
+import {connectRouter} from 'connected-react-router'
 import {History} from "history";
-import {ICombinedState} from "../rdx";
-import {CommonAction} from "../rdxActions";
+import {ICombinedState} from "../reduxTypes/rdx";
+import {CommonAction} from "../reduxTypes/rdxActions";
 
 type createRootReducerFuncType = (history: History) => Reducer<ICombinedState, CommonAction>;
 export const createRootReducer: createRootReducerFuncType = (history) => combineReducers<ICombinedState, CommonAction>({

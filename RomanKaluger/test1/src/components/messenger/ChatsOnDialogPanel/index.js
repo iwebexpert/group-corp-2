@@ -1,1 +1,0 @@
-export ChatsOnDialogPanel from './ChatsOnDialogPanel';

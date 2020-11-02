@@ -146,7 +146,7 @@ export const addChat = (title: typesData.NewChatType) => {
           messages: [],
         })
       });
-      dispatch(dispatch(addChatSuccess(title)));
+      dispatch(addChatSuccess(title));
     } catch (error) {
       dispatch(chatsLoadFailureAction(error));
     }

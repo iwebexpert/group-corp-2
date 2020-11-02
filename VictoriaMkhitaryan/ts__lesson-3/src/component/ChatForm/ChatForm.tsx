@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ChatForm.css';
 
-import TextInput from '../TextInput/TextInput';
+import { TextInput } from '../TextInput/TextInput';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import { NewChatType } from '../../types/types';
@@ -40,7 +40,7 @@ export const ChatForm: React.FC<ChatFormType> = ({ handleCreateChat }) => {
     <>
       <TextInput modifiers="chart-form__text-input"
                   label="Введите название чата"
-                  type="text"
+                  // type="text"
                   value={title}
                   onChange={handleOnInputChat} />
       <IconButton

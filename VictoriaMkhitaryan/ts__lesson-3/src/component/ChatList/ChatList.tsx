@@ -7,8 +7,8 @@ import { ChatsData, NewChatType } from '../../types/types';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem'
-import ChatItem from '../ChatItem/ChatItem';
-import TextInput from '../TextInput/TextInput';
+import { ChatItem } from '../ChatItem/ChatItem';
+import { TextInput } from '../TextInput/TextInput';
 import { ChatForm } from '../ChatForm/ChatForm';
 
 type ChatListType = {
@@ -17,7 +17,7 @@ type ChatListType = {
   handleAdd: (title: NewChatType) => void;
   unreadMessage: any;
   handleClickChat: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleOnClickDelete: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleOnClickDelete: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export const ChatList: React.FC<ChatListType> = ({ chats, currentChat, handleAdd, unreadMessage, 
@@ -83,7 +83,7 @@ export const ChatList: React.FC<ChatListType> = ({ chats, currentChat, handleAdd
         <ListItem className="chat__search">
           <TextInput modifiers="chat__input" 
                       label="Поиск" 
-                      type="text"
+                      // type="text"
                       value={searchInput}
                       onChange={handleOnInputSearch}
                       onKeyDown={handleKeyDownSearch} />

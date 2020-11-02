@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Container from '../../component/Container/Container';
-import Navbar from '../../component/Navbar/Navbar';
+import { Container } from '../../component/Container/Container';
+import { Navbar } from '../../component/Navbar/Navbar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Content from '../../component/Content/Content';
+import { Content } from '../../component/Content/Content';
 
 import { Link } from "react-router-dom";
 import './NotFoundScreen.css'

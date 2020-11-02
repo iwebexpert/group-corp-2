@@ -63,6 +63,8 @@ export const chatsReducer: Reducer<ChatsReducerState, ChatActions> = (state = in
             });
 
         case ChatsActionTypes.ADD_CHAT:
+            console.log(state);
+            console.log(action);
             return {
                 ...state,
                 loading: false,

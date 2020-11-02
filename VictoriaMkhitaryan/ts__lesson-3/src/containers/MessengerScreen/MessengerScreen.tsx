@@ -12,9 +12,9 @@ import { profilesLoad } from '../../store/profile/actions';
 import { AppState } from '../../store/reducers';
 import { MessageType, NewChatType } from '../../types/types';
 
-import Navbar from '../../component/Navbar/Navbar';
-import Container from '../../component/Container/Container';
-import Content from '../../component/Content/Content';
+import { Navbar } from '../../component/Navbar/Navbar';
+import { Container } from '../../component/Container/Container';
+import { Content } from '../../component/Content/Content';
 import { Chat } from '../../component/Chat/Chat';
 import { ChatList } from '../../component/ChatList/ChatList';
 import Card from '@material-ui/core/Card';
@@ -58,7 +58,7 @@ export const MessengerScreen: React.FC = () => {
     dispatch(push(`/chats/${Number(e.target.id)}`));
   }
 
-  const handleOnClickDelete = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnClickDelete = (e: any) => {
     dispatch(deleteChat(Number(e.target.id)));
   }
 
@@ -105,4 +105,4 @@ export const MessengerScreen: React.FC = () => {
       </Container>
     </>
   );
-        }
+}

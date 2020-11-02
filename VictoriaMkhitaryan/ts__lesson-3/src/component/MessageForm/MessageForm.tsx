@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import './MessageForm.css';
 
-import TextInput from '../TextInput/TextInput';
+import { TextInput } from '../TextInput/TextInput';
 
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
@@ -52,8 +52,7 @@ export const MessageForm: React.FC<MessageFormType> = ({ onMessageSend, author }
                   name="message"
                   value={textField.value}
                   onChange={textField.onChange}
-                  onKeyDown={handleKeyDown}
-                  multiline />
+                  onKeyDown={handleKeyDown} />
       <IconButton className="chat__icon-button"
                   size="medium"
                   onClick={handleMessageSend} >

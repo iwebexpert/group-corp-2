@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const fetchChats = () => (dispatch) => {
   dispatch(setChatsLoading(true));
-  dispatch(setMessagesLoading(true));
   dispatch(setChatsError(false));
+  dispatch(setMessagesLoading(true));
   dispatch(setMessagesError(false));
   axios
     .get("http://localhost:3001/chats?_embed=messages")

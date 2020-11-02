@@ -10,6 +10,7 @@ export const ChatAdd = ({ addChat, chats }) => {
             alert('Введите название чата');
             return;
         }
+
         const newChat = {
             title: inputValue,
             messages: [],

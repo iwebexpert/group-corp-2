@@ -7,7 +7,7 @@ import { Fab } from '@material-ui/core'
 import { sendMessageAction } from '../../../actions/chats'
 import './MessangerForm.scss'
 
-export const MessangerForm = ({ chat }) => {
+export const MessangerForm = ({ ============================================ }) => {
     const [author, setAuthor] = useState('');
     const [message, setMessage] = useState('');
     const diopatch = useDispatch();

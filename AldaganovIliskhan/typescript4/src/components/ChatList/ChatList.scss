@@ -1,0 +1,53 @@
+.chat__lists {
+  flex-basis: 20%;
+  &-item {
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 15px;
+    text-transform: capitalize;
+    position: relative;
+    display: flex;
+    &:hover {
+      .remove-btn,
+      .edit-btn {
+        opacity: 0.2;
+      }
+    }
+    p {
+      padding: 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 200px;
+      white-space: nowrap;
+    }
+    &:hover {
+      background: rgba(238, 214, 214, 0.259);
+    }
+    &.active {
+      background: rgb(238, 214, 214);
+    }
+    .edit-btn {
+      position: absolute;
+      right: 30px;
+      top: 13px;
+      opacity: 0;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    .remove-btn {
+      position: absolute;
+      right: 10px;
+      top: 13px;
+      opacity: 0;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    small {
+      position: relative;
+      top: 9px;
+      right: 40px;
+    }
+  }
+}

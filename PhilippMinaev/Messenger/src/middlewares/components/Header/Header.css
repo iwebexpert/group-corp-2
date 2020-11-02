@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+}
+.header-avatar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90px;
+  margin-right: 25px;
+  font-family: Roboto;
+  font-size: 15px;
+}
+
+.header-logo {
+  color: rgb(188, 29, 29);
+  margin-left: 25px;
+  font-family: Roboto;
+  font-size: 25px;
+}

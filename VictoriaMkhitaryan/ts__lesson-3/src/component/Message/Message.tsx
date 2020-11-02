@@ -1,11 +1,7 @@
 import React from 'react';
+import { NewMessageType } from '../../types/types';
 import './Message.css';
 
-export type MessageType = {
-  text: string;
-  author: string;
-}
-
-export const Message: React.FC<MessageType> = ({text, author}) => {
-  return <div>{text} - <b>{author}</b></div>;
+export const Message: React.FC<NewMessageType> = ({message, author}) => {
+  return <div>{message} - <b>{author}</b></div>;
 }

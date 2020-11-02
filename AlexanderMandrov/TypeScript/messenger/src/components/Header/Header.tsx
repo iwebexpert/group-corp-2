@@ -9,16 +9,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { fetchProfileInfo } from '../../redux/ducks/profile';
+import { AppState, AppDispatch } from '../../redux/rootReducer';
 
-const drawerWidth = 240;
+const drawerWidth: number = 240;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles: () => Record<string, string> = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
   title: {
     flexGrow: 1,
-    marginLeft: theme.spacing(2),
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -26,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Header = () => {
-  const dispatch = useDispatch();
-  const { profileReducer } = useSelector((state) => state);
+export const Header: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const { profileReducer } = useSelector((state: AppState) => state);
   const { data, sticker, error } = profileReducer;
 
   const classes = useStyles();
-  const { root, menuButton, title, appBar } = classes;
+  const { root, title, appBar } = classes;
 
   useEffect(() => {
     if (!data) dispatch(fetchProfileInfo('yellso'));
@@ -54,7 +54,7 @@ export const Header = () => {
             )}
           </Typography>
           <Link to="/profile" className="Header-link__reset">
-            <IconButton edge="start" className={menuButton} color="inherit">
+            <IconButton edge="start" color="inherit">
               <AccountCircle />
             </IconButton>
           </Link>

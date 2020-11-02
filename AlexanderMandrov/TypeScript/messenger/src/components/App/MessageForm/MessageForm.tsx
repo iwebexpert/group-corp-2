@@ -25,7 +25,10 @@ export const MessageForm: React.FC<MessageFormType> = ({ pushMessage }) => {
   const onHandleKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>
   ): void => {
-    if (event.key === 'Enter' && event.ctrlKey) onHandleClick();
+    if (event.key === 'Enter' && event.ctrlKey) {
+      event.preventDefault();
+      onHandleClick();
+    }
   };
 
   return (

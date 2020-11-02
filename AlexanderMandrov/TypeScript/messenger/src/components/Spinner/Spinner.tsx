@@ -4,11 +4,14 @@ import RingLoader from 'react-spinners/RingLoader';
 import './Spinner.scss';
 
 type SpinnerType = {
-  size: number;
-  color: string;
+  size?: number;
+  color?: string;
 };
 
-const Spinner: React.FC<SpinnerType> = ({ size, color }) => {
+export const Spinner: React.FC<SpinnerType> = ({
+  size = 150,
+  color = '#123abc',
+}) => {
   const override: SerializedStyles = css`
     display: block;
     margin: 0 auto;
@@ -16,10 +19,3 @@ const Spinner: React.FC<SpinnerType> = ({ size, color }) => {
 
   return <RingLoader css={override} size={size} color={color} loading={true} />;
 };
-
-Spinner.defaultProps = {
-  size: 150,
-  color: '#123abc',
-};
-
-export { Spinner };

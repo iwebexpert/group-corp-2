@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { history, initStore } from './redux/store';
-import App from './components/App';
+import { App } from './components/App';
 
 const { store, persistor } = initStore();
 

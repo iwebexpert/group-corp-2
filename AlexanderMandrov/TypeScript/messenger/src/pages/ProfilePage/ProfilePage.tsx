@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import './ProfilePage.scss';
 import { Spinner } from '../../components/Spinner';
 import { Error } from '../../components/Error';
+import { fetchProfileInfo, setProfileSticker } from '../../redux/ducks/profile';
+import { stickers } from '../../constants/constants';
+import { AppState, AppDispatch } from '../../redux/rootReducer';
 import {
   Typography,
   Card,
@@ -13,10 +16,8 @@ import {
   IconButton,
   Box,
 } from '@material-ui/core';
-import { fetchProfileInfo, setProfileSticker } from '../../redux/ducks/profile';
-import { stickers } from '../../constants/constants';
 
-const useStyles = makeStyles({
+const useStyles: () => Record<string, string> = makeStyles({
   card: {
     display: 'flex',
     marginTop: 8,
@@ -29,12 +30,11 @@ const useStyles = makeStyles({
   },
 });
 
-const ProfilePage = () => {
-  const classes = useStyles();
-  const { card, cardDetails, cardMedia } = classes;
+export const ProfilePage: React.FC = () => {
+  const { card, cardDetails, cardMedia } = useStyles();
 
-  const dispatch = useDispatch();
-  const { profileReducer } = useSelector((state) => state);
+  const dispatch: AppDispatch = useDispatch();
+  const { profileReducer } = useSelector((state: AppState) => state);
   const { data, error } = profileReducer;
 
   useEffect(() => {
@@ -43,41 +43,43 @@ const ProfilePage = () => {
     }
   }, []);
 
-  const handleStickerClick = (idx) => {
+  const handleStickerClick: (idx: number) => void = (idx) => {
     dispatch(setProfileSticker(stickers[idx]));
   };
 
-  const renderProfileCard = () => {
-    const { firstname, lastname, username, BIO, number } = data;
-    const date = new Date().toLocaleString();
-    return (
-      <>
-        <Typography component="h2" variant="h5">
-          {`Username: ${username}`}
-        </Typography>
-        <Typography variant="subtitle1" color="textSecondary">
-          {date}
-        </Typography>
-        <Typography variant="subtitle1" paragraph>
-          {BIO}
-        </Typography>
-        <Typography variant="subtitle2" paragraph>
-          {`Firstname: ${firstname}`}
-        </Typography>
-        <Typography variant="subtitle2" paragraph>
-          {`Lastname: ${lastname}`}
-        </Typography>
-        <Typography variant="subtitle2" paragraph>
-          {`Number: ${number}`}
-        </Typography>
-      </>
-    );
+  const renderProfileCard: () => JSX.Element | undefined = () => {
+    if (data) {
+      const { firstname, lastname, username, BIO, number } = data;
+      const date = new Date().toLocaleString();
+      return (
+        <>
+          <Typography component="h2" variant="h5">
+            {`Username: ${username}`}
+          </Typography>
+          <Typography variant="subtitle1" color="textSecondary">
+            {date}
+          </Typography>
+          <Typography variant="subtitle1" paragraph>
+            {BIO}
+          </Typography>
+          <Typography variant="subtitle2" paragraph>
+            {`Firstname: ${firstname}`}
+          </Typography>
+          <Typography variant="subtitle2" paragraph>
+            {`Lastname: ${lastname}`}
+          </Typography>
+          <Typography variant="subtitle2" paragraph>
+            {`Number: ${number}`}
+          </Typography>
+        </>
+      );
+    }
   };
 
   return (
     <>
       <Card className={card}>
-        {!error ? null : <Error />}
+        {error && <Error />}
         {data === null ? (
           <Spinner />
         ) : (
@@ -104,10 +106,9 @@ const ProfilePage = () => {
               return (
                 <IconButton
                   color="primary"
-                  variant="contained"
                   size="small"
                   key={`sticker-${idx}`}
-                  onClick={handleStickerClick.bind(this, idx)}
+                  onClick={handleStickerClick.bind(window, idx)}
                 >
                   <Box mx={1} my={0.5}>
                     {sticker}
@@ -121,5 +122,3 @@ const ProfilePage = () => {
     </>
   );
 };
-
-export default ProfilePage;

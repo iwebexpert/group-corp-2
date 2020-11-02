@@ -1,7 +1,6 @@
 import React, { createRef, useEffect } from 'react';
 import './Chat.scss';
 import { Message } from './Message';
-import { IMessage } from '../../../types/interfaces';
 import { List, ListItem } from '@material-ui/core';
 
 type ChatType = {
@@ -18,7 +17,7 @@ export const Chat: React.FC<ChatType> = ({
   const list: React.RefObject<HTMLUListElement> = createRef<HTMLUListElement>();
 
   useEffect(() => {
-    if (list.current) list.current.scrollTop = 999999;
+    if (list.current) list.current.scrollTop = 999999999;
   }, [getMessageList]);
 
   return (

@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-const usernames = [
+const usernames: string[] = [
   'methodicalmanrope',
   'hedgehogpalm',
   'exuberantwarlike',
@@ -25,7 +25,7 @@ const usernames = [
   'thoroughforemast',
 ];
 
-const stickers = [
+export const stickers: string[] = [
   '❤',
   '😏',
   '🙄',
@@ -104,7 +104,7 @@ const stickers = [
   '🤐',
 ];
 
-const rawMessages = [
+const rawMessages: string[] = [
   'I was just thinking about you!',
   'You are a great example for others.',
   'You have great ideas.',
@@ -112,15 +112,16 @@ const rawMessages = [
   'I appreciate all of your opinions.',
 ];
 
-let messages = [];
+let messages: string[] = [];
 
-usernames.forEach(() => {
+usernames.forEach((): void => {
   messages.push(rawMessages[Math.floor(Math.random() * 5)]);
 });
 
-const createPrimaryChat = (user, sender = null) => {
+export const createPrimaryChat: CreatePrimaryChat = (user, sender) => {
+  const userId = nanoid();
   return {
-    id: nanoid(),
+    id: userId,
     fired: sender ? false : true,
     username: user,
     messages: sender
@@ -131,11 +132,10 @@ const createPrimaryChat = (user, sender = null) => {
             username: sender ? sender : user,
             date: new Date(),
             text: messages[Math.random() * 5],
+            chatId: userId,
           },
         ],
   };
 };
 
-const API_URL = 'http://localhost:4000/';
-
-export { createPrimaryChat, stickers, API_URL };
+export const API_URL: string = 'http://localhost:4000/';
